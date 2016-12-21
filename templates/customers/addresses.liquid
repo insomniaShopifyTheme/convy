@@ -10,9 +10,9 @@
 
 {% paginate customer.addresses by 5 %}
 
-<header class="section-header">
-  <h1 class="section-header__left">{{ 'customer.account.title' | t }}</h1>
-  <div class="section-header__right">
+<header class="section-heading">
+  <h1 class="section-heading__left">{{ 'customer.account.title' | t }}</h1>
+  <div class="section-heading__right">
     <a href="#" class="btn" onclick="Shopify.CustomerAddress.toggleNewForm(); return false;">{{ 'customer.addresses.add_new' | t }}</a>
   </div>
 </header>

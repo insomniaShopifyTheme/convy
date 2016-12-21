@@ -35,6 +35,9 @@
   #Forms
   #Icons
   #Pagination
+  #Section: Topbar
+  #Section: Header
+
   #Site Header
   #Site Nav and Dropdowns
   #Mobile Nav
@@ -52,20 +55,18 @@
 /*============================================================================
   #Breakpoint and Grid Variables
 ==============================================================================*/
-$viewportIncrement: 1px;
+$viewport-inc: 1px;
 
 $small: 480px;
 $medium: 768px;
 $large: 769px;
 
-$postSmall: $small + $viewportIncrement;
-$preMedium: $medium - $viewportIncrement;
-$preLarge: $large - $viewportIncrement;
+$post-small: $small + $viewport-inc;
 
 /*================ The following are dependencies of csswizardry grid ================*/
 $breakpoints: (
   'small' '(max-width: #{$small})',
-  'medium' '(min-width: #{$postSmall}) and (max-width: #{$medium})',
+  'medium' '(min-width: #{$post-small}) and (max-width: #{$medium})',
   'medium-down' '(max-width: #{$medium})',
   'large' '(min-width: #{$large})'
 );
@@ -78,77 +79,99 @@ $breakpoint-has-pull:  ('medium', 'medium-down', 'large');
 ==============================================================================*/
 
 // Timber Colors
-$colorPrimary: {{ settings.color_primary }};
-$colorSecondary: {{ settings.color_secondary }};
+$color-primary: {{ settings.color_primary }};
+$color-secondary: {{ settings.color_secondary }};
 
 // Button colors
-$colorBtnPrimary: $colorPrimary;
-$colorBtnPrimaryHover: darken($colorBtnPrimary, 10%);
-$colorBtnPrimaryActive: darken($colorBtnPrimaryHover, 10%);
-$colorBtnPrimaryText: #fff;
+$color-btn-primary: $color-primary;
+$color-btn-primary-hover: darken($color-btn-primary, 10%);
+$color-btn-primary-active: darken($color-btn-primary-hover, 10%);
+$color-btn-primary-text: #fff;
 
-$colorBtnSecondary: $colorSecondary;
-$colorBtnSecondaryHover: darken($colorBtnSecondary, 10%);
-$colorBtnSecondaryActive: darken($colorBtnSecondaryHover, 10%);
-$colorBtnSecondaryText: #fff;
+$color-btn-secondary: $color-secondary;
+$color-btn-secondary-hover: darken($color-btn-secondary, 10%);
+$color-btn-secondary-active: darken($color-btn-secondary-hover, 10%);
+$color-btn-secondary-text: #fff;
 
 // Text link colors
-$colorLink: $colorPrimary;
-$colorLinkHover: lighten($colorPrimary, 15%);
+$color-link: $color-primary;
+$color-link-hover: lighten($color-primary, 15%);
 
 // Text colors
-$colorTextBody: {{ settings.color_body_text }};
+$color-text-body: {{ settings.color_text }};
 
 // Backgrounds
-$colorBody: {{ settings.color_body_bg }};
+$color-body: {{ settings.color_bg }};
 
 // Border colors
-$colorBorder: {{ settings.color_borders }};
+$color-border: {{ settings.color_secondary }};
 
 // Nav and dropdown link background
-$colorNav: #f2f2f2;
-$colorNavText: #333;
+$color-nav: #f2f2f2;
+$color-nav-text: #333;
 
 // Site Footer
-$colorFooterBg: {{ settings.color_footer_bg }};
-$colorFooterText: {{ settings.color_footer_text }};
+$color-footer-bg: {{ settings.color_bg_alt }};
+$color-footer-text: {{ settings.color_text_alt }};
 
 // Logo max width
-$logoMaxWidth: {{ settings.logo_max_width | default: '450' | remove: 'px' }}px;
+$logo-max-width: {{ settings.logo_max_width | default: '450' | remove: 'px' }}px;
 
 // Helper colors
-$disabledGrey: #f6f6f6;
-$disabledBorder: darken($disabledGrey, 25%);
-$errorRed: #d02e2e;
-$errorRedBg: #fff6f6;
-$successGreen: #56ad6a;
-$successGreenBg: #ecfef0;
+$disabled-grey: #f6f6f6;
+$disabled-border: darken($disabled-grey, 25%);
+$error-red: #d02e2e;
+$error-red-bg: #fff6f6;
+$success-green: #56ad6a;
+$success-green-bg: #ecfef0;
 
 // Drawers
-$drawerNavWidth: 300px;
-$drawerCartWidth: 300px;
-$colorDrawers: #f6f6f6;
-$colorDrawerBorder: darken($colorDrawers, 5%);
-$colorDrawerText: #333;
-$drawerTransition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1);
+$drawer-nav-width: 300px;
+$drawer-cart-width: 300px;
+$color-drawers: #f6f6f6;
+$color-drawer-border: darken($color-drawers, 5%);
+$color-drawer-text: #333;
+$drawer-transition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1);
 
 // Sizing variables
-$siteWidth: 1180px;
+$site-width: 1180px;
 $gutter: 30px;
-$gridGutter: 30px; // can be a %, but nested grids will have smaller margins because of it
+$grid-gutter: 30px; // can be a %, but nested grids will have smaller margins because of it
 $radius: 3px;
 
 // Z-index
-$zindexNavDropdowns: 5;
-$zindexDrawer: 10;
+$zindex-nav-dropdowns: 5;
+$zindex-drawer: 10;
 
 /*================ Typography ================*/
 
-$headerFontStack: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$headerFontWeight: 700;
+$font-weight-normal: 400;
+$font-weight-bold: 700;
 
-$bodyFontStack: 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$baseFontSize: 14px; // Henceforth known as 1em
+{% if settings.font_family_base contains 'Google' %}
+  {% assign font_base_parts = settings.font_family_base | split: '_' %}
+  {% assign font_base_name = font_base_parts[1] %}
+  {% capture base_family %}"{{ font_base_name | split: ':' | first | replace: '+', ' ' }}"{% if font_base_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% else %}
+  {% assign base_family = settings.font_family_base %}
+{% endif %}
+
+{% if settings.font_family_headings contains 'Google' %}
+  {% assign font_headings_parts = settings.font_family_headings | split: '_' %}
+  {% assign font_headings_name = font_headings_parts[1] %}
+  {% capture headings_family %}"{{ font_headings_name | split: ':' | first | replace: '+', ' ' }}"{% if font_headings_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+  {% assign headings_weight = font_headings_parts[2] | split: ',' %}
+{% else %}
+  {% assign headings_family = settings.font_family_headings %}
+  {% assign headings_weight = $font-weight-normal %}
+{% endif %}
+
+$font-stack-heading: {{ headings_family }};
+$font-weight-heading: {{ headings_weight }};
+$font-size-heading: {{ settings.font_size_headings }};
+
+$font-stack-body: {{ base_family }};
+$font-size-base: {{ settings.font_size_base }};
 
 @font-face {
   font-family: 'icons';
@@ -160,7 +183,7 @@ $baseFontSize: 14px; // Henceforth known as 1em
   font-weight: normal;
   font-style: normal;
 }
-$socialIconFontStack: 'icons';
+$social-icon-font-stack: 'icons';
 
 
 /*============================================================================
@@ -230,7 +253,7 @@ $socialIconFontStack: 'icons';
   @include prefixer(backface-visibility, $visibility, webkit spec);
 }
 
-@function em($target, $context: $baseFontSize) {
+@function em($target, $context: $font-size-base) {
   @if $target == 0 {
     @return 0;
   }
@@ -384,14 +407,14 @@ $class-type: unquote(".");
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-left: -$gridGutter;
+  margin-left: -$grid-gutter;
 }
 
 #{$class-type}grid__item {
   box-sizing: border-box;
   float: left;
   min-height: 1px;
-  padding-left: $gridGutter;
+  padding-left: $grid-gutter;
   vertical-align: top;
   @if $mobile-first == true {
     width: 100%;
@@ -706,11 +729,11 @@ $class-type: unquote(".");
   #Basic Styles
 ==============================================================================*/
 html {
-  background-color: $colorFooterBg;
+  background-color: $color-footer-bg;
 }
 
 body {
-  background-color: $colorBody;
+  background-color: $color-body;
 }
 
 [tabindex='-1']:focus {
@@ -719,7 +742,7 @@ body {
 
 .wrapper {
   @include clearfix();
-  max-width: $siteWidth;
+  max-width: $site-width;
   margin: 0 auto;
   padding: 0 ($gutter / 2);
 
@@ -784,10 +807,10 @@ input,
 textarea,
 button,
 select {
-  font-size: $baseFontSize;
+  font-size: $font-size-base;
   line-height: 1.6;
-  font-family: $bodyFontStack;
-  color: $colorTextBody;
+  font-family: $font-stack-body;
+  color: $color-text-body;
   font-weight: 300;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
@@ -795,8 +818,8 @@ select {
 
 h1, h2, h3, h4, h5, h6 {
   display: block;
-  font-family: $headerFontStack;
-  font-weight: $headerFontWeight;
+  font-family: $font-stack-heading;
+  font-weight: $font-weight-heading;
   margin: 0 0 0.5em;
   line-height: 1.4;
 
@@ -808,27 +831,27 @@ h1, h2, h3, h4, h5, h6 {
 
 /*================ Use em() Sass function to declare font-size ================*/
 h1 {
-  font-size: em(36px);
+  font-size: em(floor($font-size-heading * 1.4));
 }
 
 h2 {
-  font-size: em(28px);
+  font-size: em(floor($font-size-heading * 1.1));
 }
 
 h3 {
-  font-size: em(22px);
+  font-size: em(floor($font-size-heading * 0.85));
 }
 
 h4 {
-  font-size: em(20px);
+  font-size: em(floor($font-size-heading * 0.8));
 }
 
 h5 {
-  font-size: em(16px);
+  font-size: em(floor($font-size-heading * 0.65));
 }
 
 h6 {
-  font-size: em(14px);
+  font-size: em(floor($font-size-heading * 0.55));
 }
 
 
@@ -879,7 +902,7 @@ blockquote {
   font-style: italic;
   margin: 0 0 $gutter;
   padding: ($gutter / 2) $gutter;
-  border-left: 1px solid $colorBorder;
+  border-left: 1px solid $color-border;
 
   p {
     margin-bottom: 0;
@@ -918,7 +941,7 @@ pre {
 /*================ Horizontal Rules ================*/
 hr {
   clear: both;
-  border-top: solid $colorBorder;
+  border-top: solid $color-border;
   border-width: 1px 0 0;
   margin: $gutter 0;
   height: 0;
@@ -933,21 +956,21 @@ hr {
 }
 
 /*================ Section Headers ================*/
-.section-header {
+.section-heading {
   margin-bottom: $gutter / 1.5;
 }
 
 @include at-query ($min, $large) {
-  .section-header {
+  .section-heading {
     display: table;
     width: 100%;
   }
 
-  .section-header__title {
+  .section-heading__title {
     margin-bottom: $gutter / 2.5;
   }
 
-  .section-header__left {
+  .section-heading__left {
     display: table-cell;
     vertical-align: middle;
     margin-bottom: 0;
@@ -958,7 +981,7 @@ hr {
     }
   }
 
-  .section-header__right {
+  .section-heading__right {
     display: table-cell;
     vertical-align: middle;
     text-align: right;
@@ -970,14 +993,14 @@ hr {
   }
 }
 
-.section-header__right {
+.section-heading__right {
   .form-horizontal,
   .collection-view {
     display: inline-block;
     vertical-align: middle;
   }
 
-  @include at-query ($min, $postSmall) {
+  @include at-query ($min, $post-small) {
     label + select,
     .collection-view {
       margin-left: $gutter / 2;
@@ -987,7 +1010,7 @@ hr {
 
 .collection-view {
   display: inline-block;
-  border: 1px solid $colorBorder;
+  border: 1px solid $color-border;
   border-radius: $radius;
   padding: 0 5px;
   height: 37px; // same as form elements
@@ -1005,18 +1028,18 @@ hr {
   border: 0 none;
   float: left;
   padding: 10px 8px;
-  color: $colorBorder;
+  color: $color-border;
   line-height: 1;
 
   &:hover,
   &:focus {
-    color: $colorPrimary;
+    color: $color-primary;
   }
 }
 
 .change-view--active {
   cursor: default;
-  color: $colorPrimary;
+  color: $color-primary;
 }
 
 /*============================================================================
@@ -1060,14 +1083,14 @@ hr {
 ==============================================================================*/
 a,
 .text-link {
-  color: $colorLink;
+  color: $color-link;
   text-decoration: none;
   background: transparent;
 }
 
 a:hover,
 a:focus {
-  color: $colorLinkHover;
+  color: $color-link-hover;
 }
 
 button {
@@ -1099,42 +1122,42 @@ html input[disabled] {
   border-radius: $radius;
 
   /*================ Set primary button colors - can override later ================*/
-  background-color: $colorBtnPrimary;
-  color: $colorBtnPrimaryText;
+  background-color: $color-btn-primary;
+  color: $color-btn-primary-text;
 
   &:hover {
-    background-color: $colorBtnPrimaryHover;
-    color: $colorBtnPrimaryText;
+    background-color: $color-btn-primary-hover;
+    color: $color-btn-primary-text;
   }
 
   &:active,
   &:focus {
-   background-color: $colorBtnPrimaryActive;
-   color: $colorBtnPrimaryText;
+   background-color: $color-btn-primary-active;
+   color: $color-btn-primary-text;
   }
 
   &[disabled],
   &.disabled {
     cursor: default;
-    color: $disabledBorder;
-    background-color: $disabledGrey;
+    color: $disabled-border;
+    background-color: $disabled-grey;
   }
 }
 
 .btn--secondary,
 .rte .btn--secondary {
   @extend .btn;
-  background-color: $colorBtnSecondary;
+  background-color: $color-btn-secondary;
 
   &:hover {
-    background-color: $colorBtnSecondaryHover;
-    color: $colorBtnSecondaryText;
+    background-color: $color-btn-secondary-hover;
+    color: $color-btn-secondary-text;
   }
 
   &:active,
   &:focus {
-   background-color: $colorBtnSecondaryActive;
-   color: $colorBtnSecondaryText;
+   background-color: $color-btn-secondary-active;
+   color: $color-btn-secondary-text;
   }
 }
 
@@ -1219,7 +1242,7 @@ th {
 th, td {
   text-align: left;
   padding: $gutter / 2;
-  border: 1px solid $colorBorder;
+  border: 1px solid $color-border;
 }
 
 /*============================================================================
@@ -1288,7 +1311,7 @@ th, td {
       top: 0;
       left: 15px;
       right: 15px;
-      border-bottom: 1px solid $colorBorder;
+      border-bottom: 1px solid $color-border;
     }
   }
 }
@@ -1409,7 +1432,7 @@ input[type="image"] {
 }
 
 fieldset {
-  border: 1px solid $colorBorder;
+  border: 1px solid $color-border;
   padding: $gutter / 2;
 }
 
@@ -1426,20 +1449,20 @@ input[type="submit"] {
 input,
 textarea,
 select {
-  border: 1px solid $colorBorder;
+  border: 1px solid $color-border;
   max-width: 100%;
   padding: 8px 10px;
   border-radius: $radius;
 
   &:focus {
-    border: 1px solid darken($colorBorder, 10%);
+    border: 1px solid darken($color-border, 10%);
   }
 
   &[disabled],
   &.disabled {
     cursor: default;
-    background-color: $disabledGrey;
-    border-color: $disabledBorder;
+    background-color: $disabled-grey;
+    border-color: $disabled-border;
   }
 
   &.input-full {
@@ -1558,14 +1581,14 @@ input,
 select,
 textarea {
   &.error {
-    border-color: $errorRed;
-    background-color: $errorRedBg;
-    color: $errorRed;
+    border-color: $error-red;
+    background-color: $error-red-bg;
+    color: $error-red;
   }
 }
 
 label.error {
-  color: $errorRed;
+  color: $error-red;
 }
 
 
@@ -1647,7 +1670,7 @@ label.error {
 
 .supports-fontface .icon:before {
   display: inline;
-  font-family: $socialIconFontStack;
+  font-family: $social-icon-font-stack;
   text-decoration: none;
   speak: none; // future fallback, limited in effect currently
   font-style: normal;
@@ -1704,7 +1727,7 @@ label.error {
 
   li {
     margin: 0 ($gutter / 4) ($gutter / 4);
-    color: {{ settings.color_footer_social_link }};
+    color: {{ settings.color_text_alt }};
     cursor: default;
   }
 
@@ -1722,7 +1745,7 @@ label.error {
   margin: 0 ($gutter / 2) ($gutter / 2);
   vertical-align: middle;
 
-  @include at-query ($min, $postSmall) {
+  @include at-query ($min, $post-small) {
     margin-left: 0;
   }
 
@@ -1732,10 +1755,10 @@ label.error {
   }
 
   a {
-    color: {{ settings.color_footer_social_link }};
+    color: {{ settings.color_text_alt }};
 
     &:hover {
-      color: darken({{ settings.color_footer_social_link }}, 10%);
+      color: darken({{ settings.color_text_alt }}, 10%);
     }
   }
 }
@@ -1761,6 +1784,33 @@ label.error {
     padding: 8px;
   }
 }
+
+/*============================================================================
+  #Section: Topbar
+==============================================================================*/
+
+.section-topbar {
+  background-color: #191919;
+  height: 2.5em;
+
+  .section-topbar__message {
+    color: #a5a5a5;
+  }
+
+  .section-topbar__button {
+    border: 2px solid #ffffff;
+    border-radius: 3px;
+    color: #fff;
+  }
+
+}
+
+/*============================================================================
+  #Section: Header
+==============================================================================*/
+
+
+
 
 /*============================================================================
   #Site Header
@@ -1806,7 +1856,7 @@ label.error {
 }
 
 .site-header__logo-link {
-  max-width: $logoMaxWidth;
+  max-width: $logo-max-width;
   margin: 0 auto;
 }
 
@@ -1834,7 +1884,7 @@ label.error {
   #Site Nav and Dropdowns
 ==============================================================================*/
 .nav-bar {
-  background-color: $colorNav;
+  background-color: $color-nav;
 }
 
 .site-nav {
@@ -1867,12 +1917,12 @@ label.error {
   text-decoration: none;
   padding: $gutter / 2;
   white-space: nowrap;
-  color: $colorNavText;
+  color: $color-nav-text;
 
   &:hover,
   &:active,
   &:focus {
-    color: darken($colorNavText, 15%);
+    color: darken($color-nav-text, 15%);
   }
 
   .icon-arrow-down {
@@ -1897,7 +1947,7 @@ label.error {
   position: absolute;
   left: 0;
   margin: 0;
-  z-index: $zindexNavDropdowns;
+  z-index: $zindex-nav-dropdowns;
 
   .supports-no-touch .site-nav--has-dropdown:hover &,
   .site-nav--has-dropdown.nav-hover &,
@@ -1906,12 +1956,12 @@ label.error {
   }
 
   a {
-    background-color: $colorNav;
+    background-color: $color-nav;
 
     &:hover,
     &:active,
     &:focus {
-      background-color: darken($colorNav, 10%);
+      background-color: darken($color-nav, 10%);
     }
   }
 }
@@ -1956,7 +2006,7 @@ label.error {
   // Background color on top level items so there is no
   // element overlap on subnav's CSS toggle animation
   .mobile-nav > & {
-    background-color: $colorDrawers;
+    background-color: $color-drawers;
   }
 
   &:after {
@@ -1965,7 +2015,7 @@ label.error {
     bottom: 0;
     left: $gutter / 2;
     right: $gutter / 2;
-    border-bottom: 1px solid $colorDrawerBorder;
+    border-bottom: 1px solid $color-drawer-border;
   }
 
   .mobile-nav > &:last-child:after {
@@ -1980,19 +2030,19 @@ label.error {
 
 .mobile-nav__item a,
 .mobile-nav__toggle button {
-  color: $colorDrawerText;
+  color: $color-drawer-text;
   padding: $gutter / 2;
   text-decoration: none;
 
   &:hover,
   &:active,
   &:focus {
-    color: darken($colorDrawerText, 15%);
+    color: darken($color-drawer-text, 15%);
   }
 
   &:active,
   &:focus {
-    background-color: darken($colorDrawers, 5%);
+    background-color: darken($color-drawers, 5%);
   }
 }
 
@@ -2074,13 +2124,13 @@ label.error {
   bottom: 0;
   padding: 0 ($gutter / 2) ($gutter / 2);
   max-width: 95%;
-  z-index: $zindexDrawer;
-  color: $colorDrawerText;
-  background-color: $colorDrawers;
-  transition: $drawerTransition;
+  z-index: $zindex-drawer;
+  color: $color-drawer-text;
+  background-color: $color-drawers;
+  transition: $drawer-transition;
 
   a {
-    color: $colorDrawerText;
+    color: $color-drawer-text;
 
     &:hover,
     &:focus {
@@ -2090,18 +2140,18 @@ label.error {
 
   input,
   textarea {
-    border-color: $colorDrawerBorder;
+    border-color: $color-drawer-border;
   }
 }
 
 .drawer--left {
-  width: $drawerNavWidth;
-  left: -$drawerNavWidth;
-  border-right: 1px solid $colorDrawerBorder;
+  width: $drawer-nav-width;
+  left: -$drawer-nav-width;
+  border-right: 1px solid $color-drawer-border;
 
   .js-drawer-open-left & {
     display: block;
-    @include transform(translateX($drawerNavWidth));
+    @include transform(translateX($drawer-nav-width));
 
     .lt-ie9 & {
       left: 0;
@@ -2110,13 +2160,13 @@ label.error {
 }
 
 .drawer--right {
-  width: $drawerCartWidth;
-  right: -$drawerCartWidth;
-  border-left: 1px solid $colorDrawerBorder;
+  width: $drawer-cart-width;
+  right: -$drawer-cart-width;
+  border-left: 1px solid $color-drawer-border;
 
   .js-drawer-open-right & {
     display: block;
-    @include transform(translateX(-$drawerCartWidth));
+    @include transform(translateX(-$drawer-cart-width));
 
     .lt-ie9 & {
       right: 0;
@@ -2130,14 +2180,14 @@ label.error {
 
 .is-moved-by-drawer {
   @include promote-layer();
-  transition: $drawerTransition;
+  transition: $drawer-transition;
 
   .js-drawer-open-left & {
-    @include transform(translateX($drawerNavWidth));
+    @include transform(translateX($drawer-nav-width));
   }
 
   .js-drawer-open-right & {
-    @include transform(translateX(-$drawerCartWidth));
+    @include transform(translateX(-$drawer-cart-width));
   }
 }
 
@@ -2146,7 +2196,7 @@ label.error {
   height: 70px;
   width: 100%;
   margin-bottom: $gutter / 2;
-  border-bottom: 1px solid $colorDrawerBorder;
+  border-bottom: 1px solid $color-drawer-border;
 }
 
 .drawer__title,
@@ -2174,7 +2224,7 @@ label.error {
 
   &:active,
   &:focus {
-    background-color: darken($colorDrawers, 5%);
+    background-color: darken($color-drawers, 5%);
   }
 }
 
@@ -2182,9 +2232,9 @@ label.error {
   #Site Footer
 ==============================================================================*/
 .site-footer {
-  background-color: $colorFooterBg;
+  background-color: $color-footer-bg;
   padding: $gutter 0;
-  color: $colorFooterText;
+  color: $color-footer-text;
 
   @include at-query ($min, $large) {
     padding: ($gutter * 2) 0;
@@ -2286,7 +2336,7 @@ label.error {
 }
 
 .note {
-  border-color: $colorBorder;
+  border-color: $color-border;
 }
 
 .errors {
@@ -2297,12 +2347,12 @@ label.error {
 }
 
 .form-success {
-  color: $successGreen;
-  background-color: $successGreenBg;
-  border-color: $successGreen;
+  color: $success-green;
+  background-color: $success-green-bg;
+  border-color: $success-green;
 
   a {
-    color: $successGreen;
+    color: $success-green;
     text-decoration: underline;
 
     &:hover {
@@ -2313,12 +2363,12 @@ label.error {
 
 .form-error,
 .errors {
-  color: $errorRed;
-  background-color: $errorRedBg;
-  border-color: $errorRed;
+  color: $error-red;
+  background-color: $error-red-bg;
+  border-color: $error-red;
 
   a {
-    color: $errorRed;
+    color: $error-red;
     text-decoration: underline;
 
     &:hover {
@@ -2335,7 +2385,7 @@ label.error {
   position: relative;
   margin-top: $gutter;
   padding-top: $gutter;
-  border-top: 1px solid $colorBorder;
+  border-top: 1px solid $color-border;
 
   &:first-child {
     margin-top: 0;
@@ -2439,7 +2489,7 @@ label.error {
 .ajaxcart__row {
   padding-bottom: $gutter / 2;
   margin-bottom: $gutter / 2;
-  border-bottom: 1px solid $colorDrawerBorder;
+  border-bottom: 1px solid $color-drawer-border;
 }
 
 .ajaxcart__product-image {
@@ -2496,18 +2546,18 @@ label.error {
 
   &:hover,
   &:focus {
-    color: $colorPrimary;
+    color: $color-primary;
   }
 }
 
 .js-qty__adjust--plus {
   right: 0;
-  border-left: 1px solid $colorBorder;
+  border-left: 1px solid $color-border;
 }
 
 .js-qty__adjust--minus {
   left: 0;
-  border-right: 1px solid $colorBorder;
+  border-right: 1px solid $color-border;
 }
 
 /*================ Quantity Selectors in Ajax Cart ================*/
@@ -2522,23 +2572,23 @@ label.error {
 }
 
 .ajaxcart__qty-num {
-  border-color: $colorDrawerBorder;
-  color: $colorDrawerText;
+  border-color: $color-drawer-border;
+  color: $color-drawer-text;
 }
 
 .ajaxcart__qty-adjust {
   @extend .js-qty__adjust;
-  color: $colorDrawerText;
+  color: $color-drawer-text;
 }
 
 .ajaxcart__qty--plus {
   @extend .js-qty__adjust--plus;
-  border-color: $colorDrawerBorder;
+  border-color: $color-drawer-border;
 }
 
 .ajaxcart__qty--minus {
   @extend .js-qty__adjust--minus;
-  border-color: $colorDrawerBorder;
+  border-color: $color-drawer-border;
 }
 
 .ajaxcart-item__price-strikethrough {

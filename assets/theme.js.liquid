@@ -1,9 +1,3 @@
-/* Jonathan Snook - MIT License - https://github.com/snookca/prepareTransition */
-(function(a){a.fn.prepareTransition=function(){return this.each(function(){var b=a(this);b.one("TransitionEnd webkitTransitionEnd transitionend oTransitionEnd",function(){b.removeClass("is-transitioning")});var c=["transition-duration","-moz-transition-duration","-webkit-transition-duration","-o-transition-duration"];var d=0;a.each(c,function(a,c){d=parseFloat(b.css(c))||d});if(d!=0){b.addClass("is-transitioning");b[0].offsetWidth}})}})(jQuery);
-
-/* replaceUrlParam - http://stackoverflow.com/questions/7171099/how-to-replace-url-parameter-with-javascript-jquery */
-function replaceUrlParam(e,r,a){var n=new RegExp("("+r+"=).*?(&|$)"),c=e;return c=e.search(n)>=0?e.replace(n,"$1"+a+"$2"):c+(c.indexOf("?")>0?"&":"?")+r+"="+a};
-
 /*============================================================================
   Money Format
   - Shopify.format money is defined in option_selection.js.
@@ -62,10 +56,10 @@ if (!Shopify.formatMoney) {
 }
 
 // Timber functions
-window.timber = window.timber || {};
+window.theme = window.theme || {};
 
-timber.cacheSelectors = function () {
-  timber.cache = {
+theme.cacheSelectors = function () {
+  theme.cache = {
     // General
     $html                    : $('html'),
     $body                    : $(document.body),
@@ -90,20 +84,20 @@ timber.cacheSelectors = function () {
   };
 };
 
-timber.init = function () {
+theme.init = function () {
   FastClick.attach(document.body);
-  timber.cacheSelectors();
-  timber.accessibleNav();
-  timber.drawersInit();
-  timber.mobileNavToggle();
-  timber.productImageSwitch();
-  timber.responsiveVideos();
-  timber.collectionViews();
-  timber.loginForms();
+  theme.cacheSelectors();
+  theme.accessibleNav();
+  theme.drawersInit();
+  theme.mobileNavToggle();
+  theme.productImageSwitch();
+  theme.responsiveVideos();
+  theme.collectionViews();
+  theme.loginForms();
 };
 
-timber.accessibleNav = function () {
-  var $nav = timber.cache.$navigation,
+theme.accessibleNav = function () {
+  var $nav = theme.cache.$navigation,
       $allLinks = $nav.find('a'),
       $topLevel = $nav.children('li').find('a'),
       $parents = $nav.find('.site-nav--has-dropdown'),
@@ -161,7 +155,7 @@ timber.accessibleNav = function () {
     $el.addClass(activeClass);
 
     setTimeout(function() {
-      timber.cache.$body.on('touchstart', function() {
+      theme.cache.$body.on('touchstart', function() {
         hideDropdown($el);
       });
     }, 250);
@@ -169,7 +163,7 @@ timber.accessibleNav = function () {
 
   function hideDropdown ($el) {
     $el.removeClass(activeClass);
-    timber.cache.$body.off('touchstart');
+    theme.cache.$body.off('touchstart');
   }
 
   function addFocus ($el) {
@@ -181,26 +175,26 @@ timber.accessibleNav = function () {
   }
 };
 
-timber.drawersInit = function () {
-  timber.LeftDrawer = new timber.Drawers('NavDrawer', 'left');
+theme.drawersInit = function () {
+  theme.LeftDrawer = new theme.Drawers('NavDrawer', 'left');
   {% if settings.ajax_cart_method == "drawer" %}
-    timber.RightDrawer = new timber.Drawers('CartDrawer', 'right', {
+    theme.RightDrawer = new theme.Drawers('CartDrawer', 'right', {
       'onDrawerOpen': ajaxCart.load
     });
   {% endif %}
 };
 
-timber.mobileNavToggle = function () {
-  timber.cache.$mobileSubNavToggle.on('click', function() {
+theme.mobileNavToggle = function () {
+  theme.cache.$mobileSubNavToggle.on('click', function() {
     $(this).parent().toggleClass('mobile-nav--expanded');
   });
 };
 
-timber.getHash = function () {
+theme.getHash = function () {
   return window.location.hash;
 };
 
-timber.productPage = function (options) {
+theme.productPage = function (options) {
   var moneyFormat = options.money_format,
       variant = options.variant,
       selector = options.selector;
@@ -219,7 +213,7 @@ timber.productPage = function (options) {
     if (variant.featured_image) {
       var newImg = variant.featured_image,
           el = $productImage[0];
-      Shopify.Image.switchImage(newImg, el, timber.switchImage);
+      Shopify.Image.switchImage(newImg, el, theme.switchImage);
     }
 
     // Select a valid variant if available
@@ -258,25 +252,25 @@ timber.productPage = function (options) {
   }
 };
 
-timber.productImageSwitch = function () {
-  if (timber.cache.$thumbImages.length) {
+theme.productImageSwitch = function () {
+  if (theme.cache.$thumbImages.length) {
     // Switch the main image with one of the thumbnails
     // Note: this does not change the variant selected, just the image
-    timber.cache.$thumbImages.on('click', function(evt) {
+    theme.cache.$thumbImages.on('click', function(evt) {
       evt.preventDefault();
       var newImage = $(this).attr('href');
-      timber.switchImage(newImage, null, timber.cache.$productImage);
+      theme.switchImage(newImage, null, theme.cache.$productImage);
     });
   }
 };
 
-timber.switchImage = function (src, imgObject, el) {
+theme.switchImage = function (src, imgObject, el) {
   // Make sure element is a jquery object
   var $el = $(el);
   $el.attr('src', src);
 };
 
-timber.responsiveVideos = function () {
+theme.responsiveVideos = function () {
   var $iframeVideo = $('iframe[src*="youtube.com/embed"], iframe[src*="player.vimeo"]');
   var $iframeReset = $iframeVideo.add('iframe#admin_bar_iframe');
 
@@ -294,9 +288,9 @@ timber.responsiveVideos = function () {
   });
 };
 
-timber.collectionViews = function () {
-  if (timber.cache.$changeView.length) {
-    timber.cache.$changeView.on('click', function() {
+theme.collectionViews = function () {
+  if (theme.cache.$changeView.length) {
+    theme.cache.$changeView.on('click', function() {
       var view = $(this).data('view'),
           url = document.URL,
           hasParams = url.indexOf('?') > -1;
@@ -310,42 +304,42 @@ timber.collectionViews = function () {
   }
 };
 
-timber.loginForms = function() {
+theme.loginForms = function() {
   function showRecoverPasswordForm() {
-    timber.cache.$recoverPasswordForm.show();
-    timber.cache.$customerLoginForm.hide();
+    theme.cache.$recoverPasswordForm.show();
+    theme.cache.$customerLoginForm.hide();
   }
 
   function hideRecoverPasswordForm() {
-    timber.cache.$recoverPasswordForm.hide();
-    timber.cache.$customerLoginForm.show();
+    theme.cache.$recoverPasswordForm.hide();
+    theme.cache.$customerLoginForm.show();
   }
 
-  timber.cache.$recoverPasswordLink.on('click', function(evt) {
+  theme.cache.$recoverPasswordLink.on('click', function(evt) {
     evt.preventDefault();
     showRecoverPasswordForm();
   });
 
-  timber.cache.$hideRecoverPasswordLink.on('click', function(evt) {
+  theme.cache.$hideRecoverPasswordLink.on('click', function(evt) {
     evt.preventDefault();
     hideRecoverPasswordForm();
   });
 
   // Allow deep linking to recover password form
-  if (timber.getHash() == '#recover') {
+  if (theme.getHash() == '#recover') {
     showRecoverPasswordForm();
   }
 };
 
-timber.resetPasswordSuccess = function() {
-  timber.cache.$passwordResetSuccess.show();
+theme.resetPasswordSuccess = function() {
+  theme.cache.$passwordResetSuccess.show();
 };
 
 /*============================================================================
   Drawer modules
   - Docs http://shopify.github.io/Timber/#drawers
 ==============================================================================*/
-timber.Drawers = (function () {
+theme.Drawers = (function () {
   var Drawer = function (id, position, options) {
     var defaults = {
       close: '.js-drawer-close',
@@ -402,7 +396,7 @@ timber.Drawers = (function () {
     }
 
     // Notify the drawer is going to open
-    timber.cache.$body.trigger('beforeDrawerOpen.timber', this);
+    theme.cache.$body.trigger('beforeDrawerOpen.theme', this);
 
     // Add is-transitioning class to moved elements on open so drawer can have
     // transition for close animation
@@ -437,7 +431,7 @@ timber.Drawers = (function () {
     }, this));
 
     // Notify the drawer has opened
-    timber.cache.$body.trigger('afterDrawerOpen.timber', this);
+    theme.cache.$body.trigger('afterDrawerOpen.theme', this);
   };
 
   Drawer.prototype.close = function () {
@@ -446,7 +440,7 @@ timber.Drawers = (function () {
     }
 
     // Notify the drawer is going to close
-    timber.cache.$body.trigger('beforeDrawerClose.timber', this);
+    theme.cache.$body.trigger('beforeDrawerClose.theme', this);
 
     // deselect any focused form elements
     $(document.activeElement).trigger('blur');
@@ -465,7 +459,7 @@ timber.Drawers = (function () {
     this.$nodes.page.off('.drawer');
 
     // Notify the drawer is closed now
-    timber.cache.$body.trigger('afterDrawerClose.timber', this);
+    theme.cache.$body.trigger('afterDrawerClose.theme', this);
   };
 
   Drawer.prototype.trapFocus = function ($container, eventNamespace) {
@@ -493,4 +487,4 @@ timber.Drawers = (function () {
 })();
 
 // Initialize Timber's JS on docready
-$(timber.init);
+$(theme.init);

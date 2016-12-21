@@ -29,22 +29,22 @@
       Different markup if a collection description exists
     {% endcomment %}
     {% if collection.description != blank %}
-      <header class="section-header">
-        <h1 class="section-header__title">{{ collection.title }}</h1>
+      <header class="section-heading">
+        <h1 class="section-heading__title">{{ collection.title }}</h1>
         <div class="rte rte--header">
           {{ collection.description }}
         </div>
       </header>
       <hr>
-      <div class="section-header">
-        <div class="section-header__right">
+      <div class="section-heading">
+        <div class="section-heading__right">
           {% include 'collection-sorting' %}
         </div>
       </div>
     {% else %}
-      <header class="section-header">
-        <h1 class="section-header__title section-header__left">{{ collection.title }}</h1>
-        <div class="section-header__right">
+      <header class="section-heading">
+        <h1 class="section-heading__title section-heading__left">{{ collection.title }}</h1>
+        <div class="section-heading__right">
           {% include 'collection-sorting' %}
         </div>
       </header>
