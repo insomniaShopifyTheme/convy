@@ -52,6 +52,8 @@
   #Ajax Cart Styles
 ==============================================================================*/
 
+// PSD mockup coefficient:  px = pt x 1,143
+
 /*============================================================================
   #Breakpoint and Grid Variables
 ==============================================================================*/
@@ -68,7 +70,8 @@ $breakpoints: (
   'small' '(max-width: #{$small})',
   'medium' '(min-width: #{$post-small}) and (max-width: #{$medium})',
   'medium-down' '(max-width: #{$medium})',
-  'large' '(min-width: #{$large})'
+  'large' '(min-width: #{$large})',
+  'large-down' '(max-width: #{$large})'
 );
 $breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large');
 $breakpoint-has-push:  ('medium', 'medium-down', 'large');
@@ -99,9 +102,11 @@ $color-link-hover: lighten($color-primary, 15%);
 
 // Text colors
 $color-text-body: {{ settings.color_text }};
+$color-text-alt: {{ settings.color_text_alt }};
 
 // Backgrounds
-$color-body: {{ settings.color_bg }};
+$color-bg: {{ settings.color_bg }};
+$color-bg-alt: {{ settings.color_bg_alt }};
 
 // Border colors
 $color-border: {{ settings.color_secondary }};
@@ -733,7 +738,7 @@ html {
 }
 
 body {
-  background-color: $color-body;
+  background-color: $color-bg;
 }
 
 [tabindex='-1']:focus {
@@ -1742,16 +1747,15 @@ label.error {
 }
 
 .social-icons li {
-  margin: 0 ($gutter / 2) ($gutter / 2);
+  margin-left: $gutter;
   vertical-align: middle;
 
-  @include at-query ($min, $post-small) {
-    margin-left: 0;
+  .icon {
+    font-size: em(20px);
   }
 
-  .icon {
-    font-size: 30px;
-    line-height: 26px;
+  @include grid-media-query('medium-down') {
+    margin-left: ($gutter / 2);
   }
 
   a {
@@ -1791,16 +1795,77 @@ label.error {
 
 .section-topbar {
   background-color: #191919;
-  height: 2.5em;
+  height: em(40px);
 
   .section-topbar__message {
-    color: #a5a5a5;
+    color: $color-text-alt;
+    font-size: em(17px);
+    line-height: em(35px);
+    text-align: center;
   }
 
   .section-topbar__button {
-    border: 2px solid #ffffff;
-    border-radius: 3px;
-    color: #fff;
+    border: 2px solid $color-text-alt;
+    border-radius: $radius;
+    color: $color-text-alt;
+    font-size: 0.8em;
+    font-weight: $font-weight-bold;
+    margin-left: em(5px);
+    padding: 0.1em 0.6em 0.2em;
+  }
+
+  .section-topbar__controls {
+    text-align: right;
+  }
+
+  .social-icons {
+    margin: 0 $gutter 0 0;
+    float: right;
+    li {
+      .icon {
+        line-height: em(32px);
+      }
+    }
+  }
+
+  .currency-picker__wrapper {
+    color: $color-text-alt;
+    display: block;
+    float: right;
+
+    // Change Arrow
+    position: relative;
+    &:after {
+      content: "\25B4";
+      font: 2em "Consolas", monospace;
+      color: #fff;
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      transform: rotate(180deg);
+      right: 6px;
+      /*Adjust for position however you want*/
+      top: -2px;
+      padding: 0 0 2px;
+      /*left line */
+      position: absolute;
+      pointer-events: none;
+    }
+  }
+
+  .currency-picker {
+    color: $color-text-alt;
+    font-size: 1.5em;
+    padding: 0 1em 0 0;
+    border: none;
+    margin: 0 0 0 $gutter;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  @include grid-media-query('large-down') {
+    display: none;
   }
 
 }

@@ -117,6 +117,11 @@
         <p><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
         <button type="submit" name="update" class="btn--secondary update-cart">{{ 'cart.general.update' | t }}</button>
         <button type="submit" name="checkout" class="btn">{{ 'cart.general.checkout' | t }}</button>
+        {% if settings.show_multiple_currencies %}
+        <p>
+          {{ shop.name }} process all orders in {{ shop.currency }}.
+        </p>
+        {% endif %}
       </div>
     </div>
   </form>

@@ -616,5 +616,95 @@
         ]
       }
     ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social accounts"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook",
+        "info": "https://facebook.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter",
+        "info": "https://twitter.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "info": "http://instagram.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr",
+        "info": "http://shopify.tumblr.com"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest",
+        "info": "https://pinterest.com/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube",
+        "info": "https://www.youtube.com/shopify"
+      }
+    ]
+  },
+  {
+    "name": "Currency",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "To offer multiple currencies on your online store, you must first [edit your store's currency formatting](https://help.shopify.com/manual/using-themes/troubleshooting/help-script-find-money-formats)."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_multiple_currencies",
+        "label": "Enable currency conversion",
+        "default": false,
+        "info": "Even though prices are displayed in different currencies, orders will still be processed in your store's currency."
+      },
+      {
+        "type": "select",
+        "id": "currency_format",
+        "label": "Format",
+        "options": [
+          {
+            "value": "money_format",
+            "label": "Without currency ($10.00)"
+          },
+          {
+            "value": "money_with_currency_format",
+            "label": "With currency ($10.00 CAD)"
+          }
+        ],
+        "default": "money_with_currency_format"
+      },
+      {
+        "type": "text",
+        "id": "supported_currencies",
+        "label": "Supported currencies",
+        "default": "INR GBP CAD USD AUD EUR JPY",
+        "info": "Use the country's ISO [currency code](http://www.xe.com/iso4217.php). Separate your currency codes with a space."
+      },
+      {
+        "type": "text",
+        "id": "default_currency",
+        "label": "Default currency",
+        "default": "USD"
+      }
+    ]
   }
 ]

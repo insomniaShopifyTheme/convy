@@ -236,6 +236,7 @@
     }
   },
   "layout": {
+    "social_account": "{{ name }} on {{ platform }}",
     "navigation": {
       "menu": "Menu"
     },

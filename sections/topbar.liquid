@@ -1,13 +1,25 @@
-{% if section.settings.message %}
-  <div class="section-topbar__message">
-    {{ section.settings.message_text | escape }}
-    {% if section.settings.message_link != blank %}
-      <a href="{{ section.settings.message_link }}" class="section-topbar__button">
-        {{ section.settings.message_link_text }}
-      </a>
+<div class="grid">
+  <div class="grid__item four-tenths push--three-tenths">
+  {% if section.settings.message %}
+    <div class="section-topbar__message">
+      {{ section.settings.message_text | escape }}
+      {% if section.settings.message_link != blank %}
+        <a href="{{ section.settings.message_link }}" class="section-topbar__button">
+          {{ section.settings.message_link_text }}
+        </a>
+      {% endif %}
+    </div>
+  {% endif %}
+  </div>
+  <div class="section-topbar__controls grid__item three-tenths push--three-tenths">
+    {% if settings.show_multiple_currencies %}
+      {% include 'currency-picker' %}
+    {% endif %}
+    {% if section.settings.social_icons %}
+      {% include 'social_icons_list' %}
     {% endif %}
   </div>
-{% endif %}
+</div>
 
 {% schema %}
   {
@@ -36,6 +48,13 @@
         "type": "url",
         "id": "message_link",
         "label": "Call to action link"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_icons",
+        "label": "Display social icons",
+        "default": true,
+        "info": "Configure your social accounts in settings"
       }
     ]
   }

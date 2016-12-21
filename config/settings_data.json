@@ -14,6 +14,16 @@
       "font_family_base": "Google_Lato_400_sans",
       "font_size_base": "16px",
 
+      "show_multiple_currencies": true,
+      "currency_format": "money_with_currency_format",
+      "supported_currencies": "CAD USD AUD EUR",
+      "default_currency": "USD",
+
+      "social_facebook_link": "https://facebook.com/shopify",
+      "social_twitter_link": "https://twitter.com/shopify",
+      "social_instagram_link": "http://instagram.com/shopify",
+      "social_youtube_link": "https://www.youtube.com/shopify",
+
       "sections": {
         "topbar": {
           "type": "topbar",
@@ -21,7 +31,8 @@
             "message": true,
             "message_text": "Change this text in theme settings",
             "message_link_text": "Get Help",
-            "message_link": "https://tabarnapp.com"
+            "message_link": "https://tabarnapp.com",
+            "social_icons": true
           }
         }
       }
