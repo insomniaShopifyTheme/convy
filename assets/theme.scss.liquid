@@ -61,21 +61,23 @@ $viewport-inc: 1px;
 
 $small: 480px;
 $medium: 768px;
-$large: 769px;
+$large: 1080px;
+$widescreen: $large + $viewport-inc;
 
 $post-small: $small + $viewport-inc;
+$post-medium: $medium + $viewport-inc;
 
 /*================ The following are dependencies of csswizardry grid ================*/
 $breakpoints: (
   'small' '(max-width: #{$small})',
   'medium' '(min-width: #{$post-small}) and (max-width: #{$medium})',
   'medium-down' '(max-width: #{$medium})',
-  'large' '(min-width: #{$large})',
-  'large-down' '(max-width: #{$large})'
+  'large' '(min-width: #{$post-medium}) and (max-width: #{$large})',
+  'widescreen' '(min-width: #{$widescreen})'
 );
-$breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large');
-$breakpoint-has-push:  ('medium', 'medium-down', 'large');
-$breakpoint-has-pull:  ('medium', 'medium-down', 'large');
+$breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large', 'widescreen');
+$breakpoint-has-push:  ('medium', 'medium-down', 'large', 'widescreen');
+$breakpoint-has-pull:  ('medium', 'medium-down', 'large', 'widescreen');
 
 /*============================================================================
   #General Variables
@@ -1754,10 +1756,6 @@ label.error {
     font-size: em(20px);
   }
 
-  @include grid-media-query('medium-down') {
-    margin-left: ($gutter / 2);
-  }
-
   a {
     color: {{ settings.color_text_alt }};
 
@@ -1816,6 +1814,7 @@ label.error {
 
   .section-topbar__controls {
     text-align: right;
+    white-space: nowrap;
   }
 
   .social-icons {
@@ -1858,14 +1857,28 @@ label.error {
     font-size: 1.5em;
     padding: 0 1em 0 0;
     border: none;
-    margin: 0 0 0 $gutter;
+    margin: 0 0 0 ($gutter / 2);
     &:focus {
       outline: none;
     }
   }
 
-  @include grid-media-query('large-down') {
+  @include grid-media-query('medium-down') {
     display: none;
+  }
+
+  @include grid-media-query('large') {
+    .social-icons li {
+      margin-left: ($gutter / 4);
+    }
+    .section-topbar__message {
+      font-size: em(14px);
+      line-height: em(40px);
+    }
+    .currency-picker {
+      font-size: 1.5em;
+      margin-left: ($gutter / 4);
+    }
   }
 
 }
