@@ -34,6 +34,12 @@
             "message_link": "https://tabarnapp.com",
             "social_icons": true
           }
+        },
+        "header": {
+          "type": "header",
+          "settings": {
+            "logo_max_width": "220"
+          }
         }
       }
     }

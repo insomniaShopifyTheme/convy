@@ -73,15 +73,16 @@ $breakpoints: (
   'medium' '(min-width: #{$post-small}) and (max-width: #{$medium})',
   'medium-down' '(max-width: #{$medium})',
   'large' '(min-width: #{$post-medium}) and (max-width: #{$large})',
+  'large-up' '(min-width: #{$post-medium})',
   'widescreen' '(min-width: #{$widescreen})'
 );
 $breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large', 'widescreen');
-$breakpoint-has-push:  ('medium', 'medium-down', 'large', 'widescreen');
-$breakpoint-has-pull:  ('medium', 'medium-down', 'large', 'widescreen');
+$breakpoint-has-push:  ('medium', 'medium-down', 'large', 'large-up');
+$breakpoint-has-pull:  ('medium', 'medium-down', 'large', 'large-up');
 
 /*============================================================================
   #General Variables
-==============================================================================*/
+====================================================8==========================*/
 
 // Timber Colors
 $color-primary: {{ settings.color_primary }};
@@ -121,9 +122,6 @@ $color-nav-text: #333;
 $color-footer-bg: {{ settings.color_bg_alt }};
 $color-footer-text: {{ settings.color_text_alt }};
 
-// Logo max width
-$logo-max-width: {{ settings.logo_max_width | default: '450' | remove: 'px' }}px;
-
 // Helper colors
 $disabled-grey: #f6f6f6;
 $disabled-border: darken($disabled-grey, 25%);
@@ -141,7 +139,8 @@ $color-drawer-text: #333;
 $drawer-transition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1);
 
 // Sizing variables
-$site-width: 1180px;
+$site-width: $small; // 1180px;
+$site-min-width: 320px;
 $gutter: 30px;
 $grid-gutter: 30px; // can be a %, but nested grids will have smaller margins because of it
 $radius: 3px;
@@ -749,6 +748,7 @@ body {
 
 .wrapper {
   @include clearfix();
+  min-width: $site-min-width;
   max-width: $site-width;
   margin: 0 auto;
   padding: 0 ($gutter / 2);
@@ -962,7 +962,7 @@ hr {
   }
 }
 
-/*================ Section Headers ================*/
+/*================ Section Headings ================*/
 .section-heading {
   margin-bottom: $gutter / 1.5;
 }
@@ -1887,14 +1887,76 @@ label.error {
   #Section: Header
 ==============================================================================*/
 
+.section-header {
+  padding: ($gutter / 2) 0;
 
+  .section-header__logo {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 100%;
+
+    a,
+    a:hover,
+    a:focus {
+      text-decoration: none;
+    }
+
+    a, img {
+      display: block;
+    }
+
+    .section-header__logo-link {
+      margin: 0 auto;
+      max-width: 85%;
+    }
+
+    @include grid-media-query('large-up') {
+      text-align: left;
+      margin: 0;
+      .section-header__logo-link {
+        margin: 0;
+        max-width: auto;
+      }
+    }
+
+  }
+
+  .site-nav__link {
+    display: block;
+    text-decoration: none;
+    padding: $gutter / 2;
+    white-space: nowrap;
+    color: $color-nav-text;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: darken($color-nav-text, 15%);
+    }
+
+    .icon-arrow-down {
+      position: relative;
+      top: -2px;
+      font-size: 10px;
+      padding-left: $gutter / 4;
+    }
+
+    .site-nav--active > & {
+      font-weight: bold;
+    }
+
+    .site-nav--mobile & {
+      display: inline-block;
+    }
+  }
+
+}
 
 
 /*============================================================================
   #Site Header
 ==============================================================================*/
 .site-header {
-  padding: ($gutter / 2) 0;
 
   .grid--table {
     display: table;
@@ -1907,35 +1969,6 @@ label.error {
       vertical-align: middle;
     }
   }
-}
-
-.site-header__logo {
-  text-align: center;
-  margin: 0 auto;
-  max-width: 100%;
-
-  @include at-query ($min, $large) {
-    text-align: left;
-  }
-
-  a,
-  a:hover,
-  a:focus {
-    text-decoration: none;
-  }
-
-  a, img {
-    display: block;
-  }
-
-  img {
-    margin: 0 auto;
-  }
-}
-
-.site-header__logo-link {
-  max-width: $logo-max-width;
-  margin: 0 auto;
 }
 
 .site-header__cart-toggle {
@@ -1987,35 +2020,6 @@ label.error {
 
   .text-right & {
     margin: 0 (-$gutter / 2) 0 0;
-  }
-}
-
-.site-nav__link {
-  display: block;
-  text-decoration: none;
-  padding: $gutter / 2;
-  white-space: nowrap;
-  color: $color-nav-text;
-
-  &:hover,
-  &:active,
-  &:focus {
-    color: darken($color-nav-text, 15%);
-  }
-
-  .icon-arrow-down {
-    position: relative;
-    top: -2px;
-    font-size: 10px;
-    padding-left: $gutter / 4;
-  }
-
-  .site-nav--active > & {
-    font-weight: bold;
-  }
-
-  .site-nav--mobile & {
-    display: inline-block;
   }
 }
 
