@@ -1,0 +1,25 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "color_primary": "#393939",
+      "color_secondary": "#41cd62",
+      "color_text": "#393939",
+      "color_bg": "#ffffff",
+      "color_bg_alt": "#090909",
+      "color_text_alt": "#ffffff",
+      "font_family_headings": "Google_Lato_700_sans",
+      "font_size_headings": "26px",
+      "font_family_base": "Google_Lato_400_sans",
+      "font_size_base": "16px",
+      "show_multiple_currencies": true,
+      "currency_format": "money_with_currency_format",
+      "supported_currencies": "CAD USD AUD EUR",
+      "default_currency": "USD",
+      "social_facebook_link": "https:\/\/facebook.com\/shopify",
+      "social_twitter_link": "https:\/\/twitter.com\/shopify",
+      "social_instagram_link": "http:\/\/instagram.com\/shopify",
+      "social_youtube_link": "https:\/\/www.youtube.com\/shopify"
+    }
+  }
+}
