@@ -1,0 +1,40 @@
+/*============================================================================
+  # Basic styles
+==============================================================================*/
+
+html {
+  background-color: $color-bg-alt;
+  min-width: $site-min-width;
+}
+
+body {
+  background-color: $color-bg;
+}
+
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+.wrapper {
+  @include clearfix();
+  max-width: $site-width;
+  margin: 0 auto;
+  padding: 0 ($gutter / 2);
+
+  @include at-query ($min, $col-sm) {
+    padding: 0 $gutter;
+  }
+}
+
+.main-content {
+  display: block;
+  padding-bottom: $gutter * 2;
+}
+
+img {
+  @extend .pure-img;
+}
+
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }

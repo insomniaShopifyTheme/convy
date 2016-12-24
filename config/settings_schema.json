@@ -55,6 +55,12 @@
         "default": "#ffffff"
       },
       {
+        "type": "color",
+        "id": "color_borders",
+        "label": "Borders",
+        "default": "#e0e0e0"
+      },
+      {
         "type": "header",
         "content": "Alternative colors"
       },

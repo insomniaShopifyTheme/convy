@@ -7,29 +7,112 @@
 /*============================================================================
   Table of Contents
 
-  # Breakpoint and Grid Variables
-  # General Variables
   # Sass Mixins
+  # General Variables
   # Framework
   # Basic Styles
+  # Helper Classes
+  # Icons
+  # Sections
+    - Header
+
 ==============================================================================*/
 
+$rem: {{ settings.font_size_base }};
+@import url('_mixins.scss');
+
 /*============================================================================
-  # Breakpoint and Grid Variables
+  # General Variables
 ==============================================================================*/
+
+/*================ Breakpoint and Grid Variables ================*/
 
 $col-sm: 35.5rem;
 $col-md: 48rem;
 $col-lg: 64rem;
 $col-xl: 80rem;
 
-/*============================================================================
-  # General Variables
-==============================================================================*/
+/*================ Colors ================*/
 
-/*============================================================================
-  # Sass Mixins
-==============================================================================*/
+$color-primary: {{ settings.color_primary }};
+$color-secondary: {{ settings.color_secondary }};
+
+// Button colors
+$color-btn-primary: $color-primary;
+$color-btn-primary-hover: darken($color-btn-primary, 10%);
+$color-btn-primary-active: darken($color-btn-primary-hover, 10%);
+
+// Text link colors
+$color-link: $color-primary;
+$color-link-hover: lighten($color-primary, 15%);
+
+// Text colors
+$color-text-body: {{ settings.color_text }};
+$color-text-alt: {{ settings.color_text_alt }};
+
+// Backgrounds
+$color-bg: {{ settings.color_bg }};
+$color-bg-alt: {{ settings.color_bg_alt }};
+
+// Helper colors
+$color-border: {{ settings.color_borders }};
+$disabled-grey: #f6f6f6;
+$disabled-border: darken($disabled-grey, 25%);
+$error-red: #d02e2e;
+$error-red-bg: #fff6f6;
+$success-green: #56ad6a;
+$success-green-bg: #ecfef0;
+
+// Sizing variables
+$site-width: $col-sm; // 1180px;
+$site-min-width: rem(360px);
+$gutter: rem(22px);
+$gutter-lg: rem(55px);
+$radius: 3px;
+$section-spacing: rem(35px);
+$section-spacing-lg: rem(55px);
+
+/*================ Typography ================*/
+
+$font-weight-normal: 400;
+$font-weight-bold: 700;
+
+{% if settings.font_family_base contains 'Google' %}
+  {% assign font_base_parts = settings.font_family_base | split: '_' %}
+  {% assign font_base_name = font_base_parts[1] %}
+  {% capture base_family %}"{{ font_base_name | split: ':' | first | replace: '+', ' ' }}"{% if font_base_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+{% else %}
+  {% assign base_family = settings.font_family_base %}
+{% endif %}
+
+{% if settings.font_family_headings contains 'Google' %}
+  {% assign font_headings_parts = settings.font_family_headings | split: '_' %}
+  {% assign font_headings_name = font_headings_parts[1] %}
+  {% capture headings_family %}"{{ font_headings_name | split: ':' | first | replace: '+', ' ' }}"{% if font_headings_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+  {% assign headings_weight = font_headings_parts[2] | split: ',' %}
+{% else %}
+  {% assign headings_family = settings.font_family_headings %}
+  {% assign headings_weight = $font-weight-normal %}
+{% endif %}
+
+$font-stack-heading: {{ headings_family }};
+$font-weight-heading: {{ headings_weight }};
+$font-size-heading: {{ settings.font_size_headings }};
+
+$font-stack-body: {{ base_family }};
+$font-size-base: {{ settings.font_size_base }};
+
+@font-face {
+  font-family: 'icons';
+  src: url('{{ "icons.eot" | asset_url }}');
+  src: url('{{ "icons.eot" | asset_url }}#iefix') format("embedded-opentype"),
+       url('{{ "icons.woff" | asset_url }}') format("woff"),
+       url('{{ "icons.ttf" | asset_url }}') format("truetype"),
+       url('{{ "icons.svg" | asset_url }}#timber-icons') format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+$social-icon-font-stack: 'icons';
 
 /*============================================================================
   # Framework
@@ -38,6 +121,12 @@ $col-xl: 80rem;
 @import url('_framework.scss');
 @import url('_responsive-grid.scss');
 
+@import url('_basic.scss');
+@import url('_helpers.scss');
+@import url('_typography.scss');
+@import url('_icons.scss');
+
 /*============================================================================
-  # Basic Styles
+  # Sections
 ==============================================================================*/
+

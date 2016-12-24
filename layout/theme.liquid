@@ -55,7 +55,9 @@
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-  {{ content_for_layout }}
+  <main class="wrapper main-content" role="main">
+    {{ content_for_layout }}
+  </main>
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}
   {{ 'theme.js' | asset_url | script_tag }}

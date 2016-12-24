@@ -1,0 +1,198 @@
+/*============================================================================
+  #Typography
+==============================================================================*/
+/*
+  When setting the primary font stack, apply it to the Pure grid units along
+  with `html`, `button`, `input`, `select`, and `textarea`. Pure Grids use
+  specific font stacks to ensure the greatest OS/browser compatibility.
+*/
+html,
+body,
+button,
+input,
+select,
+textarea,
+.pure-g [class *= "pure-u"] {
+  font-size: $font-size-base;
+  line-height: 1.6;
+  font-family: $font-stack-body;
+  color: $color-text-body;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+}
+
+/*================ Headings ================*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 ($section-spacing / 2);
+  font-family: $font-stack-heading;
+  font-weight: $font-weight-heading;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: inherit;
+  }
+}
+
+h1 {
+  font-size: rem(floor($font-size-heading * 1.35));
+  text-transform: none;
+  letter-spacing: 0;
+
+  @include at-query($max, $col-sm) {
+    font-size: rem(floor($font-size-heading * 1.25));
+  }
+}
+
+h2 {
+  font-size: rem(floor($font-size-heading * 0.78));
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+
+  @include at-query($max, $col-sm) {
+    font-size: rem(floor(($font-size-heading * 0.78) * 0.9));
+  }
+}
+
+h3 {
+  font-size: rem($font-size-heading);
+  text-transform: none;
+  letter-spacing: 0;
+
+  @include at-query($max, $col-sm) {
+    font-size: rem(floor($font-size-heading * 0.78));
+  }
+}
+
+h4 {
+  font-size: rem(floor($font-size-heading * 0.68));
+
+  @include at-query($max, $col-sm) {
+    font-size: rem(floor(($font-size-heading * 0.68) * 0.9));
+  }
+}
+
+h5 {
+  font-size: rem(floor($font-size-heading * 0.58));
+
+  @include at-query($max, $col-sm) {
+    font-size: rem(floor(($font-size-heading * 0.58) * 0.9));
+  }
+}
+
+h6 {
+  font-size: rem(floor($font-size-heading * 0.54));
+
+  @include at-query($max, $col-sm) {
+    font-size: rem(floor(($font-size-heading * 0.54) * 0.9));
+  }
+}
+
+.h1 { @extend h1; }
+.h2 { @extend h2; }
+.h3 { @extend h3; }
+.h4 { @extend h4; }
+.h5 { @extend h5; }
+.h6 { @extend h6; }
+
+p {
+  margin: 0 0 ($gutter / 2) 0;
+
+  img {
+    margin: 0;
+  }
+}
+
+em {
+  font-style: italic;
+}
+
+b, strong {
+  font-weight: bold;
+}
+
+small {
+  font-size: 0.9rem;
+}
+
+sup, sub {
+  position: relative;
+  font-size: 60%;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5rem;
+}
+
+sub {
+  bottom: -0.5rem;
+}
+
+/*================ Blockquotes ================*/
+blockquote {
+  font-size: 1.125rem;
+  line-height: 1.45;
+  font-style: italic;
+  margin: 0 0 $gutter;
+  padding: ($gutter / 2) $gutter;
+  border-left: 1px solid $color-border;
+
+  p {
+    margin-bottom: 0;
+
+    & + cite {
+      margin-top: $gutter / 2;
+    }
+  }
+
+  cite {
+    display: block;
+    font-size: 0.75rem;
+
+    &:before {
+      content: '\2014 \0020';
+    }
+  }
+}
+
+/*================ Code ================*/
+code, pre {
+  background-color: #faf7f5;
+  font-family: Consolas,monospace;
+  font-size: 1rem;
+  border: 0 none;
+  padding: 0 2px;
+  color: #51ab62;
+}
+
+pre {
+  overflow: auto;
+  padding: $gutter / 2;
+  margin: 0 0 $gutter;
+}
+
+/*================ Horizontal Rules ================*/
+hr {
+  clear: both;
+  border-top: solid $color-border;
+  border-width: 1px 0 0;
+  margin: $gutter 0;
+  height: 0;
+
+  &.hr--small {
+    margin: ($gutter / 2) 0;
+  }
+
+  &.hr--clear {
+    border-top-color: transparent;
+  }
+}
