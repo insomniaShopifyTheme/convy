@@ -20,12 +20,15 @@ body {
   margin: 0 auto;
   padding: 0 ($gutter / 2);
 
-  &.no-padding {
-    padding: 0;
+  .cancel-wrapper-padding {
+    margin: 0 ($gutter / -2);
   }
 
   @include at-query ($min, $medium) {
     padding: 0 $gutter;
+    .cancel-wrapper-padding {
+      margin: 0 ($gutter * -1);
+    }
   }
 }
 

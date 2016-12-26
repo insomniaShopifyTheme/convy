@@ -1,0 +1,28 @@
+/*================ Header ================*/
+
+.section-header {
+
+  // .section-header__hamburger
+
+  .section-header__logo {
+    @include at-query ($max, $small) {
+      img {
+        width: 95%;
+      }
+    }
+  }
+
+  h1, .h1 {
+    margin: 0.5rem 0;
+    padding: 0;
+  }
+
+  .section-header__cart-link {
+    background-color: $color-special;
+    color: $color-text-alt;
+    display: block;
+    margin: 0;
+    padding: 0.5rem 0;
+  }
+
+}

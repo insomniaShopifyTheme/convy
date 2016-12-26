@@ -57,7 +57,8 @@
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-  <header class="wrapper no-padding">
+  <header class="wrapper">
+    {% section 'header' %}
   </header>
 
   <main class="main-content wrapper" role="main">

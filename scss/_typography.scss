@@ -49,17 +49,17 @@ h1 {
   letter-spacing: 0;
 
   @include at-query($max, $small) {
-    font-size: rem(floor($font-size-heading * 1.25));
+    font-size: rem(floor(($font-size-heading * 1.35) * 0.9));
   }
 }
 
 h2 {
-  font-size: rem(floor($font-size-heading * 0.78));
+  font-size: rem(floor($font-size-heading * 1.25));
   text-transform: uppercase;
   letter-spacing: 0.1em;
 
   @include at-query($max, $small) {
-    font-size: rem(floor(($font-size-heading * 0.78) * 0.9));
+    font-size: rem(floor(($font-size-heading * 1.25) * 0.9));
   }
 }
 
@@ -69,31 +69,31 @@ h3 {
   letter-spacing: 0;
 
   @include at-query($max, $small) {
-    font-size: rem(floor($font-size-heading * 0.78));
+    font-size: rem(floor($font-size-heading * 0.9));
   }
 }
 
 h4 {
-  font-size: rem(floor($font-size-heading * 0.68));
+  font-size: rem(floor($font-size-heading * 0.85));
 
   @include at-query($max, $small) {
-    font-size: rem(floor(($font-size-heading * 0.68) * 0.9));
+    font-size: rem(floor(($font-size-heading * 0.85) * 0.9));
   }
 }
 
 h5 {
-  font-size: rem(floor($font-size-heading * 0.58));
+  font-size: rem(floor($font-size-heading * 0.8));
 
   @include at-query($max, $small) {
-    font-size: rem(floor(($font-size-heading * 0.58) * 0.9));
+    font-size: rem(floor(($font-size-heading * 0.8) * 0.9));
   }
 }
 
 h6 {
-  font-size: rem(floor($font-size-heading * 0.54));
+  font-size: rem(floor($font-size-heading * 0.7));
 
   @include at-query($max, $small) {
-    font-size: rem(floor(($font-size-heading * 0.54) * 0.9));
+    font-size: rem(floor(($font-size-heading * 0.7) * 0.9));
   }
 }
 

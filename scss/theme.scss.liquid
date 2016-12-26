@@ -71,6 +71,7 @@ $breakpoint-has-pull:  ('medium', 'large', 'wide');
 
 $color-primary: {{ settings.color_primary }};
 $color-special: {{ settings.color_secondary }};
+$color-special-text: {{ settings.color_text_alt }};
 
 // Backgrounds
 $color-bg: {{ settings.color_bg }};
@@ -95,7 +96,7 @@ $color-btn-secondary-text: $color-btn-secondary;
 $color-btn-special: $color-special;
 $color-btn-special-hover: darken($color-btn-special, 10%);
 $color-btn-special-active: darken($color-btn-special-hover, 10%);
-$color-btn-special-text: $color-text-alt;
+$color-btn-special-text: $color-special-text;
 
 // Text link colors
 $color-link: $color-primary;
@@ -176,3 +177,15 @@ $social-icon-font-stack: 'icons';
   # Sections
 ==============================================================================*/
 
+@import url('_section_header.scss');
+
+
+// Debug grid
+
+.grid {
+  .grid__item {
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    border-right: none;
+  }
+}
