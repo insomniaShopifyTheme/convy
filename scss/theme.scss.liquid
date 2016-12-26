@@ -2,57 +2,104 @@
   Konversion
   Created by Tabarnapp @tabarnapp
   Version: 0.1
+
+  ===============================
+  Built on Shopify Timber
+  Copyright 2016 Shopify Inc.
+  Author Carson Shold @cshold
 ==============================================================================*/
 
 /*============================================================================
   Table of Contents
 
-  # Sass Mixins
+  # Breakpoint and Grid Variables
   # General Variables
-  # Framework
-  # Basic Styles
+  # Sass Mixins
+  # Normalize
+  # Grid Setup
   # Helper Classes
+  # Typography
+  # Basic Styles
+  # Rich Text Editor
+  # Links and Buttons
+  # Lists
+  # Tables
+  # Reponsive Tables
+  # OOCSS Media Object
+  # Images and Iframes
+  # Forms
   # Icons
+  # Pagination
   # Sections
     - Header
 
 ==============================================================================*/
 
 $rem: {{ settings.font_size_base }};
-@import url('_mixins.scss');
+
+@function rem($target, $context: $rem) {
+  @if $target == 0 {
+    @return 0;
+  }
+  @return $target / $context + 0rem;
+}
+
+/*============================================================================
+  #Breakpoint and Grid Variables
+==============================================================================*/
+$small: 767px;
+$medium: 768px;
+$large: 1024px;
+$wide: 1180px;
+
+/*================ The following are dependencies of csswizardry grid ================*/
+$breakpoints: (
+  'small' '(max-width: #{$small})',
+  'medium' '(min-width: #{$medium})',
+  'large' '(min-width: #{$large})',
+  'wide' '(min-width: #{$wide})'
+);
+$breakpoint-has-widths: ('small', 'medium', 'large', 'wide');
+$breakpoint-has-push:  ('medium', 'large', 'wide');
+$breakpoint-has-pull:  ('medium', 'large', 'wide');
 
 /*============================================================================
   # General Variables
 ==============================================================================*/
 
-/*================ Breakpoint and Grid Variables ================*/
-
-$col-sm: 35.5rem;
-$col-md: 48rem;
-$col-lg: 64rem;
-$col-xl: 80rem;
-
 /*================ Colors ================*/
 
 $color-primary: {{ settings.color_primary }};
-$color-secondary: {{ settings.color_secondary }};
+$color-special: {{ settings.color_secondary }};
 
-// Button colors
-$color-btn-primary: $color-primary;
-$color-btn-primary-hover: darken($color-btn-primary, 10%);
-$color-btn-primary-active: darken($color-btn-primary-hover, 10%);
-
-// Text link colors
-$color-link: $color-primary;
-$color-link-hover: lighten($color-primary, 15%);
+// Backgrounds
+$color-bg: {{ settings.color_bg }};
+$color-bg-alt: {{ settings.color_bg_alt }};
 
 // Text colors
 $color-text-body: {{ settings.color_text }};
 $color-text-alt: {{ settings.color_text_alt }};
 
-// Backgrounds
-$color-bg: {{ settings.color_bg }};
-$color-bg-alt: {{ settings.color_bg_alt }};
+// Button colors
+$color-btn-primary: $color-bg-alt;
+$color-btn-primary-hover: lighten($color-btn-primary, 10%);
+$color-btn-primary-active: lighten($color-btn-primary-hover, 10%);
+$color-btn-primary-text: $color-btn-primary;
+
+$color-btn-secondary: $color-bg;
+$color-btn-secondary-hover: darken($color-btn-secondary, 10%);
+$color-btn-secondary-active: darken($color-btn-secondary-hover, 10%);
+$color-btn-secondary-text: $color-btn-secondary;
+
+// Call to action buttons and highlighted elements
+$color-btn-special: $color-special;
+$color-btn-special-hover: darken($color-btn-special, 10%);
+$color-btn-special-active: darken($color-btn-special-hover, 10%);
+$color-btn-special-text: $color-text-alt;
+
+// Text link colors
+$color-link: $color-primary;
+$color-link-hover: lighten($color-primary, 15%);
 
 // Helper colors
 $color-border: {{ settings.color_borders }};
@@ -64,13 +111,15 @@ $success-green: #56ad6a;
 $success-green-bg: #ecfef0;
 
 // Sizing variables
-$site-width: $col-sm; // 1180px;
-$site-min-width: rem(360px);
-$gutter: rem(22px);
-$gutter-lg: rem(55px);
+$site-width: $wide;
+$site-min-width: 360px;
+$gutter: 30px;
+$grid-gutter: 30px; // can be a %, but nested grids will have smaller margins because of it
 $radius: 3px;
-$section-spacing: rem(35px);
-$section-spacing-lg: rem(55px);
+
+// Z-index
+$zindexNavDropdowns: 5;
+$zindexDrawer: 10;
 
 /*================ Typography ================*/
 
@@ -114,16 +163,13 @@ $font-size-base: {{ settings.font_size_base }};
 }
 $social-icon-font-stack: 'icons';
 
-/*============================================================================
-  # Framework
-==============================================================================*/
-
-@import url('_framework.scss');
-@import url('_responsive-grid.scss');
-
-@import url('_basic.scss');
+@import url('_mixins.scss');
+@import url('_normalize.scss');
+@import url('_grid.scss');
 @import url('_helpers.scss');
 @import url('_typography.scss');
+@import url('_basic.scss');
+@import url('_forms.scss');
 @import url('_icons.scss');
 
 /*============================================================================
