@@ -232,7 +232,8 @@
       "product_title": "Example Product Title",
       "no_collections_html": "You don't have any collections to show here. <a href=\"/admin/custom_collections\">Add some collections</a> to go along with the default home page.",
       "add_collection": "Add a Collection",
-      "collection_title": "Example Collection Title"
+      "collection_title": "Example Collection Title",
+      "no_slides": "Customize your theme to add image or video slides to this slideshow"
     }
   },
   "layout": {

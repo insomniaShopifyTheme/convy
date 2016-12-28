@@ -1,0 +1,295 @@
+<div data-section-id="{{ section.id }}" data-section-type="slideshow-section">
+
+{% if section.blocks.size > 0 %}
+
+  <div class="slideshow-wrapper">
+    <div class="slideshow slideshow--{{ section.settings.slideshow_height }}" id="slideshow_{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed }}">
+      {% for block in section.blocks %}
+        <div class="slideshow__slide slideshow__slide--{{ block.id }}" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            <style>
+              .slideshow__image--{{ block.id }} {
+                background-position: center {{ block.settings.alignment }};
+              }
+
+              @media screen and (max-width: 400px) {
+                .slideshow__image--{{ block.id }} {
+                  background-image: url('{{ block.settings.image | img_url: '800x' }}');
+                }
+              }
+
+              @media screen and (min-width: 401px) and (max-width: 800px) {
+                .slideshow__image--{{ block.id }} {
+                  background-image: url('{{ block.settings.image | img_url: '1000x' }}');
+                }
+              }
+
+              @media screen and (min-width: 801px) and (max-width: 1000px) {
+                .slideshow__image--{{ block.id }} {
+                  background-image: url('{{ block.settings.image | img_url: '1200x' }}');
+                }
+              }
+
+              @media screen and (min-width: 1001px) {
+                .slideshow__image--{{ block.id }} {
+                  background-image: url('{{ block.settings.image | img_url: '2000x' }}');
+                }
+              }
+            </style>
+          {% else %}
+            <style>
+              .slideshow__image--{{ block.id }} {
+                background-image: url('{{ "banner-placeholder.png" | asset_url }}');
+                background-position: center {{ block.settings.alignment }};
+              }
+            </style>
+          {% endif %}
+
+          <div class="slideshow__image slideshow__image--{{ block.id }}">
+            {% if block.settings.image == blank %}
+            {% endif %}
+          </div>
+
+          {% if block.settings.title != blank or block.settings.text != blank %}
+            <style>
+              .slideshow__slide--{{ block.id }} .slideshow__title {
+                color: {{ block.settings.color_title }};
+              }
+              .slideshow__slide--{{ block.id }} .slideshow__subtitle {
+                color: {{ block.settings.color_text }};
+              }
+              .slideshow__slide--{{ block.id }} .slideshow__button:hover,
+              .slideshow__slide--{{ block.id }} .slideshow__button:active,
+              .slideshow__slide--{{ block.id }} .slideshow__button:focus,
+              .slideshow__slide--{{ block.id }} .slideshow__button {
+                color: {{ block.settings.color_text }};
+                border-color: {{ block.settings.color_text }};
+              }
+            </style>
+          {% endif %}
+
+          {% case block.settings.text_location %}
+            {% when 'left' %}
+              {%- assign grid_cell_classes = 'four-sixths' -%}
+            {% when 'right' %}
+              {%- assign grid_cell_classes = 'four-sixths push--two-sixths' -%}
+            {% when 'center' %}
+              {%- assign grid_cell_classes = 'one-whole' -%}
+          {% endcase %}
+
+          <div class="slideshow__text{% if block.settings.title != blank or block.settings.text != blank %} slideshow__overlay{% endif %}">
+            <div class="slideshow__text-content">
+              <div class="grid">
+                <div class="grid__item {{ grid_cell_classes }}">
+                  {% unless block.settings.title == blank %}
+                    <h2 class="h1 slideshow__title{% if section.settings.text_size == 'large' %} slideshow__title--large{% endif %}">
+                      {{ block.settings.title | escape }}
+                    </h2>
+                  {% endunless %}
+                  {% unless block.settings.text == blank %}
+                    <div class="rte-setting slideshow__subtitle{% if section.settings.text_size == 'large' %} slideshow__subtitle--large{% endif %}">{{ block.settings.text }}</div>
+                  {% endunless %}
+                  {% if block.settings.primary_button_label != blank and block.settings.primary_button_link != blank %}
+                    <a href="{{ block.settings.primary_button_link }}" class="btn slideshow__button {% if section.settings.text_size == 'large' %} btn--large{% endif %}">
+                      {{ block.settings.primary_button_label }}
+                    </a>
+                  {% endif %}
+                  {% if block.settings.secondary_button_label != blank and block.settings.secondary_button_link != blank %}
+                    <a href="{{ block.settings.secondary_button_link }}" class="btn slideshow__button {% if section.settings.text_size == 'large' %} btn--large{% endif %}">
+                      {{ block.settings.secondary_button_label }}
+                    </a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+{% else %}
+  <div class="empty-section">
+    {{ 'homepage.onboarding.no_slides' | t }}
+  </div>
+{% endif %}
+
+</div>
+
+{% schema %}
+  {
+    "name": "Slideshow",
+    "class": "section-slideshow",
+    "max_blocks": 5,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Autoplay",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "autoplay_speed",
+        "label": "Change slides every",
+        "options": [
+          { "value": "3000", "label": "3 seconds" },
+          { "value": "4000", "label": "4 seconds" },
+          { "value": "5000", "label": "5 seconds" },
+          { "value": "6000", "label": "6 seconds" },
+          { "value": "7000", "label": "7 seconds" },
+          { "value": "8000", "label": "8 seconds" },
+          { "value": "9000", "label": "9 seconds" },
+          { "value": "10000", "label": "10 seconds" }
+        ],
+        "default": "5000"
+      },
+      {
+        "type": "select",
+        "id": "slideshow_height",
+        "label": "Section height",
+        "default": "medium",
+        "options": [
+          {
+            "label": "Extra small",
+            "value": "xsmall"
+          },
+          {
+            "label": "Small",
+            "value": "small"
+          },
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "text_size",
+        "label": "Text size",
+        "default": "medium",
+        "options": [
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "type": "image",
+        "name": "Image slide",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "alignment",
+            "label": "Image alignment",
+            "default": "center",
+            "options": [
+              {
+                "value": "top",
+                "label": "Top"
+              },
+              {
+                "value": "center",
+                "label": "Middle"
+              },
+              {
+                "value": "bottom",
+                "label": "Bottom"
+              }
+            ]
+          },
+          {
+            "type": "select",
+            "id": "text_location",
+            "label": "Text location",
+            "default": "center",
+            "options": [
+              {
+                "value": "left",
+                "label": "Left column"
+              },
+              {
+                "value": "center",
+                "label": "Center full-width"
+              },
+              {
+                "value": "right",
+                "label": "Right column"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Slide Heading"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Tell your brand's story through video and images</p>"
+          },
+          {
+            "type": "color",
+            "id": "color_title",
+            "label": "Title color",
+            "default": "#fff"
+          },
+          {
+            "type": "color",
+            "id": "color_text",
+            "label": "Text color",
+            "default": "#fff"
+          },
+          {
+            "type": "text",
+            "id": "primary_button_label",
+            "label": "Primary button label"
+          },
+          {
+            "type": "url",
+            "id": "primary_button_link",
+            "label": "Primary button link"
+          },
+          {
+            "type": "text",
+            "id": "secondary_button_label",
+            "label": "Secondary button label"
+          },
+          {
+            "type": "url",
+            "id": "secondary_button_link",
+            "label": "Secondary button link"
+          }
+        ]
+      }
+    ],
+    "presets": [{
+      "name": "Slideshow",
+      "category": "Image",
+      "settings": {
+        "autoplay": true,
+        "autoplay_speed": "5000"
+      }
+    }]
+  }
+{% endschema %}

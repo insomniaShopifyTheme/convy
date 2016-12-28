@@ -82,10 +82,10 @@ $color-text-body: {{ settings.color_text }};
 $color-text-alt: {{ settings.color_text_alt }};
 
 // Button colors
-$color-btn-primary: $color-bg-alt;
-$color-btn-primary-hover: lighten($color-btn-primary, 10%);
-$color-btn-primary-active: lighten($color-btn-primary-hover, 10%);
-$color-btn-primary-text: $color-btn-primary;
+$color-btn-primary: transparent;
+$color-btn-primary-hover: transparent;
+$color-btn-primary-active: transparent;
+$color-btn-primary-text: $color-primary;
 
 $color-btn-secondary: $color-bg;
 $color-btn-secondary-hover: darken($color-btn-secondary, 10%);
@@ -121,6 +121,9 @@ $radius: 3px;
 // Z-index
 $zindexNavDropdowns: 5;
 $zindexDrawer: 10;
+
+$color-image-overlay: {{ settings.color_image_overlay }};
+$opacity-image-overlay: {{ settings.image_overlay_opacity }};
 
 /*================ Typography ================*/
 
@@ -173,11 +176,22 @@ $social-icon-font-stack: 'icons';
 @import url('_forms.scss');
 @import url('_icons.scss');
 
+
+@import url('_slick.scss');
+
 /*============================================================================
   # Sections
 ==============================================================================*/
 
 @import url('_section_header.scss');
+@import url('_section_slideshow.scss');
+
+.empty-section {
+  background: #efefef;
+  height: 300px;
+  padding: 6rem 1rem 0;
+  text-align: center;
+}
 
 
 // Debug grid

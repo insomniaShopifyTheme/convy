@@ -57,15 +57,16 @@
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
 
-  <header class="wrapper">
+  <header>
     {% section 'header' %}
   </header>
 
-  <main class="main-content wrapper" role="main">
+  <main class="main-content" role="main">
     {{ content_for_layout }}
   </main>
 
   {{ 'fastclick.min.js' | asset_url | script_tag }}
+  {{ 'vendor.js' | asset_url | script_tag }}
   {{ 'theme.js' | asset_url | script_tag }}
 
   {% comment %}

@@ -65,6 +65,23 @@
   @include prefixer(backface-visibility, $visibility, webkit spec);
 }
 
+@mixin spinner($size: 20px, $color: $color-btn-primary-text) {
+  content: '';
+  display: block;
+  width: $size;
+  height: $size;
+  position: absolute;
+  margin-left: - $size / 2;
+  margin-top: - $size / 2;
+  border-radius: 50%;
+  border: 3px solid $color;
+  border-top-color: transparent;
+}
+
+@mixin animation($animation) {
+  @include prefixer(animation, #{$animation}, moz o webkit spec);
+}
+
 @function rem($target, $context: $rem) {
   @if $target == 0 {
     @return 0;
@@ -78,6 +95,23 @@
   }
   @else {
     @return #fff;
+  }
+}
+
+@mixin overlay($z-index: null) {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $color-image-overlay;
+    opacity: $opacity-image-overlay;
+
+    @if ($z-index) {
+      z-index: $z-index;
+    }
   }
 }
 
