@@ -1,0 +1,51 @@
+<style>
+  #separator_{{ section.id }} {
+    background-color: {{ section.settings.color }};
+    height: {{ section.settings.height }};
+  }
+</style>
+<div id="separator_{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="separator-section">
+</div>
+
+{% schema %}
+  {
+    "name": "Separator",
+    "class": "section-separator",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color",
+        "label": "Color",
+        "default": "#41cd62"
+      },
+      {
+        "type": "select",
+        "id": "height",
+        "label": "Size",
+        "options": [
+          {
+            "value": "5px",
+            "label": "Thin"
+          },
+          {
+            "value": "10px",
+            "label": "Normal"
+          },
+          {
+            "value": "15px",
+            "label": "Bold"
+          }
+        ],
+        "default": "10px"
+      }
+    ],
+    "presets": [{
+      "name": "Separator",
+      "category": "Misc",
+      "settings": {
+        "color": "#41cd62",
+        "height": "10px"
+      }
+    }]
+  }
+{% endschema %}
