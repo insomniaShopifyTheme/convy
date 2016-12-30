@@ -18,10 +18,6 @@ $slideshow-loader: #fff;
 
 .section-slideshow {
 
-  .main-content &:first-child {
-    margin-top: $gutter * -1;
-  }
-
   .slideshow-wrapper {
     position: relative;
   }

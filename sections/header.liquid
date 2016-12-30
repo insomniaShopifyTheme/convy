@@ -1,38 +1,41 @@
 <div class="grid--full" data-section-id="{{ section.id }}" data-section-type="header-section">
-    <div class="grid__item one-sixth large--hide text-center">
-      <button type="button" class="h1 section-header__hamburger icon-fallback-text">
-        <span class="icon icon-hamburger" aria-hidden="true"></span>
-        <span class="fallback-text">{{ 'layout.navigation.menu' | t }}</span>
-      </button>
+  <div class="grid__item one-sixth large--hide text-center">
+    <div class="section-header__hamburger js-drawer-open-left">
+      <div class="spinner-spin2">
+        <div class="spinner2 diagonal part-1"></div>
+        <div class="spinner2 horizontal"></div>
+        <div class="spinner2 diagonal part-2"></div>
+      </div>
     </div>
-    <div class="grid__item four-sixths large--five-sixths text-center large--text-left">
-      {% if template == 'index' %}
-        <h1 class="section-header__logo" itemscope itemtype="http://schema.org/Organization">
+  </div>
+  <div class="grid__item four-sixths large--five-sixths text-center large--text-left">
+    {% if template == 'index' %}
+      <h1 class="section-header__logo" itemscope itemtype="http://schema.org/Organization">
+    {% else %}
+      <div class="h1 section-header__logo" itemscope itemtype="http://schema.org/Organization">
+    {% endif %}
+      {% if section.settings.logo_use_image %}
+        <a href="/" itemprop="url" class="section-header__logo-link">
+          {% assign logo_max_width = section.settings.logo_max_width | append: 'x' %}
+          <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+        </a>
       {% else %}
-        <div class="h1 section-header__logo" itemscope itemtype="http://schema.org/Organization">
+        <a href="/" itemprop="url">{{ shop.name }}</a>
       {% endif %}
-        {% if section.settings.logo_use_image %}
-          <a href="/" itemprop="url" class="section-header__logo-link">
-            {% assign logo_max_width = section.settings.logo_max_width | append: 'x' %}
-            <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-          </a>
-        {% else %}
-          <a href="/" itemprop="url">{{ shop.name }}</a>
-        {% endif %}
-      {% unless template == 'index' %}
-        </div>
-      {% else %}
-        </h1>
-      {% endunless %}
-    </div>
-    <div class="grid__item one-sixth text-center">
-      <a href="/cart" class="js-drawer-open-right section-header__cart-link h1" aria-controls="CartDrawer" aria-expanded="false">
-        <span class="icon-fallback-text">
-          <span class="icon icon-cart" aria-hidden="true"></span>
-          <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
-        </span>
-      </a>
-    </div>
+    {% unless template == 'index' %}
+      </div>
+    {% else %}
+      </h1>
+    {% endunless %}
+  </div>
+  <div class="grid__item one-sixth text-center">
+    <a href="/cart" class="h1 section-header__cart-link js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
+      <span class="icon-fallback-text">
+        <span class="icon icon-cart" aria-hidden="true"></span>
+        <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
+      </span>
+    </a>
+  </div>
 </div>
 
 {% schema %}

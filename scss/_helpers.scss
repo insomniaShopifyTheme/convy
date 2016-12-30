@@ -1,6 +1,10 @@
 /*============================================================================
   # Helper Classes
 ==============================================================================*/
+.is-transitioning {
+  display: block !important;
+  visibility: visible !important;
+}
 
 .display-table {
   display: table;

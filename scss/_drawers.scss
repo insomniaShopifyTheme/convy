@@ -1,0 +1,121 @@
+/*============================================================================
+  #Drawers
+==============================================================================*/
+.js-drawer-open {
+  overflow: hidden;
+}
+
+.drawer {
+  @include promote-layer();
+  display: none;
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  top: 55px;
+  bottom: 0;
+  padding: 0 ($gutter / 2) ($gutter / 2);
+  max-width: 100%;
+  z-index: $z-index-drawer;
+  color: $color-drawer-text;
+  background-color: $color-drawers;
+  transition: $drawer-transition;
+
+  a {
+    color: $color-drawer-text;
+
+    &:hover,
+    &:focus {
+      opacity: 0.7;
+    }
+  }
+
+  input,
+  textarea {
+    border-color: $color-drawer-border;
+  }
+}
+
+.drawer--left {
+  width: $drawer-nav-width;
+  left: -$drawer-nav-width;
+  border-right: 1px solid $color-drawer-border;
+
+  .js-drawer-open-left & {
+    display: block;
+    @include transform(translateX($drawer-nav-width));
+
+    .lt-ie9 & {
+      left: 0;
+    }
+  }
+}
+
+.drawer--right {
+  width: $drawer-cart-width;
+  right: -$drawer-cart-width;
+  border-left: 1px solid $color-drawer-border;
+
+  .js-drawer-open-right & {
+    display: block;
+    @include transform(translateX(-$drawer-cart-width));
+
+    .lt-ie9 & {
+      right: 0;
+    }
+  }
+}
+
+#page_container {
+  overflow: hidden;
+}
+
+.is-moved-by-drawer {
+  @include promote-layer();
+  transition: $drawer-transition;
+
+  .js-drawer-open-left & {
+    @include transform(translateX($drawer-nav-width));
+  }
+
+  .js-drawer-open-right & {
+    @include transform(translateX(-$drawer-cart-width));
+  }
+}
+
+.drawer__header {
+  display: table;
+  height: 70px;
+  width: 100%;
+  margin-bottom: $gutter / 2;
+  border-bottom: 1px solid $color-drawer-border;
+}
+
+.drawer__title,
+.drawer__close {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.drawer__title {
+  width: 100%;
+}
+
+.drawer__close {
+  width: 1%;
+  text-align: center;
+  font-size: em(18px);
+}
+
+.drawer__close button {
+  position: relative;
+  right: -20px;
+  height: 100%;
+  padding: 0 20px;
+  color: inherit;
+
+  &:active,
+  &:focus {
+    background-color: darken($color-drawers, 5%);
+  }
+}

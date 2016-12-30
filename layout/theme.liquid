@@ -61,11 +61,24 @@
     {% section 'header' %}
   </header>
 
-  <main class="main-content" role="main">
+  {% include 'mobile-nav' %}
+  <div id="CartDrawer" class="drawer drawer--right">
+    <div class="drawer__header">
+      <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
+      <div class="drawer__close js-drawer-close">
+        <button type="button" class="icon-fallback-text">
+          <span class="icon icon-x" aria-hidden="true"></span>
+          <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+        </button>
+      </div>
+    </div>
+    <div id="CartContainer"></div>
+  </div>
+
+  <main class="main-content is-moved-by-drawer" role="main" id="page_container">
     {{ content_for_layout }}
   </main>
 
-  {{ 'fastclick.min.js' | asset_url | script_tag }}
   {{ 'vendor.js' | asset_url | script_tag }}
   {{ 'theme.js' | asset_url | script_tag }}
 
@@ -85,28 +98,26 @@
     Documentation:
       - http://shopify.com/timber#ajax-cart
   {% endcomment %}
-  {% if settings.ajax_cart_method == "drawer" %}
-    {{ 'handlebars.min.js' | asset_url | script_tag }}
-    {% include 'ajax-cart-template' %}
-    {{ 'ajax-cart.js' | asset_url | script_tag }}
-    <script>
-      jQuery(function($) {
-        ajaxCart.init({
-          formSelector: '#AddToCartForm',
-          cartContainer: '#CartContainer',
-          addToCartSelector: '#AddToCart',
-          cartCountSelector: '#CartCount',
-          cartCostSelector: '#CartCost',
-          moneyFormat: {{ shop.money_format | json }}
-        });
+  {{ 'handlebars.min.js' | asset_url | script_tag }}
+  {% include 'ajax-cart-template' %}
+  {{ 'ajax-cart.js' | asset_url | script_tag }}
+  <script>
+    jQuery(function($) {
+      ajaxCart.init({
+        formSelector: '#AddToCartForm',
+        cartContainer: '#CartContainer',
+        addToCartSelector: '#AddToCart',
+        cartCountSelector: '#CartCount',
+        cartCostSelector: '#CartCost',
+        moneyFormat: {{ shop.money_format | json }}
       });
+    });
 
-      jQuery(document.body).on('afterCartLoad.ajaxCart', function(evt, cart) {
-        // Bind to 'afterCartLoad.ajaxCart' to run any javascript after the cart has loaded in the DOM
-        theme.RightDrawer.open();
-      });
-    </script>
-  {% endif %}
+    jQuery(document.body).on('afterCartLoad.ajaxCart', function(evt, cart) {
+      // Bind to 'afterCartLoad.ajaxCart' to run any javascript after the cart has loaded in the DOM
+      theme.RightDrawer.open();
+    });
+  </script>
 
   {% include 'currencies' %}
 

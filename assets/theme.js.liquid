@@ -1,0 +1,368 @@
+// Theme functions
+window.theme = window.theme || {};
+
+theme.cacheSelectors = function () {
+  theme.cache = {
+    // General
+    $html : $('html'),
+    $body : $(document.body)
+  };
+};
+
+// Registering sections allows to create hooks for user actions in theme editor
+
+theme.Sections = function Sections() {
+  this.constructors = {};
+  this.instances = [];
+
+  $(document)
+    .on('shopify:section:load', this._onSectionLoad.bind(this))
+    .on('shopify:section:unload', this._onSectionUnload.bind(this))
+    .on('shopify:section:select', this._onSelect.bind(this))
+    .on('shopify:section:deselect', this._onDeselect.bind(this))
+    .on('shopify:block:select', this._onBlockSelect.bind(this))
+    .on('shopify:block:deselect', this._onBlockDeselect.bind(this));
+};
+
+theme.Sections.prototype = _.extend({}, theme.Sections.prototype, {
+  _createInstance: function(container, constructor) {
+    var $container = $(container);
+    var id = $container.attr('data-section-id');
+    var type = $container.attr('data-section-type');
+
+    constructor = constructor || this.constructors[type];
+
+    if (_.isUndefined(constructor)) {
+      return;
+    }
+
+    var instance = _.extend(new constructor(container), {
+      id: id,
+      type: type,
+      container: container
+    });
+
+    this.instances.push(instance);
+  },
+
+  _onSectionLoad: function(evt) {
+    var container = $('[data-section-id]', evt.target)[0];
+    if (container) {
+      this._createInstance(container);
+    }
+  },
+
+  _onSectionUnload: function(evt) {
+    this.instances = _.filter(this.instances, function(instance) {
+      var isEventInstance = (instance.id === evt.detail.sectionId);
+
+      if (isEventInstance) {
+        if (_.isFunction(instance.onUnload)) {
+          instance.onUnload(evt);
+        }
+      }
+
+      return !isEventInstance;
+    });
+  },
+
+  _onSelect: function(evt) {
+    // eslint-disable-next-line no-shadow
+    var instance = _.find(this.instances, function(instance) {
+      return instance.id === evt.detail.sectionId;
+    });
+
+    if (!_.isUndefined(instance) && _.isFunction(instance.onSelect)) {
+      instance.onSelect(evt);
+    }
+  },
+
+  _onDeselect: function(evt) {
+    // eslint-disable-next-line no-shadow
+    var instance = _.find(this.instances, function(instance) {
+      return instance.id === evt.detail.sectionId;
+    });
+
+    if (!_.isUndefined(instance) && _.isFunction(instance.onDeselect)) {
+      instance.onDeselect(evt);
+    }
+  },
+
+  _onBlockSelect: function(evt) {
+    // eslint-disable-next-line no-shadow
+    var instance = _.find(this.instances, function(instance) {
+      return instance.id === evt.detail.sectionId;
+    });
+
+    if (!_.isUndefined(instance) && _.isFunction(instance.onBlockSelect)) {
+      instance.onBlockSelect(evt);
+    }
+  },
+
+  _onBlockDeselect: function(evt) {
+    // eslint-disable-next-line no-shadow
+    var instance = _.find(this.instances, function(instance) {
+      return instance.id === evt.detail.sectionId;
+    });
+
+    if (!_.isUndefined(instance) && _.isFunction(instance.onBlockDeselect)) {
+      instance.onBlockDeselect(evt);
+    }
+  },
+
+  register: function(type, constructor) {
+    this.constructors[type] = constructor;
+
+    $('[data-section-type=' + type + ']').each(function(index, container) {
+      this._createInstance(container, constructor);
+    }.bind(this));
+  }
+});
+
+
+/*============================================================================
+  Drawer modules
+  - Docs http://shopify.github.io/Timber/#drawers
+==============================================================================*/
+theme.Drawers = (function () {
+  var Drawer = function (id, position, options) {
+    var defaults = {
+      close: '.js-drawer-close',
+      open: '.js-drawer-open-' + position,
+      openClass: 'js-drawer-open',
+      dirOpenClass: 'js-drawer-open-' + position
+    };
+
+    this.$nodes = {
+      parent: $('body, html'),
+      page: $('#page_container'),
+      moved: $('.is-moved-by-drawer')
+    };
+
+    this.config = $.extend(defaults, options);
+    this.position = position;
+
+    this.$drawer = $('#' + id);
+
+    if (!this.$drawer.length) {
+      return false;
+    }
+
+    this.drawerIsOpen = false;
+    this.init();
+  };
+
+  Drawer.prototype.init = function () {
+    $(this.config.open).on('click', $.proxy(this.open, this));
+    this.$drawer.find(this.config.close).on('click', $.proxy(this.close, this));
+  };
+
+  Drawer.prototype.open = function (evt) {
+    // Keep track if drawer was opened from a click, or called by another function
+    var externalCall = false;
+
+    // Prevent following href if link is clicked
+    if (evt) {
+      evt.preventDefault();
+    } else {
+      externalCall = true;
+    }
+
+    // Without this, the drawer opens, the click event bubbles up to $nodes.page
+    // which closes the drawer.
+    if (evt && evt.stopPropagation) {
+      evt.stopPropagation();
+      // save the source of the click, we'll focus to this on close
+      this.$activeSource = $(evt.currentTarget);
+    }
+
+    if (this.drawerIsOpen && !externalCall) {
+      return this.close();
+    }
+
+    // Notify the drawer is going to open
+    theme.cache.$body.trigger('beforeDrawerOpen.theme', this);
+
+    // Add is-transitioning class to moved elements on open so drawer can have
+    // transition for close animation
+    this.$nodes.moved.addClass('is-transitioning');
+    this.$drawer.prepareTransition();
+
+    this.$nodes.parent.addClass(this.config.openClass + ' ' + this.config.dirOpenClass);
+    this.drawerIsOpen = true;
+
+    // Set focus on drawer
+    this.trapFocus(this.$drawer, 'drawer_focus');
+
+    // Run function when draw opens if set
+    if (this.config.onDrawerOpen && typeof(this.config.onDrawerOpen) == 'function') {
+      if (!externalCall) {
+        this.config.onDrawerOpen();
+      }
+    }
+
+    if (this.$activeSource && this.$activeSource.attr('aria-expanded')) {
+      this.$activeSource.attr('aria-expanded', 'true');
+    }
+
+    // Lock scrolling on mobile
+    this.$nodes.page.on('touchmove.drawer', function () {
+      return false;
+    });
+
+    this.$nodes.page.on('click.drawer', $.proxy(function () {
+      this.close();
+      return false;
+    }, this));
+
+    // Notify the drawer has opened
+    theme.cache.$body.trigger('afterDrawerOpen.theme', this);
+  };
+
+  Drawer.prototype.close = function () {
+    if (!this.drawerIsOpen) { // don't close a closed drawer
+      return;
+    }
+
+    // Notify the drawer is going to close
+    theme.cache.$body.trigger('beforeDrawerClose.theme', this);
+
+    // deselect any focused form elements
+    $(document.activeElement).trigger('blur');
+
+    // Ensure closing transition is applied to moved elements, like the nav
+    this.$nodes.moved.prepareTransition({ disableExisting: true });
+    this.$drawer.prepareTransition({ disableExisting: true });
+
+    this.$nodes.parent.removeClass(this.config.dirOpenClass + ' ' + this.config.openClass);
+
+    this.drawerIsOpen = false;
+
+    // Remove focus on drawer
+    this.removeTrapFocus(this.$drawer, 'drawer_focus');
+
+    this.$nodes.page.off('.drawer');
+
+    // Notify the drawer is closed now
+    theme.cache.$body.trigger('afterDrawerClose.theme', this);
+  };
+
+  Drawer.prototype.trapFocus = function ($container, eventNamespace) {
+    var eventName = eventNamespace ? 'focusin.' + eventNamespace : 'focusin';
+
+    $container.attr('tabindex', '-1');
+
+    $container.focus();
+
+    $(document).on(eventName, function (evt) {
+      if ($container[0] !== evt.target && !$container.has(evt.target).length) {
+        $container.focus();
+      }
+    });
+  };
+
+  Drawer.prototype.removeTrapFocus = function ($container, eventNamespace) {
+    var eventName = eventNamespace ? 'focusin.' + eventNamespace : 'focusin';
+
+    $container.removeAttr('tabindex');
+    $(document).off(eventName);
+  };
+
+  return Drawer;
+})();
+
+theme.drawersInit = function () {
+  theme.LeftDrawer = new theme.Drawers('NavDrawer', 'left');
+  theme.RightDrawer = new theme.Drawers('CartDrawer', 'right', {
+    'onDrawerOpen': ajaxCart.load
+  });
+  theme.cache.$body.on('beforeDrawerOpen.theme', function() {
+    if (theme.LeftDrawer.drawerIsOpen) {
+      theme.LeftDrawer.close();
+    } else if(theme.RightDrawer.drawerIsOpen) {
+      theme.RightDrawer.close();
+    }
+  });
+};
+
+/*******************************************************************************
+    Slideshow section
+  *****************************************************************************/
+
+theme.Slideshow = (function() {
+  this.$slideshow = null;
+  var classes = {
+    wrapper: 'slideshow-wrapper',
+    slideshow: 'slideshow',
+    currentSlide: 'slick-current'
+  };
+
+  function slideshow(el) {
+    this.$slideshow = $(el);
+    this.$wrapper = this.$slideshow.closest('.' + classes.wrapper);
+    this.$pause = this.$wrapper.find('.' + classes.pauseButton);
+
+    this.settings = {
+      accessibility: true,
+      arrows: false,
+      dots: true,
+      fade: true,
+      draggable: true,
+      touchThreshold: 20,
+      autoplay: this.$slideshow.data('autoplay'),
+      autoplaySpeed: this.$slideshow.data('speed')
+    };
+
+    this.$slideshow.slick(this.settings);
+  }
+
+  return slideshow;
+})();
+
+theme.slideshows = {};
+
+theme.SlideshowSection = (function() {
+  function SlideshowSection(container) {
+    var $container = this.$container = $(container);
+    var sectionId = $container.attr('data-section-id');
+    var slideshow = this.slideshow = '#slideshow_' + sectionId;
+    theme.slideshows[slideshow] = new theme.Slideshow(slideshow);
+  }
+
+  return SlideshowSection;
+})();
+
+theme.SlideshowSection.prototype = _.extend({}, theme.SlideshowSection.prototype, {
+  onUnload: function() {
+    delete theme.slideshows[this.slideshow];
+  },
+
+  onBlockSelect: function(evt) {
+    var $slideshow = $(this.slideshow);
+
+    // Ignore the cloned version
+    var $slide = $('.slideshow__slide--' + evt.detail.blockId + ':not(.slick-cloned)');
+    var slideIndex = $slide.data('slick-index');
+
+    // Go to selected slide, pause autoplay
+    $slideshow.slick('slickGoTo', slideIndex).slick('slickPause');
+  },
+
+  onBlockDeselect: function() {
+    // Resume autoplay
+    $(this.slideshow).slick('slickPlay');
+  }
+});
+
+$(document).ready(function() {
+  var sections = new theme.Sections();
+  sections.register('slideshow-section', theme.SlideshowSection);
+});
+
+theme.init = function () {
+  FastClick.attach(document.body);
+  theme.cacheSelectors();
+  theme.drawersInit();
+};
+
+$(theme.init);

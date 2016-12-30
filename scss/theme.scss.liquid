@@ -111,6 +111,14 @@ $error-red-bg: #fff6f6;
 $success-green: #56ad6a;
 $success-green-bg: #ecfef0;
 
+// Drawers
+$drawer-nav-width: $small;
+$drawer-cart-width: $small;
+$color-drawers: #f6f6f6;
+$color-drawer-border: darken($color-drawers, 5%);
+$color-drawer-text: #333;
+$drawer-transition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1);
+
 // Sizing variables
 $site-width: $wide;
 $site-min-width: 360px;
@@ -119,8 +127,8 @@ $grid-gutter: 30px; // can be a %, but nested grids will have smaller margins be
 $radius: 3px;
 
 // Z-index
-$zindexNavDropdowns: 5;
-$zindexDrawer: 10;
+$zindex-nav-dropdowns: 5;
+$z-index-drawer: 10;
 
 $color-image-overlay: {{ settings.color_image_overlay }};
 $opacity-image-overlay: {{ settings.image_overlay_opacity }};
@@ -186,6 +194,8 @@ $social-icon-font-stack: 'icons';
 @import url('_section_header.scss');
 @import url('_section_slideshow.scss');
 @import url('_section_separator.scss');
+@import url('_mobile_nav.scss');
+@import url('_drawers.scss');
 
 .empty-section {
   background: #efefef;
