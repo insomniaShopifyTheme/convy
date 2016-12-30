@@ -30,6 +30,25 @@ body {
   padding-bottom: $gutter * 2;
 }
 
+// Fixed Header
+
+@include at-query($max, $small) {
+  body {
+    &.fixed-header {
+      &>header {
+        position: fixed;
+        width: 100%;
+        z-index: $z-index-toolbar;
+      }
+      .main-content {
+        padding-top: $header-height-mobile;
+      }
+    }
+  }
+}
+
+
+
 /*============================================================================
   #Rich Text Editor
 ==============================================================================*/

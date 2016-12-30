@@ -114,7 +114,7 @@ $success-green-bg: #ecfef0;
 // Drawers
 $drawer-nav-width: $small;
 $drawer-cart-width: $small;
-$color-drawers: #f6f6f6;
+$color-drawers: #fff;
 $color-drawer-border: darken($color-drawers, 5%);
 $color-drawer-text: #333;
 $drawer-transition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1);
@@ -125,10 +125,12 @@ $site-min-width: 360px;
 $gutter: 30px;
 $grid-gutter: 30px; // can be a %, but nested grids will have smaller margins because of it
 $radius: 3px;
+$header-height-mobile: 55px;
 
 // Z-index
 $zindex-nav-dropdowns: 5;
 $z-index-drawer: 10;
+$z-index-toolbar: 15;
 
 $color-image-overlay: {{ settings.color_image_overlay }};
 $opacity-image-overlay: {{ settings.image_overlay_opacity }};
@@ -207,10 +209,10 @@ $social-icon-font-stack: 'icons';
 
 // Debug grid
 
-.grid {
-  .grid__item {
-    border: 1px solid #e6e6e6;
-    box-sizing: border-box;
-    border-right: none;
-  }
-}
+// .grid {
+//   .grid__item {
+//     border: 1px solid #e6e6e6;
+//     box-sizing: border-box;
+//     border-right: none;
+//   }
+// }

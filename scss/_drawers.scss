@@ -12,7 +12,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  top: 55px;
+  top: $header-height-mobile;
   bottom: 0;
   padding: 0 ($gutter / 2) ($gutter / 2);
   max-width: 100%;
@@ -72,6 +72,7 @@
 
 .is-moved-by-drawer {
   @include promote-layer();
+  /* Disable moving content when drawer opens
   transition: $drawer-transition;
 
   .js-drawer-open-left & {
@@ -81,6 +82,7 @@
   .js-drawer-open-right & {
     @include transform(translateX(-$drawer-cart-width));
   }
+  */
 }
 
 .drawer__header {
