@@ -13,22 +13,25 @@
       -webkit-transition: all 0.3s;
       box-sizing: border-box;
     }
-    & .spinner2 {
+    .spinner-spin2 {
+      width: 30px;
+    }
+    .spinner2 {
       position: absolute;
       height: 4px;
       width: 100%;
       background-color: #000;
     }
-    & .diagonal.part-1 {
+    .diagonal.part-1 {
       position: relative;
       float: left;
     }
-    & .horizontal {
+    .horizontal {
       position: relative;
       float: left;
       margin-top: 7px;
     }
-    & .diagonal.part-2 {
+    .diagonal.part-2 {
       position: relative;
       float: left;
       margin-top: 6px;

@@ -119,7 +119,7 @@ $slideshow-loader: #fff;
   z-index: $z-index-slideshow-image;
 
   .slick-initialized &,
-  .no-js & {
+  .supports-no-js & {
     opacity: 1;
   }
 
@@ -191,7 +191,7 @@ $slideshow-loader: #fff;
   }
 
   .slick-active &,
-  .no-js & {
+  .supports-no-js & {
     @include transform(translateY(-50%));
     opacity: 1;
   }
@@ -207,7 +207,7 @@ $slideshow-loader: #fff;
   }
 
   .slick-initialized &,
-  .no-js & {
+  .supports-no-js & {
     &::after {
       opacity: 0;
       visibility: hidden;

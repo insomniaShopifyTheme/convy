@@ -286,6 +286,15 @@ theme.drawersInit = function () {
 };
 
 /*******************************************************************************
+    Mobile nav
+  *****************************************************************************/
+theme.mobileNavInit = function() {
+  $("#MobileMenu").mmenu({
+    offCanvas: false
+  });
+}
+
+/*******************************************************************************
     Slideshow section
   *****************************************************************************/
 
@@ -363,6 +372,7 @@ theme.init = function () {
   FastClick.attach(document.body);
   theme.cacheSelectors();
   theme.drawersInit();
+  theme.mobileNavInit();
 };
 
 $(theme.init);
