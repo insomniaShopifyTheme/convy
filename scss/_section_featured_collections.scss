@@ -1,0 +1,32 @@
+.section-featured-collections {
+  @extend .normal-section-padding;
+}
+
+.collection-list {
+
+  .collection-list__item {
+    margin: 0 $gutter / 3;
+
+    img {
+      border: 2px solid $color-border;
+      border-radius: $radius;
+    }
+
+    p {
+      margin-top: $gutter / 3;
+      a {
+        font-size: $font-size-base * 1.15;
+      }
+    }
+
+  }
+
+}
+
+.slider {
+  &:not(.slick-initialized) {
+    .collection-list__item:nth-child(1n+2) {
+      display: none;
+    }
+  }
+}

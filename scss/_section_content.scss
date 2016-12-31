@@ -1,7 +1,7 @@
 .section-content {
 
   .custom__item-content--text {
-    padding: $gutter;
+    @extend .normal-section-padding;
     .custom__item-heading,
     .custom__item-text {
       margin-bottom: $gutter / 3 * 2;

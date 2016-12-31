@@ -234,7 +234,9 @@
       "add_collection": "Add a Collection",
       "collection_title": "Example Collection Title",
       "no_slides": "Customize your theme to add image or video slides to this slideshow",
-      "no_content": "Customize your theme to add content this section"
+      "no_content": "Customize your theme to add content to this section",
+      "no_products": "Customize your theme to add products to this section",
+      "no_collections": "Customize your theme to add collections to this section"
     }
   },
   "layout": {
