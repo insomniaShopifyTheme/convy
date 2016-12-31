@@ -1,0 +1,17 @@
+.section-content {
+
+  .custom__item-content--text {
+    padding: $gutter;
+    .custom__item-heading,
+    .custom__item-text {
+      margin-bottom: $gutter / 3 * 2;
+    }
+  }
+
+  .custom__item-content--image {
+    img {
+      width: 100%;
+      margin-bottom: -6px;
+    }
+  }
+}
