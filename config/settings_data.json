@@ -2,6 +2,7 @@
   "current": "Default",
   "presets": {
     "Default": {
+      "breadcrumbs": true,
       "color_primary": "#393939",
       "color_secondary": "#41cd62",
       "color_text": "#393939",

@@ -1,1 +1,4 @@
 <h1>{{ collection.title }}</h1>
+{% if settings.breadcrumbs %}
+  {% include 'breadcrumb' %}
+{% endif %}
