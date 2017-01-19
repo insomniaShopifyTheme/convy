@@ -1,0 +1,124 @@
+/*================ Product Card ================*/
+
+.product-card {
+
+  // margin: 50px auto;
+  // width: 280px;
+  // height: 370px;
+  // background: white;
+  // border-radius: 10px;
+  // -webkit-box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+  // -moz-box-shadow:    0px 0px 8px rgba(0,0,0,0.3);
+  // box-shadow:         0px 0px 8px rgba(0,0,0,0.3);
+  position: relative;
+
+  // http://www.anushka.eu/blog/fade-out-the-end-of-a-text-line-with-css/
+  .product-card__title--shortable {
+    position: relative;
+    white-space: nowrap;
+    overflow-x: hidden;
+    .dimmer {
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 50px;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 );
+        background: -moz-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 56%, rgba(255,255,255,1) 100%);
+        background: -webkit-gradient(linear, left top, right top, color-stop(0%,rgba(255,255,255,0)), color-stop(56%,rgba(255,255,255,1)), color-stop(100%,rgba(255,255,255,1)));
+        background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 100%);
+        background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 100%);
+        background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 100%);
+        background: linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 100%);
+        content: "";
+    }
+  }
+
+  .product-card__price {
+    text-align: center;
+  }
+
+}
+
+.product-price {
+  white-space: nowrap;
+  .product-price__old {
+    font-size: 0.7rem;
+  }
+  .product-price__price {
+    color: $color-special;
+    font-size: 0.9rem;
+    font-weight: bold;
+  }
+}
+
+// http://codepen.io/team/css-tricks/pen/BKXrWG
+$ribbon-green: #BFDC7A;
+$ribbon-red: #e33c4c;
+$ribbon-green-to: darken($ribbon-green, 20%);
+$ribbon-red-to: darken($ribbon-red, 20%);
+
+.ribbon {
+  width: 85px;
+  height: 88px;
+  overflow: hidden;
+  position: absolute;
+  top: -3px;
+  right: -3px;
+
+  > div {
+    font: bold 15px Sans-Serif;
+    color: #333;
+    text-align: center;
+    text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform:    rotate(45deg);
+    -ms-transform:     rotate(45deg);
+    -o-transform:      rotate(45deg);
+    position: relative;
+    padding: 2px 0;
+    left: -5px;
+    top: 15px;
+    width: 120px;
+    -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow:    0px 0px 3px rgba(0,0,0,0.3);
+    box-shadow:         0px 0px 3px rgba(0,0,0,0.3);
+  }
+
+  > div:before, > div:after {
+    content: "";
+    border-top:   3px solid #6e8900;
+    border-left:  3px solid transparent;
+    border-right: 3px solid transparent;
+    position:absolute;
+    bottom: -3px;
+  }
+
+  > div:before {
+    left: 0;
+  }
+  > div:after {
+    right: 0;
+  }
+
+  .ribbon--green {
+    background-color: $ribbon-green;
+    background-image: -webkit-gradient(radial, from($ribbon-green), to($ribbon-green-to));
+    background-image: -webkit-radial-gradient($ribbon-green, $ribbon-green-to);
+    background-image:    -moz-radial-gradient($ribbon-green, $ribbon-green-to);
+    background-image:     -ms-radial-gradient($ribbon-green, $ribbon-green-to);
+    background-image:      -o-radial-gradient($ribbon-green, $ribbon-green-to);
+    color: #6a6340;
+  }
+
+  .ribbon--red {
+    background-color: $ribbon-red;
+    background-image: -webkit-gradient(radial, from($ribbon-red), to($ribbon-red-to));
+    background-image: -webkit-radial-gradient($ribbon-red, $ribbon-red-to);
+    background-image:    -moz-radial-gradient($ribbon-red, $ribbon-red-to);
+    background-image:     -ms-radial-gradient($ribbon-red, $ribbon-red-to);
+    background-image:      -o-radial-gradient($ribbon-red, $ribbon-red-to);
+    color: #fff;
+  }
+}

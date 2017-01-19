@@ -8,6 +8,7 @@
       {% for block in section.blocks limit: section.blocks.size %}
         <div class="collection-list__item slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
           {%- assign collection = collections[block.settings.collection] -%}
+          {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
           <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}" class="grid__image">
             {% if collection.image %}
               {{ collection.image.src | img_url: '400x400', crop: 'center' | img_tag: collection_title }}

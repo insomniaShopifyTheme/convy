@@ -181,6 +181,7 @@ html input[disabled] {
   @extend .btn;
   background-color: $color-btn-special;
   border-radius: 0;
+  border: none;
   color: $color-btn-special-text;
 
   &:hover {

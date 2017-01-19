@@ -79,6 +79,12 @@
     {{ content_for_layout }}
   </main>
 
+  <hr>
+
+  {% if settings.show_multiple_currencies %}
+    {% include 'currency-picker' %}
+  {% endif %}
+
   {{ 'vendor.js' | asset_url | script_tag }}
   {{ 'theme.js' | asset_url | script_tag }}
 

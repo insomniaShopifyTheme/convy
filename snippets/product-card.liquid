@@ -1,0 +1,50 @@
+{% if section.settings %}
+  {%- assign btn_action = section.settings.btn_action -%}
+  {%- assign btn_text = section.settings.btn_text -%}
+  {%- assign fade_out_title = section.settings.fade_out_title -%}
+{% else %}
+  {%- assign btn_action = settings.product_card_btn_action -%}
+  {%- assign btn_text = settings.product_card_btn_text -%}
+  {%- assign fade_out_title = settings.product_card_fade_out_title -%}
+{% endif %}
+
+<div class="product-card">
+  {% if product.compare_at_price > product.price %}
+    {%- assign discount_amount = product.compare_at_price | minus: product.price -%}
+    {%- assign percent = product.compare_at_price | divided_by: "100" -%}
+    {%- assign discount_percent = discount_amount | divided_by: percent -%}
+    <div class="ribbon">
+      <div class="ribbon--red">
+        – {{ discount_percent }}%
+      </div>
+    </div>
+  {% endif %}
+  <a href="{{ product.url }}" title="{{ 'product.general.link_title' | t: title: product_title }}" class="product-card__image">
+    {{ product.featured_image.src | img_url: '400x400', crop: 'center' | img_tag: product_title }}
+  </a>
+  <div class="product-card__info">
+    <div class="product-card__title{% if fade_out_title %} product-card__title--shortable{% endif %}">
+      <a href="{{ product.url }}" title="{{ 'product.general.link_title' | t: title: product_title }}">{{ product.title }}</a>
+      <div class="dimmer"></div>
+    </div>
+    <div class="product-card__price product-price">
+      {% include 'product-price' %}
+    </div>
+  </div>
+  {% if btn_action == 'add_to_cart' %}
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    <div class="product-form__item product-form__item--submit">
+      <button type="submit" name="add" id="AddToCart-{{ section.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} product-form__cart-submit--small{% endif %}">
+        <span id="AddToCartText-{{ section.id }}">
+          {% unless current_variant.available %}
+            {{ 'products.product.sold_out' | t }}
+          {% else %}
+            {{ btn_text }}
+          {% endunless %}
+        </span>
+      </button>
+    </div>
+  {% elsif btn_action == 'product_page' %}
+    <a href="{{ product.url }}" class="btn btn--special btn--full">{{ btn_text }}</a>
+  {% endif %}
+</div>

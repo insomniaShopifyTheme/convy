@@ -10,6 +10,14 @@ var shopCurrency = '{{ shop.currency }}';
 Currency.moneyFormats[shopCurrency].money_with_currency_format = {{ shop.money_with_currency_format | strip_html | json }};
 Currency.moneyFormats[shopCurrency].money_format = {{ shop.money_format | strip_html | json }};
 
+/* Remove currency code from compare_at_price */
+afterPriceCurrencyUpdated = function(newCurrency) {
+  jQuery('.product-price__old').each(function(idx, el){
+    $(el).text($(el).text().replace(' ' + newCurrency, ''));
+  });
+}
+
+
 /* Default currency */
 var defaultCurrency = '{{ settings.default_currency | default: shop.currency }}';
 
@@ -27,6 +35,7 @@ jQuery('span.money').each(function() {
 if (cookieCurrency == null) {
   if (shopCurrency !== defaultCurrency) {
     Currency.convertAll(shopCurrency, defaultCurrency);
+    afterPriceCurrencyUpdated(defaultCurrency);
   }
   else {
     Currency.currentCurrency = defaultCurrency;
@@ -42,20 +51,24 @@ else if (cookieCurrency === shopCurrency) {
 }
 else {
   Currency.convertAll(shopCurrency, cookieCurrency);
+  afterPriceCurrencyUpdated(cookieCurrency);
 }
 jQuery('[name=currencies]').val(Currency.currentCurrency).change(function() {
   var newCurrency = jQuery(this).val();
   Currency.convertAll(Currency.currentCurrency, newCurrency);
+  afterPriceCurrencyUpdated(newCurrency);
   jQuery('.selected-currency').text(Currency.currentCurrency);
 });
 var original_selectCallback = window.selectCallback;
 var selectCallback = function(variant, selector) {
   original_selectCallback(variant, selector);
   Currency.convertAll(shopCurrency, jQuery('[name=currencies]').val());
+  afterPriceCurrencyUpdated(jQuery('[name=currencies]').val());
   jQuery('.selected-currency').text(Currency.currentCurrency);
 };
 $('body').on('ajaxCart.afterCartLoad', function(cart) {
   Currency.convertAll(shopCurrency, jQuery('[name=currencies]').val());
+  afterPriceCurrencyUpdated(jQuery('[name=currencies]').val());
   jQuery('.selected-currency').text(Currency.currentCurrency);  
 });
 jQuery('.selected-currency').text(Currency.currentCurrency);

@@ -2,3 +2,6 @@
 {% if settings.breadcrumbs %}
   {% include 'breadcrumb' %}
 {% endif %}
+{% for product in collection.products %}
+  {% include 'product-card' %}
+{% endfor %}
