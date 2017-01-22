@@ -39,16 +39,20 @@
     text-align: center;
   }
 
+  .product-card__button, .product-card__button  span {
+    text-transform: uppercase;
+  }
+
 }
 
 .product-price {
   white-space: nowrap;
   .product-price__old {
-    font-size: 0.7rem;
+    color: lighten($color-text-body, 10%);
+    font-size: 0.8rem;
   }
   .product-price__price {
     color: $color-special;
-    font-size: 0.9rem;
     font-weight: bold;
   }
 }

@@ -161,6 +161,11 @@ theme.Drawers = (function () {
     // Keep track if drawer was opened from a click, or called by another function
     var externalCall = false;
 
+    // If drawer disabled for mobile, just go to cart page
+    if ('{{ settings.ajax_cart_method }}' == 'page' && theme.cache.$body.width() <= 767) {
+      return true;
+    }
+
     // Prevent following href if link is clicked
     if (evt) {
       evt.preventDefault();

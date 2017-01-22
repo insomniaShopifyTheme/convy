@@ -1,4 +1,5 @@
-/*================ Slideshow ================*/
+/*================ Slideshow Section ================*/
+
 $color-slideshow-nav: #fff;
 $transition-text-slideshow: all 0.6s cubic-bezier(0.44, 0.13, 0.48, 0.87);
 $transition-image-slideshow: opacity 0.8s cubic-bezier(0.44, 0.13, 0.48, 0.87);
@@ -12,7 +13,7 @@ $slideshow-text-size: floor($font-size-base * 1.25);
 $z-index-slideshow-image: 1;
 $z-index-slideshow-text: 3;
 $z-index-slideshow-controls: 4;
-$slideshow-loader: #fff;
+$slideshow-loader: #000;
 
 /** Section styles **/
 

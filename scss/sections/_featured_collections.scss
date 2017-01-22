@@ -1,15 +1,17 @@
-.section-featured-products {
+/*================ Featured Collections Section ================*/
+
+.section-featured-collections {
   @extend .normal-section-padding;
 }
 
-.product-list {
+.collection-list {
 
-  .product-list__item {
+  .collection-list__item {
     margin: 0 $gutter / 3;
-    border: 2px solid $color-border;
-    border-radius: $radius;
 
     img {
+      border: 2px solid $color-border;
+      border-radius: $radius;
     }
 
     p {
@@ -25,7 +27,7 @@
 
 .slider {
   &:not(.slick-initialized) {
-    .product-list__item:nth-child(1n+2) {
+    .collection-list__item:nth-child(1n+2) {
       display: none;
     }
   }

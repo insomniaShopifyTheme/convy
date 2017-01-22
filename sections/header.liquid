@@ -1,10 +1,10 @@
-<div class="grid--full" data-section-id="{{ section.id }}" data-section-type="header-section">
+<div class="grid--full section-header__wrapper" data-section-id="{{ section.id }}" data-section-type="header-section">
   <div class="grid__item one-sixth large--hide text-center">
     <div class="section-header__hamburger js-drawer-open-left">
-      <div class="spinner-spin2">
-        <div class="spinner2 diagonal part-1"></div>
-        <div class="spinner2 horizontal"></div>
-        <div class="spinner2 diagonal part-2"></div>
+      <div class="hamburger">
+        <div class="hamburger__bar hamburger__bar--diagonal part-1"></div>
+        <div class="hamburger__bar hamburger__bar--horizontal"></div>
+        <div class="hamburger__bar hamburger__bar--diagonal part-2"></div>
       </div>
     </div>
   </div>
@@ -19,6 +19,8 @@
           {% assign logo_max_width = section.settings.logo_max_width | append: 'x' %}
           <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
         </a>
+      {% elsif section.settings.logo_text != blank %}
+        <a href="/" itemprop="url">{{ section.settings.logo_text }}</a>
       {% else %}
         <a href="/" itemprop="url">{{ shop.name }}</a>
       {% endif %}
@@ -48,6 +50,12 @@
         "content": "Logo"
       },
       {
+        "type": "text",
+        "id": "logo_text",
+        "label": "Custom Text",
+        "info": "Shop name by default"
+      },
+      {
         "type": "checkbox",
         "id": "logo_use_image",
         "label": "Use custom logo"
@@ -55,12 +63,12 @@
       {
         "type": "image_picker",
         "id": "logo_image",
-        "label": "Custom logo"
+        "label": "Image file"
       },
       {
         "type": "text",
         "id": "logo_max_width",
-        "label": "Max logo width",
+        "label": "Image max width (desktop)",
         "default": "220",
         "info": "Defined in pixels. Do not add the 'px' unit."
       }

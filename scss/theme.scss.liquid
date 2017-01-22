@@ -12,31 +12,42 @@
 /*============================================================================
   Table of Contents
 
-  # Breakpoint and Grid Variables
-  # General Variables
-  # Sass Mixins
-  # Normalize
-  # Grid Setup
-  # Helper Classes
-  # Typography
-  # Basic Styles
-  # Rich Text Editor
-  # Links and Buttons
-  # Lists
-  # Tables
-  # Reponsive Tables
-  # OOCSS Media Object
-  # Images and Iframes
-  # Forms
-  # Icons
-  # Pagination
-  # Sections
-    - Header
+  mixins
+  normalize
+  grid
+  helpers
+  typography
+  basic
+  forms
+  icons
+
+  =Vendor=
+  mmenu
+  slick
+
+  =Components=
+  drawers
+  mobile nav
+  slider
+  product card
+
+  =Sections=
+  header
+  slideshow
+  separator
+  content
+  featured collections
+  featured products
+
 
 ==============================================================================*/
 
 $rem: {{ settings.font_size_base }};
 
+/* usage examples:
+  font-size: rem(16px);
+  padding: rem($gutter / 2);
+  */
 @function rem($target, $context: $rem) {
   @if $target == 0 {
     @return 0;
@@ -47,7 +58,7 @@ $rem: {{ settings.font_size_base }};
 /*============================================================================
   #Breakpoint and Grid Variables
 ==============================================================================*/
-$small: 767px;
+$small: 767px; // check Drawer.prototype.open when changing this size
 $medium: 768px;
 $large: 1024px;
 $wide: 1180px;
@@ -187,31 +198,39 @@ $social-icon-font-stack: 'icons';
 @import url('_icons.scss');
 
 
-@import url('_mmenu.scss');
+
+/*============================================================================
+  # Vendor
+==============================================================================*/
+
+@import url('vendor/_mmenu.scss');
 $slick-prev-character: "\3008";
 $slick-next-character: "\3009";
-@import url('_slick.scss');
-@import url('_slider.scss');
+@import url('vendor/_slick.scss'); // modified
+
 
 
 /*============================================================================
   # Components
 ==============================================================================*/
 
-@import url('_product_card.scss')
+@import url('components/_drawers.scss');
+@import url('components/_mobile_nav.scss');
+@import url('components/_slider.scss');
+@import url('components/_product_card.scss')
+
+
 
 /*============================================================================
   # Sections
 ==============================================================================*/
 
-@import url('_section_header.scss');
-@import url('_section_slideshow.scss');
-@import url('_section_separator.scss');
-@import url('_section_content.scss');
-@import url('_section_featured_collections.scss');
-@import url('_section_featured_products.scss');
-@import url('_mobile_nav.scss');
-@import url('_drawers.scss');
+@import url('sections/_header.scss');
+@import url('sections/_slideshow.scss');
+@import url('sections/_separator.scss');
+@import url('sections/_content.scss');
+@import url('sections/_featured_collections.scss');
+@import url('sections/_featured_products.scss');
 
 .empty-section {
   background: #efefef;

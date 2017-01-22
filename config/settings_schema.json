@@ -26,6 +26,21 @@
     "settings": [
       {
         "type": "header",
+        "content": "Other"
+      },
+      {
+        "type": "checkbox",
+        "id": "breadcrumbs",
+        "label": "Display breadcrumbs",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Mobile version",
+    "settings": [
+      {
+        "type": "header",
         "content": "Template"
       },
       {
@@ -35,10 +50,20 @@
         "info": "Header stays fixed to the top of the screen, when you are scrolling"
       },
       {
-        "type": "checkbox",
-        "id": "breadcrumbs",
-        "label": "Display breadcrumbs",
-        "default": true
+        "type": "select",
+        "id": "ajax_cart_method",
+        "label": "Cart type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          }
+        ],
+        "default": "drawer"
       }
     ]
   },
