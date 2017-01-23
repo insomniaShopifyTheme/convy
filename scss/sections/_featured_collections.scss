@@ -1,7 +1,11 @@
 /*================ Featured Collections Section ================*/
 
 .section-featured-collections {
-  @extend .normal-section-padding;
+  // same page margin as space between items (mobile)
+  margin: 0 $gutter / 3 $gutter;
+  @include at-query($min, $medium) {
+    padding: 0 $gutter $gutter;
+  }
 }
 
 .collection-list {

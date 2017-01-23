@@ -2,6 +2,7 @@
 
 $slick-dot-size: 12px;
 $slick-dot-size-small: 10px;
+$z-index-dot: 4;
 
 .slick-dotted.slick-slider {
   margin-bottom: 0;
@@ -73,5 +74,32 @@ $slick-dot-size-small: 10px;
   top: 35%;
   &:before {
     color: $color-primary;
+  }
+}
+
+@include at-query($max, $small) {
+  .slick-prev {
+    left: $gutter / 2;
+  }
+  .slick-next {
+    right: $gutter / 2;
+  }
+  .slick-prev,
+  .slick-next,
+  .slick-prev:hover,
+  .slick-next:hover,
+  .slick-prev:focus,
+  .slick-next:focus {
+    background-color: $color-bg-alt;
+    border-radius: 50%;
+    cursor: pointer;
+    height: 30px;
+    opacity: 0.3;
+    top: 35%;
+    width: 30px;
+    z-index: $z-index-dot;
+    &:before {
+      color: $color-text-alt;
+    }
   }
 }
