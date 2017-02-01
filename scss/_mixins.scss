@@ -149,3 +149,10 @@ $max: max-width;
     }
   }
 }
+
+@mixin inverted-section() {
+  background-color: $color-bg-alt;
+  .section-heading, p {
+    color: $color-bg;
+  }
+}

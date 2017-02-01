@@ -1,0 +1,87 @@
+<div class="section-icon-list__wrapper {% if section.settings.inverted %} section-icon-list--alt{% endif %}">
+
+  {% if section.settings.title != blank %}
+    <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
+  {% endif %}
+
+  {% case section.blocks.size %}
+    {% when 1 %}
+      {%- assign grid_item_width = 'one-whole' -%}
+    {% when 2 %}
+      {%- assign grid_item_width = 'one-half' -%}
+    {% when 3 %}
+      {%- assign grid_item_width = 'one-third' -%}
+    {% when 4 %}
+      {%- assign grid_item_width = 'one-quarter' -%}
+    {% when 5 %}
+      {%- assign grid_item_width = 'one-third medium--one-fifth' -%}
+    {% when 6 %}
+      {%- assign grid_item_width = 'one-third large--one-sixth' -%}
+    {% when 7 %}
+      {%- assign grid_item_width = 'one-quarter large--one-eighth' -%}
+    {% when 8 %}
+      {%- assign grid_item_width = 'one-quarter large--one-eighth' -%}
+  {% endcase %}
+
+  <div class="icons-list grid--full">
+    {% for block in section.blocks %}
+      <div class="icon-list__item grid__item text-center {{ grid_item_width }}" {{ block.shopify_attributes }}>
+        {% if block.settings.image != blank %}
+          {{ block.settings.image | img_url: '160x160' | img_tag: 'Icon Image', 'icon-list__image' }}
+        {% endif %}
+        {% if block.settings.text != blank %}
+          <p class="icon-list__text">{{ block.settings.text | escape }}</p>
+        {% endif %}
+      </div>
+    {% else %}
+      {% include 'default-icon-list' %}
+    {% endfor %}
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Icon list",
+    "class": "section-icon-list",
+    "max_blocks": 8,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Icon list"
+      },
+      {
+        "type": "checkbox",
+        "id": "inverted",
+        "label": "Invert color",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "icon_image",
+        "name": "Icon",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "text",
+            "label": "Text"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Icon list",
+        "category": "Image"
+      }
+    ]
+  }
+{% endschema %}

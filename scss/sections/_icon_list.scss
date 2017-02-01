@@ -1,0 +1,29 @@
+/*================ Icon List Section ================*/
+
+.section-icon-list {
+  .section-icon-list--alt {
+    @include inverted-section();
+  }
+  .section-icon-list__wrapper {
+    padding: ($gutter / 3 * 2) 0;
+    margin-bottom: $gutter;
+  }
+  .icon-list__item {
+    padding: ($gutter / 3) 0;
+  }
+  .icon-list__image {
+    max-width: 45%;
+  }
+  p {
+    font-size: 0.9rem;
+    @include at-query ($min, $medium) {
+      font-size: 1rem;
+    }
+    @include at-query ($min, $large) {
+      font-size: 1.1rem;
+    }
+    @include at-query ($min, $wide) {
+      font-size: 1.2rem;
+    }
+  }
+}
