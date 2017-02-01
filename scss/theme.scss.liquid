@@ -115,20 +115,13 @@ $color-link-hover: lighten($color-primary, 15%);
 
 // Helper colors
 $color-border: {{ settings.color_borders }};
+$color-placeholder: #c0c0c0;
 $disabled-grey: #f6f6f6;
 $disabled-border: darken($disabled-grey, 25%);
 $error-red: #d02e2e;
 $error-red-bg: #fff6f6;
 $success-green: #56ad6a;
 $success-green-bg: #ecfef0;
-
-// Drawers
-$drawer-nav-width: $small;
-$drawer-cart-width: $small;
-$color-drawers: #fff;
-$color-drawer-border: darken($color-drawers, 5%);
-$color-drawer-text: #333;
-$drawer-transition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1);
 
 // Sizing variables
 $site-width: $wide;
@@ -145,6 +138,15 @@ $z-index-toolbar: 15;
 
 $color-image-overlay: {{ settings.color_image_overlay }};
 $opacity-image-overlay: {{ settings.image_overlay_opacity }};
+
+// Drawers
+$drawer-nav-width: $small;
+$drawer-cart-width: $small;
+$color-drawers: #fff;
+$color-drawer-border: darken($color-drawers, 5%);
+$color-drawer-text: #333;
+$drawer-transition: all 0.4s cubic-bezier(0.46, 0.01, 0.32, 1);
+$drawer-padding: ($gutter / 2);
 
 /*================ Typography ================*/
 

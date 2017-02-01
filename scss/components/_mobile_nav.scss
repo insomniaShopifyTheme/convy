@@ -1,11 +1,33 @@
 /*================ Mobile Nav: mmenu overrides  ================*/
 
 $mm-menu-base-margin: 20px;
+$search-field-height: 55px;
+
+.drawer {
+  .drawer__search {
+    height: $search-field-height;
+    margin: 0 ($drawer-padding * -1) 0;
+    .drawer__search-input {
+      position: relative;
+      height: 100%;
+      padding: 0 10px 0 42px;
+      width: 100%;
+    }
+    .drawer__search-icon {
+      color: $color-placeholder;
+      position: absolute;
+      top: 16px;
+      left: 20px;
+      z-index: $z-index-drawer + 1;
+    }
+  }
+}
 
 .mm-menu {
   background: $color-drawers;
   border-color: $color-drawer-border;
   color: $color-drawer-text;
+  margin-top: $search-field-height;
 
   .mm-panels{
     &>.mm-panel {
