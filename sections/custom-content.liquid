@@ -17,7 +17,7 @@
         {% when 'text' %}
           <div class="text-{{ block.settings.align_text }}">
             {% if block.settings.title != blank %}
-              <h3 class="custom__item-heading">{{ block.settings.title | escape }}</h3>
+              <h2 class="text-center section-heading">{{ block.settings.title | escape }}</h2>
             {% endif %}
             {% if block.settings.text != blank %}
               <div class="custom__item-text rte-setting">{{ block.settings.text }}</div>

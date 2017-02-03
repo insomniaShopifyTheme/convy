@@ -1,0 +1,36 @@
+/*================ Testimonials Section ================*/
+
+.section-testimonials {
+
+}
+
+.testimonial {
+  .testimonial__title {
+    @extend .text-center;
+    @extend .section-heading;
+  }
+  .testimonial__text {
+    font-family: $font-stack-heading;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1rem;
+    @include at-query($max, $small) {
+      font-size: 0.9rem;
+    }
+  }
+  .testimonial__image {
+    margin-bottom: 1rem;
+    img {
+      display: block;
+      border-radius: 50%;
+      border: 1px solid $color-primary;
+      margin: 0 auto;
+    }
+  }
+  .testimonial__sign {
+    text-align: center;
+    &, a {
+      color: lighten($color-primary, 25%);
+    }
+  }
+}
