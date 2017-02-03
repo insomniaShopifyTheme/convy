@@ -1,0 +1,42 @@
+{% if section.settings.title != blank %}
+  <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
+{% endif %}
+
+{% if section.settings.product %}
+  {%- assign product = all_products[section.settings.product] -%}
+  <div class="product-list">
+    <div class="product-list__item">
+      {% include 'product-card' %}
+    </div>
+  </div>
+{% else %}
+  <div class="empty-section">
+    {{ 'homepage.onboarding.no_content' | t }}
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Featured product",
+    "class": "section-featured-product",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured Product"
+      },
+      {
+        "type": "product",
+        "id": "product",
+        "label": "Product"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Featured product",
+        "category": "Products"
+      }
+    ]
+  }
+{% endschema %}

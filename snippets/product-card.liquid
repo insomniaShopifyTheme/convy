@@ -1,4 +1,10 @@
-{% if section.settings %}
+{% if section.settings.product != blank %}
+  {% comment %} Featured Product {% endcomment %}
+  {%- assign btn_action = 'add_to_cart' -%}
+  {%- assign btn_text = 'Add to cart' -%}
+  {%- assign fade_out_title = false -%}
+{% elsif section.settings %}
+  {% comment %} Featured Products {% endcomment %}
   {%- assign btn_action = section.settings.btn_action -%}
   {%- assign btn_text = section.settings.btn_text -%}
   {%- assign fade_out_title = section.settings.fade_out_title -%}
@@ -19,12 +25,12 @@
       </div>
     </div>
   {% endif %}
-  <a href="{{ product.url }}" title="{{ 'product.general.link_title' | t: title: product_title }}" class="product-card__image">
-    {{ product.featured_image.src | img_url: '400x400', crop: 'center' | img_tag: product_title }}
+  <a href="{{ product.url }}" title="{{ 'product.general.link_title' | t: title: product.title }}" class="product-card__image">
+    {{ product.featured_image.src | img_url: '400x400', crop: 'center' | img_tag: product.title }}
   </a>
   <div class="product-card__info">
     <div class="product-card__title{% if fade_out_title %} product-card__title--shortable{% endif %}">
-      <a href="{{ product.url }}" title="{{ 'product.general.link_title' | t: title: product_title }}">{{ product.title }}</a>
+      <a href="{{ product.url }}" title="{{ 'product.general.link_title' | t: title: product.title }}">{{ product.title }}</a>
       <div class="dimmer"></div>
     </div>
     <div class="product-card__price product-price">
