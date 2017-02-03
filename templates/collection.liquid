@@ -1,7 +1,5 @@
-<h1>{{ collection.title }}</h1>
-{% if settings.breadcrumbs %}
-  {% include 'breadcrumb' %}
-{% endif %}
-{% for product in collection.products %}
-  {% include 'product-card' %}
-{% endfor %}
+{% comment %}
+  The contents of the collection.liquid template can be found in /sections/collection-template.liquid
+{% endcomment %}
+
+{% section 'collection-template' %}

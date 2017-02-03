@@ -22,21 +22,6 @@
     ]
   },
   {
-    "name": "Layout options",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Other"
-      },
-      {
-        "type": "checkbox",
-        "id": "breadcrumbs",
-        "label": "Display breadcrumbs",
-        "default": true
-      }
-    ]
-  },
-  {
     "name": "Mobile version",
     "settings": [
       {

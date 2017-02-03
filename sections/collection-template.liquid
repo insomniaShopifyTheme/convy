@@ -1,0 +1,51 @@
+{%- assign limit = 4 -%}
+
+{% paginate collection.products by limit %}
+
+  <div class="collection-template">
+    <header class="page-header">
+      {% if section.settings.breadcrumbs %}
+        {% include 'breadcrumb' %}
+      {% else %}
+        <h2 class="page-header__title">{{ collection.title }}</h2>
+      {% endif %}
+    </header>
+
+    <div class="collection-controls grid grid--full">
+      <div class="grid__item one-half">
+        {% include 'collection-filters' %}
+      </div>
+      <div class="grid__item one-half">
+        {% include 'collection-sorting' %}
+      </div>
+    </div>
+
+    <div class="page-width">
+      <div class="product-list grid">
+        {% for product in collection.products %}
+          <div class="grid__item one-half">
+            <div class="product-list__item">
+              {% include 'product-card' %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+
+{% endpaginate %}
+
+{% schema %}
+  {
+    "name": "Collection page",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "breadcrumbs",
+        "label": "Display breadcrumbs",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

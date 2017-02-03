@@ -1,0 +1,20 @@
+<select name="SortTags" id="SortTags">
+  {% if current_tags %}
+    {% if collection.handle %}
+      <option value="/collections/{{ collection.handle }}">{{ 'collections.filters.all_tags' | t }}</option>
+    {% elsif collection.current_type %}
+      <option value="{{ collection.current_type | url_for_type }}">{{ 'collections.filters.all_tags' | t }}</option>
+    {% elsif collection.current_vendor %}
+      <option value="{{ collection.current_vendor | url_for_vendor }}">{{ 'collections.filters.all_tags' | t }}</option>
+    {% endif %}
+  {% else %}
+    {% if current_tags contains tag %}
+      <option value="">{{ 'collections.filters.all_tags' | t }}</option>
+    {% else %}
+      <option value="">{{ 'collections.filters.title_tags' | t }}</option>
+    {% endif %}
+  {% endif %}
+  {% for tag in collection.all_tags %}
+    <option value="/collections/{% if collection.handle != blank %}{{ collection.handle }}{% else %}all{% endif %}/{{ tag | handleize }}"{% if current_tags contains tag %} selected="selected"{% endif %}>{{ tag }}</option>
+  {% endfor %}
+</select>

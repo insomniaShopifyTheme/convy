@@ -1,17 +1,11 @@
-{% if section.settings.product != blank %}
-  {% comment %} Featured Product {% endcomment %}
-  {%- assign btn_action = 'add_to_cart' -%}
-  {%- assign btn_text = 'Add to cart' -%}
-  {%- assign fade_out_title = false -%}
-{% elsif section.settings %}
-  {% comment %} Featured Products {% endcomment %}
+{% if section.id == 'featured-products' %}
   {%- assign btn_action = section.settings.btn_action -%}
   {%- assign btn_text = section.settings.btn_text -%}
   {%- assign fade_out_title = section.settings.fade_out_title -%}
 {% else %}
-  {%- assign btn_action = settings.product_card_btn_action -%}
-  {%- assign btn_text = settings.product_card_btn_text -%}
-  {%- assign fade_out_title = settings.product_card_fade_out_title -%}
+  {%- assign btn_action = 'add_to_cart' -%}
+  {%- assign btn_text = 'Add to cart' -%}
+  {%- assign fade_out_title = false -%}
 {% endif %}
 
 <div class="product-card">

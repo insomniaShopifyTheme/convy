@@ -1,0 +1,25 @@
+/*================ Collection Template ================*/
+
+.collection-template {
+  .collection-controls {
+    select {
+      border-radius: 0;
+      border-right: none;
+      color: $color-text-body;
+      margin-bottom: ($gutter / 2);
+      padding: 1rem;
+      width: 100%;
+      &:not(#SortBy) {
+        border-left: none;
+      }
+    }
+  }
+  .product-list {
+    &>.grid__item {
+      margin-bottom: ($gutter / 2);
+    }
+    .product-list__item {
+      margin: 0;
+    }
+  }
+}
