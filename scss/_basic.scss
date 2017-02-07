@@ -18,7 +18,7 @@ body {
   @include clearfix();
   max-width: $site-width;
   margin: 0 auto;
-  padding: 0 ($gutter / 2);
+  padding: 0 ($gutter / 4);
 
   @include at-query ($min, $medium) {
     padding: 0 $gutter;

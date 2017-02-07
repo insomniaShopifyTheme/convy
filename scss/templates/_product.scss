@@ -1,0 +1,33 @@
+/*================ Product Template ================*/
+
+.product-template {
+  .product-images__thumbs {
+    ul {
+      margin-right: $gutter / 4;
+      li {
+        margin-bottom: 5px;
+      }
+    }
+    .slick-slide {
+      &.slick-current {
+        img {
+          // TODO: fix initial offset when more than 4 slides
+          border: 2px solid $color-border;
+          box-sizing: border-box;
+        }
+      }
+      &:not(.slick-current) {
+        .thumb-overlay {
+          position: relative;
+          @include overlay(5);
+        }
+      }
+    }
+  }
+  .product-images__image {
+    // Display only first slide before slick initialized
+    ul:not(.slick-initialized) > li:not(:first-child) {
+      display: none;
+    }
+  }
+}
