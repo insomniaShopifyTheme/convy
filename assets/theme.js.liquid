@@ -511,7 +511,10 @@ theme.ProductPageSection = (function() {
     var slider = this.slider = `#${sectionId}_images`;
     theme.sliders[slider] = new theme.ProductImagesSlider(slider);
 
-    
+    $('.product-images--single .product-images__image, .product-images__image li').each(function(idx, el) {
+      var $img = $(el).find('img');
+      $(el).zoom({ on: 'grab', url: $img.data('original') });
+    });
   }
 
   return ProductPageSection;
