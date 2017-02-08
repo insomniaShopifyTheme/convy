@@ -82,7 +82,7 @@
 
 // http://codepen.io/team/css-tricks/pen/BKXrWG
 $ribbon-green: #BFDC7A;
-$ribbon-red: #e33c4c;
+$ribbon-red: $color-discount;
 $ribbon-green-to: darken($ribbon-green, 20%);
 $ribbon-red-to: darken($ribbon-red, 20%);
 

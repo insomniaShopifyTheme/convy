@@ -110,6 +110,12 @@
         "info": "Used for text and buttons inside contrast sections"
       },
       {
+        "type": "color",
+        "id": "color_discount",
+        "label": "Discount indicators color",
+        "default": "#f53333"
+      },
+      {
         "type": "select",
         "id": "image_overlay_opacity",
         "label": "Image overlay opacity",

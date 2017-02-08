@@ -10,9 +10,7 @@
 
 <div class="product-card">
   {% if product.compare_at_price > product.price %}
-    {%- assign discount_amount = product.compare_at_price | minus: product.price -%}
-    {%- assign percent = product.compare_at_price | divided_by: "100" -%}
-    {%- assign discount_percent = discount_amount | divided_by: percent -%}
+    {%- assign discount_percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
     <div class="ribbon">
       <div class="ribbon--red">
         – {{ discount_percent }}%

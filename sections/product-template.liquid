@@ -39,8 +39,36 @@
     </div>
   {% endif %}
 
+  <div class="product-info">
+    <div class="product-info__price">
+      {%- assign money_price = product.price | money -%}
+      {% if product.compare_at_price > product.price %}
+        {%- assign discount_percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
+        <s class="product-price__old">{{ product.compare_at_price | money }}</s>
+        <span class="product-price__percent">-{{ discount_percent }}%</span> <br>
+        <span class="product-price__price product-price__sale">{{ money_price }}</span>
+      {% else %}
+        <span class="product-price__price">{{ money_price }}</span>
+      {% endif %}
+
+      {% unless product.available %}
+        <span class="product-price__sold-out">{{ 'products.product.sold_out' | t }}</span>
+      {% endunless %}
+    </div>
+    <h3>{{ product.title }}</h3>
+  </div>
+
+  <div class="product-description rte" itemprop="description">
+    {{ product.description }}
+  </div>
+
 </div>
 
+{% unless product.empty? %}
+  <script type="application/json" id="ProductJson-product_{{ product.id }}">
+    {{ product | json }}
+  </script>
+{% endunless %}
 
 {% schema %}
   {

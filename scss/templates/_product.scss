@@ -1,6 +1,11 @@
 /*================ Product Template ================*/
 
 .product-template {
+  .product-images {
+    ul {
+      margin-bottom: 0;
+    }
+  }
   .product-images__thumbs {
     ul {
       margin-right: $gutter / 4;
@@ -28,6 +33,32 @@
     // Display only first slide before slick initialized
     ul:not(.slick-initialized) > li:not(:first-child) {
       display: none;
+    }
+  }
+  .product-info {
+    h3 {
+      font-size: 1.3rem;
+      line-height: 1.8rem;
+    }
+    .product-info__price {
+      font-size: 1.2rem;
+      font-family: $font-stack-heading;
+    }
+    .product-price__price {
+      color: $color-special;
+      font-size: 1.3rem;
+      line-height: 1.8rem;
+      font-weight: bold;
+    }
+    .product-price__percent {
+      color: $color-discount;
+      font-weight: bold;
+    }
+    .product-price__old {
+      color: $color-meta-text;
+    }
+    .product-info__price {
+      float: right;
     }
   }
 }
