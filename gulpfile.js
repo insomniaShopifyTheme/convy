@@ -17,7 +17,9 @@ gulp.task('styles', function(){
 gulp.task('scripts', function() {
   return gulp.src([
       './scripts/setup.js',
+      './scripts/theme/currency.js',
       './scripts/theme/sections.js',
+      './scripts/theme/variants.js',
       './scripts/drawers.js',
       './scripts/mobile-nav.js',
       './scripts/slideshow-section.js',
@@ -32,7 +34,7 @@ gulp.task('scripts', function() {
 // Watch files
 gulp.task('watch', function () {
   gulp.watch(globalConfig.src + '/**/*.*', ['styles']);
-  gulp.watch('./scripts/*.js', ['scripts']);
+  gulp.watch('./scripts/**/*.js', ['scripts']);
 });
 
 // Default task

@@ -1,3 +1,5 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+
 <div class="product-template page-width" data-section-id="product_{{ product.id }}" data-section-type="product-template">
   <header class="page-header">
     {% if section.settings.breadcrumbs %}
@@ -14,7 +16,7 @@
           {% for image in product.images %}
             <li>
               <div class="thumb-overlay">
-                <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+                <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" data-id="{{ image.id }}">
               </div>
             </li>
           {% endfor %}
@@ -41,22 +43,82 @@
 
   <div class="product-info">
     <div class="product-info__price">
-      {%- assign money_price = product.price | money -%}
-      {% if product.compare_at_price > product.price %}
-        {%- assign discount_percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
-        <s class="product-price__old">{{ product.compare_at_price | money }}</s>
-        <span class="product-price__percent">-{{ discount_percent }}%</span> <br>
-        <span class="product-price__price product-price__sale">{{ money_price }}</span>
+      {%- assign money_price = current_variant.price | money -%}
+      {% if current_variant.compare_at_price > current_variant.price %}
+        {%- assign is_on_sale = true -%}
       {% else %}
-        <span class="product-price__price">{{ money_price }}</span>
+        {%- assign is_on_sale = false -%}
       {% endif %}
-
-      {% unless product.available %}
-        <span class="product-price__sold-out">{{ 'products.product.sold_out' | t }}</span>
-      {% endunless %}
+      {%- assign discount_percent = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round -%}
+      <div class="product-price__sale{% unless is_on_sale %} hide{% endunless %}">
+        <s class="product-price__old">{{ current_variant.compare_at_price | money }}</s>
+        <span class="product-price__percent">-{{ discount_percent }}%</span>
+      </div>
+      <span class="product-price__price">{{ money_price }}</span>
     </div>
     <h3>{{ product.title }}</h3>
+    {% if section.settings.display_sku %}
+      <span class="variant-sku">{{ current_variant.sku }}</span>
+    {% endif %}
   </div>
+
+  {% if section.settings.show_vendor %}
+          <p itemprop="brand" class="product-single__vendor">{{ product.vendor }}</p>
+        {% endif %}
+
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+
+          <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+          <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-product_{{ product.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}" data-section="product_{{ product.id }}">
+            {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+              {% for option in product.options_with_values %}
+                <div class="selector-wrapper js product-form__item">
+                  <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
+                    {{ option.name }}
+                  </label>
+                  <select class="single-option-selector single-option-selector-product_{{ product.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+                    {% for value in option.values %}
+                      <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              {% endfor %}
+            {% endunless %}
+
+            <select name="id" id="ProductSelect-product_{{ product.id }}" data-section="product_{{ product.id }}" class="product-form__variants no-js">
+              {% for variant in product.variants %}
+                {% if variant.available %}
+                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                    {{ variant.title }}
+                  </option>
+                {% else %}
+                  <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+
+            {% if section.settings.show_quantity_selector %}
+              <div class="product-form__item product-form__item--quantity">
+                <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
+                <input type="number" id="Quantity" name="quantity" value="1" min="1" class="product-form__input" pattern="[0-9]*">
+              </div>
+            {% endif %}
+
+            <div class="product-form__item product-form__item--submit">
+              <button type="submit" name="add" id="AddToCart-product_{{ product.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn product-form__cart-submit{% if product.options.size == 1 and product.variants[0].title == 'Default Title' %} product-form__cart-submit--small{% endif %}">
+                <span id="AddToCartText-product_{{ product.id }}">
+                  {% if current_variant.available %}
+                    {{ 'products.product.add_to_cart' | t }}
+                  {% else %}
+                    {{ 'products.product.sold_out' | t }}
+                  {% endif %}
+                </span>
+              </button>
+            </div>
+          </form>
+
 
   <div class="product-description rte" itemprop="description">
     {{ product.description }}

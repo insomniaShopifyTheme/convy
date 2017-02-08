@@ -8,3 +8,5 @@ theme.cacheSelectors = function () {
     $body : $(document.body)
   };
 };
+
+theme.sliders = {};
