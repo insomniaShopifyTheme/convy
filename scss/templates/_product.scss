@@ -61,4 +61,40 @@
       float: right;
     }
   }
+
+  .product-form__variants {
+    display: none;
+
+    .no-js & {
+      display: block;
+    }
+  }
+}
+
+.product-form__cart {
+  .product-form__cart-submit {
+    text-transform: uppercase;
+    font-family: $font-stack-heading;
+  }
+}
+
+@include at-query ($max, $small) {
+  .product-form__cart {
+    // don't display in-page add to cart in mobile version
+    .product-template & {
+      margin-left: ($gutter / -4);
+      margin-right: ($gutter / -4);
+    }
+    .product-form__cart-submit {
+      font-size: 1.5rem;
+      line-height: 2.5rem;
+    }
+  }
+}
+
+// Add To Cart button (mobile)
+.product-form__cart--sticky {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }

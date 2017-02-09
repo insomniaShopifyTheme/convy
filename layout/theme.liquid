@@ -96,6 +96,10 @@
     {% include 'currency-picker' %}
   {% endif %}
 
+  {% if template contains 'product' %}
+    {% include 'add-to-cart-mobile' %}
+  {% endif %}
+
   {{ 'vendor.js' | asset_url | script_tag }}
   {{ 'theme.js' | asset_url | script_tag }}
 

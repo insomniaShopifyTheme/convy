@@ -21,7 +21,7 @@ theme.ProductImagesSlider = (function() {
     this.thumbsSettings = {
       slidesToShow: 4,
       slidesToScroll: 1,
-      asNavFor: `#${sliderId} .${classes.image}`,
+      asNavFor: '#' + sliderId + ' .' + classes.image,
       dots: false,
       arrows: false,
       centerMode: false,
@@ -35,11 +35,11 @@ theme.ProductImagesSlider = (function() {
       arrows: false,
       dots: false,
       fade: true,
-      asNavFor: `#${sliderId} .${classes.thumbs}`
+      asNavFor: '#' + sliderId + ' .' + classes.thumbs,
     };
 
     var imageHeight = this.$sliderImage.height();
-    this.$sliderThumbs.css({'max-height': `${imageHeight}px`});
+    this.$sliderThumbs.css({'max-height': imageHeight + 'px'});
     this.$sliderThumbs.slick(this.thumbsSettings);
     this.$sliderImage.slick(this.imageSettings);
   }
@@ -71,10 +71,13 @@ theme.ProductPageSection = (function() {
       discountPercent: '.product-price__percent',
       salePriceWrapper: '.product-price__sale',
       SKU: '.variant-sku',
+      inPageCartButton: '#' + sectionId + ' .product-form__cart',
+      stickyCartButton: 'body > .product-form__cart',
+      stickyCartButtonText: 'body > .product-form__cart button > span',
     }
 
     // Thumbs & Slider
-    var slider = this.slider = `#${sectionId}_images`;
+    var slider = this.slider = '#' + sectionId + '_images';
     theme.sliders[slider] = new theme.ProductImagesSlider(slider);
 
     // Zoom image
@@ -84,14 +87,40 @@ theme.ProductPageSection = (function() {
     });
 
     this._initVariants();
+    this._stickyAddToCartBtn();
   }
 
   return ProductPageSection;
 })();
 
 theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.prototype, {
+
   onUnload: function() {
     delete theme.sliders[this.slider];
+    $(document).off('scroll.track-add-to-cart-btn');
+  },
+
+  _stickyAddToCartBtn: function() {
+    $(document).on('scroll.track-add-to-cart-btn', this._trackButtonPosition.bind(this));
+    this._trackButtonPosition();
+  },
+
+  _trackButtonPosition: function() {
+    // only for mobile
+    if (theme.cache.$body.width() <= 767) {
+      var $inPageBtn = $(this.selectors.inPageCartButton).first();
+      var $stickyBtn = $(this.selectors.stickyCartButton);
+      var bottomPosition = theme.cache.$window.scrollTop() + theme.cache.$window.height();
+      var swapButtonsAt = bottomPosition - $inPageBtn.height();
+      var inPageBtnPosition = $inPageBtn.position();
+      if (inPageBtnPosition.top <= swapButtonsAt) {
+        $stickyBtn.removeClass('hide');
+        $inPageBtn.addClass('visually-hidden');
+      } else {
+        $stickyBtn.addClass('hide');
+        $inPageBtn.removeClass('visually-hidden');
+      }
+    }
   },
 
   _initVariants: function() {
@@ -130,6 +159,9 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       $(this.selectors.addToCartText).text(backend.strings.unavailable);
       this.$container.find(this.selectors.productPrices).addClass('visibility-hidden');
     }
+    // Update sticky button
+    $(this.selectors.stickyCartButtonText).text($(this.selectors.addToCartText).text());
+    $(this.selectors.stickyCartButton).find('button').prop('disabled', $(this.selectors.addToCart).prop('disabled'));
   },
 
   _switchImage: function(evt) {
