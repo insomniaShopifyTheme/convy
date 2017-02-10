@@ -264,3 +264,11 @@ label.error {
   width: 1%;
   padding: 0;
 }
+
+@mixin konversion-input() {
+  border-radius: 0;
+  color: $color-text-body;
+  margin-bottom: ($gutter / 2);
+  padding: 1rem;
+  width: 100%;
+}

@@ -36,6 +36,8 @@ theme.ProductImagesSlider = (function() {
       dots: false,
       fade: true,
       asNavFor: '#' + sliderId + ' .' + classes.thumbs,
+      swipe: false,
+      swipeToSlide: false,
     };
 
     var imageHeight = this.$sliderImage.height();
@@ -62,10 +64,10 @@ theme.ProductPageSection = (function() {
 
     this.selectors = {
       originalSelectorId: '#ProductSelect-' + sectionId,
-      singleOptionSelector: '.single-option-selector-' + sectionId,
+      singleOptionSelector: '.product-options__selector-' + sectionId,
       addToCart: '#AddToCart-' + sectionId,
       addToCartText: '#AddToCartText-' + sectionId,
-      productPrices: '.product-info__price',
+      productPrices: '.product-price',
       originalPrice: '.product-price__price',
       comparePrice: '.product-price__old',
       discountPercent: '.product-price__percent',
@@ -74,6 +76,7 @@ theme.ProductPageSection = (function() {
       inPageCartButton: '#' + sectionId + ' .product-form__cart',
       stickyCartButton: 'body > .product-form__cart',
       stickyCartButtonText: 'body > .product-form__cart button > span',
+      cartForm: '#' + sectionId + ' .product-form',
     }
 
     // Thumbs & Slider
@@ -102,7 +105,12 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 
   _stickyAddToCartBtn: function() {
     $(document).on('scroll.track-add-to-cart-btn', this._trackButtonPosition.bind(this));
+    $(this.selectors.stickyCartButton).on('click', this._submitCartForm.bind(this));
     this._trackButtonPosition();
+  },
+
+  _submitCartForm: function() {
+    $(this.selectors.cartForm).trigger('submit');
   },
 
   _trackButtonPosition: function() {

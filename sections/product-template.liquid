@@ -1,6 +1,6 @@
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 
-<div class="product-template page-width" id="product_{{ product.id }}" data-section-id="product_{{ product.id }}" data-section-type="product-template">
+<div class="product-template" id="product_{{ product.id }}" data-section-id="product_{{ product.id }}" data-section-type="product-template">
   <header class="page-header">
     {% if section.settings.breadcrumbs %}
       {% include 'breadcrumb' %}
@@ -10,7 +10,7 @@
   </header>
 
   {% if product.images.size > 1 %}
-    <div class="product-images grid grid--full" id="product_{{ product.id }}_images">
+    <div class="product-images page-width grid grid--full" id="product_{{ product.id }}_images">
       <div class="product-images__thumbs grid__item one-fifth">
         <ul class="no-bullets js-product-thumbs">
           {% for image in product.images %}
@@ -41,8 +41,8 @@
     </div>
   {% endif %}
 
-  <div class="product-info">
-    <div class="product-info__price">
+  <div class="product-info page-width">
+    <div class="product-price clearfix">
       {%- assign money_price = current_variant.price | money -%}
       {% if current_variant.compare_at_price > current_variant.price %}
         {%- assign is_on_sale = true -%}
@@ -57,18 +57,23 @@
       </div>
       <span class="product-price__price">{{ money_price }}</span>
     </div>
-    <h3 class="product-info__title">{{ product.title }}</h3>
-    {% if section.settings.display_sku %}
-      <span class="variant-sku">{{ current_variant.sku }}</span>
-    {% endif %}
+    <div class="product-info__title clearfix">
+      <h3>
+        {% if section.settings.display_vendor and product.vendor != blank %}
+          <span itemprop="brand" class="product-info__vendor">{{ product.vendor }}</span>
+        {% endif %}
+        {{ product.title }}
+        {% if section.settings.display_sku and current_variant.sku != blank %}
+          <span class="variant-sku">{{ current_variant.sku }}</span>
+        {% endif %}
+      </h3>
+      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+    </div>
     <div class="product-info__description rte" itemprop="description">
       {{ product.description }}
     </div>
   </div>
 
-        {% if section.settings.show_vendor %}
-          <p itemprop="brand" class="product-single__vendor">{{ product.vendor }}</p>
-        {% endif %}
 
         <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
           <meta itemprop="priceCurrency" content="{{ shop.currency }}">
@@ -77,18 +82,40 @@
 
           <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-product_{{ product.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}" data-section="product_{{ product.id }}">
             {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
-              {% for option in product.options_with_values %}
-                <div class="selector-wrapper js product-form__item">
-                  <label {% if option.name == 'default' %}class="label--hidden" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
-                    {{ option.name }}
-                  </label>
-                  <select class="single-option-selector single-option-selector-product_{{ product.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
-                    {% for value in option.values %}
-                      <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
-                    {% endfor %}
-                  </select>
+              {%- assign options_count_mod = product.options.size | modulo: 2 -%}
+              {% if options_count_mod == 0 %}
+                {%- assign max_options = product.options.size -%}
+              {% else %}
+                {%- assign max_options = product.options.size | minus: 1 -%}
+              {% endif %}
+              {% comment %}
+                Show maximum, but even amount of options
+              {% endcomment %}
+              <div class="product-options grid--full">
+              {% for option in product.options_with_values limit: max_options %}
+                {% capture current %}{% cycle 'first', 'last' %}{% endcapture %}
+                <div class="grid__item one-half">
+                  {% include 'product-option' %}
                 </div>
               {% endfor %}
+              {% if product.options.size > max_options %}
+                {% for option in product.options_with_values offset: max_options %}
+                  {%- assign current = 'first' -%}
+                  <div class="grid__item one-half">
+                    {% include 'product-option' %}
+                  </div>
+                  <div class="grid__item one-half">
+                    {% include 'product-quantity-selector' %}
+                  </div>
+                {% endfor %}
+              {% else %}
+                <div class="grid__item one-quarter"></div>
+                <div class="grid__item two-quarters text-center">
+                  {%- assign show_label = true -%}
+                  {% include 'product-quantity-selector' %}
+                </div>
+                <div class="grid__item one-quarter"></div>
+              {% endif %}
             {% endunless %}
 
             <select name="id" id="ProductSelect-product_{{ product.id }}" data-section="product_{{ product.id }}" class="product-form__variants no-js hide">
@@ -102,13 +129,6 @@
                 {% endif %}
               {% endfor %}
             </select>
-
-            {% if section.settings.show_quantity_selector %}
-              <div class="product-form__item product-form__item--quantity">
-                <label for="Quantity">{{ 'products.product.quantity' | t }}</label>
-                <input type="number" id="Quantity" name="quantity" value="1" min="1" class="product-form__input" pattern="[0-9]*">
-              </div>
-            {% endif %}
 
             {% comment %}
               Add to cart hidden in mobile version and sticky version used
@@ -133,6 +153,8 @@
       <h3 class="text-center">UPSELL PRODUCTS</h3>
     </div>
 
+    <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+
 
 </div>
 
@@ -147,10 +169,42 @@
     "name": "Product page",
     "settings": [
       {
+        "type": "header",
+        "content": "Layout"
+      },
+      {
         "type": "checkbox",
         "id": "breadcrumbs",
         "label": "Display breadcrumbs",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Product properties"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_quantity_selector",
+        "label": "Display quantity selector",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "display_option_labels",
+        "label": "Display labels for options",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "display_vendor",
+        "label": "Display vendor",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "display_sku",
+        "label": "Display SKU",
+        "default": false
       }
     ]
   }

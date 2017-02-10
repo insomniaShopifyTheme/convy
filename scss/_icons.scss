@@ -74,6 +74,7 @@
 .icon-visa:before { content: "\56"; }
 .icon-x:before { content: "\e606"; }
 .icon-youtube:before { content: "\79"; }
+.icon-zoom-in:before { content: "\e902"; }
 
 .payment-icons {
   @include user-select(none);

@@ -11,3 +11,4 @@ theme.cacheSelectors = function () {
 };
 
 theme.sliders = {};
+theme.debug = {};
