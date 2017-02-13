@@ -1,0 +1,82 @@
+{% if section.settings.title != blank %}
+  <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
+{% endif %}
+
+<div class="newsletter-form">
+  {% comment %}
+    MailChimp is the go-to newsletter service for Shopify.
+    Use the link below to find your MailChimp form action
+    and insert it in your site settings.
+
+    If the form action URL is not set in the theme settings,
+    it will fallback to a customer form so you can still capture the email.
+
+    MailChimp newsletter integration and requirement:
+     - http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action
+  {% endcomment %}
+  {% form 'customer' %}
+  {% if section.settings.text != blank and form.posted_successfully? != true %}
+    <div class="newsletter-form__text">
+      {{ section.settings.text }}
+    </div>
+  {% endif %}
+  {% endform %}
+  {% if settings.newsletter_form_action != blank %}
+    <form action="{{ settings.newsletter_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
+      <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="newsletter-form__input" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+      <div class="newsletter-form__btn">
+        <input type="submit" class="btn btn--secondary" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+      </div>
+    </form>
+  {% else %}
+    {% form 'customer' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <p class="note form-success h3">{{ 'general.newsletter_form.confirmation' | t }}</p>
+      {% else %}
+        <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Email" class="newsletter-form__input" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-form__btn">
+          <input type="submit" class="btn btn--secondary" name="subscribe" id="subscribe" value="{{ section.settings.button_text | escape }}">
+        </div>
+      {% endif %}
+    {% endform %}
+  {% endif %}
+
+</div>
+
+{% schema %}
+  {
+    "name": "Newsletter",
+    "class": "section-newsletter",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Subscribe to Our Newsletter"
+      },
+      {
+        "type": "richtext",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button text",
+        "default": "SUBSCRIBE"
+      },
+      {
+        "type": "paragraph",
+        "content": "To set up MailChimp go to General Settings > Newsletter"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Newsletter",
+        "category": "Misc"
+      }
+    ]
+  }
+{% endschema %}

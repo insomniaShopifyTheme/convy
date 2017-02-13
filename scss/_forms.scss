@@ -272,3 +272,11 @@ label.error {
   padding: 1rem;
   width: 100%;
 }
+
+.form-success {
+  background-color: $color-special;
+  border: 1px solid $color-border;
+  border-radius: 3px;
+  color: $color-special-text;
+  padding: 30px 10px;
+}
