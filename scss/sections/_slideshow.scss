@@ -8,8 +8,8 @@ $slideshow-xsmall: 250px;
 $slideshow-small: 400px;
 $slideshow-medium: 520px;
 $slideshow-large: 780px;
-$slideshow-title-size: floor($font-size-heading * 1.35);
-$slideshow-text-size: floor($font-size-base * 1.25);
+$slideshow-title-size: $font-size-heading * 1.35;
+$slideshow-text-size: $font-size-base * 1.25;
 $z-index-slideshow-image: 1;
 $z-index-slideshow-text: 3;
 $z-index-slideshow-controls: 4;
@@ -152,7 +152,6 @@ $slideshow-loader: #000;
 }
 
 .slideshow__text-content {
-  text-align: center;
   position: absolute;
   width: 100%;
   top: 50%;
@@ -161,28 +160,37 @@ $slideshow-loader: #000;
   transition: $transition-text-slideshow;
   transition-delay: 0.3s;
   z-index: $z-index-slideshow-text;
-
+  padding: 0 ($gutter / 4);
+  @include at-query ($min, $medium) {
+    padding: 0 ($gutter / 2);
+  }
+  p {
+    margin: 0;
+  }
   .slideshow__title {
-    font-size: $slideshow-title-size;
+    font-size: $slideshow-title-size * 0.8;
+    margin-bottom: 1rem;
     &.slideshow__title--large {
-      font-size: rem(floor($slideshow-title-size * 1.2));
+      font-size: $slideshow-title-size * 0.9;
+      font-weight: bold;
     }
-    @include at-query($max, $small) {
-      font-size: rem(floor($slideshow-title-size * 0.8));
+    @include at-query($min, $medium) {
+      font-size: $slideshow-title-size;
       &.slideshow__title--large {
-        font-size: rem(floor($slideshow-title-size * 0.9));
+        font-size: $slideshow-title-size * 1.2;
       }
     }
   }
-  .slideshow__subtitle--large {
+  .slideshow__subtitle {
     font-size: $slideshow-text-size;
+    margin-bottom: 2rem;
     &.slideshow__subtitle--large {
-      font-size: rem(floor($slideshow-text-size * 1.2));
+      font-size: $slideshow-text-size * 1.2;
     }
-    @include at-query($max, $small) {
-      font-size: rem(floor($slideshow-text-size * 0.8));
+    @include at-query($min, $medium) {
+      font-size: $slideshow-text-size * 1.2;
       &.slideshow__subtitle--large {
-        font-size: rem(floor($slideshow-text-size * 0.9));
+        font-size: $slideshow-text-size * 1.4;
       }
     }
   }

@@ -1,4 +1,8 @@
-{% if section.id == 'featured-products' %}
+{% if block != blank %}
+  {%- assign btn_action = block.settings.btn_action -%}
+  {%- assign btn_text = block.settings.btn_text -%}
+  {%- assign fade_out_title = section.settings.fade_out_title -%}
+{% elsif section != blank %}
   {%- assign btn_action = section.settings.btn_action -%}
   {%- assign btn_text = section.settings.btn_text -%}
   {%- assign fade_out_title = section.settings.fade_out_title -%}

@@ -28,13 +28,17 @@
       <div class="icon-list__item grid__item text-center {{ grid_item_width }}" {{ block.shopify_attributes }}>
         {% if block.settings.image != blank %}
           {{ block.settings.image | img_url: '160x160' | img_tag: 'Icon Image', 'icon-list__image' }}
+        {% elsif block.settings.icon != blank %}
+          {{ block.settings.icon | asset_url | img_tag: 'Icon Image', 'icon-list__image' }}
         {% endif %}
         {% if block.settings.text != blank %}
           <p class="icon-list__text">{{ block.settings.text | escape }}</p>
         {% endif %}
       </div>
     {% else %}
-      {% include 'default-icon-list' %}
+      <div class="empty-section">
+        {{ 'homepage.onboarding.no_content' | t }}
+      </div>
     {% endfor %}
   </div>
 
@@ -70,6 +74,30 @@
             "label": "Image"
           },
           {
+            "type": "select",
+            "id": "icon",
+            "label": "Or select icon",
+            "default": "icon-badge.png",
+            "options": [
+              {
+                "value": "icon-badge.png",
+                "label": "Badge"
+              },
+              {
+                "value": "icon-plane.png",
+                "label": "Plane"
+              },
+              {
+                "value": "icon-shield.png",
+                "label": "Shield"
+              },
+              {
+                "value": "icon-truck.png",
+                "label": "Truck"
+              }
+            ]
+          },
+          {
             "type": "text",
             "id": "text",
             "label": "Text"
@@ -79,8 +107,38 @@
     ],
     "presets": [
       {
-        "name": "Icon list",
-        "category": "Image"
+        "name": "Icons",
+        "category": "Images",
+        "blocks": [
+          {
+            "type": "icon_image",
+            "settings": {
+              "text": "Free shipping",
+              "icon": "icon-plane.png"
+            }
+          },
+          {
+            "type": "icon_image",
+            "settings": {
+              "text": "Free returns",
+              "icon": "icon-truck.png"
+            }
+          },
+          {
+            "type": "icon_image",
+            "settings": {
+              "text": "12-month warranty",
+              "icon": "icon-badge.png"
+            }
+          },
+          {
+            "type": "icon_image",
+            "settings": {
+              "text": "100% secure checkout",
+              "icon": "icon-shield.png"
+            }
+          }
+        ]
       }
     ]
   }

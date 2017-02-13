@@ -1,6 +1,12 @@
 {% for block in section.blocks %}
   <div class="custom__item" {{ block.shopify_attributes }}>
-    <div class="custom__item-content custom__item-content--{{ block.type }}">
+    {% case section.settings.display %}
+      {% when "mobile" %}
+        {%- assign visibility_classes = "hide small--show" -%}
+      {% when "desktop" %}
+        {%- assign visibility_classes = "small--hide" -%}
+    {% endcase %}
+    <div class="custom__item-content custom__item-content--{{ block.type }} {{ visibility_classes }}">
       {% case block.type %}
         {% when 'image' %}
           {% if block.settings.image != blank %}
@@ -20,7 +26,7 @@
               <h2 class="text-center section-heading">{{ block.settings.title | escape }}</h2>
             {% endif %}
             {% if block.settings.text != blank %}
-              <div class="custom__item-text rte-setting">{{ block.settings.text }}</div>
+              <div class="custom__item-text">{{ block.settings.text }}</div>
             {% endif %}
             {% if block.settings.button_label != blank and block.settings.button_link != blank %}
               <a href="{{ block.settings.button_link }}" class="btn">
@@ -45,6 +51,19 @@
   {
     "name": "Custom content",
     "class": "section-content",
+    "settings": [
+      {
+        "type": "select",
+        "id": "display",
+        "label": "Display",
+        "default": "all",
+        "options": [
+          {"value": "all", "label": "Desktop & Mobile"},
+          {"value": "mobile", "label": "Mobile only"},
+          {"value": "desktop", "label": "Desktop only"}
+        ]
+      }
+    ],
     "blocks": [
       {
         "type": "text",

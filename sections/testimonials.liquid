@@ -2,7 +2,7 @@
 
   {% if section.blocks.size > 0 %}
     <div class="slider-wrapper">
-      <div class="testimonial-list slider slider--content" data-content-slider="true" id="slider_{{ section.id }}">
+      <div class="testimonial-list slider slider--content" data-content-slider="true" data-slider-dots="true" id="slider_{{ section.id }}">
         {% for block in section.blocks limit: section.blocks.size %}
           <div class="testimonial slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
             {%- assign testimonial = block.settings -%}
@@ -13,7 +13,7 @@
               </div>
             </div>
             <div class="testimonial__image small--hide">
-              <img src="{{ testimonial.image | img_url: '90x90' }}" alt="{{ testimonial.name }}">
+              <img src="{{ testimonial.image | img_url: '90x90', crop: 'center' }}" alt="{{ testimonial.name }}">
             </div>
             <p class="testimonial__sign">
               {% if testimonial.link != blank %}

@@ -20,7 +20,7 @@ theme.Slider = (function() {
     var fullWidth = this.$slider.data('content-slider');
 
     this.settings = {
-      dots: false,
+      dots: !!this.$slider.data('slider-dots'),
       infinite: true,
       speed: 300,
       slidesToShow: fullWidth ? 1 : 4,
