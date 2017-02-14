@@ -1,0 +1,7 @@
+.content-page {
+  padding: $gutter;
+  .content-page__title {
+    text-align: center;
+    padding-bottom: ($gutter / 3);
+  }
+}
