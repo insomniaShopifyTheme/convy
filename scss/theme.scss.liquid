@@ -85,6 +85,7 @@ $color-special: {{ settings.color_secondary }};
 $color-discount: {{ settings.color_discount }};
 $color-special-text: {{ settings.color_text_alt }};
 $color-meta-text: #afafaf;
+$color-pale: #878787;
 
 // Backgrounds
 $color-bg: {{ settings.color_bg }};
@@ -236,6 +237,7 @@ $slick-next-character: "\3009";
 @import url('templates/_common.scss');
 @import url('templates/_collection.scss');
 @import url('templates/_product.scss');
+@import url('templates/_cart.scss');
 
 
 
@@ -262,12 +264,10 @@ $slick-next-character: "\3009";
 }
 
 
-// Debug grid
-
-// .grid {
-//   .grid__item {
-//     border: 1px solid #e6e6e6;
-//     box-sizing: border-box;
-//     border-right: none;
-//   }
-// }
+.grid--debug {
+  .grid__item {
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    border-right: none;
+  }
+}
