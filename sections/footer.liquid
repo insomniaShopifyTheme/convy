@@ -1,0 +1,358 @@
+{%- assign desktop_cols = 0 -%}
+{% for block in section.blocks %}
+  {% if block.settings.display != 'mobile' and block.settings.display != 'hidden' %}
+    {%- assign desktop_cols = desktop_cols | plus: 1 -%}
+  {% endif %}
+{% endfor %}
+
+{% case desktop_cols %}
+  {% when 2 %}
+    {%- assign col_size = 'one-whole medium--one-half' -%}
+  {% when 3 %}
+    {%- assign col_size = 'one-whole medium--one-third' -%}
+  {% when 4 %}
+    {%- assign col_size = 'one-whole medium--one-half large--one-quarter' -%}
+  {% when 5 %}
+    {%- assign col_size = 'one-whole large--one-fifth' -%}
+  {% else %}
+    {%- assign col_size = 'one-whole' -%}
+{% endcase %}
+
+<div class="grid--full">
+  {% for block in section.blocks %}
+    {% case block.settings.display %}
+      {% when "mobile" %}
+        {%- assign visibility_classes = " hide small--show" -%}
+      {% when "desktop" %}
+        {%- assign visibility_classes = " small--hide" -%}
+      {% when "hidden" %}
+        {%- assign visibility_classes = " hide" -%}
+      {% else %}
+        {%- assign visibility_classes = "" -%}
+    {% endcase %}
+    <div class="footer-col footer-col--{{ block.type }} grid__item {{ col_size }}{{ visibility_classes }}" {{ block.shopify_attributes }}>
+      {% case block.type %}
+        {% when 'menu' %}
+          <h4 class="footer-col__title text-{{ block.settings.align_text }}">
+            {{ block.settings.title }}
+          </h4>
+          {% if linklists[block.settings.menu].links.size > 0 %}
+            <ul class="footer-col__linklist">
+              {% for link in linklists[block.settings.menu].links %}
+                <li class="footer-col__linklist-item">
+                  <a href="{{ link.url }}">{{ link.title }}</a>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        {% when 'page' %}
+          {% assign page = pages[block.settings.page] %}
+          {% if page %}
+            <h4 class="footer-col__title text-{{ block.settings.align_text }}">
+              {{ page.title }}
+            </h4>
+            <div class="footer-col__content">
+              {% if block.settings.words_limit != blank and block.settings.words_limit != 'disable' %}
+                {{ page.content | truncatewords: block.settings.words_limit }}
+                <div class="text-center">
+                  <a href="{{ page.url }}" class="btn">
+                    {{ block.settings.button_label }}
+                  </a>
+                </div>
+              {% else %}
+                {{ page.content }}
+              {% endif %}
+            </div>
+          {% endif %}
+        {% when 'content' %}
+          <div class="text-{{ block.settings.align_text }}">
+            {% if block.settings.title != blank %}
+              <h4 class="text-{{ block.settings.align_text }} footer-col__title">{{ block.settings.title | escape }}</h4>
+            {% endif %}
+            {% if block.settings.text != blank %}
+              <div class="footer-col__content">
+                {{ block.settings.text }}
+              </div>
+            {% endif %}
+            {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+              <a href="{{ block.settings.button_link }}" class="btn">
+                {{ block.settings.button_label }}
+              </a>
+            {% endif %}
+          </div>
+        {% when 'html' %}
+          {% if block.settings.code != blank %}
+            {{ block.settings.code }}
+          {% endif %}
+        {% when 'newsletter' %}
+          {% if block.settings.title != blank %}
+            <h4 class="footer-col__title text-{{ block.settings.align_text }}">{{ block.settings.title | escape }}</h4>
+          {% endif %}
+          {% include 'newsletter-form' %}
+      {% endcase %}
+    </div>
+  {% endfor %}
+</div>
+
+{% if section.settings.display_social %}
+  <div class="sub-footer">
+    {% include 'social-icons-list' %}
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Footer",
+    "class": "section-footer",
+    "max_blocks": 5,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "display_social",
+        "label": "Social links section",
+        "default": true,
+        "info": "Configure your social accounts at General Settings > Social media"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "menu",
+        "name": "Menu",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Footer menu"
+          },
+          {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Menu",
+            "default": "footer"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Align title",
+            "default": "center",
+            "options": [
+              {"value": "left", "label": "Left"},
+              {"value": "center", "label": "Centered"},
+              {"value": "right", "label": "Right"}
+            ]
+          },
+          {
+            "type": "select",
+            "id": "display",
+            "label": "Display",
+            "default": "all",
+            "options": [
+              {"value": "all", "label": "Desktop & Mobile"},
+              {"value": "mobile", "label": "Mobile only"},
+              {"value": "desktop", "label": "Desktop only"}
+            ]
+          }
+        ]
+      },
+      {
+        "type": "page",
+        "name": "Page",
+        "settings": [
+          {
+             "type": "page",
+             "id": "page",
+             "label": "Page"
+          },
+          {
+             "type": "select",
+             "id": "words_limit",
+             "label": "Words limit",
+             "options": [
+                {"value": "disable", "label": "Disable"},
+                {"value": "10", "label": "10"},
+                {"value": "11", "label": "11"},
+                {"value": "12", "label": "12"},
+                {"value": "13", "label": "13"},
+                {"value": "14", "label": "14"},
+                {"value": "15", "label": "15"},
+                {"value": "16", "label": "16"},
+                {"value": "17", "label": "17"},
+                {"value": "18", "label": "18"},
+                {"value": "19", "label": "19"},
+                {"value": "20", "label": "20"},
+                {"value": "21", "label": "21"},
+                {"value": "22", "label": "22"},
+                {"value": "23", "label": "23"},
+                {"value": "24", "label": "24"},
+                {"value": "25", "label": "25"},
+                {"value": "26", "label": "26"},
+                {"value": "27", "label": "27"},
+                {"value": "28", "label": "28"},
+                {"value": "29", "label": "29"},
+                {"value": "30", "label": "30"},
+                {"value": "35", "label": "35"},
+                {"value": "40", "label": "40"},
+                {"value": "45", "label": "45"},
+                {"value": "50", "label": "50"},
+                {"value": "60", "label": "60"},
+                {"value": "70", "label": "70"},
+                {"value": "80", "label": "80"},
+                {"value": "90", "label": "90"},
+                {"value": "100", "label": "100"}
+              ],
+             "default": "25",
+             "info": "Truncate content"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label",
+            "default": "Read more"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Align title",
+            "default": "center",
+            "options": [
+              {"value": "left", "label": "Left"},
+              {"value": "center", "label": "Centered"},
+              {"value": "right", "label": "Right"}
+            ]
+          },
+          {
+            "type": "select",
+            "id": "display",
+            "label": "Display",
+            "default": "all",
+            "options": [
+              {"value": "all", "label": "Desktop & Mobile"},
+              {"value": "mobile", "label": "Mobile only"},
+              {"value": "desktop", "label": "Desktop only"}
+            ]
+          }
+        ]
+      },
+      {
+        "type": "content",
+        "name": "Custom content",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Footer content"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Why do we use it?<br> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>"
+          },
+          {
+            "type": "text",
+            "id": "button_label",
+            "label": "Button label"
+          },
+          {
+            "type": "url",
+            "id": "button_link",
+            "label": "Button link"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Align",
+            "default": "left",
+            "options": [
+              {"value": "left", "label": "Left"},
+              {"value": "center", "label": "Centered"},
+              {"value": "right", "label": "Right"}
+            ]
+          },
+          {
+            "type": "select",
+            "id": "display",
+            "label": "Display",
+            "default": "all",
+            "options": [
+              {"value": "all", "label": "Desktop & Mobile"},
+              {"value": "mobile", "label": "Mobile only"},
+              {"value": "desktop", "label": "Desktop only"}
+            ]
+          }
+        ]
+      },
+      {
+        "type": "newsletter",
+        "name": "Newsletter",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Column Heading",
+            "default": "Subscribe"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          },
+          {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text",
+            "default": "SUBSCRIBE"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Align",
+            "default": "center",
+            "options": [
+              {"value": "left", "label": "Left"},
+              {"value": "center", "label": "Centered"},
+              {"value": "right", "label": "Right"}
+            ]
+          },
+          {
+            "type": "select",
+            "id": "display",
+            "label": "Display",
+            "default": "all",
+            "options": [
+              {"value": "all", "label": "Desktop & Mobile"},
+              {"value": "mobile", "label": "Mobile only"},
+              {"value": "desktop", "label": "Desktop only"}
+            ]
+          }
+        ]
+      },
+      {
+        "type": "html",
+        "name": "Raw HTML code",
+        "settings": [
+          {
+            "type": "html",
+            "id": "code",
+            "label": "Custom HTML",
+            "info": "Can be used for third-party scripts integration"
+          },
+          {
+            "type": "select",
+            "id": "display",
+            "label": "Display",
+            "default": "hidden",
+            "options": [
+              {"value": "all", "label": "Desktop & Mobile"},
+              {"value": "mobile", "label": "Mobile only"},
+              {"value": "desktop", "label": "Desktop only"},
+              {"value": "hidden", "label": "Hidden"}
+            ]
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

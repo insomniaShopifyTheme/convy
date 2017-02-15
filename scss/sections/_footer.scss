@@ -1,0 +1,52 @@
+/*================ Footer Section ================*/
+
+.section-footer {
+  border-top: 1px solid $color-border;
+  .footer-col {
+    padding: $gutter ($gutter / 2) ($gutter / 2);
+    &.footer-col--content {
+      p {
+        margin-bottom: 5px;
+      }
+    }
+    .btn {
+      margin-top: 15px;
+    }
+  }
+  .footer-col__title {
+    margin-bottom: $gutter;
+  }
+  .footer-col__linklist {
+    @extend .no-bullets;
+    margin-left: $gutter;
+    .footer-col__linklist-item {
+      text-transform: uppercase;
+    }
+  }
+  .sub-footer {
+    text-align: center;
+    background-color: $color-bg-alt;
+    color: $color-text-alt;
+    font-size: 1.2rem;
+    min-height: 50px;
+    padding-top: 10px;
+    margin-top: $gutter / 2;
+    .social-icons {
+      li {
+        margin-left: 45px;
+        &:first-child {
+          margin-left: 0;
+        }
+      }
+    }
+    @include at-query($min, $medium) {
+      font-size: 1.8rem;
+      min-height: 70px;
+      .social-icons {
+        li {
+          margin-left: 90px;
+        }
+      }
+    }
+  }
+}
