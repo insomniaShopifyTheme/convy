@@ -21,6 +21,8 @@ theme.Slider = (function() {
 
     this.settings = {
       dots: !!this.$slider.data('slider-dots'),
+      fade: this.$slider.data('slider-effect') == 'fade',
+      speed: 500,
       infinite: true,
       speed: 300,
       slidesToShow: fullWidth ? 1 : 4,
