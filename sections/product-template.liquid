@@ -128,10 +128,11 @@
       </select>
 
       {% comment %}
-        Add to cart hidden in mobile version and sticky version used
-        see snippets/add-to-cart-mobile.liquid
+        Cart button is hidden in mobile version and sticky version used
+        see snippets/cart-sticky-button.liquid
       {% endcomment %}
-      <div class="product-form__cart">
+      <div class="js-sticky-btn-start"></div>
+      <div class="product-form__cart small--hide">
         <button type="submit" name="add" id="AddToCart-product_{{ product.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit">
           <span id="AddToCartText-product_{{ product.id }}">
             {% if current_variant.available %}

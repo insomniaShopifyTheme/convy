@@ -90,17 +90,14 @@
     {{ content_for_layout }}
   </main>
 
-  {% unless template == 'cart' %}
+  {% if settings.show_multiple_currencies %}
+    {% include 'currency-picker' %}
+  {% endif %}
 
-    {% if settings.show_multiple_currencies %}
-      {% include 'currency-picker' %}
-    {% endif %}
-
-    {% section 'footer' %}
-  {% endunless %}
+  {% section 'footer' %}
 
   {% if template contains 'product' %}
-    {% include 'add-to-cart-mobile' %}
+    {% include 'cart-sticky-button' %}
   {% endif %}
 
   {{ 'vendor.js' | asset_url | script_tag }}

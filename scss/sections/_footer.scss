@@ -54,3 +54,7 @@
     }
   }
 }
+
+.template-product .section-footer, .template-cart .section-footer {
+  @extend .small--hide;
+}

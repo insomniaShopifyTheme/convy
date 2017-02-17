@@ -75,6 +75,7 @@ theme.ProductPageSection = (function() {
       SKU: '.variant-sku',
       qty: '.variant-qty',
       inPageCartButton: '#' + sectionId + ' .product-form__cart',
+      stickyBtnStart: '#' + sectionId + ' .js-sticky-btn-start',
       stickyCartButton: 'body > .product-form__cart',
       stickyCartButtonText: 'body > .product-form__cart button > span',
       cartForm: '#' + sectionId + ' .product-form',
@@ -91,7 +92,7 @@ theme.ProductPageSection = (function() {
     });
 
     this._initVariants();
-    this._stickyAddToCartBtn();
+    this._stickyCartBtn();
   }
 
   return ProductPageSection;
@@ -101,33 +102,32 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 
   onUnload: function() {
     delete theme.sliders[this.slider];
+    $(document).off('touchmove.track-add-to-cart-btn');
     $(document).off('scroll.track-add-to-cart-btn');
   },
 
-  _stickyAddToCartBtn: function() {
-    $(document).on('scroll.track-add-to-cart-btn', this._trackButtonPosition.bind(this));
+  _stickyCartBtn: function() {
     $(this.selectors.stickyCartButton).on('click', this._submitCartForm.bind(this));
-    this._trackButtonPosition();
+    $(document).on('touchmove.track-add-to-cart-btn', this._trackScrolling.bind(this));
+    $(document).on('scroll.track-add-to-cart-btn', this._trackScrolling.bind(this));
+    this._trackScrolling();
   },
 
   _submitCartForm: function() {
     $(this.selectors.cartForm).trigger('submit');
   },
 
-  _trackButtonPosition: function() {
+  _trackScrolling: function() {
     // only for mobile
     if (theme.cache.$body.width() <= 767) {
-      var $inPageBtn = $(this.selectors.inPageCartButton).first();
       var $stickyBtn = $(this.selectors.stickyCartButton);
-      var bottomPosition = theme.cache.$window.scrollTop() + theme.cache.$window.height();
-      var swapButtonsAt = bottomPosition - $inPageBtn.height();
-      var inPageBtnPosition = $inPageBtn.position();
-      if (inPageBtnPosition.top <= swapButtonsAt) {
-        $stickyBtn.removeClass('hide');
-        $inPageBtn.addClass('visually-hidden');
+      var startPosition = $(this.selectors.stickyBtnStart).position();
+      var distanceYBottom = window.pageYOffset + theme.cache.$window.height();
+      var stickAt = distanceYBottom + 70;
+      if (startPosition.top <= stickAt) {
+        $stickyBtn.addClass('stuck');
       } else {
-        $stickyBtn.addClass('hide');
-        $inPageBtn.removeClass('visually-hidden');
+        $stickyBtn.removeClass('stuck');
       }
     }
   },

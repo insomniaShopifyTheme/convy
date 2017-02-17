@@ -7,6 +7,13 @@
   text-align: center;
 }
 
+@include at-query ($max, $small) {
+  body.template-product {
+    // prevent sticky button to block the bottom of the page
+    margin-bottom: 70px
+  }
+}
+
 .product-template {
   .product-images {
     ul {
@@ -186,4 +193,9 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  transition: all 0.5s;
+  height: 0;
+  &.stuck {
+    height: 70px;
+  }
 }

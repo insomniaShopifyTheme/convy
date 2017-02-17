@@ -1,7 +1,8 @@
 {
   "current": {
+    "cart_notes_enable": true,
     "fixed_header": false,
-    "ajax_cart_method": "page",
+    "ajax_cart_method": "drawer",
     "color_primary": "#393939",
     "color_secondary": "#41cd62",
     "color_text": "#393939",
@@ -14,12 +15,12 @@
     "font_size_headings": "26px",
     "font_family_base": "Google_Lato_400_sans",
     "font_size_base": "16px",
-    "social_facebook_link": "https://facebook.com/shopify",
-    "social_twitter_link": "https://twitter.com/shopify",
-    "social_instagram_link": "http://instagram.com/shopify",
+    "social_facebook_link": "https:\/\/facebook.com\/shopify",
+    "social_twitter_link": "https:\/\/twitter.com\/shopify",
+    "social_instagram_link": "http:\/\/instagram.com\/shopify",
     "social_tumblr_link": "",
     "social_pinterest_link": "",
-    "social_youtube_link": "https://www.youtube.com/shopify",
+    "social_youtube_link": "https:\/\/www.youtube.com\/shopify",
     "newsletter_form_action": "",
     "show_multiple_currencies": true,
     "currency_format": "money_with_currency_format",
@@ -56,11 +57,11 @@
           "1486982357142-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/jlwvautloaq-dustin-lee.jpg",
-              "title": "<p>BE CREATIVE</p>",
-              "text": "<p>Tell your brand's story through video and images</p>",
+              "image": "shopify:\/\/shop_images\/jlwvautloaq-dustin-lee.jpg",
+              "title": "<p>BE CREATIVE<\/p>",
+              "text": "<p>Tell your brand's story through video and images<\/p>",
               "primary_button_label": "SHOP NOW",
-              "primary_button_link": "shopify://collections/all",
+              "primary_button_link": "shopify:\/\/collections\/all",
               "secondary_button_label": "",
               "secondary_button_link": "",
               "alignment": "bottom",
@@ -81,11 +82,11 @@
           "1486982357142-1": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/mzr1kceky0g-william-stitt.jpg",
-              "title": "<p>SHARE YOU VISION</p>",
-              "text": "<p>A word about why you sell what you sell</p>",
+              "image": "shopify:\/\/shop_images\/mzr1kceky0g-william-stitt.jpg",
+              "title": "<p>SHARE YOU VISION<\/p>",
+              "text": "<p>A word about why you sell what you sell<\/p>",
               "primary_button_label": "READ MORE",
-              "primary_button_link": "shopify://pages/about-us",
+              "primary_button_link": "shopify:\/\/pages\/about-us",
               "secondary_button_label": "",
               "secondary_button_link": "",
               "alignment": "top",
@@ -129,9 +130,9 @@
             "type": "text",
             "settings": {
               "title": "ABOUT US",
-              "text": "<p>Why do we use it?<br> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>",
+              "text": "<p>Why do we use it?<br> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.<\/p>",
               "button_label": "SEE OUR STORY",
-              "button_link": "shopify://pages/about-us",
+              "button_link": "shopify:\/\/pages\/about-us",
               "align_text": "center"
             }
           }
@@ -151,10 +152,10 @@
             "settings": {
               "title": "Awesome",
               "text": "“It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem.”",
-              "image": "shopify://shop_images/Derek-Morin_sq.png",
+              "image": "shopify:\/\/shop_images\/Derek-Morin_sq.png",
               "name": "Derek Morin",
               "company": "Tabarnapp",
-              "link": "http://tabarnapp.com"
+              "link": "http:\/\/tabarnapp.com"
             }
           },
           "1486983325139": {
@@ -162,7 +163,7 @@
             "settings": {
               "title": "I ♥︎ it",
               "text": "\"Konversion theme has completely surpassed our expectations. It fits our needs perfectly.\"",
-              "image": "shopify://shop_images/t8glom6k8jo-dmitry-ratushny.jpg",
+              "image": "shopify:\/\/shop_images\/t8glom6k8jo-dmitry-ratushny.jpg",
               "name": "Kelly N",
               "company": "",
               "link": ""
@@ -173,7 +174,9 @@
           "1486983039106",
           "1486983325139"
         ],
-        "settings": {}
+        "settings": {
+          "effect": "fade"
+        }
       },
       "1486983694747": {
         "type": "slideshow",
@@ -181,9 +184,9 @@
           "1486983694747-0": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/lzlfhgqx44q-bino-storyteller.jpg",
-              "title": "<p>Mystery is at the heart of creativity.&nbsp;</p>",
-              "text": "<p>That, and surprise.</p>",
+              "image": "shopify:\/\/shop_images\/lzlfhgqx44q-bino-storyteller.jpg",
+              "title": "<p>Mystery is at the heart of creativity.&nbsp;<\/p>",
+              "text": "<p>That, and surprise.<\/p>",
               "primary_button_label": "",
               "primary_button_link": "",
               "secondary_button_label": "",
@@ -220,8 +223,8 @@
           "1486984266170": {
             "type": "image",
             "settings": {
-              "image": "shopify://shop_images/sale-narrow_bb1b35ea-37f2-4103-907b-75ff2cccc77e.png",
-              "link": "shopify://collections/all"
+              "image": "shopify:\/\/shop_images\/sale-narrow_bb1b35ea-37f2-4103-907b-75ff2cccc77e.png",
+              "link": "shopify:\/\/collections\/all"
             }
           }
         },
@@ -396,7 +399,7 @@
         "type": "newsletter",
         "settings": {
           "title": "Subscribe to Our Newsletter",
-          "text": "<p>Enter your email adress bellow, subscribe to our newsletter&nbsp;and be the first who get the news.</p>",
+          "text": "<p>Enter your email adress bellow, subscribe to our newsletter&nbsp;and be the first who get the news.<\/p>",
           "button_text": "SUBSCRIBE"
         }
       },
@@ -404,10 +407,15 @@
         "type": "product-template",
         "settings": {
           "breadcrumbs": true,
+          "display_icons": true,
           "display_quantity_selector": true,
           "display_option_labels": false,
           "display_vendor": false,
-          "display_sku": false
+          "display_sku": false,
+          "related_products": true,
+          "related_products_slider": true,
+          "related_products_title": "Related products",
+          "related_products_count": "2"
         }
       },
       "cart-template": {
@@ -425,15 +433,17 @@
             "settings": {
               "title": "MENU",
               "menu": "footer",
-              "align_text": "left",
-              "display": "all"
+              "align_text": "center",
+              "align_items": "center",
+              "left_margin": "0",
+              "display": "desktop"
             }
           },
           "1487176715987": {
             "type": "content",
             "settings": {
               "title": "CONTACT US",
-              "text": "<p></p>\r\n<p></p>\r\n<p>contact@konversion.com</p>\r\n<p>Phone: +1 (072) 233-5698</p>\r\n<p>Monday-Friday: 08 AM - 21 PM</p>\r\n<p>Saturday: 11 AM-16 PM</p>\r\n<p>Sunday: Closed</p>",
+              "text": "<p><\/p>\r\n<p><\/p>\r\n<p>contact@konversion.com<\/p>\r\n<p>Phone: +1 (072) 233-5698<\/p>\r\n<p>Monday-Friday: 08 AM - 21 PM<\/p>\r\n<p>Saturday: 11 AM-16 PM<\/p>\r\n<p>Sunday: Closed<\/p>",
               "button_label": "CONTACT US",
               "button_link": "mailto:contact@konversion.com",
               "align_text": "center",
@@ -454,16 +464,9 @@
             "type": "newsletter",
             "settings": {
               "title": "SUBSCRIBE",
-              "text": "<p>Enter your email adress bellow, subscribe to our newsletter&nbsp;and be the first who get the news.</p>",
+              "text": "<p>Enter your email adress bellow, subscribe to our newsletter&nbsp;and be the first who get the news.<\/p>",
               "button_text": "GO!",
               "align_text": "center",
-              "display": "desktop"
-            }
-          },
-          "1487178026087": {
-            "type": "html",
-            "settings": {
-              "code": "<iframe src=\"https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fluxquotesofficial%2F&amp;tabs&amp;width=340&amp;height=154&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId=436103739890547\" width=\"340\" height=\"154\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowtransparency=\"true\"></iframe>",
               "display": "desktop"
             }
           }
@@ -472,8 +475,7 @@
           "1487183418416",
           "1487176715987",
           "1487175057271",
-          "1487177009246",
-          "1487178026087"
+          "1487177009246"
         ],
         "settings": {
           "display_social": true
@@ -521,10 +523,10 @@
       "currency_format": "money_with_currency_format",
       "supported_currencies": "CAD USD AUD EUR",
       "default_currency": "USD",
-      "social_facebook_link": "https://facebook.com/shopify",
-      "social_twitter_link": "https://twitter.com/shopify",
-      "social_instagram_link": "http://instagram.com/shopify",
-      "social_youtube_link": "https://www.youtube.com/shopify"
+      "social_facebook_link": "https:\/\/facebook.com\/shopify",
+      "social_twitter_link": "https:\/\/twitter.com\/shopify",
+      "social_instagram_link": "http:\/\/instagram.com\/shopify",
+      "social_youtube_link": "https:\/\/www.youtube.com\/shopify"
     }
   }
 }
