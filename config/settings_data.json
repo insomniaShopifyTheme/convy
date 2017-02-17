@@ -1,5 +1,508 @@
 {
-  "current": "Default",
+  "current": {
+    "fixed_header": false,
+    "ajax_cart_method": "page",
+    "color_primary": "#393939",
+    "color_secondary": "#41cd62",
+    "color_text": "#393939",
+    "color_bg": "#ffffff",
+    "color_borders": "#e0e0e0",
+    "color_bg_alt": "#090909",
+    "color_text_alt": "#ffffff",
+    "color_discount": "#f53333",
+    "font_family_headings": "Google_Lato_700_sans",
+    "font_size_headings": "26px",
+    "font_family_base": "Google_Lato_400_sans",
+    "font_size_base": "16px",
+    "social_facebook_link": "https://facebook.com/shopify",
+    "social_twitter_link": "https://twitter.com/shopify",
+    "social_instagram_link": "http://instagram.com/shopify",
+    "social_tumblr_link": "",
+    "social_pinterest_link": "",
+    "social_youtube_link": "https://www.youtube.com/shopify",
+    "newsletter_form_action": "",
+    "show_multiple_currencies": true,
+    "currency_format": "money_with_currency_format",
+    "supported_currencies": "CAD USD AUD EUR",
+    "default_currency": "USD",
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#1990C6",
+    "checkout_button_color": "#1990C6",
+    "checkout_error_color": "#ff6d6d",
+    "breadcrumbs": true,
+    "sections": {
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_text": "",
+          "logo_use_image": false,
+          "logo_image": "",
+          "logo_max_width": "220"
+        }
+      },
+      "1486982357142": {
+        "type": "slideshow",
+        "blocks": {
+          "1486982357142-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/jlwvautloaq-dustin-lee.jpg",
+              "title": "<p>BE CREATIVE</p>",
+              "text": "<p>Tell your brand's story through video and images</p>",
+              "primary_button_label": "SHOP NOW",
+              "primary_button_link": "shopify://collections/all",
+              "secondary_button_label": "",
+              "secondary_button_link": "",
+              "alignment": "bottom",
+              "text_location": "center",
+              "text_alignment": "center",
+              "color_title": "#fff",
+              "color_text": "#fff",
+              "image_overlay_opacity": "0.35",
+              "color_image_overlay": "#000000",
+              "primary_button_border_color": "#fff",
+              "primary_button_bg_color": "transparent",
+              "primary_button_text_color": "#fff",
+              "secondary_button_border_color": "#fff",
+              "secondary_button_bg_color": "transparent",
+              "secondary_button_text_color": "#fff"
+            }
+          },
+          "1486982357142-1": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/mzr1kceky0g-william-stitt.jpg",
+              "title": "<p>SHARE YOU VISION</p>",
+              "text": "<p>A word about why you sell what you sell</p>",
+              "primary_button_label": "READ MORE",
+              "primary_button_link": "shopify://pages/about-us",
+              "secondary_button_label": "",
+              "secondary_button_link": "",
+              "alignment": "top",
+              "text_location": "right",
+              "text_alignment": "right",
+              "color_title": "#fff",
+              "color_text": "#fff",
+              "image_overlay_opacity": "0.25",
+              "color_image_overlay": "#000000",
+              "primary_button_border_color": "#fff",
+              "primary_button_bg_color": "transparent",
+              "primary_button_text_color": "#fff",
+              "secondary_button_border_color": "#fff",
+              "secondary_button_bg_color": "transparent",
+              "secondary_button_text_color": "#fff"
+            }
+          }
+        },
+        "block_order": [
+          "1486982357142-0",
+          "1486982357142-1"
+        ],
+        "settings": {
+          "autoplay": true,
+          "autoplay_speed": "5000",
+          "slideshow_height": "medium",
+          "text_size": "large"
+        }
+      },
+      "1486982890272": {
+        "type": "separator",
+        "settings": {
+          "color": "#41cd62",
+          "height": "10px"
+        }
+      },
+      "1486982934768": {
+        "type": "custom-content",
+        "blocks": {
+          "1486982934768-0": {
+            "type": "text",
+            "settings": {
+              "title": "ABOUT US",
+              "text": "<p>Why do we use it?<br> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters.</p>",
+              "button_label": "SEE OUR STORY",
+              "button_link": "shopify://pages/about-us",
+              "align_text": "center"
+            }
+          }
+        },
+        "block_order": [
+          "1486982934768-0"
+        ],
+        "settings": {
+          "display": "all"
+        }
+      },
+      "1486983032625": {
+        "type": "testimonials",
+        "blocks": {
+          "1486983039106": {
+            "type": "testimonial",
+            "settings": {
+              "title": "Awesome",
+              "text": "“It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem.”",
+              "image": "shopify://shop_images/Derek-Morin_sq.png",
+              "name": "Derek Morin",
+              "company": "Tabarnapp",
+              "link": "http://tabarnapp.com"
+            }
+          },
+          "1486983325139": {
+            "type": "testimonial",
+            "settings": {
+              "title": "I ♥︎ it",
+              "text": "\"Konversion theme has completely surpassed our expectations. It fits our needs perfectly.\"",
+              "image": "shopify://shop_images/t8glom6k8jo-dmitry-ratushny.jpg",
+              "name": "Kelly N",
+              "company": "",
+              "link": ""
+            }
+          }
+        },
+        "block_order": [
+          "1486983039106",
+          "1486983325139"
+        ],
+        "settings": {}
+      },
+      "1486983694747": {
+        "type": "slideshow",
+        "blocks": {
+          "1486983694747-0": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/lzlfhgqx44q-bino-storyteller.jpg",
+              "title": "<p>Mystery is at the heart of creativity.&nbsp;</p>",
+              "text": "<p>That, and surprise.</p>",
+              "primary_button_label": "",
+              "primary_button_link": "",
+              "secondary_button_label": "",
+              "secondary_button_link": "",
+              "alignment": "center",
+              "text_location": "center",
+              "text_alignment": "left",
+              "color_title": "#fff",
+              "color_text": "#fff",
+              "image_overlay_opacity": "0.5",
+              "color_image_overlay": "#000000",
+              "primary_button_border_color": "#fff",
+              "primary_button_bg_color": "transparent",
+              "primary_button_text_color": "#fff",
+              "secondary_button_border_color": "#fff",
+              "secondary_button_bg_color": "transparent",
+              "secondary_button_text_color": "#fff"
+            }
+          }
+        },
+        "block_order": [
+          "1486983694747-0"
+        ],
+        "settings": {
+          "autoplay": true,
+          "autoplay_speed": "5000",
+          "slideshow_height": "xsmall",
+          "text_size": "large"
+        }
+      },
+      "1486984247144": {
+        "type": "custom-content",
+        "blocks": {
+          "1486984266170": {
+            "type": "image",
+            "settings": {
+              "image": "shopify://shop_images/sale-narrow_bb1b35ea-37f2-4103-907b-75ff2cccc77e.png",
+              "link": "shopify://collections/all"
+            }
+          }
+        },
+        "block_order": [
+          "1486984266170"
+        ],
+        "settings": {
+          "display": "desktop"
+        }
+      },
+      "1486984340040": {
+        "type": "featured-products",
+        "blocks": {
+          "1486984345183": {
+            "type": "product",
+            "settings": {
+              "product": "north-ridge-mens-nord-down-jacket",
+              "btn_action": "product_page",
+              "btn_text": "More Details"
+            }
+          },
+          "1486984368954": {
+            "type": "product",
+            "settings": {
+              "product": "rab-microlight-alpine-jacket",
+              "btn_action": "add_to_cart",
+              "btn_text": "Add to Cart"
+            }
+          },
+          "1486984374522": {
+            "type": "product",
+            "settings": {
+              "product": "craghoppers-mens-newton-jacket",
+              "btn_action": "add_to_cart",
+              "btn_text": "Add to Cart"
+            }
+          },
+          "1486984400677": {
+            "type": "product",
+            "settings": {
+              "product": "art-t-shirt",
+              "btn_action": "add_to_cart",
+              "btn_text": "Add to Cart"
+            }
+          }
+        },
+        "block_order": [
+          "1486984345183",
+          "1486984368954",
+          "1486984374522",
+          "1486984400677"
+        ],
+        "settings": {
+          "title": "Featured Products",
+          "fade_out_title": true
+        }
+      },
+      "1486984421026": {
+        "type": "separator",
+        "settings": {
+          "color": "#ffffff",
+          "height": "1px"
+        }
+      },
+      "1486984592820": {
+        "type": "separator",
+        "settings": {
+          "color": "#e9e9e9",
+          "height": "1px"
+        }
+      },
+      "1486984616628": {
+        "type": "featured-product",
+        "settings": {
+          "title": "Featured Product",
+          "product": "art-t-shirt"
+        }
+      },
+      "1486984646008": {
+        "type": "featured-collections",
+        "blocks": {
+          "1486984672974": {
+            "type": "collection",
+            "settings": {
+              "collection": "sale"
+            }
+          },
+          "1486984677370": {
+            "type": "collection",
+            "settings": {
+              "collection": "best-sellers"
+            }
+          },
+          "1486984660006": {
+            "type": "collection",
+            "settings": {
+              "collection": "men"
+            }
+          },
+          "1486984667480": {
+            "type": "collection",
+            "settings": {
+              "collection": "women"
+            }
+          }
+        },
+        "block_order": [
+          "1486984672974",
+          "1486984677370",
+          "1486984660006",
+          "1486984667480"
+        ],
+        "settings": {
+          "title": "Featured collections"
+        }
+      },
+      "1486984725542": {
+        "type": "separator",
+        "settings": {
+          "color": "#ffffff",
+          "height": "1px"
+        }
+      },
+      "1487000059419": {
+        "type": "icon-list",
+        "blocks": {
+          "1487000059419-0": {
+            "type": "icon_image",
+            "settings": {
+              "image": "",
+              "icon": "icon-plane.png",
+              "text": "Free shipping"
+            }
+          },
+          "1487000059419-1": {
+            "type": "icon_image",
+            "settings": {
+              "image": "",
+              "icon": "icon-truck.png",
+              "text": "Free returns"
+            }
+          },
+          "1487000059419-2": {
+            "type": "icon_image",
+            "settings": {
+              "image": "",
+              "icon": "icon-badge.png",
+              "text": "12-month warranty"
+            }
+          },
+          "1487000059419-3": {
+            "type": "icon_image",
+            "settings": {
+              "image": "",
+              "icon": "icon-shield.png",
+              "text": "100% secure checkout"
+            }
+          }
+        },
+        "block_order": [
+          "1487000059419-0",
+          "1487000059419-1",
+          "1487000059419-2",
+          "1487000059419-3"
+        ],
+        "settings": {
+          "title": "Icon list",
+          "inverted": true
+        }
+      },
+      "1487019391356": {
+        "type": "newsletter",
+        "settings": {
+          "title": "Subscribe to Our Newsletter",
+          "text": "<p>Enter your email adress bellow, subscribe to our newsletter&nbsp;and be the first who get the news.</p>",
+          "button_text": "SUBSCRIBE"
+        }
+      },
+      "product-template": {
+        "type": "product-template",
+        "settings": {
+          "breadcrumbs": true,
+          "display_quantity_selector": true,
+          "display_option_labels": false,
+          "display_vendor": false,
+          "display_sku": false
+        }
+      },
+      "cart-template": {
+        "type": "cart-template",
+        "settings": {
+          "display_vendor": false,
+          "notes_enable": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "blocks": {
+          "1487183418416": {
+            "type": "menu",
+            "settings": {
+              "title": "MENU",
+              "menu": "footer",
+              "align_text": "left",
+              "display": "all"
+            }
+          },
+          "1487176715987": {
+            "type": "content",
+            "settings": {
+              "title": "CONTACT US",
+              "text": "<p></p>\r\n<p></p>\r\n<p>contact@konversion.com</p>\r\n<p>Phone: +1 (072) 233-5698</p>\r\n<p>Monday-Friday: 08 AM - 21 PM</p>\r\n<p>Saturday: 11 AM-16 PM</p>\r\n<p>Sunday: Closed</p>",
+              "button_label": "CONTACT US",
+              "button_link": "mailto:contact@konversion.com",
+              "align_text": "center",
+              "display": "all"
+            }
+          },
+          "1487175057271": {
+            "type": "page",
+            "settings": {
+              "page": "footer-notes",
+              "words_limit": "13",
+              "button_label": "READ MORE",
+              "align_text": "left",
+              "display": "desktop"
+            }
+          },
+          "1487177009246": {
+            "type": "newsletter",
+            "settings": {
+              "title": "SUBSCRIBE",
+              "text": "<p>Enter your email adress bellow, subscribe to our newsletter&nbsp;and be the first who get the news.</p>",
+              "button_text": "GO!",
+              "align_text": "center",
+              "display": "desktop"
+            }
+          },
+          "1487178026087": {
+            "type": "html",
+            "settings": {
+              "code": "<iframe src=\"https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fluxquotesofficial%2F&amp;tabs&amp;width=340&amp;height=154&amp;small_header=true&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=true&amp;appId=436103739890547\" width=\"340\" height=\"154\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowtransparency=\"true\"></iframe>",
+              "display": "desktop"
+            }
+          }
+        },
+        "block_order": [
+          "1487183418416",
+          "1487176715987",
+          "1487175057271",
+          "1487177009246",
+          "1487178026087"
+        ],
+        "settings": {
+          "display_social": true
+        }
+      },
+      "collection-template": {
+        "type": "collection-template",
+        "settings": {
+          "breadcrumbs": true
+        }
+      }
+    },
+    "content_for_index": [
+      "1486982357142",
+      "1486982890272",
+      "1486982934768",
+      "1487000059419",
+      "1486983032625",
+      "1486983694747",
+      "1486984247144",
+      "1486984421026",
+      "1486984340040",
+      "1486984592820",
+      "1486984616628",
+      "1486984725542",
+      "1486984646008",
+      "1487019391356"
+    ]
+  },
   "presets": {
     "Default": {
       "breadcrumbs": true,
@@ -18,10 +521,10 @@
       "currency_format": "money_with_currency_format",
       "supported_currencies": "CAD USD AUD EUR",
       "default_currency": "USD",
-      "social_facebook_link": "https:\/\/facebook.com\/shopify",
-      "social_twitter_link": "https:\/\/twitter.com\/shopify",
-      "social_instagram_link": "http:\/\/instagram.com\/shopify",
-      "social_youtube_link": "https:\/\/www.youtube.com\/shopify"
+      "social_facebook_link": "https://facebook.com/shopify",
+      "social_twitter_link": "https://twitter.com/shopify",
+      "social_instagram_link": "http://instagram.com/shopify",
+      "social_youtube_link": "https://www.youtube.com/shopify"
     }
   }
 }

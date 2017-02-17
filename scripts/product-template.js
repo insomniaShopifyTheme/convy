@@ -67,12 +67,13 @@ theme.ProductPageSection = (function() {
       singleOptionSelector: '.product-options__selector-' + sectionId,
       addToCart: '#AddToCart-' + sectionId,
       addToCartText: '#AddToCartText-' + sectionId,
-      productPrices: '.product-price',
-      originalPrice: '.product-price__price',
-      comparePrice: '.product-price__old',
-      discountPercent: '.product-price__percent',
-      salePriceWrapper: '.product-price__sale',
+      productPrices: '.product-info .product-price',
+      originalPrice: '.product-info .product-price__price',
+      comparePrice: '.product-info .product-price__old',
+      discountPercent: '.product-info .product-price__percent',
+      salePriceWrapper: '.product-info .product-price__sale',
       SKU: '.variant-sku',
+      qty: '.variant-qty',
       inPageCartButton: '#' + sectionId + ' .product-form__cart',
       stickyCartButton: 'body > .product-form__cart',
       stickyCartButtonText: 'body > .product-form__cart button > span',
@@ -161,15 +162,20 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
         $(this.selectors.addToCart).prop('disabled', true);
         $(this.selectors.addToCartText).text(backend.strings.soldOut);
       }
+
+      // Update left in stock label
+      this.$container.find(this.selectors.qty).html(variant.inventory_quantity);
     } else {
       // The variant doesn't exist
       $(this.selectors.addToCart).prop('disabled', true);
       $(this.selectors.addToCartText).text(backend.strings.unavailable);
       this.$container.find(this.selectors.productPrices).addClass('visibility-hidden');
+      this.$container.find(this.selectors.qty).html('-');
     }
     // Update sticky button
     $(this.selectors.stickyCartButtonText).text($(this.selectors.addToCartText).text());
     $(this.selectors.stickyCartButton).find('button').prop('disabled', $(this.selectors.addToCart).prop('disabled'));
+
   },
 
   _switchImage: function(evt) {

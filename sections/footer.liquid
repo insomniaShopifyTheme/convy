@@ -37,9 +37,9 @@
             {{ block.settings.title }}
           </h4>
           {% if linklists[block.settings.menu].links.size > 0 %}
-            <ul class="footer-col__linklist">
+            <ul class="footer-col__linklist" style="margin-left: {{ block.settings.left_margin }}">
               {% for link in linklists[block.settings.menu].links %}
-                <li class="footer-col__linklist-item">
+                <li class="footer-col__linklist-item text-{{ block.settings.align_items }}">
                   <a href="{{ link.url }}">{{ link.title }}</a>
                 </li>
               {% endfor %}
@@ -140,6 +140,30 @@
               {"value": "left", "label": "Left"},
               {"value": "center", "label": "Centered"},
               {"value": "right", "label": "Right"}
+            ]
+          },
+          {
+            "type": "select",
+            "id": "align_items",
+            "label": "Align items",
+            "default": "left",
+            "options": [
+              {"value": "left", "label": "Left"},
+              {"value": "center", "label": "Centered"},
+              {"value": "right", "label": "Right"}
+            ]
+          },
+          {
+            "type": "select",
+            "id": "left_margin",
+            "label": "Left margin",
+            "default": "0",
+            "options": [
+              {"value": "0", "label": "0"},
+              {"value": "10%", "label": "10%"},
+              {"value": "20%", "label": "20%"},
+              {"value": "30%", "label": "30%"},
+              {"value": "40%", "label": "40%"}
             ]
           },
           {

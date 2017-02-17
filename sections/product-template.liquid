@@ -4,8 +4,6 @@
   <header class="page-header">
     {% if section.settings.breadcrumbs %}
       {% include 'breadcrumb' %}
-    {% else %}
-      <h2 class="page-header__title">{{ product.title }}</h2>
     {% endif %}
   </header>
 
@@ -74,87 +72,108 @@
     </div>
   </div>
 
+  <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+    <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+    <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
 
-        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-          <meta itemprop="priceCurrency" content="{{ shop.currency }}">
-
-          <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
-
-          <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-product_{{ product.id }}{% unless section.settings.show_variant_labels %} product-form--hide-variant-labels{% endunless %}" data-section="product_{{ product.id }}">
-            {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
-              {%- assign options_count_mod = product.options.size | modulo: 2 -%}
-              {% if options_count_mod == 0 %}
-                {%- assign max_options = product.options.size -%}
-              {% else %}
-                {%- assign max_options = product.options.size | minus: 1 -%}
-              {% endif %}
-              {% comment %}
-                Show maximum, but even amount of options
-              {% endcomment %}
-              <div class="product-options grid--full">
-              {% for option in product.options_with_values limit: max_options %}
-                {% capture current %}{% cycle 'first', 'last' %}{% endcapture %}
-                <div class="grid__item one-half">
-                  {% include 'product-option' %}
-                </div>
-              {% endfor %}
-              {% if product.options.size > max_options %}
-                {% for option in product.options_with_values offset: max_options %}
-                  {%- assign current = 'first' -%}
-                  <div class="grid__item one-half">
-                    {% include 'product-option' %}
-                  </div>
-                  <div class="grid__item one-half">
-                    {% include 'product-quantity-selector' %}
-                  </div>
-                {% endfor %}
-              {% else %}
-                <div class="grid__item one-quarter"></div>
-                <div class="grid__item two-quarters text-center">
-                  {%- assign show_label = true -%}
-                  {% include 'product-quantity-selector' %}
-                </div>
-                <div class="grid__item one-quarter"></div>
-              {% endif %}
-            {% endunless %}
-
-            <select name="id" id="ProductSelect-product_{{ product.id }}" data-section="product_{{ product.id }}" class="product-form__variants no-js hide">
-              {% for variant in product.variants %}
-                {% if variant.available %}
-                  <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
-                    {{ variant.title }}
-                  </option>
-                {% else %}
-                  <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
-                {% endif %}
-              {% endfor %}
-            </select>
-
-            {% comment %}
-              Add to cart hidden in mobile version and sticky version used
-              see snippets/add-to-cart-mobile.liquid
-            {% endcomment %}
-            <div class="product-form__cart">
-              <button type="submit" name="add" id="AddToCart-product_{{ product.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit">
-                <span id="AddToCartText-product_{{ product.id }}">
-                  {% if current_variant.available %}
-                    {{ 'products.product.add_to_cart' | t }}
-                  {% else %}
-                    {{ 'products.product.sold_out' | t }}
-                  {% endif %}
-                </span>
-              </button>
+    <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-product_{{ product.id }}" data-section="product_{{ product.id }}">
+      {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+        {%- assign options_count_mod = product.options.size | modulo: 2 -%}
+        {% if options_count_mod == 0 %}
+          {%- assign max_options = product.options.size -%}
+        {% else %}
+          {%- assign max_options = product.options.size | minus: 1 -%}
+        {% endif %}
+        {% comment %}
+          Show maximum, but even amount of options
+        {% endcomment %}
+        <div class="product-options grid--full">
+        {% for option in product.options_with_values limit: max_options %}
+          {% capture current %}{% cycle 'first', 'last' %}{% endcapture %}
+          <div class="grid__item one-half">
+            {% include 'product-option' %}
+          </div>
+        {% endfor %}
+        {% if product.options.size > max_options %}
+          {% for option in product.options_with_values offset: max_options %}
+            {%- assign current = 'first' -%}
+            <div class="grid__item one-half">
+              {% include 'product-option' %}
             </div>
-          </form>
+            <div class="grid__item one-half">
+              {% include 'product-quantity-selector' %}
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="grid__item one-quarter"></div>
+          <div class="grid__item two-quarters text-center">
+            {%- assign show_label = true -%}
+            {% include 'product-quantity-selector' %}
+          </div>
+          <div class="grid__item one-quarter"></div>
+        {% endif %}
         </div>
+      {% endunless %}
+
+      <select name="id" id="ProductSelect-product_{{ product.id }}" data-section="product_{{ product.id }}" class="product-form__variants no-js hide">
+        {% for variant in product.variants %}
+          {% if variant.available %}
+            <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+              {{ variant.title }}
+            </option>
+          {% else %}
+            <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+
+      {% comment %}
+        Add to cart hidden in mobile version and sticky version used
+        see snippets/add-to-cart-mobile.liquid
+      {% endcomment %}
+      <div class="product-form__cart">
+        <button type="submit" name="add" id="AddToCart-product_{{ product.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit">
+          <span id="AddToCartText-product_{{ product.id }}">
+            {% if current_variant.available %}
+              {{ 'products.product.add_to_cart' | t }}
+            {% else %}
+              {{ 'products.product.sold_out' | t }}
+            {% endif %}
+          </span>
+        </button>
+      </div>
+    </form>
+  </div>
 
 
-    <div class="product-upsell" style="width:100%; border: 1px solid grey; height: 200px; padding-top: 50px; margin-top: 10px;">
-      <h3 class="text-center">UPSELL PRODUCTS</h3>
+  {% if section.settings.related_products %}
+  <div class="related-products">
+    {% include 'related-products' %}
+  </div>
+  {% endif %}
+
+  {% if section.settings.display_icons %}
+  <div class="product-icons grid--full">
+    <div class="product-icons__icon grid__item one-quarter">
+      {{ 'prodicon-house-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
+      <p><span class="variant-qty">{{ current_variant.inventory_quantity }}</span> left in stock</p>
     </div>
+    <div class="product-icons__icon grid__item one-quarter">
+      {{ 'prodicon-truck-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
+      <p>Free returns</p>
+    </div>
+    <div class="product-icons__icon grid__item one-quarter">
+      {{ 'prodicon-badge-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
+      <p>24 month warranty</p>
+    </div>
+    <div class="product-icons__icon grid__item one-quarter">
+      {{ 'prodicon-shield-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
+      <p>100% secure checkout</p>
+    </div>
+  </div>
+  {% endif %}
 
-    <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-
+  <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
 
 </div>
 
@@ -176,6 +195,12 @@
         "type": "checkbox",
         "id": "breadcrumbs",
         "label": "Display breadcrumbs",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "display_icons",
+        "label": "Display icons",
         "default": true
       },
       {
@@ -205,6 +230,40 @@
         "id": "display_sku",
         "label": "Display SKU",
         "default": false
+      },
+      {
+        "type": "header",
+        "content": "Related products"
+      },
+      {
+        "type": "checkbox",
+        "id": "related_products",
+        "label": "Display related products",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "related_products_slider",
+        "label": "Enable slider",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "related_products_title",
+        "label": "Widget title",
+        "default": "Related products"
+      },
+      {
+         "type": "select",
+         "id": "related_products_count",
+         "label": "Number of products",
+         "options": [
+            {"value": "2", "label": "2"},
+            {"value": "4", "label": "4"},
+            {"value": "6", "label": "6"},
+            {"value": "8", "label": "8"}
+          ],
+         "default": "2"
       }
     ]
   }

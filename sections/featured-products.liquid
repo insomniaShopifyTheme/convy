@@ -8,6 +8,9 @@
       {% for block in section.blocks limit: section.blocks.size %}
         <div class="product-list__item slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
           {%- assign product = all_products[block.settings.product] -%}
+          {%- assign btn_action = block.settings.btn_action -%}
+          {%- assign btn_text = block.settings.btn_text -%}
+          {%- assign fade_out_title = section.settings.fade_out_title -%}
           {% include 'product-card' %}
         </div>
       {% else %}

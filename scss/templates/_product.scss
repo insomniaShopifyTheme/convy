@@ -1,5 +1,12 @@
 /*================ Product Template ================*/
 
+@mixin product-template-subsection-title() {
+  font-size: 1.5rem;
+  margin: 0 0 ($gutter / 2) 0;
+  text-transform: uppercase;
+  text-align: center;
+}
+
 .product-template {
   .product-images {
     ul {
@@ -58,32 +65,32 @@
       }
     }
   }
-  .product-price {
-    font-family: $font-stack-heading;
-    float: right;
-    padding-left: 10px;
-    text-align: right;
-    .product-price__price {
-      color: $color-special;
-      font-size: 1.8rem;
-      line-height: 2rem;
-      font-weight: bold;
-    }
-    .product-price__percent {
-      color: $color-discount;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-    .product-price__old {
-      font-size: 1.1rem;
-      color: $color-meta-text;
-    }
-  }
 
   .product-info {
     .product-info__title {
       font-size: 1.2rem;
       line-height: 1.7rem;
+    }
+    .product-price {
+      font-family: $font-stack-heading;
+      float: right;
+      padding-left: 10px;
+      text-align: right;
+      .product-price__price {
+        color: $color-special;
+        font-size: 1.8rem;
+        line-height: 2rem;
+        font-weight: bold;
+      }
+      .product-price__percent {
+        color: $color-discount;
+        font-size: 1.1rem;
+        font-weight: bold;
+      }
+      .product-price__old {
+        font-size: 1.1rem;
+        color: $color-meta-text;
+      }
     }
     .spr-badge {
       font-size: 1rem;
@@ -91,6 +98,10 @@
     .product-info__description {
       margin-top: 10px;
     }
+  }
+
+  .product-form {
+    margin-bottom: $gutter;
   }
 
   .product-form__variants {
@@ -125,6 +136,26 @@
     }
     .js-qty__num {
       @include konversion-input();
+    }
+  }
+
+  .related-products {
+    margin-bottom: $gutter;
+    .product-list__item {
+      margin-bottom: $gutter / 2;
+    }
+  }
+  .related-products__title, .spr-header-title {
+    @include product-template-subsection-title();
+  }
+
+  .product-icons {
+    .product-icons__icon {
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .variant-qty {
+      color: $error-red;
     }
   }
 }

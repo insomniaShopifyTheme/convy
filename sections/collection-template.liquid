@@ -22,6 +22,9 @@
 
     <div class="page-width">
       <div class="product-list grid">
+        {%- assign btn_action = section.settings.btn_action -%}
+        {%- assign btn_text = section.settings.btn_text -%}
+        {%- assign fade_out_title = section.settings.fade_out_title -%}
         {% for product in collection.products %}
           <div class="grid__item one-half">
             <div class="product-list__item">

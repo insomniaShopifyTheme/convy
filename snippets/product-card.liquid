@@ -1,17 +1,3 @@
-{% if block != blank %}
-  {%- assign btn_action = block.settings.btn_action -%}
-  {%- assign btn_text = block.settings.btn_text -%}
-  {%- assign fade_out_title = section.settings.fade_out_title -%}
-{% elsif section != blank %}
-  {%- assign btn_action = section.settings.btn_action -%}
-  {%- assign btn_text = section.settings.btn_text -%}
-  {%- assign fade_out_title = section.settings.fade_out_title -%}
-{% else %}
-  {%- assign btn_action = 'add_to_cart' -%}
-  {%- assign btn_text = 'Add to cart' -%}
-  {%- assign fade_out_title = false -%}
-{% endif %}
-
 <div class="product-card">
   {% if product.compare_at_price > product.price %}
     {%- assign discount_percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
