@@ -5,9 +5,13 @@ $cart-secondary-color: $color-pale;
 
 .cart-template {
 }
+.cart-widget {
+  margin-left: $drawer-padding * -1;
+  margin-right: $drawer-padding * -1;
+}
 .cart-table {
   tr {
-    border: 1px solid $color-border;
+    border-bottom: 1px solid $color-border;
     th, td {
       border: none;
       padding: 0;
@@ -37,11 +41,11 @@ $cart-secondary-color: $color-pale;
         padding-top: 5px;
       }
     }
-    .js-qty {
+    .js-qty, .ajaxcart__qty {
       border: 1px solid #efefef;
       text-align: center;
       width: 115px;
-      .js-qty__num {
+      .js-qty__num, .ajaxcart__qty-num {
         border: 1px solid #efefef;
         border-top: none;
         border-bottom: none;

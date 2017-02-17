@@ -90,15 +90,18 @@
     {{ content_for_layout }}
   </main>
 
-  {% if settings.show_multiple_currencies %}
-    {% include 'currency-picker' %}
-  {% endif %}
+  {% unless template == 'cart' %}
+
+    {% if settings.show_multiple_currencies %}
+      {% include 'currency-picker' %}
+    {% endif %}
+
+    {% section 'footer' %}
+  {% endunless %}
 
   {% if template contains 'product' %}
     {% include 'add-to-cart-mobile' %}
   {% endif %}
-
-  {% section 'footer' %}
 
   {{ 'vendor.js' | asset_url | script_tag }}
   {{ 'theme.js' | asset_url | script_tag }}
@@ -120,7 +123,7 @@
       - http://shopify.com/timber#ajax-cart
   {% endcomment %}
   {{ 'handlebars.min.js' | asset_url | script_tag }}
-  {% include 'ajax-cart-template' %}
+  {% include 'cart-widget' %}
   {{ 'ajax-cart.js' | asset_url | script_tag }}
   <script>
     jQuery(function($) {

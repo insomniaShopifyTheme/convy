@@ -22,6 +22,17 @@
     ]
   },
   {
+    "name": "Ajax cart widget",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Enable checkout note",
+        "default": false
+      }
+    ]
+  },
+  {
     "name": "Mobile version",
     "settings": [
       {
