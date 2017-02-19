@@ -20,6 +20,7 @@ gulp.task('scripts', function() {
       './scripts/theme/currency.js',
       './scripts/theme/sections.js',
       './scripts/theme/variants.js',
+      './scripts/customers.js',
       './scripts/drawers.js',
       './scripts/mobile-nav.js',
       './scripts/slideshow-section.js',

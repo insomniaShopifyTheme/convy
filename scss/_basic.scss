@@ -25,6 +25,14 @@ body {
   }
 }
 
+.standard-page {
+  padding: $gutter;
+  .standard-page__title {
+    text-align: center;
+    padding-bottom: ($gutter / 3);
+  }
+}
+
 .main-content {
   display: block;
 }

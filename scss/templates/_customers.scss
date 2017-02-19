@@ -1,0 +1,15 @@
+/*============================================================================
+  # Customer templates
+==============================================================================*/
+
+.account-template {
+  .account-section {
+    border-top: 1px dotted $color-border;
+    padding-top: $gutter / 2;
+    margin-bottom: $gutter;
+    .account-section__title {
+      @extend .h4;
+      margin-bottom: $gutter / 2;
+    }
+  }
+}

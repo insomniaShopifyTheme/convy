@@ -1,6 +1,9 @@
-.content-page {
+.standard-page {
   padding: $gutter;
-  .content-page__title {
+  .standard-page__title {
+    @extend .h2;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
     text-align: center;
     padding-bottom: ($gutter / 3);
   }

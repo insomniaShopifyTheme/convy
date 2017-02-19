@@ -3,6 +3,7 @@ theme.init = function () {
   theme.cacheSelectors();
   theme.drawersInit();
   theme.mobileNavInit();
+  theme.loginForms();
 };
 
 $(theme.init);
