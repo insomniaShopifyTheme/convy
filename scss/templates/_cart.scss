@@ -81,7 +81,10 @@ $cart-secondary-color: $color-pale;
   }
   .cart-summary__notice {
     color: $cart-secondary-color;
-    text-align: right;
+    text-align: center;
+    @include at-query($max, $xsmall) {
+      font-size: 14px;
+    }
   }
   .cart-summary__subtotal-title {
     @extend .h5;
