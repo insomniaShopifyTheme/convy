@@ -29,7 +29,12 @@
         {% if block.settings.image != blank %}
           {{ block.settings.image | img_url: '160x160' | img_tag: 'Icon Image', 'icon-list__image' }}
         {% elsif block.settings.icon != blank %}
-          {{ block.settings.icon | asset_url | img_tag: 'Icon Image', 'icon-list__image' }}
+          {% if section.settings.inverted %}
+            {%- assign icon_file = block.settings.icon -%}
+          {% else %}
+            {%- assign icon_file = block.settings.icon | replace: '.png', '-dark.png' -%}
+          {% endif %}
+          {{ icon_file | asset_url | img_tag: 'Icon Image', 'icon-list__image' }}
         {% endif %}
         {% if block.settings.text != blank %}
           <p class="icon-list__text">{{ block.settings.text | escape }}</p>
