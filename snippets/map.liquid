@@ -1,0 +1,26 @@
+{% if section.settings.map_display == 'desktop' %}
+  {%- assign visibility_classes = " small--hide" -%}
+{% else %}
+  {%- assign visibility_classes = "" -%}
+{% endif %}
+<div class="map{{ visibility_classes }}">
+  {% if section.settings.map_title != blank %}
+    <h2 class="map__title">{{ section.settings.map_title }}</h2>
+  {% endif %}
+  {% if section.settings.map_description != blank %}
+    {{ section.settings.map_description }}
+  {% endif %}
+  {% if section.settings.map_custom == blank %}
+    {% case section.settings.map_mode %}
+      {% when 'view' %}
+        {%- assign query_param = 'center' -%}
+        {%- assign query_value = section.settings.map_query | replace: ',', '%2C' | replace: ' ', '' -%}
+      {% else %}
+        {%- assign query_param = 'q' -%}
+        {%- assign query_value = section.settings.map_query | replace: ' ', '+' -%}
+    {% endcase %}
+    <iframe width="{{ section.settings.map_width }}" height="{{ section.settings.map_height }}" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/{{ section.settings.map_mode }}?zoom={{ section.settings.map_zoom }}&key={{ section.settings.map_api_key }}&{{ query_param }}={{ query_value }}{% if section.settings.map_satelite %}&maptype=satellite{% endif %}" allowfullscreen ></iframe>
+  {% else %}
+    {{ section.settings.map_custom }}
+  {% endif %}
+</div>
