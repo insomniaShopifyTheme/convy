@@ -23,7 +23,9 @@
           <p>
             <input type="submit" value="{{ 'customer.register.submit' | t }}" class="btn btn--special btn--full">
           </p>
-          <a href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a>
+
+          <p>{{ 'layout.customer.have_account' | t | customer_login_link }}</p>
+          <p><a href="{{ shop.url }}">{{ 'customer.register.cancel' | t }}</a></p>
 
         {% endform %}
       </div>
