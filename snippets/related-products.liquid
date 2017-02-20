@@ -23,7 +23,7 @@
         {% unless current_product_found == false and forloop.last %}
           <div class="grid__item one-half">
             {%- assign btn_action = 'add_to_cart' -%}
-            {%- assign btn_text = "Add to cart" -%}
+            {%- assign btn_text = 'products.product.add_to_cart' | t -%}
             {%- assign fade_out_title = true -%}
             <div class="product-list__item">
               {% include 'product-card' %}

@@ -3,8 +3,7 @@
 .product-list {
 
   .product-list__item {
-    margin: 0 $gutter / 3;
-    border: 2px solid $color-border;
+    margin: 0 $gutter / 4;
     border-radius: $radius;
 
     img {
@@ -26,6 +25,8 @@
   position: relative;
   text-align: center;
 
+  .product-card__title {
+  }
   // http://www.anushka.eu/blog/fade-out-the-end-of-a-text-line-with-css/
   .product-card__title--shortable {
     position: relative;
@@ -60,6 +61,8 @@
 
   .product-card__button, .product-card__button  span {
     text-transform: uppercase;
+    padding-left: 5px;
+    padding-right: 5px;
   }
 
 }

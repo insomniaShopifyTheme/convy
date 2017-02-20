@@ -11,7 +11,7 @@
       {% endif %}
     </header>
 
-    <div class="collection-controls grid grid--full">
+    <div class="collection-controls grid--full">
       <div class="grid__item one-half">
         {% include 'collection-filters' %}
       </div>
@@ -20,28 +20,25 @@
       </div>
     </div>
 
-    <div class="page-width">
-      <div class="product-list grid">
-        {%- assign btn_action = section.settings.btn_action -%}
-        {%- assign btn_text = section.settings.btn_text -%}
-        {%- assign fade_out_title = section.settings.fade_out_title -%}
-        {% for product in collection.products %}
-          <div class="grid__item one-half">
-            <div class="product-list__item">
-              {% include 'product-card' %}
-            </div>
+    <div class="grid--full grid--uniform product-list">
+      {%- assign btn_action = section.settings.product_btn_action -%}
+      {%- assign btn_text = section.settings.product_btn_text -%}
+      {%- assign fade_out_title = section.settings.fade_out_title -%}
+      {% for product in collection.products %}
+        <div class="grid__item one-half">
+          <div class="product-list__item">
+            {% include 'product-card' %}
           </div>
-        {% endfor %}
-      </div>
-
-      {% if paginate.pages > 1 %}
-        <hr>
-        <div class="pagination">
-          {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
         </div>
-      {% endif %}
-
+      {% endfor %}
     </div>
+
+    {% if paginate.pages > 1 %}
+      <hr>
+      <div class="pagination">
+        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+      </div>
+    {% endif %}
 
   </div>
 
@@ -56,6 +53,39 @@
         "id": "breadcrumbs",
         "label": "Display breadcrumbs",
         "default": true
+      },
+      {
+        "type": "select",
+        "id": "product_btn_action",
+        "label": "Product button action",
+        "options": [
+          {
+            "value": "none",
+            "label": "None (hide button)"
+          },
+          {
+            "value": "add_to_cart",
+            "label": "Add to cart"
+          },
+          {
+            "value": "product_page",
+            "label": "Product page"
+          }
+        ],
+        "default": "add_to_cart"
+      },
+      {
+        "type": "text",
+        "id": "product_btn_text",
+        "label": "Product button text",
+        "default": "Add to Cart"
+      },
+      {
+        "type": "checkbox",
+        "id": "fade_out_title",
+        "label": "Hide long product title",
+        "info": "Use fade out effect for text that doesn't fit so product cards have equal height",
+        "default": false
       }
     ]
   }

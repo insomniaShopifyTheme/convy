@@ -14,7 +14,11 @@
     }
   }
   .product-list {
+    &.grid--uniform {
+      margin-left: -5px;
+    }
     &>.grid__item {
+      padding-left: 5px;
       margin-bottom: ($gutter / 4);
     }
     .product-list__item {
