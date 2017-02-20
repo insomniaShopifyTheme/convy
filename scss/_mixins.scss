@@ -98,7 +98,7 @@
   }
 }
 
-@mixin overlay($z-index: null) {
+@mixin overlay($z-index: null, $color: $color-image-overlay, $opacity: $opacity-image-overlay) {
   &::before {
     content: '';
     position: absolute;
@@ -106,8 +106,8 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: $color-image-overlay;
-    opacity: $opacity-image-overlay;
+    background-color: $color;
+    opacity: $opacity;
 
     @if ($z-index) {
       z-index: $z-index;

@@ -7,6 +7,23 @@
   text-align: center;
 }
 
+@mixin zoom-icon() {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  background: #f6f6f6;
+  border: 1px solid #a1a1a1;
+  border-radius: 3px;
+  content: "\e903";
+  color: #a1a1a1;
+  font-family: $social-icon-font-stack;
+  font-size: 20px;
+  height: 35px;
+  opacity: 0.6;
+  text-align: center;
+  width: 35px;
+}
+
 @include at-query ($max, $small) {
   body.template-product {
     // prevent sticky button to block the bottom of the page
@@ -41,7 +58,7 @@
         &:not(.slick-current) {
           .thumb-overlay {
             position: relative;
-            @include overlay(5);
+            @include overlay(6, $color-image-overlay, 0.1);
           }
         }
       }
@@ -54,21 +71,13 @@
       // Zoom icon
       .slick-slide {
         &::before {
-          position: absolute;
-          right: 5px;
-          top: 5px;
-          background: #e1e1e1;
-          border: 1px solid #a1a1a1;
-          border-radius: 3px;
-          content: "\e903";
-          color: #a1a1a1;
-          font-family: $social-icon-font-stack;
-          font-size: 20px;
-          height: 35px;
-          opacity: 0.6;
-          text-align: center;
-          width: 35px;
+          @include zoom-icon();
         }
+      }
+    }
+    &.product-images--single .product-images__image {
+      &::before {
+        @include zoom-icon();
       }
     }
   }
