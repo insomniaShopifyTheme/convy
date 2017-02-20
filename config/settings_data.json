@@ -445,7 +445,7 @@
               "title": "CONTACT US",
               "text": "<p><\/p>\r\n<p><\/p>\r\n<p>contact@konversion.com<\/p>\r\n<p>Phone: +1 (072) 233-5698<\/p>\r\n<p>Monday-Friday: 08 AM - 21 PM<\/p>\r\n<p>Saturday: 11 AM-16 PM<\/p>\r\n<p>Sunday: Closed<\/p>",
               "button_label": "CONTACT US",
-              "button_link": "mailto:contact@konversion.com",
+              "button_link": "shopify:\/\/pages\/contact-us",
               "align_text": "center",
               "display": "all"
             }
@@ -456,7 +456,7 @@
               "page": "footer-notes",
               "words_limit": "13",
               "button_label": "READ MORE",
-              "align_text": "left",
+              "align_text": "center",
               "display": "desktop"
             }
           },
@@ -486,6 +486,30 @@
         "settings": {
           "breadcrumbs": true
         }
+      },
+      "contact-page-template": {
+        "type": "contact-page-template",
+        "settings": {
+          "form_title": "Send a message",
+          "form_description": "<p>Please specify your contact details.<\/p>",
+          "map_enable": true,
+          "map_api_key": "AIzaSyDp0dYC81HzwbTiTBSh2gzdGRO9jRpeseY",
+          "map_mode": "search",
+          "map_query": "coffee shops near Montreal, QC, Canada",
+          "map_zoom": "12",
+          "map_satelite": false,
+          "map_title": "Montreal",
+          "map_description": "<p>10&nbsp;pickup points in Montr&eacute;al, and 5 more points across Quebec.<\/p>",
+          "map_position": "middle",
+          "map_display": "all",
+          "map_width": "600",
+          "map_height": "450",
+          "map_custom": ""
+        }
+      },
+      "page-template": {
+        "type": "page-template",
+        "settings": {}
       }
     },
     "content_for_index": [

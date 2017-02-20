@@ -2,7 +2,9 @@
   <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
 {% endif %}
 
-{% include 'newsletter-form' %}
+<div class="text-center">
+  {% include 'newsletter-form' %}
+</div>
 
 {% schema %}
   {

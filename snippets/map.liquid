@@ -19,7 +19,9 @@
         {%- assign query_param = 'q' -%}
         {%- assign query_value = section.settings.map_query | replace: ' ', '+' -%}
     {% endcase %}
-    <iframe width="{{ section.settings.map_width }}" height="{{ section.settings.map_height }}" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/{{ section.settings.map_mode }}?zoom={{ section.settings.map_zoom }}&key={{ section.settings.map_api_key }}&{{ query_param }}={{ query_value }}{% if section.settings.map_satelite %}&maptype=satellite{% endif %}" allowfullscreen ></iframe>
+    <div class="map__wrapper">
+      <iframe width="{{ section.settings.map_width }}" height="{{ section.settings.map_height }}" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/{{ section.settings.map_mode }}?zoom={{ section.settings.map_zoom }}&key={{ section.settings.map_api_key }}&{{ query_param }}={{ query_value }}{% if section.settings.map_satelite %}&maptype=satellite{% endif %}" allowfullscreen ></iframe>
+    </div>
   {% else %}
     {{ section.settings.map_custom }}
   {% endif %}

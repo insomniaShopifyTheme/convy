@@ -40,9 +40,11 @@
       {% else %}
         <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Email" class="newsletter-form__input" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
         <input type="hidden" name="contact[tags]" value="newsletter">
-        <div class="newsletter-form__btn">
-          <input type="submit" class="btn btn--secondary" name="subscribe" id="subscribe" value="{{ button_text | escape }}">
-        </div>
+        {% if button_text != blank %}
+          <div class="newsletter-form__btn">
+            <input type="submit" class="btn btn--secondary" name="subscribe" id="subscribe" value="{{ button_text | escape }}">
+          </div>
+        {% endif %}
       {% endif %}
     {% endform %}
   {% endif %}

@@ -4,6 +4,7 @@ theme.init = function () {
   theme.drawersInit();
   theme.mobileNavInit();
   theme.loginForms();
+  theme.setupMap();
 };
 
 $(theme.init);

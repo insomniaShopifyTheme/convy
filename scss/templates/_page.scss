@@ -17,6 +17,9 @@
   }
   .map {
     margin-bottom: $gutter;
+    iframe{
+      pointer-events: none;
+    }
   }
   .map__title {
     @extend .standard-page__title;

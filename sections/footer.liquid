@@ -1,3 +1,33 @@
+<style>
+  .section-footer {
+    background-color: {{ section.settings.color_bg }};
+  }
+  .section-footer .footer-col__title {
+    color: {{ section.settings.color_headings }};
+  }
+  .section-footer .footer-col__content,
+  .section-footer .newsletter-form {
+    color: {{ section.settings.color_text }};
+  }
+  .section-footer .footer-col__content a:not(.btn) {
+    color: {{ section.settings.color_links }};
+  }
+  .section-footer .footer-col__linklist-item a {
+    color: {{ section.settings.color_menu_items }};
+  }
+  .section-footer .btn {
+    background-color: {{ section.settings.color_button_bg }};
+    border-color: {{ section.settings.color_button_border }};
+    color: {{ section.settings.color_button_text }};
+  }
+  .section-footer .sub-footer {
+    background-color: {{ section.settings.color_social_bg }};
+  }
+  .section-footer .social-icons li a {
+    color: {{ section.settings.color_social_icons }};
+  }
+</style>
+
 {%- assign desktop_cols = 0 -%}
 {% for block in section.blocks %}
   {% if block.settings.display != 'mobile' and block.settings.display != 'hidden' %}
@@ -54,11 +84,13 @@
             <div class="footer-col__content">
               {% if block.settings.words_limit != blank and block.settings.words_limit != 'disable' %}
                 {{ page.content | truncatewords: block.settings.words_limit }}
-                <div class="text-center">
-                  <a href="{{ page.url }}" class="btn">
-                    {{ block.settings.button_label }}
-                  </a>
-                </div>
+                {% if block.settings.button_label != blank %}
+                  <div class="text-center">
+                    <a href="{{ page.url }}" class="btn">
+                      {{ block.settings.button_label }}
+                    </a>
+                  </div>
+                {% endif %}
               {% else %}
                 {{ page.content }}
               {% endif %}
@@ -88,7 +120,9 @@
           {% if block.settings.title != blank %}
             <h4 class="footer-col__title text-{{ block.settings.align_text }}">{{ block.settings.title | escape }}</h4>
           {% endif %}
-          {% include 'newsletter-form' %}
+          <div class="text-{{ block.settings.align_text }}">
+            {% include 'newsletter-form' %}
+          </div>
       {% endcase %}
     </div>
   {% endfor %}
@@ -112,6 +146,70 @@
         "label": "Social links section",
         "default": true,
         "info": "Configure your social accounts at General Settings > Social media"
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Background color",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_headings",
+        "label": "Headings",
+        "default": "#393939"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#393939"
+      },
+      {
+        "type": "color",
+        "id": "color_links",
+        "label": "Links",
+        "default": "#393939"
+      },
+      {
+        "type": "color",
+        "id": "color_menu_items",
+        "label": "Menu items",
+        "default": "#393939"
+      },
+      {
+        "type": "color",
+        "id": "color_button_bg",
+        "label": "Button background",
+        "default": "transparent"
+      },
+      {
+        "type": "color",
+        "id": "color_button_border",
+        "label": "Button border",
+        "default": "#393939"
+      },
+      {
+        "type": "color",
+        "id": "color_button_text",
+        "label": "Button text",
+        "default": "#393939"
+      },
+      {
+        "type": "color",
+        "id": "color_social_bg",
+        "label": "Social background color",
+        "default": "#0d0d0d"
+      },
+      {
+        "type": "color",
+        "id": "color_social_icons",
+        "label": "Social icons color",
+        "default": "#ffffff"
       }
     ],
     "blocks": [
