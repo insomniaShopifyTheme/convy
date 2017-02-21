@@ -1,8 +1,14 @@
 /*================ Featured Products Section ================*/
 
 .section-featured-products {
-  // same page margin as space between items (mobile)
-  margin: 0 $gutter / 3 $gutter;
+  .product-list {
+    .slick-list {
+      margin-left: -5px;
+    }
+  }
+  .product-list__item {
+    margin-left: 5px;
+  }
   @include at-query($min, $medium) {
     padding: 0 $gutter $gutter;
   }

@@ -142,6 +142,9 @@ html input[disabled] {
   -webkit-appearance: none;
   -moz-appearance: none;
   border-radius: $radius;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
 
   /*================ Set primary button colors - can override later ================*/
   background-color: $color-btn-primary;

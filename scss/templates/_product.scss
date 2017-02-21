@@ -157,8 +157,12 @@
 
   .related-products {
     margin-bottom: $gutter;
-    .product-list__item {
-      margin-bottom: $gutter / 2;
+    .grid--full {
+      margin-left: -5px;
+      &>.grid__item {
+        padding-left: 5px;
+        margin-bottom: ($gutter / 4);
+      }
     }
   }
   .related-products__title, .spr-header-title {
