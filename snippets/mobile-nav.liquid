@@ -1,4 +1,13 @@
 <div id="NavDrawer" class="drawer drawer--left">
+  <div class="drawer__header">
+    <div class="drawer__title h3">{{ 'layout.drawers.browse' | t }}</div>
+    <div class="drawer__close js-drawer-close">
+      <button type="button" class="icon-fallback-text">
+        <span class="icon icon-x" aria-hidden="true"></span>
+        <span class="fallback-text">{{ 'layout.drawers.close_menu' | t }}</span>
+      </button>
+    </div>
+  </div>
   <form action="/search" method="get" class="drawer__search" role="search">
     <div class="drawer__search-icon">
       <span class="icon icon-search"></span>
@@ -8,11 +17,6 @@
   <!-- begin mobile-nav -->
   <div id="MobileMenu">
     <ul class="mobile-nav">
-      {% comment %}
-      <li class="mobile-nav__search">
-        {% include 'search-bar' %}
-      </li>
-      {% endcomment %}
       {% for link in linklists.main-menu.links %}
         {% assign child_list_handle = link.title | handleize %}
         {% if linklists[child_list_handle].links != blank %}
@@ -75,4 +79,10 @@
     </ul>
   </div>
   <!-- //mobile-nav -->
+  <div class="drawer-footer">
+    {% if settings.show_multiple_currencies %}
+      {% include 'currency-picker' %}
+    {% endif %}
+    {% include 'social-icons-list' %}
+  </div>
 </div>

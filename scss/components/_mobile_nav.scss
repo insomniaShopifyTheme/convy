@@ -2,9 +2,12 @@
 
 $mm-menu-base-margin: 20px;
 $search-field-height: 55px;
+$drawer-header-height: 70px;
+$drawer-footer-height: 40px;
 
 .drawer {
   .drawer__search {
+    position: relative;
     height: $search-field-height;
     margin: 0 ($drawer-padding * -1) 0;
     .drawer__search-input {
@@ -21,13 +24,25 @@ $search-field-height: 55px;
       z-index: $z-index-drawer + 1;
     }
   }
+  .social-icons {
+    margin: 0;
+    padding-top: 7px;
+  }
+  .currency-picker__wrapper {
+    float: right;
+    .currency-picker {
+      border: none;
+      color: $color-text-alt;
+    }
+  }
 }
 
 .mm-menu {
   background: $color-drawers;
   border-color: $color-drawer-border;
   color: $color-drawer-text;
-  margin-top: $search-field-height;
+  margin-top: $search-field-height + $drawer-header-height;
+  margin-bottom: $drawer-footer-height;
 
   .mm-panels{
     &>.mm-panel {

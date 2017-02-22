@@ -11,7 +11,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  top: $header-height-mobile;
+  top: 0;
   bottom: 0;
   padding: 0 $drawer-padding $drawer-padding;
   max-width: 100%;
@@ -90,6 +90,19 @@
   width: 100%;
   margin-bottom: $gutter / 2;
   border-bottom: 1px solid $color-drawer-border;
+  .drawer--left & {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+}
+
+.drawer-footer {
+  background-color: $color-bg-alt;
+  bottom: 0;
+  margin-left: $drawer-padding * -1;
+  position: absolute;
+  text-align: center;
+  width: 100%;
 }
 
 .drawer__title,

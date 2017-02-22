@@ -91,10 +91,6 @@
     {{ content_for_layout }}
   </main>
 
-  {% if settings.show_multiple_currencies %}
-    {% include 'currency-picker' %}
-  {% endif %}
-
   {% section 'footer' %}
 
   {% if template contains 'product' %}
