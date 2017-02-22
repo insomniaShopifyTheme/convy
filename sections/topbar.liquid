@@ -1,0 +1,129 @@
+<style>
+  .section-topbar {
+    background-color: {{ section.settings.color_bg }};
+  }
+  .section-topbar__message {
+    color: {{ section.settings.color_text }};
+  }
+  .btn.section-topbar__button {
+    color: {{ section.settings.color_button_text }};
+    background-color: {{ section.settings.color_button_bg }};
+    border-color: {{ section.settings.color_button_border }};
+  }
+</style>
+{% if section.settings.message_text != blank or section.settings.message_link_text != blank %}
+  {%- assign has_announcement = true -%}
+{% endif %}
+{% case section.settings.display %}
+  {% when "mobile" %}
+    {%- assign visibility_classes = " hide small--show" -%}
+    {% unless has_announcement %}
+      {%- assign visibility_classes = " small--hide" -%}
+    {% endunless %}
+  {% when "desktop" %}
+    {%- assign visibility_classes = " small--hide" -%}
+  {% else %}
+    {%- assign visibility_classes = "" -%}
+    {% unless has_announcement %}
+      {%- assign visibility_classes = " small--hide" -%}
+    {% endunless %}
+{% endcase %}
+<div class="section-topbar{{ visibility_classes }}">
+  <div class="grid--full">
+    <div class="grid__item one-whole">
+    {% if section.settings.message_text != blank or section.settings.message_link_text != blank %}
+      <div class="section-topbar__message{{ visibility_classes }}">
+        {{ section.settings.message_text | escape }}
+        {% if section.settings.message_link != blank and section.settings.message_link_text != blank %}
+          <a href="{{ section.settings.message_link }}" class="btn btn--secondary section-topbar__button">
+            {{ section.settings.message_link_text }}
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+    </div>
+    {% comment %}
+    <!-- <div class="section-topbar__controls grid__item three-tenths push--three-tenths">
+      {% if settings.show_multiple_currencies %}
+        {% include 'currency-picker' %}
+      {% endif %}
+      {% if section.settings.social_icons %}
+        {% include 'social_icons_list' %}
+      {% endif %}
+    </div> -->
+    {% endcomment %}
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Topbar",
+    "settings": [
+      {
+        "type": "select",
+        "id": "display",
+        "label": "Display",
+        "default": "all",
+        "options": [
+          {"value": "all", "label": "Desktop & Mobile"},
+          {"value": "mobile", "label": "Mobile only"},
+          {"value": "desktop", "label": "Desktop only"}
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Announcement"
+      },
+      {
+        "type": "text",
+        "id": "message_text",
+        "label": "Message text"
+      },
+      {
+        "type": "text",
+        "id": "message_link_text",
+        "label": "Call to action button text",
+        "info": "Optional"
+      },
+      {
+        "type": "url",
+        "id": "message_link",
+        "label": "Call to action link"
+      },
+      {
+        "type": "header",
+        "content": "Colors"
+      },
+      {
+        "type": "color",
+        "id": "color_bg",
+        "label": "Background color",
+        "default": "#191919"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Announcement text color",
+        "default": "#a5a5a5"
+      },
+      {
+        "type": "color",
+        "id": "color_button_bg",
+        "label": "Announcement button background",
+        "default": "transparent"
+      },
+      {
+        "type": "color",
+        "id": "color_button_border",
+        "label": "Announcement button border",
+        "default": "#a5a5a5"
+      },
+      {
+        "type": "color",
+        "id": "color_button_text",
+        "label": "Announcement button text",
+        "default": "#ffffff"
+      }
+    ]
+  }
+{% endschema %}

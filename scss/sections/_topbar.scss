@@ -1,0 +1,75 @@
+/*================ Topbar Section ================*/
+
+.section-topbar {
+  background-color: #191919;
+  height: rem(40px);
+
+  .section-topbar__message {
+    color: $color-text-alt;
+    font-size: 0.70rem;
+    line-height: 1.5rem;
+    text-align: center;
+    padding: 0.3rem 0;
+  }
+
+  .section-topbar__button {
+    font-size: 0.65rem;
+    padding: 3px 5px;
+    margin-left: 3px;
+  }
+
+  .section-topbar__controls {
+    text-align: right;
+  }
+
+  .social-icons {
+    margin: 0 $gutter 0 0;
+    float: right;
+    li {
+      .icon {
+        line-height: em(32px);
+      }
+    }
+  }
+
+  .currency-picker__wrapper {
+    color: $color-text-alt;
+    display: block;
+    float: right;
+
+    // Change Arrow
+    position: relative;
+    &:after {
+      content: "\25B4";
+      font: 2em "Consolas", monospace;
+      color: #fff;
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      transform: rotate(180deg);
+      right: 6px;
+      /*Adjust for position however you want*/
+      top: -2px;
+      padding: 0 0 2px;
+      /*left line */
+      position: absolute;
+      pointer-events: none;
+    }
+  }
+
+  .currency-picker {
+    color: $color-text-alt;
+    font-size: 1.5em;
+    padding: 0 1em 0 0;
+    border: none;
+    margin: 0 0 0 $gutter;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  @include grid-media-query('large-down') {
+    display: none;
+  }
+
+}
