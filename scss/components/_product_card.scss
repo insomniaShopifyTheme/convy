@@ -58,6 +58,13 @@
     overflow: hidden;
   }
 
+  .product-form {
+    .product-form__variants {
+      border-radius: 0;
+      width: 100%;
+    }
+  }
+
   .product-card__button, .product-card__button  span {
     text-transform: uppercase;
     padding-left: 5px;

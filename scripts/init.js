@@ -5,6 +5,7 @@ theme.init = function () {
   theme.mobileNavInit();
   theme.loginForms();
   theme.setupMap();
+  theme.productCardInit();
 };
 
 $(theme.init);

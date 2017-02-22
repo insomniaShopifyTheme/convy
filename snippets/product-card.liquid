@@ -1,8 +1,13 @@
-<div class="product-card">
+{% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+  {%- assign has_variants = true -%}
+{% else %}
+  {%- assign has_variants = false -%}
+{% endunless %}
+<div class="product-card" data-product-id="{{ product.id }}">
   {% if product.compare_at_price > product.price %}
     {%- assign discount_percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
     <div class="ribbon">
-      <div class="ribbon--red">
+      <div class="ribbon--red product-discount">
         – {{ discount_percent }}%
       </div>
     </div>
@@ -21,18 +26,45 @@
   </div>
   {% if btn_action == 'add_to_cart' %}
     {%- assign current_variant = product.selected_or_first_available_variant -%}
-    <div class="product-form__item product-form__item--submit">
-      <button type="submit" name="add" id="AddToCart-{{ section.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-card__button product-form__cart-submit">
-        <span id="AddToCartText-{{ section.id }}">
-          {% unless current_variant.available %}
-            {{ 'products.product.sold_out' | t }}
+    <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-product_{{ product.id }}" data-section="product_{{ product.id }}" data-variants="{% if has_variants %}true{% else %}false{% endif %}">
+      <select name="id" id="ProductSelect-product_{{ product.id }}" data-section="product_{{ product.id }}" class="product-form__variants hide">
+        {% for variant in product.variants %}
+          {% if variant.available %}
+            <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+              {{ variant.title }}
+            </option>
           {% else %}
-            {{ btn_text }}
-          {% endunless %}
-        </span>
-      </button>
-    </div>
+            <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+      <div class="product-form__item product-form__item--submit">
+        <button type="submit" name="add" id="AddToCart-{{ section.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-card__button product-form__cart-submit">
+          <span id="AddToCartText-{{ section.id }}">
+            {% if current_variant.available %}
+              {{ btn_text }}
+            {% else %}
+              {{ 'products.product.sold_out' | t }}
+            {% endif %}
+          </span>
+        </button>
+      </div>
+    </form>
   {% elsif btn_action == 'product_page' %}
     <a href="{{ product.url }}" class="btn btn--special btn--full product-card__button">{{ btn_text }}</a>
   {% endif %}
+  {% unless product.empty? %}
+    <script type="application/json" id="ProductJson-product_{{ product.id }}">
+      {{ product | json }}
+    </script>
+    {% if has_variants %}
+      <script type="application/json" id="ProductImages-{{ product.id }}">
+        { "thumbs": [
+          {% for image in product.images %}
+            "{{ image.src | img_url: '400x400', crop: 'center' }}"{% if forloop.index < product.images.size %},{% endif %}
+          {% endfor %}
+        ]}
+      </script>
+    {% endif %}
+  {% endunless %}
 </div>
