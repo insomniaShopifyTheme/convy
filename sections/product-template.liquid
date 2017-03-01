@@ -1,3 +1,9 @@
+<style>
+  .product-info__description {
+    height: {{ section.settings.limit_description }};
+  }
+</style>
+
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 
 <div class="product-template" id="product_{{ product.id }}" data-section-id="product_{{ product.id }}" data-section-type="product-template">
@@ -67,9 +73,15 @@
       </h3>
       <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
     </div>
-    <div class="product-info__description rte" itemprop="description">
-      {{ product.description }}
+    <div class="product-info__description{% unless section.settings.limit_description == 'none' %} product-info__description--shrunk{% endunless %}" data-original-height="{{ section.settings.limit_description }}" itemprop="description">
+      <div class="product-info__full_description rte">
+        {{ product.description }}
+      </div>
     </div>
+    <button type="button" class="icon-fallback-text product-info__more">
+      <span class="icon icon-chevron-thin-down" aria-hidden="true"></span>
+      <span class="fallback-text">read more</span>
+    </button>
   </div>
 
   <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -219,6 +231,21 @@
         "id": "display_option_labels",
         "label": "Display labels for options",
         "default": false
+      },
+      {
+         "type": "select",
+         "id": "limit_description",
+         "label": "Product description excerpt",
+         "options": [
+            {"value": "5rem", "label": "Show 3 lines"},
+            {"value": "8rem", "label": "Show 5 lines"},
+            {"value": "15rem", "label": "Show 10 lines"},
+            {"value": "19rem", "label": "Show 12 lines"},
+            {"value": "24rem", "label": "Show 15 lines"},
+            {"value": "none", "label": "Show full text"}
+          ],
+         "default": "8rem",
+         "info": "If the hidden part is less than 20% then full text will be shown"
       },
       {
         "type": "checkbox",

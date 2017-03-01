@@ -79,6 +79,9 @@ theme.ProductPageSection = (function() {
       stickyCartButton: 'body > .product-form__cart',
       stickyCartButtonText: 'body > .product-form__cart button > span',
       cartForm: '#' + sectionId + ' .product-form',
+      readMoreBtn: '.product-info .product-info__more',
+      productDescription: '.product-info .product-info__description',
+      productFullDescription: '.product-info .product-info__full_description',
     }
 
     // Thumbs & Slider
@@ -93,6 +96,7 @@ theme.ProductPageSection = (function() {
 
     this._initVariants();
     this._stickyCartBtn();
+    this._readMore();
   }
 
   return ProductPageSection;
@@ -207,4 +211,51 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     // Update the sku
     this.$container.find(this.selectors.SKU).html(variant.sku);
   },
+
+  // Initialize read more button to expand/collapse hidden text
+  // do not truncate if the hidden part is going to be too small
+  _readMore: function() {
+    var minToHide = '20'; // percent
+    this.$description = $(this.selectors.productDescription);
+    this.descriptionHeight = Number($(this.selectors.productFullDescription).height());
+    var blockHeight = this.$description.height();
+    var hasDescription = this.descriptionHeight > 0;
+    var hasEnoughToHide = hasDescription && (100 - blockHeight / (this.descriptionHeight / 100)) > minToHide;
+
+    if (hasDescription && hasEnoughToHide) {
+      this.$readMoreBtn = $(this.selectors.readMoreBtn);
+      $(this.selectors.readMoreBtn).on('click', this._toggleReadMore.bind(this));
+    } else {
+      this._disableReadMore();
+    }
+  },
+
+  _toggleReadMore: function() {
+    if (this.$description.hasClass('product-info__description--shrunk')) {
+      this._expandDescription();
+    } else {
+      this._collapseDescription();
+   }
+  },
+
+  _expandDescription: function() {
+    this.$description.animate({'height': this.descriptionHeight + 'px'}, 300)
+                     .removeClass('product-info__description--shrunk');
+    $(this.selectors.readMoreBtn).find('.icon').removeClass('icon-chevron-thin-down')
+                                               .addClass('icon-chevron-thin-up');
+  },
+
+  _collapseDescription: function() {
+    this.$description.animate({'height': this.$description.data('original-height')}, 300)
+                     .addClass('product-info__description--shrunk');
+    $(this.selectors.readMoreBtn).find('.icon').removeClass('icon-chevron-thin-up')
+                                               .addClass('icon-chevron-thin-down');
+  },
+
+  _disableReadMore: function() {
+    this.$description.css('height', this.descriptionHeight + 20 + 'px')
+                     .removeClass('product-info__description--shrunk');
+    $(this.selectors.readMoreBtn).remove();
+  },
+
 });

@@ -13,7 +13,7 @@
   -webkit-overflow-scrolling: touch;
   top: 0;
   bottom: 0;
-  padding: 0 $drawer-padding $drawer-padding;
+  padding: 0 $drawer-padding 0;
   max-width: 100%;
   z-index: $z-index-drawer;
   color: $color-drawer-text;
@@ -96,7 +96,7 @@
   }
 }
 
-.drawer-footer {
+.drawer__footer {
   background-color: $color-bg-alt;
   bottom: 0;
   margin-left: $drawer-padding * -1;
