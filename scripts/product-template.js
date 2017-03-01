@@ -79,9 +79,9 @@ theme.ProductPageSection = (function() {
       stickyCartButton: 'body > .product-form__cart',
       stickyCartButtonText: 'body > .product-form__cart button > span',
       cartForm: '#' + sectionId + ' .product-form',
-      readMoreBtn: '.product-info .product-info__more',
-      productDescription: '.product-info .product-info__description',
-      productFullDescription: '.product-info .product-info__full_description',
+      readMoreBtn: '.product-template .product-info__more',
+      productDescription: '.product-template .product-info__description',
+      productFullDescription: '.product-template .product-info__full_description',
     }
 
     // Thumbs & Slider

@@ -73,15 +73,9 @@
       </h3>
       <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
     </div>
-    <div class="product-info__description{% unless section.settings.limit_description == 'none' %} product-info__description--shrunk{% endunless %}" data-original-height="{{ section.settings.limit_description }}" itemprop="description">
-      <div class="product-info__full_description rte">
-        {{ product.description }}
-      </div>
-    </div>
-    <button type="button" class="icon-fallback-text product-info__more">
-      <span class="icon icon-chevron-thin-down" aria-hidden="true"></span>
-      <span class="fallback-text">read more</span>
-    </button>
+    {% if section.settings.description_location == 'top' %}
+      {% include 'product-description' %}
+    {% endif %}
   </div>
 
   <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
@@ -138,6 +132,13 @@
           {% endif %}
         {% endfor %}
       </select>
+
+
+      {% if section.settings.description_location == 'bottom' %}
+        <div class="page-width">
+          {% include 'product-description' %}
+        </div>
+      {% endif %}
 
       {% comment %}
         Cart button is hidden in mobile version and sticky version used
@@ -215,6 +216,16 @@
         "id": "display_icons",
         "label": "Display icons",
         "default": true
+      },
+      {
+         "type": "select",
+         "id": "description_location",
+         "label": "Product description location",
+         "options": [
+            {"value": "top", "label": "Before options"},
+            {"value": "bottom", "label": "After option"}
+          ],
+         "default": "top"
       },
       {
         "type": "header",
