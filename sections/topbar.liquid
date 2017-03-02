@@ -30,7 +30,7 @@
 {% endcase %}
 <div class="section-topbar{{ visibility_classes }}">
   <div class="grid--full">
-    <div class="grid__item one-whole">
+    <div class="grid__item one-whole large--four-tenths push--large--three-tenths">
     {% if section.settings.message_text != blank or section.settings.message_link_text != blank %}
       <div class="section-topbar__message{{ visibility_classes }}">
         {{ section.settings.message_text | escape }}
@@ -42,16 +42,14 @@
       </div>
     {% endif %}
     </div>
-    {% comment %}
-    <!-- <div class="section-topbar__controls grid__item three-tenths push--three-tenths">
+    <div class="section-topbar__controls grid__item small--hide large--three-tenths push--large--three-tenths">
       {% if settings.show_multiple_currencies %}
         {% include 'currency-picker' %}
       {% endif %}
       {% if section.settings.social_icons %}
-        {% include 'social_icons_list' %}
+        {% include 'social-icons-list' %}
       {% endif %}
-    </div> -->
-    {% endcomment %}
+    </div>
   </div>
 </div>
 
@@ -69,6 +67,12 @@
           {"value": "mobile", "label": "Mobile only"},
           {"value": "desktop", "label": "Desktop only"}
         ]
+      },
+      {
+        "type": "checkbox",
+        "id": "social_icons",
+        "label": "Display social icons",
+        "default": true
       },
       {
         "type": "header",

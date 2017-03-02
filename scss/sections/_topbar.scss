@@ -1,8 +1,11 @@
 /*================ Topbar Section ================*/
 
+$topbar-height: rem(40px);
+
 .section-topbar {
   background-color: #191919;
-  height: rem(40px);
+  height: $topbar-height;
+  overflow: hidden;
 
   .section-topbar__message {
     color: $color-text-alt;
@@ -27,7 +30,7 @@
     float: right;
     li {
       .icon {
-        line-height: em(32px);
+        line-height: $topbar-height;
       }
     }
   }
@@ -36,6 +39,7 @@
     color: $color-text-alt;
     display: block;
     float: right;
+    height: $topbar-height;
 
     // Change Arrow
     position: relative;
@@ -59,17 +63,27 @@
 
   .currency-picker {
     color: $color-text-alt;
-    font-size: 1.5em;
-    padding: 0 1em 0 0;
+    font-size: 1rem;
+    padding: 7px 24px 0 10px;
     border: none;
-    margin: 0 0 0 $gutter;
+    margin: 0;
     &:focus {
       outline: none;
     }
   }
 
-  @include grid-media-query('large-down') {
-    display: none;
+  @include at-query($min, $medium) {
+    .section-topbar__message {
+      font-size: 0.9rem;
+      line-height: 1.7rem;
+      white-space: nowrap;
+    }
+    .section-topbar__button {
+      font-size: 0.9rem;
+      padding: 3px 10px;
+      margin-left: 5px;
+      margin-top: -3px;
+    }
   }
 
 }
