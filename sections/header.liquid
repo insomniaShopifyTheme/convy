@@ -8,7 +8,7 @@
       </div>
     </div>
   </div>
-  <div class="grid__item four-sixths large--five-sixths text-center large--text-left">
+  <div class="grid__item four-sixths large--one-sixth logo-cell">
     {% if template == 'index' %}
       <h1 class="section-header__logo" itemscope itemtype="http://schema.org/Organization">
     {% else %}
@@ -30,11 +30,21 @@
       </h1>
     {% endunless %}
   </div>
-  <div class="grid__item one-sixth text-center">
-    <a href="/cart" class="h1 section-header__cart-link js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
-      <span class="icon-fallback-text">
-        <span class="icon icon-cart" aria-hidden="true"></span>
-        <span class="fallback-text">{{ 'layout.cart.title' | t }}</span>
+  <div class="grid__item medium-down--hide large--four-sixths">
+
+  </div>
+  <div class="grid__item one-sixth cart-cell">
+    <a href="/cart" id="CartIcon" class="h1 section-header__cart-link js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
+      <span class="section-header__cart-count medium-down--hide js-cart-count">
+        <span>{{ cart.item_count }}</span>
+      </span>
+      <span class="medium-down--hide">
+        {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+      </span>
+      <span class="icon icon-cart" aria-hidden="true">
+        <span class="icon-cart__badge large--hide js-cart-count">
+          <span>{{ cart.item_count }}</span>
+        </span>
       </span>
     </a>
   </div>

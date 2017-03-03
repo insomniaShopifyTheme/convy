@@ -68,10 +68,11 @@ $wide: 1180px;
 $breakpoints: (
   'small' '(max-width: #{$small})',
   'medium' '(min-width: #{$medium})',
+  'medium-down' '(max-width: #{$large - 1px})',
   'large' '(min-width: #{$large})',
   'wide' '(min-width: #{$wide})'
 );
-$breakpoint-has-widths: ('small', 'medium', 'large', 'wide');
+$breakpoint-has-widths: ('small', 'medium', 'medium-down', 'large', 'wide');
 $breakpoint-has-push:  ('medium', 'large', 'wide');
 $breakpoint-has-pull:  ('medium', 'large', 'wide');
 
