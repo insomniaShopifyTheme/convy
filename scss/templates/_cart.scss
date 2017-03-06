@@ -133,9 +133,12 @@ $cart-secondary-color: $color-pale;
   }
 }
 .cart-summary__note {
-  margin: 0 0 30px;
+  margin: 0 0 $gutter;
   label {
     color: $cart-secondary-color;
+  }
+  textarea {
+    min-height: 3.5rem;
   }
 }
 

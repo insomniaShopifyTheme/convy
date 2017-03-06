@@ -133,3 +133,24 @@
     background-color: darken($color-drawers, 5%);
   }
 }
+
+/*================ Desktop Version ================*/
+$drawer-cart-desktop-width: 360px;
+@include at-query($min, $large) {
+  .js-drawer-open {
+    overflow: auto;
+  }
+  .drawer {
+    position: absolute;
+  }
+  .drawer--right {
+    width: $drawer-cart-desktop-width;
+    right: -$drawer-cart-desktop-width;
+    max-height: auto;
+    top: $topbar-height;
+    bottom: initial;
+    .js-drawer-open-right & {
+      @include transform(translateX(-$drawer-cart-desktop-width));
+    }
+  }
+}

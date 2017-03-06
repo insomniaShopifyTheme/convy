@@ -11,6 +11,8 @@ theme.Drawers = (function () {
       dirOpenClass: 'js-drawer-open-' + position
     };
 
+    this.mobileBreakpoint = 1024;
+
     this.$nodes = {
       parent: $('body, html'),
       page: $('#page_container'),
@@ -40,7 +42,7 @@ theme.Drawers = (function () {
     var externalCall = false;
 
     // If drawer disabled for mobile, just go to cart page
-    if ('{{ settings.ajax_cart_method }}' == 'page' && theme.cache.$body.width() <= 767) {
+    if ('{{ settings.ajax_cart_method }}' == 'page' && theme.cache.$body.width() < this.mobileBreakpoint) {
       return true;
     }
 
@@ -75,7 +77,9 @@ theme.Drawers = (function () {
     this.drawerIsOpen = true;
 
     // Set focus on drawer
-    this.trapFocus(this.$drawer, 'drawer_focus');
+    if (theme.cache.$body.width() < this.mobileBreakpoint) {
+      this.trapFocus(this.$drawer, 'drawer_focus');
+    }
 
     // Run function when draw opens if set
     if (this.config.onDrawerOpen && typeof(this.config.onDrawerOpen) == 'function') {
