@@ -9,8 +9,19 @@ $menu-subitem-hover-color: #f1f1f1;
     color: $color-text-body;
     padding-top: .9rem;
   }
-  & > li > a {
-    text-transform: uppercase;
+  & > li {
+    &.current,
+    &:hover,
+    &.sfHover {
+      border-bottom: 5px solid $color-special;
+      box-sizing: border-box;
+    }
+    & > a {
+      text-transform: uppercase;
+    }
+    & > ul {
+      margin-top: 3px;
+    }
   }
   li {
     background: $color-bg;
