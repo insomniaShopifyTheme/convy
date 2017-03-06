@@ -8,6 +8,9 @@
   > .grid--full > .grid__item {
     height: $header-height-mobile;
     overflow: hidden;
+    &.menu-cell {
+      overflow: visible;
+    }
   }
 
   .section-header__hamburger {
@@ -111,7 +114,7 @@
   @include at-query($min, $large) {
     h1, .h1 {
       font-size: 1.6rem;
-      line-height: 2.5rem;
+      line-height: 2.2rem;
       white-space: nowrap;
     }
     .logo-cell {

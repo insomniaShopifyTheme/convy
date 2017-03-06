@@ -6,6 +6,10 @@ theme.init = function () {
   theme.loginForms();
   theme.setupMap();
   theme.productCardInit();
+  $('ul.sf-menu').superfish({
+    delay: 500,
+    speed: 200,
+  });
 };
 
 $(theme.init);
