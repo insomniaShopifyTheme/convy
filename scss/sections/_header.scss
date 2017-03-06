@@ -78,6 +78,9 @@
   h1, .h1 {
     margin: 0.5rem 0;
     padding: 0;
+    &.section-header__logo--image {
+      margin: 0;
+    }
   }
 
   .cart-cell {

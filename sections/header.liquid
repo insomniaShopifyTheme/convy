@@ -10,14 +10,14 @@
   </div>
   <div class="grid__item four-sixths large--one-sixth logo-cell">
     {% if template == 'index' %}
-      <h1 class="section-header__logo" itemscope itemtype="http://schema.org/Organization">
+      <h1 class="section-header__logo{% if section.settings.logo_use_image %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
     {% else %}
-      <div class="h1 section-header__logo" itemscope itemtype="http://schema.org/Organization">
+      <div class="h1 section-header__logo{% if section.settings.logo_use_image %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
     {% endif %}
       {% if section.settings.logo_use_image %}
         <a href="/" itemprop="url" class="section-header__logo-link">
           {% assign logo_max_width = section.settings.logo_max_width | append: 'x' %}
-          <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+          <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo" style="margin-top: {{ section.settings.logo_margin }}">
         </a>
       {% elsif section.settings.logo_text != blank %}
         <a href="/" itemprop="url">{{ section.settings.logo_text }}</a>
@@ -81,6 +81,28 @@
         "label": "Image max width (desktop)",
         "default": "220",
         "info": "Defined in pixels. Do not add the 'px' unit."
+      },
+      {
+         "type": "select",
+         "id": "logo_margin",
+         "label": "Image top margin",
+         "options": [
+            {"value": "0", "label": "None"},
+            {"value": "0.1rem", "label": "1"},
+            {"value": "0.2rem", "label": "2"},
+            {"value": "0.3rem", "label": "3"},
+            {"value": "0.4rem", "label": "4"},
+            {"value": "0.5rem", "label": "5"},
+            {"value": "0.6rem", "label": "6"},
+            {"value": "0.7rem", "label": "7"},
+            {"value": "0.8rem", "label": "8"},
+            {"value": "0.9rem", "label": "9"},
+            {"value": "1rem", "label": "10"},
+            {"value": "1.1rem", "label": "11"},
+            {"value": "1.2rem", "label": "12"}
+          ],
+         "default": "0",
+         "info": "Use it to fine-tune the logo image position"
       }
     ]
   }
