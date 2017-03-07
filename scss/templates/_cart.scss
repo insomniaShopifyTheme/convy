@@ -79,22 +79,23 @@ $cart-secondary-color: $color-pale;
     border-bottom: 1px solid $color-border;
     padding: 0 10px;
   }
-  .cart-summary__notice {
-    color: $cart-secondary-color;
-    text-align: center;
-    @include at-query($max, $xsmall) {
-      font-size: 14px;
-    }
-  }
   .cart-summary__subtotal-title {
-    @extend .h5;
     color: $cart-primary-color;
     font-family: $font-stack-heading;
   }
   .cart-summary__subtotal {
-    @extend .h3;
     color: $color-special;
     text-align: right;
+  }
+  &.cart-summary--desktop {
+    display: none;
+  }
+}
+.cart-shipping-notice {
+  color: $cart-secondary-color;
+  text-align: center;
+  @include at-query($max, $xsmall) {
+    font-size: 14px;
   }
 }
 .cart__update {
@@ -120,19 +121,16 @@ $cart-secondary-color: $color-pale;
   padding: 20px;
 }
 .cart--empty {
-  padding: 120px 30px 10px;
+  padding: ($gutter * 4) $gutter 10px;
   text-align: center;
   p {
     color: $cart-primary-color;
   }
-  .h4 {
-    margin-bottom: 30px;
-  }
-  a {
-    color: $color-special;
+  .h3 {
+    margin-bottom: $gutter;
   }
 }
-.cart-summary__note {
+.cart-shipping-notice {
   margin: 0 0 $gutter;
   label {
     color: $cart-secondary-color;
@@ -142,3 +140,53 @@ $cart-secondary-color: $color-pale;
   }
 }
 
+
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    .cart-template {
+      table.cart-table {
+        &.full {
+          margin: 0 auto;
+          width: 80%;
+        }
+      }
+      .cart-summary__wrapper {
+        border: 1px solid $color-border;
+        border-radius: $radius;
+        margin: ($gutter) auto;
+        padding: $gutter / 2;
+        width: 75%;
+      }
+      .cart-summary {
+        margin: 0;
+        .cart-summary__subtotal-title {
+          text-transform: uppercase;
+        }
+        .cart-summary__subtotal {
+          color: $color-primary;
+          margin-bottom: 1rem;
+        }
+        .cart-summary__note {
+
+        }
+        &.cart-summary--desktop {
+          display: block;
+        }
+        &.cart-summary--mobile {
+          display: none;
+        }
+        .grid--full {
+          padding: 0;
+        }
+      }
+      .cart-shipping-notice {
+        margin: 1rem 0;
+      }
+      .cart--empty {
+        padding: ($gutter * 5) $gutter $gutter;
+        .h3 {
+          margin-bottom: $gutter * 2;
+        }
+      }
+    }
+  }

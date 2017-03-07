@@ -1,84 +1,113 @@
-<div class="cart-template">
+<div class="cart-template page-width--large">
   {% if cart.item_count > 0 %}
     <form action="/cart" method="post" novalidate class="cart table-wrap">
-      <table class="cart-table full">
-        <tbody>
-          {% for item in cart.items %}
-            <tr>
-              <td class="cart-table__image">
-                <a href="{{ item.url | within: collections.all }}" class="cart__image">
-                  <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
-                </a>
-              </td>
-              <td class="cart-table__details">
-                <a href="{{ item.url }}" class="cart-table__item-title">
-                  {{ item.product.title }}
-                </a>
-                {% unless item.variant.title contains 'Default' %}
-                  <br>
-                  <small>{{ item.variant.title }}</small>
-                {% endunless %}
-                {% if section.settings.display_vendor and item.vendor != blank %}
-                  <p>{{ item.vendor }}</p>
-                {% endif %}
-                <div class="cart-table__item-controls">
-                  <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove icon-fallback-text">
-                    <span class="icon icon-trash" aria-hidden="true"></span>
-                    <span class="fallback-text" aria-hidden="true">&#10005;</span>
-                    <span class="visually-hidden">{{ 'cart.general.reduce_quantity' | t }}</span>
-                  </a>
-                  <input type="number" name="updates[]" id="updates_{{ item.key }}" data-id="{{ item.key }}" value="{{ item.quantity }}" min="0">
-                </div>
-              </td>
-              <td class="cart-table__summary">
-                {% if item.original_line_price != item.line_price %}
-                  <span class="cart-item__original-price"><s>{{ item.original_line_price | money }}</s></span>
-                {% endif %}
-                <span class="h4">
-                  {{ item.line_price | money }}
-                </span>
-                {% for discount in item.discounts %}
-                  <span class="cart-item__discount">{{ discount.title }}</span>
-                {% endfor %}
-              </td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      {% if cart.total_discounts > 0 %}
-        {% assign savings = cart.total_discounts | money %}
-        <p class="cart__savings">
-          <em>{{ 'cart.general.savings_html' | t: price: savings }}</em>
-        </p>
-      {% endif %}
-      <div class="cart__update">
-        <button type="submit" name="update" class="update-cart">
-          <span class="icon icon-refresh" aria-hidden="true"></span> {{ 'cart.general.update' | t }}
-        </button>
-      </div>
-      <div class="cart-summary">
-        <div class="grid--full">
-          {% if section.settings.notes_enable != false %}
-            <div class="grid__item one-whole cart-summary__note">
-              <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
-              <textarea name="note" class="input-full" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+      <div class="grid grid--full">
+        <div class="grid__item one-whole large--one-half">
+          <table class="cart-table full">
+            <tbody>
+              {% for item in cart.items %}
+                <tr>
+                  <td class="cart-table__image">
+                    <a href="{{ item.url | within: collections.all }}" class="cart__image">
+                      <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">
+                    </a>
+                  </td>
+                  <td class="cart-table__details">
+                    <a href="{{ item.url }}" class="cart-table__item-title">
+                      {{ item.product.title }}
+                    </a>
+                    {% unless item.variant.title contains 'Default' %}
+                      <br>
+                      <small>{{ item.variant.title }}</small>
+                    {% endunless %}
+                    {% if section.settings.display_vendor and item.vendor != blank %}
+                      <p>{{ item.vendor }}</p>
+                    {% endif %}
+                    <div class="cart-table__item-controls">
+                      <a href="/cart/change?line={{ forloop.index }}&amp;quantity=0" class="cart__remove icon-fallback-text">
+                        <span class="icon icon-trash" aria-hidden="true"></span>
+                        <span class="fallback-text" aria-hidden="true">&#10005;</span>
+                        <span class="visually-hidden">{{ 'cart.general.reduce_quantity' | t }}</span>
+                      </a>
+                      <input type="number" name="updates[]" id="updates_{{ item.key }}" data-id="{{ item.key }}" value="{{ item.quantity }}" min="0">
+                    </div>
+                  </td>
+                  <td class="cart-table__summary">
+                    {% if item.original_line_price != item.line_price %}
+                      <span class="cart-item__original-price"><s>{{ item.original_line_price | money }}</s></span>
+                    {% endif %}
+                    <span class="h4">
+                      {{ item.line_price | money }}
+                    </span>
+                    {% for discount in item.discounts %}
+                      <span class="cart-item__discount">{{ discount.title }}</span>
+                    {% endfor %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <div class="grid__item one-whole large--one-half">
+          <div class="cart-summary__wrapper">
+            {% if cart.total_discounts > 0 %}
+              {% assign savings = cart.total_discounts | money %}
+              <p class="cart__savings large--hide">
+                <em>{{ 'cart.general.savings_html' | t: price: savings }}</em>
+              </p>
+            {% endif %}
+            <div class="cart__update large--hide">
+              <button type="submit" name="update" class="update-cart">
+                <span class="icon icon-refresh" aria-hidden="true"></span> {{ 'cart.general.update' | t }}
+              </button>
             </div>
-          {% endif %}
-          <div class="grid__item one-half cart-summary__subtotal-title">
-            {{ 'cart.general.subtotal' | t }}
-          </div>
-          <div class="grid__item one-half cart-summary__subtotal">
-            {{ cart.total_price | money }}
+            <div class="cart-summary cart-summary--desktop">
+              <div class="text-center cart-summary__subtotal-title h5">
+                {{ 'cart.general.subtotal' | t }}
+              </div>
+              <div class="text-center cart-summary__subtotal h5">
+                {{ cart.total_price | money }}
+              </div>
+              {% if cart.total_discounts > 0 %}
+                {% assign savings = cart.total_discounts | money %}
+                <p class="cart__savings text-center">
+                  <em>{{ 'cart.general.savings_html' | t: price: savings }}</em>
+                </p>
+              {% endif %}
+              {% if section.settings.notes_enable != false %}
+                <div class="cart-summary__note">
+                  <label for="CartSpecialInstructionsDesktop">{{ 'cart.general.note' | t }}</label>
+                  <textarea name="note" class="input-full" id="CartSpecialInstructionsDesktop">{{ cart.note }}</textarea>
+                </div>
+              {% endif %}
+            </div>
+            <div class="cart-summary cart-summary--mobile">
+              <div class="grid--full">
+                {% if section.settings.notes_enable != false %}
+                  <div class="grid__item one-whole cart-summary__note">
+                    <label for="CartSpecialInstructions">{{ 'cart.general.note' | t }}</label>
+                    <textarea name="note" class="input-full" id="CartSpecialInstructions">{{ cart.note }}</textarea>
+                  </div>
+                {% endif %}
+                <div class="grid__item one-half cart-summary__subtotal-title h5">
+                  {{ 'cart.general.subtotal' | t }}
+                </div>
+                <div class="grid__item one-half cart-summary__subtotal h3">
+                  {{ cart.total_price | money }}
+                </div>
+              </div>
+              <p class="cart-shipping-notice"><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
+            </div>
+            <button type="submit" name="checkout" class="btn btn--special btn--full cart__checkout-btn">{{ 'cart.general.checkout' | t }}</button>
+            <p class="cart-shipping-notice medium-down--hide"><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
           </div>
         </div>
-        <p class="cart-summary__notice"><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
       </div>
-      <button type="submit" name="checkout" class="btn btn--special btn--full cart__checkout-btn">{{ 'cart.general.checkout' | t }}</button>
     </form>
   {% else %}
     <div class="cart--empty">
       <p class="h3">{{ 'cart.general.empty' | t }}</p>
-      <p>{{ 'cart.general.continue_browsing_html' | t }}</p>
+      <p><a href="/collections/all" class="btn btn--special">{{ 'cart.general.continue_browsing_html' | t }}</a></p>
     </div>
   {% endif %}
 </div>

@@ -25,6 +25,14 @@ body {
   }
 }
 
+@include at-query ($min, $large) {
+  .page-width--large {
+    max-width: $wide;
+    margin: 0 auto;
+    padding: $gutter;
+  }
+}
+
 .standard-page {
   padding: $gutter;
   .standard-page__title {
