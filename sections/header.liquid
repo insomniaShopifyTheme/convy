@@ -1,5 +1,5 @@
 <div class="grid--full section-header__wrapper" data-section-id="{{ section.id }}" data-section-type="header-section">
-  <div class="grid__item one-sixth large--hide text-center">
+  <div class="grid__item two-twelfths large--hide text-center">
     <div class="section-header__hamburger js-drawer-open-left">
       <div class="hamburger">
         <div class="hamburger__bar hamburger__bar--diagonal part-1"></div>
@@ -8,7 +8,7 @@
       </div>
     </div>
   </div>
-  <div class="grid__item four-sixths large--one-sixth logo-cell">
+  <div class="grid__item eight-twelfths large--two-twelfths logo-cell">
     {% if template == 'index' %}
       <h1 class="section-header__logo{% if section.settings.logo_use_image %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
     {% else %}
@@ -30,10 +30,25 @@
       </h1>
     {% endunless %}
   </div>
-  <div class="grid__item medium-down--hide large--four-sixths menu-cell">
+  <div class="grid__item medium-down--hide large--eight-twelfths menu-cell">
     {% include 'main-menu' %}
+    <div class="header-search__wrapper">
+      <div class="header-search">
+        <button type="button" class="header-icon icon-fallback-text js-expand-search">
+          <span class="icon icon-search" aria-hidden="true"></span>
+          <span class="fallback-text" aria-hidden="true">Search</span>
+        </button>
+        {% include 'search-bar' %}
+      </div>
+    </div>
+    <div class="user-account">
+      <a class="header-icon icon-fallback-text" href="/account">
+        <span class="icon icon-user" aria-hidden="true"></span>
+        {{ 'customer.account.title' | t }}
+      </a>
+    </div>
   </div>
-  <div class="grid__item one-sixth cart-cell">
+  <div class="grid__item two-twelfths cart-cell">
     <a href="/cart" id="CartIcon" class="h1 section-header__cart-link js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
       <span class="section-header__cart-count medium-down--hide js-cart-count">
         <span>{{ cart.item_count }}</span>

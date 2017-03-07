@@ -83,6 +83,72 @@
     }
   }
 
+  .header-icon {
+    padding: 0.3rem 0 0 1rem;
+    color: #6f6f6f;
+    height: 100%;
+    width: 30px;
+    &:focus {
+      outline: none;
+    }
+  }
+  .header-search__wrapper {
+    width: 60px;
+    float: left;
+    overflow: visible;
+    height: 100%;
+  }
+  .header-search {
+    border-bottom: none;
+    box-sizing: border-box;
+    float: left;
+    font-size: 1.6rem;
+    height: 100%;
+    line-height: 2.2rem;
+    form {
+      float: right;
+      height: 100%;
+      width: 0;
+      // overflow: hidden;
+      // display: none;
+      transition: all 0.5s;
+      input {
+        display: none;
+      }
+      .input-group-btn {
+        display: none;
+      }
+    }
+    &.header-search--active {
+      border: 1px solid $color-border;
+      border-bottom: none;
+      width: 240px;
+      form {
+        display: inline-block;
+        width: 200px;
+        input {
+          border: none;
+          height: 100%;
+          display: block;
+          width: 100%;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    }
+  }
+
+  .user-account {
+    float: right;
+    height: 100%;
+    padding: 0.5rem;
+    line-height: 2.2rem;
+    .icon {
+      font-size: 1.2rem;
+    }
+  }
+
   .cart-cell {
     text-align: center;
     .icon-cart {
