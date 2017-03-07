@@ -4,7 +4,13 @@
     height: {{ section.settings.height }};
   }
 </style>
-<div id="separator_{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="separator-section">
+{% case section.settings.display %}
+  {% when "mobile" %}
+    {%- assign visibility_classes = "large--hide" -%}
+  {% when "desktop" %}
+    {%- assign visibility_classes = "medium-down--hide" -%}
+{% endcase %}
+<div id="separator_{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="separator-section" class="{{ visibility_classes }}">
 </div>
 
 {% schema %}
@@ -12,6 +18,17 @@
     "name": "Separator",
     "class": "section-separator",
     "settings": [
+      {
+        "type": "select",
+        "id": "display",
+        "label": "Display",
+        "default": "all",
+        "options": [
+          {"value": "all", "label": "Desktop & Mobile"},
+          {"value": "mobile", "label": "Mobile only"},
+          {"value": "desktop", "label": "Desktop only"}
+        ]
+      },
       {
         "type": "color",
         "id": "color",

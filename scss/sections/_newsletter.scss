@@ -1,13 +1,8 @@
 /*================ Newsletter Section ================*/
+$newsletter-form-max-width: 450px;
 
 .section-newsletter {
   @extend .normal-section-padding;
-  .newsletter-form {
-    @include at-query($min, $medium) {
-      margin-left: $gutter * 2;
-      margin-right: $gutter * 2;
-    }
-  }
 }
 
 .newsletter-form {
@@ -19,12 +14,20 @@
   .newsletter-form__input {
     background-color: #f3f3f3;
     margin: ($gutter / 2) 0 $gutter 0;
-    max-width: 450px;
+    max-width: $newsletter-form-max-width;
     width: 90%;
   }
   .newsletter-form__btn {
     .btn {
       padding: 15px 45px;
+    }
+  }
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    max-width: $newsletter-form-max-width;
+    margin: 0 auto;
+    .newsletter-form__input {
+      width: 100%;
     }
   }
 }

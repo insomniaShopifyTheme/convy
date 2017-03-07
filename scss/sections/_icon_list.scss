@@ -26,4 +26,15 @@
       font-size: 1.2rem;
     }
   }
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    .icon-list__item {
+      padding: 0 $gutter;
+    }
+  }
+  @include at-query($min, $wide) {
+    .icon-list__item {
+      padding: 0 $gutter * 2;
+    }
+  }
 }

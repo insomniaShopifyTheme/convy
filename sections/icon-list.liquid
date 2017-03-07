@@ -23,28 +23,30 @@
       {%- assign grid_item_width = 'one-quarter large--one-eighth' -%}
   {% endcase %}
 
-  <div class="icons-list grid--full">
-    {% for block in section.blocks %}
-      <div class="icon-list__item grid__item text-center {{ grid_item_width }}" {{ block.shopify_attributes }}>
-        {% if block.settings.image != blank %}
-          {{ block.settings.image | img_url: '160x160' | img_tag: 'Icon Image', 'icon-list__image' }}
-        {% elsif block.settings.icon != blank %}
-          {% if section.settings.inverted %}
-            {%- assign icon_file = block.settings.icon -%}
-          {% else %}
-            {%- assign icon_file = block.settings.icon | replace: '.png', '-dark.png' -%}
+  <div class="page-width--large">
+    <div class="icons-list grid--full">
+      {% for block in section.blocks %}
+        <div class="icon-list__item grid__item text-center {{ grid_item_width }}" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            {{ block.settings.image | img_url: '160x160' | img_tag: 'Icon Image', 'icon-list__image' }}
+          {% elsif block.settings.icon != blank %}
+            {% if section.settings.inverted %}
+              {%- assign icon_file = block.settings.icon -%}
+            {% else %}
+              {%- assign icon_file = block.settings.icon | replace: '.png', '-dark.png' -%}
+            {% endif %}
+            {{ icon_file | asset_url | img_tag: 'Icon Image', 'icon-list__image' }}
           {% endif %}
-          {{ icon_file | asset_url | img_tag: 'Icon Image', 'icon-list__image' }}
-        {% endif %}
-        {% if block.settings.text != blank %}
-          <p class="icon-list__text">{{ block.settings.text | escape }}</p>
-        {% endif %}
-      </div>
-    {% else %}
-      <div class="empty-section">
-        {{ 'homepage.onboarding.no_content' | t }}
-      </div>
-    {% endfor %}
+          {% if block.settings.text != blank %}
+            <p class="icon-list__text">{{ block.settings.text | escape }}</p>
+          {% endif %}
+        </div>
+      {% else %}
+        <div class="empty-section">
+          {{ 'homepage.onboarding.no_content' | t }}
+        </div>
+      {% endfor %}
+    </div>
   </div>
 
 </div>

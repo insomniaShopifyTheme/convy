@@ -1,5 +1,5 @@
 {% for block in section.blocks %}
-  <div class="custom__item" {{ block.shopify_attributes }}>
+  <div class="custom__item{% unless block.settings.full_width %} page-width--large{% endunless %}" {{ block.shopify_attributes }}>
     {% case section.settings.display %}
       {% when "mobile" %}
         {%- assign visibility_classes = "hide small--show" -%}
@@ -117,6 +117,12 @@
             "type": "url",
             "id": "link",
             "label": "Link"
+          },
+          {
+            "type": "checkbox",
+            "id": "full_width",
+            "label": "Take full width of the page",
+            "default": true
           }
         ]
       },

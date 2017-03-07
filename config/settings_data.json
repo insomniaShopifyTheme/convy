@@ -47,8 +47,9 @@
         "settings": {
           "logo_text": "",
           "logo_use_image": false,
-          "logo_image": "",
-          "logo_max_width": "220"
+          "logo_image": "shopify:\/\/shop_images\/logo-tabarnapp_c22a6693-c186-4e72-aa63-8bf47684ab1f.png",
+          "logo_max_width": "300",
+          "logo_margin": "0.9rem"
         }
       },
       "1486982357142": {
@@ -87,8 +88,8 @@
               "text": "<p>A word about why you sell what you sell<\/p>",
               "primary_button_label": "READ MORE",
               "primary_button_link": "shopify:\/\/pages\/about-us",
-              "secondary_button_label": "",
-              "secondary_button_link": "",
+              "secondary_button_label": "BROWSE ALL",
+              "secondary_button_link": "shopify:\/\/collections\/all",
               "alignment": "top",
               "text_location": "right",
               "text_alignment": "right",
@@ -258,8 +259,8 @@
             "type": "product",
             "settings": {
               "product": "craghoppers-mens-newton-jacket",
-              "btn_action": "add_to_cart",
-              "btn_text": "Add to Cart"
+              "btn_action": "product_page",
+              "btn_text": "learn more"
             }
           },
           "1486984400677": {
@@ -391,7 +392,7 @@
           "1487000059419-3"
         ],
         "settings": {
-          "title": "Icon list",
+          "title": "",
           "inverted": true
         }
       },
@@ -408,12 +409,13 @@
         "settings": {
           "breadcrumbs": true,
           "display_icons": true,
+          "description_location": "top",
           "display_quantity_selector": true,
           "display_option_labels": false,
+          "limit_description": "5rem",
           "display_vendor": false,
           "display_sku": false,
           "related_products": true,
-          "related_products_slider": true,
           "related_products_title": "Related products",
           "related_products_count": "2"
         }
@@ -478,13 +480,26 @@
           "1487177009246"
         ],
         "settings": {
-          "display_social": true
+          "display_social": true,
+          "color_bg": "#ffffff",
+          "color_headings": "#393939",
+          "color_text": "#393939",
+          "color_links": "#393939",
+          "color_menu_items": "#393939",
+          "color_button_bg": "transparent",
+          "color_button_border": "#393939",
+          "color_button_text": "#393939",
+          "color_social_bg": "#0d0d0d",
+          "color_social_icons": "#ffffff"
         }
       },
       "collection-template": {
         "type": "collection-template",
         "settings": {
-          "breadcrumbs": true
+          "breadcrumbs": true,
+          "product_btn_action": "add_to_cart",
+          "product_btn_text": "Add to Cart",
+          "fade_out_title": false
         }
       },
       "contact-page-template": {
@@ -510,6 +525,21 @@
       "page-template": {
         "type": "page-template",
         "settings": {}
+      },
+      "topbar": {
+        "type": "topbar",
+        "settings": {
+          "display": "all",
+          "social_icons": true,
+          "message_text": "FREE SHIPPING ON ALL ORDERS OVER $100",
+          "message_link_text": "SHOP NOW",
+          "message_link": "shopify:\/\/collections\/all",
+          "color_bg": "#191919",
+          "color_text": "#a5a5a5",
+          "color_button_bg": "transparent",
+          "color_button_border": "#a5a5a5",
+          "color_button_text": "#fff5f5"
+        }
       }
     },
     "content_for_index": [
