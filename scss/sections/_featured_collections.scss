@@ -6,10 +6,18 @@
   @include at-query($min, $medium) {
     padding: 0 $gutter $gutter;
   }
+  @include at-query($min, $large) {
+    @extend .page-width--large--important;
+  }
+  .slick-prev {
+    top: 50%;
+  }
+  .slick-next {
+    top: 50%;
+  }
 }
 
 .collection-list {
-
   .collection-list__item {
     margin: 0 $gutter / 3;
 
@@ -26,7 +34,6 @@
     }
 
   }
-
 }
 
 .slider {

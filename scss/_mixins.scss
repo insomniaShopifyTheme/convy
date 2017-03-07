@@ -57,6 +57,19 @@
   @include prefixer(transform, $transform, ms webkit spec);
 }
 
+@mixin scale($ratio...) {
+  -webkit-transform: scale($ratio);
+      -ms-transform: scale($ratio); // IE9 only
+       -o-transform: scale($ratio);
+          transform: scale($ratio);
+}
+
+@mixin transition($transition...) {
+  -webkit-transition: $transition;
+       -o-transition: $transition;
+          transition: $transition;
+}
+
 @mixin user-select($value: none) {
   @include prefixer(user-select, $value, webkit moz ms spec);
 }

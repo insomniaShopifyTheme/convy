@@ -1,4 +1,14 @@
-<div data-section-id="{{ section.id }}" data-section-type="slider-section">
+<div id="featuredCollection_{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="slider-section">
+
+  <style>
+    #featuredCollection_{{ section.id }} .collection-card.collection-card--overlay .grid__image::before {
+      background-color: {{ section.settings.color_image_overlay }};
+      opacity: {{ section.settings.image_overlay_opacity }};
+    }
+    #featuredCollection_{{ section.id }} .collection-card__title a {
+      color: {{ section.settings.color_title }};
+    }
+  </style>
 
   {% if section.settings.title != blank %}
     <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
@@ -31,6 +41,121 @@
         "id": "title",
         "label": "Heading",
         "default": "Collection list"
+      },
+      {
+        "type": "select",
+        "id": "title_style",
+        "label": "Collection title style",
+        "default": "over",
+        "options": [
+          {
+            "value": "over",
+            "label": "Title over image"
+          },
+          {
+            "value": "bottom",
+            "label": "Title below image"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "hover_effect",
+        "label": "Image hover effect",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "image_overlay_opacity",
+        "label": "Image overlay opacity",
+        "default": "0.15",
+        "options": [
+          {
+            "label": "90%",
+            "value": "0.9"
+          },
+          {
+            "label": "85%",
+            "value": "0.85"
+          },
+          {
+            "label": "80%",
+            "value": "0.8"
+          },
+          {
+            "label": "75%",
+            "value": "0.75"
+          },
+          {
+            "label": "70%",
+            "value": "0.7"
+          },
+          {
+            "label": "65%",
+            "value": "0.65"
+          },
+          {
+            "label": "60%",
+            "value": "0.6"
+          },
+          {
+            "label": "55%",
+            "value": "0.55"
+          },
+          {
+            "label": "50%",
+            "value": "0.5"
+          },
+          {
+            "label": "45%",
+            "value": "0.45"
+          },
+          {
+            "label": "40%",
+            "value": "0.4"
+          },
+          {
+            "label": "35%",
+            "value": "0.35"
+          },
+          {
+            "label": "30%",
+            "value": "0.3"
+          },
+          {
+            "label": "25%",
+            "value": "0.25"
+          },
+          {
+            "label": "20%",
+            "value": "0.2"
+          },
+          {
+            "label": "15%",
+            "value": "0.15"
+          },
+          {
+            "label": "10%",
+            "value": "0.1"
+          },
+          {
+            "label": "0%",
+            "value": "0"
+          }
+        ],
+        "info": "Adds transparent layer on top of collection image to make text more visible. Set to 0% to disable. NOTE: applied only for \"Title over image\" option"
+      },
+      {
+        "type": "color",
+        "id": "color_image_overlay",
+        "label": "Image overlay color",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "color_title",
+        "label": "Collection title color",
+        "default": "#ffffff"
       }
     ],
     "blocks": [

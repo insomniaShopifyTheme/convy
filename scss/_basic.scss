@@ -31,6 +31,11 @@ body {
     margin: 0 auto;
     padding: $gutter;
   }
+  .page-width--large--important {
+    max-width: $site-width !important;
+    margin: 0 auto !important;
+    padding: $gutter !important;
+  }
 }
 
 .standard-page {

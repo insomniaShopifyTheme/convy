@@ -1,12 +1,14 @@
-{% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
-<a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}" class="grid__image">
-  {% if collection.image %}
-    {{ collection.image.src | img_url: '400x400', crop: 'center' | img_tag: collection_title }}
-  {% else %}
-    {{ collection.products.first.featured_image | img_url: '400x400', crop: 'center' | img_tag: collection_title }}
-  {% endif %}
-</a>
+<div class="collection-card{% if section.settings.hover_effect %} hover-effect{% endif %}{% if section.settings.title_style == 'over' %} collection-card--overlay{% endif %}">
+  {% capture collection_title %}{{ collection.title | escape }}{% endcapture %}
+  <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}" class="grid__image">
+    {% if collection.image %}
+      {{ collection.image.src | img_url: '400x400', crop: 'center' | img_tag: collection_title }}
+    {% else %}
+      {{ collection.products.first.featured_image | img_url: '400x400', crop: 'center' | img_tag: collection_title }}
+    {% endif %}
+  </a>
 
-<p class="text-center">
-  <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}">{{ collection.title }}</a>
-</p>
+  <p class="collection-card__title{% if section.settings.title_style == 'over' %} collection-card__title--overlay{% endif %}">
+    <a href="{{ collection.url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}">{{ collection.title }}</a>
+  </p>
+</div>
