@@ -1,71 +1,93 @@
-<div class="standard-page">
+{% if section.settings.map_enable and section.settings.map_position == 'top' %}
+  {% include 'map' %}
+{% endif %}
 
+{% if section.settings.display_page %}
+  <div class="standard-page">
+    <div class="standard-page__body">
+
+      <h2 class="standard-page__title">{{ page.title }}</h2>
+      <div class="rte">
+        {{ page.content }}
+      </div>
+
+    </div>
+  </div>
+{% endif %}
+
+{% if section.settings.map_enable and section.settings.map_position == 'middle' %}
+  {% include 'map' %}
+{% endif %}
+
+<div class="standard-page">
   <div class="standard-page__body">
 
-    {% if section.settings.map_enable and section.settings.map_position == 'top' %}
-      {% include 'map' %}
-    {% endif %}
+    <div class="grid">
+      <div class="grid__item one-whole large--two-quarters{% if section.settings.promo_product == blank %} push--large--one-quarter{% endif %}">
+        <div class="contact-form__wrapper form-vertical">
 
-    <h2 class="standard-page__title">{{ page.title }}</h2>
+          {% if section.settings.form_title != blank %}
+            <h2 class="standard-page__title">{{ section.settings.form_title }}</h2>
+          {% endif %}
 
-    <div class="rte">
-      {{ page.content }}
-    </div>
+          {% if section.settings.form_description != blank %}
+            {{ section.settings.form_description }}
+          {% endif %}
+          {% form 'contact' %}
 
-    {% if section.settings.map_enable and section.settings.map_position == 'middle' %}
-      {% include 'map' %}
-    {% endif %}
+            {% comment %}
+              Successful message
+            {% endcomment %}
+            {% if form.posted_successfully? %}
+              <p class="note form-success">
+                {{ 'contact.form.post_success' | t }}
+              </p>
+            {% endif %}
 
-    <div class="contact-form form-vertical">
+            {{ form.errors | default_errors }}
 
-      {% if section.settings.form_title != blank %}
-        <h2 class="standard-page__title">{{ section.settings.form_title }}</h2>
-      {% endif %}
+            {% assign name_attr = 'contact.form.name' | t | handle %}
+            <label for="ContactFormName" class="hidden-label">{{ 'contact.form.name' | t }}</label>
+            <input type="text" id="ContactFormName" class="input-full" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.name' | t }}" autocapitalize="words" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.name }}{% endif %}">
 
-      {% if section.settings.form_description != blank %}
-        {{ section.settings.form_description }}
-      {% endif %}
+            <label for="ContactFormEmail" class="hidden-label">{{ 'contact.form.email' | t }}</label>
+            <input type="email" id="ContactFormEmail" class="input-full" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
 
-      {% form 'contact' %}
+            {% assign name_attr = 'contact.form.phone' | t | handle %}
+            <label for="ContactFormPhone" class="hidden-label">{{ 'contact.form.phone' | t }}</label>
+            <input type="tel" id="ContactFormPhone" class="input-full" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.phone' | t }}" pattern="[0-9\-]*" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
 
-        {% comment %}
-          Successful message
-        {% endcomment %}
-        {% if form.posted_successfully? %}
-          <p class="note form-success">
-            {{ 'contact.form.post_success' | t }}
-          </p>
-        {% endif %}
+            <label for="ContactFormMessage" class="hidden-label">{{ 'contact.form.message' | t }}</label>
+            <textarea rows="10" id="ContactFormMessage" class="input-full" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
 
-        {{ form.errors | default_errors }}
+            <div class="text-center">
+              <input type="submit" class="btn contact-form__submit" value="{{ 'contact.form.send' | t }}">
+            </div>
 
-        {% assign name_attr = 'contact.form.name' | t | handle %}
-        <label for="ContactFormName" class="hidden-label">{{ 'contact.form.name' | t }}</label>
-        <input type="text" id="ContactFormName" class="input-full" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.name' | t }}" autocapitalize="words" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.name }}{% endif %}">
-
-        <label for="ContactFormEmail" class="hidden-label">{{ 'contact.form.email' | t }}</label>
-        <input type="email" id="ContactFormEmail" class="input-full" name="contact[email]" placeholder="{{ 'contact.form.email' | t }}" autocorrect="off" autocapitalize="off" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}">
-
-        {% assign name_attr = 'contact.form.phone' | t | handle %}
-        <label for="ContactFormPhone" class="hidden-label">{{ 'contact.form.phone' | t }}</label>
-        <input type="tel" id="ContactFormPhone" class="input-full" name="contact[{{ name_attr }}]" placeholder="{{ 'contact.form.phone' | t }}" pattern="[0-9\-]*" value="{% if form[name_attr] %}{{ form[name_attr] }}{% elsif customer %}{{ customer.phone }}{% endif %}">
-
-        <label for="ContactFormMessage" class="hidden-label">{{ 'contact.form.message' | t }}</label>
-        <textarea rows="10" id="ContactFormMessage" class="input-full" name="contact[body]" placeholder="{{ 'contact.form.message' | t }}">{% if form.body %}{{ form.body }}{% endif %}</textarea>
-
-        <div class="text-center">
-          <input type="submit" class="btn contact-form__submit" value="{{ 'contact.form.send' | t }}">
+          {% endform %}
         </div>
-
-      {% endform %}
+      </div>
+      {% unless section.settings.promo_product == blank %}
+        <div class="grid__item medium-down--hide large--two-quarters contact-promo">
+          {% if section.settings.form_title != blank %}
+            <h2 class="standard-page__title contact-promo__title">{{ section.settings.promo_product_title }}</h2>
+          {% endif %}
+          {%- assign product = all_products[section.settings.promo_product] -%}
+          {%- assign btn_action = section.settings.btn_action -%}
+          {%- assign btn_text = section.settings.btn_text -%}
+          {%- assign fade_out_title = false -%}
+          {%- assign card_show_description = true -%}
+          {% include 'product-card' %}
+        </div>
+      {% endunless %}
     </div>
-
-    {% if section.settings.map_enable and section.settings.map_position == 'bottom' %}
-      {% include 'map' %}
-    {% endif %}
-
   </div>
 </div>
+
+{% if section.settings.map_enable and section.settings.map_position == 'bottom' %}
+  {% include 'map' %}
+{% endif %}
+
 
 
 {% schema %}
@@ -73,6 +95,12 @@
     "name": "Contact page",
     "class": "contact-page",
     "settings": [
+      {
+        "type": "checkbox",
+        "id": "display_page",
+        "label": "Display page content",
+        "default": false
+      },
       {
         "type": "header",
         "content": "Form"
@@ -86,6 +114,47 @@
         "type": "richtext",
         "id": "form_description",
         "label": "Description"
+      },
+      {
+        "type": "header",
+        "content": "Promo product"
+      },
+      {
+        "type": "product",
+        "id": "promo_product",
+        "label": "Product"
+      },
+      {
+        "type": "text",
+        "id": "promo_product_title",
+        "label": "Promo block title",
+        "default": "You can't miss this one!"
+      },
+      {
+        "type": "select",
+        "id": "btn_action",
+        "label": "Button action",
+        "options": [
+          {
+            "value": "none",
+            "label": "None (hide button)"
+          },
+          {
+            "value": "add_to_cart",
+            "label": "Add to cart"
+          },
+          {
+            "value": "product_page",
+            "label": "Product page"
+          }
+        ],
+        "default": "add_to_cart"
+      },
+      {
+        "type": "text",
+        "id": "btn_text",
+        "label": "Button text",
+        "default": "Add to Cart"
       },
       {
         "type": "header",
@@ -181,13 +250,6 @@
           {"value": "all", "label": "Desktop & Mobile"},
           {"value": "desktop", "label": "Desktop only"}
         ]
-      },
-      {
-        "type": "text",
-        "id": "map_width",
-        "label": "Max width",
-        "default": "600",
-        "info": "Number value eg. 600"
       },
       {
         "type": "text",

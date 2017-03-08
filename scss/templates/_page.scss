@@ -1,5 +1,9 @@
 .standard-page {
   padding: $gutter;
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    @extend .page-width--large--important;
+  }
 }
 .standard-page__title {
   @extend .h2;
@@ -17,11 +21,42 @@
   }
   .map {
     margin-bottom: $gutter;
+    &.map--bottom {
+      margin-bottom: -5px;
+    }
+    &.map--top {
+      margin-top: $gutter;
+    }
+    .map__title, .map__description {
+      padding: 0 $gutter;
+    }
     iframe{
       pointer-events: none;
     }
   }
   .map__title {
     @extend .standard-page__title;
+  }
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    .contact-form__wrapper {
+      width: 90%;
+      margin: 0 auto;
+    }
+    .contact-promo {
+      .product-card {
+        border: 1px solid $color-border;
+        border-radius: $radius;
+        padding: $gutter;
+        margin: $gutter auto;
+        width: 70%;
+      }
+    }
+    .map {
+      .map__title, .map__description {
+        max-width: $site-width !important;
+        margin: 0 auto !important;
+      }
+    }
   }
 }

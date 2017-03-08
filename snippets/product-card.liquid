@@ -24,6 +24,11 @@
     <div class="product-card__price product-price">
       {% include 'product-price' %}
     </div>
+    {% if card_show_description %}
+      <div class="product-card__description">
+        {{ product.description | truncatewords: '15', "&hellip;" }}
+      </div>
+    {% endif %}
   </div>
   {% if btn_action == 'add_to_cart' %}
     {%- assign current_variant = product.selected_or_first_available_variant -%}
