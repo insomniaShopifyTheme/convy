@@ -27,7 +27,7 @@
         <div class="contact-form__wrapper form-vertical">
 
           {% if section.settings.form_title != blank %}
-            <h2 class="standard-page__title">{{ section.settings.form_title }}</h2>
+            <h2 class="standard-page__title text-center">{{ section.settings.form_title }}</h2>
           {% endif %}
 
           {% if section.settings.form_description != blank %}
@@ -70,7 +70,7 @@
       {% unless section.settings.promo_product == blank %}
         <div class="grid__item medium-down--hide large--two-quarters contact-promo">
           {% if section.settings.form_title != blank %}
-            <h2 class="standard-page__title contact-promo__title">{{ section.settings.promo_product_title }}</h2>
+            <h2 class="standard-page__title contact-promo__title text-center">{{ section.settings.promo_product_title }}</h2>
           {% endif %}
           {%- assign product = all_products[section.settings.promo_product] -%}
           {%- assign btn_action = section.settings.btn_action -%}

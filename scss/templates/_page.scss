@@ -1,18 +1,3 @@
-.standard-page {
-  padding: $gutter;
-  /*================ Desktop Version ================*/
-  @include at-query($min, $large) {
-    @extend .page-width--large--important;
-  }
-}
-.standard-page__title {
-  @extend .h2;
-  font-size: 1.4rem;
-  line-height: 2.1rem;
-  text-align: center;
-  padding-bottom: ($gutter / 3);
-}
-
 .contact-page {
   .contact-form {
     .contact-form__submit {

@@ -40,9 +40,21 @@ body {
 
 .standard-page {
   padding: $gutter;
+}
+.standard-page__title {
+  @extend .h2;
+  font-size: 1.4rem;
+  line-height: 2.1rem;
+  text-align: center;
+  padding-bottom: ($gutter / 3);
+}
+/*================ Desktop Version ================*/
+@include at-query($min, $large) {
+  .standard-page {
+    @extend .page-width--large--important;
+  }
   .standard-page__title {
-    text-align: center;
-    padding-bottom: ($gutter / 3);
+    text-align: left;
   }
 }
 
