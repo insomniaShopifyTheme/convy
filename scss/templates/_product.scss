@@ -235,6 +235,17 @@
     }
   }
 
+  .tab-container {
+    margin-top: 1rem;
+    .spr-container {
+      border: none;
+    }
+    .product-description, .tab__page-content {
+      margin: 0;
+      padding: $gutter / 2 10px;
+    }
+  }
+
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {
     .product-info {

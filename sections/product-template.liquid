@@ -49,9 +49,13 @@
         </div>
       {% endif %}
 
-      <div class=" medium-down--hide product-description rte">
-        {{ product.description }}
-      </div>
+      {% if section.settings.use_tabs %}
+        {% include 'product-tabs' %}
+      {% else %}
+        <div class="medium-down--hide product-description rte">
+          {{ product.description }}
+        </div>
+      {% endif %}
 
     </div>
     {% comment %}
@@ -167,7 +171,9 @@
         {% include 'product-icons' %}
       {% endif %}
 
-      <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+      <div class="{% if section.settings.use_tabs %}large--hide{% endif %}">
+        <div id="shopify-product-reviews" class="js-delete--desktop" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+      </div>
     </div>
 
   </div> <!-- end grid -->
@@ -305,6 +311,34 @@
           ],
          "default": "8rem",
          "info": "If the hidden part is less than 20% then full text will be shown"
+      },
+      {
+        "type": "header",
+        "content": "Tabs"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_tabs",
+        "label": "Use tabs",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "tab",
+        "name": "tab",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Tab title"
+          },
+          {
+             "type": "page",
+             "id": "page",
+             "label": "Page"
+          }
+        ]
       }
     ]
   }

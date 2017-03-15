@@ -1,0 +1,30 @@
+.etabs {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid $color-border;
+}
+.tab {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+  margin-bottom: -1px;
+  a {
+    font-size: 1.2rem;
+    color: $color-pale;
+    display: block;
+    padding: 0 10px;
+    outline: none;
+    transition: all 0.2s ease;
+    &:hover {
+      color: $color-text-body;
+    }
+    &.active {
+      border-bottom: 2px solid $color-special;
+      color: $color-special;
+    }
+  }
+}
+.tab-container .panel-container {
+  background: #fff;
+  padding: 10px;
+}

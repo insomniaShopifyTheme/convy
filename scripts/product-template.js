@@ -133,9 +133,12 @@ theme.ProductPageSection = (function() {
       $(el).zoom({ on: 'grab', url: $img.data('original') });
     });
 
+    $('#tab-container').easytabs();
+
     this._initVariants();
     this._stickyCartBtn();
     this._readMore();
+    this._removeReviewsDuplicate();
   }
 
   return ProductPageSection;
@@ -296,6 +299,17 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     this.$description.css('height', this.descriptionHeight + 20 + 'px')
                      .removeClass('product-info__description--shrunk');
     $(this.selectors.readMoreBtn).remove();
+  },
+
+  _removeReviewsDuplicate: function() {
+    // As #shopify-product-reviews must be unique block for the page
+    // we delete its duplicate depending on which version loaded
+    // TODO: I think there might be a race condition in mobile version
+    if (theme.cache.$body.width() <= 767) {
+      $('.medium-down--hide .js-delete--mobile').remove();
+    } else {
+      $('.large--hide .js-delete--desktop').remove();
+    }
   },
 
 });
