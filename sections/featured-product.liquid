@@ -30,9 +30,6 @@
               <span itemprop="brand" class="product-info__vendor">{{ product.vendor }}</span>
             {% endif %}
             {{ product.title }}
-            {% if section.settings.display_sku and current_variant.sku != blank %}
-              <span class="variant-sku">{{ current_variant.sku }}</span>
-            {% endif %}
           </h3>
           <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
         </div>

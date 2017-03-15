@@ -13,24 +13,24 @@
 
 {% if collection and collection.products_count > 1 %}
   <h2 class="related-products__title">{{ section.settings.related_products_title }}</h2>
-  <div class="product-list grid--full">
-    {% assign current_product = product %}
-    {% assign current_product_found = false %}
-    {% for product in collection.products limit: number_of_products_to_fetch %}
-      {% if product.handle == current_product.handle %}
-        {% assign current_product_found = true %}
-      {% else %}
-        {% unless current_product_found == false and forloop.last %}
-          <div class="grid__item one-half">
+  <div class="slider-wrapper">
+    <div class="product-list slider" id="slider_related-products">
+      {% assign current_product = product %}
+      {% assign current_product_found = false %}
+      {% for product in collection.products limit: number_of_products_to_fetch %}
+        {% if product.handle == current_product.handle %}
+          {% assign current_product_found = true %}
+        {% else %}
+          {% unless current_product_found == false and forloop.last %}
             {%- assign btn_action = 'add_to_cart' -%}
             {%- assign btn_text = 'products.product.add_to_cart' | t -%}
             {%- assign fade_out_title = true -%}
-            <div class="product-list__item">
+            <div class="product-list__item slider__slide--{{ product.id }}">
               {% include 'product-card' %}
             </div>
-          </div>
-        {% endunless %}
-      {% endif %}
-    {% endfor %}
+          {% endunless %}
+        {% endif %}
+      {% endfor %}
+    </div>
   </div>
 {% endif %}

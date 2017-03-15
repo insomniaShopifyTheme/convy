@@ -1,0 +1,40 @@
+{% if section.settings.display_collections or section.settings.display_tags or section.settings.display_sku or section.settings.display_product_type %}
+<table class="product-meta">
+  {% if section.settings.display_collections and product.collections.size > 0 %}
+    <tr>
+      <th>{{ 'products.product.collections' | t }}</th>
+      <td>
+        <ul class="comma-list">
+          {% for in_collection in product.collections %}
+            <li class="comma-list__item"><a href="{{ in_collection.url }}" title="{{ 'collections.general.link_title' | t: title: in_collection.title }}">{{ in_collection.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+  {% endif %}
+  {% if section.settings.display_tags and product.tags.size > 0 %}
+    <tr>
+      <th>{{ 'products.product.tags' | t }}</th>
+      <td>
+        <ul class="comma-list">
+          {% for has_tag in product.tags %}
+            <li class="comma-list__item"><a href="/collections/all/{{ has_tag | handleize }}">{{ has_tag }}</a></li>
+          {% endfor %}
+        </ul>
+      </td>
+    </tr>
+  {% endif %}
+  {% if section.settings.display_sku and current_variant.sku != blank %}
+    <tr>
+      <th>{{ 'products.product.sku' | t }}</th>
+      <td><span class="variant-sku">{{ current_variant.sku }}</span></td>
+    </tr>
+  {% endif %}
+  {% if section.settings.display_product_type and product.type != blank %}
+    <tr>
+      <th>{{ 'products.product.product_type' | t }}</th>
+      <td>{{ product.type }}</td>
+    </tr>
+  {% endif %}
+</table>
+{% endif %}

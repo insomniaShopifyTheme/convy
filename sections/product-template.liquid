@@ -6,189 +6,171 @@
 
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 
-<div class="product-template" id="product_{{ product.id }}" data-section-id="product_{{ product.id }}" data-section-type="product-template">
-  <header class="page-header">
-    {% if section.settings.breadcrumbs %}
-      {% include 'breadcrumb' %}
-    {% endif %}
-  </header>
-
-  {% if product.images.size > 1 %}
-    <div class="product-images page-width grid grid--full" id="product_{{ product.id }}_images">
-      <div class="product-images__thumbs grid__item one-fifth">
-        <ul class="no-bullets js-product-thumbs">
-          {% for image in product.images %}
-            <li>
-              <div class="thumb-overlay">
-                <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" data-id="{{ image.id }}">
-              </div>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="product-images__image grid__item four-fifths">
-        <ul class="no-bullets js-product-image">
-          {% for image in product.images %}
-            <li>
-              <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}" data-original="{{ image.src | img_url: 'original' }}">
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-    </div>
-  {% else %}
-    <div class="product-images product-images--single grid grid--full" id="product_{{ product.id }}_images">
-      <div class="product-images__image grid__item one-whole">
-        {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-        <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" data-original="{{ featured_image | img_url: 'original' }}">
-      </div>
-    </div>
+<header class="page-header">
+  {% if section.settings.breadcrumbs %}
+    {% include 'breadcrumb' %}
   {% endif %}
+</header>
 
-  <div class="product-info page-width">
-    <div class="product-price clearfix">
-      {%- assign money_price = current_variant.price | money -%}
-      {% if current_variant.compare_at_price > current_variant.price %}
-        {%- assign is_on_sale = true -%}
-        {%- assign discount_percent = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round -%}
+<div class="product-template page-width--large" id="product_{{ product.id }}" data-section-id="product_{{ product.id }}" data-section-type="product-template">
+
+  <div class="grid">
+    <div class="grid__item one-whole large--two-thirds">
+
+      {% if product.images.size > 1 %}
+        <div class="product-images page-width grid grid--full" id="product_{{ product.id }}_images">
+          <div class="product-images__thumbs grid__item one-fifth">
+            <ul class="no-bullets js-product-thumbs">
+              {% for image in product.images %}
+                <li>
+                  <div class="thumb-overlay">
+                    <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" data-id="{{ image.id }}">
+                  </div>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="product-images__image grid__item four-fifths">
+            <ul class="no-bullets js-product-image">
+              {% for image in product.images %}
+                <li>
+                  <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}" data-original="{{ image.src | img_url: 'original' }}">
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
       {% else %}
-        {%- assign is_on_sale = false -%}
-        {%- assign discount_percent = 0 -%}
-      {% endif %}
-      <div class="product-price__sale{% unless is_on_sale %} hide{% endunless %}">
-        <s class="product-price__old">{{ current_variant.compare_at_price | money }}</s>
-        <span class="product-price__percent">{% if discount_percent > 0 %}-{{ discount_percent }}%{% endif %}</span>
-      </div>
-      <span class="product-price__price">{{ money_price }}</span>
-    </div>
-    <div class="product-info__title clearfix">
-      <h3>
-        {% if section.settings.display_vendor and product.vendor != blank %}
-          <span itemprop="brand" class="product-info__vendor">{{ product.vendor }}</span>
-        {% endif %}
-        {{ product.title }}
-        {% if section.settings.display_sku and current_variant.sku != blank %}
-          <span class="variant-sku">{{ current_variant.sku }}</span>
-        {% endif %}
-      </h3>
-      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-    </div>
-    {% if section.settings.description_location == 'top' %}
-      {% include 'product-description' %}
-    {% endif %}
-  </div>
-
-  <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-    <meta itemprop="priceCurrency" content="{{ shop.currency }}">
-    <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
-
-    <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-product_{{ product.id }}" data-section="product_{{ product.id }}">
-      {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
-        {%- assign options_count_mod = product.options.size | modulo: 2 -%}
-        {% if options_count_mod == 0 %}
-          {%- assign max_options = product.options.size -%}
-        {% else %}
-          {%- assign max_options = product.options.size | minus: 1 -%}
-        {% endif %}
-        {% comment %}
-          Show maximum, but even amount of options
-        {% endcomment %}
-        <div class="product-options grid--full">
-        {% for option in product.options_with_values limit: max_options %}
-          {% capture current %}{% cycle 'first', 'last' %}{% endcapture %}
-          <div class="grid__item one-half">
-            {% include 'product-option' %}
+        <div class="product-images product-images--single grid grid--full" id="product_{{ product.id }}_images">
+          <div class="product-images__image grid__item one-whole">
+            {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
+            <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" data-original="{{ featured_image | img_url: 'original' }}">
           </div>
-        {% endfor %}
-        {% if product.options.size > max_options %}
-          {% for option in product.options_with_values offset: max_options %}
-            {%- assign current = 'first' -%}
-            <div class="grid__item one-half">
-              {% include 'product-option' %}
-            </div>
-            <div class="grid__item one-half">
-              {% include 'product-quantity-selector' %}
-            </div>
-          {% endfor %}
-        {% else %}
-          <div class="grid__item one-quarter"></div>
-          <div class="grid__item two-quarters text-center">
-            {%- assign show_label = true -%}
-            {% include 'product-quantity-selector' %}
-          </div>
-          <div class="grid__item one-quarter"></div>
-        {% endif %}
         </div>
-      {% endunless %}
+      {% endif %}
 
-      <select name="id" id="ProductSelect-product_{{ product.id }}" data-section="product_{{ product.id }}" class="product-form__variants no-js hide">
-        {% for variant in product.variants %}
-          {% if variant.available %}
-            <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
-              {{ variant.title }}
-            </option>
-          {% else %}
-            <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
-          {% endif %}
-        {% endfor %}
-      </select>
+      <div class=" medium-down--hide product-description rte">
+        {{ product.description }}
+      </div>
 
+    </div>
+    {% comment %}
+      ================= MOBILE VERSION =================
+    {% endcomment %}
+    <div class="grid__item one-whole large--hide">
 
-      {% if section.settings.description_location == 'bottom' %}
-        <div class="page-width">
+      <div class="product-info page-width">
+        <div class="product-price clearfix">
+          {% include 'product-page-price' %}
+        </div>
+        <div class="product-info__title clearfix">
+          {% include 'product-page-title' %}
+          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+        </div>
+        {% if section.settings.description_location == 'top' %}
           {% include 'product-description' %}
-        </div>
+        {% endif %}
+      </div>
+
+      <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        <meta itemprop="priceCurrency" content="{{ shop.currency }}">
+        <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
+
+        <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-product_{{ product.id }}" data-section="product_{{ product.id }}">
+          {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+            {%- assign options_count_mod = product.options.size | modulo: 2 -%}
+            {% if options_count_mod == 0 %}
+              {%- assign max_options = product.options.size -%}
+            {% else %}
+              {%- assign max_options = product.options.size | minus: 1 -%}
+            {% endif %}
+            {% comment %}
+              Show maximum, but even amount of options
+            {% endcomment %}
+            <div class="product-options grid--full">
+            {% for option in product.options_with_values limit: max_options %}
+              {% capture current %}{% cycle 'first', 'last' %}{% endcapture %}
+              <div class="grid__item one-half">
+                {% include 'product-option' %}
+              </div>
+            {% endfor %}
+            {% if product.options.size > max_options %}
+              {% for option in product.options_with_values offset: max_options %}
+                {%- assign current = 'first' -%}
+                <div class="grid__item one-half">
+                  {% include 'product-option' %}
+                </div>
+                <div class="grid__item one-half">
+                  {% include 'product-quantity-selector' %}
+                </div>
+              {% endfor %}
+            {% else %}
+              <div class="grid__item one-quarter"></div>
+              <div class="grid__item two-quarters text-center">
+                {%- assign show_label = true -%}
+                {% include 'product-quantity-selector' %}
+              </div>
+              <div class="grid__item one-quarter"></div>
+            {% endif %}
+            </div>
+          {% endunless %}
+
+          <select name="id" id="ProductSelect-product_{{ product.id }}" data-section="product_{{ product.id }}" class="product-form__variants no-js hide">
+            {% for variant in product.variants %}
+              {% if variant.available %}
+                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
+                  {{ variant.title }}
+                </option>
+              {% else %}
+                <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+
+
+          {% if section.settings.description_location == 'bottom' %}
+            <div class="page-width">
+              {% include 'product-description' %}
+            </div>
+          {% endif %}
+
+          {% comment %}
+            Cart button is hidden in mobile version and sticky version used
+            see snippets/cart-sticky-button.liquid
+          {% endcomment %}
+          <div class="js-sticky-btn-start"></div>
+        </form>
+      </div>
+
+    </div> <!-- end mobile -->
+
+    {% comment %}
+      ================= DESKTOP VERSION =================
+    {% endcomment %}
+    <div class="grid__item one-whole medium-down--hide large--one-third">
+      <div class="product-info">
+        {% include 'product-page-info' %}
+        {% include 'product-meta' %}
+      </div>
+    </div> <!-- end desktop -->
+
+
+    <div class="grid__item one-whole large--two-thirds">
+
+      {% if section.settings.related_products %}
+      <div class="related-products">
+        {% include 'related-products' %}
+      </div>
       {% endif %}
 
-      {% comment %}
-        Cart button is hidden in mobile version and sticky version used
-        see snippets/cart-sticky-button.liquid
-      {% endcomment %}
-      <div class="js-sticky-btn-start"></div>
-      <div class="product-form__cart small--hide">
-        <button type="submit" name="add" id="AddToCart-product_{{ product.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit">
-          <span id="AddToCartText-product_{{ product.id }}">
-            {% if current_variant.available %}
-              {{ 'products.product.add_to_cart' | t }}
-            {% else %}
-              {{ 'products.product.sold_out' | t }}
-            {% endif %}
-          </span>
-        </button>
-      </div>
-    </form>
-  </div>
+      {% if section.settings.display_icons %}
+        {% include 'product-icons' %}
+      {% endif %}
 
-
-  {% if section.settings.related_products %}
-  <div class="related-products">
-    {% include 'related-products' %}
-  </div>
-  {% endif %}
-
-  {% if section.settings.display_icons %}
-  <div class="product-icons grid--full">
-    <div class="product-icons__icon grid__item one-quarter">
-      {{ 'prodicon-house-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
-      <p><span class="variant-qty">{{ current_variant.inventory_quantity }}</span> left in stock</p>
+      <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
     </div>
-    <div class="product-icons__icon grid__item one-quarter">
-      {{ 'prodicon-truck-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
-      <p>Free returns</p>
-    </div>
-    <div class="product-icons__icon grid__item one-quarter">
-      {{ 'prodicon-badge-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
-      <p>24 month warranty</p>
-    </div>
-    <div class="product-icons__icon grid__item one-quarter">
-      {{ 'prodicon-shield-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
-      <p>100% secure checkout</p>
-    </div>
-  </div>
-  {% endif %}
 
-  <div id="shopify-product-reviews" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-
+  </div> <!-- end grid -->
 </div>
 
 {% unless product.empty? %}
@@ -239,35 +221,32 @@
       },
       {
         "type": "checkbox",
-        "id": "display_option_labels",
-        "label": "Display labels for options",
-        "default": false
-      },
-      {
-         "type": "select",
-         "id": "limit_description",
-         "label": "Product description excerpt",
-         "options": [
-            {"value": "5rem", "label": "Show 3 lines"},
-            {"value": "8rem", "label": "Show 5 lines"},
-            {"value": "15rem", "label": "Show 10 lines"},
-            {"value": "19rem", "label": "Show 12 lines"},
-            {"value": "24rem", "label": "Show 15 lines"},
-            {"value": "none", "label": "Show full text"}
-          ],
-         "default": "8rem",
-         "info": "If the hidden part is less than 20% then full text will be shown"
-      },
-      {
-        "type": "checkbox",
         "id": "display_vendor",
         "label": "Display vendor",
         "default": false
       },
       {
         "type": "checkbox",
+        "id": "display_collections",
+        "label": "Display collections",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "display_tags",
+        "label": "Display tags",
+        "default": true
+      },
+      {
+        "type": "checkbox",
         "id": "display_sku",
         "label": "Display SKU",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "display_product_type",
+        "label": "Display product type",
         "default": false
       },
       {
@@ -289,14 +268,43 @@
       {
          "type": "select",
          "id": "related_products_count",
-         "label": "Number of products",
+         "label": "Max number of products",
          "options": [
-            {"value": "2", "label": "2"},
+            {"value": "3", "label": "3"},
             {"value": "4", "label": "4"},
+            {"value": "5", "label": "5"},
             {"value": "6", "label": "6"},
-            {"value": "8", "label": "8"}
+            {"value": "7", "label": "7"},
+            {"value": "8", "label": "8"},
+            {"value": "9", "label": "9"},
+            {"value": "10", "label": "10"}
           ],
-         "default": "2"
+         "default": "4"
+      },
+      {
+        "type": "header",
+        "content": "Mobile version tweaks"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_option_labels",
+        "label": "Display labels for options",
+        "default": false
+      },
+      {
+         "type": "select",
+         "id": "limit_description",
+         "label": "Product description excerpt",
+         "options": [
+            {"value": "5rem", "label": "Show 3 lines"},
+            {"value": "8rem", "label": "Show 5 lines"},
+            {"value": "15rem", "label": "Show 10 lines"},
+            {"value": "19rem", "label": "Show 12 lines"},
+            {"value": "24rem", "label": "Show 15 lines"},
+            {"value": "none", "label": "Show full text"}
+          ],
+         "default": "8rem",
+         "info": "If the hidden part is less than 20% then full text will be shown"
       }
     ]
   }

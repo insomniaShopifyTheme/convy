@@ -272,6 +272,30 @@ label.error {
   padding: 1rem;
   width: 100%;
 }
+@mixin konversion-cart-qty-input() {
+  border: 1px solid #efefef;
+  text-align: center;
+  width: 115px;
+  .js-qty__num, .ajaxcart__qty-num {
+    border: 1px solid #efefef;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 0;
+    box-sizing: border-box;
+    height: 30px;
+    margin: 0;
+    text-align: center;
+    width: 40px;
+  }
+  button {
+    border: none;
+    height: 30px;
+    width: 30px;
+    &:focus {
+      outline: none;
+    }
+  }
+}
 
 .form-success {
   background-color: $color-special;

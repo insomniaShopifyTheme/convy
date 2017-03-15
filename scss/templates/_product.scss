@@ -64,6 +64,7 @@
       }
     }
     .product-images__image {
+      text-align: center;
       // Display only first slide before slick initialized
       ul:not(.slick-initialized) > li:not(:first-child) {
         display: none;
@@ -72,6 +73,10 @@
       .slick-slide {
         &::before {
           @include zoom-icon();
+        }
+        img {
+          margin: 0 auto;
+          width: 100%;
         }
       }
     }
@@ -154,6 +159,7 @@
     .selector-wrapper {
       label {
         display: block;
+        padding-left: 0.5rem;
       }
       .product-form__input {
         @include konversion-input();
@@ -179,12 +185,14 @@
 
   .related-products {
     margin-bottom: $gutter;
-    .grid--full {
-      margin-left: -5px;
-      &>.grid__item {
-        padding-left: 5px;
-        margin-bottom: ($gutter / 4);
+    // See also sections/_featured_products.scss
+    .product-list {
+      .slick-list {
+        margin-left: -5px;
       }
+    }
+    .product-list__item {
+      margin-left: 5px;
     }
   }
   .related-products__title, .spr-header-title {
@@ -200,6 +208,81 @@
       color: $error-red;
     }
   }
+
+  .product-meta {
+    tr {
+      border-bottom: 1px solid $color-border;
+      &:first-child {
+        border-top: 1px solid $color-border;
+      }
+      th, td {
+        border: none;
+        padding: 5px 3px;
+        font-size: 0.85rem;
+      }
+      th {
+        color: $color-meta-text;
+        font-weight: normal;
+      }
+      td {
+        a {
+          color: $color-special;
+          a:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    .product-info {
+      .product-price {
+        float: none;
+        text-align: left;
+        padding-left: 0;
+        .product-price__price {
+          color: $color-text-body;
+        }
+      }
+      .product-rating {
+        float: right;
+      }
+      .product-short-description {
+        color: $color-pale;
+        padding: $gutter / 3 0;
+      }
+    }
+    .product-form {
+      .js-qty {
+        @include konversion-cart-qty-input();
+        width: 120px;
+        button {
+          display: inline-block;
+        }
+        .js-qty__num {
+          width: 45px;
+        }
+      }
+      .product-form__item {
+        label {
+          display: block;
+        }
+        .product-options__selector, .js-qty {
+            margin: 5px 0 10px;
+        }
+      }
+    }
+    .product-description {
+      margin-top: 1rem;
+    }
+    .related-products {
+      .product-card {
+        // margin: $gutter;
+      }
+    }
+  }
 }
 
 .product-form__cart {
@@ -209,7 +292,7 @@
   }
 }
 
-@include at-query ($max, $small) {
+@include at-query ($max, $medium) {
   .product-form__cart {
     // don't display in-page add to cart in mobile version
     .product-template & {

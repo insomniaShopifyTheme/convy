@@ -190,7 +190,10 @@ html input[disabled] {
   &.disabled {
     cursor: default;
     color: $disabled-border;
-    background-color: $disabled-grey;
+    background-color: $disabled-grey !important;
+    &:hover {
+      color: $disabled-border;
+    }
   }
 }
 
@@ -282,6 +285,16 @@ ol.alpha { list-style: lower-alpha outside; }
   li {
     display: inline-block;
     margin-bottom: 0;
+  }
+}
+
+.comma-list {
+  @extend .inline-list;
+  margin: 0;
+  .comma-list__item:not(:last-child) {
+    &::after {
+      content: ",";
+    }
   }
 }
 

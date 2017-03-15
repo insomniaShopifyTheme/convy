@@ -36,7 +36,10 @@ theme.Variants = (function() {
      * @return {array} options - Values of currently selected variants
      */
     _getCurrentOptions: function() {
-      var currentOptions = _.map($(this.singleOptionSelector, this.$container), function(element) {
+      // get only visible options because there might be duplicated controls
+      // for different screen resolutions
+      var onlyVisibleOptions = this.singleOptionSelector + ':visible';
+      var currentOptions = _.map($(onlyVisibleOptions, this.$container), function(element) {
         var $element = $(element);
         var type = $element.attr('type');
         var currentOption = {};

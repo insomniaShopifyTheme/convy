@@ -1,0 +1,13 @@
+{%- assign money_price = current_variant.price | money -%}
+{% if current_variant.compare_at_price > current_variant.price %}
+  {%- assign is_on_sale = true -%}
+  {%- assign discount_percent = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round -%}
+{% else %}
+  {%- assign is_on_sale = false -%}
+  {%- assign discount_percent = 0 -%}
+{% endif %}
+<div class="product-price__sale{% unless is_on_sale %} hide{% endunless %}">
+  <s class="product-price__old">{{ current_variant.compare_at_price | money }}</s>
+  <span class="product-price__percent">{% if discount_percent > 0 %}-{{ discount_percent }}%{% endif %}</span>
+</div>
+<span class="product-price__price">{{ money_price }}</span>

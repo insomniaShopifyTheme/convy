@@ -42,26 +42,12 @@ $cart-secondary-color: $color-pale;
       }
     }
     .js-qty, .ajaxcart__qty {
-      border: 1px solid #efefef;
-      text-align: center;
-      width: 115px;
+      @include konversion-cart-qty-input();
       .js-qty__num, .ajaxcart__qty-num {
-        border: 1px solid #efefef;
-        border-top: none;
-        border-bottom: none;
-        border-radius: 0;
-        box-sizing: border-box;
         color: $cart-secondary-color;
-        height: 30px;
-        margin: 0;
-        text-align: center;
-        width: 40px;
       }
       button {
-        border: none;
         color: $cart-secondary-color;
-        height: 30px;
-        width: 30px;
       }
     }
   }

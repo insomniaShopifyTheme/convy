@@ -1,0 +1,21 @@
+<form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form--desktop product-form-product_{{ product.id }}" data-section="product_{{ product.id }}">
+  {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+    {%- assign show_label = true -%}
+    {% include 'product-quantity-selector' %}
+    {% for option in product.options_with_values limit: max_options %}
+      {% include 'product-option' %}
+    {% endfor %}
+    {%- assign show_label = false -%}
+  {% endunless %}
+  <div class="product-form__cart">
+    <button type="submit" name="add" id="AddToCart-product_{{ product.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit">
+      <span id="AddToCartText-product_{{ product.id }}">
+        {% if current_variant.available %}
+          {{ 'products.product.add_to_cart' | t }}
+        {% else %}
+          {{ 'products.product.sold_out' | t }}
+        {% endif %}
+      </span>
+    </button>
+  </div>
+</form>

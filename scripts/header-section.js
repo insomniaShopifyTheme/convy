@@ -15,7 +15,6 @@ theme.HeaderSection = (function() {
     $container.find('.header-search').on('keyup', function(e) {
       if (e.key === "Escape") {
         _self._toggleSearchField();
-        console.log('close');
       }
     });
   }

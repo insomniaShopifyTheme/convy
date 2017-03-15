@@ -1,0 +1,6 @@
+<h3>
+  {% if section.settings.display_vendor and product.vendor != blank %}
+    <span itemprop="brand" class="product-info__vendor">{{ product.vendor }}</span>
+  {% endif %}
+  {{ product.title }}
+</h3>

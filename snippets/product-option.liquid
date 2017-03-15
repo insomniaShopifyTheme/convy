@@ -1,5 +1,5 @@
 <div class="selector-wrapper js product-form__item product-form__item--{{ current }}">
-  <label {% if option.name == 'default' or section.settings.display_option_labels == false %}class="hidden-label" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
+  <label {% if option.name == 'default' or section.settings.display_option_labels == false and show_label != true %}class="hidden-label" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
     {{ option.name }}
   </label>
   <select class="product-options__selector product-options__selector-product_{{ product.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">

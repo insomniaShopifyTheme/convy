@@ -49,6 +49,42 @@ theme.ProductImagesSlider = (function() {
   return productImagesSlider;
 })();
 
+theme.RelatedProductsSlider = (function() {
+  this.$relSlider = null;
+  var classes = {
+    wrapper: 'slider-wrapper',
+    slider: 'slider',
+    currentSlide: 'slick-current'
+  };
+
+  function slider(el) {
+    this.$relSlider = $(el);
+
+    this.settings = {
+      dots: false,
+      fade: false,
+      speed: 500,
+      infinite: true,
+      speed: 300,
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      responsive: [
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        }
+      ]
+    };
+
+    this.$relSlider.slick(this.settings);
+  }
+
+  return slider;
+})();
+
 theme.ProductPageSection = (function() {
 
   function ProductPageSection(container) {
@@ -88,6 +124,9 @@ theme.ProductPageSection = (function() {
     var slider = this.slider = '#' + sectionId + '_images';
     theme.sliders[slider] = new theme.ProductImagesSlider(slider);
 
+    var relSlider = this.relSlider = '#slider_related-products';
+    theme.sliders[relSlider] = new theme.RelatedProductsSlider(relSlider);
+
     // Zoom image
     $('.product-images--single .product-images__image, .product-images__image li').each(function(idx, el) {
       var $img = $(el).find('img');
@@ -106,6 +145,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 
   onUnload: function() {
     delete theme.sliders[this.slider];
+    delete theme.sliders[this.relSlider];
     $(document).off('touchmove.track-add-to-cart-btn');
     $(document).off('scroll.track-add-to-cart-btn');
   },

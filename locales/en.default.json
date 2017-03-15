@@ -288,7 +288,11 @@
       "unavailable": "Unavailable",
       "compare_at": "Compare at",
       "quantity": "Quantity",
-      "add_to_cart": "Add to Cart"
+      "add_to_cart": "Add to Cart",
+      "collections": "Collections",
+      "tags": "Tags",
+      "sku": "SKU",
+      "product_type": "Type"
     }
   },
   "gift_cards": {
