@@ -3,6 +3,11 @@
 {% else %}
   {%- assign has_variants = false -%}
 {% endunless %}
+{% if collection == blank %}
+  {%- assign product_url = product.url -%}
+{% else %}
+  {%- assign product_url = product.url | within: collection -%}
+{% endif %}
 <div class="product-card" data-product-id="{{ product.id }}">
   {% if product.compare_at_price > product.price %}
     {%- assign discount_percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
@@ -12,13 +17,13 @@
       </div>
     </div>
   {% endif %}
-  <a href="{{ product.url }}" class="product-card__image">
+  <a href="{{ product_url }}" class="product-card__image">
     {{ product.featured_image.src | img_url: '400x400', crop: 'center' | img_tag: product.title }}
   </a>
   <div class="product-card__info">
     <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
     <div class="product-card__title{% if fade_out_title %} product-card__title--shortable{% endif %}">
-      <a href="{{ product.url }}">{{ product.title }}</a>
+      <a href="{{ product_url }}">{{ product.title }}</a>
       <div class="dimmer"></div>
     </div>
     <div class="product-card__price product-price">
@@ -57,7 +62,7 @@
       </div>
     </form>
   {% elsif btn_action == 'product_page' %}
-    <a href="{{ product.url }}" class="btn btn--special btn--full product-card__button">{{ btn_text }}</a>
+    <a href="{{ product_url }}" class="btn btn--special btn--full product-card__button">{{ btn_text }}</a>
   {% endif %}
   {% unless product.empty? %}
     <script type="application/json" id="ProductJson-product_{{ product.id }}">

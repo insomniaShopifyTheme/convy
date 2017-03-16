@@ -2,14 +2,78 @@
 
 {% paginate collection.products by limit %}
 
-  <div class="collection-template page-width--large">
-    <header class="page-header">
-      {% if section.settings.breadcrumbs %}
-        {% include 'breadcrumb' %}
-      {% else %}
-        <h2 class="page-header__title">{{ collection.title }}</h2>
+{% for block in section.blocks %}
+  {% if block.type == "banner" and block.settings.image != blank %}
+  {%- assign block_collection = collections[block.settings.collection] -%}
+  {% if block_collection.handle == collection.handle or block.settings.collection == blank and collection.handle == 'all' %}
+    <style>
+      .collection-banner--{{ block.id }} {
+        background-image: url('{{ block.settings.image | img_url: '2000x' }}');
+        background-position: center {{ block.settings.alignment }};
+      }
+      .collection-banner--{{ block.id }}:after {
+        {% case block.settings.gradient_color %}
+          {% when 'white' %}
+            background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            background-image: -moz-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            background-image: -ms-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            background-image: -o-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            background-image: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+          {% when 'white_bottom' %}
+            width: 100%;
+            height: 35%;
+            background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            background-image: -o-linear-gradient(top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+            background-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+          {% when 'black' %}
+            background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+            background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+            background-image: -ms-linear-gradient(right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+            background-image: -o-linear-gradient(right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+        {% endcase %}
+      }
+      .collection-banner--{{ block.id }} .collection-banner__title {
+        color: {{ block.settings.color_title }};
+      }
+      .collection-banner--{{ block.id }} .collection-banner__subtitle p {
+        color: {{ block.settings.color_text }};
+      }
+    </style>
+    <div class="collection-banner collection-banner--{{ block.id }} medium-down--hide">
+      {% if block.settings.title != blank and block.settings.text != blank %}
+        <div class="collection-banner__content">
+          <div class="page-width--large">
+            {% unless block.settings.title == blank %}
+              <h1 class="collection-banner__title">
+                {{ block.settings.title | escape }}
+              </h1>
+            {% endunless %}
+            {% unless block.settings.text == blank %}
+              <div class="collection-banner__subtitle">
+                {{ block.settings.text }}
+              </div>
+            {% endunless %}
+          </div>
+        </div>
       {% endif %}
-    </header>
+    </div>
+    {% break %}
+  {% endif %}
+  {% endif %}
+{% endfor %}
+
+  <header class="page-header">
+    {% if section.settings.breadcrumbs %}
+      {% include 'breadcrumb' %}
+    {% else %}
+      <h2 class="page-header__title">{{ collection.title }}</h2>
+    {% endif %}
+  </header>
+
+  <div class="collection-template page-width--large">
 
     <div class="grid">
 
@@ -98,6 +162,93 @@
         "label": "Hide long product title",
         "info": "Use fade out effect for text that doesn't fit so product cards have equal height",
         "default": false
+      }
+    ],
+    "blocks": [
+      {
+        "type": "banner",
+        "name": "Image Banner",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection",
+            "info": "Select collection that you want to add an image banner for"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title",
+            "default": "Banner title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Tell more about this collection</p>"
+          },
+          {
+            "type": "select",
+            "id": "alignment",
+            "label": "Image alignment",
+            "default": "center",
+            "options": [
+              {
+                "value": "top",
+                "label": "Top"
+              },
+              {
+                "value": "center",
+                "label": "Middle"
+              },
+              {
+                "value": "bottom",
+                "label": "Bottom"
+              }
+            ]
+          },
+          {
+            "type": "color",
+            "id": "color_title",
+            "label": "Title color",
+            "default": "#fff"
+          },
+          {
+            "type": "color",
+            "id": "color_text",
+            "label": "Text color",
+            "default": "#fff"
+          },
+          {
+            "type": "select",
+            "id": "gradient_color",
+            "label": "Gradient color",
+            "options": [
+              {
+                "value": "none",
+                "label": "None (disable gradient)"
+              },
+              {
+                "value": "white",
+                "label": "White (left)"
+              },
+              {
+                "value": "black",
+                "label": "Black (left)"
+              },
+              {
+                "value": "white_bottom",
+                "label": "White (bottom)"
+              }
+            ],
+            "default": "black"
+          }
+        ]
       }
     ]
   }

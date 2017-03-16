@@ -6,12 +6,20 @@
   h2 {
     text-align: center;
   }
+  @include at-query($min, $large) {
+    padding: 0 0 0 $gutter;
+    border-bottom: 1px solid $color-border;
+  }
 }
 
 .breadcrumb {
   text-align: center;
   &>span:last-child {
     color: $color-special;
+  }
+  @include at-query($min, $large) {
+    padding: 5px 0;
+    text-align: left;
   }
 }
 

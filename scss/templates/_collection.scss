@@ -63,3 +63,33 @@
     }
   }
 }
+
+.collection-banner {
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  &:after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    bottom: 0; left: 0;
+    z-index: 5;
+  }
+  .collection-banner__content {
+    position: absolute;
+    top: 15%;
+    left: $gutter;
+    right: $gutter;
+    z-index: 6;
+  }
+  .collection-banner__subtitle {
+    p {
+      @extend .h4;
+      font-weight: normal;
+    }
+  }
+}
+
