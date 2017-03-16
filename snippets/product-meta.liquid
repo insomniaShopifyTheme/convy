@@ -1,4 +1,4 @@
-{% if section.settings.display_collections or section.settings.display_tags or section.settings.display_sku or section.settings.display_product_type %}
+{% if section.settings.display_collections or section.settings.display_tags or section.settings.display_sku or section.settings.display_product_type or section.settings.display_vendor %}
 <table class="product-meta">
   {% if section.settings.display_collections and product.collections.size > 0 %}
     <tr>
@@ -24,6 +24,12 @@
       </td>
     </tr>
   {% endif %}
+  {% if section.settings.display_vendor and product.vendor != blank %}
+    <tr>
+      <th>{{ 'products.product.vendor' | t }}</th>
+      <td>{{ product.vendor | link_to_vendor }}</td>
+    </tr>
+  {% endif %}
   {% if section.settings.display_sku and current_variant.sku != blank %}
     <tr>
       <th>{{ 'products.product.sku' | t }}</th>
@@ -33,7 +39,7 @@
   {% if section.settings.display_product_type and product.type != blank %}
     <tr>
       <th>{{ 'products.product.product_type' | t }}</th>
-      <td>{{ product.type }}</td>
+      <td>{{ product.type | link_to_type }}</td>
     </tr>
   {% endif %}
 </table>

@@ -26,9 +26,6 @@
       <div class="grid__item one-half product-info">
         <div class="product-info__title clearfix">
           <h3>
-            {% if section.settings.display_vendor and product.vendor != blank %}
-              <span itemprop="brand" class="product-info__vendor">{{ product.vendor }}</span>
-            {% endif %}
             {{ product.title }}
           </h3>
           <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>

@@ -68,7 +68,7 @@
           {% include 'product-page-price' %}
         </div>
         <div class="product-info__title clearfix">
-          {% include 'product-page-title' %}
+          <h3>{{ product.title }}</h3>
           <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
         </div>
         {% if section.settings.description_location == 'top' %}
@@ -229,7 +229,7 @@
         "type": "checkbox",
         "id": "display_vendor",
         "label": "Display vendor",
-        "default": false
+        "default": true
       },
       {
         "type": "checkbox",

@@ -1,8 +1,8 @@
-{%- assign limit = 8 -%}
+{%- assign limit = 6 -%}
 
 {% paginate collection.products by limit %}
 
-  <div class="collection-template">
+  <div class="collection-template page-width--large">
     <header class="page-header">
       {% if section.settings.breadcrumbs %}
         {% include 'breadcrumb' %}
@@ -11,34 +11,46 @@
       {% endif %}
     </header>
 
-    <div class="collection-controls grid--full">
-      <div class="grid__item one-half">
-        {% include 'collection-filters' %}
-      </div>
-      <div class="grid__item one-half">
-        {% include 'collection-sorting' %}
-      </div>
-    </div>
+    <div class="grid">
 
-    <div class="grid--full grid--uniform product-list">
-      {%- assign btn_action = section.settings.product_btn_action -%}
-      {%- assign btn_text = section.settings.product_btn_text -%}
-      {%- assign fade_out_title = section.settings.fade_out_title -%}
-      {% for product in collection.products %}
-        <div class="grid__item one-half">
-          <div class="product-list__item">
-            {% include 'product-card' %}
+      <div class="grid__item one-whole large--one-quarter">
+        <div class="collection-controls grid--full large--hide">
+          <div class="grid__item one-half">
+            {% include 'collection-filters-dropdown' %}
+          </div>
+          <div class="grid__item one-half">
+            {% include 'collection-sorting-dropdown' %}
           </div>
         </div>
-      {% endfor %}
-    </div>
-
-    {% if paginate.pages > 1 %}
-      <hr>
-      <div class="pagination">
-        {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+        <div class="collection-sidebar medium-down--hide">
+          {% include 'collection-filter' %}
+          {% include 'collection-sorting' %}
+        </div>
       </div>
-    {% endif %}
+
+      <div class="grid__item one-whole large--three-quarters">
+        <div class="grid--full grid--uniform product-list">
+          {%- assign btn_action = section.settings.product_btn_action -%}
+          {%- assign btn_text = section.settings.product_btn_text -%}
+          {%- assign fade_out_title = section.settings.fade_out_title -%}
+          {% for product in collection.products %}
+            <div class="grid__item medium-down--one-half large--one-third">
+              <div class="product-list__item">
+                {% include 'product-card' %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <hr>
+          <div class="pagination">
+            {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
 
   </div>
 
