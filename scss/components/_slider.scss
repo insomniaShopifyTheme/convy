@@ -100,6 +100,23 @@ $z-index-dot: 4;
     z-index: $z-index-dot;
     &:before {
       color: $color-text-alt;
+      // Fixes mobile safari positioning problem. Check in IOS safari before change;
+      position: absolute;
+      top: 20%;
+    }
+  }
+  .slick-prev,
+  .slick-prev:hover,
+  .slick-prev:focus {
+    &:before {
+      right: 40%;
+    }
+  }
+  .slick-next,
+  .slick-next:hover,
+  .slick-next:focus {
+    &:before {
+      left: 40%;
     }
   }
 }
