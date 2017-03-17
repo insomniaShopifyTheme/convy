@@ -53,6 +53,13 @@
    <span aria-hidden="true">&rsaquo;</span>
    <span>{{ page.title }}</span>
 
+  {% elsif template contains 'order' or template contains 'addresses' %}
+
+    <span aria-hidden="true">&rsaquo;</span>
+    <a href="/account">{{ 'layout.customer.account' | t }}</a>
+    <span aria-hidden="true">&rsaquo;</span>
+    <span>{{ page_title }}</span>
+
   {% else %}
 
    <span aria-hidden="true">&rsaquo;</span>

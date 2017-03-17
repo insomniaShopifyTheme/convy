@@ -4,12 +4,28 @@
 
 .account-template {
   .account-section {
-    border-top: 1px dotted $color-border;
-    padding-top: $gutter / 2;
     margin-bottom: $gutter;
     .account-section__title {
       @extend .h4;
       margin-bottom: $gutter / 2;
+    }
+  }
+  .account-addresses {
+    .account-address:not(:last-child) {
+      border-bottom: 1px solid $color-border;
+      margin-bottom: $gutter;
+    }
+    .account-address__title {
+      text-decoration: underline;
+    }
+  }
+  @include at-query($max, $pre-large) {
+    // Space sections in mobile
+    .grid {
+      >.account-section:not(:first-child) {
+        border-top: 1px dotted $color-border;
+        padding-top: $gutter / 2;
+      }
     }
   }
 }
