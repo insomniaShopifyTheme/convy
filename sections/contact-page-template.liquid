@@ -1,3 +1,7 @@
+<header class="page-header">
+  {% include 'breadcrumb' %}
+</header>
+
 {% if section.settings.map_enable and section.settings.map_position == 'top' %}
   {% include 'map' %}
 {% endif %}

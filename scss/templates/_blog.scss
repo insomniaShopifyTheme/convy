@@ -1,0 +1,47 @@
+.blog-template {
+  .blog-filter {
+    width: 100%;
+    select {
+      @include konversion-input();
+    }
+  }
+  .blog-list {
+    .blog-list__post {
+      margin-bottom: $gutter;
+    }
+    .blog-list__image {
+      img {
+        width: 100%;
+      }
+    }
+    .blog-list__author,
+    .blog-list__date {
+      color: $color-meta-text;
+    }
+    .blog-list__excerpt {
+      padding-top: 1rem;
+    }
+    .blog-list__links {
+      a {
+        color: $color-special;
+        transition: all 0.3s;
+        &:hover {
+          color: darken($color-special, 20%);
+        }
+      }
+      & > li:not(:first-child) {
+        &:before {
+          content: " | ";
+        }
+      }
+    }
+  }
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    .blog-filter {
+      float: right;
+      margin-top: -70px;
+      width: 250px;
+    }
+  }
+}

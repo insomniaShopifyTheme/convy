@@ -1,0 +1,12 @@
+.article-template {
+  .article__author,
+  .article__date {
+    color: $color-meta-text;
+  }
+  .article__body {
+    margin-top: $gutter;
+  }
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+  }
+}

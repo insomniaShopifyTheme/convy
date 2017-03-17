@@ -8,6 +8,17 @@ theme.init = function () {
   theme.productCardInit();
 };
 
+// Blog: filter by tag
+(function() {
+  var $filterBy = $('#BlogTagFilter');
+  if (!$filterBy.length) {
+    return;
+  }
+  $filterBy.on('change', function() {
+    location.href = $(this).val();
+  });
+})();
+
 $(theme.init);
 
 $(document).ready(function() {

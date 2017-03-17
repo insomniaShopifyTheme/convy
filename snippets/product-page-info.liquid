@@ -8,7 +8,7 @@
   {% include 'product-page-price' %}
 </div>
 <div class="product-short-description">
-  {{ product.description | truncatewords: '15', "&hellip;" }}
+  {{ product.description | strip_html | truncatewords: '18', "&hellip;" }}
 </div>
 {% include 'product-page-form' %}
 {% if section.settings.display_icons %}

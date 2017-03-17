@@ -1,0 +1,132 @@
+<header class="page-header medium-down--hide">
+  {% include 'breadcrumb' %}
+</header>
+
+<div class="blog-template standard-page">
+<h2 class="standard-page__title">{{ page_title }}</h2>
+{% paginate blog.articles by 12 %}
+
+  <div class="blog-filter">
+    {% if blog.tags.size > 0 %}
+      <select id="BlogTagFilter">
+        <option value="/blogs/{{ blog.handle }}">{{ 'blogs.article.all_topics' | t }}</option>
+        {% for tag in blog.all_tags %}
+          <option value="/blogs/{{ blog.handle }}/tagged/{{ tag | handleize }}" {% if current_tags contains tag %}selected{% endif %}>{{ tag }}</option>
+        {% endfor %}
+      </select>
+    {% endif %}
+  </div>
+  {% case section.settings.layout %}
+    {% when '1-col' %}
+      {%- assign grid_classes = 'one-whole' -%}
+    {% when '2-col' %}
+      {%- assign grid_classes = 'medium-down--one-whole large--one-half' -%}
+    {% when '3-col' %}
+      {%- assign grid_classes = 'medium-down--one-whole large--one-third' -%}
+  {% endcase %}
+  <div class="grid grid--uniform blog-list">
+    {% for article in blog.articles %}
+      <div class="grid__item blog-list__post {{ grid_classes }}">
+        {% if article.image %}
+          <a href="{{ article.url }}" class="blog-list__image">
+            {{ article | img_url: '450x' | img_tag: article.title }}
+          </a>
+        {% endif %}
+
+        <div class="blog-list__meta{% if article.image %} blog-list__meta--has-image{% endif %}">
+          <h2 class="blog-list__title h3">
+            <a href="{{ article.url }}">{{ article.title }}</a>
+          </h2>
+
+          {% if section.settings.blog_show_author %}
+            <span class="blog-list__author">{{ 'blogs.article.by_author' | t: author: article.author }}</span>
+          {% endif %}
+
+          {% if section.settings.blog_show_date %}
+            <span class="blog-list__date pull-right">
+              {{ article.published_at | time_tag: format: 'month_day_year' }}
+            </span>
+          {% endif %}
+
+          <div class="rte blog-list__excerpt">
+            {% if article.excerpt.size > 0 %}
+              {{ article.excerpt }}
+            {% else %}
+              {{ article.content | strip_html | truncate: 150 }}
+            {% endif %}
+          </div>
+
+          {% if article.tags.size > 0 %}
+            <div class="blog-list__tags rte">
+              {% for tag in article.tags %}
+                <a href="{{ blog.url }}/tagged/{{ tag | handle }}" class="blog-list__tag">{{ tag }}</a>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          <ul class="inline-list blog-list__links">
+            <li>
+              <a href="{{ article.url }}">
+                {{ 'blogs.article.read_more' | t }}
+              </a>
+            </li>
+
+            {% if 1==1 %}
+              <li>
+                <a href="{{ article.url }}#comments">
+                  {{ 'blogs.comments.with_count' | t: count: article.comments_count }}
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+    {% if paginate.pages > 1 %}
+      {% include 'pagination' %}
+    {% endif %}
+  </div>
+{% endpaginate %}
+</div>
+
+{% schema %}
+  {
+    "name": "Blog pages",
+    "settings": [
+      {
+        "type": "select",
+        "id": "layout",
+        "label": "Layout",
+        "default": "2-col",
+        "options": [
+          {
+            "value": "1-col",
+            "label": "1-column (list)"
+          },
+          {
+            "value": "2-col",
+            "label": "2-column"
+          },
+          {
+            "value": "3-col",
+            "label": "3-column"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_author",
+        "label": "Show author",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "blog_show_date",
+        "label": "Show date",
+        "default": true
+      }
+    ]
+  }
+{% endschema %}

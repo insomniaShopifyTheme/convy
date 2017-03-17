@@ -120,8 +120,9 @@
       "1486982890272": {
         "type": "separator",
         "settings": {
+          "display": "all",
           "color": "#41cd62",
-          "height": "10px"
+          "height": "5px"
         }
       },
       "1486982934768": {
@@ -225,7 +226,8 @@
             "type": "image",
             "settings": {
               "image": "shopify:\/\/shop_images\/sale-narrow_bb1b35ea-37f2-4103-907b-75ff2cccc77e.png",
-              "link": "shopify:\/\/collections\/all"
+              "link": "shopify:\/\/collections\/all",
+              "full_width": true
             }
           }
         },
@@ -270,13 +272,22 @@
               "btn_action": "add_to_cart",
               "btn_text": "Add to Cart"
             }
+          },
+          "1488927077541": {
+            "type": "product",
+            "settings": {
+              "product": "freedom-trail-mens-essential-baffled-jacket",
+              "btn_action": "add_to_cart",
+              "btn_text": "Add to Cart"
+            }
           }
         },
         "block_order": [
           "1486984345183",
           "1486984368954",
           "1486984374522",
-          "1486984400677"
+          "1486984400677",
+          "1488927077541"
         ],
         "settings": {
           "title": "Featured Products",
@@ -286,6 +297,7 @@
       "1486984421026": {
         "type": "separator",
         "settings": {
+          "display": "mobile",
           "color": "#ffffff",
           "height": "1px"
         }
@@ -293,6 +305,7 @@
       "1486984592820": {
         "type": "separator",
         "settings": {
+          "display": "all",
           "color": "#e9e9e9",
           "height": "1px"
         }
@@ -330,21 +343,34 @@
             "settings": {
               "collection": "women"
             }
+          },
+          "1488923394643": {
+            "type": "collection",
+            "settings": {
+              "collection": "best-sellers"
+            }
           }
         },
         "block_order": [
           "1486984672974",
           "1486984677370",
           "1486984660006",
-          "1486984667480"
+          "1486984667480",
+          "1488923394643"
         ],
         "settings": {
-          "title": "Featured collections"
+          "title": "Featured collections",
+          "title_style": "over",
+          "hover_effect": true,
+          "image_overlay_opacity": "0.2",
+          "color_image_overlay": "#000000",
+          "color_title": "#ffffff"
         }
       },
       "1486984725542": {
         "type": "separator",
         "settings": {
+          "display": "all",
           "color": "#ffffff",
           "height": "1px"
         }
@@ -406,18 +432,34 @@
       },
       "product-template": {
         "type": "product-template",
+        "blocks": {
+          "1489606674014": {
+            "type": "tab",
+            "settings": {
+              "title": "Size Charts",
+              "page": "about-us"
+            }
+          }
+        },
+        "block_order": [
+          "1489606674014"
+        ],
         "settings": {
           "breadcrumbs": true,
           "display_icons": true,
           "description_location": "top",
           "display_quantity_selector": true,
-          "display_option_labels": false,
-          "limit_description": "5rem",
-          "display_vendor": false,
-          "display_sku": false,
+          "display_vendor": true,
+          "display_collections": true,
+          "display_tags": true,
+          "display_sku": true,
+          "display_product_type": true,
           "related_products": true,
           "related_products_title": "Related products",
-          "related_products_count": "2"
+          "related_products_count": "4",
+          "display_option_labels": true,
+          "limit_description": "5rem",
+          "use_tabs": true
         }
       },
       "cart-template": {
@@ -495,6 +537,52 @@
       },
       "collection-template": {
         "type": "collection-template",
+        "blocks": {
+          "1489699428223": {
+            "type": "banner",
+            "settings": {
+              "collection": "men",
+              "image": "shopify:\/\/shop_images\/wn3iop4-j3a-olu-eletu.jpg",
+              "title": "Stay Warm",
+              "text": "<p>Tell more about this collection<\/p>",
+              "alignment": "center",
+              "color_title": "#554545",
+              "color_text": "#494141",
+              "gradient_color": "white_bottom"
+            }
+          },
+          "1489702813053": {
+            "type": "banner",
+            "settings": {
+              "collection": "women",
+              "image": "shopify:\/\/shop_images\/gvz3whhrqfe-yaoqi-lai.jpg",
+              "title": "Banner title",
+              "text": "<p>Tell more about this collection<\/p>",
+              "alignment": "center",
+              "color_title": "#2e5274",
+              "color_text": "#1c4d6e",
+              "gradient_color": "white"
+            }
+          },
+          "1489703040099": {
+            "type": "banner",
+            "settings": {
+              "collection": "",
+              "image": "shopify:\/\/shop_images\/etgzovjtoky-brooke-cagle.jpg",
+              "title": "EVERYTHING WE HAVE",
+              "text": "<p>Tell more about this collection<\/p>",
+              "alignment": "center",
+              "color_title": "#fff",
+              "color_text": "#fff",
+              "gradient_color": "white_bottom"
+            }
+          }
+        },
+        "block_order": [
+          "1489699428223",
+          "1489702813053",
+          "1489703040099"
+        ],
         "settings": {
           "breadcrumbs": true,
           "product_btn_action": "add_to_cart",
@@ -505,8 +593,13 @@
       "contact-page-template": {
         "type": "contact-page-template",
         "settings": {
+          "display_page": false,
           "form_title": "Send a message",
           "form_description": "<p>Please specify your contact details.<\/p>",
+          "promo_product": "art-t-shirt",
+          "promo_product_title": "You can't miss this one!",
+          "btn_action": "add_to_cart",
+          "btn_text": "Add to Cart",
           "map_enable": true,
           "map_api_key": "AIzaSyDp0dYC81HzwbTiTBSh2gzdGRO9jRpeseY",
           "map_mode": "search",
@@ -515,9 +608,8 @@
           "map_satelite": false,
           "map_title": "Montreal",
           "map_description": "<p>10&nbsp;pickup points in Montr&eacute;al, and 5 more points across Quebec.<\/p>",
-          "map_position": "middle",
+          "map_position": "bottom",
           "map_display": "all",
-          "map_width": "600",
           "map_height": "450",
           "map_custom": ""
         }
@@ -539,6 +631,14 @@
           "color_button_bg": "transparent",
           "color_button_border": "#a5a5a5",
           "color_button_text": "#fff5f5"
+        }
+      },
+      "blog-template": {
+        "type": "blog-template",
+        "settings": {
+          "layout": "2-col",
+          "blog_show_author": true,
+          "blog_show_date": true
         }
       }
     },
