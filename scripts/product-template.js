@@ -212,6 +212,11 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 
       // Update left in stock label
       this.$container.find(this.selectors.qty).html(variant.inventory_quantity);
+
+      // There are two separated variant selectors for mobile and desktop
+      // So it needs to be updated manually
+      $(this.selectors.originalSelectorId + '--desktop').val(variant.id)
+
     } else {
       // The variant doesn't exist
       $(this.selectors.addToCart).prop('disabled', true);

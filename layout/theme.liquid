@@ -122,9 +122,9 @@
   <script>
     jQuery(function($) {
       ajaxCart.init({
-        formSelector: '#AddToCartForm',
+        formSelector: '.product-formz',
         cartContainer: '#CartContainer',
-        addToCartSelector: '#AddToCart',
+        addToCartSelector: '.product-form__cart-submit',
         cartCountSelector: '#CartIcon .js-cart-count',
         cartCostSelector: '#CartCost',
         moneyFormat: {{ shop.money_format | json }}
