@@ -1,0 +1,62 @@
+.search-template {
+  .search__form {
+    .input-group {
+      text-align: center;
+      width: 100%;
+      .search__input {
+        box-sizing: border-box;
+        border-right: none;
+        border-radius: 0;
+        box-sizing: border-box;
+        height: 45px;
+        width: 60%;
+        outline: none;
+      }
+      .search__submit {
+        padding: 0 30px;
+        height: 45px;
+        margin-bottom: 3px;
+        outline: none;
+      }
+    }
+  }
+  .search__no-results {
+    text-align: center;
+    padding: $gutter * 2 0;
+  }
+  .list-view-item {
+    display: block;
+    margin-bottom: $gutter;
+    border-bottom: 1px solid $color-border;
+    .list-view-item__price-column {
+      text-align: center;
+      .product-price {
+        font-size: 1.4rem;
+        padding: 1rem 0;
+      }
+    }
+    .list-view-item__sold-out {
+      font-size: 1.4rem;
+      color: $color-pale;
+    }
+  }
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    max-width: 900px !important;
+    .search__form {
+      .input-group {
+        .search__submit {
+          margin-bottom: 5px;
+        }
+      }
+    }
+    .list-view-item {
+      .list-view-item__price-column {
+        .product-price {
+          padding-top: 0;
+        }
+      }
+    }
+  }
+}
+

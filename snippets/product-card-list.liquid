@@ -1,0 +1,30 @@
+<div class="grid">
+  <div class="grid__item one-whole large--one-quarter list-view-item__image-column">
+    <div class="list-view-item__image-wrapper">
+      <img class="list-view-item__image" src="{{ product.featured_image.src | img_url: '600x600' }}" alt="{{ product.featured_image.alt | escape }}">
+    </div>
+  </div>
+
+  <div class="grid__item one-whole large--two-quarters list-view-item__title-column">
+    <div class="product-info__title">
+      <h3>{{ product.title }}</h3>
+    </div>
+    <div class="product-rating">
+      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+    </div>
+    <div class="product-short-description">
+      {{ product.description | strip_html | truncatewords: '18', "&hellip;" }}
+    </div>
+  </div>
+
+  <div class="grid__item one-whole large--one-quarter list-view-item__price-column">
+
+    {% if product.available %}
+      <div class="product-price">
+        {% include 'product-price' %}
+      </div>
+    {% else %}
+      <div class="list-view-item__sold-out">{{ 'products.product.sold_out' | t }}</div>
+    {% endif %}
+  </div>
+</div>

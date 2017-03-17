@@ -1,0 +1,6 @@
+.search-template {
+  max-width: 900px !important;
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+  }
+}

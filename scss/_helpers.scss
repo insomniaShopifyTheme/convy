@@ -74,3 +74,14 @@
     float: right;
   }
 }
+.empty-page-placeholder {
+  color: $color-meta-text;
+  height: $gutter * 6;
+  padding-top: $gutter * 2;
+  text-align: center;
+  width: 100%;
+  h2, .h2 {
+    color: $color-meta-text;
+  }
+}
+
