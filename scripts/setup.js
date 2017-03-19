@@ -13,6 +13,14 @@ theme.cacheSelectors = function () {
     $hideRecoverPasswordLink: $('#HideRecoverPasswordLink'),
     $passwordResetSuccess: $('#ResetSuccess')
   };
+
+  theme.mobileBreakpoint = 1024;
+  theme.isMobile = function() {
+    return theme.cache.$body.width() < this.mobileBreakpoint;
+  };
+  theme.isDesktop = function() {
+    return theme.cache.$body.width() >= this.mobileBreakpoint;
+  };
 };
 
 theme.sliders = {};

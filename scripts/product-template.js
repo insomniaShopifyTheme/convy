@@ -270,7 +270,10 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     var hasDescription = this.descriptionHeight > 0;
     var hasEnoughToHide = hasDescription && (100 - blockHeight / (this.descriptionHeight / 100)) > minToHide;
 
-    if (hasDescription && hasEnoughToHide) {
+    if (theme.isDesktop()) {
+      this.descriptionHeight = null;
+      this._disableReadMore();
+    } else if (hasDescription && hasEnoughToHide) {
       this.$readMoreBtn = $(this.selectors.readMoreBtn);
       $(this.selectors.readMoreBtn).on('click', this._toggleReadMore.bind(this));
     } else {
@@ -301,8 +304,12 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
   },
 
   _disableReadMore: function() {
-    this.$description.css('height', this.descriptionHeight + 20 + 'px')
-                     .removeClass('product-info__description--shrunk');
+    if (this.descriptionHeight) {
+      this.$description.css('height', this.descriptionHeight + 20 + 'px');
+    } else {
+      this.$description.css('height', '100%');
+    }
+    this.$description.removeClass('product-info__description--shrunk');
     $(this.selectors.readMoreBtn).remove();
   },
 
