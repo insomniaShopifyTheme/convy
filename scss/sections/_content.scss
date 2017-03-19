@@ -7,10 +7,10 @@
     .custom__item-heading,
     .custom__item-text {
       margin-bottom: $gutter;
-      @include at-query($min, $medium) {
-        margin-left: $gutter * 2;
-        margin-right: $gutter * 2;
-      }
+    }
+    @include at-query($min, $medium) {
+      margin-left: $gutter * 2;
+      margin-right: $gutter * 2;
     }
   }
 

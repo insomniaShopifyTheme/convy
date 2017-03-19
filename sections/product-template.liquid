@@ -168,7 +168,9 @@
       {% endif %}
 
       {% if section.settings.display_icons %}
-        {% include 'product-icons' %}
+        <div class="large--hide">
+          {% include 'product-icons' %}
+        </div>
       {% endif %}
 
       <div class="{% if section.settings.use_tabs %}large--hide{% endif %}">
