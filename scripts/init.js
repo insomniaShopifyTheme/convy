@@ -4,8 +4,6 @@ theme.init = function () {
   theme.drawersInit();
   theme.mobileNavInit();
   theme.loginForms();
-  theme.setupMap();
-  theme.productCardInit();
 };
 
 // Blog: filter by tag
@@ -27,4 +25,7 @@ $(document).ready(function() {
   sections.register('slideshow-section', theme.SlideshowSection);
   sections.register('slider-section', theme.SliderSection);
   sections.register('product-template', theme.ProductPageSection);
+  sections.register('collection-template', theme.CollectionTemplate);
+  sections.register('contact-template', theme.ContactTemplate);
+  sections.register('featured-product-section', theme.FeaturedProductSection);
 });

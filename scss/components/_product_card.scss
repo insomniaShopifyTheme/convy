@@ -1,5 +1,9 @@
 /*================ Product Card ================*/
 
+$product-card-img-overlay-z-index: 3;
+$product-card-add-to-cart-z-index: 5;
+$product-card-ribbon-z-index: 4;
+
 .product-list {
 
   .product-list__item {
@@ -49,6 +53,10 @@
     }
   }
 
+  .product-card__image {
+    display: block;
+  }
+
   .product-card__info {
     padding: 0 3px;
   }
@@ -58,10 +66,44 @@
     overflow: hidden;
   }
 
-  .product-form {
-    .product-form__variants {
-      border-radius: 0;
-      width: 100%;
+  // Variants dropdown
+  .product-form__variants {
+    background-color: $color-special;
+    border: none;
+    border-radius: 0;
+    color: $color-special-text;
+    padding: 13px 10px;
+    background-image: url('{{ "ico-select-alt.svg" | asset_url }}');
+    line-height: 1.42;
+    text-transform: uppercase;
+    option {
+      &:disabled {
+        color: $color-special-text;
+      }
+    }
+  }
+  .selectric {
+    background-color: $color-special;
+    text-align: center;
+    border: none;
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: $color-btn-special-hover;
+    }
+    .label {
+      color: $color-special-text;
+      text-transform: uppercase;
+      padding: 17px 0;
+      margin: 0 21px 0 10px; // offset arrow at right
+    }
+    .button {
+      height: 100%;
+      width: 21px;
+      &:after {
+        border-top-color: $color-special-text;
+        right: initial;
+      }
     }
   }
 
@@ -75,6 +117,44 @@
     font-size: 0.75rem;
     .spr-badge-caption {
       display: none;
+    }
+  }
+
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    .product-form {
+      height: 52px;
+    }
+    &.product-card--hoverable {
+      .product-form {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 30%;
+        height: 0;
+        overflow: hidden;
+        margin: 0 auto;
+        width: 85%;
+        transition: height 0.1s;
+        z-index: $product-card-add-to-cart-z-index;
+        .product-form__variants {
+          border-radius: 0;
+          width: 100%;
+        }
+      }
+      &:hover {
+        .product-form {
+          border: none;
+          overflow: visible;
+        }
+        .product-card__image {
+          position: relative;
+          @include overlay($product-card-img-overlay-z-index, $color-image-overlay, 0.1);
+          &:before {
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 
@@ -105,7 +185,7 @@ $ribbon-red-to: darken($ribbon-red, 20%);
   position: absolute;
   top: -3px;
   right: -3px;
-
+  z-index: $product-card-ribbon-z-index;
   > div {
     font: bold 15px Sans-Serif;
     color: #333;

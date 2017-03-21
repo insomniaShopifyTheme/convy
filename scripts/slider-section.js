@@ -46,6 +46,7 @@ theme.Slider = (function() {
     };
 
     this.$slider.slick(this.settings);
+    theme.productCardsInit(this.$wrapper);
   }
 
   return slider;

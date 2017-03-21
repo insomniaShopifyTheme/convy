@@ -24,6 +24,13 @@
   }
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {
+    .product-card {
+      &.product-card--hoverable {
+        .product-form {
+          width: 65%;
+        }
+      }
+    }
     .contact-form__wrapper {
       width: 90%;
       margin: 0 auto;

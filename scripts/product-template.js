@@ -126,6 +126,7 @@ theme.ProductPageSection = (function() {
 
     var relSlider = this.relSlider = '#slider_related-products';
     theme.sliders[relSlider] = new theme.RelatedProductsSlider(relSlider);
+    theme.productCardsInit($container);
 
     // Zoom image
     $('.product-images--single .product-images__image, .product-images__image li').each(function(idx, el) {

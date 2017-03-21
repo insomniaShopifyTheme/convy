@@ -2,6 +2,8 @@
   {% include 'breadcrumb' %}
 </header>
 
+<div data-section-id="{{ section.id }}" data-section-type="contact-template">
+
 {% if section.settings.map_enable and section.settings.map_position == 'top' %}
   {% include 'map' %}
 {% endif %}
@@ -81,6 +83,7 @@
           {%- assign btn_text = section.settings.btn_text -%}
           {%- assign fade_out_title = false -%}
           {%- assign card_show_description = true -%}
+          {%- assign card_hoverable = section.settings.hoverable -%}
           {% include 'product-card' %}
         </div>
       {% endunless %}
@@ -92,7 +95,7 @@
   {% include 'map' %}
 {% endif %}
 
-
+</div>
 
 {% schema %}
   {
@@ -159,6 +162,12 @@
         "id": "btn_text",
         "label": "Button text",
         "default": "Add to Cart"
+      },
+      {
+        "type": "checkbox",
+        "id": "hoverable",
+        "label": "Use hover effect in desktop version",
+        "default": true
       },
       {
         "type": "header",

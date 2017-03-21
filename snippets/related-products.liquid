@@ -22,9 +22,14 @@
           {% assign current_product_found = true %}
         {% else %}
           {% unless current_product_found == false and forloop.last %}
-            {%- assign btn_action = 'add_to_cart' -%}
-            {%- assign btn_text = 'products.product.add_to_cart' | t -%}
             {%- assign fade_out_title = true -%}
+            {% if section.settings.related_products_button != 'none' %}
+              {%- assign btn_action = 'add_to_cart' -%}
+              {%- assign btn_text = 'products.product.add_to_cart' | t -%}
+            {% endif %}
+            {% if section.settings.related_products_button == 'hover' %}
+              {%- assign card_hoverable = true -%}
+            {% endif %}
             <div class="product-list__item slider__slide--{{ product.id }}">
               {% include 'product-card' %}
             </div>

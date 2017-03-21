@@ -1,4 +1,4 @@
-theme.setupMap = function() {
+theme.setupMap = function($scope) {
   // Disable scroll zooming and bind back the click event
   function onMapMouseleaveHandler(event) {
     var that = $(this);
@@ -22,7 +22,7 @@ theme.setupMap = function() {
   }
 
   // Enable map zooming with mouse scroll when the user clicks the map
-  $('.map .map__wrapper').on('click', onMapClickHandler);
+  $scope.find('.map .map__wrapper').on('click', onMapClickHandler);
 };
 
 

@@ -16,6 +16,7 @@ gulp.task('styles', function(){
 
 gulp.task('scripts', function() {
   return gulp.src([
+      './scripts/lib/jquery.selectric.js',
       './scripts/setup.js',
       './scripts/theme/currency.js',
       './scripts/theme/sections.js',
@@ -29,6 +30,9 @@ gulp.task('scripts', function() {
       './scripts/slideshow-section.js',
       './scripts/slider-section.js',
       './scripts/product-template.js',
+      './scripts/collection-template.js',
+      './scripts/contact-template.js',
+      './scripts/featured-product-section.js',
       './scripts/init.js',
     ])
     .pipe(concat('theme.js.liquid'))

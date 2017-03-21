@@ -1,5 +1,6 @@
 {%- assign limit = 6 -%}
 
+<div data-section-id="{{ section.id }}" data-section-type="collection-template">
 {% paginate collection.products by limit %}
 
 {% for block in section.blocks %}
@@ -97,6 +98,7 @@
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
           {%- assign fade_out_title = section.settings.fade_out_title -%}
+          {%- assign card_hoverable = section.settings.hoverable -%}
           {% for product in collection.products %}
             <div class="grid__item medium-down--one-half large--one-third">
               <div class="product-list__item">
@@ -119,6 +121,7 @@
   </div>
 
 {% endpaginate %}
+</div>
 
 {% schema %}
   {
@@ -162,6 +165,12 @@
         "label": "Hide long product title",
         "info": "Use fade out effect for text that doesn't fit so product cards have equal height",
         "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "hoverable",
+        "label": "Use hover effect in desktop version",
+        "default": true
       }
     ],
     "blocks": [
