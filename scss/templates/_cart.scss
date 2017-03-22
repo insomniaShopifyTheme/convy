@@ -126,53 +126,96 @@ $cart-secondary-color: $color-pale;
   }
 }
 
+/*================ Desktop Version ================*/
+@include at-query($min, $large) {
+  .cart-template {
+    table.cart-table {
+      &.full {
+        margin: 0 auto;
+        width: 80%;
+      }
+    }
+    .cart-summary__wrapper {
+      border: 1px solid $color-border;
+      border-radius: $radius;
+      margin: ($gutter) auto;
+      padding: $gutter / 2;
+      width: 75%;
+    }
+    .cart-summary {
+      margin: 0;
+      .cart-summary__subtotal-title {
+        text-transform: uppercase;
+      }
+      .cart-summary__subtotal {
+        color: $color-primary;
+        margin-bottom: 1rem;
+      }
+      .cart-summary__note {
 
-  /*================ Desktop Version ================*/
-  @include at-query($min, $large) {
-    .cart-template {
-      table.cart-table {
-        &.full {
-          margin: 0 auto;
-          width: 80%;
-        }
       }
-      .cart-summary__wrapper {
-        border: 1px solid $color-border;
-        border-radius: $radius;
-        margin: ($gutter) auto;
-        padding: $gutter / 2;
-        width: 75%;
+      &.cart-summary--desktop {
+        display: block;
       }
-      .cart-summary {
-        margin: 0;
-        .cart-summary__subtotal-title {
-          text-transform: uppercase;
-        }
-        .cart-summary__subtotal {
-          color: $color-primary;
-          margin-bottom: 1rem;
-        }
-        .cart-summary__note {
-
-        }
-        &.cart-summary--desktop {
-          display: block;
-        }
-        &.cart-summary--mobile {
-          display: none;
-        }
-        .grid--full {
-          padding: 0;
-        }
+      &.cart-summary--mobile {
+        display: none;
       }
-      .cart-shipping-notice {
-        margin: 1rem 0;
+      .grid--full {
+        padding: 0;
       }
-      .cart--empty {
-        padding: ($gutter * 5) $gutter $gutter;
-        .h3 {
-          margin-bottom: $gutter * 2;
-        }
+    }
+    .cart-shipping-notice {
+      margin: 1rem 0;
+    }
+    .cart--empty {
+      padding: ($gutter * 5) $gutter $gutter;
+      .h3 {
+        margin-bottom: $gutter * 2;
       }
     }
   }
+}
+
+
+/*================ Add to Cart Animation ================*/
+@include at-query($min, $large) {
+  div.floating-cart{
+    position:absolute;
+    top:0;
+    right:0;
+    width:243px;
+    height:243px;
+    background:#fff;
+    z-index:200;
+    overflow:hidden;
+    box-shadow:0px 5px 31px -1px rgba(0, 0, 0, 0.15);
+    display:none;
+    &.moveToCart{
+      right: 75px !important;
+      top: 35px !important;
+      width: 47px;
+      height: 47px;
+      -webkit-transition: all 600ms ease-in-out;
+         -moz-transition: all 600ms ease-in-out;
+        -ms-transition: all 600ms ease-in-out;
+         -o-transition: all 600ms ease-in-out;
+            transition: all 600ms ease-in-out;
+      body.MakeFloatingCart & {
+        right: 90px !important;
+        top: 55px !important;
+        width: 21px;
+        height: 22px;
+        box-shadow:0px 5px 31px -1px rgba(0, 0, 0, 0);
+        -webkit-transition: all 200ms ease-out;
+           -moz-transition: all 200ms ease-out;
+          -ms-transition: all 200ms ease-out;
+           -o-transition: all 200ms ease-out;
+              transition: all 200ms ease-out;
+      }
+    }
+    &.floating-cart--big {
+      height: 400px;
+      width: 400px;
+    }
+  }
+}

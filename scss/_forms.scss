@@ -202,8 +202,8 @@ select,
 textarea {
   &.error {
     border-color: $error-red;
-    background-color: $error-red-bg;
-    color: $error-red;
+    background-color: $error-alert-bg;
+    color: $error-alert-color;
   }
 }
 
@@ -308,8 +308,8 @@ label.error {
 
 .errors {
   border: 1px solid $color-border;
-  background-color: $error-red-bg;
-  color: $error-red;
+  background-color: $error-alert-bg;
+  color: $error-alert-color;
 
   // Shopify generates ul element
   ul {
@@ -319,7 +319,7 @@ label.error {
   }
 
   a {
-    color: $error-red;
+    color: $error-alert-color;
     text-decoration: underline;
   }
 }

@@ -114,7 +114,7 @@ theme.ProductPageSection = (function() {
       stickyBtnStart: '#' + sectionId + ' .js-sticky-btn-start',
       stickyCartButton: 'body > .product-form__cart',
       stickyCartButtonText: 'body > .product-form__cart button > span',
-      cartForm: '#' + sectionId + ' .product-form',
+      cartFormMobile: '#' + sectionId + ' .product-form--mobile',
       readMoreBtn: '.product-template .product-info__more',
       productDescription: '.product-template .product-info__description',
       productFullDescription: '.product-template .product-info__full_description',
@@ -162,7 +162,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
   },
 
   _submitCartForm: function() {
-    $(this.selectors.cartForm).trigger('submit');
+    $(this.selectors.cartFormMobile).trigger('submit');
   },
 
   _trackScrolling: function() {

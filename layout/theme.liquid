@@ -76,7 +76,7 @@
   {% include 'mobile-nav' %}
   <div id="CartDrawer" class="drawer drawer--right">
     <div class="drawer__header">
-      <div class="drawer__title h3">{{ 'cart.general.title' | t }}</div>
+      <div class="drawer__title h3">{{ 'cart.general.title' | t }} <a href="/cart" class="icon icon-link"></a></div>
       <div class="drawer__close js-drawer-close">
         <button type="button" class="icon-fallback-text">
           <span class="icon icon-x" aria-hidden="true"></span>
@@ -122,7 +122,7 @@
   <script>
     jQuery(function($) {
       ajaxCart.init({
-        formSelector: '.product-formz',
+        formSelector: '.product-form',
         cartContainer: '#CartContainer',
         addToCartSelector: '.product-form__cart-submit',
         cartCountSelector: '#CartIcon .js-cart-count',

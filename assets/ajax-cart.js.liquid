@@ -101,7 +101,7 @@ ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
     },
     error: function(XMLHttpRequest, textStatus) {
       if ((typeof errorCallback) === 'function') {
-        errorCallback(XMLHttpRequest, textStatus);
+        errorCallback(XMLHttpRequest, textStatus, form);
       }
       else {
         ShopifyAPI.onError(XMLHttpRequest, textStatus);
@@ -177,7 +177,7 @@ var ajaxCart = (function(module, $) {
   var $formContainer, $addToCart, $cartCountSelector, $cartCostSelector, $cartContainer, $drawerContainer;
 
   // Private functions
-  var updateCountPrice, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, cartCallback, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty;
+  var updateCountPrice, formOverride, itemAddedCallback, itemErrorCallback, cartUpdateCallback, buildCart, cartCallback, adjustCart, adjustCartCallback, createQtySelectors, qtySelectors, validateQty, cartFeedback;
 
   /*============================================================================
     Initialise the plugin and define global options
@@ -258,19 +258,61 @@ var ajaxCart = (function(module, $) {
     });
   };
 
-  itemAddedCallback = function (product) {
+  itemAddedCallback = function (product, form) {
     $addToCart.removeClass('is-adding').addClass('is-added');
 
-    ShopifyAPI.getCart(cartUpdateCallback);
+    var img, $form = $(form);
+    if ($form.hasClass('product-card__form')) {
+      img = $form.parents('.product-card').find('img')[0];
+      cartFeedback(img);
+    } else {
+      img = $form.parents('.product-template').find('.product-images__image .slick-active img, .product-images--single img')[0];
+      if (img) {
+        cartFeedback(img, 'floating-cart--big');
+      }
+    }
+
   };
 
-  itemErrorCallback = function (XMLHttpRequest, textStatus) {
+  cartFeedback = function (img, cartClass) {
+    if (theme.isDesktop()) {
+      var position = $(img).offset();
+      var right = $(theme.cache.$body).width() - position.left - $(img).width();
+
+      $("body").append('<div class="floating-cart '+ cartClass +'"></div>');
+      var cart = $('div.floating-cart');
+      $("<img src='"+img.src+"' class='floating-image-large' />").appendTo(cart);
+
+      $(cart).css({'top' : position.top + 'px', "right" : right + 'px'}).fadeIn("slow").addClass('moveToCart');
+      setTimeout(function(){
+        $("body").addClass("MakeFloatingCart");
+        ShopifyAPI.getCart(cartUpdateCallback);
+      }, 400);
+
+      setTimeout(function(){
+        $('div.floating-cart').remove();
+        $("body").removeClass("MakeFloatingCart");
+      }, 850);
+    } else {
+      ShopifyAPI.getCart(cartUpdateCallback);
+    }
+  };
+
+  itemErrorCallback = function (XMLHttpRequest, textStatus, form) {
     var data = eval('(' + XMLHttpRequest.responseText + ')');
     $addToCart.removeClass('is-adding is-added');
 
     if (!!data.message) {
       if (data.status == 422) {
-        $formContainer.after('<div class="errors qty-error">'+ data.description +'</div>')
+        $.notify({
+          title: 'Error',
+          text: data.description,
+        }, {
+          style: 'metro',
+          autoHide: true,
+          clickToHide: true,
+          className: 'error'
+        });
       }
     }
   };
@@ -288,7 +330,7 @@ var ajaxCart = (function(module, $) {
     // Show empty cart
     if (cart.item_count === 0) {
       $cartContainer
-        .append('<p>' + {{ 'cart.general.empty' | t | json }} + '</p>');
+        .append('<p class="alert-info">' + {{ 'cart.general.empty' | t | json }} + '</p>');
       cartCallback(cart);
       return;
     }

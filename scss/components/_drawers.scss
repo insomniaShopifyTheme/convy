@@ -54,7 +54,10 @@
   width: $drawer-cart-width;
   right: -$drawer-cart-width;
   border-left: 1px solid $color-drawer-border;
-
+  .icon-link {
+    font-size: 1.2rem;
+    margin-left: 5px;
+  }
   .js-drawer-open-right & {
     display: block;
     @include transform(translateX(-$drawer-cart-width));
