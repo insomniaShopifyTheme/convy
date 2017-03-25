@@ -22,8 +22,28 @@
     ]
   },
   {
-    "name": "Ajax cart widget",
+    "name": "Shopping cart",
     "settings": [
+      {
+        "type": "select",
+        "id": "ajax_cart_method",
+        "label": "Cart type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "popup",
+            "label": "Popup"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          }
+        ],
+        "default": "drawer"
+      },
       {
         "type": "checkbox",
         "id": "cart_notes_enable",
@@ -44,22 +64,6 @@
         "id": "fixed_header",
         "label": "Fixed toolbar in mobile version",
         "info": "Header stays fixed to the top of the screen, when you are scrolling"
-      },
-      {
-        "type": "select",
-        "id": "ajax_cart_method",
-        "label": "Cart type",
-        "options": [
-          {
-            "value": "drawer",
-            "label": "Drawer"
-          },
-          {
-            "value": "page",
-            "label": "Page"
-          }
-        ],
-        "default": "drawer"
       }
     ]
   },

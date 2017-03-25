@@ -25,6 +25,7 @@ gulp.task('scripts', function() {
       './scripts/map.js',
       './scripts/product-card.js',
       './scripts/drawers.js',
+      './scripts/modal.js',
       './scripts/mobile-nav.js',
       './scripts/header-section.js',
       './scripts/slideshow-section.js',

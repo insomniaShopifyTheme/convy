@@ -49,7 +49,7 @@
     </div>
   </div>
   <div class="grid__item two-twelfths cart-cell">
-    <a href="/cart" id="CartIcon" class="h1 section-header__cart-link js-drawer-open-right" aria-controls="CartDrawer" aria-expanded="false">
+    <a href="/cart" id="CartIcon" class="h1 section-header__cart-link {% if settings.ajax_cart_method == 'drawer' %}js-drawer-open-right{% elsif settings.ajax_cart_method == 'popup' %}js-modal-open{% endif %}" aria-controls="CartDrawer" aria-expanded="false">
       <span class="section-header__cart-count medium-down--hide js-cart-count">
         <span>{{ cart.item_count }}</span>
       </span>

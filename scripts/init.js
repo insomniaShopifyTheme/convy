@@ -2,6 +2,7 @@ theme.init = function () {
   FastClick.attach(document.body);
   theme.cacheSelectors();
   theme.drawersInit();
+  theme.modalInit();
   theme.mobileNavInit();
   theme.loginForms();
 };

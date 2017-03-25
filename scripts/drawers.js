@@ -42,7 +42,7 @@ theme.Drawers = (function () {
     var externalCall = false;
 
     // If drawer disabled for mobile, just go to cart page
-    if ('{{ settings.ajax_cart_method }}' == 'page' && theme.cache.$body.width() < this.mobileBreakpoint) {
+    if ('{{ settings.ajax_cart_method }}' == 'page') { //  && theme.cache.$body.width() < this.mobileBreakpoint
       return true;
     }
 
