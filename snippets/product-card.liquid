@@ -35,8 +35,8 @@
       </div>
     {% endif %}
   </div>
-  <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-card__form product-form-product_{{ product.id }}" data-section="product_{{ product.id }}" data-variants="{% if has_variants %}true{% else %}false{% endif %}">
-    {% if btn_action == 'add_to_cart' %}
+  <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-card__form product-form-product_{{ product.id }}" data-section="product_{{ product.id }}" data-variants="{% if has_variants %}true{% else %}false{% endif %}" data-action-type="{{ btn_action }}" >
+    {% if btn_action contains 'add_to_cart' %}
       {%- assign current_variant = product.selected_or_first_available_variant -%}
       <select name="id" id="ProductSelect-product_{{ product.id }}" data-section="product_{{ product.id }}" class="product-form__variants {% if has_variants %}product-form__variants--has-variants{% else %}hide{% endif %}">
         {% if has_variants %}

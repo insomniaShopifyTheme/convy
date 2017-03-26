@@ -37,7 +37,12 @@ $cart-modal-width: 540px;
   }
 
   /* Modal Body */
-  .modal-body {padding: 2px 16px;}
+  .modal-body {
+    padding: 2px 1rem;
+    .alert-info {
+      margin: $gutter * 2 auto;
+    }
+  }
 
   /* Modal Footer */
   .modal-footer {

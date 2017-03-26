@@ -134,6 +134,23 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "fade_out_title",
+        "label": "Hide long product title",
+        "info": "Use fade out effect for text that doesn't fit so product cards have equal height",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "hoverable",
+        "label": "Use hover effect in desktop version",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Product button"
+      },
+      {
         "type": "select",
         "id": "product_btn_action",
         "label": "Product button action",
@@ -144,7 +161,15 @@
           },
           {
             "value": "add_to_cart",
-            "label": "Add to cart"
+            "label": "Add to cart and stay on page"
+          },
+          {
+            "value": "add_to_cart_redirect",
+            "label": "Add to cart and go to cart page"
+          },
+          {
+            "value": "add_to_cart_checkout",
+            "label": "Add to cart and go to checkout"
           },
           {
             "value": "product_page",
@@ -158,19 +183,6 @@
         "id": "product_btn_text",
         "label": "Product button text",
         "default": "Add to Cart"
-      },
-      {
-        "type": "checkbox",
-        "id": "fade_out_title",
-        "label": "Hide long product title",
-        "info": "Use fade out effect for text that doesn't fit so product cards have equal height",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "hoverable",
-        "label": "Use hover effect in desktop version",
-        "default": true
       }
     ],
     "blocks": [

@@ -246,6 +246,12 @@ var ajaxCart = (function(module, $) {
 
   formOverride = function () {
     $formContainer.on('submit', function(evt) {
+      var disableAjax = $(evt.target).data('action-type') == 'add_to_cart_redirect';
+
+      if (disableAjax) {
+        return true;
+      }
+
       evt.preventDefault();
 
       // Add class to be styled if desired
@@ -262,10 +268,17 @@ var ajaxCart = (function(module, $) {
     $addToCart.removeClass('is-adding').addClass('is-added');
 
     var img, $form = $(form);
+    // Product card action
     if ($form.hasClass('product-card__form')) {
       img = $form.parents('.product-card').find('img')[0];
-      cartFeedback(img);
-    } else {
+      if ($form.data('action-type') == 'add_to_cart_checkout') {
+        window.location = '/checkout'
+      } else {
+        cartFeedback(img);
+      }
+    }
+    // Product page action
+    else {
       img = $form.parents('.product-template').find('.product-images__image .slick-active img, .product-images--single img')[0];
       if (img) {
         cartFeedback(img, 'floating-cart--big');
