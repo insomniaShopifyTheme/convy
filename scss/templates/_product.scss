@@ -172,6 +172,20 @@
     .product-form__item--last .product-form__input {
       border-right: none;
     }
+
+  }
+  .product-options--swatches {
+    .product-form__item--quantity {
+      margin: 0 10px 10px;
+      width: 50%;
+      .js-qty__num {
+        height: 45px;
+        margin-bottom: 10px;
+      }
+    }
+    .swatches {
+      margin: 0 10px 10px;
+    }
   }
 
   .js-qty {
@@ -282,6 +296,17 @@
         }
         .product-options__selector, .js-qty {
             margin: 5px 0 10px;
+        }
+      }
+      .product-options--swatches {
+        margin-bottom: 20px;
+        .product-form__item--quantity {
+          margin-left: 0;
+          margin-bottom: 20px;
+          width: auto;
+        }
+        .swatches {
+          margin-left: 0;
         }
       }
     }

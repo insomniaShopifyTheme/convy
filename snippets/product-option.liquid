@@ -1,4 +1,4 @@
-<div class="selector-wrapper js product-form__item product-form__item--{{ current }}">
+<div class="selector-wrapper js product-form__item product-form__item--{{ current }}{% if section.settings.product_options_style contains 'swatches' %} visually-hidden{% endif %}">
   <label {% if option.name == 'default' or section.settings.display_option_labels == false and show_label != true %}class="hidden-label" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
     {{ option.name }}
   </label>

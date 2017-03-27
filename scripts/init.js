@@ -29,4 +29,10 @@ $(document).ready(function() {
   sections.register('collection-template', theme.CollectionTemplate);
   sections.register('contact-template', theme.ContactTemplate);
   sections.register('featured-product-section', theme.FeaturedProductSection);
+
+  $('[data-tooltip!=""]').qtip({
+    content: {attr: 'data-tooltip'},
+    style: {classes: 'qtip-light qtip-shadow'}
+  });
+
 });

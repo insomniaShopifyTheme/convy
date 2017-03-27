@@ -1,0 +1,36 @@
+$swatch-size: 40px;
+
+.swatches {
+  .swatches__options {
+    @include clearfix;
+  }
+  label {
+    @include clearfix;
+  }
+  .swatches__option {
+    border: 1px solid $color-border;
+    cursor: pointer;
+    float: left;
+    height: $swatch-size;
+    margin: 5px 10px 10px 0;
+    padding: 5px;
+    text-align: center;
+    min-width: $swatch-size;
+    input {
+      display: none;
+    }
+  }
+  &:not(.swatches--color) {
+    .swatches__option--selected {
+      background: $color-special;
+      color: $color-special-text;
+    }
+  }
+  &.swatches--color {
+    .swatches__option--selected {
+      border: none;
+      border-bottom: 6px solid $color-special;
+      border-color: $color-special;
+    }
+  }
+}

@@ -140,6 +140,7 @@ theme.ProductPageSection = (function() {
     this._stickyCartBtn();
     this._readMore();
     this._removeReviewsDuplicate();
+    theme.initSwatches();
   }
 
   return ProductPageSection;
