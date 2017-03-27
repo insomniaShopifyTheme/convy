@@ -468,3 +468,10 @@ iframe {
   text-align: center;
 }
 
+.social-sharing {
+  margin-top: $gutter / 2;
+  margin-left: 5px;
+  .social-sharing__icon {
+    padding-right: 10px;
+  }
+}

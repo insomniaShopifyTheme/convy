@@ -717,6 +717,34 @@
         "id": "social_youtube_link",
         "label": "YouTube",
         "info": "https:\/\/www.youtube.com\/shopify"
+      },
+      {
+        "type": "header",
+        "content": "Sharing"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Enable facebook sharing",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Enable twitter sharing",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Enable pinteres sharing",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_gplus",
+        "label": "Enable google+ sharing",
+        "default": true
       }
     ]
   },
