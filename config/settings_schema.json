@@ -49,6 +49,12 @@
         "id": "cart_notes_enable",
         "label": "Enable checkout note",
         "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "sticky_add_to_cart",
+        "label": "Enable sticky Add to cart (mobile version)",
+        "default": true
       }
     ]
   },

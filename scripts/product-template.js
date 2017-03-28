@@ -101,8 +101,8 @@ theme.ProductPageSection = (function() {
     this.selectors = {
       originalSelectorId: '#ProductSelect-' + sectionId,
       singleOptionSelector: '.product-options__selector-' + sectionId,
-      addToCart: '#AddToCart-' + sectionId,
-      addToCartText: '#AddToCartText-' + sectionId,
+      addToCart: '#' + sectionId + ' .product-form__cart-submit',
+      addToCartText: '#' + sectionId + ' .product-form__cart-submit-text',
       productPrices: '.product-info .product-price',
       originalPrice: '.product-info .product-price__price',
       comparePrice: '.product-info .product-price__old',
@@ -156,10 +156,12 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
   },
 
   _stickyCartBtn: function() {
-    $(this.selectors.stickyCartButton).on('click', this._submitCartForm.bind(this));
-    $(document).on('touchmove.track-add-to-cart-btn', this._trackScrolling.bind(this));
-    $(document).on('scroll.track-add-to-cart-btn', this._trackScrolling.bind(this));
-    this._trackScrolling();
+    if ($(this.selectors.stickyCartButton).length > 0) {
+      $(this.selectors.stickyCartButton).on('click', this._submitCartForm.bind(this));
+      $(document).on('touchmove.track-add-to-cart-btn', this._trackScrolling.bind(this));
+      $(document).on('scroll.track-add-to-cart-btn', this._trackScrolling.bind(this));
+      this._trackScrolling();
+    }
   },
 
   _submitCartForm: function() {

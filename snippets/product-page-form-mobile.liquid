@@ -69,10 +69,24 @@
       </div>
     {% endif %}
 
-    {% comment %}
-      Cart button is hidden in mobile version and sticky version used
-      see snippets/cart-sticky-button.liquid
-    {% endcomment %}
-    <div class="js-sticky-btn-start"></div>
+    {% if settings.sticky_add_to_cart %}
+      {% comment %}
+        Cart button is hidden in mobile version and sticky version used
+        see snippets/cart-sticky-button.liquid
+      {% endcomment %}
+      <div class="js-sticky-btn-start"></div>
+    {% else %}
+      <div class="product-form__cart">
+        <button type="submit" name="add" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit">
+          <span class="product-form__cart-submit-text">
+            {% if current_variant.available %}
+              {{ 'products.product.add_to_cart' | t }}
+            {% else %}
+              {{ 'products.product.sold_out' | t }}
+            {% endif %}
+          </span>
+        </button>
+      </div>
+    {% endif %}
   </form>
 </div>

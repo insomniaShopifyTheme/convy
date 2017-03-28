@@ -112,7 +112,7 @@
 
   {% section 'footer' %}
 
-  {% if template contains 'product' %}
+  {% if template contains 'product' and settings.sticky_add_to_cart %}
     {% include 'cart-sticky-button' %}
   {% endif %}
 
