@@ -10,7 +10,6 @@
           {%- assign product = all_products[block.settings.product] -%}
           {%- assign btn_action = block.settings.btn_action -%}
           {%- assign btn_text = block.settings.btn_text -%}
-          {%- assign fade_out_title = section.settings.fade_out_title -%}
           {%- assign card_hoverable = section.settings.hoverable -%}
           {% include 'product-card' %}
         </div>
@@ -35,13 +34,6 @@
         "id": "title",
         "label": "Heading",
         "default": "Featured Products"
-      },
-      {
-        "type": "checkbox",
-        "id": "fade_out_title",
-        "label": "Hide long product title",
-        "info": "Use fade out effect for text that doesn't fit so product cards have equal height",
-        "default": true
       },
       {
         "type": "checkbox",

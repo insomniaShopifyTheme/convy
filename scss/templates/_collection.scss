@@ -16,10 +16,15 @@
   .product-list {
     @include at-query($max, $pre-large) {
       &.grid--uniform {
-        margin-left: -5px;
+        {% unless settings.margin_on_mobile %}
+          margin-left: -5px;
+        {% endunless %}
       }
       &>.grid__item {
         padding-left: 5px;
+        {% if settings.margin_on_mobile %}
+          padding-right: 5px;
+        {% endif %}
         margin-bottom: ($gutter / 4);
       }
     }

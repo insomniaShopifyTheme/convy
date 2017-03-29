@@ -52,6 +52,42 @@
         ],
         "default": "disable",
         "info": "Header stays fixed to the top of the screen, when you are scrolling"
+      },
+      {
+        "type": "header",
+        "content": "Product card"
+      },
+      {
+        "type": "paragraph",
+        "content": "Product card is an individual item in product lists such. Example: products on collection page, featured products, related products etc."
+      },
+      {
+        "type": "select",
+        "id": "product_card_title_style",
+        "label": "Hide long product title",
+        "info": "Use fade out effect for text that doesn't fit so product cards have equal height",
+        "options": [
+          {
+            "value": "full",
+            "label": "Display full title"
+          },
+          {
+            "value": "1_row",
+            "label": "1 row - fade out the rest of text"
+          },
+          {
+            "value": "2_rows",
+            "label": "2 rows - truncate the rest of text"
+          }
+        ],
+        "default": "1_row"
+      },
+      {
+        "type": "checkbox",
+        "id": "margin_on_mobile",
+        "label": "Add margin (mobile version)",
+        "default": false,
+        "info": "Adds empty space between a product card and edge of the screen"
       }
     ]
   },

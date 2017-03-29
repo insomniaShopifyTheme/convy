@@ -22,7 +22,6 @@
           {% assign current_product_found = true %}
         {% else %}
           {% unless current_product_found == false and forloop.last %}
-            {%- assign fade_out_title = true -%}
             {% if section.settings.related_products_button != 'none' %}
               {%- assign btn_action = 'add_to_cart' -%}
               {%- assign btn_text = 'products.product.add_to_cart' | t -%}

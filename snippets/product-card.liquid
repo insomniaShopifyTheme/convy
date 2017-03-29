@@ -22,7 +22,7 @@
   </a>
   <div class="product-card__info">
     <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-    <div class="product-card__title{% if fade_out_title %} product-card__title--shortable{% endif %}">
+    <div class="product-card__title product-card__title--{{ settings.product_card_title_style }}">
       <a href="{{ product_url }}">{{ product.title }}</a>
       <div class="dimmer"></div>
     </div>

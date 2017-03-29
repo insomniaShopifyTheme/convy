@@ -31,7 +31,7 @@ $product-card-ribbon-z-index: 4;
   .product-card__title {
   }
   // http://www.anushka.eu/blog/fade-out-the-end-of-a-text-line-with-css/
-  .product-card__title--shortable {
+  .product-card__title--1_row {
     position: relative;
     white-space: nowrap;
     overflow-x: hidden;
@@ -49,6 +49,26 @@ $product-card-ribbon-z-index: 4;
         background: -o-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 100%);
         background: -ms-linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 100%);
         background: linear-gradient(left, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 100%);
+        content: "";
+    }
+  }
+  .product-card__title--2_rows {
+    position: relative;
+    height: 3.2rem;
+    overflow-y: hidden;
+    .dimmer {
+        display: block;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 1rem;
+        width: 100%;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 );
+        background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 56%, rgba(255,255,255,1) 100%);
+        background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 100%);
+        background: -o-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 100%);
+        background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 100%);
+        background: linear-gradient(top, rgba(255,255,255,0) 0%,rgba(255,255,255,1) 56%,rgba(255,255,255,1) 100%);
         content: "";
     }
   }

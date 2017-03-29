@@ -1,6 +1,8 @@
 {
   "current": {
-    "fixed_header": "all",
+    "fixed_header": "disable",
+    "product_card_title_style": "2_rows",
+    "margin_on_mobile": false,
     "ajax_cart_method": "popup",
     "cart_notes_enable": false,
     "sticky_add_to_cart": true,
@@ -297,7 +299,6 @@
         ],
         "settings": {
           "title": "Featured Products",
-          "fade_out_title": true,
           "hoverable": true
         }
       },
@@ -646,7 +647,6 @@
         ],
         "settings": {
           "breadcrumbs": true,
-          "fade_out_title": true,
           "hoverable": true,
           "product_btn_action": "add_to_cart",
           "product_btn_text": "Add to Cart"

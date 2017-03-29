@@ -202,11 +202,16 @@
     // See also sections/_featured_products.scss
     .product-list {
       .slick-list {
-        margin-left: -5px;
+        {% unless settings.margin_on_mobile %}
+          margin-left: -5px;
+        {% endunless %}
       }
     }
     .product-list__item {
       margin-left: 5px;
+      {% if settings.margin_on_mobile %}
+        margin-right: 5px;
+      {% endif %}
     }
   }
   .related-products__title, .spr-header-title {
