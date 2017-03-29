@@ -71,18 +71,10 @@
       }
       // Zoom icon
       .slick-slide {
-        &::before {
-          @include zoom-icon();
-        }
         img {
           margin: 0 auto;
           width: 100%;
         }
-      }
-    }
-    &.product-images--single .product-images__image {
-      &::before {
-        @include zoom-icon();
       }
     }
   }

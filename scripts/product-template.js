@@ -32,7 +32,7 @@ theme.ProductImagesSlider = (function() {
     this.imageSettings = {
       slidesToShow: 1,
       slidesToScroll: 1,
-      arrows: false,
+      arrows: true,
       dots: false,
       fade: true,
       asNavFor: '#' + sliderId + ' .' + classes.thumbs,
@@ -131,7 +131,7 @@ theme.ProductPageSection = (function() {
     // Zoom image
     $('.product-images--single .product-images__image, .product-images__image li').each(function(idx, el) {
       var $img = $(el).find('img');
-      $(el).zoom({ on: 'grab', url: $img.data('original') });
+      $(el).zoom({ url: $img.data('original') });
     });
 
     $('#tab-container').easytabs();
