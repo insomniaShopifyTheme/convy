@@ -194,6 +194,17 @@
     ]
   },
   {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon",
+        "info": "64x64 px .png recommended"
+      }
+    ]
+  },
+  {
     "name": "Typography",
     "settings": [
       {
