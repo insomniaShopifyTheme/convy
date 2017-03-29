@@ -22,6 +22,40 @@
     ]
   },
   {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Template"
+      },
+      {
+        "type": "select",
+        "id": "fixed_header",
+        "label": "Fixed header",
+        "options": [
+          {
+            "value": "disable",
+            "label": "Disable"
+          },
+          {
+            "value": "all",
+            "label": "Desktop & Mobile"
+          },
+          {
+            "value": "mobile",
+            "label": "Mobile only"
+          },
+          {
+            "value": "desktop",
+            "label": "Desktop only"
+          }
+        ],
+        "default": "disable",
+        "info": "Header stays fixed to the top of the screen, when you are scrolling"
+      }
+    ]
+  },
+  {
     "name": "Shopping cart",
     "settings": [
       {
@@ -55,21 +89,6 @@
         "id": "sticky_add_to_cart",
         "label": "Enable sticky Add to cart (mobile version)",
         "default": true
-      }
-    ]
-  },
-  {
-    "name": "Mobile version",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Template"
-      },
-      {
-        "type": "checkbox",
-        "id": "fixed_header",
-        "label": "Fixed toolbar in mobile version",
-        "info": "Header stays fixed to the top of the screen, when you are scrolling"
       }
     ]
   },

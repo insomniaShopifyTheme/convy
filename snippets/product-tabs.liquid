@@ -4,16 +4,18 @@
     <li class='tab'><a href="#tab-reviews">Reviews</a></li>
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
-        {% assign page = pages[block.settings.page] %}
-        <li class='tab' {{ block.shopify_attributes }}>
-          <a href="#tab-{{ block.id }}">
-            {% if block.settings.title != blank %}
-              {{ block.settings.title }}
-            {% else %}
-              {{ page.title }}
-            {% endif %}
-          </a>
-        </li>
+        {% if block.type == 'tab' %}
+          {% assign page = pages[block.settings.page] %}
+          <li class='tab' {{ block.shopify_attributes }}>
+            <a href="#tab-{{ block.id }}">
+              {% if block.settings.title != blank %}
+                {{ block.settings.title }}
+              {% else %}
+                {{ page.title }}
+              {% endif %}
+            </a>
+          </li>
+        {% endif %}
       {% endfor %}
     {% endif %}
   </ul>

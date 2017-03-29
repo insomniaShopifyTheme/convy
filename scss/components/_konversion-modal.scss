@@ -5,7 +5,7 @@ $cart-modal-width: 540px;
 .konversion-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  z-index: $z-index-modal; /* Sit on top */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -33,6 +33,10 @@ $cart-modal-width: 540px;
     .modal__close {
       float: right;
       margin-top: 5px;
+      // Make it easier to tap on mobile
+      height: 50px;
+      width: 40px;
+      text-align: right;
     }
   }
 

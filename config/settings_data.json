@@ -1,8 +1,9 @@
 {
   "current": {
-    "cart_notes_enable": true,
-    "fixed_header": false,
-    "ajax_cart_method": "drawer",
+    "fixed_header": "all",
+    "ajax_cart_method": "popup",
+    "cart_notes_enable": false,
+    "sticky_add_to_cart": true,
     "color_primary": "#393939",
     "color_secondary": "#41cd62",
     "color_text": "#393939",
@@ -21,11 +22,16 @@
     "social_tumblr_link": "",
     "social_pinterest_link": "",
     "social_youtube_link": "https:\/\/www.youtube.com\/shopify",
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "share_gplus": true,
     "newsletter_form_action": "",
     "show_multiple_currencies": true,
     "currency_format": "money_with_currency_format",
     "supported_currencies": "CAD USD AUD EUR",
     "default_currency": "USD",
+    "option_color_swatches": "\"Color\" \"Colour\"",
     "checkout_header_image": "",
     "checkout_logo_image": "",
     "checkout_logo_position": "left",
@@ -225,7 +231,7 @@
           "1486984266170": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/sale-narrow_bb1b35ea-37f2-4103-907b-75ff2cccc77e.png",
+              "image": "shopify:\/\/shop_images\/sale-narrow_7b9ffbe7-af12-4c37-a058-ad40004e6867.png",
               "link": "shopify:\/\/collections\/all",
               "full_width": true
             }
@@ -254,30 +260,30 @@
             "settings": {
               "product": "rab-microlight-alpine-jacket",
               "btn_action": "add_to_cart",
-              "btn_text": "Add to Cart"
+              "btn_text": "Select your jacket"
             }
           },
           "1486984374522": {
             "type": "product",
             "settings": {
               "product": "craghoppers-mens-newton-jacket",
-              "btn_action": "product_page",
-              "btn_text": "learn more"
+              "btn_action": "add_to_cart_checkout",
+              "btn_text": "BUY NOW"
             }
           },
           "1486984400677": {
             "type": "product",
             "settings": {
               "product": "art-t-shirt",
-              "btn_action": "add_to_cart",
-              "btn_text": "Add to Cart"
+              "btn_action": "add_to_cart_redirect",
+              "btn_text": "See in cart"
             }
           },
           "1488927077541": {
             "type": "product",
             "settings": {
               "product": "freedom-trail-mens-essential-baffled-jacket",
-              "btn_action": "add_to_cart",
+              "btn_action": "none",
               "btn_text": "Add to Cart"
             }
           }
@@ -291,7 +297,8 @@
         ],
         "settings": {
           "title": "Featured Products",
-          "fade_out_title": true
+          "fade_out_title": true,
+          "hoverable": true
         }
       },
       "1486984421026": {
@@ -314,7 +321,9 @@
         "type": "featured-product",
         "settings": {
           "title": "Featured Product",
-          "product": "art-t-shirt"
+          "product": "art-t-shirt",
+          "btn_action": "add_to_cart_checkout",
+          "btn_text": "BUY NOW"
         }
       },
       "1486984646008": {
@@ -361,10 +370,10 @@
         "settings": {
           "title": "Featured collections",
           "title_style": "over",
-          "hover_effect": true,
+          "color_title": "#ffffff",
+          "hover_effect": false,
           "image_overlay_opacity": "0.2",
-          "color_image_overlay": "#000000",
-          "color_title": "#ffffff"
+          "color_image_overlay": "#000000"
         }
       },
       "1486984725542": {
@@ -439,26 +448,64 @@
               "title": "Size Charts",
               "page": "about-us"
             }
+          },
+          "1490651335644": {
+            "type": "custom_color",
+            "settings": {
+              "title": "Black & Orange",
+              "color_code": "",
+              "color_image": "shopify:\/\/shop_images\/black-orange_190c978f-f89d-46de-aaf0-83233ef2a8af.png"
+            }
+          },
+          "1490651364317": {
+            "type": "custom_color",
+            "settings": {
+              "title": "Blue",
+              "color_code": "#6800ff",
+              "color_image": ""
+            }
+          },
+          "1490651580630": {
+            "type": "custom_color",
+            "settings": {
+              "title": "Gray-Black",
+              "color_code": "#aeaeae",
+              "color_image": ""
+            }
+          },
+          "1490651628777": {
+            "type": "custom_color",
+            "settings": {
+              "title": "Gray-White",
+              "color_code": "#cbcbcb",
+              "color_image": ""
+            }
           }
         },
         "block_order": [
-          "1489606674014"
+          "1489606674014",
+          "1490651335644",
+          "1490651364317",
+          "1490651580630",
+          "1490651628777"
         ],
         "settings": {
           "breadcrumbs": true,
           "display_icons": true,
-          "description_location": "top",
+          "product_options_style": "swatches",
           "display_quantity_selector": true,
-          "display_vendor": true,
+          "display_vendor": false,
           "display_collections": true,
           "display_tags": true,
-          "display_sku": true,
-          "display_product_type": true,
+          "display_sku": false,
+          "display_product_type": false,
           "related_products": true,
           "related_products_title": "Related products",
           "related_products_count": "4",
-          "display_option_labels": true,
+          "related_products_button": "hover",
+          "description_location": "top",
           "limit_description": "5rem",
+          "display_option_labels": true,
           "use_tabs": true
         }
       },
@@ -576,18 +623,33 @@
               "color_text": "#fff",
               "gradient_color": "white_bottom"
             }
+          },
+          "1490736532822": {
+            "type": "banner",
+            "settings": {
+              "collection": "sale",
+              "image": "shopify:\/\/shop_images\/2000x1200.jpg",
+              "title": "Banner title",
+              "text": "<p>Tell more about this collection<\/p>",
+              "alignment": "center",
+              "color_title": "#fff",
+              "color_text": "#fff",
+              "gradient_color": "black"
+            }
           }
         },
         "block_order": [
           "1489699428223",
           "1489702813053",
-          "1489703040099"
+          "1489703040099",
+          "1490736532822"
         ],
         "settings": {
           "breadcrumbs": true,
+          "fade_out_title": true,
+          "hoverable": true,
           "product_btn_action": "add_to_cart",
-          "product_btn_text": "Add to Cart",
-          "fade_out_title": false
+          "product_btn_text": "Add to Cart"
         }
       },
       "contact-page-template": {
@@ -598,8 +660,9 @@
           "form_description": "<p>Please specify your contact details.<\/p>",
           "promo_product": "art-t-shirt",
           "promo_product_title": "You can't miss this one!",
-          "btn_action": "add_to_cart",
-          "btn_text": "Add to Cart",
+          "btn_action": "add_to_cart_checkout",
+          "btn_text": "BUY NOW",
+          "hoverable": true,
           "map_enable": true,
           "map_api_key": "AIzaSyDp0dYC81HzwbTiTBSh2gzdGRO9jRpeseY",
           "map_mode": "search",

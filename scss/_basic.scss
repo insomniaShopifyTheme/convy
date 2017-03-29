@@ -72,21 +72,29 @@ body {
 
 // Fixed Header
 
-@include at-query($max, $small) {
-  body {
-    &.fixed-header {
-      &>header {
-        position: fixed;
-        width: 100%;
-        z-index: $z-index-toolbar;
-      }
-      .main-content {
-        padding-top: $header-height-mobile;
-      }
-    }
+@mixin fixed-header() {
+  &>header {
+    position: fixed;
+    width: 100%;
+    z-index: $z-index-toolbar;
+  }
+  .main-content {
+    padding-top: $header-height-mobile;
   }
 }
-
+body.fixed-header--all, {
+  @include fixed-header;
+}
+@include at-query($max, $pre-large) {
+  body.fixed-header--mobile {
+    @include fixed-header;
+  }
+}
+@include at-query($min, $large) {
+  body.fixed-header--desktop {
+    @include fixed-header;
+  }
+}
 
 
 /*============================================================================
