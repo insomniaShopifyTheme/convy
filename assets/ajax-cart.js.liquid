@@ -408,9 +408,12 @@ var ajaxCart = (function(module, $) {
   };
 
   cartCallback = function(cart) {
-    $body.removeClass('drawer--is-loading');
-    $body.trigger('afterCartLoad.ajaxCart', cart);
-
+    if ('{{ settings.ajax_cart_method }}' == 'popup' && theme.isMobile()) {
+      theme.cartModal.onlyShow();
+    } else {
+      $body.removeClass('drawer--is-loading');
+      $body.trigger('afterCartLoad.ajaxCart', cart);
+    }
     if (window.Shopify && Shopify.StorefrontExpressButtons) {
       Shopify.StorefrontExpressButtons.initialize();
     }
