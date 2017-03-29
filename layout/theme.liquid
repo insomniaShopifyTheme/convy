@@ -158,5 +158,9 @@
 
   {% include 'currencies' %}
 
+  {% if settings.custom_scripts != blank %}
+    {{ settings.custom_scripts }}
+  {% endif %}
+
 </body>
 </html>

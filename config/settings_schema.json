@@ -876,5 +876,16 @@
         "info": "List option names separated by spaces and wrapped with quotes eg. \"Color\" \"Material\""
       }
     ]
+  },
+  {
+    "name": "Misc",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "custom_scripts",
+        "label": "Custom scripts",
+        "info": "This code included at the bottom of the page on each page load. Note: you need to wrap it with <script>your_code_here</script> tag if this is JavaScript code"
+      }
+    ]
   }
 ]
