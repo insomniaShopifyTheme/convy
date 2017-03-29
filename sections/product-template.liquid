@@ -31,10 +31,10 @@
             </ul>
           </div>
           <div class="product-images__image grid__item four-fifths">
-            <ul class="no-bullets js-product-image">
+            <ul class="no-bullets js-product-image" data-arrows="{{ section.settings.gallery_arrows }}">
               {% for image in product.images %}
                 <li>
-                  <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}" data-original="{{ image.src | img_url: 'original' }}">
+                  <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}" data-original="{{ image.src | img_url: 'original' }}" data-zoom-type="{{ section.settings.gallery_zoom_type }}">
                 </li>
               {% endfor %}
             </ul>
@@ -137,6 +137,32 @@
         "type": "checkbox",
         "id": "display_icons",
         "label": "Display icons",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Product Gallery"
+      },
+      {
+        "type": "select",
+        "id": "gallery_zoom_type",
+        "label": "Zoom type",
+        "options": [
+          {
+            "value": "mouseover",
+            "label": "On mouse over"
+          },
+          {
+            "value": "grab",
+            "label": "On click/touch"
+          }
+        ],
+        "default": "mouseover"
+      },
+      {
+        "type": "checkbox",
+        "id": "gallery_arrows",
+        "label": "Display arrows",
         "default": true
       },
       {

@@ -76,6 +76,30 @@
           width: 100%;
         }
       }
+      .slick-slider {
+        li {
+          margin-bottom: 0;
+        }
+        .slick-arrow {
+          display: block;
+          background-color: rgba(0, 0, 0, .25);
+          border-radius: 0;
+          top: 50%;
+          height: 100%;
+          width: 30px;
+          z-index: 10;
+          &::before {
+            color: #fff;
+            top: 50%;
+          }
+        }
+        .slick-prev {
+          left: 0;
+        }
+        .slick-next {
+          right: 0;
+        }
+      }
     }
   }
 
@@ -259,6 +283,27 @@
 
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {
+    .product-images {
+      .product-images__image {
+        .slick-slider {
+          .slick-arrow {
+            transition: width 0.1s;
+            width: 0;
+            &::before {
+              opacity: 0;
+            }
+          }
+          &:hover {
+            .slick-arrow {
+              width: 30px;
+              &::before {
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
     .product-info {
       .product-price {
         float: none;
