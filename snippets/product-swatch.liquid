@@ -1,12 +1,12 @@
-{%- assign quotted_option_name = '"' | append: option.name | append: '"' -%}
 {%- assign option_index = forloop.index -%}
-<div class="swatches swatches--{{ option.name | handleize }}{% if settings.option_color_swatches contains quotted_option_name %} swatches--color{% endif %}" data-index="{{ option_index }}">
+{%- assign color_options = settings.option_color_swatches | split: ',' -%}
+<div class="swatches swatches--{{ option.name | handleize }}{% if color_options contains option.name %} swatches--color{% endif %}" data-index="{{ option_index }}">
   <label {% if option.name == 'default' or section.settings.display_option_labels == false and show_label != true %} class="hidden-label"{% endif %}>
     {{ option.name }}
   </label>
   <div class="swatches__options">
   {% for value in option.values %}
-    {% if settings.option_color_swatches contains quotted_option_name %}
+    {% if color_options contains option.name %}
       <style>
         .swatches__option.swatches__option--{{ value | handleize }} {
           background-color: {{ value | handleize }};
@@ -24,9 +24,9 @@
         }
       </style>
     {% endif %}
-    <label class="swatches__option swatches__option--{{ value | handleize }}{% if option.selected_value == value %} swatches__option--selected{% endif %}" data-value="{{ value | escape }}" {% if settings.option_color_swatches contains quotted_option_name %} data-color-tooltip="{{ value }}"{% endif %}>
+    <label class="swatches__option swatches__option--{{ value | handleize }}{% if option.selected_value == value %} swatches__option--selected{% endif %}" data-value="{{ value | escape }}" {% if color_options contains option.name %} data-color-tooltip="{{ value }}"{% endif %}>
       <input type="radio" name="option-{{ option_index }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %} />
-      {% unless settings.option_color_swatches contains quotted_option_name %}
+      {% unless color_options contains option.name %}
         {{ value }}
       {% endunless %}
     </label>

@@ -7,7 +7,7 @@
       <span class="fallback-text">expand</span>
     </button>
   </h4>
-  <ul class="collection-filter__items no-bullets">
+  <ul class="collection-filter__items collection-filter__items--tags no-bullets">
     {% for tag in collection.all_tags %}
       {%- assign tag_safe = tag | escape -%}
       {%- assign tag_safe_amp = tag | replace: '&', 'amp' | handle -%}
@@ -22,7 +22,6 @@
           <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ tag | link_to_remove_tag: tag_safe }}</label>
         {% elsif current_tags contains tag_safe_amp %}
           <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ tag | link_to_remove_tag: tag_safe_amp }}</label>
-
         {% else %}
           <label><input type="checkbox" value="{{ tag }}"> {{ tag | link_to_add_tag: tag }}</label>
         {% endif %}
