@@ -31,24 +31,68 @@
     background-color: $color-bg-alt;
     color: $color-text-alt;
     font-size: 1.2rem;
-    min-height: 50px;
-    padding-top: 10px;
-    margin-top: $gutter / 2;
     .social-icons {
+      min-height: 45px;
+      padding: $gutter / 3 0;
       li {
-        margin-left: 45px;
+        margin-left: $gutter * 1.5;
         &:first-child {
           margin-left: 0;
         }
       }
     }
-    @include at-query($min, $medium) {
+    .sub-footer__right {
+      text-align: center;
+    }
+    .copyright-text {
+      color: darken($color-text-alt, 20%);
+      font-size: 0.75rem;
+      margin: -5px 0 5px 0;
+      &.copyright-text--with-margin {
+        margin: 35px 0 5px 0;
+      }
+      &.copyright-text--with-small-margin {
+        margin: 5px 0 5px 0;
+      }
+      a {
+        color: darken($color-text-alt, 5%);
+        transition: all 0.3s;
+        &:hover {
+          color: $color-text-alt;
+        }
+      }
+    }
+  }
+  .payment-icons {
+    img {
+      height: 18px;
+    }
+  }
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    .sub-footer {
       font-size: 1.8rem;
-      min-height: 70px;
       .social-icons {
         li {
-          margin-left: 90px;
+          min-height: 60px;
+          margin-left: $gutter * 2;
         }
+      }
+      .sub-footer__right {
+        text-align: right;
+        padding-right: $gutter;
+      }
+    }
+  }
+  @include at-query($min, $wide) {
+    .sub-footer {
+      .copyright-text {
+        font-size: 0.9rem;
+      }
+    }
+    .payment-icons {
+      img {
+        height: 24px;
       }
     }
   }

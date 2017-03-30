@@ -128,9 +128,38 @@
   {% endfor %}
 </div>
 
-{% if section.settings.display_social %}
+{% if section.settings.display_social or
+      section.settings.powered_by or
+      section.settings.payment_icons or
+      section.settings.theme_copyright %}
   <div class="sub-footer">
-    {% include 'social-icons-list' %}
+    <div class="grid--full">
+      <div class="grid__item one-whole large--one-third push--large--one-third">
+        {% if section.settings.display_social %}
+          {% include 'social-icons-list' %}
+        {% endif %}
+      </div>
+      <div class="grid__item one-whole large--one-third push--large--one-third sub-footer__right">
+        {% if section.settings.payment_icons %}
+          <div class="payment-icons">
+            {% for type in shop.enabled_payment_types %}
+              <img src="{{ type | payment_type_img_url }}" alt="{{ type | replace: "_", " " | capitalize }}" />
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% if section.settings.powered_by or section.settings.theme_copyright %}
+          <div class="copyright-text{% unless section.settings.payment_icons %}{% if section.settings.display_social %} copyright-text--with-margin{% else %} copyright-text--with-small-margin{% endif %}{% endunless %}">
+            {% if section.settings.powered_by %}
+              <span class="powered-by">Powered by <a href="http://getshopify.tabarnapp.com" target="_blank">Shopify</a></span>
+            {% endif %}
+            {% if section.settings.theme_copyright %}
+              {% capture theme_url %}https://tabarnapp.com/shopify-theme-konversion/{% if section.settings.affiliate_id != blank %}?ref={{ section.settings.affiliate_id }}{% endif %}{% endcapture %}
+              <span class="theme-by">Theme by <a href="{{ theme_url | trim }}" target="_blank">Konversion</a></span>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
   </div>
 {% endif %}
 
@@ -210,6 +239,33 @@
         "id": "color_social_icons",
         "label": "Social icons color",
         "default": "#ffffff"
+      },
+      {
+        "type": "header",
+        "content": "Subfooter"
+      },
+      {
+        "type": "checkbox",
+        "id": "powered_by",
+        "label": "Enable Powered by Shopify",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "payment_icons",
+        "label": "Enable payment icons",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "theme_copyright",
+        "label": "Enable theme copyright text",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "affiliate_id",
+        "label": "Konversion affiliate ID"
       }
     ],
     "blocks": [
