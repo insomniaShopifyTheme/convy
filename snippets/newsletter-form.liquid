@@ -10,7 +10,6 @@
     MailChimp newsletter integration and requirement:
      - http://docs.shopify.com/support/configuration/store-customization/where-do-i-get-my-mailchimp-form-action
   {% endcomment %}
-  {% form 'customer' %}
   {% if block != blank %}
     {% comment %} Part of footer {% endcomment %}
     {%- assign custom_text = block.settings.text -%}
@@ -24,12 +23,17 @@
       {{ custom_text }}
     </div>
   {% endif %}
-  {% endform %}
+  {% capture input_field %}
+    <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="{% if settings.newsletter_form_action != blank %}EMAIL{% else %}contact[email]{% endif %}" id="Mail" class="newsletter-form__input" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+  {% endcapture %}
+  {% capture input_btn %}
+    <input type="submit" class="btn btn--secondary newsletter-form__btn" name="subscribe" id="subscribe" value="{% if button_text != blank %}{{ button_text }}{% else %}{{ 'general.newsletter_form.submit' | t }}{% endif %}">
+  {% endcapture %}
   {% if settings.newsletter_form_action != blank %}
-    <form action="{{ settings.newsletter_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank" class="input-group">
-      <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="EMAIL" id="mail" class="newsletter-form__input" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
-      <div class="newsletter-form__btn">
-        <input type="submit" class="btn btn--secondary" name="subscribe" id="subscribe" value="{{ 'general.newsletter_form.submit' | t }}">
+    <form action="{{ settings.newsletter_form_action }}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+      <div class="newsletter-form__group">
+        {{ input_field }}
+        {{ input_btn }}
       </div>
     </form>
   {% else %}
@@ -38,13 +42,11 @@
       {% if form.posted_successfully? %}
         <p class="note form-success h3">{{ 'general.newsletter_form.confirmation' | t }}</p>
       {% else %}
-        <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Email" class="newsletter-form__input" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
         <input type="hidden" name="contact[tags]" value="newsletter">
-        {% if button_text != blank %}
-          <div class="newsletter-form__btn">
-            <input type="submit" class="btn btn--secondary" name="subscribe" id="subscribe" value="{{ button_text | escape }}">
-          </div>
-        {% endif %}
+        <div class="newsletter-form__group">
+          {{ input_field }}
+          {{ input_btn }}
+        </div>
       {% endif %}
     {% endform %}
   {% endif %}

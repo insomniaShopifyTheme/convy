@@ -26,6 +26,31 @@
       text-transform: uppercase;
     }
   }
+  .newsletter-form {
+    .newsletter-form__group {
+      @include clearfix();
+    }
+    .newsletter-form__input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      float: left;
+      height: 45px;
+      margin: 0;
+      width: 64%;
+    }
+    .newsletter-form__btn {
+      border: 1px solid $color-border;
+      border-left: none;
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      float: left;
+      font-size: 1rem;
+      height: 45px;
+      margin: 0;
+      padding: 0 5px;
+      width: 35%;
+    }
+  }
   .sub-footer {
     text-align: center;
     background-color: $color-bg-alt;
