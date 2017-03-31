@@ -177,7 +177,7 @@ html input[disabled] {
   border-radius: $radius;
   -webkit-transition: all 0.3s;
   -moz-transition: all 0.3s;
-  transition: all 0.3s;
+  transition: all 0.2s ease;
 
   /*================ Set primary button colors - can override later ================*/
   background-color: $color-btn-primary;
@@ -186,6 +186,7 @@ html input[disabled] {
   &:hover {
     background-color: $color-btn-primary-hover;
     color: $color-btn-primary-text;
+    box-shadow: 0px 5px 31px -1px rgba(0, 0, 0, 0.15);
   }
 
   &:active,

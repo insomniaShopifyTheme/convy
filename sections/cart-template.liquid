@@ -98,6 +98,7 @@
               </div>
               <p class="cart-shipping-notice"><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
             </div>
+            {% include 'shipping-calculator' %}
             <button type="submit" name="checkout" class="btn btn--special btn--full cart__checkout-btn">{{ 'cart.general.checkout' | t }}</button>
             <p class="cart-shipping-notice medium-down--hide"><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
           </div>

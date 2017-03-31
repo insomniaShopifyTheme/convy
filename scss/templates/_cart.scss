@@ -126,6 +126,34 @@ $cart-secondary-color: $color-pale;
   }
 }
 
+#shipping-calculator {
+  margin: $gutter / 2 0;
+  h5 {
+    border-bottom: 1px solid $color-border;
+    color: $cart-primary-color;
+    font-family: $font-stack-heading;
+    margin-bottom: $gutter / 2;
+    padding-bottom: 5px;
+  }
+  .field {
+    label {
+      display: block;
+      float: left;
+      padding: 5px 20px 0;
+      text-align: right;
+      width: 49%;
+    }
+    input[type="text"],
+    select {
+      width: 50%;
+    }
+  }
+  .btn {
+    border-color: $cart-primary-color;
+    color: $cart-primary-color;
+  }
+}
+
 /*================ Desktop Version ================*/
 @include at-query($min, $large) {
   .cart-template {

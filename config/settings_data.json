@@ -4,8 +4,13 @@
     "product_card_title_style": "2_rows",
     "margin_on_mobile": false,
     "ajax_cart_method": "popup",
-    "cart_notes_enable": false,
+    "cart_notes_enable": true,
     "sticky_add_to_cart": true,
+    "shipping_calculator": "Enabled",
+    "shipping_calculator_heading": "Get shipping estimates",
+    "shipping_calculator_default_country": "United States",
+    "shipping_calculator_submit_button_label": "Calculate shipping",
+    "shipping_calculator_submit_button_label_disabled": "Calculating...",
     "color_primary": "#393939",
     "color_secondary": "#41cd62",
     "color_text": "#393939",
@@ -522,7 +527,7 @@
         "type": "cart-template",
         "settings": {
           "display_vendor": false,
-          "notes_enable": true
+          "notes_enable": false
         }
       },
       "footer": {
@@ -565,7 +570,7 @@
             "settings": {
               "title": "SUBSCRIBE",
               "text": "<p>Enter your email adress bellow, subscribe to our newsletter&nbsp;and be the first who get the news.<\/p>",
-              "button_text": "GO!",
+              "button_text": "GO",
               "align_text": "center",
               "display": "desktop"
             }
