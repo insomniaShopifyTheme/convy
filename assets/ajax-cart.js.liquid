@@ -279,8 +279,10 @@ var ajaxCart = (function(module, $) {
     }
     // Product page action
     else {
-      img = $form.parents('.product-template').find('.product-images__image .slick-active img, .product-images--single img')[0];
-      if (img) {
+      img = $form.parents('.product-template, .section-featured-product').find('.product-images__image .slick-active img, .product-images--single img')[0];
+      if ($form.data('action-type') == 'add_to_cart_checkout') {
+        window.location = '/checkout'
+      } else if (img) {
         cartFeedback(img, 'floating-cart--big');
       }
     }

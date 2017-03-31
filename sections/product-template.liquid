@@ -17,37 +17,7 @@
   <div class="grid">
     <div class="grid__item one-whole large--two-thirds">
 
-      {% if product.images.size > 1 %}
-        <div class="product-images page-width grid grid--full" id="product_{{ product.id }}_images">
-          <div class="product-images__thumbs grid__item one-fifth">
-            <ul class="no-bullets js-product-thumbs">
-              {% for image in product.images %}
-                <li>
-                  <div class="thumb-overlay">
-                    <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}" data-id="{{ image.id }}">
-                  </div>
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-          <div class="product-images__image grid__item four-fifths">
-            <ul class="no-bullets js-product-image" data-arrows="{{ section.settings.gallery_arrows }}">
-              {% for image in product.images %}
-                <li>
-                  <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}" data-original="{{ image.src | img_url: 'original' }}" data-zoom-type="{{ section.settings.gallery_zoom_type }}">
-                </li>
-              {% endfor %}
-            </ul>
-          </div>
-        </div>
-      {% else %}
-        <div class="product-images product-images--single grid grid--full" id="product_{{ product.id }}_images">
-          <div class="product-images__image grid__item one-whole">
-            {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-            <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" data-original="{{ featured_image | img_url: 'original' }}">
-          </div>
-        </div>
-      {% endif %}
+      {% include 'product-gallery' %}
 
       {% if section.settings.use_tabs %}
         {% include 'product-tabs' %}

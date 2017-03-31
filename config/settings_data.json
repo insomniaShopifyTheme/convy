@@ -14,6 +14,7 @@
     "color_bg_alt": "#090909",
     "color_text_alt": "#ffffff",
     "color_discount": "#f53333",
+    "favicon": "shopify:\/\/shop_images\/tabarnapp-favicon.png",
     "font_family_headings": "Google_Lato_700_sans",
     "font_size_headings": "26px",
     "font_family_base": "Google_Lato_400_sans",
@@ -33,7 +34,8 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "CAD USD AUD EUR",
     "default_currency": "USD",
-    "option_color_swatches": "\"Color\" \"Colour\"",
+    "option_color_swatches": "Color, Colour",
+    "custom_scripts": "",
     "checkout_header_image": "",
     "checkout_logo_image": "",
     "checkout_logo_position": "left",
@@ -92,7 +94,7 @@
             "type": "image",
             "settings": {
               "image": "shopify:\/\/shop_images\/mzr1kceky0g-william-stitt.jpg",
-              "title": "<p>SHARE YOU VISION<\/p>",
+              "title": "<p>YOUR VISION<\/p>",
               "text": "<p>A word about why you sell what you sell<\/p>",
               "primary_button_label": "READ MORE",
               "primary_button_link": "shopify:\/\/pages\/about-us",
@@ -321,10 +323,14 @@
       "1486984616628": {
         "type": "featured-product",
         "settings": {
-          "title": "Featured Product",
+          "title": "",
           "product": "art-t-shirt",
           "btn_action": "add_to_cart_checkout",
-          "btn_text": "BUY NOW"
+          "btn_text": "BUY NOW",
+          "product_options_style": "swatches",
+          "display_quantity_selector": false,
+          "gallery_zoom_type": "grab",
+          "gallery_arrows": true
         }
       },
       "1486984646008": {
@@ -493,6 +499,8 @@
         "settings": {
           "breadcrumbs": true,
           "display_icons": true,
+          "gallery_zoom_type": "grab",
+          "gallery_arrows": true,
           "product_options_style": "swatches",
           "display_quantity_selector": true,
           "display_vendor": false,
@@ -580,7 +588,11 @@
           "color_button_border": "#393939",
           "color_button_text": "#393939",
           "color_social_bg": "#0d0d0d",
-          "color_social_icons": "#ffffff"
+          "color_social_icons": "#ffffff",
+          "powered_by": true,
+          "payment_icons": true,
+          "theme_copyright": true,
+          "affiliate_id": ""
         }
       },
       "collection-template": {

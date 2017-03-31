@@ -3,9 +3,10 @@
 {% endif %}
 
 {% if section.settings.product %}
-<div data-section-id="{{ section.id }}" data-section-type="featured-product-section">
-  {%- assign product = all_products[section.settings.product] -%}
-  {%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign product = all_products[section.settings.product] -%}
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_product_section = true -%}
+<div id="product_{{ product.id }}" data-section-id="product_{{ product.id }}" data-section-type="featured-product-section">
   <div class="product-list large--hide">
     <div class="product-list__item">
       {%- assign btn_action = section.settings.btn_action -%}
@@ -16,53 +17,24 @@
   </div>
   <div class="product-preview page-width--large medium-down--hide">
     <div class="grid">
-      <div class="grid__item one-half">
-        <div class="product-images product-images--single grid grid--full" id="product_{{ product.id }}_images">
-          <div class="product-images__image grid__item one-whole">
-            {% assign featured_image = current_variant.featured_image | default: product.featured_image %}
-            <img src="{{ featured_image | img_url: 'large' }}" alt="{{ featured_image.alt | escape }}" data-original="{{ featured_image | img_url: 'original' }}">
-          </div>
-        </div>
+      <div class="grid__item six-twelfths push--one-twelfth">
+        {% include 'product-gallery' %}
       </div>
-      <div class="grid__item one-half product-info">
-        <div class="product-info__title clearfix">
-          <h3>
-            {{ product.title }}
-          </h3>
-          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+      <div class="grid__item four-twelfths push--one-twelfth">
+        <div class="product-info">
+          {% include 'product-page-info' %}
+          {% include 'product-meta' %}
         </div>
-        <div class="product-info__description rte">
-          {{ product.description }}
-        </div>
-        {%- assign current_variant = product.selected_or_first_available_variant -%}
-        <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form-product_{{ product.id }}" data-section="product_{{ product.id }}" data-variants="{% if has_variants %}true{% else %}false{% endif %}">
-          <select name="id" id="ProductSelect-product_{{ product.id }}" data-section="product_{{ product.id }}" class="product-form__variants hide">
-            {% for variant in product.variants %}
-              {% if variant.available %}
-                <option {% if variant == product.selected_or_first_available_variant %} selected="selected" {% endif %} value="{{ variant.id }}">
-                  {{ variant.title }}
-                </option>
-              {% else %}
-                <option disabled="disabled">{{ variant.title }} - {{ 'products.product.sold_out' | t }}</option>
-              {% endif %}
-            {% endfor %}
-          </select>
-          <div class="product-form__item product-form__item--submit">
-            <button type="submit" name="add" id="AddToCart-{{ section.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-card__button product-form__cart-submit">
-              <span id="AddToCartText-{{ section.id }}">
-                {% if current_variant.available %}
-                  ADD TO CART
-                {% else %}
-                  {{ 'products.product.sold_out' | t }}
-                {% endif %}
-              </span>
-            </button>
-          </div>
-        </form>
-      </div>
+      </div> <!-- end desktop -->
     </div>
   </div>
+  {% unless product.empty? %}
+    <script type="application/json" id="ProductJson-product_{{ product.id }}">
+      {{ product | json }}
+    </script>
+  {% endunless %}
 </div>
+{%- assign featured_product_section = false -%}
 {% else %}
   <div class="empty-section">
     {{ 'homepage.onboarding.no_content' | t }}
@@ -119,6 +91,58 @@
         "id": "btn_text",
         "label": "Button text",
         "default": "Add to Cart"
+      },
+      {
+        "type": "header",
+        "content": "Product properties"
+      },
+      {
+        "type": "select",
+        "id": "product_options_style",
+        "label": "Options style",
+        "options": [
+          {
+            "value": "dropdown",
+            "label": "Select dropdown list"
+          },
+          {
+            "value": "swatches",
+            "label": "Color swatches"
+          }
+        ],
+        "default": "dropdown"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_quantity_selector",
+        "label": "Display quantity selector",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Product Gallery"
+      },
+      {
+        "type": "select",
+        "id": "gallery_zoom_type",
+        "label": "Zoom type",
+        "options": [
+          {
+            "value": "mouseover",
+            "label": "On mouse over"
+          },
+          {
+            "value": "grab",
+            "label": "On click/touch"
+          }
+        ],
+        "default": "mouseover"
+      },
+      {
+        "type": "checkbox",
+        "id": "gallery_arrows",
+        "label": "Display arrows",
+        "default": true
       }
     ],
     "presets": [

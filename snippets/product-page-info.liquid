@@ -1,5 +1,9 @@
 <div class="product-info__title">
-  <h3>{{ product.title }}</h3>
+  {% if featured_product_section %}
+    <h3><a href="{{ product_url }}">{{ product.title }}</a></h3>
+  {% else %}
+    <h3>{{ product.title }}</h3>
+  {% endif %}
 </div>
 <div class="product-rating">
   <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
