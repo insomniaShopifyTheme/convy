@@ -1,0 +1,63 @@
+{% for block in section.blocks %}
+<div class="grid__item one-whole large--{{ block.settings.width }}">
+  <div class="sidebar sidebar--{{ block.type }}" {{ block.shopify_attributes }}>
+    {% case block.type %}
+      {% when 'page' %}
+        {% assign block_page = pages[block.settings.page] %}
+        {% if block_page %}
+          {% if block.settings.title != blank %}
+            <h4 class="sidebar__title">
+              {{ block.settings.title }}
+            </h4>
+          {% endif %}
+          <div class="sidebar__body">
+            {{ block_page.content }}
+          </div>
+        {% endif %}
+      {% when 'menu' %}
+        {% if block.settings.title != blank %}
+          <h4 class="sidebar__title text-{{ block.settings.align_text }}">
+            {{ block.settings.title }}
+          </h4>
+        {% endif %}
+        {% if linklists[block.settings.menu].links.size > 0 %}
+          <ul class="sidebar__linklist">
+            {% for link in linklists[block.settings.menu].links %}
+              <li class="sidebar__linklist-item text-{{ block.settings.align_items }}">
+                <a href="{{ link.url }}">{{ link.title }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      {% when 'image' %}
+        {% if block.settings.image != blank %}
+          {% if block.settings.link != blank %}
+            <a href="{{ block.settings.link }}">
+          {% endif %}
+          {{ block.settings.image | img_url: block.settings.image_size, crop: block.settings.crop_type | img_tag }}
+          {% if block.settings.link != blank %}
+            </a>
+          {% endif %}
+        {% endif %}
+      {% when 'content' %}
+        <div class="text-{{ block.settings.align_text }}">
+          {% if block.settings.title != blank %}
+            <h4 class="sidebar__title text-{{ block.settings.align_text }}">
+              {{ block.settings.title }}
+            </h4>
+          {% endif %}
+          {% if block.settings.content != blank %}
+            <div class="sidebar__body">
+              {{ block.settings.content }}
+            </div>
+          {% endif %}
+          {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+            <a href="{{ block.settings.button_link }}" class="btn">
+              {{ block.settings.button_label }}
+            </a>
+          {% endif %}
+        </div>
+    {% endcase %}
+  </div>
+</div>
+{% endfor %}

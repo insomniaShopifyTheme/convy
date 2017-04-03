@@ -1,3 +1,57 @@
+.page-template {
+  h2 {
+    @extend .standard-page__title;
+  }
+  .page-size--wide,
+  .page-size--standard,
+  .page-size--narrow {
+    margin: 0 auto;
+    width: 80%;
+  }
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    .page-size--standard {
+      width: 80%;
+    }
+    .page-size--narrow {
+      width: 65%;
+    }
+  }
+  @include at-query($min, $wide) {
+    .page-size--standard {
+      width: 70%;
+    }
+    .page-size--narrow {
+      width: 55%;
+    }
+  }
+}
+.page-sidebar h2 {
+  @extend .standard-page__title;
+}
+.sidebar {
+  padding: $gutter;
+  &.sidebar--clearfix {
+    padding: 0;
+    margin: 0;
+    @include clearfix();
+  }
+  .sidebar__title {
+    @extend .standard-page__title;
+  }
+  .sidebar__body {
+  }
+  .sidebar__section {
+    margin-bottom: $gutter;
+  }
+  .sidebar__linklist {
+    @extend .no-bullets;
+    margin-left: 0;
+    .sidebar__linklist-item {
+      text-transform: uppercase;
+    }
+  }
+}
 .contact-page {
   .contact-form {
     .contact-form__submit {

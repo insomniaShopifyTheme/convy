@@ -1,0 +1,15 @@
+<div class="grid__item one-whole large--{{ section.settings.column_width }}">
+  <div class="standard-page">
+    {% if section.settings.display_page_title != blank %}
+      <h2 class="standard-page__title">{{ page.title }}</h2>
+    {% endif %}
+    <div class="standard-page__body">
+      {% if section.settings.page_content != blank %}
+        {% assign other_page = pages[section.settings.page_content] %}
+        {{ other_page.content }}
+      {% else %}
+        {{ page.content }}
+      {% endif %}
+    </div>
+  </div>
+</div>
