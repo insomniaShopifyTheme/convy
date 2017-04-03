@@ -136,7 +136,12 @@ theme.ProductPageSection = (function() {
 
     $('#tab-container').easytabs();
 
+    // Switch image when variant is changed
     this._initVariants();
+    // Switch variant when image is changed
+    var $imgSlider = theme.sliders[this.slider].$sliderImage;
+    $imgSlider.on('beforeChange', this._matchVariantForCurrentSlide.bind(this));
+
     this._stickyCartBtn();
     this._readMore();
     this._removeReviewsDuplicate();
@@ -238,6 +243,42 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     var variant = evt.variant;
     var $productImagesSlider = theme.sliders[this.slider];
     $productImagesSlider.$sliderImage.slick('slickGoTo', variant.featured_image.position - 1);
+  },
+
+  _matchVariantForCurrentSlide: function(event, slick, currentSlide, nextSlide) {
+    var imageIdx = nextSlide + 1;
+    var variant = _.find(this.theProduct.variants, function(v) {
+      if (v.featured_image) {
+        return v.featured_image.position == imageIdx;
+      }
+      return false;
+    });
+
+    if (!variant) { return false; }
+
+    var variantSelector = $(this.selectors.originalSelectorId);
+    var _self = this;
+    if (variantSelector.val() != variant.id) {
+      _.each(variant.options, function(opt, idx) {
+        var optIdx = idx + 1;
+        var optName = 'option-' + optIdx;
+        // If swatches
+        var $swatches = _self.$container.find('.swatches[data-index=' + optIdx + ']');
+        if ($swatches.length > 0) {
+          $swatches.find('input[name=' + optName + ']').each(function(idx, el) {
+            if ($(el).val() == opt) {
+              $(el).trigger('click');
+              return true;
+            }
+          });
+        } else {
+          $dropdown = _self.$container.find('.product-options__selector[data-index=option' + optIdx + ']');
+          $dropdown.val(opt).trigger('change');
+          return true;
+        }
+      });
+    }
+
   },
 
   _updatePrice: function(evt) {
