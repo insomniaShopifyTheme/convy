@@ -29,6 +29,14 @@ theme.HeaderSection = (function() {
         $search.addClass('header-search--active');
         $search.find('input').focus();
       }
+    },
+
+    onUnload: function() {
+      this.cleanUp();
+    },
+
+    cleanUp: function() {
+      theme.setupAdmin();
     }
 
   });

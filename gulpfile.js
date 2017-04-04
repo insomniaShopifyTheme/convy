@@ -35,6 +35,7 @@ gulp.task('scripts', function() {
       './scripts/collection-template.js',
       './scripts/contact-template.js',
       './scripts/featured-product-section.js',
+      './scripts/admin.js',
       './scripts/init.js',
     ])
     .pipe(concat('theme.js.liquid'))
