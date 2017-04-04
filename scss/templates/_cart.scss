@@ -201,6 +201,9 @@ $cart-secondary-color: $color-pale;
         margin-bottom: $gutter * 2;
       }
     }
+    .cart__update {
+      margin: $gutter / 2 0;
+    }
   }
 }
 

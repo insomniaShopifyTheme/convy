@@ -1,0 +1,35 @@
+<header class="page-header medium-down--hide">
+  {% include 'breadcrumb' %}
+</header>
+<div class="page-size--{{ section.settings.page_width }}">
+  <div class="standard-page">
+    <h2 class="standard-page__title">{{ page.title }}</h2>
+    <div class="standard-page__body">
+      {{ page.content }}
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+  {
+    "name": "Narrow Page",
+    "class": "page-template",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Page"
+      },
+      {
+        "type": "select",
+        "id": "page_width",
+        "label": "Page width",
+        "options": [
+          {"value": "narrow", "label": "Narrow"},
+          {"value": "narrower", "label": "Narrower"}
+        ],
+        "default": "narrow"
+      }
+    ]
+  }
+{% endschema %}

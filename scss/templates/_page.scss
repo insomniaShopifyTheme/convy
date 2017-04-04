@@ -2,26 +2,31 @@
   h2 {
     @extend .standard-page__title;
   }
-  .page-size--wide,
-  .page-size--standard,
-  .page-size--narrow {
-    margin: 0 auto;
-    width: 80%;
-  }
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {
+    .page-size--standard,
+    .page-size--narrow,
+    .page-size--narrower {
+      margin: 0 auto;
+    }
     .page-size--standard {
-      width: 80%;
+      width: 90%;
     }
     .page-size--narrow {
+      width: 80%;
+    }
+    .page-size--narrower {
       width: 65%;
     }
   }
   @include at-query($min, $wide) {
     .page-size--standard {
-      width: 70%;
+      width: 80%;
     }
     .page-size--narrow {
+      width: 70%;
+    }
+    .page-size--narrower {
       width: 55%;
     }
   }
@@ -50,6 +55,18 @@
     .sidebar__linklist-item {
       text-transform: uppercase;
     }
+  }
+}
+.sidebar--contact, .sidebar__section-content--contact {
+  .contact-form__submit {
+    width: 50%;
+    margin: 0 auto;
+  }
+  .contact-form__button-wrapper--left .contact-form__submit {
+    margin: 0 auto 0 0;
+  }
+  .contact-form__button-wrapper--right .contact-form__submit {
+    margin: 0 0 0 auto;
   }
 }
 .contact-page {
