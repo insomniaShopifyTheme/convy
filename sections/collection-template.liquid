@@ -94,12 +94,18 @@
       </div>
 
       <div class="grid__item one-whole large--three-quarters">
-        <div class="grid--full grid--uniform product-list">
+        {% case section.settings.mobile_layout %}
+          {% when '1-col' %}
+            {%- assign mobile_col_sizes = "one-whole medium--one-half" -%}
+          {% else %}
+            {%- assign mobile_col_sizes = "medium-down--one-half" -%}
+        {% endcase %}
+        <div class="grid--full grid--uniform product-list product-list--{{ section.settings.mobile_layout }}">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
           {%- assign card_hoverable = section.settings.hoverable -%}
           {% for product in collection.products %}
-            <div class="grid__item medium-down--one-half large--one-third">
+            <div class="grid__item {{ mobile_col_sizes }} large--one-third">
               <div class="product-list__item">
                 {% include 'product-card' %}
               </div>
@@ -137,6 +143,16 @@
         "id": "hoverable",
         "label": "Use hover effect in desktop version",
         "default": true
+      },
+      {
+        "type": "radio",
+        "id": "mobile_layout",
+        "label": "Mobile Layout",
+        "default": "2-col",
+        "options": [
+          {"value": "1-col", "label": "1-column"},
+          {"value": "2-col", "label": "2-column"}
+        ]
       },
       {
         "type": "header",

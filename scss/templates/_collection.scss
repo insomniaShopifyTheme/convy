@@ -34,6 +34,15 @@
         margin-bottom: $gutter;
       }
     }
+    &.product-list--1-col {
+      &.grid--uniform {
+        margin-left: 0;
+      }
+      &>.grid__item {
+        padding-left: $gutter;
+        padding-right: $gutter;
+      }
+    }
   }
 
   /*================ Desktop Version ================*/
