@@ -16,3 +16,4 @@ assets/theme.scss.liquid
 assets/theme.js.liquid
 config.yml
 node_modules/
+config/settings_data.json

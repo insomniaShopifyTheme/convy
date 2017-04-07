@@ -164,10 +164,6 @@
         "id": "shipping_calculator_submit_button_label_disabled",
         "label": "Submit button label when calculating",
         "default": "Calculating..."
-      },
-      {
-        "type": "paragraph",
-        "content": "Do not forget to include the snippet shipping-calculator in your cart.liquid template where you want the shipping  calculator to appear. You can get the snippet here: [shipping-calculator.liquid](https://github.com/carolineschnapp/shipping-calculator/blob/master/shipping-calculator.liquid) ."
       }
     ]
   },
@@ -938,7 +934,7 @@
         "type": "textarea",
         "id": "custom_scripts",
         "label": "Custom scripts",
-        "info": "This code included at the bottom of the page on each page load. Note: you need to wrap it with <script>your_code_here</script> tag if this is JavaScript code"
+        "info": "This code included at the bottom of the page on each page load. Note: you need to wrap it with <script>your_code_here<\/script> tag if this is JavaScript code"
       }
     ]
   }
