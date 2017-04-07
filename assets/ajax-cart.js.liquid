@@ -553,6 +553,7 @@ var ajaxCart = (function(module, $) {
     // Change number inputs to JS ones, similar to ajax cart but without API integration.
     // Make sure to add the existing name and id to the new input element
     var numInputs = $('input[type="number"]');
+    var currentQty = 1;
 
     if (numInputs.length) {
       numInputs.each(function() {
@@ -585,7 +586,8 @@ var ajaxCart = (function(module, $) {
         var $el = $(this),
             id = $el.data('id'),
             $qtySelector = $el.siblings('.js-qty__num'),
-            qty = parseInt($qtySelector.val().replace(/\D/g, ''));
+            qty = parseInt($qtySelector.val().replace(/\D/g, '')),
+            line = $el.parents('.cart-table tr').data('line');
 
         var qty = validateQty(qty);
 
@@ -599,6 +601,39 @@ var ajaxCart = (function(module, $) {
 
         // Update the input's number
         $qtySelector.val(qty);
+
+        // Vlad: Added to update quantity automatically on cart page
+        if (line) {
+          ShopifyAPI.changeItem(line, qty, adjustCartCallback);
+        }
+      });
+
+      // Vlad: Added to update quantity automatically on cart page
+      $('.cart-template .js-qty__num').on('focus', function() {
+        currentQty = $(this).val();
+      });
+      $('.cart-template .js-qty__num').on('blur', function() {
+        if (isUpdating) {
+          return;
+        }
+
+        var $el = $(this),
+            line = $el.parents('.cart-table tr').data('line'),
+            qty = parseInt($el.val().replace(/\D/g, ''));
+
+        var qty = validateQty(qty);
+
+        if (currentQty == qty) {
+          return;
+        }
+
+        // If it has a data-line, update the cart
+        if (line) {
+          isUpdating = true;
+          setTimeout(function() {
+            ShopifyAPI.changeItem(line, qty, adjustCartCallback);
+          }, 500);
+        }
       });
     }
   };

@@ -6,7 +6,7 @@
           <table class="cart-table full">
             <tbody>
               {% for item in cart.items %}
-                <tr>
+                <tr data-line={{ forloop.index }}>
                   <td class="cart-table__image">
                     <a href="{{ item.url | within: collections.all }}" class="cart__image">
                       <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}">

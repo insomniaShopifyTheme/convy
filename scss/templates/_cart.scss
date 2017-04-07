@@ -166,7 +166,7 @@ $cart-secondary-color: $color-pale;
     .cart-summary__wrapper {
       border: 1px solid $color-border;
       border-radius: $radius;
-      margin: ($gutter) auto;
+      margin: 0 auto $gutter;
       padding: $gutter / 2;
       width: 75%;
     }
