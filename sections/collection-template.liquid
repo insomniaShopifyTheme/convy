@@ -76,22 +76,34 @@
   </header>
 
   <div class="collection-template page-width--large">
-
+    {% if section.settings.dispaly_filters or section.settings.dispaly_sorting %}
+      {%- assign has_sidebar = true -%}
+    {% endif %}
     <div class="grid">
 
-      <div class="grid__item one-whole large--one-quarter">
+      <div class="grid__item one-whole{% if has_sidebar %} large--one-quarter{% endif %}">
         <div class="collection-controls grid--full large--hide">
-          <div class="grid__item one-half">
-            {% include 'collection-filters-dropdown' %}
-          </div>
-          <div class="grid__item one-half">
-            {% include 'collection-sorting-dropdown' %}
-          </div>
+          {% if section.settings.dispaly_filters %}
+            <div class="grid__item {% if section.settings.dispaly_sorting %}one-half{% else %}one-whole{% endif %}">
+              {% include 'collection-filters-dropdown' %}
+            </div>
+          {% endif %}
+          {% if section.settings.dispaly_sorting %}
+            <div class="grid__item {% if section.settings.dispaly_filters %}one-half{% else %}one-whole{% endif %}">
+              {% include 'collection-sorting-dropdown' %}
+            </div>
+          {% endif %}
         </div>
-        <div class="collection-sidebar medium-down--hide">
-          {% include 'collection-filter' %}
-          {% include 'collection-sorting' %}
-        </div>
+        {% if has_sidebar %}
+          <div class="collection-sidebar medium-down--hide">
+            {% if section.settings.dispaly_filters %}
+              {% include 'collection-filter' %}
+            {% endif %}
+            {% if section.settings.dispaly_sorting %}
+              {% include 'collection-sorting' %}
+            {% endif %}
+          </div>
+        {% endif %}
       </div>
 
       <div class="grid__item one-whole large--three-quarters">
@@ -106,7 +118,7 @@
           {%- assign btn_text = section.settings.product_btn_text -%}
           {%- assign card_hoverable = section.settings.hoverable -%}
           {% for product in collection.products %}
-            <div class="grid__item {{ mobile_col_sizes }} large--one-third">
+            <div class="grid__item {{ mobile_col_sizes }} {% if has_sidebar %} large--one-third{% else %} large--one-quarter{% endif %}">
               <div class="product-list__item">
                 {% include 'product-card' %}
               </div>
@@ -149,6 +161,18 @@
         "type": "checkbox",
         "id": "hoverable",
         "label": "Use hover effect in desktop version",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "dispaly_filters",
+        "label": "Display tag filters",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "dispaly_sorting",
+        "label": "Display sorting options",
         "default": true
       },
       {
