@@ -33,11 +33,17 @@
     <div class="grid__item one-whole large--four-tenths push--large--three-tenths">
     {% if section.settings.message_text != blank or section.settings.message_link_text != blank %}
       <div class="section-topbar__message{{ visibility_classes }}">
-        {{ section.settings.message_text | escape }}
-        {% if section.settings.message_link != blank and section.settings.message_link_text != blank %}
+        {% if section.settings.message_link != blank and section.settings.message_link_text == blank %}
+          <a href="{{ section.settings.message_link }}" class="section-topbar__message-link">
+            {{ section.settings.message_text | escape }}
+          </a>
+        {% elsif section.settings.message_link != blank and section.settings.message_link_text != blank %}
+          {{ section.settings.message_text | escape }}
           <a href="{{ section.settings.message_link }}" class="btn btn--secondary section-topbar__button">
             {{ section.settings.message_link_text }}
           </a>
+        {% else %}
+          {{ section.settings.message_text | escape }}
         {% endif %}
       </div>
     {% endif %}

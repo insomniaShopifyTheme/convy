@@ -1,12 +1,22 @@
 {
   "general": {
+    "accessibility": {
+      "skip_to_content": "Passer au contenu",
+      "close_modal": "Fermer"
+    },
     "meta": {
       "tags": "Mots clés \"{{ tags }}\"",
       "page": "Page {{ page }}"
     },
     "404": {
       "title": "404 - Page non trouvée",
-      "subtext_html": "Cette page n'est pas disponible. <a href=\"/collections/all\">Retourner au magasinage</a>"
+      "subtext": "Cette page n'est pas disponible.",
+      "link": "Retourner au magasinage"
+    },
+    "pagination": {
+      "previous": "Précédent",
+      "next": "Suivant",
+      "current_page": "Page {{ current }} sur {{ total }}"
     },
     "breadcrumbs": {
       "home": "Accueil",
@@ -20,19 +30,29 @@
     "search": {
       "no_results_html": "Votre recherche pour \"{{ terms }}\" n'a pas généré de résultats.",
       "results_for_html": "Votre recherche pour \"{{ terms }}\" a généré les résultats suivants:",
+      "results_with_count": {
+        "one": "{{ count }} résultat pour \"{{ terms }}\"",
+        "other": "{{ count }} résultats pour \"{{ terms }}\""
+      },
       "title": "Effectuez une recherche",
       "placeholder": "Rechercher dans la boutique",
-      "submit": "Recherche"
+      "submit": "Recherche",
+      "close": "Fermer (esc)"
     }
   },
   "blogs": {
     "article": {
+      "view_all": "Voir toutes",
+      "all_topics": "Tous les sujets",
+      "by_author": "par {{ author }}",
       "author_on_date_html": "Publié par {{ author }} le {{ date }}",
+      "posted_in": "Publié dans",
+      "read_more": "Plus",
+      "back_to_blog": "Retour à {{ title }}",
       "older_post": "Article précédent",
       "newer_post": "Article suivant",
       "tags": "Tags",
-      "comment_meta_html": "{{ author }} le {{ date }}",
-      "read_more": "Plus"
+      "comment_meta_html": "{{ author }} le {{ date }}"
     },
     "comments": {
       "title": "Laissez un commentaire",
@@ -63,7 +83,7 @@
       "update": "Mettre à jour",
       "checkout": "Procéder au paiement",
       "empty": "Votre panier est vide.",
-      "continue_browsing_html": "<a href=\"/collections/all\">Retourner au magasinage</a>.",
+      "continue_browsing_html": "<a href=\"\/collections\/all\">Retourner au magasinage<\/a>.",
       "close_cart": "Fermer le panier",
       "savings_html": "Vous économisez {{ price }}",
       "reduce_quantity": "Réduire la quantité de l'article de un",
@@ -78,6 +98,7 @@
   },
   "collections": {
     "general": {
+      "view_all": "Tout voir",
       "all_of_collection": "Tout",
       "no_matches": "Aucun produit ne correspond à votre recherche.",
       "link_title": "Consultez la collection {{ title }}",
@@ -101,6 +122,13 @@
       "price_descending": "Prix: élevé à faible",
       "date_descending": "Date: récent à ancien",
       "date_ascending": "Date: ancien à récent"
+    },
+    "filters": {
+      "title_tags": "Filtrer",
+      "all_tags": "Tous les produits",
+      "reset": "Réinitialiser",
+      "by_tags": "Tags",
+      "title": "Filtrer par"
     },
     "onboarding": {
       "modal_title": "Cette page affichera tous les produits de votre magasin",
@@ -227,15 +255,20 @@
     },
     "onboarding": {
       "modal_title": "Nous y sommes presque...",
-      "no_products_html": "Vous n'avez pas de produit dans votre collection home page. Ce message apparaitra jusqu'à ce qu'un produit soit <a href=\"/admin/collections?tutorial=Frontpage\">ajouté à cette collection</a>.",
+      "no_products_html": "Vous n'avez pas de produit dans votre collection home page. Ce message apparaitra jusqu'à ce qu'un produit soit <a href=\"\/admin\/collections?tutorial=Frontpage\">ajouté à cette collection<\/a>.",
       "add_product": "Ajouter un produit",
       "product_title": "Titre du produit",
-      "no_collections_html": "Vous n'avez pas de collection à afficher ici. <a href=\"/admin/custom_collections\">Ajoutez une ou plusieurs collections</a> pour compléter la page d'accueil par défaut.",
+      "no_collections_html": "Vous n'avez pas de collection à afficher ici. <a href=\"\/admin\/custom_collections\">Ajoutez une ou plusieurs collections<\/a> pour compléter la page d'accueil par défaut.",
       "add_collection": "Ajouter une collection",
-      "collection_title": "Titre de la collection"
+      "collection_title": "Titre de la collection",
+      "no_slides": "Personnalisez votre thème pour ajouter des diapositives d'image ou de vidéo",
+      "no_content": "Personnalisez votre thème pour ajouter du contenu à cette section",
+      "no_products": "Personnalisez votre thème pour ajouter des produits à cette section",
+      "no_collections": "Personnalisez votre thème pour ajouter des collections à cette section"
     }
   },
   "layout": {
+    "social_account": "{{ name }} sur {{ platform }}",
     "navigation": {
       "menu": "Menu"
     },
@@ -255,12 +288,14 @@
       "logged_in_as_html": "Connecté en tant que {{ first_name }}",
       "log_out": "Se déconnecter",
       "log_in": "Se connecter",
-      "create_account": "Créer un compte"
+      "create_account": "Créer un compte",
+      "have_account": "Vous avez déjà un compte?"
     },
     "footer": {
       "social_title": "Restez en contact",
       "newsletter_title": "Infolettre",
-      "accepted_payments": "Méthodes de paiement acceptées"
+      "accepted_payments": "Méthodes de paiement acceptées",
+      "configure_payment_methods": "Configurer les paiements pour voir les icônes"
     }
   },
   "products": {
@@ -274,11 +309,16 @@
     "product": {
       "sold_out": "Épuisé",
       "on_sale": "En solde",
-      "on_sale_from_html": "<strong>En solde</strong> {{ price }}",
+      "on_sale_from_html": "<strong>En solde<\/strong> {{ price }}",
       "unavailable": "Non disponible",
       "compare_at": "Était",
       "quantity": "Quantité",
-      "add_to_cart": "Ajouter au panier"
+      "add_to_cart": "Ajouter au panier",
+      "collections": "Collections",
+      "sku": "SKU",
+      "tags": "Tags",
+      "product_type": "Type de produit",
+      "vendor": "Vendeur"
     }
   },
   "gift_cards": {

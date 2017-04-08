@@ -48,120 +48,127 @@
     {%- assign col_size = 'one-whole' -%}
 {% endcase %}
 
-<div class="grid--full">
-  {% for block in section.blocks %}
-    {% case block.settings.display %}
-      {% when "mobile" %}
-        {%- assign visibility_classes = " hide small--show" -%}
-      {% when "desktop" %}
-        {%- assign visibility_classes = " small--hide" -%}
-      {% when "hidden" %}
-        {%- assign visibility_classes = " hide" -%}
-      {% else %}
-        {%- assign visibility_classes = "" -%}
-    {% endcase %}
-    <div class="footer-col footer-col--{{ block.type }} grid__item {{ col_size }}{{ visibility_classes }}" {{ block.shopify_attributes }}>
-      {% case block.type %}
-        {% when 'menu' %}
-          <h4 class="footer-col__title text-{{ block.settings.align_text }}">
-            {{ block.settings.title }}
-          </h4>
-          {% if linklists[block.settings.menu].links.size > 0 %}
-            <ul class="footer-col__linklist" style="margin-left: {{ block.settings.left_margin }}">
-              {% for link in linklists[block.settings.menu].links %}
-                <li class="footer-col__linklist-item text-{{ block.settings.align_items }}">
-                  <a href="{{ link.url }}">{{ link.title }}</a>
-                </li>
-              {% endfor %}
-            </ul>
-          {% endif %}
-        {% when 'page' %}
-          {% assign page = pages[block.settings.page] %}
-          {% if page %}
+<div class="section-footer__wrapper{% if section.settings.display_border %}--bordered{% endif %} ">
+  <div class="grid--full">
+    {% for block in section.blocks %}
+      {% case block.settings.display %}
+        {% when "mobile" %}
+          {%- assign visibility_classes = " hide small--show" -%}
+        {% when "desktop" %}
+          {%- assign visibility_classes = " small--hide" -%}
+        {% when "hidden" %}
+          {%- assign visibility_classes = " hide" -%}
+        {% else %}
+          {%- assign visibility_classes = "" -%}
+      {% endcase %}
+      <div class="footer-col footer-col--{{ block.type }} grid__item {{ col_size }}{{ visibility_classes }}" {{ block.shopify_attributes }}>
+        {% case block.type %}
+          {% when 'menu' %}
             <h4 class="footer-col__title text-{{ block.settings.align_text }}">
-              {{ page.title }}
+              {{ block.settings.title }}
             </h4>
-            <div class="footer-col__content">
-              {% if block.settings.words_limit != blank and block.settings.words_limit != 'disable' %}
-                {{ page.content | truncatewords: block.settings.words_limit }}
-                {% if block.settings.button_label != blank %}
-                  <div class="text-center">
-                    <a href="{{ page.url }}" class="btn">
-                      {{ block.settings.button_label }}
-                    </a>
-                  </div>
+            {% if linklists[block.settings.menu].links.size > 0 %}
+              <ul class="footer-col__linklist" style="margin-left: {{ block.settings.left_margin }}">
+                {% for link in linklists[block.settings.menu].links %}
+                  <li class="footer-col__linklist-item text-{{ block.settings.align_items }}">
+                    <a href="{{ link.url }}">{{ link.title }}</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          {% when 'page' %}
+            {% assign page = pages[block.settings.page] %}
+            {% if page %}
+              <h4 class="footer-col__title text-{{ block.settings.align_text }}">
+                {{ page.title }}
+              </h4>
+              <div class="footer-col__content">
+                {% if block.settings.words_limit != blank and block.settings.words_limit != 'disable' %}
+                  {{ page.content | truncatewords: block.settings.words_limit }}
+                  {% if block.settings.button_label != blank %}
+                    <div class="text-center">
+                      <a href="{{ page.url }}" class="btn">
+                        {{ block.settings.button_label }}
+                      </a>
+                    </div>
+                  {% endif %}
+                {% else %}
+                  {{ page.content }}
                 {% endif %}
+              </div>
+            {% endif %}
+          {% when 'content' %}
+            <div class="text-{{ block.settings.align_text }}">
+              {% if block.settings.title != blank %}
+                <h4 class="text-{{ block.settings.align_text }} footer-col__title">{{ block.settings.title | escape }}</h4>
+              {% endif %}
+              {% if block.settings.text != blank %}
+                <div class="footer-col__content">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+              {% if block.settings.button_label != blank and block.settings.button_link != blank %}
+                <a href="{{ block.settings.button_link }}" class="btn">
+                  {{ block.settings.button_label }}
+                </a>
+              {% endif %}
+            </div>
+          {% when 'html' %}
+            {% if block.settings.code != blank %}
+              {{ block.settings.code }}
+            {% endif %}
+          {% when 'newsletter' %}
+            {% if block.settings.title != blank %}
+              <h4 class="footer-col__title text-{{ block.settings.align_text }}">{{ block.settings.title | escape }}</h4>
+            {% endif %}
+            <div class="text-{{ block.settings.align_text }}">
+              {% include 'newsletter-form' %}
+            </div>
+        {% endcase %}
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if section.settings.display_social or
+        section.settings.powered_by or
+        section.settings.payment_icons or
+        section.settings.theme_copyright %}
+    <div class="sub-footer">
+      <div class="grid--full">
+        <div class="grid__item one-whole large--one-third push--large--one-third">
+          {% if section.settings.display_social %}
+            {% include 'social-icons-list' %}
+          {% endif %}
+        </div>
+        <div class="grid__item one-whole large--one-third push--large--one-third sub-footer__right">
+          {% if section.settings.payment_icons %}
+            <div class="payment-icons">
+              {% for type in shop.enabled_payment_types %}
+                <img src="{{ type | payment_type_img_url }}" alt="{{ type | replace: "_", " " | capitalize }}" />
               {% else %}
-                {{ page.content }}
+                <p style="height:36px;font-size:1rem;padding-top:12px;">
+                  {{ "layout.footer.configure_payment_methods" | t }}
+                </p>
+              {% endfor %}
+            </div>
+          {% endif %}
+          {% if section.settings.powered_by or section.settings.theme_copyright %}
+            <div class="copyright-text{% unless section.settings.payment_icons %}{% if section.settings.display_social %} copyright-text--with-margin{% else %} copyright-text--with-small-margin{% endif %}{% endunless %}">
+              {% if section.settings.powered_by %}
+                <span class="powered-by">Powered by <a href="http://getshopify.tabarnapp.com" target="_blank">Shopify</a></span>
+              {% endif %}
+              {% if section.settings.theme_copyright %}
+                {% capture theme_url %}https://tabarnapp.com/shopify-theme-konversion/{% if section.settings.affiliate_id != blank %}?ref={{ section.settings.affiliate_id }}{% endif %}{% endcapture %}
+                <span class="theme-by">Theme by <a href="{{ theme_url | trim }}" target="_blank">Konversion</a></span>
               {% endif %}
             </div>
           {% endif %}
-        {% when 'content' %}
-          <div class="text-{{ block.settings.align_text }}">
-            {% if block.settings.title != blank %}
-              <h4 class="text-{{ block.settings.align_text }} footer-col__title">{{ block.settings.title | escape }}</h4>
-            {% endif %}
-            {% if block.settings.text != blank %}
-              <div class="footer-col__content">
-                {{ block.settings.text }}
-              </div>
-            {% endif %}
-            {% if block.settings.button_label != blank and block.settings.button_link != blank %}
-              <a href="{{ block.settings.button_link }}" class="btn">
-                {{ block.settings.button_label }}
-              </a>
-            {% endif %}
-          </div>
-        {% when 'html' %}
-          {% if block.settings.code != blank %}
-            {{ block.settings.code }}
-          {% endif %}
-        {% when 'newsletter' %}
-          {% if block.settings.title != blank %}
-            <h4 class="footer-col__title text-{{ block.settings.align_text }}">{{ block.settings.title | escape }}</h4>
-          {% endif %}
-          <div class="text-{{ block.settings.align_text }}">
-            {% include 'newsletter-form' %}
-          </div>
-      {% endcase %}
+        </div>
+      </div>
     </div>
-  {% endfor %}
+  {% endif %}
 </div>
 
-{% if section.settings.display_social or
-      section.settings.powered_by or
-      section.settings.payment_icons or
-      section.settings.theme_copyright %}
-  <div class="sub-footer">
-    <div class="grid--full">
-      <div class="grid__item one-whole large--one-third push--large--one-third">
-        {% if section.settings.display_social %}
-          {% include 'social-icons-list' %}
-        {% endif %}
-      </div>
-      <div class="grid__item one-whole large--one-third push--large--one-third sub-footer__right">
-        {% if section.settings.payment_icons %}
-          <div class="payment-icons">
-            {% for type in shop.enabled_payment_types %}
-              <img src="{{ type | payment_type_img_url }}" alt="{{ type | replace: "_", " " | capitalize }}" />
-            {% endfor %}
-          </div>
-        {% endif %}
-        {% if section.settings.powered_by or section.settings.theme_copyright %}
-          <div class="copyright-text{% unless section.settings.payment_icons %}{% if section.settings.display_social %} copyright-text--with-margin{% else %} copyright-text--with-small-margin{% endif %}{% endunless %}">
-            {% if section.settings.powered_by %}
-              <span class="powered-by">Powered by <a href="http://getshopify.tabarnapp.com" target="_blank">Shopify</a></span>
-            {% endif %}
-            {% if section.settings.theme_copyright %}
-              {% capture theme_url %}https://tabarnapp.com/shopify-theme-konversion/{% if section.settings.affiliate_id != blank %}?ref={{ section.settings.affiliate_id }}{% endif %}{% endcapture %}
-              <span class="theme-by">Theme by <a href="{{ theme_url | trim }}" target="_blank">Konversion</a></span>
-            {% endif %}
-          </div>
-        {% endif %}
-      </div>
-    </div>
-  </div>
-{% endif %}
 
 {% schema %}
   {
@@ -171,10 +178,10 @@
     "settings": [
       {
         "type": "checkbox",
-        "id": "display_social",
-        "label": "Social links section",
-        "default": true,
-        "info": "Configure your social accounts at General Settings > Social media"
+        "id": "display_border",
+        "label": "Display border",
+        "default": false,
+        "info": "Displays separator line between page content and footer"
       },
       {
         "type": "header",
@@ -229,20 +236,15 @@
         "default": "#393939"
       },
       {
-        "type": "color",
-        "id": "color_social_bg",
-        "label": "Social background color",
-        "default": "#0d0d0d"
-      },
-      {
-        "type": "color",
-        "id": "color_social_icons",
-        "label": "Social icons color",
-        "default": "#ffffff"
-      },
-      {
         "type": "header",
         "content": "Subfooter"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_social",
+        "label": "Social links section",
+        "default": true,
+        "info": "Configure your social accounts at General Settings > Social media"
       },
       {
         "type": "checkbox",
@@ -252,20 +254,34 @@
       },
       {
         "type": "checkbox",
-        "id": "payment_icons",
-        "label": "Enable payment icons",
-        "default": true
-      },
-      {
-        "type": "checkbox",
         "id": "theme_copyright",
         "label": "Enable theme copyright text",
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "payment_icons",
+        "label": "Enable payment icons",
+        "default": false,
+        "info": "Configure [payment methods](/admin/settings/payments)"
+      },
+      {
         "type": "text",
         "id": "affiliate_id",
-        "label": "Konversion affiliate ID"
+        "label": "Konversion affiliate ID",
+        "info": "[Apply to our program](https://www.jvzoo.com/c/0/258173)"
+      },
+      {
+        "type": "color",
+        "id": "color_social_bg",
+        "label": "Subfooter background color",
+        "default": "#0d0d0d"
+      },
+      {
+        "type": "color",
+        "id": "color_social_icons",
+        "label": "Subfooter icons color",
+        "default": "#ffffff"
       }
     ],
     "blocks": [
