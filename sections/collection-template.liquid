@@ -69,7 +69,8 @@
   <header class="page-header">
     {% if section.settings.breadcrumbs %}
       {% include 'breadcrumb' %}
-    {% else %}
+    {% endif %}
+    {% if section.settings.dispaly_title %}
       <h2 class="page-header__title">{{ collection.title }}</h2>
     {% endif %}
   </header>
@@ -137,6 +138,12 @@
         "id": "breadcrumbs",
         "label": "Display breadcrumbs",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "dispaly_title",
+        "label": "Display page title",
+        "default": false
       },
       {
         "type": "checkbox",

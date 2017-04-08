@@ -1,11 +1,8 @@
+{% if collection.all_tags.size > 0 %}
 <div class="collection-filter">
   <h3 class="collection-filter__title">{{ 'collections.filters.title' | t }}:</h3>
   <h4 class="collection-filter__subtitle">
     {{ 'collections.filters.by_tags' | t }}
-    <button type="button" class="icon-fallback-text collection-filter__toggle">
-      <span class="icon icon-chevron-thin-down" aria-hidden="true"></span>
-      <span class="fallback-text">expand</span>
-    </button>
   </h4>
   <ul class="collection-filter__items collection-filter__items--tags no-bullets">
     {% for tag in collection.all_tags %}
@@ -34,3 +31,4 @@
     {% endif %}
   </ul>
 </div>
+{% endif %}

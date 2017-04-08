@@ -106,12 +106,6 @@
         "default": true
       },
       {
-        "type": "checkbox",
-        "id": "display_icons",
-        "label": "Display icons",
-        "default": true
-      },
-      {
         "type": "header",
         "content": "Product Gallery"
       },
@@ -202,6 +196,41 @@
       },
       {
         "type": "header",
+        "content": "Icons"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_icons",
+        "label": "Display icons",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "icon_1_text",
+        "label": "Icon 1 text",
+        "default": "[STOCK_QTY] left in stock",
+        "info": "Variable [STOCK_QTY] replaced with actual number"
+      },
+      {
+        "type": "text",
+        "id": "icon_2_text",
+        "label": "Icon 2 text",
+        "default": "Free returns"
+      },
+      {
+        "type": "text",
+        "id": "icon_3_text",
+        "label": "Icon 3 text",
+        "default": "Best quality"
+      },
+      {
+        "type": "text",
+        "id": "icon_4_text",
+        "label": "Icon 4 text",
+        "default": "Safe checkout"
+      },
+      {
+        "type": "header",
         "content": "Related products"
       },
       {
@@ -248,12 +277,16 @@
         "content": "Mobile version tweaks"
       },
       {
+        "type": "paragraph",
+        "content": "NOTE: you can see these options to take effect only in mobile version (switch to \"Small screen\" below)"
+      },
+      {
          "type": "select",
          "id": "description_location",
          "label": "Product description location",
          "options": [
             {"value": "top", "label": "Before options"},
-            {"value": "bottom", "label": "After option"}
+            {"value": "bottom", "label": "After options"}
           ],
          "default": "top"
       },
@@ -275,7 +308,7 @@
       {
         "type": "checkbox",
         "id": "display_option_labels",
-        "label": "Display labels for options",
+        "label": "Display label above product option selectors",
         "default": false
       },
       {

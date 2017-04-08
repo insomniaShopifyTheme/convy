@@ -1,18 +1,29 @@
 <div class="product-icons grid--full">
   <div class="product-icons__icon grid__item one-quarter">
     {{ 'prodicon-house-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
-    <p><span class="variant-qty">{{ current_variant.inventory_quantity }}</span> left in stock</p>
+    {% if section.settings.icon_1_text != blank %}
+      {% if section.settings.icon_1_text contains "[STOCK_QTY]" %}
+        {% capture stock_span_html %}<span class="variant-qty">{{ current_variant.inventory_quantity }}</span>{% endcapture %}
+      {% endif %}
+      <p>{{ section.settings.icon_1_text | replace: '[STOCK_QTY]', stock_span_html }}</p>
+    {% endif %}
   </div>
   <div class="product-icons__icon grid__item one-quarter">
     {{ 'prodicon-truck-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
-    <p>Free returns</p>
+    {% if section.settings.icon_2_text != blank %}
+      <p>{{ section.settings.icon_2_text }}</p>
+    {% endif %}
   </div>
   <div class="product-icons__icon grid__item one-quarter">
     {{ 'prodicon-badge-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
-    <p>24 month warranty</p>
+    {% if section.settings.icon_3_text != blank %}
+      <p>{{ section.settings.icon_3_text }}</p>
+    {% endif %}
   </div>
   <div class="product-icons__icon grid__item one-quarter">
     {{ 'prodicon-shield-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
-    <p>100% secure checkout</p>
+    {% if section.settings.icon_4_text != blank %}
+      <p>{{ section.settings.icon_4_text }}</p>
+    {% endif %}
   </div>
 </div>

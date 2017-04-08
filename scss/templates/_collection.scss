@@ -27,20 +27,20 @@
         {% endif %}
         margin-bottom: ($gutter / 4);
       }
+      &.product-list--1-col {
+        &.grid--uniform {
+          margin-left: 0;
+        }
+        &>.grid__item {
+          padding-left: $gutter;
+          padding-right: $gutter;
+        }
+      }
     }
     @include at-query($min, $large) {
       &>.grid__item {
         padding-left: $gutter / 2;
         margin-bottom: $gutter;
-      }
-    }
-    &.product-list--1-col {
-      &.grid--uniform {
-        margin-left: 0;
-      }
-      &>.grid__item {
-        padding-left: $gutter;
-        padding-right: $gutter;
       }
     }
   }

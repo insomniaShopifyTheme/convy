@@ -78,9 +78,6 @@ body {
     width: 100%;
     z-index: $z-index-toolbar;
   }
-  .main-content {
-    padding-top: $header-height-mobile;
-  }
 }
 body.fixed-header--all, {
   @include fixed-header;
@@ -89,10 +86,22 @@ body.fixed-header--all, {
   body.fixed-header--mobile {
     @include fixed-header;
   }
+  body.fixed-header--all,
+  body.fixed-header--mobile {
+    .main-content {
+      padding-top: $header-height-mobile;
+    }
+  }
 }
 @include at-query($min, $large) {
   body.fixed-header--desktop {
     @include fixed-header;
+  }
+  body.fixed-header--all,
+  body.fixed-header--desktop {
+    .main-content {
+      padding-top: $topbar-height + $header-height;
+    }
   }
 }
 

@@ -24,9 +24,6 @@
       {{ product.description }}
     </div>
   </div>
-  <div id="tab-reviews">
-    <div id="shopify-product-reviews" class="js-delete--mobile" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-  </div>
   {% if section.blocks.size > 0 %}
     {% for block in section.blocks %}
       {% assign page = pages[block.settings.page] %}
@@ -37,4 +34,7 @@
       </div>
     {% endfor %}
   {% endif %}
+  <div id="tab-reviews">
+    <div id="shopify-product-reviews" class="js-delete--mobile" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+  </div>
 </div>
