@@ -92,7 +92,7 @@
     ]
   },
   {
-    "name": "Shopping cart",
+    "name": "Cart",
     "settings": [
       {
         "type": "select",
@@ -856,17 +856,6 @@
         "id": "share_gplus",
         "label": "Enable google+ sharing",
         "default": true
-      }
-    ]
-  },
-  {
-    "name": "Newsletter",
-    "settings": [
-      {
-        "type": "text",
-        "id": "newsletter_form_action",
-        "label": "MailChimp form action URL",
-        "info": "[Where do I find my MailChimp form action URL?](http:\/\/docs.shopify.com\/support\/configuration\/store-customization\/where-do-i-get-my-mailchimp-form-action)"
       }
     ]
   },
