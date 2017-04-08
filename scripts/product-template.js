@@ -153,6 +153,12 @@ theme.ProductPageSection = (function() {
 
 theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.prototype, {
 
+  onLoad: function() {
+    if (_.isFunction(ajaxCart.qtySelectors)) {
+      ajaxCart.qtySelectors();
+    }
+  },
+
   onUnload: function() {
     delete theme.sliders[this.slider];
     delete theme.sliders[this.relSlider];

@@ -56,7 +56,9 @@
       <div class="product-info">
         {% include 'product-page-info' %}
         {% include 'product-meta' %}
-        {% include 'product-page-social' %}
+        {% if section.settings.display_share_icons %}
+          {% include 'product-page-social' %}
+        {% endif %}
       </div>
     </div> <!-- end desktop -->
 
@@ -190,6 +192,13 @@
         "id": "display_product_type",
         "label": "Display product type",
         "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "display_share_icons",
+        "label": "Display share icons",
+        "default": true,
+        "info": "Configure your social accounts at General Settings > Social media"
       },
       {
         "type": "header",

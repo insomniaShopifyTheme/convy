@@ -41,12 +41,16 @@
         {% include 'search-bar' %}
       </div>
     </div>
+    {% if shop.customer_accounts_enabled %}
     <div class="user-account">
       <a class="header-icon icon-fallback-text" href="/account">
-        <span class="icon icon-user" aria-hidden="true"></span>
+        {% if section.settings.display_profile_icon %}
+          <span class="icon icon-user" aria-hidden="true"></span>
+        {% endif %}
         {{ 'customer.account.title' | t }}
       </a>
     </div>
+    {% endif %}
   </div>
   <div class="grid__item two-twelfths cart-cell">
     <a href="/cart" id="CartIcon" class="h1 section-header__cart-link {% if settings.ajax_cart_method == 'drawer' %}js-drawer-open-right{% elsif settings.ajax_cart_method == 'popup' %}js-modal-open{% endif %}" aria-controls="CartDrawer" aria-expanded="false">
@@ -118,6 +122,20 @@
           ],
          "default": "0",
          "info": "Use it to fine-tune the logo image position"
+      },
+      {
+        "type": "header",
+        "content": "Customer accounts"
+      },
+      {
+        "type": "paragraph",
+        "content": "Learn more about [Customer accounts](https://help.shopify.com/manual/customers/customer-accounts)"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_profile_icon",
+        "label": "Display user profile icon",
+        "default": true
       }
     ]
   }

@@ -32,6 +32,10 @@ theme.Sections.prototype = _.extend({}, theme.Sections.prototype, {
     });
 
     this.instances.push(instance);
+
+    if (_.isFunction(instance.onLoad)) {
+      instance.onLoad();
+    }
   },
 
   _onSectionLoad: function(evt) {

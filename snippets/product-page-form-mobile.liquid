@@ -48,6 +48,15 @@
         {% endif %}
         </div>
       {% endif %}
+    {% else %}
+      <div class="product-options grid--full">
+        <div class="grid__item one-quarter"></div>
+        <div class="grid__item two-quarters text-center">
+          {%- assign show_label = true -%}
+          {% include 'product-quantity-selector' %}
+        </div>
+        <div class="grid__item one-quarter"></div>
+      </div>
     {% endunless %}
 
     <select name="id" id="ProductSelect-product_{{ product.id }}" data-section="product_{{ product.id }}" class="product-form__variants no-js hide">
