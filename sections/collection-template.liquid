@@ -43,8 +43,8 @@
         color: {{ block.settings.color_text }};
       }
     </style>
-    <div class="collection-banner collection-banner--{{ block.id }} medium-down--hide">
-      {% if block.settings.title != blank and block.settings.text != blank %}
+    <div class="collection-banner collection-banner--{{ block.settings.image_height }} collection-banner--{{ block.id }} medium-down--hide">
+      {% if block.settings.title != blank or block.settings.text != blank %}
         <div class="collection-banner__content">
           <div class="page-width--large">
             {% unless block.settings.title == blank %}
@@ -252,6 +252,30 @@
             "id": "text",
             "label": "Text",
             "default": "<p>Tell more about this collection</p>"
+          },
+          {
+            "type": "select",
+            "id": "image_height",
+            "label": "Image height",
+            "default": "xsmall",
+            "options": [
+              {
+                "label": "Extra small",
+                "value": "xsmall"
+              },
+              {
+                "label": "Small",
+                "value": "small"
+              },
+              {
+                "label": "Medium",
+                "value": "medium"
+              },
+              {
+                "label": "Large",
+                "value": "large"
+              }
+            ]
           },
           {
             "type": "select",

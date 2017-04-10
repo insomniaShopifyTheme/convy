@@ -7,6 +7,7 @@
   or settings.social_tumblr_link != blank
   or settings.social_pinterest_link != blank
   or settings.social_youtube_link != blank
+  or settings.social_snapchat_link != blank
 %}
   {%- assign has_icons = true -%}
 {% endif %}
@@ -58,6 +59,14 @@
         <a class="icon-fallback-text" href="{{ settings.social_youtube_link }}" target="_blank" title="{{ 'layout.social_account' | t: name: shop.name, platform: 'YouTube' }}">
           <span class="icon icon-youtube" aria-hidden="true"></span>
           <span class="fallback-text">YouTube</span>
+        </a>
+      </li>
+    {% endif %}
+    {% if settings.social_snapchat_link != blank %}
+      <li>
+        <a class="icon-fallback-text" href="{{ settings.social_snapchat_link }}" target="_blank" title="{{ 'layout.social_account' | t: name: shop.name, platform: 'Snapchat' }}">
+          <span class="icon icon-snapchat" aria-hidden="true"></span>
+          <span class="fallback-text">Snapchat</span>
         </a>
       </li>
     {% endif %}

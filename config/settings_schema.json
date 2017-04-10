@@ -830,6 +830,12 @@
         "info": "https:\/\/www.youtube.com\/shopify"
       },
       {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "Snapchat",
+        "info": "https:\/\/www.snapchat.com\/add\/shopify"
+      },
+      {
         "type": "header",
         "content": "Sharing"
       },
@@ -848,7 +854,7 @@
       {
         "type": "checkbox",
         "id": "share_pinterest",
-        "label": "Enable pinteres sharing",
+        "label": "Enable pinterest sharing",
         "default": true
       },
       {

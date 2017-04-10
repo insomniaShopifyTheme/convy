@@ -1,5 +1,10 @@
 /*================ Collection Template ================*/
 
+$image-xsmall: 240px;
+$image-small: 360px;
+$image-medium: 512px;
+$image-large: 728px;
+
 .collection-template {
   .collection-controls {
     select {
@@ -79,10 +84,37 @@
 }
 
 .collection-banner {
-  height: 240px;
+  height: $image-xsmall * 0.8;
   overflow: hidden;
   position: relative;
   width: 100%;
+  &.collection-banner--small {
+    height: floor($image-small * 0.8);
+  }
+
+  &.collection-banner--medium {
+    height: floor($image-medium * 0.75);
+  }
+
+  &.collection-banner--large {
+    height: floor($image-large * 0.75);
+  }
+
+  @include at-query($min, $medium) {
+    height: $image-xsmall;
+
+    &.collection-banner--small {
+      height: $image-small;
+    }
+
+    &.collection-banner--medium {
+      height: $image-medium;
+    }
+
+    &.collection-banner--large {
+      height: $image-large;
+    }
+  }
   &:after {
     content: "";
     pointer-events: none;
