@@ -18,7 +18,7 @@
               </a>
             {% endif %}
           {% else %}
-            <h2 class="text-center">No Image</h2>
+            <h2 class="text-center">{{ block.settings.no_image }}</h2>
           {% endif %}
         {% when 'text' %}
           <div class="text-{{ block.settings.align_text }}">

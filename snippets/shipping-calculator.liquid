@@ -29,11 +29,11 @@
   <p id="shipping-rates-feedback" <% if (success) { %> class="success" <% } else { %> class="error" <% } %>>
   <% if (success) { %>
     <% if (rates.length > 1) { %>
-    There are <%- rates.length %> shipping rates available for <%- address %>, starting at <%= rates[0].price %>.
+    {{ "cart.shipping-calculator.there_are" | t }} <%- rates.length %> {{ "cart.shipping-calculator.shipping_rates" | t }} <%- address %>, {{ "cart.shipping-calculator.starting_at" | t }} <%= rates[0].price %>.
     <% } else if (rates.length == 1) { %>
-    There is one shipping rate available for <%- address %>.
+    {{ "cart.shipping-calculator.shipping_rate_available" | t }} <%- address %>.
     <% } else { %>
-    We do not ship to this destination.
+    {{ "cart.shipping-calculator.do_not_ship" | t }}
     <% } %>
   <% } else { %>
     <%- errorFeedback %>

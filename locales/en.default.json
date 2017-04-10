@@ -28,7 +28,8 @@
       "title": "Search our site",
       "placeholder": "Search",
       "submit": "Submit",
-      "close": "Close search"
+      "close": "Close search",
+      "provide_terms_placeholder": "Please provide a search term"
     }
   },
   "blogs": {
@@ -80,10 +81,18 @@
       "price": "Price",
       "quantity": "Quantity",
       "total": "Total"
+    },
+    "shipping-calculator": {
+      "there_are": "There are",
+      "shipping_rates": "shipping rates available for",
+      "starting_at": "starting at",
+      "shipping_rate_available": "There is one shipping rate available for",
+      "do_not_ship": "We do not ship to this destination."
     }
   },
   "collections": {
     "general": {
+      "all_collections": "All",
       "all_of_collection": "All {{ collection }}",
       "no_matches": "Sorry, there are no products in this collection",
       "link_title": "Browse our {{ title }} collection",
@@ -280,7 +289,9 @@
       "social_title": "Get Connected",
       "newsletter_title": "Newsletter",
       "accepted_payments": "Accepted Payments",
-      "configure_payment_methods": "Please configure payment methods to see icons here"
+      "configure_payment_methods": "Please configure payment methods to see icons here",
+      "powered_by": "Powered by",
+      "theme_by": "Design by"
     }
   },
   "products": {
@@ -303,7 +314,12 @@
       "tags": "Tags",
       "sku": "SKU",
       "product_type": "Type",
-      "vendor": "Vendor"
+      "vendor": "Vendor",
+      "read_more": "Read more",
+      "tabs": {
+        "description": "Description",
+        "reviews": "Reviews"
+      }
     }
   },
   "gift_cards": {

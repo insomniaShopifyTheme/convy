@@ -155,11 +155,11 @@
           {% if section.settings.powered_by or section.settings.theme_copyright %}
             <div class="copyright-text{% unless section.settings.payment_icons %}{% if section.settings.display_social %} copyright-text--with-margin{% else %} copyright-text--with-small-margin{% endif %}{% endunless %}">
               {% if section.settings.powered_by %}
-                <span class="powered-by">Powered by <a href="http://getshopify.tabarnapp.com" target="_blank">Shopify</a></span>
+                <span class="powered-by">{{ "layout.footer.powered_by" | t }} <a href="http://getshopify.tabarnapp.com" target="_blank">Shopify</a></span>
               {% endif %}
               {% if section.settings.theme_copyright %}
                 {% capture theme_url %}https://tabarnapp.com/shopify-theme-konversion/{% if section.settings.affiliate_id != blank %}?ref={{ section.settings.affiliate_id }}{% endif %}{% endcapture %}
-                <span class="theme-by">Theme by <a href="{{ theme_url | trim }}" target="_blank">Konversion</a></span>
+                <span class="theme-by">{{ "layout.footer.theme_by" | t }} <a href="{{ theme_url | trim }}" target="_blank">Konversion</a></span>
               {% endif %}
             </div>
           {% endif %}

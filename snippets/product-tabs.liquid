@@ -1,7 +1,7 @@
 <div id="tab-container" class="medium-down--hide tab-container">
   <ul class='etabs'>
-    <li class='tab'><a href="#tab-description">Description</a></li>
-    <li class='tab'><a href="#tab-reviews">Reviews</a></li>
+    <li class='tab'><a href="#tab-description">{{ "products.product.tabs.description" | t }}</a></li>
+ 	<li class='tab'><a href="#tab-reviews">{{ "products.product.tabs.reviews" | t }}</a></li>
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
         {% if block.type == 'tab' %}

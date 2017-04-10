@@ -37,7 +37,8 @@
       "title": "Effectuez une recherche",
       "placeholder": "Rechercher dans la boutique",
       "submit": "Recherche",
-      "close": "Fermer (esc)"
+      "close": "Fermer (esc)",
+      "provide_terms_placeholder": "Entrer des termes de recherche"
     }
   },
   "blogs": {
@@ -94,12 +95,19 @@
       "price": "Prix",
       "quantity": "Quantité",
       "total": "Total"
+    },
+    "shipping-calculator": {
+      "there_are": "Il y a",
+      "shipping_rates": "Tarifs de livraison disponibles pour",
+      "starting_at": "à partir de",
+      "shipping_rate_available": "Il existe un tarif de livraison disponible pour",
+      "do_not_ship": "Nous ne livrons pas à cette destination."
     }
   },
   "collections": {
     "general": {
-      "view_all": "Tout voir",
-      "all_of_collection": "Tout",
+      "all_collections": "Tout",
+      "all_of_collection": "Tous les {{ collection }}",
       "no_matches": "Aucun produit ne correspond à votre recherche.",
       "link_title": "Consultez la collection {{ title }}",
       "grid_view": "Grille",
@@ -295,7 +303,9 @@
       "social_title": "Restez en contact",
       "newsletter_title": "Infolettre",
       "accepted_payments": "Méthodes de paiement acceptées",
-      "configure_payment_methods": "Configurer les paiements pour voir les icônes"
+      "configure_payment_methods": "Configurer les paiements pour voir les icônes",
+      "powered_by": "Propulsé par",
+      "theme_by": "Design par"
     }
   },
   "products": {
@@ -318,7 +328,12 @@
       "sku": "SKU",
       "tags": "Tags",
       "product_type": "Type de produit",
-      "vendor": "Vendeur"
+      "vendor": "Vendeur",
+      "read_more": "Lire la suite",
+      "tabs": {
+        "description": "Description",
+        "reviews": "Avis"
+      }
     }
   },
   "gift_cards": {

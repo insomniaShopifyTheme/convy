@@ -1,5 +1,5 @@
 <select name="SortTags" id="SortTags">
-  <option value="">All</option>
+  <option value=""> {{ "collections.general.all_collections" | t }}</option>
   {% for tag in collection.all_tags %}
     {% if current_tags contains tag %}
       <option value="{{ tag | handle }}" selected>{{ tag }}</option>
