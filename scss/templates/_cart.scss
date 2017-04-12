@@ -106,16 +106,6 @@ $cart-secondary-color: $color-pale;
   text-transform: uppercase;
   padding: 20px;
 }
-.cart--empty {
-  padding: ($gutter * 4) $gutter 10px;
-  text-align: center;
-  p {
-    color: $cart-primary-color;
-  }
-  .h3 {
-    margin-bottom: $gutter;
-  }
-}
 .cart-shipping-notice {
   margin: 0 0 $gutter;
   label {

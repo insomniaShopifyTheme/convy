@@ -55,6 +55,16 @@ body {
   text-align: center;
   padding-bottom: ($gutter / 3);
 }
+.page--empty {
+  padding: ($gutter * 3) $gutter $gutter;
+  text-align: center;
+  p {
+    color: $color-pale;
+  }
+  .h3 {
+    margin-bottom: $gutter;
+  }
+}
 /*================ Desktop Version ================*/
 @include at-query($min, $large) {
   .standard-page {
@@ -62,6 +72,12 @@ body {
   }
   .standard-page__title {
     text-align: left;
+  }
+  .page--empty {
+    padding: ($gutter * 5) $gutter $gutter;
+    .h3 {
+      margin-bottom: $gutter * 2;
+    }
   }
 }
 

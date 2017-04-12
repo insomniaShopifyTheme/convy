@@ -2,6 +2,15 @@
   {% include 'breadcrumb' %}
 </header>
 
+{% if blog.articles.size == 0 %}
+
+  <div class="page--empty">
+    <p class="h3">{{ 'blogs.general.blank' | t }}</p>
+    <p><a href="/collections/all" class="btn btn--special">{{ 'general.404.link' | t }}</a></p>
+  </div>
+
+{% else %}
+
 <div class="blog-template standard-page">
 <h2 class="standard-page__title">{{ page_title }}</h2>
 {% paginate blog.articles by 12 %}
@@ -84,12 +93,14 @@
     {% endfor %}
   </div>
 
-    {% if paginate.pages > 1 %}
-      {% include 'pagination' %}
-    {% endif %}
-  </div>
+  {% if paginate.pages > 1 %}
+    {% include 'pagination' %}
+  {% endif %}
+
 {% endpaginate %}
 </div>
+
+{% endif %}
 
 {% schema %}
   {

@@ -139,10 +139,15 @@
     }
   }
 
+  .menu-cell {
+    position: relative;
+  }
   .user-account {
-    float: right;
+    background-color: $color-bg;
+    position: absolute;
     height: 100%;
     padding: 0.5rem;
+    right: 0;
     line-height: 2.2rem;
     .icon {
       font-size: 1.2rem;

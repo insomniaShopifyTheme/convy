@@ -33,6 +33,9 @@
     }
   },
   "blogs": {
+    "general": {
+      "blank": "No news yet, come back later"
+    },
     "article": {
       "view_all": "View all",
       "all_topics": "All topics",
