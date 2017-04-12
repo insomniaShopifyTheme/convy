@@ -1,4 +1,5 @@
 /*================ Header Section ================*/
+$my-account-z-index: 10;
 
 .section-header {
   background-color: $color-bg;
@@ -88,7 +89,8 @@
     color: #6f6f6f;
     height: 100%;
     width: 30px;
-    &:focus {
+    &:focus,
+    &:active {
       outline: none;
     }
   }
@@ -124,8 +126,10 @@
       border-bottom: none;
       width: 240px;
       form {
+        border-right: 1px solid $color-border;
         display: inline-block;
         width: 200px;
+        z-index: $my-account-z-index + 1;
         input {
           border: none;
           height: 100%;
