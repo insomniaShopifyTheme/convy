@@ -85,3 +85,21 @@
   }
 }
 
+.accordion {
+  margin: 0 0 $gutter / 2;
+  dt {
+    background-color: $color-panel;
+    border-bottom: 1px solid $color-border;
+    font-size: 1.2rem;
+    padding: $gutter / 3;
+    margin: 0 $gutter / -3;
+  }
+  dd {
+    margin: 0;
+    padding: $gutter / 3 0;
+    &:last-of-type {
+      position: relative;
+      top: -1px;
+    }
+  }
+}

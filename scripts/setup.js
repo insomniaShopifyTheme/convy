@@ -15,11 +15,21 @@ theme.cacheSelectors = function () {
   };
 
   theme.mobileBreakpoint = 1024;
+
   theme.isMobile = function() {
     return theme.cache.$body.width() < this.mobileBreakpoint;
   };
+
   theme.isDesktop = function() {
     return theme.cache.$body.width() >= this.mobileBreakpoint;
+  };
+
+  theme.smoothScroll = function($el, speed, offset) {
+    if (!speed)  { speed = 1000; }
+    if (!offset) { offset = 0; }
+    $('html, body').animate({
+      scrollTop: $el.offset().top + offset
+    }, speed);
   };
 };
 

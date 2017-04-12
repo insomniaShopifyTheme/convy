@@ -1,7 +1,6 @@
 <div id="tab-container" class="medium-down--hide tab-container">
   <ul class='etabs'>
     <li class='tab'><a href="#tab-description">{{ "products.product.tabs.description" | t }}</a></li>
- 	<li class='tab'><a href="#tab-reviews">{{ "products.product.tabs.reviews" | t }}</a></li>
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
         {% if block.type == 'tab' %}
@@ -18,6 +17,7 @@
         {% endif %}
       {% endfor %}
     {% endif %}
+    <li class='tab'><a href="#tab-reviews">{{ "products.product.tabs.reviews" | t }}</a></li>
   </ul>
   <div id="tab-description">
     <div class="product-description rte">
@@ -26,12 +26,14 @@
   </div>
   {% if section.blocks.size > 0 %}
     {% for block in section.blocks %}
-      {% assign page = pages[block.settings.page] %}
-      <div id="tab-{{ block.id }}">
-        <div class="tab__page-content rte">
-          {{ page.content }}
+      {% if block.type == 'tab' %}
+        {% assign page = pages[block.settings.page] %}
+        <div id="tab-{{ block.id }}">
+          <div class="tab__page-content rte">
+            {{ page.content }}
+          </div>
         </div>
-      </div>
+      {% endif %}
     {% endfor %}
   {% endif %}
   <div id="tab-reviews">

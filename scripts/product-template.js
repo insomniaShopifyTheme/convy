@@ -118,6 +118,7 @@ theme.ProductPageSection = (function() {
       readMoreBtn: '.product-template .product-info__more',
       productDescription: '.product-template .product-info__description',
       productFullDescription: '.product-template .product-info__full_description',
+      accordion: '#' + sectionId + ' .accordion',
     }
 
     // Thumbs & Slider
@@ -146,6 +147,7 @@ theme.ProductPageSection = (function() {
     this._readMore();
     this._removeReviewsDuplicate();
     theme.initSwatches();
+    this._initAccordion();
   }
 
   return ProductPageSection;
@@ -348,6 +350,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
   },
 
   _collapseDescription: function() {
+    theme.smoothScroll(this.$description, 300, -120);
     this.$description.animate({'height': this.$description.data('original-height')}, 300)
                      .addClass('product-info__description--shrunk');
     $(this.selectors.readMoreBtn).find('.icon').removeClass('icon-chevron-thin-up')
@@ -374,5 +377,25 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       $('.large--hide .js-delete--desktop').remove();
     }
   },
+
+  _initAccordion: function() {
+    var $accordion = $(this.selectors.accordion);
+    var $allPanels = $accordion.find('dd').hide();
+    $(this.selectors.accordion + ' > dt:first-child').next().addClass('active').slideDown();
+    $(this.selectors.accordion + ' > .accordion__tab-title').click(function() {
+      $this = $(this);
+      $target =  $this.next();
+      if($target.hasClass('active')){
+        $target.removeClass('active').slideUp();
+      } else {
+        if (theme.cache.$body.scrollTop() > $accordion.offset().top) {
+          theme.smoothScroll($accordion, 1000);
+        }
+        $allPanels.removeClass('active').slideUp();
+        $target.addClass('active').slideDown();
+      }
+      return false;
+    });
+  }
 
 });
