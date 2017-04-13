@@ -17,3 +17,4 @@ assets/theme.js.liquid
 config.yml
 node_modules/
 config/settings_data.json
+scripts/theme.js.liquid

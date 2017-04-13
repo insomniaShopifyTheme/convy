@@ -2,6 +2,8 @@
 var gulp = require('gulp');
 var cssimport = require("gulp-cssimport");
 var concat = require('gulp-concat');
+var uglify = require('gulp-uglify');
+var pump = require('pump');
 
 var globalConfig = {
   src: 'scss' // your dev stylesheet directory. No trailing slash
@@ -39,13 +41,24 @@ gulp.task('scripts', function() {
       './scripts/init.js',
     ])
     .pipe(concat('theme.js.liquid'))
-    .pipe(gulp.dest('./assets/'));
+    .pipe(gulp.dest('./scripts/'));
+});
+
+gulp.task('compress', function (cb) {
+  pump([
+      gulp.src('./scripts/theme.js.liquid'),
+      uglify(),
+      gulp.dest('./assets/')
+    ],
+    cb
+  );
 });
 
 // Watch files
 gulp.task('watch', function () {
   gulp.watch(globalConfig.src + '/**/*.*', ['styles']);
   gulp.watch('./scripts/**/*.js', ['scripts']);
+  gulp.watch('./scripts/theme.js.liquid', ['compress']);
 });
 
 // Default task
