@@ -27,7 +27,7 @@
   {% if section.settings.display_vendor and product.vendor != blank %}
     <tr>
       <th>{{ 'products.product.vendor' | t }}</th>
-      <td>{{ product.vendor | link_to_vendor }}</td>
+      <td itemprop="brand">{{ product.vendor | link_to_vendor }}</td>
     </tr>
   {% endif %}
   {% if section.settings.display_sku and current_variant.sku != blank %}

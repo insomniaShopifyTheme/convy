@@ -12,7 +12,10 @@
   {% endif %}
 </header>
 
-<div class="product-template page-width--large" id="product_{{ product.id }}" data-section-id="product_{{ product.id }}" data-section-type="product-template">
+<div class="product-template page-width--large" id="product_{{ product.id }}" data-section-id="product_{{ product.id }}" data-section-type="product-template" itemscope itemtype="http://schema.org/Product">
+  <meta itemprop="name" content="{{ product.title }}">
+  <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
+  <meta itemprop="image" content="https:{{ product.featured_image.src | img_url: '800x' }}">
 
   <div class="grid">
     <div class="grid__item one-whole large--two-thirds">
@@ -83,6 +86,8 @@
     </div>
 
   </div> <!-- end grid -->
+  {% capture jsonld_brand_url %}https://{{ shop.domain }}{{ product.vendor | url_for_vendor }}{% endcapture %}
+  <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "Product", "@id": {{ canonical_url | json }}, "brand": { "@type": "Brand", "name": {{ product.vendor | json }}, "url": {{ jsonld_brand_url | json }} }, "sku": {{ product.selected_or_first_available_variant.sku | json }}, "description": {{ product.description | strip_html | json }}, "url": {{ canonical_url | json }}, "name": {{ product.title | json }}, {% if product.featured_image %} "image": "https:{{ product.featured_image | product_img_url: 'grande' }}", {% endif %} "offers": [{% for variant in product.variants %}{ "@type": "Offer", "price": "{{ variant.price | divided_by: 100.0 }}", "priceCurrency": "{{ shop.currency }}",{% unless shop.metafields.jsonld.itemCondition == blank %} "itemCondition": "http://schema.org/{{ shop.metafields.jsonld.itemCondition }}",{% endunless %} "availability": "{% if variant.available %}InStock{% else %}OutOfStock{% endif %}" }{% unless forloop.last %},{% endunless %}{% endfor %}] } </script>
 </div>
 
 {% unless product.empty? %}

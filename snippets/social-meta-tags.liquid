@@ -1,11 +1,29 @@
 <!-- /snippets/social-meta-tags.liquid -->
 {% comment %}
-  Open graph tags
+Google: https://search.google.com/structured-data/testing-tool/u/0/
+Facebook: 1,200 x 628 pixels – validator tool https://developers.facebook.com/tools/debug/
+Twitter: 1,024 x 512 pixels – validator tool https://cards-dev.twitter.com/validator
+Pinterest: 735 x 1,102 pixels – validator tool https://developers.pinterest.com/tools/url-debugger/
+Instagram: 1,080 x 1,080 pixels – uses Facebook’s validator tool (edited) 
+{% endcomment %}
+
+{%- assign og_description = page_description | default: shop.description | default: shop.name -%}
+
+{% comment %}
+ -- Homepage
 {% endcomment %}
 {% if template == 'index' %}
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ page_title }}">
-  <meta property="og:description" content="{{ page_description }}">
+  <meta property="og:description" content="{{ og_description }}">
+  {% if settings.og_image != blank %}
+    <meta property="og:image" content="http:{{ settings.og_image | img_url: '1200x1200' }}">
+    <meta property="og:image:secure_url" content="https:{{ settings.og_image | img_url: '1200x1200' }}">
+  {% endif %}
+
+{% comment %}
+ -- Single product page
+{% endcomment %}
 {% elsif template contains 'product' %}
   <meta property="og:type" content="product">
   <meta property="og:title" content="{{ product.title | strip_html | escape }}">
@@ -16,6 +34,7 @@
   <meta property="og:description" content="{{ product.description | strip_html | escape }}">
   <meta property="og:price:amount" content="{{ product.price | money_without_currency | strip_html | escape }}">
   <meta property="og:price:currency" content="{{ shop.currency }}">
+
 {% elsif template contains 'article' %}
   <meta property="og:type" content="article">
   <meta property="og:title" content="{{ article.title | strip_html | escape }}">
@@ -24,14 +43,12 @@
     <meta property="og:image:secure_url" content="https:{{ article | img_url: '1024x1024' }}">
   {% endif %}
   <meta property="og:description" content="{{ article.excerpt_or_content | strip_html | escape }}">
+
 {% else %}
   <meta property="og:type" content="website">
   <meta property="og:title" content="{{ page_title | escape }}">
-  {% if settings.logo_use_image %}
-    <meta property="og:image" content="http:{{ 'logo.png' | asset_url }}">
-    <meta property="og:image:secure_url" content="https:{{ 'logo.png' | asset_url }}">
-  {% endif %}
 {% endif %}
+
 <meta property="og:url" content="{{ canonical_url }}">
 <meta property="og:site_name" content="{{ shop.name }}">
 
@@ -49,6 +66,11 @@
 {% if template == 'index' %}
   <meta name="twitter:title" content="{{ page_title }}">
   <meta name="twitter:description" content="{{ page_description | escape }}">
+  {% if settings.og_image != blank %}
+    <meta name="twitter:image" content="https:{{ settings.og_image | img_url: '1200x1200' }}">
+    <meta name="twitter:image:width" content="1200">
+    <meta name="twitter:image:height" content="630">
+  {% endif %}
 {% elsif template contains 'product' %}
   <meta name="twitter:title" content="{{ product.title | strip_html | escape }}">
   <meta name="twitter:description" content="{{ product.description | strip_html | truncate: 200, '' | escape }}">

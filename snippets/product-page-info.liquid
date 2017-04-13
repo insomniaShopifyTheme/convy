@@ -2,7 +2,7 @@
   {% if featured_product_section %}
     <h3><a href="{{ product_url }}">{{ product.title }}</a></h3>
   {% else %}
-    <h3>{{ product.title }}</h3>
+    <h3 itemprop="name">{{ product.title }}</h3>
   {% endif %}
 </div>
 <div class="product-rating">

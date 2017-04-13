@@ -862,6 +862,16 @@
         "id": "share_gplus",
         "label": "Enable google+ sharing",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Facebook / Open Graph"
+      },
+      {
+        "type": "image_picker",
+        "id": "og_image",
+        "label": "Custom facebook image (og:image)",
+        "info": "Recommended size 1200x630 px"
       }
     ]
   },

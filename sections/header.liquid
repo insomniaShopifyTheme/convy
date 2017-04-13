@@ -15,14 +15,14 @@
       <div class="h1 section-header__logo{% if section.settings.logo_use_image %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
     {% endif %}
       {% if section.settings.logo_use_image %}
-        <a href="/" itemprop="url" class="section-header__logo-link">
+        <a href="/" class="section-header__logo-link">
           {% assign logo_max_width = section.settings.logo_max_width | append: 'x' %}
           <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo" style="margin-top: {{ section.settings.logo_margin }}">
         </a>
       {% elsif section.settings.logo_text != blank %}
-        <a href="/" itemprop="url">{{ section.settings.logo_text }}</a>
+        <a href="/" itemprop="name">{{ section.settings.logo_text }}</a>
       {% else %}
-        <a href="/" itemprop="url">{{ shop.name }}</a>
+        <a href="/" itemprop="name">{{ shop.name }}</a>
       {% endif %}
     {% unless template == 'index' %}
       </div>
