@@ -1,0 +1,40 @@
+/*================ Logos Section ================*/
+
+.section-logos {
+  .section-logos--alt {
+    @include inverted-section();
+  }
+  .section-logos__wrapper {
+    padding: ($gutter / 3 * 2) 0;
+    margin-bottom: $gutter;
+  }
+  .logos__item {
+    padding: ($gutter / 3) 0;
+  }
+  .logos__image {
+    max-width: 45%;
+  }
+  p {
+    font-size: 0.9rem;
+    @include at-query ($min, $medium) {
+      font-size: 1rem;
+    }
+    @include at-query ($min, $large) {
+      font-size: 1.1rem;
+    }
+    @include at-query ($min, $wide) {
+      font-size: 1.2rem;
+    }
+  }
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    .logos__item {
+      padding: 0 $gutter;
+    }
+  }
+  @include at-query($min, $wide) {
+    .logos__item {
+      padding: 0 $gutter * 2;
+    }
+  }
+}

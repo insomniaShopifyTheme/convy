@@ -1,0 +1,34 @@
+/*================ Logos Section ================*/
+
+.section-logos {
+  .section-logos__wrapper {
+    padding: ($gutter / 3 * 2) 0;
+    margin-bottom: $gutter;
+  }
+  .logos-list {
+    display: -webkit-flex; /* Safari */
+    -webkit-align-items: center; /* Safari 7.0+ */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logos__item {
+    margin: ($gutter / 3) 0 0 ($gutter / 3);
+    &.logos__item--blank {
+      background-color: rgba(0, 0, 0, 0.15);
+      height: 80px;
+      width: 60px;
+    }
+  }
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    .logos__item {
+      padding: 0 $gutter;
+    }
+  }
+  @include at-query($min, $wide) {
+    .logos__item {
+      padding: 0 $gutter * 2;
+    }
+  }
+}

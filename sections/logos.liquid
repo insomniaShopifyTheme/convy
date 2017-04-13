@@ -1,0 +1,73 @@
+<div class="section-logos__wrapper">
+
+  {% if section.settings.title != blank %}
+    <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
+  {% endif %}
+
+  <div class="page-width--large">
+    <div class="logos-list text-center clearfix">
+      {% for block in section.blocks %}
+        <div class="logos__item{% if block.settings.image == blank %} logos__item--blank{% endif %}" {{ block.shopify_attributes }}>
+          {% unless block.settings.image == blank %}
+            {{ block.settings.image | img_url: '160x160' | img_tag: 'Logo Image', 'logos__image' }}
+          {% endunless %}
+        </div>
+      {% else %}
+        <div class="empty-section">
+          {{ 'homepage.onboarding.no_content' | t }}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Logo list",
+    "class": "section-logos",
+    "max_blocks": 8,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Logo list"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "logo_image",
+        "name": "Logo",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image",
+            "info": "Recommended ratio 1:1 (square)"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Logo List",
+        "category": "Images",
+        "blocks": [
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          },
+          {
+            "type": "logo_image"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
