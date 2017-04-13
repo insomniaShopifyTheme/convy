@@ -8,9 +8,15 @@
     .custom__item-text {
       margin-bottom: $gutter;
     }
-    @include at-query($min, $medium) {
-      margin-left: $gutter * 2;
-      margin-right: $gutter * 2;
+  }
+  @include at-query($min, $medium) {
+    .custom__item-content--text {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .large--one-whole .custom__item-content--text {
+      margin-left: $gutter * 3;
+      margin-right: $gutter * 3;
     }
   }
 

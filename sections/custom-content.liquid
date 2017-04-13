@@ -1,5 +1,6 @@
+<div class="grid">
 {% for block in section.blocks %}
-  <div class="custom__item{% unless block.settings.full_width %} page-width--large{% endunless %}" {{ block.shopify_attributes }}>
+  <div class="grid__item one-whole large--{{ block.settings.column_width }} custom__item{% unless block.settings.full_width %} grid__item--full{% endunless %}" {{ block.shopify_attributes }}>
     {% case section.settings.display %}
       {% when "mobile" %}
         {%- assign visibility_classes = "hide small--show" -%}
@@ -42,10 +43,11 @@
     </div>
   </div>
 {% else %}
-  <div class="empty-section">
+  <div class="grid__item one-whole empty-section">
     {{ 'homepage.onboarding.no_content' | t }}
   </div>
 {% endfor %}
+</div>
 
 {% schema %}
   {
@@ -101,6 +103,25 @@
               {"value": "center", "label": "Centered"},
               {"value": "right", "label": "Right"}
             ]
+          },
+          {
+            "type": "select",
+            "id": "column_width",
+            "label": "Column width",
+            "options": [
+              {"value": "one-whole", "label": "100%", "group": "Full-width"},
+              {"value": "one-half", "label": "50%", "group": "Halves"},
+              {"value": "one-third", "label": "33.3%", "group": "Thirds"},
+              {"value": "two-thirds", "label": "66.6%", "group": "Thirds"},
+              {"value": "one-quarter", "label": "25%", "group": "Quarters"},
+              {"value": "two-quarters", "label": "50%", "group": "Quarters"},
+              {"value": "three-quarters", "label": "75%", "group": "Quarters"},
+              {"value": "one-fifth", "label": "20%", "group": "Fifths"},
+              {"value": "two-fifths", "label": "40%", "group": "Fifths"},
+              {"value": "three-fifths", "label": "60%", "group": "Fifths"},
+              {"value": "four-fifths", "label": "80%", "group": "Fifths"}
+            ],
+            "default": "one-whole"
           }
         ]
       },
@@ -120,10 +141,23 @@
             "label": "Link"
           },
           {
-            "type": "checkbox",
-            "id": "full_width",
-            "label": "Take full width of the page",
-            "default": true
+            "type": "select",
+            "id": "column_width",
+            "label": "Column width",
+            "options": [
+              {"value": "one-whole", "label": "100%", "group": "Full-width"},
+              {"value": "one-half", "label": "50%", "group": "Halves"},
+              {"value": "one-third", "label": "33.3%", "group": "Thirds"},
+              {"value": "two-thirds", "label": "66.6%", "group": "Thirds"},
+              {"value": "one-quarter", "label": "25%", "group": "Quarters"},
+              {"value": "two-quarters", "label": "50%", "group": "Quarters"},
+              {"value": "three-quarters", "label": "75%", "group": "Quarters"},
+              {"value": "one-fifth", "label": "20%", "group": "Fifths"},
+              {"value": "two-fifths", "label": "40%", "group": "Fifths"},
+              {"value": "three-fifths", "label": "60%", "group": "Fifths"},
+              {"value": "four-fifths", "label": "80%", "group": "Fifths"}
+            ],
+            "default": "one-whole"
           }
         ]
       },
@@ -135,6 +169,25 @@
             "type": "textarea",
             "id": "code",
             "label": "HTML"
+          },
+          {
+            "type": "select",
+            "id": "column_width",
+            "label": "Column width",
+            "options": [
+              {"value": "one-whole", "label": "100%", "group": "Full-width"},
+              {"value": "one-half", "label": "50%", "group": "Halves"},
+              {"value": "one-third", "label": "33.3%", "group": "Thirds"},
+              {"value": "two-thirds", "label": "66.6%", "group": "Thirds"},
+              {"value": "one-quarter", "label": "25%", "group": "Quarters"},
+              {"value": "two-quarters", "label": "50%", "group": "Quarters"},
+              {"value": "three-quarters", "label": "75%", "group": "Quarters"},
+              {"value": "one-fifth", "label": "20%", "group": "Fifths"},
+              {"value": "two-fifths", "label": "40%", "group": "Fifths"},
+              {"value": "three-fifths", "label": "60%", "group": "Fifths"},
+              {"value": "four-fifths", "label": "80%", "group": "Fifths"}
+            ],
+            "default": "one-whole"
           }
         ]
       }
