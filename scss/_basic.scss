@@ -118,6 +118,9 @@ body.fixed-header--all, {
   }
   body.fixed-header--all,
   body.fixed-header--desktop {
+    .drawer {
+      position: fixed;
+    }
     .main-content {
       padding-top: $topbar-height + $header-height;
     }
