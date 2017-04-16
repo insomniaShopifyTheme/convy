@@ -1,25 +1,11 @@
 [
   {
     "name": "theme_info",
-    "logo": "https:\/\/cdn.shopify.com\/s\/files\/1\/1661\/5437\/files\/tabarnapp.png?12608857986534823727",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Konversion"
-      },
-      {
-        "type": "paragraph",
-        "content": "v0.9"
-      },
-      {
-        "type": "paragraph",
-        "content": "The Shopify theme that makes sales"
-      },
-      {
-        "type": "paragraph",
-        "content": "[Tabarnapp](https:\/\/tabarnapp.com\/) | [Konversion Theme](https:\/\/tabarnapp.com\/shopify-theme-konversion\/)"
-      }
-    ]
+    "theme_name": "Konversion",
+    "theme_author": "Tabarnapp",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://tabarnapp.com/shopify-theme-konversion/",
+    "theme_support_email": "support@tabarnapp.com"
   },
   {
     "name": "Layout",
