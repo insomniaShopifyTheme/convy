@@ -140,8 +140,10 @@ theme.ProductPageSection = (function() {
     // Switch image when variant is changed
     this._initVariants();
     // Switch variant when image is changed
-    var $imgSlider = theme.sliders[this.slider].$sliderImage;
-    $imgSlider.on('beforeChange', this._matchVariantForCurrentSlide.bind(this));
+    if (theme.sliders[this.slider].$sliderImage) {
+      var $imgSlider = theme.sliders[this.slider].$sliderImage;
+      $imgSlider.on('beforeChange', this._matchVariantForCurrentSlide.bind(this));
+    }
 
     this._stickyCartBtn();
     this._readMore();
