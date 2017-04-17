@@ -514,3 +514,8 @@ iframe {
     padding-right: 10px;
   }
 }
+
+// Disable empty rating
+.spr-badge[data-rating="0.0"] {
+  visibility: hidden;
+}
