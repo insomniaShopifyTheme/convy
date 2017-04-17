@@ -559,6 +559,7 @@ var ajaxCart = (function(module, $) {
     // Make sure to add the existing name and id to the new input element
     var numInputs = $('input[type="number"]');
     var currentQty = 1;
+    var $inputHtml;
 
     if (numInputs.length) {
       numInputs.each(function() {
@@ -582,8 +583,14 @@ var ajaxCart = (function(module, $) {
               inputId: inputId
             };
 
+        $inputHtml = $(template(data));
+
+        if ($el.prop('disabled')) {
+          $inputHtml.find('button, input').attr("disabled", true);
+        }
+
         // Append new quantity selector then remove original
-        $el.after(template(data)).remove();
+        $el.after($inputHtml).remove();
       });
 
       // Setup listeners to add/subtract from the input

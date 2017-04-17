@@ -231,6 +231,7 @@ html input[disabled] {
     cursor: default;
     color: $disabled-border;
     background-color: $disabled-grey !important;
+    box-shadow: none;
     &:hover {
       color: $disabled-border;
     }

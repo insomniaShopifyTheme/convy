@@ -109,7 +109,7 @@
       <div class="grid__item one-whole{% if has_sidebar %} large--three-quarters{% endif %}">
         {% case section.settings.mobile_layout %}
           {% when '1-col' %}
-            {%- assign mobile_col_sizes = "one-whole medium--one-half" -%}
+            {%- assign mobile_col_sizes = "medium-down--one-whole" -%}
           {% else %}
             {%- assign mobile_col_sizes = "medium-down--one-half" -%}
         {% endcase %}
