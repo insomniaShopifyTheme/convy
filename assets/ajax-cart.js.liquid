@@ -410,6 +410,11 @@ var ajaxCart = (function(module, $) {
   };
 
   cartCallback = function(cart) {
+    // Prevent cart auto-openning on cart page
+    if (theme.cache.$body.hasClass('template-cart')) {
+      return false;
+    }
+
     if ('{{ settings.ajax_cart_method }}' == 'popup' && theme.isMobile()) {
       theme.cartModal.onlyShow();
     } else {
