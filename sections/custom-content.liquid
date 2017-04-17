@@ -1,6 +1,6 @@
-<div class="grid">
+<div class="{% if section.settings.disable_padding %}grid--full{% else %}grid{% endif %}">
 {% for block in section.blocks %}
-  <div class="grid__item one-whole large--{{ block.settings.column_width }} custom__item{% unless block.settings.full_width %} grid__item--full{% endunless %}" {{ block.shopify_attributes }}>
+  <div class="grid__item one-whole large--{{ block.settings.column_width }} custom__item" {{ block.shopify_attributes }}>
     {% case section.settings.display %}
       {% when "mobile" %}
         {%- assign visibility_classes = "hide small--show" -%}
@@ -64,6 +64,12 @@
           {"value": "mobile", "label": "Mobile only"},
           {"value": "desktop", "label": "Desktop only"}
         ]
+      },
+      {
+        "type": "checkbox",
+        "id": "disable_padding",
+        "label": "Disable Cell Padding",
+        "default": false
       }
     ],
     "blocks": [
