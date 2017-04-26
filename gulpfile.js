@@ -2,10 +2,8 @@
 var gulp = require('gulp');
 var cssimport = require("gulp-cssimport");
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
 var pump = require('pump');
 var gulpSequence = require('gulp-sequence').use(gulp)
-
 
 var globalConfig = {
   src: 'scss' // your dev stylesheet directory. No trailing slash
@@ -43,29 +41,18 @@ gulp.task('scripts', function() {
       './scripts/init.js',
     ])
     .pipe(concat('theme.js.liquid'))
-    .pipe(gulp.dest('./scripts/'));
-});
-
-gulp.task('compress', function(cb) {
-  pump([
-      gulp.src('./scripts/theme.js.liquid'),
-      uglify(),
-      gulp.dest('./assets/')
-    ],
-    cb
-  );
+    .pipe(gulp.dest('./assets/'));
 });
 
 // Watch files
 gulp.task('watch', function() {
   gulp.watch(globalConfig.src + '/**/*.*', ['styles']);
   gulp.watch('./scripts/**/*.js', ['scripts']);
-  gulp.watch('./scripts/theme.js.liquid', ['compress']);
 });
 
 
 //build 
-gulp.task('build', gulpSequence('styles', 'scripts', 'compress'));
+gulp.task('build', gulpSequence('styles', 'scripts'));
 
 // Default task
 gulp.task('default', ['watch']);
