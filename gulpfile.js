@@ -42,7 +42,7 @@ gulp.task('scripts', function() {
       globalConfig.scripts_src + '/collection-template.js',
       globalConfig.scripts_src + '/contact-template.js',
       globalConfig.scripts_src + '/featured-product-section.js',
-      globalConfig.scripts_src + '/admin.js',
+      globalConfig.scripts_src + '/admin.dev.js',
       globalConfig.scripts_src + '/init.js',
     ])
     .pipe(concat('theme.js.liquid'))
