@@ -30,6 +30,6 @@ deployment:
   production:
     branch: "master"
     commands:
-      - gulp zip
+      - npm run gulp zip
       - aws s3 cp konversion-theme.zip s3://tabarnapp/konversion-theme/konversion-theme.zip:
          pwd: dist
