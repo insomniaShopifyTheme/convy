@@ -12,9 +12,6 @@ Thumbs.db
 # Custom #
 ######################
 *.sass-cache*
-assets/theme.scss.liquid
-assets/theme.js.liquid
-config.yml
+dist/
 node_modules/
-config/settings_data.json
-scripts/theme.js.liquid
+config.yml

@@ -4,6 +4,10 @@ var cssimport = require("gulp-cssimport");
 var concat = require('gulp-concat');
 var pump = require('pump');
 var gulpSequence = require('gulp-sequence').use(gulp)
+var del = require('del');
+var changed = require('gulp-changed');
+var zip = require('gulp-zip');
+
 
 var globalConfig = {
   scss_src: './src/scss', // your dev stylesheet directory. No trailing slash
@@ -14,7 +18,7 @@ var globalConfig = {
 gulp.task('styles', function() {
   return gulp.src(globalConfig.scss_src + '/**/*.*')
     .pipe(cssimport())
-    .pipe(gulp.dest('assets/'));
+    .pipe(gulp.dest('./dist/assets/'));
 })
 
 gulp.task('scripts', function() {
@@ -42,7 +46,28 @@ gulp.task('scripts', function() {
       globalConfig.scripts_src + '/init.js',
     ])
     .pipe(concat('theme.js.liquid'))
-    .pipe(gulp.dest('./build/assets/'));
+    .pipe(gulp.dest('./dist/assets/'));
+});
+
+//clean task
+gulp.task('clean', function() {
+  return del([
+    "./dist/**/*",
+  ]);
+});
+
+
+//copy files
+gulp.task('sync_files', function() {
+  return gulp.src([
+      "src/**/*",
+      "!src/scripts/**/*",
+      "!src/scss/**/*",
+      "!src/scripts/",
+      "!src/scss/"
+    ])
+    .pipe(changed("./dist/"))
+    .pipe(gulp.dest('./dist/'));
 });
 
 
@@ -50,11 +75,27 @@ gulp.task('scripts', function() {
 gulp.task('watch', function() {
   gulp.watch(globalConfig.scss_src + '/**/*.*', ['styles']);
   gulp.watch(globalConfig.scripts_src + '/scripts/**/*.js', ['scripts']);
+  gulp.watch([
+    "src/**/*",
+    "!src/scripts/**/*",
+    "!src/scss/**/*",
+    "!src/scripts/",
+    "!src/scss/"
+  ], ["sync_files"]);
 });
 
 
 //build 
-gulp.task('build', gulpSequence('styles', 'scripts'));
+gulp.task('build', gulpSequence('clean', 'sync_files', 'styles', 'scripts'));
 
 // Default task
-gulp.task('default', ['watch']);
+gulp.task('default', gulpSequence('build', 'watch'));
+
+
+gulp.task("zip_build", function() {
+  return gulp.src('./dist/**/*')
+    .pipe(zip('konversion-theme.zip'))
+    .pipe(gulp.dest('./dist'))
+});
+
+gulp.task('zip', gulpSequence('build', 'zip_build'));
