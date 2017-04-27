@@ -9,7 +9,6 @@ checkout:
 dependencies:
   cache_directories:
     - ~/.npm
-    - ~/node_modules
     - node_modules
   override:
     - npm install
