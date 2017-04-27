@@ -8,64 +8,55 @@ var gulpSequence = require('gulp-sequence').use(gulp)
 
 
 var globalConfig = {
-  src: 'scss' // your dev stylesheet directory. No trailing slash
+  scss_src: './src/scss', // your dev stylesheet directory. No trailing slash
+  scripts_src: './src/scripts'
 };
 
 // Process CSS
 gulp.task('styles', function() {
-  return gulp.src(globalConfig.src + '/**/*.*')
+  return gulp.src(globalConfig.scss_src + '/**/*.*')
     .pipe(cssimport())
     .pipe(gulp.dest('assets/'));
 })
 
 gulp.task('scripts', function() {
   return gulp.src([
-      './scripts/lib/jquery.selectric.js',
-      './scripts/setup.js',
-      './scripts/theme/currency.js',
-      './scripts/theme/sections.js',
-      './scripts/theme/variants.js',
-      './scripts/customers.js',
-      './scripts/map.js',
-      './scripts/product-card.js',
-      './scripts/drawers.js',
-      './scripts/modal.js',
-      './scripts/swatches.js',
-      './scripts/mobile-nav.js',
-      './scripts/header-section.js',
-      './scripts/slideshow-section.js',
-      './scripts/slider-section.js',
-      './scripts/product-template.js',
-      './scripts/collection-template.js',
-      './scripts/contact-template.js',
-      './scripts/featured-product-section.js',
-      './scripts/admin.js',
-      './scripts/init.js',
+      globalConfig.scripts_src + '/lib/jquery.selectric.js',
+      globalConfig.scripts_src + '/setup.js',
+      globalConfig.scripts_src + '/theme/currency.js',
+      globalConfig.scripts_src + '/theme/sections.js',
+      globalConfig.scripts_src + '/theme/variants.js',
+      globalConfig.scripts_src + '/customers.js',
+      globalConfig.scripts_src + '/map.js',
+      globalConfig.scripts_src + '/product-card.js',
+      globalConfig.scripts_src + '/drawers.js',
+      globalConfig.scripts_src + '/modal.js',
+      globalConfig.scripts_src + '/swatches.js',
+      globalConfig.scripts_src + '/mobile-nav.js',
+      globalConfig.scripts_src + '/header-section.js',
+      globalConfig.scripts_src + '/slideshow-section.js',
+      globalConfig.scripts_src + '/slider-section.js',
+      globalConfig.scripts_src + '/product-template.js',
+      globalConfig.scripts_src + '/collection-template.js',
+      globalConfig.scripts_src + '/contact-template.js',
+      globalConfig.scripts_src + '/featured-product-section.js',
+      globalConfig.scripts_src + '/admin.js',
+      globalConfig.scripts_src + '/init.js',
     ])
     .pipe(concat('theme.js.liquid'))
-    .pipe(gulp.dest('./scripts/'));
+    .pipe(gulp.dest('./build/assets/'));
 });
 
-gulp.task('compress', function(cb) {
-  pump([
-      gulp.src('./scripts/theme.js.liquid'),
-      uglify(),
-      gulp.dest('./assets/')
-    ],
-    cb
-  );
-});
 
 // Watch files
 gulp.task('watch', function() {
-  gulp.watch(globalConfig.src + '/**/*.*', ['styles']);
-  gulp.watch('./scripts/**/*.js', ['scripts']);
-  gulp.watch('./scripts/theme.js.liquid', ['compress']);
+  gulp.watch(globalConfig.scss_src + '/**/*.*', ['styles']);
+  gulp.watch(globalConfig.scripts_src + '/scripts/**/*.js', ['scripts']);
 });
 
 
 //build 
-gulp.task('build', gulpSequence('styles', 'scripts', 'compress'));
+gulp.task('build', gulpSequence('styles', 'scripts'));
 
 // Default task
 gulp.task('default', ['watch']);
