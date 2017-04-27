@@ -1,5 +1,7 @@
 Install
 =====================
+Master status [![CircleCI](https://circleci.com/gh/tabarnapp/theme_konversion/tree/master.svg?style=svg)](https://circleci.com/gh/tabarnapp/theme_konversion/tree/master)
+
 
 Make sure `config.yml` file is setup properly. [Docs here](http://shopify.github.io/themekit/configuration/).
 
