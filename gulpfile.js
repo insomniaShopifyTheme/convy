@@ -2,10 +2,8 @@
 var gulp = require('gulp');
 var cssimport = require("gulp-cssimport");
 var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
 var pump = require('pump');
 var gulpSequence = require('gulp-sequence').use(gulp)
-
 
 var globalConfig = {
   scss_src: './src/scss', // your dev stylesheet directory. No trailing slash
