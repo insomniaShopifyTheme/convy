@@ -1,5 +1,4 @@
-[
-  {
+[{
     "name": "theme_info",
     "theme_name": "Konversion",
     "theme_author": "Tabarnapp",
@@ -9,8 +8,7 @@
   },
   {
     "name": "Layout",
-    "settings": [
-      {
+    "settings": [{
         "type": "header",
         "content": "Template"
       },
@@ -18,8 +16,7 @@
         "type": "select",
         "id": "fixed_header",
         "label": "Fixed header",
-        "options": [
-          {
+        "options": [{
             "value": "disable",
             "label": "Disable"
           },
@@ -52,8 +49,7 @@
         "id": "product_card_title_style",
         "label": "Hide long product title",
         "info": "Use fade out effect for text that doesn't fit so product cards have equal height",
-        "options": [
-          {
+        "options": [{
             "value": "full",
             "label": "Display full title"
           },
@@ -79,13 +75,11 @@
   },
   {
     "name": "Cart",
-    "settings": [
-      {
+    "settings": [{
         "type": "select",
         "id": "ajax_cart_method",
         "label": "Cart type",
-        "options": [
-          {
+        "options": [{
             "value": "drawer",
             "label": "Drawer"
           },
@@ -116,8 +110,7 @@
   },
   {
     "name": "Shipping Rates Calculator",
-    "settings": [
-      {
+    "settings": [{
         "type": "checkbox",
         "id": "shipping_calculator",
         "label": "Enable shipping calculator",
@@ -155,8 +148,7 @@
   },
   {
     "name": "Colors",
-    "settings": [
-      {
+    "settings": [{
         "type": "header",
         "content": "General colors"
       },
@@ -220,19 +212,16 @@
   },
   {
     "name": "Favicon",
-    "settings": [
-      {
-        "type": "image_picker",
-        "id": "favicon",
-        "label": "Favicon",
-        "info": "64x64 px .png recommended"
-      }
-    ]
+    "settings": [{
+      "type": "image_picker",
+      "id": "favicon",
+      "label": "Favicon",
+      "info": "64x64 px .png recommended"
+    }]
   },
   {
     "name": "Typography",
-    "settings": [
-      {
+    "settings": [{
         "type": "header",
         "content": "Headings and buttons"
       },
@@ -241,8 +230,7 @@
         "id": "font_family_headings",
         "label": "Font",
         "default": "Google_Work+Sans_600_sans",
-        "options": [
-          {
+        "options": [{
             "value": "'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif",
             "label": "Avant Garde",
             "group": "Sans-serif"
@@ -464,8 +452,7 @@
         "id": "font_size_headings",
         "label": "Heading base size",
         "default": "26px",
-        "options": [
-          {
+        "options": [{
             "value": "20px",
             "label": "20px"
           },
@@ -512,8 +499,7 @@
         "id": "font_family_base",
         "label": "Font",
         "default": "Google_Lato_400_sans",
-        "options": [
-          {
+        "options": [{
             "value": "'Avant Garde', Avantgarde, 'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif",
             "label": "Avant Garde",
             "group": "Sans-serif"
@@ -735,8 +721,7 @@
         "id": "font_size_base",
         "label": "Base size",
         "default": "16px",
-        "options": [
-          {
+        "options": [{
             "value": "13px",
             "label": "13px"
           },
@@ -774,8 +759,7 @@
   },
   {
     "name": "Social media",
-    "settings": [
-      {
+    "settings": [{
         "type": "header",
         "content": "Social accounts"
       },
@@ -863,8 +847,7 @@
   },
   {
     "name": "Currency",
-    "settings": [
-      {
+    "settings": [{
         "type": "paragraph",
         "content": "To offer multiple currencies on your online store, you must first [edit your store's currency formatting](https:\/\/help.shopify.com\/manual\/using-themes\/troubleshooting\/help-script-find-money-formats)."
       },
@@ -879,8 +862,7 @@
         "type": "select",
         "id": "currency_format",
         "label": "Format",
-        "options": [
-          {
+        "options": [{
             "value": "money_format",
             "label": "Without currency ($10.00)"
           },
@@ -908,25 +890,30 @@
   },
   {
     "name": "Variant Swatches",
-    "settings": [
-      {
-        "type": "text",
-        "id": "option_color_swatches",
-        "label": "Use color swatches for following options",
-        "default": "Color, Colour",
-        "info": "List option names separated by comma eg. Color, Material"
-      }
-    ]
+    "settings": [{
+      "type": "text",
+      "id": "option_color_swatches",
+      "label": "Use color swatches for following options",
+      "default": "Color, Colour",
+      "info": "List option names separated by comma eg. Color, Material"
+    }]
   },
   {
     "name": "Misc",
-    "settings": [
-      {
-        "type": "textarea",
-        "id": "custom_scripts",
-        "label": "Custom scripts",
-        "info": "This code included at the bottom of the page on each page load. Note: you need to wrap it with <script>your_code_here<\/script> tag if this is JavaScript code"
-      }
-    ]
+    "settings": [{
+      "type": "textarea",
+      "id": "custom_scripts",
+      "label": "Custom scripts",
+      "info": "This code included at the bottom of the page on each page load. Note: you need to wrap it with <script>your_code_here<\/script> tag if this is JavaScript code"
+    }]
+  },
+  {
+    "name": "License",
+    "settings": [{
+      "type": "textarea",
+      "id": "license_key",
+      "label": "License Key",
+      "info": "Put here the license key you recieved when the theme was purchased"
+    }]
   }
 ]

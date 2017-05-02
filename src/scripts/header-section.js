@@ -21,7 +21,7 @@ theme.HeaderSection = (function() {
 
   HeaderSection.prototype = _.extend({}, HeaderSection.prototype, {
 
-    _toggleSearchField: function () {
+    _toggleSearchField: function() {
       $search = this.$container.find(".header-search");
       if ($search.hasClass('header-search--active')) {
         $search.removeClass('header-search--active');
@@ -35,9 +35,7 @@ theme.HeaderSection = (function() {
       this.cleanUp();
     },
 
-    cleanUp: function() {
-      theme.setupAdmin();
-    }
+    cleanUp: function() {}
 
   });
 

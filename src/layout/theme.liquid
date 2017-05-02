@@ -50,9 +50,10 @@
       moneyFormat: {{ shop.money_format | json }}
     }
   </script>
-
+ 
   <!-- CSS ================================================== -->
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+  {{ 'sweetalert2.min.css' | asset_url | stylesheet_tag }}
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}

@@ -24,6 +24,7 @@ gulp.task('styles', function() {
 gulp.task('scripts', function() {
   return gulp.src([
       globalConfig.scripts_src + '/lib/jquery.selectric.js',
+      globalConfig.scripts_src + '/lib/sweetalert2.min.js',
       globalConfig.scripts_src + '/setup.js',
       globalConfig.scripts_src + '/theme/currency.js',
       globalConfig.scripts_src + '/theme/sections.js',
@@ -43,6 +44,7 @@ gulp.task('scripts', function() {
       globalConfig.scripts_src + '/contact-template.js',
       globalConfig.scripts_src + '/featured-product-section.js',
       globalConfig.scripts_src + '/admin.dev.js',
+      globalConfig.scripts_src + '/check_license.js',
       globalConfig.scripts_src + '/init.js',
     ])
     .pipe(concat('theme.js.liquid'))
@@ -73,8 +75,7 @@ gulp.task('sync_files', function() {
 
 // Watch files
 gulp.task('watch', function() {
-  gulp.watch(globalConfig.scss_src + '/**/*.*', ['styles']);
-  gulp.watch(globalConfig.scripts_src + '/scripts/**/*.js', ['scripts']);
+
   gulp.watch([
     "src/**/*",
     "!src/scripts/**/*",
@@ -82,6 +83,8 @@ gulp.task('watch', function() {
     "!src/scripts/",
     "!src/scss/"
   ], ["sync_files"]);
+  gulp.watch(globalConfig.scss_src + '/**/*.*', ['styles']);
+  gulp.watch(globalConfig.scripts_src + '/**/*.js', ['scripts']);
 });
 
 
