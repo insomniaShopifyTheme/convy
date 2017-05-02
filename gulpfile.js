@@ -57,6 +57,13 @@ gulp.task('clean', function() {
     "./dist/**/*",
   ]);
 });
+//clean for build
+gulp.task('clean_for_build', function() {
+  return del([
+    "./dist/config.yml",
+  ]);
+});
+
 
 
 //copy files
@@ -95,10 +102,11 @@ gulp.task('build', gulpSequence('clean', 'sync_files', 'styles', 'scripts'));
 gulp.task('default', gulpSequence('build', 'watch'));
 
 
+
 gulp.task("zip_build", function() {
   return gulp.src('./dist/**/*')
     .pipe(zip('konversion-theme.zip'))
     .pipe(gulp.dest('./dist'))
 });
 
-gulp.task('zip', gulpSequence('build', 'zip_build'));
+gulp.task('zip', gulpSequence('build', 'clean_for_build', 'zip_build'));

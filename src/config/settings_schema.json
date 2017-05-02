@@ -913,6 +913,7 @@
       "type": "textarea",
       "id": "license_key",
       "label": "License Key",
+      "default": "",
       "info": "Put here the license key you recieved when the theme was purchased"
     }]
   }
