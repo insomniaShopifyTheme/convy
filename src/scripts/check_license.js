@@ -23,7 +23,7 @@ theme.check_license = function() {
   if (parseInt(localStorage.getItem("{{ settings.license_key | remove: ' ' | strip_newlines | sha1 }}")) <= 0) {
     swal({
       title: "Invalid license!",
-      html: "Your license is invalid. Please check if you inputed it correctly or purchase a valid license from <a href='https://tabarnapp.com/' target='_blank'>tabarapp.com</a>. <br> <span id='swal_mes'></span>",
+      html: "Your license is invalid. Please check if you inputed it correctly or purchase a valid license from <a href='https://www.konversiontheme.com' target='_blank'>www.konversiontheme.com</a>. <br> <span id='swal_mes'></span>",
       type: "error",
       confirmButtonText: "Continue anyway",
       showCancelButton: false,
