@@ -217,6 +217,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 
   _updateAddToCart: function(evt) {
     var variant = evt.variant;
+    var qty;
 
     if (variant) {
       this.$container.find(this.selectors.productPrices).removeClass('visibility-hidden');
@@ -230,7 +231,16 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       }
 
       // Update left in stock label
-      this.$container.find(this.selectors.qty).html(variant.inventory_quantity);
+      if (variant.inventory_quantity > 0) {
+        qty = variant.inventory_quantity;
+      } else {
+        if (variant.available) {
+          qty = 1;
+        } else {
+          qty = 0;
+        }
+      }
+      this.$container.find(this.selectors.qty).html(qty);
 
       // There are two separated variant selectors for mobile and desktop
       // So it needs to be updated manually

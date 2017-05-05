@@ -3,7 +3,14 @@
     {{ 'prodicon-house-min.png' | asset_img_url: '36x36' | img_tag: 'Icon' }}
     {% if section.settings.icon_1_text != blank %}
       {% if section.settings.icon_1_text contains "[STOCK_QTY]" %}
-        {% capture stock_span_html %}<span class="variant-qty">{{ current_variant.inventory_quantity }}</span>{% endcapture %}
+        {% capture qty %}
+          {% if current_variant.inventory_quantity > 0 %}
+            {{ current_variant.inventory_quantity }}
+          {% else %}
+            {% if current_variant.available %}1{% else %}0{% endif %}
+          {% endif %}
+        {% endcapture %}
+        {% capture stock_span_html %}<span class="variant-qty">{{ qty }}</span>{% endcapture %}
       {% endif %}
       <p>{{ section.settings.icon_1_text | replace: '[STOCK_QTY]', stock_span_html }}</p>
     {% endif %}

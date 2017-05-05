@@ -84,9 +84,6 @@ theme.FeaturedProductSection.prototype = _.extend({}, theme.FeaturedProductSecti
         $(this.selectors.addToCartText).text(backend.strings.soldOut);
       }
 
-      // Update left in stock label
-      this.$container.find(this.selectors.qty).html(variant.inventory_quantity);
-
       // There are two separated variant selectors for mobile and desktop
       // So it needs to be updated manually
       $(this.selectors.originalSelectorId + '--desktop').val(variant.id)
@@ -96,7 +93,6 @@ theme.FeaturedProductSection.prototype = _.extend({}, theme.FeaturedProductSecti
       $(this.selectors.addToCart).prop('disabled', true);
       $(this.selectors.addToCartText).text(backend.strings.unavailable);
       this.$container.find(this.selectors.productPrices).addClass('visibility-hidden');
-      this.$container.find(this.selectors.qty).html('-');
     }
   },
 
