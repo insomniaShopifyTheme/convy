@@ -3,10 +3,9 @@ $menu-subitem-hover-color: #f1f1f1;
   margin-bottom: 0;
   height: 100%;
   a {
-    border-left: 1px solid #fff;
     border-top: 1px solid #dFeEFF; /* fallback colour must use full shorthand */
     border-top: 1px solid rgba(255,255,255,.5);
-    color: $color-text-body;
+    color: $color-menu;
     padding-top: .9rem;
   }
   & > li {
@@ -24,15 +23,15 @@ $menu-subitem-hover-color: #f1f1f1;
     }
   }
   li {
-    background: $color-bg;
+    background: $color-bg-menu;
     &:hover,
     &.sfHover {
-      background: $color-bg;
+      background: $color-bg-menu;
     }
   }
   ul {
     li {
-      background: $color-bg;
+      background: $color-bg-menu;
       &:hover,
       &.sfHover {
         background: $menu-subitem-hover-color;
@@ -40,7 +39,7 @@ $menu-subitem-hover-color: #f1f1f1;
     }
     ul {
       li {
-        background: $color-bg;
+        background: $color-bg-menu;
       }
     }
   }

@@ -2,7 +2,7 @@
 $my-account-z-index: 10;
 
 .section-header {
-  background-color: $color-bg;
+  background-color: $color-bg-menu;
   height: $header-height-mobile;
   @include prefixer(box-shadow, #{0px 1px 5px 0px $color-border}, moz webkit spec);
 
@@ -79,6 +79,7 @@ $my-account-z-index: 10;
   h1, .h1 {
     margin: 0.5rem 0;
     padding: 0;
+    color: $color_menu;
     &.section-header__logo--image {
       margin: 0;
     }
@@ -86,7 +87,7 @@ $my-account-z-index: 10;
 
   .header-icon {
     padding: 0.3rem 0 0 1rem;
-    color: #6f6f6f;
+    color: $color-menu;
     height: 100%;
     width: 30px;
     &:focus,
@@ -147,7 +148,7 @@ $my-account-z-index: 10;
     position: relative;
   }
   .user-account {
-    background-color: $color-bg;
+    background-color: $color-bg-menu;
     position: absolute;
     height: 100%;
     padding: 0.5rem;
