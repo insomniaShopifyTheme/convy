@@ -89,10 +89,12 @@ $color-discount: {{ settings.color_discount }};
 $color-special-text: {{ settings.color_text_alt }};
 $color-meta-text: #afafaf;
 $color-pale: #878787;
+$color-menu: {{ settings.color_menu }};
 
 // Backgrounds
 $color-bg: {{ settings.color_bg }};
 $color-bg-alt: {{ settings.color_bg_alt }};
+$color-bg-menu: {{ settings.color_menu_bg }};
 
 // Text colors
 $color-text-body: {{ settings.color_text }};
@@ -2405,7 +2407,6 @@ $slick-opacity-not-active: 0.25 !default;
 	*width: 12em; /* no auto sub width for IE7, see white-space comment below */
 }
 .sf-menu a {
-	border-left: 1px solid #fff;
 	border-top: 1px solid #dFeEFF; /* fallback colour must use full shorthand */
 	border-top: 1px solid rgba(255,255,255,.5);
 	padding: .75em 1em;
@@ -3279,10 +3280,9 @@ $menu-subitem-hover-color: #f1f1f1;
   margin-bottom: 0;
   height: 100%;
   a {
-    border-left: 1px solid #fff;
     border-top: 1px solid #dFeEFF; /* fallback colour must use full shorthand */
     border-top: 1px solid rgba(255,255,255,.5);
-    color: $color-text-body;
+    color: $color-menu;
     padding-top: .9rem;
   }
   & > li {
@@ -3300,15 +3300,15 @@ $menu-subitem-hover-color: #f1f1f1;
     }
   }
   li {
-    background: $color-bg;
+    background: $color-bg-menu;
     &:hover,
     &.sfHover {
-      background: $color-bg;
+      background: $color-bg-menu;
     }
   }
   ul {
     li {
-      background: $color-bg;
+      background: $color-bg-menu;
       &:hover,
       &.sfHover {
         background: $menu-subitem-hover-color;
@@ -3316,7 +3316,7 @@ $menu-subitem-hover-color: #f1f1f1;
     }
     ul {
       li {
-        background: $color-bg;
+        background: $color-bg-menu;
       }
     }
   }
@@ -5161,7 +5161,7 @@ $cart-secondary-color: $color-pale;
 $my-account-z-index: 10;
 
 .section-header {
-  background-color: $color-bg;
+  background-color: $color-bg-menu;
   height: $header-height-mobile;
   @include prefixer(box-shadow, #{0px 1px 5px 0px $color-border}, moz webkit spec);
 
@@ -5238,6 +5238,7 @@ $my-account-z-index: 10;
   h1, .h1 {
     margin: 0.5rem 0;
     padding: 0;
+    color: $color_menu;
     &.section-header__logo--image {
       margin: 0;
     }
@@ -5245,7 +5246,7 @@ $my-account-z-index: 10;
 
   .header-icon {
     padding: 0.3rem 0 0 1rem;
-    color: #6f6f6f;
+    color: $color-menu;
     height: 100%;
     width: 30px;
     &:focus,
@@ -5306,7 +5307,7 @@ $my-account-z-index: 10;
     position: relative;
   }
   .user-account {
-    background-color: $color-bg;
+    background-color: $color-bg-menu;
     position: absolute;
     height: 100%;
     padding: 0.5rem;
