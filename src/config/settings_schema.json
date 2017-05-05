@@ -8,6 +8,22 @@
     "theme_support_email": "support@tabarnapp.com"
   },
   {
+    "name": "Apps",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product Reviews"
+      },
+      {
+        "type": "checkbox",
+        "id": "app_product_reviews_enabled",
+        "label": "Product reviews by shopify",
+        "default": false,
+        "info": "Enables app integration. You still need to [install the app](https://apps.shopify.com/product-reviews)"
+      }
+    ]
+  },
+  {
     "name": "Layout",
     "settings": [
       {

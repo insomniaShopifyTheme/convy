@@ -42,7 +42,9 @@
         </div>
         <div class="product-info__title clearfix">
           <h3>{{ product.title }}</h3>
-          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+          {% if settings.app_product_reviews_enabled %}
+            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+          {% endif %}
         </div>
         {% if section.settings.description_location == 'top' %}
           {% include 'product-description' %}
@@ -80,9 +82,11 @@
         </div>
       {% endif %}
 
+      {% if settings.app_product_reviews_enabled %}
       <div class="{% if section.settings.use_tabs %}large--hide{% endif %}">
         <div id="shopify-product-reviews" class="js-delete--desktop" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
       </div>
+      {% endif %}
     </div>
 
   </div> <!-- end grid -->
@@ -325,6 +329,13 @@
         "id": "use_tabs",
         "label": "Use tabs",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "reviews_tab",
+        "label": "Product reviews tab",
+        "default": true,
+        "info": "takes effect only if tabs enabled; also requires Product Reviews app integration (see General Settings > Apps)"
       }
     ],
     "blocks": [

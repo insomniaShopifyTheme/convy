@@ -21,7 +21,9 @@
     {{ product.featured_image.src | img_url: '400x400', crop: 'center' | img_tag: product.title }}
   </a>
   <div class="product-card__info">
-    <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+    {% if settings.app_product_reviews_enabled %}
+      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+    {% endif %}
     <div class="product-card__title product-card__title--{{ settings.product_card_title_style }}">
       <a href="{{ product_url }}">{{ product.title }}</a>
       <div class="dimmer"></div>

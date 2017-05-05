@@ -65,6 +65,11 @@ body {
     margin-bottom: $gutter;
   }
 }
+
+.text-meta {
+  color: $color-pale;
+}
+
 /*================ Desktop Version ================*/
 @include at-query($min, $large) {
   .standard-page {

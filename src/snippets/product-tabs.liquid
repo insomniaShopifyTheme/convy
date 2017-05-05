@@ -17,7 +17,9 @@
         {% endif %}
       {% endfor %}
     {% endif %}
+    {% if section.settings.reviews_tab %}
     <li class='tab'><a href="#tab-reviews">{{ "products.product.tabs.reviews" | t }}</a></li>
+    {% endif %}
   </ul>
   <div id="tab-description">
     <div class="product-description rte">
@@ -36,7 +38,15 @@
       {% endif %}
     {% endfor %}
   {% endif %}
+  {% if section.settings.reviews_tab %}
   <div id="tab-reviews">
-    <div id="shopify-product-reviews" class="js-delete--mobile" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+    {% if settings.app_product_reviews_enabled %}
+      <div id="shopify-product-reviews" class="js-delete--mobile" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+    {% else  %}
+      <br>
+      <h3 class="text-meta text-center">Product Reviews app integration required</h3>
+      <p class="text-meta text-center">Please enable integration in General Settings > Apps</p>
+    {% endif %}
   </div>
+  {% endif %}
 </div>

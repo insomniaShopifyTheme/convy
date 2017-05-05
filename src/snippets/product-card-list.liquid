@@ -9,9 +9,11 @@
     <div class="product-info__title">
       <h3>{{ product.title }}</h3>
     </div>
+    {% if settings.app_product_reviews_enabled %}
     <div class="product-rating">
       <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
     </div>
+    {% endif %}
     <div class="product-short-description">
       {{ product.description | strip_html | truncatewords: '18', "&hellip;" }}
     </div>

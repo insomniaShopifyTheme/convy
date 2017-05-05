@@ -5,9 +5,11 @@
     <h3 itemprop="name">{{ product.title }}</h3>
   {% endif %}
 </div>
+{% if settings.app_product_reviews_enabled %}
 <div class="product-rating">
   <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
 </div>
+{% endif %}
 <div class="product-price">
   {% include 'product-page-price' %}
 </div>
