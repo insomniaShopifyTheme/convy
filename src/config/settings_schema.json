@@ -215,13 +215,13 @@
       {
         "type": "color",
         "id": "color_menu",
-        "label": "Text",
+        "label": "Menu Text",
         "default": "#393939"
       },
       {
         "type": "color",
         "id": "color_menu_bg",
-        "label": "Background",
+        "label": "Menu Background",
         "default": "#ffffff"
       },
       {
