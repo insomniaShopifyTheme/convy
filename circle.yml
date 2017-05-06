@@ -1,12 +1,17 @@
 machine:
   node:
     version: 4.4.7
+  environment:
+    PROJECT_NAME: theme_konversion
 checkout:
   post:
     - git submodule sync
     - git submodule update --init # use submodules
 
 dependencies:
+  pre:
+    - go get github.com/aktau/github-release
+    - npm install github-release-notes -g
   cache_directories:
     - ~/.npm
     - node_modules
@@ -32,3 +37,11 @@ deployment:
       - npm run gulp zip
       - aws s3 cp konversion-theme.zip s3://tabarnapp/konversion-theme/konversion-theme.zip:
          pwd: dist
+  release:
+    tag: /release_.*/
+    commands:
+      - npm run gulp zip
+      - cp dist/konversion-theme.zip $CIRCLE_ARTIFACTS/$PROJECT_NAME-$CIRCLE_TAG.zip
+      - git config user.name $CIRCLE_PROJECT_USERNAME
+      - gren --override --data-source=commits
+      - github-release upload --user $CIRCLE_PROJECT_USERNAME --repo $CIRCLE_PROJECT_REPONAME --tag $CIRCLE_TAG --name $CIRCLE_PROJECT_REPONAME"."$CIRCLE_TAG"-build-"$CIRCLE_BUILD_NUM".zip" --file $CIRCLE_ARTIFACTS/$PROJECT_NAME-$CIRCLE_TAG.zip
