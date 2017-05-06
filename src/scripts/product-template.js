@@ -23,7 +23,7 @@ theme.ProductImagesSlider = (function() {
       slidesToScroll: 1,
       asNavFor: '#' + sliderId + ' .' + classes.image,
       dots: false,
-      arrows: false,
+      arrows: this.$sliderThumbs.data('arrows'),
       centerMode: false,
       focusOnSelect: true,
       vertical: true,
@@ -41,7 +41,7 @@ theme.ProductImagesSlider = (function() {
     };
 
     var imageHeight = this.$sliderImage.height();
-    this.$sliderThumbs.css({'max-height': imageHeight + 'px'});
+    //this.$sliderThumbs.css({'max-height': imageHeight + 'px'});
     this.$sliderThumbs.slick(this.thumbsSettings);
     this.$sliderImage.slick(this.imageSettings);
   }
