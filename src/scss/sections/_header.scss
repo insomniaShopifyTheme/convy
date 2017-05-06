@@ -66,10 +66,9 @@ $my-account-z-index: 10;
   }
 
   .section-header__logo {
-    @include at-query ($max, $small) {
-      img {
-        width: 95%;
-      }
+    height: 100%;
+    img {
+      height: 100%;
     }
   }
   .logo-cell {
