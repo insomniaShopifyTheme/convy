@@ -1,6 +1,12 @@
 {%- assign limit = 6 -%}
 
 <div data-section-id="{{ section.id }}" data-section-type="collection-template">
+{% assign is_infinite = section.settings.dispaly_infinite %}
+{% if is_infinite %}
+  {% assign limit = collection.all_products_count %}
+{% else %}
+  {% assign limit = section.settings.display_number_of_rows %}
+{% endif %}
 {% paginate collection.products by limit %}
 
 {% for block in section.blocks %}
@@ -174,6 +180,60 @@
         "id": "dispaly_sorting",
         "label": "Display sorting options",
         "default": true
+      },
+      {
+        "type": "select",
+        "id": "display_number_of_rows",
+        "label": "Number of rows",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          },
+          {
+            "value": "7",
+            "label": "7"
+          },
+          {
+            "value": "8",
+            "label": "8"
+          },
+          {
+            "value": "9",
+            "label": "9"
+          },
+          {
+            "value": "10",
+            "label": "10"
+          }
+        ],
+        "default": "6"
+      },
+      {
+        "type": "checkbox",
+        "id": "dispaly_infinite",
+        "label": "Display infinite",
+        "default": false
       },
       {
         "type": "radio",
