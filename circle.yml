@@ -27,10 +27,10 @@ deployment:
   production:
     branch: "master"
     commands:
-      - ./demo.js
+      - ./circle.js
       - aws s3 cp konversion-theme.zip s3://tabarnapp/konversion-theme/konversion-theme.zip:
          pwd: dist
   demo:
     branch: /.*/
     commands:
-      - ./demo.js
+      - ./circle.js
