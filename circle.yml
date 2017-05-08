@@ -9,8 +9,6 @@ checkout:
     - git submodule update --init # use submodules
 
 dependencies:
-  pre:
-    - npm install github-release-notes -g
   cache_directories:
     - ~/.npm
     - node_modules
@@ -20,7 +18,7 @@ dependencies:
     - aws configure set region us-west-2
     - npm run gulp zip
     - cp dist/konversion-theme.zip $CIRCLE_ARTIFACTS/konversion-theme.zip
-    
+
 test:
   override:
     - npm test
@@ -29,5 +27,10 @@ deployment:
   production:
     branch: "master"
     commands:
+      - ./demo.js
       - aws s3 cp konversion-theme.zip s3://tabarnapp/konversion-theme/konversion-theme.zip:
          pwd: dist
+  demo:
+    branch: /.*/
+    commands:
+      - ./demo.js
