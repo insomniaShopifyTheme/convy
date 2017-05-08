@@ -3,10 +3,14 @@ machine:
     version: 4.4.7
   environment:
     PROJECT_NAME: theme_konversion
-checkout:
-  post:
-    - git submodule sync
-    - git submodule update --init # use submodules
+
+  general:
+    artifacts:
+      - dist
+# checkout:
+  # post:
+    # - git submodule sync
+    # - git submodule update --init # use submodules
 
 dependencies:
   cache_directories:
@@ -17,7 +21,6 @@ dependencies:
   post:
     - aws configure set region us-west-2
     - npm run gulp zip
-    - cp dist/konversion-theme.zip $CIRCLE_ARTIFACTS/konversion-theme.zip
 
 test:
   override:
