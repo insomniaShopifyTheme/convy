@@ -7,12 +7,10 @@ const build_url = process.env['CIRCLE_BUILD_URL'];
 const path = process.env['CIRCLE_ARTIFACTS'];
 
 
-const url = `${build_url}/${path}`;
+const url = `${build_url}/artifacts/0${path}/konversion-theme.zip`;
 
 console.log(`
-Built for: ${bot.env.commitMessage} \n
-Download theme: ${bot.artifactLink('dist/konversion-theme.zip', 'konversion-theme.zip')}
-or: ${url}
+${url}
 `);
 bot.comment(`
 <h4>${bot.env.commitMessage}</h4>
