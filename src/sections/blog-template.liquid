@@ -27,11 +27,11 @@
   </div>
   {% case section.settings.layout %}
     {% when '1-col' %}
-      {%- assign grid_classes = 'one-whole' -%}
+      {% assign grid_classes = "one-whole" %}
     {% when '2-col' %}
-      {%- assign grid_classes = 'medium-down--one-whole large--one-half' -%}
+      {% assign grid_classes = "medium-down--one-whole large--one-half" %}
     {% when '3-col' %}
-      {%- assign grid_classes = 'medium-down--one-whole large--one-third' -%}
+      {% assign grid_classes = "medium-down--one-whole large--one-third" %}
   {% endcase %}
   <div class="grid grid--uniform blog-list">
     {% for article in blog.articles %}
