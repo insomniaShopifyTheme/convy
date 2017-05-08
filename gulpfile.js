@@ -7,6 +7,9 @@ var gulpSequence = require('gulp-sequence').use(gulp)
 var del = require('del');
 var changed = require('gulp-changed');
 var zip = require('gulp-zip');
+var liquid = require("gulp-liquid");
+var ext_replace = require('gulp-ext-replace');
+const replace = require('gulp-replace');
 
 
 var globalConfig = {
@@ -55,6 +58,7 @@ gulp.task('scripts', function() {
 gulp.task('clean', function() {
   return del([
     "./dist/**/*",
+    "./tmp/**/*",
   ]);
 });
 //clean for build
@@ -64,6 +68,32 @@ gulp.task('clean_for_build', function() {
   ]);
 });
 
+//gulp prepare test file
+gulp.task('compile_liquid', function() {
+  //example file: https://gist.github.com/tmslnz/1d025baaa7557a2d994032aa88fb61b3
+  gulp.src([
+      "./dist/**/theme.liquid",
+      "./dist/**/*.liquid",
+    ])
+    // .pipe(replace(/({%)(?!\s*?(?:end)?(?:include)\s*?)(.+?)(%})/g, '<!-- $2 -->')) // make whitespace-insensitive tags {% -> {%-
+    // .pipe(replace(/({%)(?!\s*?(?:end)?(?:raw|schema|javascript|stylesheet)\s*?)(.+?)(%})/g, '$1- $2 -$3')) // make whitespace-insensitive tags {% -> {%-
+    .pipe(replace(/({%)(?: +)(include|section|schema|endschema|paginate|case|endcase|when|capture|endcapture)(.+?)(%})/g, '<!-- $2 -->')) // make whitespace-insensitive tags {% -> {%-
+    .pipe(replace(/{%/g, '<!-- $2 -->')) // make whitespace-insensitive tags {% -> {%-
+    .pipe(replace(/^\s*[\r\n]/gm, '')) // remove empty lines
+    .pipe(replace(/escape/, ''))
+    .pipe(replace(/{%-}/, '{%'))
+    .pipe(replace(/-%}/, '%}'))
+    // .pipe(replace(/({%)(?: +)(include|section|schema|endschema|paginate|case|when)(.+?)(%})/g, '<!-- $2 -->')) // make whitespace-insensitive tags {% -> {%-
+    .pipe(liquid({
+      locals: {
+
+      }
+    }))
+    .pipe(ext_replace('.js', '.js.liquid'))
+    .pipe(ext_replace('.html', '.html.liquid'))
+    .pipe(ext_replace('.css', '.css.liquid'))
+    .pipe(gulp.dest("./tmp/"));
+});
 
 
 //copy files
@@ -96,7 +126,7 @@ gulp.task('watch', function() {
 
 
 //build 
-gulp.task('build', gulpSequence('clean', 'sync_files', 'styles', 'scripts'));
+gulp.task('build', gulpSequence('clean', 'sync_files', 'styles', 'scripts', 'compile_liquid'));
 
 // Default task
 gulp.task('default', gulpSequence('build', 'watch'));

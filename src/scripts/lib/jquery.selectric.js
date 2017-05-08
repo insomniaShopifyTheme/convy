@@ -19,8 +19,8 @@
 
 
 
- // Modified for Konversion Theme
- // added option `direction: top / bottom` for options to only drop to the up or down
+// Modified for Konversion Theme
+// added option `direction: top / bottom` for options to only drop to the up or down
 
 
 
@@ -29,13 +29,13 @@
 (function(factory) {
   /* global define */
   /* istanbul ignore next */
-  if ( typeof define === 'function' && define.amd ) {
+  if (typeof define === 'function' && define.amd) {
     define(['jquery'], factory);
-  } else if ( typeof module === 'object' && module.exports ) {
+  } else if (typeof module === 'object' && module.exports) {
     // Node/CommonJS
-    module.exports = function( root, jQuery ) {
-      if ( jQuery === undefined ) {
-        if ( typeof window !== 'undefined' ) {
+    module.exports = function(root, jQuery) {
+      if (jQuery === undefined) {
+        if (typeof window !== 'undefined') {
           jQuery = require('jquery');
         } else {
           jQuery = require('jquery')(root);
@@ -65,9 +65,9 @@
     /[\xEC-\xEF]/g, // i
     /[\xF2-\xF6]/g, // o
     /[\xF9-\xFC]/g, // u
-    /[\xF1]/g,      // n
-    /[\xE7]/g,      // c
-    /[\xFD-\xFF]/g  // y
+    /[\xF1]/g, // n
+    /[\xE7]/g, // c
+    /[\xFD-\xFF]/g // y
   ];
 
   /**
@@ -84,20 +84,20 @@
     _this.$element = $(element);
 
     _this.state = {
-      multiple       : !!_this.$element.attr('multiple'),
-      enabled        : false,
-      opened         : false,
-      currValue      : -1,
-      selectedIdx    : -1,
-      highlightedIdx : -1
+      multiple: !!_this.$element.attr('multiple'),
+      enabled: false,
+      opened: false,
+      currValue: -1,
+      selectedIdx: -1,
+      highlightedIdx: -1
     };
 
     _this.eventTriggers = {
-      open    : _this.open,
-      close   : _this.close,
-      destroy : _this.destroy,
-      refresh : _this.refresh,
-      init    : _this.init
+      open: _this.open,
+      close: _this.close,
+      destroy: _this.destroy,
+      refresh: _this.refresh,
+      init: _this.init
     };
 
     _this.init(opts);
@@ -158,8 +158,10 @@
               p // a property name
             ) {
               return p && a[1] // if property name and first argument exist
-                ? a[1][p] // return property from first argument
-                : a[i]; // assume argument index and return i-th argument
+                ?
+                a[1][p] // return property from first argument
+                :
+                a[i]; // assume argument index and return i-th argument
             });
       },
 
@@ -171,7 +173,7 @@
        * @return {object}               The next enabled item.
        */
       nextEnabledItem: function(selectItems, selected) {
-        while ( selectItems[ selected = (selected + 1) % selectItems.length ].disabled ) {
+        while (selectItems[selected = (selected + 1) % selectItems.length].disabled) {
           // empty
         }
         return selected;
@@ -185,7 +187,7 @@
        * @return {object}               The previous enabled item.
        */
       previousEnabledItem: function(selectItems, selected) {
-        while ( selectItems[ selected = (selected > 0 ? selected : selectItems.length) - 1 ].disabled ) {
+        while (selectItems[selected = (selected > 0 ? selected : selectItems.length) - 1].disabled) {
           // empty
         }
         return selected;
@@ -212,7 +214,7 @@
         var func = scope.options['on' + fn];
         var args = [elm].concat([].slice.call(arguments).slice(1));
 
-        if ( $.isFunction(func) ) {
+        if ($.isFunction(func)) {
           func.apply(elm, args);
         }
 
@@ -246,7 +248,7 @@
       _this.destroy(true);
 
       // Disable on mobile browsers
-      if ( _this.options.disableOnMobile && _this.utils.isMobile() ) {
+      if (_this.options.disableOnMobile && _this.utils.isMobile()) {
         _this.disableOnMobile = true;
         return;
       }
@@ -255,24 +257,24 @@
       _this.classes = _this.getClassNames();
 
       // Create elements
-      var input              = $('<input/>', { 'class': _this.classes.input, 'readonly': _this.utils.isMobile() });
-      var items              = $('<div/>',   { 'class': _this.classes.items, 'tabindex': -1 });
-      var itemsScroll        = $('<div/>',   { 'class': _this.classes.scroll });
-      var wrapper            = $('<div/>',   { 'class': _this.classes.prefix, 'html': _this.options.arrowButtonMarkup });
-      var label              = $('<span/>',  { 'class': 'label' });
-      var outerWrapper       = _this.$element.wrap('<div/>').parent().append(wrapper.prepend(label), items, input);
-      var hideSelectWrapper  = $('<div/>',   { 'class': _this.classes.hideselect });
+      var input = $('<input/>', { 'class': _this.classes.input, 'readonly': _this.utils.isMobile() });
+      var items = $('<div/>', { 'class': _this.classes.items, 'tabindex': -1 });
+      var itemsScroll = $('<div/>', { 'class': _this.classes.scroll });
+      var wrapper = $('<div/>', { 'class': _this.classes.prefix, 'html': _this.options.arrowButtonMarkup });
+      var label = $('<span/>', { 'class': 'label' });
+      var outerWrapper = _this.$element.wrap('<div/>').parent().append(wrapper.prepend(label), items, input);
+      var hideSelectWrapper = $('<div/>', { 'class': _this.classes.hideselect });
 
       _this.elements = {
-        input        : input,
-        items        : items,
-        itemsScroll  : itemsScroll,
-        wrapper      : wrapper,
-        label        : label,
-        outerWrapper : outerWrapper
+        input: input,
+        items: items,
+        itemsScroll: itemsScroll,
+        wrapper: wrapper,
+        label: label,
+        outerWrapper: outerWrapper
       };
 
-      if ( _this.options.nativeOnMobile && _this.utils.isMobile() ) {
+      if (_this.options.nativeOnMobile && _this.utils.isMobile()) {
         _this.elements.input = undefined;
         hideSelectWrapper.addClass(_this.classes.prefix + '-is-native');
 
@@ -312,13 +314,13 @@
         ])
       );
 
-      if ( _this.options.inheritOriginalWidth && originalWidth > 0 ) {
+      if (_this.options.inheritOriginalWidth && originalWidth > 0) {
         _this.elements.outerWrapper.width(originalWidth);
       }
 
       _this.unbindEvents();
 
-      if ( !_this.$element.prop('disabled') ) {
+      if (!_this.$element.prop('disabled')) {
         _this.state.enabled = true;
 
         // Not disabled, so... Removing disabled class
@@ -332,7 +334,7 @@
       } else {
         _this.elements.outerWrapper.addClass(_this.classes.disabled);
 
-        if ( _this.elements.input ) {
+        if (_this.elements.input) {
           _this.elements.input.prop('disabled', true);
         }
       }
@@ -365,7 +367,7 @@
       var _this = this;
       var labelBuilder = _this.options.labelBuilder;
 
-      if ( _this.state.multiple ) {
+      if (_this.state.multiple) {
         // Make sure currentValues is an array
         var currentValues = $.isArray(_this.state.currValue) ? _this.state.currValue : [_this.state.currValue];
         // I'm not happy with this, but currentValues can be an empty
@@ -381,26 +383,26 @@
         labelMarkup = $.grep(labelMarkup, function(item) {
           // Hide default (please choose) if more then one element were selected.
           // If no option value were given value is set to option text by default
-          if ( labelMarkup.length > 1 || labelMarkup.length === 0 ) {
+          if (labelMarkup.length > 1 || labelMarkup.length === 0) {
             return $.trim(item.value) !== '';
           }
           return item;
         });
 
         labelMarkup = $.map(labelMarkup, function(item) {
-          return $.isFunction(labelBuilder)
-            ? labelBuilder(item)
-            : _this.utils.format(labelBuilder, item);
+          return $.isFunction(labelBuilder) ?
+            labelBuilder(item) :
+            _this.utils.format(labelBuilder, item);
         });
 
         // Limit the amount of selected values shown in label
-        if ( _this.options.multiple.maxLabelEntries ) {
-          if ( labelMarkup.length >= _this.options.multiple.maxLabelEntries + 1 ) {
+        if (_this.options.multiple.maxLabelEntries) {
+          if (labelMarkup.length >= _this.options.multiple.maxLabelEntries + 1) {
             labelMarkup = labelMarkup.slice(0, _this.options.multiple.maxLabelEntries);
             labelMarkup.push(
-              $.isFunction(labelBuilder)
-                ? labelBuilder({ text: '...' })
-                : _this.utils.format(labelBuilder, { text: '...' }));
+              $.isFunction(labelBuilder) ?
+              labelBuilder({ text: '...' }) :
+              _this.utils.format(labelBuilder, { text: '...' }));
           } else {
             labelMarkup.slice(labelMarkup.length - 1);
           }
@@ -411,9 +413,9 @@
         var currItem = _this.lookupItems[_this.state.currValue];
 
         _this.elements.label.html(
-          $.isFunction(labelBuilder)
-            ? labelBuilder(currItem)
-            : _this.utils.format(labelBuilder, currItem)
+          $.isFunction(labelBuilder) ?
+          labelBuilder(currItem) :
+          _this.utils.format(labelBuilder, currItem)
         );
       }
     },
@@ -428,7 +430,7 @@
       var currIndex = 0;
       var emptyValue = (_this.state.multiple ? [] : 0);
 
-      if ( $selected.length > 1 && _this.state.multiple ) {
+      if ($selected.length > 1 && _this.state.multiple) {
         selectedIndex = [];
         $selected.each(function() {
           selectedIndex.push($(this).index());
@@ -441,18 +443,18 @@
       _this.items = [];
       _this.lookupItems = [];
 
-      if ( $options.length ) {
+      if ($options.length) {
         // Build options markup
         $options.each(function(i) {
           var $elm = $(this);
 
-          if ( $elm.is('optgroup') ) {
+          if ($elm.is('optgroup')) {
 
             var optionsGroup = {
-              element       : $elm,
-              label         : $elm.prop('label'),
-              groupDisabled : $elm.prop('disabled'),
-              items         : []
+              element: $elm,
+              label: $elm.prop('label'),
+              groupDisabled: $elm.prop('disabled'),
+              items: []
             };
 
             $elm.children().each(function(i) {
@@ -479,7 +481,7 @@
         });
 
         _this.setLabel();
-        _this.elements.items.append( _this.elements.itemsScroll.html( _this.getItemsMarkup(_this.items) ) );
+        _this.elements.items.append(_this.elements.itemsScroll.html(_this.getItemsMarkup(_this.items)));
       }
     },
 
@@ -494,14 +496,14 @@
       var _this = this;
 
       return {
-        index     : index,
-        element   : $elm,
-        value     : $elm.val(),
-        className : $elm.prop('class'),
-        text      : $elm.html(),
-        slug      : $.trim(_this.utils.replaceDiacritics($elm.html())),
-        selected  : $elm.prop('selected'),
-        disabled  : isDisabled
+        index: index,
+        element: $elm,
+        value: $elm.val(),
+        className: $elm.prop('class'),
+        text: $elm.html(),
+        slug: $.trim(_this.utils.replaceDiacritics($elm.html())),
+        selected: $elm.prop('selected'),
+        disabled: isDisabled
       };
     },
 
@@ -515,12 +517,12 @@
       var _this = this;
       var markup = '<ul>';
 
-      if ( $.isFunction(_this.options.listBuilder) && _this.options.listBuilder ) {
+      if ($.isFunction(_this.options.listBuilder) && _this.options.listBuilder) {
         items = _this.options.listBuilder(items);
       }
 
       $.each(items, function(i, elm) {
-        if ( elm.label !== undefined ) {
+        if (elm.label !== undefined) {
 
           markup += _this.utils.format('<ul class="{1}"><li class="{2}">{3}</li>',
             _this.utils.arrayToClassname([
@@ -562,8 +564,8 @@
       // to most relevant options.
       var filteredItemData = {
         value: itemData.value,
-        text : itemData.text,
-        slug : itemData.slug,
+        text: itemData.text,
+        slug: itemData.slug,
         index: itemData.index
       };
 
@@ -571,13 +573,13 @@
         index,
         _this.utils.arrayToClassname([
           itemData.className,
-          index === _this.items.length - 1  ? 'last'     : '',
-          itemData.disabled                 ? 'disabled' : '',
-          itemData.selected                 ? 'selected' : ''
+          index === _this.items.length - 1 ? 'last' : '',
+          itemData.disabled ? 'disabled' : '',
+          itemData.selected ? 'selected' : ''
         ]),
-        $.isFunction(itemBuilder)
-          ? _this.utils.format(itemBuilder(itemData), itemData)
-          : _this.utils.format(itemBuilder, filteredItemData)
+        $.isFunction(itemBuilder) ?
+        _this.utils.format(itemBuilder(itemData), itemData) :
+        _this.utils.format(itemBuilder, filteredItemData)
       );
     },
 
@@ -600,10 +602,10 @@
         $(this).toggleClass(_this.classes.hover, e.type === 'mouseenter');
 
         // Delay close effect when openOnHover is true
-        if ( _this.options.openOnHover ) {
+        if (_this.options.openOnHover) {
           clearTimeout(_this.closeTimer);
 
-          if ( e.type === 'mouseleave' ) {
+          if (e.type === 'mouseleave') {
             _this.closeTimer = setTimeout($.proxy(_this.close, _this), _this.options.hoverIntentTimeout);
           } else {
             _this.open();
@@ -619,7 +621,7 @@
       // Translate original element focus event to dummy input.
       // Disabled on mobile devices because the default option list isn't
       // shown due the fact that hidden input gets focused
-      if ( !(_this.options.nativeOnMobile && _this.utils.isMobile()) ) {
+      if (!(_this.options.nativeOnMobile && _this.utils.isMobile())) {
         _this.$element.on('focus' + eventNamespaceSuffix, function() {
           _this.elements.input.focus();
         });
@@ -635,7 +637,7 @@
               _this.elements.input.blur();
             });
 
-            if ( _this.options.openOnFocus && !_this.state.opened ) {
+            if (_this.options.openOnFocus && !_this.state.opened) {
               _this.open(e);
             }
           })
@@ -652,10 +654,10 @@
               _this.elements.input.val('');
             }, _this.options.keySearchTimeout);
 
-            if ( val.length ) {
+            if (val.length) {
               // Search in select options
               $.each(_this.items, function(i, elm) {
-                if ( !elm.disabled && searchRegExp.test(elm.text) || searchRegExp.test(elm.slug) ) {
+                if (!elm.disabled && searchRegExp.test(elm.text) || searchRegExp.test(elm.slug)) {
                   _this.highlight(i);
                   return;
                 }
@@ -699,21 +701,21 @@
       var goToItem = 0;
 
       // Enter / Space
-      if ( key === 13 || key === 32 ) {
+      if (key === 13 || key === 32) {
         e.preventDefault();
       }
 
       // If it's a directional key
-      if ( isPrevKey || isNextKey ) {
-        if ( !_this.options.allowWrap && isFirstOrLastItem ) {
+      if (isPrevKey || isNextKey) {
+        if (!_this.options.allowWrap && isFirstOrLastItem) {
           return;
         }
 
-        if ( isPrevKey ) {
+        if (isPrevKey) {
           goToItem = _this.utils.previousEnabledItem(_this.lookupItems, idx);
         }
 
-        if ( isNextKey ) {
+        if (isNextKey) {
           goToItem = _this.utils.nextEnabledItem(_this.lookupItems, idx);
         }
 
@@ -721,10 +723,10 @@
       }
 
       // Tab / Enter / ESC
-      if ( isSelectKey && _this.state.opened ) {
+      if (isSelectKey && _this.state.opened) {
         _this.select(idx);
 
-        if ( !_this.state.multiple || !_this.options.multiple.keepMenuOpen ) {
+        if (!_this.state.multiple || !_this.options.multiple.keepMenuOpen) {
           _this.close();
         }
 
@@ -732,7 +734,7 @@
       }
 
       // Space / Enter / Left / Up / Right / Down
-      if ( isOpenKey && !_this.state.opened ) {
+      if (isOpenKey && !_this.state.opened) {
         _this.open();
       }
     },
@@ -758,7 +760,7 @@
       var wrapperWidth = _this.elements.wrapper.outerWidth() - (itemsWidth - _this.elements.items.width());
 
       // Set the dimensions, minimum is wrapper width, expand for long items if option is true
-      if ( !_this.options.expandToItemText || wrapperWidth > itemsWidth ) {
+      if (!_this.options.expandToItemText || wrapperWidth > itemsWidth) {
         _this.finalWidth = wrapperWidth;
       } else {
         // Make sure the scrollbar width is included
@@ -807,7 +809,7 @@
       var _this = this;
       var $filteredLi = _this.$li.filter('[data-index]');
 
-      if ( _this.state.multiple ) {
+      if (_this.state.multiple) {
         // If index is an array, we can assume a multiple select and we
         // want to scroll to the uppermost selected item!
         // Math.min.apply(Math, index) returns the lowest entry in an Array.
@@ -822,8 +824,8 @@
 
       _this.elements.itemsScroll.scrollTop(
         scrollT > itemsScrollTop + _this.itemsHeight ? scrollT - _this.itemsHeight :
-          liTop - liHeight < itemsScrollTop ? liTop - liHeight :
-            itemsScrollTop
+        liTop - liHeight < itemsScrollTop ? liTop - liHeight :
+        itemsScrollTop
       );
     },
 
@@ -835,20 +837,20 @@
     open: function(e) {
       var _this = this;
 
-      if ( _this.options.nativeOnMobile && _this.utils.isMobile()) {
+      if (_this.options.nativeOnMobile && _this.utils.isMobile()) {
         return false;
       }
 
       _this.utils.triggerCallback('BeforeOpen', _this);
 
-      if ( e ) {
+      if (e) {
         e.preventDefault();
         if (_this.options.stopPropagation) {
           e.stopPropagation();
         }
       }
 
-      if ( _this.state.enabled ) {
+      if (_this.state.enabled) {
         _this.setOptionsDimensions();
 
         // Find any other opened instances of select and close it
@@ -863,7 +865,7 @@
 
         // Give dummy input focus
         _this.elements.input.val('');
-        if ( e && e.type !== 'focusin' ) {
+        if (e && e.type !== 'focusin') {
           _this.elements.input.focus();
         }
 
@@ -877,19 +879,19 @@
         _this.isInViewport();
 
         // Prevent window scroll when using mouse wheel inside items box
-        if ( _this.options.preventWindowScroll ) {
+        if (_this.options.preventWindowScroll) {
           /* istanbul ignore next */
           $doc.on('mousewheel' + eventNamespaceSuffix + ' DOMMouseScroll' + eventNamespaceSuffix, '.' + _this.classes.scroll, function(e) {
             var orgEvent = e.originalEvent;
             var scrollTop = $(this).scrollTop();
             var deltaY = 0;
 
-            if ( 'detail'      in orgEvent ) { deltaY = orgEvent.detail * -1; }
-            if ( 'wheelDelta'  in orgEvent ) { deltaY = orgEvent.wheelDelta;  }
-            if ( 'wheelDeltaY' in orgEvent ) { deltaY = orgEvent.wheelDeltaY; }
-            if ( 'deltaY'      in orgEvent ) { deltaY = orgEvent.deltaY * -1; }
+            if ('detail' in orgEvent) { deltaY = orgEvent.detail * -1; }
+            if ('wheelDelta' in orgEvent) { deltaY = orgEvent.wheelDelta; }
+            if ('wheelDeltaY' in orgEvent) { deltaY = orgEvent.wheelDeltaY; }
+            if ('deltaY' in orgEvent) { deltaY = orgEvent.deltaY * -1; }
 
-            if ( scrollTop === (this.scrollHeight - _this.itemsInnerHeight) && deltaY < 0 || scrollTop === 0 && deltaY > 0 ) {
+            if (scrollTop === (this.scrollHeight - _this.itemsInnerHeight) && deltaY < 0 || scrollTop === 0 && deltaY > 0) {
               e.preventDefault();
             }
           });
@@ -926,7 +928,7 @@
 
       _this.utils.triggerCallback('BeforeChange', _this);
 
-      if ( _this.state.multiple ) {
+      if (_this.state.multiple) {
         // Reset old selected
         $.each(_this.lookupItems, function(idx) {
           _this.lookupItems[idx].selected = false;
@@ -944,7 +946,7 @@
         _this.setLabel();
 
         _this.utils.triggerCallback('Change', _this);
-      } else if ( _this.state.currValue !== _this.state.selectedIdx ) {
+      } else if (_this.state.currValue !== _this.state.selectedIdx) {
         // Apply changed value to original select
         _this.$element
           .prop('selectedIndex', _this.state.currValue = _this.state.selectedIdx)
@@ -968,7 +970,7 @@
       _this.utils.triggerCallback('BeforeHighlight', _this);
 
       // Parameter index is required and should not be a disabled item
-      if ( index === undefined || index === -1 || _this.lookupItems[index].disabled ) {
+      if (index === undefined || index === -1 || _this.lookupItems[index].disabled) {
         return;
       }
 
@@ -993,16 +995,16 @@
       _this.utils.triggerCallback('BeforeSelect', _this, index);
 
       // Parameter index is required and should not be a disabled item
-      if ( index === undefined || index === -1 || _this.lookupItems[index].disabled ) {
+      if (index === undefined || index === -1 || _this.lookupItems[index].disabled) {
         return;
       }
 
-      if ( _this.state.multiple ) {
+      if (_this.state.multiple) {
         // Make sure selectedIdx is an array
         _this.state.selectedIdx = $.isArray(_this.state.selectedIdx) ? _this.state.selectedIdx : [_this.state.selectedIdx];
 
         var hasSelectedIndex = $.inArray(index, _this.state.selectedIdx);
-        if ( hasSelectedIndex !== -1 ) {
+        if (hasSelectedIndex !== -1) {
           _this.state.selectedIdx.splice(hasSelectedIndex, 1);
         } else {
           _this.state.selectedIdx.push(index);
@@ -1021,7 +1023,7 @@
           .addClass('selected');
       }
 
-      if ( !_this.state.multiple || !_this.options.multiple.keepMenuOpen ) {
+      if (!_this.state.multiple || !_this.options.multiple.keepMenuOpen) {
         _this.close();
       }
 
@@ -1038,10 +1040,10 @@
     destroy: function(preserveData) {
       var _this = this;
 
-      if ( _this.state && _this.state.enabled ) {
+      if (_this.state && _this.state.enabled) {
         _this.elements.items.add(_this.elements.wrapper).add(_this.elements.input).remove();
 
-        if ( !preserveData ) {
+        if (!preserveData) {
           _this.$element.removeData(pluginName).removeData('value');
         }
 
@@ -1058,8 +1060,8 @@
     return this.each(function() {
       var data = $.data(this, pluginName);
 
-      if ( data && !data.disableOnMobile ) {
-        (typeof args === 'string' && data[args]) ? data[args]() : data.init(args);
+      if (data && !data.disableOnMobile) {
+        (typeof args === 'string' && data[args]) ? data[args](): data.init(args);
       } else {
         $.data(this, pluginName, new Selectric(this, args));
       }
@@ -1072,36 +1074,36 @@
    * @type {object}
    */
   $.fn[pluginName].defaults = {
-    onChange             : function(elm) { $(elm).change(); },
-    maxHeight            : 300,
-    keySearchTimeout     : 500,
-    arrowButtonMarkup    : '<b class="button">&#x25be;</b>',
-    disableOnMobile      : false,
-    nativeOnMobile       : true,
-    openOnFocus          : true,
-    openOnHover          : false,
-    hoverIntentTimeout   : 500,
-    expandToItemText     : false,
-    responsive           : false,
-    preventWindowScroll  : true,
-    inheritOriginalWidth : false,
-    allowWrap            : true,
-    stopPropagation      : true,
-    optionsItemBuilder   : '{text}', // function(itemData, element, index)
-    labelBuilder         : '{text}', // function(currItem)
-    listBuilder          : false,    // function(items)
-    keys                 : {
-      previous : [37, 38],                 // Left / Up
-      next     : [39, 40],                 // Right / Down
-      select   : [9, 13, 27],              // Tab / Enter / Escape
-      open     : [13, 32, 37, 38, 39, 40], // Enter / Space / Left / Up / Right / Down
-      close    : [9, 27]                   // Tab / Escape
+    onChange: function(elm) { $(elm).change(); },
+    maxHeight: 300,
+    keySearchTimeout: 500,
+    arrowButtonMarkup: '<b class="button">&#x25be;</b>',
+    disableOnMobile: false,
+    nativeOnMobile: true,
+    openOnFocus: true,
+    openOnHover: false,
+    hoverIntentTimeout: 500,
+    expandToItemText: false,
+    responsive: false,
+    preventWindowScroll: true,
+    inheritOriginalWidth: false,
+    allowWrap: true,
+    stopPropagation: true,
+    optionsItemBuilder: '{text}', // function(itemData, element, index)
+    labelBuilder: '{text}', // function(currItem)
+    listBuilder: false, // function(items)
+    keys: {
+      previous: [37, 38], // Left / Up
+      next: [39, 40], // Right / Down
+      select: [9, 13, 27], // Tab / Enter / Escape
+      open: [13, 32, 37, 38, 39, 40], // Enter / Space / Left / Up / Right / Down
+      close: [9, 27] // Tab / Escape
     },
-    customClass          : {
+    customClass: {
       prefix: pluginName,
       camelCase: false
     },
-    multiple              : {
+    multiple: {
       separator: ', ',
       keepMenuOpen: true,
       maxLabelEntries: false

@@ -1,10 +1,13 @@
 machine:
   node:
     version: 4.4.7
-checkout:
-  post:
-    - git submodule sync
-    - git submodule update --init # use submodules
+  environment:
+    PROJECT_NAME: theme_konversion
+    
+# checkout:
+  # post:
+    # - git submodule sync
+    # - git submodule update --init # use submodules
 
 dependencies:
   cache_directories:
@@ -14,21 +17,21 @@ dependencies:
     - npm install
   post:
     - aws configure set region us-west-2
+    - npm run gulp zip
+    - cp dist/konversion-theme.zip $CIRCLE_ARTIFACTS/konversion-theme.zip
 
 test:
   override:
-#    - gagarin -a adminApp --settings config/dev/settings.json -t 10000 -v
-    - echo "test"
-
-general:
-  branches:
-    only:
-     - master # list of branches to build
+    - npm test
 
 deployment:
   production:
     branch: "master"
     commands:
-      - npm run gulp zip
+      - ./circle.js
       - aws s3 cp konversion-theme.zip s3://tabarnapp/konversion-theme/konversion-theme.zip:
          pwd: dist
+  demo:
+    branch: /.*/
+    commands:
+      - ./circle.js
