@@ -8,6 +8,19 @@
     "theme_support_email": "support@tabarnapp.com"
   },
   {
+    "name": "Theme Support",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Link"
+      },
+      {
+         "type": "paragraph",
+         "content": "[Support](https:\/\/support.konversiontheme.com\/)"
+      }
+    ]
+  },
+  {
     "name": "Apps",
     "settings": [
       {
