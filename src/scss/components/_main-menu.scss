@@ -3,8 +3,6 @@ $menu-subitem-hover-color: #f1f1f1;
   margin-bottom: 0;
   height: 100%;
   a {
-    border-top: 1px solid #dFeEFF; /* fallback colour must use full shorthand */
-    border-top: 1px solid rgba(255,255,255,.5);
     color: $color-menu;
     padding-top: .9rem;
   }
