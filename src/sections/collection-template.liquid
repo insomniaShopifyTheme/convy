@@ -74,16 +74,20 @@
     {% endif %}
   </header>
 
-{% comment %}
-  Mobile Section
-{% endcomment %}
+  {% comment %}
+  ================= MOBILE VERSION =================
+  {% endcomment %}
   
 {% assign is_infinite_mobile = section.settings.dispaly_infinite_mobile %}
-{% if is_infinite_mobile %}
-  {% assign mobile_limit = collection.all_products_count %}
-{% else %}
-  {% assign mobile_limit = section.settings.display_number_of_rows_mobile %}
-{% endif %}
+
+{% case section.settings.mobile_layout %}
+  {% when '1-col' %}
+    {% assign mobile_cols = 1 %}
+  {% when '2-col' %}
+    {% assign mobile_cols = 2 %}
+{% endcase %}
+
+{% assign mobile_limit = section.settings.display_number_of_rows_mobile | times: mobile_cols %}
 {% paginate collection.products by mobile_limit %}
 
   <div class="collection-template page-width--large large--hide">
@@ -114,7 +118,7 @@
           {% else %}
             {%- assign mobile_col_sizes = "medium-down--one-half" -%}
         {% endcase %}
-        <div class="grid--full grid--uniform product-list product-list--{{ section.settings.mobile_layout }}">
+        <div class="grid--full grid--uniform product-list product-list--{{ section.settings.mobile_layout }} product-mobile">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
           {%- assign card_hoverable = section.settings.hoverable -%}
@@ -125,9 +129,15 @@
               </div>
             </div>
           {% endfor %}
-        </div>
 
-        {% if paginate.pages > 1 %}
+          {% if paginate.next and is_infinite_mobile == true %}
+            <div class="more-mobile"><a href="{{ paginate.next.url }}">More</a></div>        
+          {% endif %}
+        </div>
+       
+		<div id="product-list-foot-mobile"></div>
+        
+        {% if paginate.pages > 1 and is_infinite_mobile == false %}
           <hr>
           <div class="pagination">
             {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
@@ -141,16 +151,25 @@
 
 {% endpaginate %}
 
-{% comment %}
-  Desktop Section
-{% endcomment %}
+  {% comment %}
+  ================= DESKTOP VERSION =================
+  {% endcomment %}
   
 {% assign is_infinite_desktop = section.settings.dispaly_infinite_desktop %}
-{% if is_infinite_desktop %}
-  {% assign desktop_limit = collection.all_products_count %}
-{% else %}
-  {% assign desktop_limit = section.settings.display_number_of_rows_desktop %}
-{% endif %}
+
+{% case section.settings.desktop_layout %}
+  {% when '2-col' %}
+    {%- assign desktop_col_sizes = "large--one-half" -%}
+    {% assign desktop_cols = 2 %}
+  {% when '3-col' %}
+    {%- assign desktop_col_sizes = "large--one-third" -%}
+    {% assign desktop_cols = 3 %}
+  {% when '4-col' %}
+    {%- assign desktop_col_sizes = "large--one-quarter" -%}
+    {% assign desktop_cols = 4 %}
+{% endcase %}
+
+{% assign desktop_limit = section.settings.display_number_of_rows_desktop | times: desktop_cols %}
 {% paginate collection.products by desktop_limit %}
 
   <div class="collection-template page-width--large medium-down--hide">
@@ -173,20 +192,26 @@
       </div>
 
       <div class="grid__item one-whole{% if has_sidebar %} large--three-quarters{% endif %}">
-        <div class="grid--full grid--uniform product-list product-list--{{ section.settings.mobile_layout }}">
+        <div class="grid--full grid--uniform product-list product-desktop">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
           {%- assign card_hoverable = section.settings.hoverable -%}
           {% for product in collection.products %}
-            <div class="grid__item {{ mobile_col_sizes }} {% if has_sidebar %} large--one-third{% else %} large--one-quarter{% endif %}">
+            <div class="grid__item {{ desktop_col_sizes }}">
               <div class="product-list__item">
                 {% include 'product-card' %}
               </div>
             </div>
           {% endfor %}
-        </div>
 
-        {% if paginate.pages > 1 %}
+          {% if paginate.next and is_infinite_desktop == true %}
+            <div class="more-desktop"><a href="{{ paginate.next.url }}">More</a></div>        
+          {% endif %}
+        </div>
+       
+		<div id="product-list-foot-desktop"></div>
+        
+        {% if paginate.pages > 1 and is_infinite_desktop == false %}
           <hr>
           <div class="pagination">
             {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
@@ -201,6 +226,81 @@
 {% endpaginate %}
   
 </div>
+
+<script>
+  var pInfScrLoading_mobile = false;
+  var pInfScrLoading_desktop = false;
+  
+  function ScrollExecute_mobile() {
+    if($(document).height() - 800 < ($(document).scrollTop() + $(window).height())) {
+		var loadingImage;
+        scrollNode = $('.more-mobile').last();    
+        scrollURL = $('.more-mobile a').last().attr("href");
+        if(!pInfScrLoading_mobile && scrollNode.length > 0 && scrollNode.css('display') != 'none') {
+            $.ajax({
+                type: 'GET',
+                url: scrollURL,
+                beforeSend: function() {
+					pInfScrLoading_mobile = true;
+                  	loadingImage = scrollNode.clone().empty().append('<img src=\"{{ "ajax-loader.gif" | asset_url }}\" />');
+                    //scrollNode.clone().empty().insertAfter(scrollNode).append('<img src=\"{{ "ajax-loader.gif" | asset_url }}\" />');
+					loadingImage.insertAfter(scrollNode);
+                    scrollNode.hide();
+                },
+                success: function(data) {
+                    // remove loading feedback
+                    scrollNode.next().remove();
+                    var filteredData = $(data).find(".product-mobile");
+                    filteredData.insertBefore( $("#product-list-foot-mobile") );
+                    loadingImage.remove();
+					pInfScrLoading_mobile = false;
+                },
+                dataType: "html"
+            });
+        }
+    }
+  }
+
+  function ScrollExecute_desktop() {
+    if($(document).height() - 800 < ($(document).scrollTop() + $(window).height())) {
+		var loadingImage;
+        scrollNode = $('.more-desktop').last();    
+        scrollURL = $('.more-desktop a').last().attr("href");
+        if(!pInfScrLoading_desktop && scrollNode.length > 0 && scrollNode.css('display') != 'none') {
+            $.ajax({
+                type: 'GET',
+                url: scrollURL,
+                beforeSend: function() {
+					pInfScrLoading_desktop = true;
+                  	loadingImage = scrollNode.clone().empty().append('<img src=\"{{ "ajax-loader.gif" | asset_url }}\" />');
+                    //scrollNode.clone().empty().insertAfter(scrollNode).append('<img src=\"{{ "ajax-loader.gif" | asset_url }}\" />');
+					loadingImage.insertAfter(scrollNode);
+                    scrollNode.hide();
+                },
+                success: function(data) {
+                    // remove loading feedback
+                    scrollNode.next().remove();
+                    var filteredData = $(data).find(".product-desktop");
+                    filteredData.insertBefore( $("#product-list-foot-desktop") );
+                    loadingImage.remove();
+					pInfScrLoading_desktop = false;
+                },
+                dataType: "html"
+            });
+        }
+    }
+  }
+
+  $(document).ready(function () {
+	$(window).scroll(function(){
+      if($(window).width() < 1024) {
+	    setTimeout( ScrollExecute_mobile, 200 );
+      } else {
+        setTimeout( ScrollExecute_desktop, 200 );
+      }
+    });
+  });
+</script>
 
 {% schema %}
   {
@@ -239,6 +339,16 @@
       {
         "type": "header",
         "content": "Mobile Settings"
+      },
+      {
+        "type": "radio",
+        "id": "mobile_layout",
+        "label": "Mobile Layout",
+        "default": "2-col",
+        "options": [
+          {"value": "1-col", "label": "1-column"},
+          {"value": "2-col", "label": "2-column"}
+        ]
       },
       {
         "type": "select",
@@ -286,27 +396,28 @@
             "label": "10"
           }
         ],
-        "default": "6"
+        "default": "2"
       },
       {
         "type": "checkbox",
         "id": "dispaly_infinite_mobile",
-        "label": "Display infinite",
+        "label": "Enable infinite scroll",
         "default": false
-      },
-      {
-        "type": "radio",
-        "id": "mobile_layout",
-        "label": "Mobile Layout",
-        "default": "2-col",
-        "options": [
-          {"value": "1-col", "label": "1-column"},
-          {"value": "2-col", "label": "2-column"}
-        ]
       },
       {
         "type": "header",
         "content": "Desktop Settings"
+      },
+      {
+        "type": "radio",
+        "id": "desktop_layout",
+        "label": "Desktop Layout",
+        "default": "4-col",
+        "options": [
+          {"value": "2-col", "label": "2-column"},
+          {"value": "3-col", "label": "3-column"},
+          {"value": "4-col", "label": "4-column"}
+        ]
       },
       {
         "type": "select",
@@ -354,12 +465,12 @@
             "label": "10"
           }
         ],
-        "default": "6"
+        "default": "2"
       },
       {
         "type": "checkbox",
         "id": "dispaly_infinite_desktop",
-        "label": "Display infinite",
+        "label": "Enable infinite scroll",
         "default": false
       },
       {

@@ -81,6 +81,12 @@ $image-large: 728px;
       }
     }
   }
+  .more-desktop, .more-mobile {
+    text-align: center;
+    a {
+      display: none;
+    }
+  }
 }
 
 .collection-banner {
