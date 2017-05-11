@@ -28,6 +28,7 @@ $(document).ready(function() {
   sections.register('product-template', theme.ProductPageSection);
   sections.register('collection-template', theme.CollectionTemplate);
   sections.register('contact-template', theme.ContactTemplate);
+  sections.register('featured-collection-section', theme.FeaturedCollectionSection);
   sections.register('featured-product-section', theme.FeaturedProductSection);
 
   $('[data-tooltip!=""]').qtip({

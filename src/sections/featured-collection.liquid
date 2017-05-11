@@ -1,0 +1,314 @@
+<div data-section-id="{{ section.id }}" data-section-type="featured-collection-section">
+
+  {% if section.settings.title != blank %}
+    <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
+  {% endif %}
+
+  {% comment %}
+  ================= DESKTOP VERSION =================
+  {% endcomment %}
+  
+  <div class="page-width--large medium-down--hide">
+    <div class="grid--uniform product-list">
+      {% for block in section.blocks limit: section.blocks.size %}
+        {%- assign collection = collections[block.settings.collection] -%}
+        {%- assign display_number_of_products_desktop = block.settings.display_number_of_products_desktop -%}
+        {%- assign display_number_of_rows_desktop = block.settings.display_number_of_rows_desktop -%}
+        {%- assign products_limit = display_number_of_products_desktop | times: display_number_of_rows_desktop -%}
+	    {%- assign btn_action = block.settings.btn_action -%}
+        {%- assign btn_text = block.settings.btn_text -%}
+        {%- assign card_hoverable = section.settings.hoverable -%}
+        {% case block.settings.display_number_of_products_desktop %}
+          {% when '1' %}
+            {%- assign desktop_col_sizes = "" -%}
+          {% when '2' %}
+            {%- assign desktop_col_sizes = "large--one-half" -%}
+          {% when '3' %}
+            {%- assign desktop_col_sizes = "large--one-third" -%}
+          {% when '4' %}
+            {%- assign desktop_col_sizes = "large--one-quarter" -%}
+        {% endcase %}
+
+        {% for product in collection.products limit: products_limit %}
+          <div class="grid__item {{ desktop_col_sizes }}">
+            <div class="product-list__item">
+              {% include 'product-card' %}
+            </div>
+          </div>
+        {% else %}
+          <div class="empty-section">
+            {{ 'homepage.onboarding.no_products' | t }}
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+  
+  {% comment %}
+  ================= MOBILE VERSION =================
+  {% endcomment %}
+
+  <div class="page-width--large large--hide">
+    <div class="grid--uniform product-list">
+      {% for block in section.blocks limit: section.blocks.size %}
+        {%- assign collection = collections[block.settings.collection] -%}
+        {%- assign display_number_of_products_mobile = block.settings.display_number_of_products_mobile -%}
+        {%- assign display_number_of_rows_mobile = block.settings.display_number_of_rows_mobile -%}
+        {%- assign products_limit = display_number_of_products_mobile | times: display_number_of_rows_mobile -%}
+	    {%- assign btn_action = block.settings.btn_action -%}
+        {%- assign btn_text = block.settings.btn_text -%}
+        {%- assign card_hoverable = section.settings.hoverable -%}
+        {% case block.settings.display_number_of_products_mobile %}
+          {% when '1' %}
+            {%- assign mobile_col_sizes = "" -%}
+          {% when '2' %}
+            {%- assign mobile_col_sizes = "medium-down--one-half" -%}
+          {% when '3' %}
+            {%- assign mobile_col_sizes = "medium-down--one-third" -%}
+          {% when '4' %}
+            {%- assign mobile_col_sizes = "medium-down--one-quarter" -%}
+        {% endcase %}
+
+        {% for product in collection.products limit: products_limit %}
+          <div class="grid__item {{ mobile_col_sizes }}">
+            <div class="product-list__item">
+              {% include 'product-card' %}
+            </div>
+          </div>
+        {% else %}
+          <div class="empty-section">
+            {{ 'homepage.onboarding.no_products' | t }}
+          </div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Featured collection",
+    "class": "section-featured-collection",
+    "max_blocks": 1,
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Featured Collection"
+      },
+      {
+        "type": "checkbox",
+        "id": "hoverable",
+        "label": "Use hover effect in desktop version",
+        "default": true
+      }
+    ],
+    "blocks": [
+      {
+        "type": "collection",
+        "name": "Collection",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection",
+            "label": "Collection"
+          },
+          {
+            "type": "header",
+            "content": "Mobile Settings"
+          },
+          {
+            "type": "select",
+            "id": "display_number_of_products_mobile",
+            "label": "Number of products per row",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "3",
+                "label": "3"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              }
+            ],
+            "default": "2"
+          },
+          {
+            "type": "select",
+            "id": "display_number_of_rows_mobile",
+            "label": "Number of rows",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "3",
+                "label": "3"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              },
+              {
+                "value": "5",
+                "label": "5"
+              },
+              {
+                "value": "6",
+                "label": "6"
+              },
+              {
+                "value": "7",
+                "label": "7"
+              },
+              {
+                "value": "8",
+                "label": "8"
+              },
+              {
+                "value": "9",
+                "label": "9"
+              },
+              {
+                "value": "10",
+                "label": "10"
+              }
+            ],
+            "default": "1"
+          },
+          {
+            "type": "header",
+            "content": "Desktop Settings"
+          },
+          {
+            "type": "select",
+            "id": "display_number_of_products_desktop",
+            "label": "Number of products per row",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "3",
+                "label": "3"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              }
+            ],
+            "default": "4"
+          },
+          {
+            "type": "select",
+            "id": "display_number_of_rows_desktop",
+            "label": "Number of rows",
+            "options": [
+              {
+                "value": "1",
+                "label": "1"
+              },
+              {
+                "value": "2",
+                "label": "2"
+              },
+              {
+                "value": "3",
+                "label": "3"
+              },
+              {
+                "value": "4",
+                "label": "4"
+              },
+              {
+                "value": "5",
+                "label": "5"
+              },
+              {
+                "value": "6",
+                "label": "6"
+              },
+              {
+                "value": "7",
+                "label": "7"
+              },
+              {
+                "value": "8",
+                "label": "8"
+              },
+              {
+                "value": "9",
+                "label": "9"
+              },
+              {
+                "value": "10",
+                "label": "10"
+              }
+            ],
+            "default": "1"
+          },
+          {
+            "type": "select",
+            "id": "btn_action",
+            "label": "Button action",
+            "options": [
+              {
+                "value": "none",
+                "label": "None (hide button)"
+              },
+              {
+                "value": "add_to_cart",
+                "label": "Add to cart and stay on page"
+              },
+              {
+                "value": "add_to_cart_redirect",
+                "label": "Add to cart and go to cart page"
+              },
+              {
+                "value": "add_to_cart_checkout",
+                "label": "Add to cart and go to checkout"
+              },
+              {
+                "value": "product_page",
+                "label": "Product page"
+              }
+            ],
+            "default": "add_to_cart"
+          },
+          {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button text",
+            "default": "Add to Cart"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Single collection",
+        "category": "Products"
+      }
+    ]
+  }
+{% endschema %}

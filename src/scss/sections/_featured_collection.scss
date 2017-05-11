@@ -1,0 +1,29 @@
+/*================ Featured Collection Section ================*/
+
+.section-featured-collection {
+  .product-list {
+    text-align: center;
+    .grid__item {
+      float: none;
+      display: inline-block;
+      @include at-query($max, $pre-large) {
+        margin-bottom: $gutter / 2;
+      }
+      @include at-query($min, $large) {
+        margin-bottom: $gutter;
+      }
+      &.large--one-quarter, &.medium-down--one-quarter {
+      	width: calc(25% - 3px);
+      }
+      &.large--one-third, &.medium-down--one-third {
+      	width: calc(33.333% - 3px);
+      }
+      &.large--one-half, &.medium-down--one-half {
+      	width: calc(50% - 2px);
+      }
+    }
+  }
+  @include at-query($min, $medium) {
+    padding: 0 $gutter $gutter;
+  }
+}
