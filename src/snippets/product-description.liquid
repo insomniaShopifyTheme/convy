@@ -25,16 +25,16 @@
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
         {% if block.type == 'tab' and block.settings.display_in_mobile %}
-          {% assign page = pages[block.settings.page] %}
+          {% assign blog = blogs[block.settings.blog] %}
           <dt class="accordion__tab-title">
             {% if block.settings.title != blank %}
               {{ block.settings.title }}
             {% else %}
-              {{ page.title }}
+              {{ blog.title }}
             {% endif %}
           </dt>
           <dd class="accordion__tab-content rte">
-            {{ page.content }}
+            {% include "product-tabs-content" %}
           </dd>
         {% endif %}
       {% endfor %}
