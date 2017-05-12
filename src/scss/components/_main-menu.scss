@@ -2,6 +2,7 @@
 .sf-menu {
   margin-bottom: 0;
   height: 100%;
+  z-index: 9999;
   a {
     color: $color-menu;
     padding-top: .9rem;
@@ -44,6 +45,27 @@
         a {
           color: $color-submenu;
         }
+      }
+    }
+  }
+
+  //menu shrink
+  &.sf-menu-shrink-x1{
+    li > a{
+      @media (max-width: 1470px) {
+        padding: 0.90em 0.4em;
+        font-size: 15px;
+        height: 50px;
+      }
+    }
+  }
+
+  &.sf-menu-shrink-x2{
+    @media (max-width: 1470px) {
+      li > a{
+        padding: 1.2em 0.4em;
+        font-size: 13px;
+        height: 50px;
       }
     }
   }

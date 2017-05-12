@@ -16,3 +16,4 @@ dist/
 node_modules/
 config.yml
 tmp/
+.idea

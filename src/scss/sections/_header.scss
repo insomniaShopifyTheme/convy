@@ -71,6 +71,16 @@ $my-account-z-index: 10;
     img {
       max-height: 100%;
     }
+    @media (max-width: 1560px) AND (min-width: 1023px){
+      a{
+        font-size: 1.5vw;
+      }
+    }
+    @media (max-width: 1023px){
+      a{
+        font-size:4vw;
+      }
+    }
   }
   .logo-cell {
     text-align: center;
@@ -88,6 +98,10 @@ $my-account-z-index: 10;
 
   .header-icon {
     padding: 0.3rem 0 0 1rem;
+    @media (max-width: 1560px){
+      padding: 0.0rem 0 0 0rem;
+    }
+
     color: $color-menu;
     height: 100%;
     width: 30px;
@@ -157,6 +171,14 @@ $my-account-z-index: 10;
     line-height: 2.2rem;
     .icon {
       font-size: 1.2rem;
+    }
+
+    @media (max-width: 1470px) {
+      padding: 0.5rem;
+      font-size: 14px;
+      .icon {
+        font-size: 0.9rem;
+      }
     }
   }
 
