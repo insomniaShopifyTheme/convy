@@ -104,7 +104,7 @@ body {
     z-index: $z-index-toolbar;
   }
 }
-body.fixed-header--all, {
+body.fixed-header--all {
   @include fixed-header;
 }
 @include at-query($max, $pre-large) {
