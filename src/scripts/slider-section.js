@@ -12,7 +12,7 @@ theme.Slider = (function() {
     currentSlide: 'slick-current'
   };
 
-  function slider(el) {
+  function slider(el, $container) {
     this.$slider = $(el);
     this.$wrapper = this.$slider.closest('.' + classes.wrapper);
     this.$pause = this.$wrapper.find('.' + classes.pauseButton);
@@ -47,6 +47,13 @@ theme.Slider = (function() {
 
     this.$slider.slick(this.settings);
     theme.productCardsInit(this.$wrapper);
+
+    // When there are less than 4 items in featured products section
+    // we display simple grid. Inititalize product cards for it too:
+    var $productGrid = $container.find('.no-slider--grid');
+    if ($productGrid.length > 0) {
+      theme.productCardsInit($productGrid);
+    }
   }
 
   return slider;
@@ -59,7 +66,7 @@ theme.SliderSection = (function() {
     var $container = this.$container = $(container);
     var sectionId = $container.attr('data-section-id');
     var slider = this.slider = '#slider_' + sectionId;
-    theme.sliders[slider] = new theme.Slider(slider);
+    theme.sliders[slider] = new theme.Slider(slider, $container);
   }
 
   return SliderSection;
