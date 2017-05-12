@@ -36,3 +36,13 @@
     }
   }
 }
+
+@include at-query($max, $small) {
+  .no-slider--grid {
+    .one-whole {
+      .product-card {
+        margin: $gutter;
+      }
+    }
+  }
+}

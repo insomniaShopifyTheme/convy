@@ -3,23 +3,48 @@
   {% if section.settings.title != blank %}
     <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
   {% endif %}
-  <div class="slider-wrapper">
-    <div class="product-list slider" id="slider_{{ section.id }}">
+  {% comment %}
+    Only enable slider if there are more than 3 products
+  {% endcomment %}
+  {% if section.blocks.size > 3 %}
+    <div class="slider-wrapper">
+      <div class="product-list slider" id="slider_{{ section.id }}">
+        {% for block in section.blocks limit: section.blocks.size %}
+          <div class="product-list__item slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
+            {%- assign product = all_products[block.settings.product] -%}
+            {%- assign btn_action = block.settings.btn_action -%}
+            {%- assign btn_text = block.settings.btn_text -%}
+            {%- assign card_hoverable = section.settings.hoverable -%}
+            {% include 'product-card' %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% elsif section.blocks.size > 0 %}
+    {% case  section.blocks.size %}
+      {% when 3 %}
+        {%- assign col_sizes = "one-whole medium--one-third" -%}
+      {% when 2 %}
+        {%- assign col_sizes = "one-half medium--one-quarter push--medium--one-quarter" -%}
+      {% when 1 %}
+        {%- assign col_sizes = "one-whole medium--one-third push--medium--one-third" -%}
+    {% endcase %}
+    <div class="grid no-slider--grid">
       {% for block in section.blocks limit: section.blocks.size %}
-        <div class="product-list__item slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
+        <div class="grid__item {{ col_sizes }}" {{ block.shopify_attributes }}>
           {%- assign product = all_products[block.settings.product] -%}
           {%- assign btn_action = block.settings.btn_action -%}
           {%- assign btn_text = block.settings.btn_text -%}
           {%- assign card_hoverable = section.settings.hoverable -%}
           {% include 'product-card' %}
         </div>
-      {% else %}
-        <div class="empty-section">
-          {{ 'homepage.onboarding.no_products' | t }}
-        </div>
       {% endfor %}
     </div>
-  </div>
+  {% else %}
+    <div class="empty-section">
+      {{ 'homepage.onboarding.no_products' | t }}
+    </div>
+  {% endif %}
 
 </div>
 
