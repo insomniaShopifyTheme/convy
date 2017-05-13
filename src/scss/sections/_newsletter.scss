@@ -2,32 +2,37 @@
 $newsletter-form-max-width: 450px;
 
 .section-newsletter {
-  @extend .normal-section-padding;
-  .newsletter-form {
-    .newsletter-form__text {
-      p {
-        margin-bottom: 0;
+  .section-newsletter--alt {
+    @include inverted-section();
+  }
+  
+  .section-newsletter-container {
+    @extend .normal-section-padding;
+    .newsletter-form {
+      .newsletter-form__text {
+        p {
+          margin-bottom: 0;
+        }
       }
-    }
-    .newsletter-form__input {
-      background-color: #f3f3f3;
-      margin: ($gutter / 2) 0 $gutter 0;
-      max-width: $newsletter-form-max-width;
-      width: 90%;
-    }
-    .newsletter-form__btn {
-      .btn {
-        padding: 15px 45px;
-      }
-    }
-    /*================ Desktop Version ================*/
-    @include at-query($min, $large) {
-      max-width: $newsletter-form-max-width;
-      margin: 0 auto;
       .newsletter-form__input {
-        width: 100%;
+        background-color: #f3f3f3;
+        margin: ($gutter / 2) 0 $gutter 0;
+        max-width: $newsletter-form-max-width;
+        width: 90%;
+      }
+      .newsletter-form__btn {
+        .btn {
+          padding: 15px 45px;
+        }
+      }
+      /*================ Desktop Version ================*/
+      @include at-query($min, $large) {
+        max-width: $newsletter-form-max-width;
+        margin: 0 auto;
+        .newsletter-form__input {
+          width: 100%;
+        }
       }
     }
   }
 }
-

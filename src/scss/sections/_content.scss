@@ -1,6 +1,9 @@
 /*================ Content Section ================*/
 
 .section-content {
+  .section-custom-content--alt {
+    @include inverted-section();
+  }
 
   .custom__item-content--text {
     @extend .normal-section-padding;

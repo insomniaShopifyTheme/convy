@@ -165,7 +165,7 @@ $max: max-width;
 
 @mixin inverted-section() {
   background-color: $color-bg-alt;
-  .section-heading, p {
+  .section-heading, div, p {
     color: $color-bg;
   }
 }
