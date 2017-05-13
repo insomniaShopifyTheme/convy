@@ -74,6 +74,32 @@
     {% endif %}
   </header>
 
+  {% if section.settings.dispaly_filters or section.settings.dispaly_sorting %}
+	{% if section.settings.location_filter_sorting == "top" %}
+  	  {% assign desktop_class = "" %}
+    {% else %}
+  	  {% assign desktop_class = "large--hide" %}
+    {% endif %}
+    <div class="collection-template top-filter page-width--large {{ desktop_class }}">
+      <div class="grid">
+        <div class="grid__item one-whole">
+          <div class="collection-controls grid--full">
+            {% if section.settings.dispaly_filters %}
+              <div class="grid__item {% if section.settings.dispaly_sorting %}one-half{% else %}one-whole{% endif %}">
+                {% include 'collection-filters-dropdown' %}
+              </div>
+            {% endif %}
+            {% if section.settings.dispaly_sorting %}
+              <div class="grid__item {% if section.settings.dispaly_filters %}one-half{% else %}one-whole{% endif %}">
+                {% include 'collection-sorting-dropdown' %}
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
   {% comment %}
   ================= MOBILE VERSION =================
   {% endcomment %}
@@ -91,25 +117,7 @@
 {% paginate collection.products by mobile_limit %}
 
   <div class="collection-template page-width--large large--hide">
-    {% if section.settings.dispaly_filters or section.settings.dispaly_sorting %}
-      {%- assign has_sidebar = true -%}
-    {% endif %}
     <div class="grid">
-
-      <div class="grid__item one-whole">
-        <div class="collection-controls grid--full">
-          {% if section.settings.dispaly_filters %}
-            <div class="grid__item {% if section.settings.dispaly_sorting %}one-half{% else %}one-whole{% endif %}">
-              {% include 'collection-filters-dropdown' %}
-            </div>
-          {% endif %}
-          {% if section.settings.dispaly_sorting %}
-            <div class="grid__item {% if section.settings.dispaly_filters %}one-half{% else %}one-whole{% endif %}">
-              {% include 'collection-sorting-dropdown' %}
-            </div>
-          {% endif %}
-        </div>
-      </div>
 
       <div class="grid__item one-whole">
         {% case section.settings.mobile_layout %}
@@ -174,7 +182,11 @@
 
   <div class="collection-template page-width--large medium-down--hide">
     {% if section.settings.dispaly_filters or section.settings.dispaly_sorting %}
-      {%- assign has_sidebar = true -%}
+      {% if section.settings.location_filter_sorting == "top" %}
+        {% assign has_sidebar = false %}
+      {% else %}
+        {% assign has_sidebar = true %}
+      {% endif %}
     {% endif %}
     <div class="grid">
 
@@ -335,6 +347,16 @@
         "id": "dispaly_sorting",
         "label": "Display sorting options",
         "default": true
+      },
+      {
+        "type": "radio",
+        "id": "location_filter_sorting",
+        "label": "Location for filters & sorting",
+        "default": "top",
+        "options": [
+          {"value": "top", "label": "Top Right"},
+          {"value": "left", "label": "Left side"}
+        ]
       },
       {
         "type": "header",

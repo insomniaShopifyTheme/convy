@@ -52,6 +52,21 @@ $image-large: 728px;
 
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {
+    &.top-filter {
+      padding: 0 $gutter;
+      .collection-controls {
+        float: right;
+        .grid__item {
+          width: 200px;
+        }
+        select {
+          border-left: 1px solid $color-border !important;
+        }
+        .grid__item:last-of-type select {
+          border-right: 1px solid $color-border !important;
+        }
+      }
+    }
     .collection-filter {
       margin-bottom: $gutter;
       .collection-filter__title {
