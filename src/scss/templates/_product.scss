@@ -242,7 +242,7 @@
   }
 
   .related-products {
-    margin-bottom: $gutter;
+    margin: $gutter 0;
     // See also sections/_featured_products.scss
     .product-list {
       .slick-list {

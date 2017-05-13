@@ -70,16 +70,16 @@
 
     <div class="grid__item one-whole large--two-thirds">
 
-      {% if section.settings.related_products %}
-      <div class="related-products">
-        {% include 'related-products' %}
-      </div>
-      {% endif %}
-
       {% if section.settings.display_icons %}
         <div class="large--hide">
           {% include 'product-icons' %}
         </div>
+      {% endif %}
+
+      {% if section.settings.related_products %}
+      <div class="related-products">
+        {% include 'related-products' %}
+      </div>
       {% endif %}
 
       {% if settings.app_product_reviews_enabled %}
