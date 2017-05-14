@@ -12,10 +12,10 @@ npm install
 
 #### 2. Configure Shopify Theme Kit
 ```
-cp config.example.yml dist/config.yml
+cp config.example.yml src/config.yml
 ```
 
-then edit `dist/config.yml`
+then edit `src/config.yml`
 
 
 ### Development
