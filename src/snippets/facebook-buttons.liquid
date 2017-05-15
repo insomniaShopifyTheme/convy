@@ -1,0 +1,16 @@
+{% if section.settings.facebook_page_link != blank %}
+    <div class="facebook-buttons__wrapper">
+    {% if section.settings.show_facebook_share_button %}
+        <div class="fb-share-button"
+             data-href="{{ section.settings.facebook_page_link }}"
+             data-layout="button_count"
+             data-width="200"
+        >
+        </div>
+    {% endif %}
+    {% if section.settings.show_facebook_like_button %}
+        <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="200" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false">
+        </div>
+    {% endif %}
+    </div>
+{% endif %}

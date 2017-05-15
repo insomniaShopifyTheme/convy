@@ -35,7 +35,12 @@
       }
     }
   }
-
+  .facebook-buttons__wrapper{
+    display: block;
+    float: right;
+    height: $topbar-height;
+    padding-top: 5px;
+  }
   .currency-picker__wrapper {
     color: $color-text-alt;
     display: block;

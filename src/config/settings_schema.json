@@ -906,6 +906,7 @@
         "label": "Enable google+ sharing",
         "default": true
       },
+
       {
         "type": "header",
         "content": "Facebook \/ Open Graph"

@@ -49,12 +49,17 @@
     {% endif %}
     </div>
     <div class="section-topbar__controls grid__item small--hide large--three-tenths push--large--three-tenths">
+
+
+
       {% if settings.show_multiple_currencies %}
         {% include 'currency-picker' %}
       {% endif %}
       {% if section.settings.social_icons %}
         {% include 'social-icons-list' %}
       {% endif %}
+
+      {% include 'facebook-buttons' %}
     </div>
   </div>
 </div>
@@ -79,6 +84,29 @@
         "id": "social_icons",
         "label": "Display social icons",
         "default": true
+      },
+
+      {
+      "type": "header",
+      "content": "Facebook Buttons"
+      },
+      {
+      "type": "text",
+      "id": "facebook_page_link",
+      "label": "Facebook page link",
+      "info": "https://www.facebook.com/shopify"
+      },
+      {
+      "type": "checkbox",
+      "id": "show_facebook_like_button",
+      "label": "Display Facebook Like button",
+      "default": false
+      },
+      {
+      "type": "checkbox",
+      "id": "show_facebook_share_button",
+      "label": "Display Facebook Share button",
+      "default": false
       },
       {
         "type": "header",
