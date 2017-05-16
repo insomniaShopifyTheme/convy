@@ -3,22 +3,27 @@
   {% if section.settings.title != blank %}
     <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
   {% endif %}
-
-  {% comment %}
-  ================= DESKTOP VERSION =================
-  {% endcomment %}
   
-  <div class="page-width--large medium-down--hide">
+  <div class="page-width--large">
     <div class="grid--uniform product-list">
       {% for block in section.blocks limit: section.blocks.size %}
         {%- assign collection = collections[block.settings.collection] -%}
         {%- assign display_number_of_products_desktop = block.settings.display_number_of_products_desktop -%}
         {%- assign display_number_of_rows_desktop = block.settings.display_number_of_rows_desktop -%}
-        {%- assign products_limit = display_number_of_products_desktop | times: display_number_of_rows_desktop -%}
+        {%- assign products_limit_desktop = display_number_of_products_desktop | times: display_number_of_rows_desktop -%}
+        {%- assign display_number_of_products_mobile = block.settings.display_number_of_products_mobile -%}
+        {%- assign display_number_of_rows_mobile = block.settings.display_number_of_rows_mobile -%}
+        {%- assign products_limit_mobile = display_number_of_products_mobile | times: display_number_of_rows_mobile -%}
+        {% if products_limit_desktop >= products_limit_mobile %}
+          {% assign products_limit = products_limit_desktop %}
+        {% else %}
+          {% assign products_limit = products_limit_mobile %}
+        {% endif %}
 	    {%- assign btn_action = block.settings.btn_action -%}
         {%- assign btn_text = block.settings.btn_text -%}
         {%- assign card_hoverable = section.settings.hoverable -%}
-        {% case block.settings.display_number_of_products_desktop %}
+      
+        {% case display_number_of_products_desktop %}
           {% when '1' %}
             {%- assign desktop_col_sizes = "" -%}
           {% when '2' %}
@@ -29,48 +34,21 @@
             {%- assign desktop_col_sizes = "large--one-quarter" -%}
         {% endcase %}
 
-        {% for product in collection.products limit: products_limit %}
-          <div class="grid__item {{ desktop_col_sizes }}">
-            <div class="product-list__item">
-              {% include 'product-card' %}
-            </div>
-          </div>
-        {% else %}
-          <div class="empty-section">
-            {{ 'homepage.onboarding.no_products' | t }}
-          </div>
-        {% endfor %}
-      {% endfor %}
-    </div>
-  </div>
-  
-  {% comment %}
-  ================= MOBILE VERSION =================
-  {% endcomment %}
-
-  <div class="page-width--large large--hide">
-    <div class="grid--uniform product-list">
-      {% for block in section.blocks limit: section.blocks.size %}
-        {%- assign collection = collections[block.settings.collection] -%}
-        {%- assign display_number_of_products_mobile = block.settings.display_number_of_products_mobile -%}
-        {%- assign display_number_of_rows_mobile = block.settings.display_number_of_rows_mobile -%}
-        {%- assign products_limit = display_number_of_products_mobile | times: display_number_of_rows_mobile -%}
-	    {%- assign btn_action = block.settings.btn_action -%}
-        {%- assign btn_text = block.settings.btn_text -%}
-        {%- assign card_hoverable = section.settings.hoverable -%}
-        {% case block.settings.display_number_of_products_mobile %}
+        {% case display_number_of_products_mobile %}
           {% when '1' %}
             {%- assign mobile_col_sizes = "" -%}
           {% when '2' %}
             {%- assign mobile_col_sizes = "medium-down--one-half" -%}
-          {% when '3' %}
-            {%- assign mobile_col_sizes = "medium-down--one-third" -%}
-          {% when '4' %}
-            {%- assign mobile_col_sizes = "medium-down--one-quarter" -%}
         {% endcase %}
 
         {% for product in collection.products limit: products_limit %}
-          <div class="grid__item {{ mobile_col_sizes }}">
+          {% if forloop.index > products_limit_desktop %}
+            {% assign desktop_hide = "large--hide" %}
+          {% endif %}
+          {% if forloop.index > products_limit_mobile %}
+            {% assign mobile_hide = "medium-down--hide" %}
+          {% endif %}
+          <div class="grid__item {{ desktop_col_sizes }} {{ desktop_hide }} {{ mobile_col_sizes }} {{ mobile_hide }}">
             <div class="product-list__item">
               {% include 'product-card' %}
             </div>
@@ -120,28 +98,14 @@
             "content": "Mobile Settings"
           },
           {
-            "type": "select",
+            "type": "radio",
             "id": "display_number_of_products_mobile",
-            "label": "Number of products per row",
+            "label": "Mobile Layout",
+            "default": "2",
             "options": [
-              {
-                "value": "1",
-                "label": "1"
-              },
-              {
-                "value": "2",
-                "label": "2"
-              },
-              {
-                "value": "3",
-                "label": "3"
-              },
-              {
-                "value": "4",
-                "label": "4"
-              }
-            ],
-            "default": "2"
+              {"value": "1", "label": "1-column"},
+              {"value": "2", "label": "2-column"}
+            ]
           },
           {
             "type": "select",
@@ -196,28 +160,15 @@
             "content": "Desktop Settings"
           },
           {
-            "type": "select",
+            "type": "radio",
             "id": "display_number_of_products_desktop",
-            "label": "Number of products per row",
+            "label": "Desktop Layout",
+            "default": "4",
             "options": [
-              {
-                "value": "1",
-                "label": "1"
-              },
-              {
-                "value": "2",
-                "label": "2"
-              },
-              {
-                "value": "3",
-                "label": "3"
-              },
-              {
-                "value": "4",
-                "label": "4"
-              }
-            ],
-            "default": "4"
+              {"value": "2", "label": "2-column"},
+              {"value": "3", "label": "3-column"},
+              {"value": "4", "label": "4-column"}
+            ]
           },
           {
             "type": "select",
