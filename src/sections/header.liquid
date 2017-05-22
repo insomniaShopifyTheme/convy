@@ -30,6 +30,9 @@
     {% else %}
       </h1>
     {% endunless %}
+
+    {% include 'deal-of-the-day-navbar-mobile-medium' %}
+
   </div>
   <div class="grid__item medium-down--hide large--eight-twelfths menu-cell">
     {% include 'main-menu' %}
@@ -42,6 +45,8 @@
         {% include 'search-bar' %}
       </div>
     </div>
+    {% include 'deal-of-the-day-navbar-desktop' %}
+
     {% if shop.customer_accounts_enabled %}
     <div class="user-account">
       <a class="header-icon icon-fallback-text" href="/account">
@@ -68,6 +73,9 @@
       </span>
     </a>
   </div>
+
+  {% include 'deal-of-the-day-navbar-mobile-small' %}
+
 </div>
 
 {% schema %}

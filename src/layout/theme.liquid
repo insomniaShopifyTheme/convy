@@ -54,6 +54,7 @@
   <!-- CSS ================================================== -->
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
   {{ 'sweetalert2.min.css' | asset_url | stylesheet_tag }}
+  {{ 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' | stylesheet_tag }}
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
@@ -165,6 +166,14 @@
       // Bind to 'afterCartLoad.ajaxCart' to run any javascript after the cart has loaded in the DOM
       theme.RightDrawer.open();
     });
+
+    jQuery(document).ready(function () {
+      theme.dealOfTheDay({
+        api_endpoint : '{{ shop.url }}' +'/products.json',
+        currentDate: '{{ 'now' | date: "%Y-%m-%d-%H-%M-%S"}}',
+        enabled: {{ settings.deal_of_the_day_enabled }}
+      });
+    })
   </script>
 
   {% include 'currencies' %}

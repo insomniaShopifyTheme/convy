@@ -158,6 +158,34 @@
       font-size: 1rem;
       margin-bottom: 10px;
     }
+
+    .deal-of-the-day-product{
+      margin-bottom:30px;
+      p{
+        letter-spacing: 1px;
+        margin: 0;
+        font-size: 18px;
+        font-weight: 600;
+      }
+
+      .countdown{
+        color: $color-special;
+      }
+
+      .progress-bar{
+        width: 100%;
+        position: relative;
+        display: block;
+        height: 4px;
+        background: #e6e6e6;
+        .bar{
+          height: 100%;
+          width:10px;
+          position: absolute;
+          left: 0;
+        }
+      }
+    }
   }
 
   .product-info__description {

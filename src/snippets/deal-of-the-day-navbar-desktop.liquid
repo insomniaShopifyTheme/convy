@@ -1,0 +1,31 @@
+{% if settings.deal_of_the_day_enabled %}
+
+    {% if settings.deal_of_the_day_display == 'all' or settings.deal_of_the_day_display == 'desktop' %}
+        <style>
+            .content-deal-of-the-day .discount-percentage{
+                color: {{ settings.deal_of_the_day_discount_percentage_color }};
+            }
+        </style>
+    <div class="content-deal-of-the-day desktop" style="display: none;">
+        <a href="#" class="product-link">
+            <div class="content-countdown">
+                <h2>{{ settings.deal_of_the_day_text }}</h2>
+                <h2>{{ settings.deal_of_the_day_ends_in_text }}
+                    <span class="countdown dealzoneCounter">
+              </span></h2>
+            </div>
+            <div class="content-product-img">
+            {% if settings.deal_of_the_day_discount_percentage %}
+                <span class="discount-percentage"></span>
+            {% endif %}
+                <img class="product-image" src="#" alt="">
+            </div>
+            <div class="content-price">
+                <p class="compared_at">$255</p>
+                <p class="price">$170</p>
+            </div>
+        </a>
+    </div>
+    {% endif %}
+
+{% endif %}

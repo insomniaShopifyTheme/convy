@@ -36,6 +36,7 @@
       }
     ]
   },
+
   {
     "name": "Layout",
     "settings": [
@@ -106,6 +107,90 @@
       }
     ]
   },
+
+  {
+    "name": "Deal of the day",
+    "settings": [
+      {
+        "type": "header",
+        "content": "info"
+      },
+      {
+        "type": "paragraph",
+        "content": "Schedule a product to show in the deal of the day widgets, just add a tag with 'deal-yyyy-mm-dd' in a product and that product i'll appear as 'deal of the day' on the date that you picked. (ex: deal-2017-05-10)"
+      },
+      {
+        "type":"header",
+        "content": "general"
+      },
+      {
+        "type": "checkbox",
+        "id": "deal_of_the_day_enabled",
+        "label": "Enable deal of the day",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "deal_of_the_day_display",
+        "label": "Display",
+        "default": "all",
+        "options": [
+          {"value": "all", "label": "Desktop & Mobile"},
+          {"value": "mobile", "label": "Mobile only"},
+          {"value": "desktop", "label": "Desktop only"}
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "deal_of_the_day_discount_percentage",
+        "label": "Show discount percentage",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "deal_of_the_day_discount_percentage_color",
+        "label": "Discount percentage color",
+        "default": "#f53333"
+      },
+      {
+        "type":"header",
+        "content": "Navigation Bar"
+      },
+      {
+        "type": "text",
+        "id": "deal_of_the_day_text",
+        "label": "Main text",
+        "default": "DEAL OF THE DAY"
+      },
+
+      {
+        "type": "text",
+        "id": "deal_of_the_day_ends_in_text",
+        "label": "Timeout text",
+        "default": "ENDS IN"
+      },
+      {
+        "type":"header",
+        "content": "Product Page"
+      },
+      {
+        "type": "text",
+        "id": "deal_of_the_day_product_text",
+        "label": "Main text ",
+        "default": "DEAL OF THE DAY ENDS IN "
+      },
+      {
+        "type": "color",
+        "id": "deal_of_the_day_progressbar_color",
+        "label": "Progress bar color",
+        "default": "#f53333"
+        //"info": "Used for text links and buttons"
+      }
+
+
+    ]
+  },
+
   {
     "name": "Cart",
     "settings": [

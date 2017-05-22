@@ -1,3 +1,4 @@
+
 <style>
   .product-info__description {
     height: {{ section.settings.limit_description }};
@@ -59,6 +60,7 @@
     {% endcomment %}
     <div class="grid__item one-whole medium-down--hide large--one-third">
       <div class="product-info">
+        {% include 'deal-of-the-day-product' %}
         {% include 'product-page-info' %}
         {% include 'product-meta' %}
         {% if section.settings.display_share_icons %}
