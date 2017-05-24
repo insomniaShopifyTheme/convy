@@ -5,6 +5,7 @@ theme.init = function () {
   theme.modalInit();
   theme.mobileNavInit();
   theme.loginForms();
+  theme.dealOfTheDay();
 };
 
 // Blog: filter by tag
