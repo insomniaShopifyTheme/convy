@@ -15,8 +15,8 @@
         "content": "Link"
       },
       {
-         "type": "paragraph",
-         "content": "[Support](http:\/\/support.konversiontheme.com\/support\/)"
+        "type": "paragraph",
+        "content": "[Support](http:\/\/support.konversiontheme.com\/support\/)"
       }
     ]
   },
@@ -32,7 +32,7 @@
         "id": "app_product_reviews_enabled",
         "label": "Product reviews by shopify",
         "default": false,
-        "info": "Enables app integration. You still need to [install the app](https://apps.shopify.com/product-reviews)"
+        "info": "Enables app integration. You still need to [install the app](https:\/\/apps.shopify.com\/product-reviews)"
       }
     ]
   },
@@ -960,6 +960,43 @@
         "label": "Use color swatches for following options",
         "default": "Color, Colour",
         "info": "List option names separated by comma eg. Color, Material"
+      }
+    ]
+  },
+  {
+    "name": "Product Tabs",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "To add product tabs, browse any product page within the theme editor and click on the Product page section."
+      },
+      {
+        "type": "paragraph",
+        "content": "Create a new blog (link to /admin/blogs/new on the word \"blog\") for each tab you want. Eg. A blog called *Size Chart*."
+      },
+      {
+        "type": "paragraph",
+        "content": "Create a new post (link to /admin/articles/new on the word post) for the content of this tab."
+      },
+      {
+        "type": "paragraph",
+        "content": "Make sure you select the right blog in the dropdown next to \"Author\". By default it's \"News\"."
+      },
+      {
+        "type": "paragraph",
+        "content": "Tag the blog post with the product title or product handle where you want to display this tab. Like this: `product-product name` or `product-product handle`. You can tag more than one product."
+      },
+      {
+        "type": "paragraph",
+        "content": "You can also tag the collection name or collection handle and the tab will be displayed in all the product pages that are part of this collection. Like this: `collection-collection name` or `collection-collection handle`. You can tag more than one collection."
+      },
+      {
+        "type": "paragraph",
+        "content": "To display the tab on all products, use the this tag: `product-all` or `collection-all`."
+      },
+      {
+        "type": "paragraph",
+        "content": "Repeat the steps above if you want each product (or collection) to have its own tabs, as well as its own tabs content. If any post is duplicated, only the most recent will be displayed."
       }
     ]
   },
