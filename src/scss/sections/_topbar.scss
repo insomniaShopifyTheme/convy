@@ -36,10 +36,27 @@
     }
   }
   .facebook-buttons__wrapper{
-    display: block;
-    float: right;
+    display: -webkit-inline-box;
+    float: left;
     height: $topbar-height;
-    padding-top: 5px;
+    padding: 5px 10px 0px 10px;
+
+    .fake-like-button{
+      width: 92px;
+      height: 29px;
+      margin: 5px 0px 0px 4px;
+      background-repeat: no-repeat;
+      background-image: url('fake-like-btn.png');
+      cursor: pointer;
+    }
+    .fake-share-button{
+      width: 87px;
+      height: 29px;
+      margin: 5px 0px 0px 0px;
+      background-repeat: no-repeat;
+      background-image: url('fake-share-btn.png');
+      cursor: pointer;
+    }
   }
   .currency-picker__wrapper {
     color: $color-text-alt;

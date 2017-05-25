@@ -6,6 +6,7 @@ theme.init = function () {
   theme.mobileNavInit();
   theme.loginForms();
   theme.dealOfTheDay();
+  theme.topBar();
 };
 
 // Blog: filter by tag
@@ -15,7 +16,7 @@ theme.init = function () {
     return;
   }
   $filterBy.on('change', function() {
-    location.href = $(this).val();
+    location.href = $(this).val(); 
   });
 })();
 

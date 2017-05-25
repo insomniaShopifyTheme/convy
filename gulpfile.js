@@ -48,6 +48,7 @@ gulp.task('scripts', function() {
       globalConfig.scripts_src + '/featured-collection-section.js',
       globalConfig.scripts_src + '/featured-product-section.js',
       globalConfig.scripts_src + '/deal-of-the-day.js',
+      globalConfig.scripts_src + '/top-bar.js',
       globalConfig.scripts_src + '/admin.dev.js',
       globalConfig.scripts_src + '/check_license.js',
       globalConfig.scripts_src + '/init.js',

@@ -1,4 +1,10 @@
 {% if section.settings.facebook_page_link != blank %}
+    <style>
+        .facebook-buttons__wrapper{
+            text-align: {{ section.settings.facebook_buttons_position }} !important;
+            float: {{ section.settings.facebook_buttons_position }} !important;
+        }
+    </style>
     <div class="facebook-buttons__wrapper">
     {% if section.settings.show_facebook_share_button %}
         <div class="fb-share-button"
@@ -7,10 +13,14 @@
              data-width="200"
         >
         </div>
+        <div class="fake-share-button fake-btn-fb" onclick="alert('This is just a mock up button.');"></div>
     {% endif %}
     {% if section.settings.show_facebook_like_button %}
         <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-width="200" data-layout="button_count" data-action="like" data-size="small" data-show-faces="false" data-share="false">
         </div>
+        <div class="fake-like-button fake-btn-fb" onclick="alert('This is just a mock up button.');"></div>
     {% endif %}
     </div>
 {% endif %}
+
+
