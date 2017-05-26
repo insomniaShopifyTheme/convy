@@ -47,10 +47,12 @@
         soldOut: {{ 'products.product.sold_out' | t | json }},
         unavailable: {{ 'products.product.unavailable' | t | json }},
       },
-      moneyFormat: {{ shop.money_format | json }}
+      moneyFormat: {{ shop.money_format | json }},
+      currencyName: '{{ shop.currency}}',
+      shopUrl: '{{ shop.url }}'
     }
   </script>
- 
+
   <!-- CSS ================================================== -->
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
   {{ 'sweetalert2.min.css' | asset_url | stylesheet_tag }}
