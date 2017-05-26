@@ -13,11 +13,19 @@
 {% endif %}
 
 {% if has_icons %}
-    {% if section.settings.facebook_buttons_position == 'left' %}
-      {% assign position = 'right' %}
+  {% if section.settings.facebook_page_link != blank  %}
+    {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button %}
+        {% if section.settings.facebook_buttons_position == 'left' %}
+          {% assign position = 'right' %}
+        {% else %}
+          {% assign position = 'left' %}
+        {% endif %}
     {% else %}
-      {% assign position = 'left' %}
+        {% assign position = 'right' %}
     {% endif %}
+  {% endif %}
+
+
 
   <ul class="inline-list social-icons" style="float: {{ position }} !important;">
     {% if settings.social_facebook_link != blank %}

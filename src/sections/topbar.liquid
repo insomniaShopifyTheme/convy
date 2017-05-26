@@ -1,3 +1,16 @@
+{% if section.settings.facebook_page_link != blank  %}
+  {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+  {% endif %}
+{% endif %}
+
 <style>
   .section-topbar {
     background-color: {{ section.settings.color_bg }};
@@ -31,10 +44,15 @@
 <div class="section-topbar{{ visibility_classes }}">
   <div class="grid--full">
     <div class="grid__item one-whole large--one-third ">
-    {% if section.settings.facebook_buttons_position == 'right' %}
-      {% include 'social-icons-list' %}
-    {% else %}
-      {% include 'facebook-buttons' %}
+    {% if section.settings.facebook_page_link != blank  %}
+     {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
+
+        {% if section.settings.facebook_buttons_position == 'right' %}
+          {% include 'social-icons-list' %}
+        {% else %}
+          {% include 'facebook-buttons' %}
+        {% endif %}
+      {% endif %}
     {% endif %}
 
       </div>
@@ -64,12 +82,24 @@
         {% include 'currency-picker' %}
       {% endif %}
 
-      {% if section.settings.facebook_buttons_position == 'left' %}
+      {% if section.settings.facebook_page_link != blank  %}
+        {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
+            {% if section.settings.facebook_buttons_position == 'left' %}
+              {% if section.settings.social_icons %}
+                {% include 'social-icons-list' %}
+              {% endif %}
+            {% else %}
+                {% include 'facebook-buttons' %}
+            {% endif %}
+        {% else %}
+          {% if section.settings.social_icons %}
+            {% include 'social-icons-list' %}
+          {% endif %}
+        {% endif %}
+      {% else %}
         {% if section.settings.social_icons %}
           {% include 'social-icons-list' %}
         {% endif %}
-      {% else %}
-          {% include 'facebook-buttons' %}
       {% endif %}
 
     </div>
