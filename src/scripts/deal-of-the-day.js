@@ -5,6 +5,14 @@ theme.dealOfTheDay = function() {
 
   {% if settings.deal_of_the_day_enabled %}
 
+
+    if(typeof backend != 'undefined')
+      var backend ={
+        shopUrl:'',
+        currencyName: 'USD'
+      }
+    }
+
     var $dealOfTheDay = $('.content-deal-of-the-day');
     var $dealOfTheDayProduct = $('.deal-of-the-day-product');
 
