@@ -415,24 +415,24 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 theme.stickyAddToCart = (function() {
 
   var $window = $(window),
-      $addToCartButton =$(".product-form__cart-submit"),
+      $addToCartButton = $(".product-form__cart--trigger"),
       addToCartButtonOffsetFromTop = $addToCartButton.offset().top,
       $bar = $('.product-add-to-cart-bar'),
-      $barAddToCartButton = $('.product-topbar-add-to-cart');
+      $barAddToCartButton = $bar.find('.btn--add-to-cart');
 
   $window.scroll(bindScroll);
 
   function bindScroll(){
+
     if ($window.scrollTop() > addToCartButtonOffsetFromTop) {
       $bar.addClass('shown');
     }else {
       $bar.removeClass('shown');
-    }
+    } 
   }
 
   $barAddToCartButton.on('click', function(event){
-    console.log('click')
-    $element.trigger('click');
+    $addToCartButton.trigger('click');
     $('html, body').animate({ scrollTop: 0 }, 'fast');
     event.preventDefault();
   });
