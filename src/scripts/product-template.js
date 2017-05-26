@@ -150,6 +150,7 @@ theme.ProductPageSection = (function() {
     this._removeReviewsDuplicate();
     theme.initSwatches();
     this._initAccordion();
+    this._initAddToCartTopBar();
   }
 
   return ProductPageSection;
@@ -408,33 +409,33 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       }
       return false;
     });
+  },
+
+  _initAddToCartTopBar: function() {
+
+    var $window = $(window),
+        $addToCartButton = $(".product-form__cart--trigger"),
+        addToCartButtonOffsetFromTop = $addToCartButton.offset().top,
+        $bar = $('.product-add-to-cart-bar'),
+        $barAddToCartButton = $bar.find('.btn--add-to-cart');
+
+    $window.scroll(bindScroll);
+
+    function bindScroll(){
+
+      if ($window.scrollTop() > addToCartButtonOffsetFromTop) {
+        $bar.addClass('shown');
+      }else {
+        $bar.removeClass('shown');
+      }
+    }
+
+    $barAddToCartButton.on('click', function(event){
+      $addToCartButton.trigger('click');
+      $('html, body').animate({ scrollTop: 0 }, 'fast');
+      event.preventDefault();
+    });
+
   }
 
 });
-
-theme.stickyAddToCart = (function() {
-
-  var $window = $(window),
-      $addToCartButton = $(".product-form__cart--trigger"),
-      addToCartButtonOffsetFromTop = $addToCartButton.offset().top,
-      $bar = $('.product-add-to-cart-bar'),
-      $barAddToCartButton = $bar.find('.btn--add-to-cart');
-
-  $window.scroll(bindScroll);
-
-  function bindScroll(){
-
-    if ($window.scrollTop() > addToCartButtonOffsetFromTop) {
-      $bar.addClass('shown');
-    }else {
-      $bar.removeClass('shown');
-    } 
-  }
-
-  $barAddToCartButton.on('click', function(event){
-    $addToCartButton.trigger('click');
-    $('html, body').animate({ scrollTop: 0 }, 'fast');
-    event.preventDefault();
-  });
-
-})();
