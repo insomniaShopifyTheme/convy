@@ -338,4 +338,4 @@ theme.dealOfTheDay = function() {
     });
 
   {% endif %}
-}
+};

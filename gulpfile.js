@@ -128,7 +128,7 @@ gulp.task('watch', function() {
 });
 
 
-//build 
+//build
 gulp.task('build', gulpSequence('clean', 'sync_files', 'styles', 'scripts', 'compile_liquid'));
 
 // Default task
