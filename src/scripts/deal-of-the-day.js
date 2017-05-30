@@ -3,12 +3,12 @@
   *****************************************************************************/
 theme.dealOfTheDay = function() {
 
-  // 
+  //
 
-  var enabled_deal = "{% if settings.deal_of_the_day_enabled %}yes{% else %}no{% endif %}";
-  if (enabled_deal !== "yes") return false;
+  var enabled_deal = "{{ settings.deal_of_the_day_enabled }}";
+  if (enabled_deal !== "true") return false;
 
-  if (typeof backend != 'undefined') {
+  if (typeof backend == 'undefined') {
     var backend = {
       shopUrl: '',
       currencyName: 'USD'
