@@ -4,9 +4,10 @@
   .section-testimonials--alt {
     @include inverted-section();
   }
-  .slider-wrapper {
+  .grid-wrapper, .slider-wrapper {
     margin-bottom: 20px; // space for dots
   }
+
   .slick-slider .slick-dots {
     bottom: -10px;
     margin: 0 auto;
@@ -22,6 +23,20 @@
       left: 0;
       z-index: 10;
     }
+  }
+}
+.grid-wrapper{
+  padding: 0px 15px;
+
+  .testimonial{
+    padding-left: 0;
+    height: 260px;
+    overflow: hidden;
+
+  }
+
+  .testimonial__title{
+    margin-bottom: 30px;
   }
 }
 
