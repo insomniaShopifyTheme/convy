@@ -3,6 +3,13 @@
 .section-topbar {
   background-color: #191919;
   height: $topbar-height;
+  @include at-query($max, $small) {
+    height: auto;
+
+    overflow: inherit;
+    padding: 5px 10px
+
+  }
   overflow: hidden;
 
   .section-topbar__message {
@@ -20,6 +27,9 @@
     font-size: 0.65rem;
     padding: 3px 5px;
     margin-left: 3px;
+    @include at-query($min, $small) {
+
+    }
   }
 
   .section-topbar__controls {
@@ -44,29 +54,7 @@
       }
     }
   }
-  .facebook-buttons__wrapper{
-    display: -webkit-inline-box;
-    float: left;
-    height: $topbar-height;
-    padding: 5px 10px 0px 10px;
-
-    .fake-like-button{
-      width: 92px;
-      height: 29px;
-      margin: 5px 0px 0px 4px;
-      background-repeat: no-repeat;
-      background-image: url('fake-like-btn.png');
-      cursor: pointer;
-    }
-    .fake-share-button{
-      width: 87px;
-      height: 29px;
-      margin: 5px 0px 0px 0px;
-      background-repeat: no-repeat;
-      background-image: url('fake-share-btn.png');
-      cursor: pointer;
-    }
-  }
+  
   .currency-picker__wrapper {
     color: $color-text-alt;
     display: block;

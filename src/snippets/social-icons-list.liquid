@@ -26,8 +26,15 @@
   {% endif %}
 
 
+{% if position %}
+<style>
+  .social-icons{
+    float: {{ position }};
+  }
+</style>
+{% endif %}
 
-  <ul class="inline-list social-icons" style="float: {{ position }} !important;">
+  <ul class="inline-list social-icons" >
     {% if settings.social_facebook_link != blank %}
       <li>
         <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" target="_blank" title="{{ 'layout.social_account' | t: name: shop.name, platform: 'Facebook' }}">

@@ -62,7 +62,7 @@
       <div class="section-topbar__message {{ visibility_classes }}">
         {% if section.settings.message_link != blank and section.settings.message_link_text == blank %}
           <a href="{{ section.settings.message_link }}" class="section-topbar__message-link">
-            {{ section.settings.message_text | escape }}
+            {{ section.settings.message_text | escape }} 
           </a>
         {% elsif section.settings.message_link != blank and section.settings.message_link_text != blank %}
           {{ section.settings.message_text | escape }}

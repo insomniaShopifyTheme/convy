@@ -27,6 +27,11 @@ $drawer-footer-height: 40px;
   .social-icons {
     margin: 0;
     padding-top: 7px;
+    float: none !important;
+
+    li{
+      margin-left: 15px;
+    }
   }
   .currency-picker__wrapper {
     float: right;
