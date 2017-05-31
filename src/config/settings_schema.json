@@ -238,6 +238,18 @@
         "default": "#ffffff"
       },
       {
+        "type": "color",
+        "id": "color_submenu",
+        "label": "Sub-menu Text",
+        "default": "#393939"
+      },
+      {
+        "type": "color",
+        "id": "color_submenu_bg",
+        "label": "Sub-menu Background",
+        "default": "#ffffff"
+      },
+      {
         "type": "header",
         "content": "Alternative colors"
       },
@@ -984,7 +996,7 @@
       },
       {
         "type": "paragraph",
-        "content": "Create a new [post](/admin/articles/new) for the content of this tab."
+        "content": "Create a new [post](\/admin\/articles\/new) for the content of this tab."
       },
       {
         "type": "paragraph",

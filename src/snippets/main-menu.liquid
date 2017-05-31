@@ -47,7 +47,19 @@
           <li>
             <a href="{{ childlink.url }}" alt="{{ childlink.title | escape }}">
               <img src="{{ childlink.object.featured_image | img_url: '160x' }}" alt="{{ childlink.object.title }}">
-              <span>{{ childlink.title | escape }}</span>
+              <span>
+                {{ childlink.title | escape }}<br>
+                {% if section.settings.display_product_price %}
+                  {%- assign money_price = childlink.object.price | money -%}
+
+                  {% if childlink.object.compare_at_price > childlink.object.price %}
+                    <s>{{ childlink.object.compare_at_price | money }}</s>
+                    {{ money_price }}
+                  {% else %}
+                    {{ money_price }}
+                  {% endif %}
+                {% endif %}
+              </span>
             </a>
           </li>
           {% elsif childlink.type == "collection_link" %}
