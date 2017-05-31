@@ -967,16 +967,24 @@
     "name": "Product Tabs",
     "settings": [
       {
-        "type": "paragraph",
-        "content": "To add product tabs, browse any product page within the theme editor and click on the Product page section."
+        "type": "header",
+        "content": "CREATE TABS"
       },
       {
         "type": "paragraph",
-        "content": "Create a new blog (link to /admin/blogs/new on the word \"blog\") for each tab you want. Eg. A blog called *Size Chart*."
+        "content": "Browse any product page within the theme editor and click on the Product page section."
       },
       {
         "type": "paragraph",
-        "content": "Create a new post (link to /admin/articles/new on the word post) for the content of this tab."
+        "content": "Scroll down to TABS and check the Use tabs box. Below, click Add content and select Tab. Add a tab title and select a blog in the dropdown."
+      },
+      {
+        "type": "header",
+        "content": "ADD CONTENT (Blog posts)"
+      },
+      {
+        "type": "paragraph",
+        "content": "Create a new [post](/admin/articles/new) for the content of this tab."
       },
       {
         "type": "paragraph",
@@ -984,11 +992,15 @@
       },
       {
         "type": "paragraph",
-        "content": "Tag the blog post with the product title or product handle where you want to display this tab. Like this: `product-product name` or `product-product handle`. You can tag more than one product."
+        "content": "Make sure the post visibility is set to Visible, not Hidden."
       },
       {
         "type": "paragraph",
-        "content": "You can also tag the collection name or collection handle and the tab will be displayed in all the product pages that are part of this collection. Like this: `collection-collection name` or `collection-collection handle`. You can tag more than one collection."
+        "content": "Tag the blog post with the product title or product handle where you want to display this tab. You can tag more than one product."
+      },
+      {
+        "type": "paragraph",
+        "content": "You can also tag the collection name or collection handle and the tab will be displayed in all the product pages that are part of this collection. You can tag more than one collection."
       },
       {
         "type": "paragraph",
