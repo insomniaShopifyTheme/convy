@@ -43,22 +43,23 @@
 {% endcase %}
 <div class="section-topbar{{ visibility_classes }}">
   <div class="grid--full">
-    <div class="grid__item one-whole large--one-third ">
+    <div class="grid__item medium-down--hide one-third ">
     {% if section.settings.facebook_page_link != blank  %}
      {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
 
         {% if section.settings.facebook_buttons_position == 'right' %}
-          {% include 'social-icons-list' %}
+          {% if section.settings.social_icons %}
+            {% include 'social-icons-list' %}
+          {% endif %}
         {% else %}
           {% include 'facebook-buttons' %}
         {% endif %}
       {% endif %}
     {% endif %}
-
-      </div>
-    <div class="grid__item one-whole large--one-third ">
+    </div>
+    <div class="grid__item medium-down--one-whole one-third ">
     {% if section.settings.message_text != blank or section.settings.message_link_text != blank %}
-      <div class="section-topbar__message{{ visibility_classes }}">
+      <div class="section-topbar__message {{ visibility_classes }}">
         {% if section.settings.message_link != blank and section.settings.message_link_text == blank %}
           <a href="{{ section.settings.message_link }}" class="section-topbar__message-link">
             {{ section.settings.message_text | escape }}
@@ -74,7 +75,7 @@
       </div>
     {% endif %}
     </div>
-    <div class="section-topbar__controls grid__item small--hide large--one-third ">
+    <div class="section-topbar__controls grid__item medium-down--hide one-third ">
 
 
 
