@@ -1,4 +1,5 @@
-<div class="grid--full section-header__wrapper" data-section-id="{{ section.id }}" data-section-type="header-section">
+{% assign menu_type = section.settings.menu_type %}
+<div class="grid--full section-header__wrapper" data-section-id="{{ section.id }}" data-section-type="header-section" data-menu-type="{{ menu_type }}" {% if menu_type == "product-menu"%}id="cbp-hsmenu-wrapper"{% endif %}>
   <div class="grid__item two-twelfths large--hide text-center">
     <div class="section-header__hamburger js-drawer-open-left">
       <div class="hamburger">
@@ -122,6 +123,20 @@
           ],
          "default": "0",
          "info": "Use it to fine-tune the logo image position"
+      },
+      {
+        "type": "header",
+        "content": "Main Menu"
+      },
+      {
+        "type": "radio",
+        "id": "menu_type",
+        "label": "Main menu type",
+        "default": "text-menu",
+        "options": [
+          {"value": "text-menu", "label": "Text menu"},
+          {"value": "product-menu", "label": "Product menu"}
+        ]
       },
       {
         "type": "header",
