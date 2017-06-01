@@ -117,7 +117,7 @@
       },
       {
         "type": "paragraph",
-        "content": "Schedule a product to show in the deal of the day widgets, just add a tag with 'deal-yyyy-mm-dd' in a product and that product i'll appear as 'deal of the day' on the date that you picked. (ex: deal-2017-05-10)"
+        "content": "To display a product in the deal of the day widget, tag it with 'deal-yyyy-mm-dd'. This product will appear as the deal of the day on the date that you picked (eg. deal-2017-05-10). You can tag more products and add more than one tag to the same product. Note that if you have too much 1st level menu items, the widget might not fit in the navigation bar."
       },
       {
         "type":"header",
@@ -127,6 +127,7 @@
         "type": "checkbox",
         "id": "deal_of_the_day_enabled",
         "label": "Enable deal of the day",
+        "info": "If you are not using deal-yyyy-mm-dd tags in your products, you shoud disable this feature. Leaving it enabled may cause performance issues.",
         "default": false
       },
       {

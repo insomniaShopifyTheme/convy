@@ -1,5 +1,13 @@
 <div data-section-id="{{ section.id }}" data-section-type="slider-section" class="{% if section.settings.inverted %} section-testimonials--alt{% endif %}">
   <div class="page-width--large">
+  {% if section.blocks.size == 1 %}
+    {% assign grid_item_size = 'one-whole' %}
+  {% elsif section.blocks.size == 2 %}
+    {% assign grid_item_size = 'one-half' %}
+  {% else %}
+    {% assign grid_item_size = 'one-third' %}
+  {% endif %}
+
   {% if section.blocks.size > 0 %}
     {% if section.settings.type == 'slider' %}
       <div class="slider-wrapper">
@@ -17,6 +25,10 @@
               <div class="testimonial__image small--hide">
                 <img src="{{ testimonial.image | img_url: '90x90', crop: 'center' }}" alt="{{ testimonial.name }}">
               </div>
+              {% else %}
+                <div class="testimonial__image ">
+                  <img  src="{{ 'quotation.png' | asset_url }}" alt="{{ testimonial.name }}">
+                </div>
               {% endif %}
               <p class="testimonial__sign">
                 {% if testimonial.link != blank %}
@@ -44,13 +56,17 @@
 
 
               {% for block in section.blocks limit: section.blocks.size %}
-                <div class="grid__item large--one-third medium--one-third small--one-whole testimonial" {{ block.shopify_attributes }}>
+                <div class="grid__item {{ grid_item_size }} small--one-whole testimonial" {{ block.shopify_attributes }}>
                   {%- assign testimonial = block.settings -%}
 
                   {% if testimonial.image != blank %}
-                  <div class="testimonial__image ">
-                    <img src="{{ testimonial.image | img_url: '90x90', crop: 'center' }}" alt="{{ testimonial.name }}">
-                  </div>
+                    <div class="testimonial__image ">
+                      <img src="{{ testimonial.image | img_url: '90x90', crop: 'center' }}" alt="{{ testimonial.name }}">
+                    </div>
+                  {% else %}
+                    <div class="testimonial__image ">
+                      <img  src="{{ 'quotation.png' | asset_url }}" alt="{{ testimonial.name }}">
+                    </div>
                   {% endif %}
                   <p class="testimonial__sign">
                     {% if testimonial.link != blank %}
@@ -64,7 +80,8 @@
                   </p>
                   <div class="grid">
                     <div class="testimonial__text grid__item ten-twelfths push--one-twelfth">
-                      {{ testimonial.text | newline_to_br }}
+                      {{ testimonial.text | truncate: 100 }}
+
                     </div>
                   </div>
 
@@ -75,7 +92,7 @@
             </div>
           </div>
         </div>
-    </div>
+      </div>
     {% endif %}
 
   {% endif %}
@@ -95,12 +112,12 @@
     "settings": [
       {
         "type": "select",
-        "id": "effect",
-        "label": "Effect",
-        "default": "fade",
+        "id": "type",
+        "label": "Type",
+        "default": "slider",
         "options": [
-          {"value": "slide", "label": "Slide"},
-          {"value": "fade", "label": "Fade"}
+          {"value": "slider", "label": "Slider"},
+          {"value": "grid", "label": "Grid"}
         ]
       },
       {
@@ -111,12 +128,13 @@
       },
       {
         "type": "select",
-        "id": "type",
-        "label": "Type",
-        "default": "slider",
+        "id": "effect",
+        "label": "Effect",
+        "default": "fade",
+        "info": "Only if type is Slider",
         "options": [
-          {"value": "slider", "label": "Slider"},
-          {"value": "grid", "label": "Grid"}
+          {"value": "slide", "label": "Slide"},
+          {"value": "fade", "label": "Fade"}
         ]
       },
       {
@@ -133,7 +151,8 @@
           {
             "type": "textarea",
             "id": "text",
-            "label": "Text"
+            "label": "Text",
+            "info": "Limited to 100 characters"
           },
           {
             "type": "image_picker",

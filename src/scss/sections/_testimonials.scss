@@ -29,14 +29,18 @@
   padding: 0px 15px;
 
   .testimonial{
-    padding-left: 0;
-    height: 260px;
+    height: 240px;
     overflow: hidden;
+    margin-bottom: 20px;
 
   }
 
   .testimonial__title{
     margin-bottom: 30px;
+    margin-left: 30px;
+    @include at-query($max, $large) {
+      margin-top: 20px;
+    }
   }
 }
 
@@ -60,6 +64,8 @@
       border-radius: 50%;
       border: 1px solid $color-primary;
       margin: 0 auto;
+      height: 90px;
+      width: 90px;
     }
   }
   .testimonial__sign {
