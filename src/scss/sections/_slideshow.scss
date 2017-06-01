@@ -58,7 +58,10 @@ $slideshow-loader: #000;
       height: $slideshow-large;
     }
   }
+  @include at-query($max, $medium) {
+    height: 350px;
 
+  }
   .slideshow__slide,
   .slick-list,
   .slick-track {

@@ -1,0 +1,21 @@
+{% if settings.deal_of_the_day_enabled %}
+    {% if settings.deal_of_the_day_display == 'all' or  settings.deal_of_the_day_display == 'mobile' %}
+        <style>
+            .content-deal-of-the-day .discount-percentage{
+                color: {{ settings.deal_of_the_day_discount_percentage_color }};
+            }
+        </style>
+    <div class="content-deal-of-the-day mobile-medium" style="display: none;">
+        <a href="#" class="product-link">
+
+            <span class="discount-percentage"></span>
+            <div class="content-product-img">
+                <img class="product-image" src="#" alt="">
+            </div>
+            <span class="countdown dealzoneCounter"></span>
+
+        </a>
+    </div>
+
+    {% endif %}
+{% endif %}

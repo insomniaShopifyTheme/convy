@@ -3,6 +3,13 @@
 .section-topbar {
   background-color: #191919;
   height: $topbar-height;
+  @include at-query($max, $small) {
+    height: auto;
+
+    overflow: inherit;
+    padding: 5px 10px
+
+  }
   overflow: hidden;
 
   .section-topbar__message {
@@ -20,6 +27,9 @@
     font-size: 0.65rem;
     padding: 3px 5px;
     margin-left: 3px;
+    @include at-query($min, $small) {
+
+    }
   }
 
   .section-topbar__controls {
@@ -28,8 +38,17 @@
 
   .social-icons {
     margin: 0 $gutter 0 0;
-    float: right;
+
+    @include at-query($max, 1300px) {
+      margin: 0 ($gutter - 20px) 0 0;
+    }
+    @include at-query($max, 1200px) {
+      display: none;
+    }
     li {
+      @include at-query($max, 1300px) {
+        margin-left: 20px
+      }
       .icon {
         line-height: $topbar-height;
       }

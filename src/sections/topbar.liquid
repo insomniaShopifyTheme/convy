@@ -1,3 +1,16 @@
+{% if section.settings.facebook_page_link != blank  %}
+  {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+  {% endif %}
+{% endif %}
+
 <style>
   .section-topbar {
     background-color: {{ section.settings.color_bg }};
@@ -30,12 +43,26 @@
 {% endcase %}
 <div class="section-topbar{{ visibility_classes }}">
   <div class="grid--full">
-    <div class="grid__item one-whole large--four-tenths push--large--three-tenths">
+    <div class="grid__item medium-down--hide one-third ">
+    {% if section.settings.facebook_page_link != blank  %}
+     {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
+
+        {% if section.settings.facebook_buttons_position == 'right' %}
+          {% if section.settings.social_icons %}
+            {% include 'social-icons-list' %}
+          {% endif %}
+        {% else %}
+          {% include 'facebook-buttons' %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+    </div>
+    <div class="grid__item medium-down--one-whole one-third ">
     {% if section.settings.message_text != blank or section.settings.message_link_text != blank %}
-      <div class="section-topbar__message{{ visibility_classes }}">
+      <div class="section-topbar__message {{ visibility_classes }}">
         {% if section.settings.message_link != blank and section.settings.message_link_text == blank %}
           <a href="{{ section.settings.message_link }}" class="section-topbar__message-link">
-            {{ section.settings.message_text | escape }}
+            {{ section.settings.message_text | escape }} 
           </a>
         {% elsif section.settings.message_link != blank and section.settings.message_link_text != blank %}
           {{ section.settings.message_text | escape }}
@@ -48,13 +75,34 @@
       </div>
     {% endif %}
     </div>
-    <div class="section-topbar__controls grid__item small--hide large--three-tenths push--large--three-tenths">
+    <div class="section-topbar__controls grid__item medium-down--hide one-third ">
+
+
+
       {% if settings.show_multiple_currencies %}
         {% include 'currency-picker' %}
       {% endif %}
-      {% if section.settings.social_icons %}
-        {% include 'social-icons-list' %}
+
+      {% if section.settings.facebook_page_link != blank  %}
+        {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
+            {% if section.settings.facebook_buttons_position == 'left' %}
+              {% if section.settings.social_icons %}
+                {% include 'social-icons-list' %}
+              {% endif %}
+            {% else %}
+                {% include 'facebook-buttons' %}
+            {% endif %}
+        {% else %}
+          {% if section.settings.social_icons %}
+            {% include 'social-icons-list' %}
+          {% endif %}
+        {% endif %}
+      {% else %}
+        {% if section.settings.social_icons %}
+          {% include 'social-icons-list' %}
+        {% endif %}
       {% endif %}
+
     </div>
   </div>
 </div>
@@ -79,6 +127,41 @@
         "id": "social_icons",
         "label": "Display social icons",
         "default": true
+      },
+
+      {
+      "type": "header",
+      "content": "Facebook Buttons"
+      },
+      {
+      "type": "select",
+      "id": "facebook_buttons_position",
+      "label": "Position",
+      "default": "left",
+      "options": [
+      {"value": "left", "label": "Left"},
+      {"value": "right", "label": "Right"}
+      ],
+      "info": "Switch position with social links"
+      },
+      {
+      "type": "text",
+      "id": "facebook_page_link",
+      "label": "Facebook page link",
+      "info": "https://www.facebook.com/shopify"
+      },
+
+      {
+      "type": "checkbox",
+      "id": "show_facebook_like_button",
+      "label": "Display Facebook Like button",
+      "default": false
+      },
+      {
+      "type": "checkbox",
+      "id": "show_facebook_share_button",
+      "label": "Display Facebook Share button",
+      "default": false
       },
       {
         "type": "header",

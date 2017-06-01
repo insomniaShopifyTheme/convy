@@ -52,17 +52,17 @@ $my-account-z-index: 10;
   }
   body.js-drawer-open-left & {
     .hamburger > .hamburger__bar--horizontal {
-        opacity: 0;
+      opacity: 0;
     }
     .hamburger > .hamburger__bar--diagonal.part-1 {
-        transform: rotate(135deg);
-        -webkit-transform: rotate(135deg);
-        margin-top: 10px;
+      transform: rotate(135deg);
+      -webkit-transform: rotate(135deg);
+      margin-top: 10px;
     }
     .hamburger > .hamburger__bar--diagonal.part-2 {
-        transform: rotate(-135deg);
-        -webkit-transform: rotate(-135deg);
-        margin-top: -16px;
+      transform: rotate(-135deg);
+      -webkit-transform: rotate(-135deg);
+      margin-top: -16px;
     }
   }
 
@@ -71,9 +71,20 @@ $my-account-z-index: 10;
     img {
       max-height: 100%;
     }
+    @media (max-width: 2200px) AND (min-width: 1023px) {
+      a {
+        font-size: 1.4vw;
+      }
+    }
+    @media (max-width: 1023px) {
+      a {
+        font-size: 4vw;
+      }
+    }
   }
   .logo-cell {
     text-align: center;
+    position: relative;
   }
 
   h1, .h1 {
@@ -87,7 +98,11 @@ $my-account-z-index: 10;
   }
 
   .header-icon {
-    padding: 0.3rem 0 0 1rem;
+    padding: 0;
+    @media (max-width: 1560px) {
+      padding: 0.0rem 0 0 0rem;
+    }
+
     color: $color-menu;
     height: 100%;
     width: 30px;
@@ -148,15 +163,175 @@ $my-account-z-index: 10;
   .menu-cell {
     position: relative;
   }
+
+  .content-deal-of-the-day {
+    height: 100%;
+    float: right;
+    padding: 0px 12px;
+    overflow: hidden;
+
+    border-left: solid 1px rgba(0, 0, 0, 0.2);
+    border-right: solid 1px rgba(0, 0, 0, 0.2);
+
+    &.mobile-small{
+      text-align: center;
+
+      width: 100%;
+      visibility: hidden;
+      border: none;
+      height: 0;
+      @include at-query($max, $medium) {
+        height: auto;
+        visibility: visible;
+        border-top: solid 1px rgba(0, 0, 0, 0.1);
+
+        .wrapper{
+          overflow: hidden;
+          margin: auto;
+          display: table;
+          .content-product-img {
+            img {
+              margin-top: 2px;
+            }
+          }
+        }
+      }
+
+
+    }
+    &.mobile-medium{
+      position: absolute;
+      right: 0;
+      top: 0px;
+      width: 100px;
+      border: none !important;
+      z-index: 0;
+      padding: 0;
+      margin: 0;
+      border-left: solid 1px rgba(0, 0, 0, 0.2);
+      height: 0;
+      visibility: hidden;
+      text-align: center;
+
+      @include at-query($max, $large) {
+        height: 55px;
+        visibility: visible;
+      }
+      @include at-query($max, $medium) {
+        height: 0;
+        visibility: hidden;
+      }
+
+
+      .content-product-img{
+        margin: auto;
+        height: 100%;
+        display: table;
+        float: none;
+        position: relative;
+
+        .product-image{
+          height: 39px;
+          margin-top: 2px;
+        }
+      }
+
+      .countdown{
+        color: $color-special;
+        position: absolute;
+        right: 15px;
+        font-weight: 900;
+        font-size: 17px;
+        top: 30px;
+      }
+
+      .discount-percentage{
+        font-weight: 900;
+        font-size: 12px;
+        position: absolute;
+        right: 14px;
+        z-index: 1;
+      }
+    }
+
+
+
+
+    h2, p {
+      line-height: 18px;
+      letter-spacing: -1px;
+      margin: 0;
+      font-weight: 600;
+      text-align: left;
+
+    }
+
+    .content-countdown {
+      height: 100%;
+      float: left;
+      padding: 10px 0px;
+
+      .countdown {
+        color: $color-special;
+      }
+      h2 {
+        font-size: 15px;
+
+      }
+    }
+    .content-product-img {
+      height: 100%;
+      float: left;
+
+      position: relative;
+      img {
+        height: 55px;
+
+      }
+      .discount-percentage{
+        font-weight: 900;
+        font-size: 13px;
+        top:2px;
+        position: absolute;
+        right: 14px;
+      }
+    }
+    .content-price {
+      text-align: left;
+      height: 100%;
+      float: left;
+      padding: 10px 0px;
+
+      p {
+        font-size: 17px;
+      }
+
+      .compared_at {
+        text-decoration: line-through;
+      }
+      .price {
+        color: $color-special;
+      }
+
+    }
+  }
   .user-account {
     background-color: $color-bg-menu;
-    position: absolute;
+    position: relative;
     height: 100%;
     padding: 0.5rem;
-    right: 0;
+    float: right;
     line-height: 2.2rem;
     .icon {
       font-size: 1.2rem;
+    }
+
+    @media (max-width: 1470px) {
+      padding: 0.5rem;
+      font-size: 14px;
+      .icon {
+        font-size: 0.9rem;
+      }
     }
   }
 

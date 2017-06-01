@@ -150,6 +150,12 @@ $radius: 3px;
 $topbar-height: 40px;
 $header-height-mobile: 55px;
 $header-height: 55px;
+$product-add-to-cart-bar-height: 60px;
+{% if settings.fixed_header == 'disable' %}
+  $top-add-to-cart-bar: 0;
+{% else %}
+  $top-add-to-cart-bar: $topbar-height + $header-height;
+{% endif %}
 
 // Z-index
 $zindex-nav-dropdowns: 5;
@@ -250,6 +256,7 @@ $slick-next-character: "\3009";
 @import url('components/_tabs.scss');
 @import url('components/_collection-card.scss');
 @import url('components/_konversion-modal.scss');
+@import url('components/_facebook-buttons.scss');
 
 
 

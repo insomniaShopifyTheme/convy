@@ -13,7 +13,28 @@
 {% endif %}
 
 {% if has_icons %}
-  <ul class="inline-list social-icons">
+  {% if section.settings.facebook_page_link != blank  %}
+    {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button %}
+        {% if section.settings.facebook_buttons_position == 'left' %}
+          {% assign position = 'right' %}
+        {% else %}
+          {% assign position = 'left' %}
+        {% endif %}
+    {% else %}
+        {% assign position = 'right' %}
+    {% endif %}
+  {% endif %}
+
+
+{% if position %}
+<style>
+  .social-icons{
+    float: {{ position }};
+  }
+</style>
+{% endif %}
+
+  <ul class="inline-list social-icons" >
     {% if settings.social_facebook_link != blank %}
       <li>
         <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" target="_blank" title="{{ 'layout.social_account' | t: name: shop.name, platform: 'Facebook' }}">
@@ -63,7 +84,7 @@
       </li>
     {% endif %}
     {% if settings.social_snapchat_link != blank %}
-      <li>
+      <li class="large--hide">
         <a class="icon-fallback-text" href="{{ settings.social_snapchat_link }}" target="_blank" title="{{ 'layout.social_account' | t: name: shop.name, platform: 'Snapchat' }}">
           <span class="icon icon-snapchat" aria-hidden="true"></span>
           <span class="fallback-text">Snapchat</span>

@@ -47,13 +47,16 @@
         soldOut: {{ 'products.product.sold_out' | t | json }},
         unavailable: {{ 'products.product.unavailable' | t | json }},
       },
-      moneyFormat: {{ shop.money_format | json }}
+      moneyFormat: {{ shop.money_format | json }},
+      currencyName: '{{ shop.currency}}',
+      shopUrl: '{{ shop.url }}'
     }
   </script>
- 
+
   <!-- CSS ================================================== -->
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
   {{ 'sweetalert2.min.css' | asset_url | stylesheet_tag }}
+  {{ 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' | stylesheet_tag }}
 
   <!-- Header hook for plugins ================================================== -->
   {{ content_for_header }}
@@ -70,6 +73,8 @@
 </head>
 
 <body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}{% if settings.fixed_header != "disable" %}fixed-header fixed-header--{{ settings.fixed_header }} {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
+
+
 
   <header>
     {% section 'topbar' %}
@@ -164,6 +169,7 @@
   {% if settings.custom_scripts != blank %}
     {{ settings.custom_scripts }}
   {% endif %}
+
 
 </body>
 </html>

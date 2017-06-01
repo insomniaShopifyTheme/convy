@@ -1,37 +1,101 @@
 <div data-section-id="{{ section.id }}" data-section-type="slider-section" class="{% if section.settings.inverted %} section-testimonials--alt{% endif %}">
   <div class="page-width--large">
-  {% if section.blocks.size > 0 %}
-    <div class="slider-wrapper">
-      <div class="testimonial-list slider slider--content" data-content-slider="true" data-slider-effect="{{ section.settings.effect }}" data-slider-dots="true" id="slider_{{ section.id }}">
-        {% for block in section.blocks limit: section.blocks.size %}
-          <div class="testimonial slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
-            {%- assign testimonial = block.settings -%}
-            <h2 class="testimonial__title">{{ testimonial.title | escape }}</h2>
-            <div class="grid">
-              <div class="testimonial__text grid__item ten-twelfths push--one-twelfth">
-                {{ testimonial.text | newline_to_br }}
-              </div>
-            </div>
-            {% if testimonial.image != blank %}
-            <div class="testimonial__image small--hide">
-              <img src="{{ testimonial.image | img_url: '90x90', crop: 'center' }}" alt="{{ testimonial.name }}">
-            </div>
-            {% endif %}
-            <p class="testimonial__sign">
-              {% if testimonial.link != blank %}
-                <a href="{{ block.settings.link }}" target="_blank">
-              {% endif %}
-              {{ testimonial.name }}{% if testimonial.company != blank %}, {{ testimonial.company }}{% endif %}
-              {% if testimonial.link != blank %}
-                </a>
-              {% endif %}
-            </p>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
+  {% if section.blocks.size == 1 %}
+    {% assign grid_item_size = 'one-whole' %}
+  {% elsif section.blocks.size == 2 %}
+    {% assign grid_item_size = 'one-half' %}
+  {% else %}
+    {% assign grid_item_size = 'one-third' %}
   {% endif %}
 
+  {% if section.blocks.size > 0 %}
+    {% if section.settings.type == 'slider' %}
+      <div class="slider-wrapper">
+        <div class="testimonial-list slider slider--content" data-content-slider="true" data-slider-effect="{{ section.settings.effect }}" data-slider-dots="true" id="slider_{{ section.id }}">
+          {% for block in section.blocks limit: section.blocks.size %}
+            <div class="testimonial slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
+              {%- assign testimonial = block.settings -%}
+              <h2 class="testimonial__title">{{ section.settings.title | escape }}</h2>
+              <div class="grid">
+                <div class="testimonial__text grid__item ten-twelfths push--one-twelfth">
+                  {{ testimonial.text | newline_to_br }}
+                </div>
+              </div>
+              {% if testimonial.image != blank %}
+              <div class="testimonial__image small--hide">
+                <img src="{{ testimonial.image | img_url: '90x90', crop: 'center' }}" alt="{{ testimonial.name }}">
+              </div>
+              {% else %}
+                <div class="testimonial__image ">
+                  <img  src="{{ 'quotation.png' | asset_url }}" alt="{{ testimonial.name }}">
+                </div>
+              {% endif %}
+              <p class="testimonial__sign">
+                {% if testimonial.link != blank %}
+                  <a href="{{ block.settings.link }}" target="_blank">
+                {% endif %}
+                {{ testimonial.name }}{% if testimonial.company != blank %}, {{ testimonial.company }}{% endif %}
+                {% if testimonial.link != blank %}
+                  </a>
+                {% endif %}
+              </p>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    {% else if section.settings.type == 'grid' %}
+      <div class="grid-wrapper">
+
+        <div class="grid">
+          <div class="grid__item">
+            <div class="grid testimonial-list ">
+
+              <h2 class="testimonial__title text-center">{{ section.settings.title | escape }}</h2>
+
+
+
+              {% for block in section.blocks limit: section.blocks.size %}
+                <div class="grid__item {{ grid_item_size }} small--one-whole testimonial" {{ block.shopify_attributes }}>
+                  {%- assign testimonial = block.settings -%}
+
+                  {% if testimonial.image != blank %}
+                    <div class="testimonial__image ">
+                      <img src="{{ testimonial.image | img_url: '90x90', crop: 'center' }}" alt="{{ testimonial.name }}">
+                    </div>
+                  {% else %}
+                    <div class="testimonial__image ">
+                      <img  src="{{ 'quotation.png' | asset_url }}" alt="{{ testimonial.name }}">
+                    </div>
+                  {% endif %}
+                  <p class="testimonial__sign">
+                    {% if testimonial.link != blank %}
+                      <a href="{{ block.settings.link }}" target="_blank">
+                    {% endif %}
+                    {{ testimonial.name }}{% if testimonial.company != blank %}, {{ testimonial.company }}{% endif %}
+                    {% if testimonial.link != blank %}
+                      </a>
+                    {% endif %}
+
+                  </p>
+                  <div class="grid">
+                    <div class="testimonial__text grid__item ten-twelfths push--one-twelfth">
+                      {{ testimonial.text | truncate: 100 }}
+
+                    </div>
+                  </div>
+
+                </div>
+
+              {% endfor %}
+
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+  {% endif %}
   {% if section.blocks.size == 0 %}
     <div class="empty-section">
       {{ 'homepage.onboarding.no_content' | t }}
@@ -48,12 +112,12 @@
     "settings": [
       {
         "type": "select",
-        "id": "effect",
-        "label": "Effect",
-        "default": "fade",
+        "id": "type",
+        "label": "Type",
+        "default": "slider",
         "options": [
-          {"value": "slide", "label": "Slide"},
-          {"value": "fade", "label": "Fade"}
+          {"value": "slider", "label": "Slider"},
+          {"value": "grid", "label": "Grid"}
         ]
       },
       {
@@ -61,6 +125,22 @@
         "id": "inverted",
         "label": "Invert color",
         "default": false
+      },
+      {
+        "type": "select",
+        "id": "effect",
+        "label": "Effect",
+        "default": "fade",
+        "info": "Only if type is Slider",
+        "options": [
+          {"value": "slide", "label": "Slide"},
+          {"value": "fade", "label": "Fade"}
+        ]
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
       }
     ],
     "blocks": [
@@ -69,14 +149,10 @@
         "name": "Testimonial",
         "settings": [
           {
-            "type": "text",
-            "id": "title",
-            "label": "Title"
-          },
-          {
             "type": "textarea",
             "id": "text",
-            "label": "Text"
+            "label": "Text",
+            "info": "Limited to 100 characters"
           },
           {
             "type": "image_picker",
