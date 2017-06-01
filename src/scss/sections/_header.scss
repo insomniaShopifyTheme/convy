@@ -98,7 +98,7 @@ $my-account-z-index: 10;
   }
 
   .header-icon {
-    padding: 0.3rem 0 0 1rem;
+    padding: 0;
     @media (max-width: 1560px) {
       padding: 0.0rem 0 0 0rem;
     }
@@ -258,7 +258,6 @@ $my-account-z-index: 10;
 
 
     h2, p {
-      text-transform: uppercase;
       line-height: 18px;
       letter-spacing: -1px;
       margin: 0;
@@ -318,10 +317,10 @@ $my-account-z-index: 10;
   }
   .user-account {
     background-color: $color-bg-menu;
-    position: absolute;
+    position: relative;
     height: 100%;
     padding: 0.5rem;
-    right: 0;
+    float: right;
     line-height: 2.2rem;
     .icon {
       font-size: 1.2rem;

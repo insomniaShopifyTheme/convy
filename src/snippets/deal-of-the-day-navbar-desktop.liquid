@@ -8,12 +8,20 @@
         </style>
     <div class="content-deal-of-the-day desktop" style="display: none;">
         <a href="#" class="product-link">
-            <div class="content-countdown">
-                <h2>{{ settings.deal_of_the_day_text }}</h2>
-                <h2>{{ settings.deal_of_the_day_ends_in_text }}
-                    <span class="countdown dealzoneCounter">
-              </span></h2>
-            </div>
+            {% if settings.deal_of_the_day_hide_title %}
+              <style>
+                .content-deal-of-the-day .content-product-img{
+                  margin-left: -9px;
+                }
+              </style>
+            {% else %}
+              <div class="content-countdown">
+                  <h2>{{ settings.deal_of_the_day_text }}</h2>
+                  <h2>{{ settings.deal_of_the_day_ends_in_text }}
+                      <span class="countdown dealzoneCounter">
+                </span></h2>
+              </div>
+            {% endif %}
             <div class="content-product-img">
             {% if settings.deal_of_the_day_discount_percentage %}
                 <span class="discount-percentage"></span>

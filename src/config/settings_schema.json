@@ -143,6 +143,13 @@
       },
       {
         "type": "checkbox",
+        "id": "deal_of_the_day_hide_title",
+        "label": "Hide title and countdown",
+        "info": "This will save space in your navigation bar...",
+        "default": false
+      },
+      {
+        "type": "checkbox",
         "id": "deal_of_the_day_discount_percentage",
         "label": "Show discount percentage",
         "default": true

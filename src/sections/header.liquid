@@ -45,7 +45,7 @@
         {% include 'search-bar' %}
       </div>
     </div>
-    {% include 'deal-of-the-day-navbar-desktop' %}
+
 
     {% if shop.customer_accounts_enabled %}
     <div class="user-account">
@@ -53,10 +53,12 @@
         {% if section.settings.display_profile_icon %}
           <span class="icon icon-user" aria-hidden="true"></span>
         {% endif %}
-        {{ 'customer.account.title' | t }}
+        {{ 'customer.account.title' | t | remove: "My"}}
       </a>
     </div>
     {% endif %}
+    {% include 'deal-of-the-day-navbar-desktop' %}
+
   </div>
   <div class="grid__item two-twelfths cart-cell">
     <a href="/cart" id="CartIcon" class="h1 section-header__cart-link {% if settings.ajax_cart_method == 'drawer' %}js-drawer-open-right{% elsif settings.ajax_cart_method == 'popup' %}js-modal-open{% endif %}" aria-controls="CartDrawer" aria-expanded="false">
