@@ -38,7 +38,7 @@
 
   .social-icons {
     margin: 0 $gutter 0 0;
-    float: right;
+
     @include at-query($max, 1300px) {
       margin: 0 ($gutter - 20px) 0 0;
     }
@@ -54,7 +54,7 @@
       }
     }
   }
-  
+
   .currency-picker__wrapper {
     color: $color-text-alt;
     display: block;
