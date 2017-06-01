@@ -45,6 +45,7 @@ gulp.task('scripts', function() {
       globalConfig.scripts_src + '/product-template.js',
       globalConfig.scripts_src + '/collection-template.js',
       globalConfig.scripts_src + '/contact-template.js',
+      globalConfig.scripts_src + '/featured-collection-section.js',
       globalConfig.scripts_src + '/featured-product-section.js',
       globalConfig.scripts_src + '/admin.dev.js',
       globalConfig.scripts_src + '/check_license.js',

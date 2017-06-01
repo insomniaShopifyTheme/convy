@@ -1,16 +1,23 @@
-{% if section.settings.title != blank %}
-  <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
-{% endif %}
+<div class="section-newsletter-container {% if section.settings.inverted %} section-newsletter--alt{% endif %}">
+  {% if section.settings.title != blank %}
+    <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
+  {% endif %}
 
-<div class="text-center">
-  {% include 'newsletter-form' %}
+  <div class="text-center">
+    {% include 'newsletter-form' %}
+  </div>
 </div>
-
 {% schema %}
   {
     "name": "Newsletter",
     "class": "section-newsletter",
     "settings": [
+      {
+        "type": "checkbox",
+        "id": "inverted",
+        "label": "Invert color",
+        "default": false
+      },
       {
         "type": "text",
         "id": "title",

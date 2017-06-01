@@ -19,6 +19,7 @@ $my-account-z-index: 10;
     margin: 0 auto;
     height: $header-height-mobile;
     padding: 15px 12px 0;
+    cursor: pointer;
     & * {
       transition: all 0.3s;
       -webkit-transition: all 0.3s;
@@ -33,7 +34,7 @@ $my-account-z-index: 10;
     position: absolute;
     height: 4px;
     width: 100%;
-    background-color: #000;
+    background-color: $color_menu;
   }
   .hamburger__bar--diagonal.part-1 {
     position: relative;
@@ -68,7 +69,7 @@ $my-account-z-index: 10;
   .section-header__logo {
     height: 100%;
     img {
-      height: 100%;
+      max-height: 100%;
     }
   }
   .logo-cell {
@@ -76,8 +77,9 @@ $my-account-z-index: 10;
   }
 
   h1, .h1 {
-    margin: 0.5rem 0;
+    margin: 0.8rem 0;
     padding: 0;
+    font-size: 1.5rem;
     color: $color_menu;
     &.section-header__logo--image {
       margin: 0;
@@ -185,12 +187,13 @@ $my-account-z-index: 10;
     display: block;
     height: $header-height-mobile;
     margin: 0;
-    padding: 0.5rem 0;
+    padding: 1.2rem 0;
   }
 
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {
     h1, .h1 {
+      margin: 0.5rem 0;
       font-size: 1.6rem;
       line-height: 2.2rem;
       white-space: nowrap;
@@ -204,6 +207,10 @@ $my-account-z-index: 10;
         font-size: 1.4rem;
         font-weight: normal;
       }
+    }
+    .section-header__cart-link {
+      margin: 0;
+      padding: 0.5rem 0;
     }
   }
 

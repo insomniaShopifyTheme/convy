@@ -4,13 +4,13 @@
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
         {% if block.type == 'tab' %}
-          {% assign page = pages[block.settings.page] %}
+          {% assign blog = blogs[block.settings.blog] %}
           <li class='tab' {{ block.shopify_attributes }}>
             <a href="#tab-{{ block.id }}">
               {% if block.settings.title != blank %}
                 {{ block.settings.title }}
               {% else %}
-                {{ page.title }}
+                {{ blog.title }}
               {% endif %}
             </a>
           </li>
@@ -29,10 +29,10 @@
   {% if section.blocks.size > 0 %}
     {% for block in section.blocks %}
       {% if block.type == 'tab' %}
-        {% assign page = pages[block.settings.page] %}
+        {% assign blog = blogs[block.settings.blog] %}
         <div id="tab-{{ block.id }}">
           <div class="tab__page-content rte">
-            {{ page.content }}
+            {% include "product-tabs-content" %}
           </div>
         </div>
       {% endif %}

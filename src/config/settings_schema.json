@@ -8,6 +8,19 @@
     "theme_support_email": "support@tabarnapp.com"
   },
   {
+    "name": "Theme Support",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Link"
+      },
+      {
+        "type": "paragraph",
+        "content": "[Support](http:\/\/support.konversiontheme.com\/support\/)"
+      }
+    ]
+  },
+  {
     "name": "Apps",
     "settings": [
       {
@@ -19,7 +32,7 @@
         "id": "app_product_reviews_enabled",
         "label": "Product reviews by shopify",
         "default": false,
-        "info": "Enables app integration. You still need to [install the app](https://apps.shopify.com/product-reviews)"
+        "info": "Enables app integration. You still need to [install the app](https:\/\/apps.shopify.com\/product-reviews)"
       }
     ]
   },
@@ -222,6 +235,18 @@
         "type": "color",
         "id": "color_menu_bg",
         "label": "Menu Background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_submenu",
+        "label": "Sub-menu Text",
+        "default": "#393939"
+      },
+      {
+        "type": "color",
+        "id": "color_submenu_bg",
+        "label": "Sub-menu Background",
         "default": "#ffffff"
       },
       {
@@ -947,6 +972,55 @@
         "label": "Use color swatches for following options",
         "default": "Color, Colour",
         "info": "List option names separated by comma eg. Color, Material"
+      }
+    ]
+  },
+  {
+    "name": "Product Tabs",
+    "settings": [
+      {
+        "type": "header",
+        "content": "CREATE TABS"
+      },
+      {
+        "type": "paragraph",
+        "content": "Browse any product page within the theme editor and click on the Product page section."
+      },
+      {
+        "type": "paragraph",
+        "content": "Scroll down to TABS and check the Use tabs box. Below, click Add content and select Tab. Add a tab title and select a blog in the dropdown."
+      },
+      {
+        "type": "header",
+        "content": "ADD CONTENT (Blog posts)"
+      },
+      {
+        "type": "paragraph",
+        "content": "Create a new [post](\/admin\/articles\/new) for the content of this tab."
+      },
+      {
+        "type": "paragraph",
+        "content": "Make sure you select the right blog in the dropdown next to \"Author\". By default it's \"News\"."
+      },
+      {
+        "type": "paragraph",
+        "content": "Make sure the post visibility is set to Visible, not Hidden."
+      },
+      {
+        "type": "paragraph",
+        "content": "Tag the blog post with the product title or product handle where you want to display this tab. You can tag more than one product."
+      },
+      {
+        "type": "paragraph",
+        "content": "You can also tag the collection name or collection handle and the tab will be displayed in all the product pages that are part of this collection. You can tag more than one collection."
+      },
+      {
+        "type": "paragraph",
+        "content": "To display the tab on all products, use the this tag: `product-all` or `collection-all`."
+      },
+      {
+        "type": "paragraph",
+        "content": "Repeat the steps above if you want each product (or collection) to have its own tabs, as well as its own tabs content. If any post is duplicated, only the most recent will be displayed."
       }
     ]
   },

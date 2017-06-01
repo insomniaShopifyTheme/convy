@@ -70,16 +70,16 @@
 
     <div class="grid__item one-whole large--two-thirds">
 
-      {% if section.settings.related_products %}
-      <div class="related-products">
-        {% include 'related-products' %}
-      </div>
-      {% endif %}
-
       {% if section.settings.display_icons %}
         <div class="large--hide">
           {% include 'product-icons' %}
         </div>
+      {% endif %}
+
+      {% if section.settings.related_products %}
+      <div class="related-products">
+        {% include 'related-products' %}
+      </div>
       {% endif %}
 
       {% if settings.app_product_reviews_enabled %}
@@ -334,14 +334,15 @@
         "type": "checkbox",
         "id": "use_tabs",
         "label": "Use tabs",
-        "default": true
+        "default": true,
+        "info": "Click Add Content below and select Tab. See instructions in General Settings > Product Tabs"
       },
       {
         "type": "checkbox",
         "id": "reviews_tab",
         "label": "Product reviews tab",
         "default": true,
-        "info": "takes effect only if tabs enabled; also requires Product Reviews app integration (see General Settings > Apps)"
+		"info": "takes effect only if tabs enabled; also requires Product Reviews app integration (see General Settings > Apps)"
       }
     ],
     "blocks": [
@@ -355,9 +356,9 @@
             "label": "Tab title"
           },
           {
-             "type": "page",
-             "id": "page",
-             "label": "Page"
+             "type": "blog",
+             "id": "blog",
+             "label": "Blog"
           },
           {
             "type": "checkbox",

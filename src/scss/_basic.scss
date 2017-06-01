@@ -99,6 +99,7 @@ body {
 @mixin fixed-header() {
   &>header {
     position: fixed;
+    top: 0 !important;
     width: 100%;
     z-index: $z-index-toolbar;
   }

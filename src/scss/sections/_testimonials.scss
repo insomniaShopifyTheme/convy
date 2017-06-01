@@ -1,6 +1,9 @@
 /*================ Testimonials Section ================*/
 
 .section-testimonials {
+  .section-testimonials--alt {
+    @include inverted-section();
+  }
   .slider-wrapper {
     margin-bottom: 20px; // space for dots
   }

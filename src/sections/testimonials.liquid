@@ -1,5 +1,5 @@
-<div data-section-id="{{ section.id }}" data-section-type="slider-section">
-
+<div data-section-id="{{ section.id }}" data-section-type="slider-section" class="{% if section.settings.inverted %} section-testimonials--alt{% endif %}">
+  <div class="page-width--large">
   {% if section.blocks.size > 0 %}
     <div class="slider-wrapper">
       <div class="testimonial-list slider slider--content" data-content-slider="true" data-slider-effect="{{ section.settings.effect }}" data-slider-dots="true" id="slider_{{ section.id }}">
@@ -37,13 +37,13 @@
       {{ 'homepage.onboarding.no_content' | t }}
     </div>
   {% endif %}
-
+  </div>
 </div>
 
 {% schema %}
   {
     "name": "Testimonials",
-    "class": "section-testimonials page-width--large",
+    "class": "section-testimonials",
     "max_blocks": 12,
     "settings": [
       {
@@ -55,6 +55,12 @@
           {"value": "slide", "label": "Slide"},
           {"value": "fade", "label": "Fade"}
         ]
+      },
+      {
+        "type": "checkbox",
+        "id": "inverted",
+        "label": "Invert color",
+        "default": false
       }
     ],
     "blocks": [
