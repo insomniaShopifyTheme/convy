@@ -8,7 +8,7 @@
     "theme_support_email": "support@tabarnapp.com"
   },
   {
-    "name": "Theme Support",
+    "name": "☆ Theme Support ☆",
     "settings": [
       {
         "type": "header",
@@ -34,168 +34,6 @@
         "default": false,
         "info": "Enables app integration. You still need to [install the app](https:\/\/apps.shopify.com\/product-reviews)"
       }
-    ]
-  },
-
-  {
-    "name": "Layout",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Template"
-      },
-      {
-        "type": "select",
-        "id": "fixed_header",
-        "label": "Fixed header",
-        "options": [
-          {
-            "value": "disable",
-            "label": "Disable"
-          },
-          {
-            "value": "all",
-            "label": "Desktop & Mobile"
-          },
-          {
-            "value": "mobile",
-            "label": "Mobile only"
-          },
-          {
-            "value": "desktop",
-            "label": "Desktop only"
-          }
-        ],
-        "default": "disable",
-        "info": "Header stays fixed to the top of the screen, when you are scrolling"
-      },
-      {
-        "type": "header",
-        "content": "Product card"
-      },
-      {
-        "type": "paragraph",
-        "content": "Product card is an individual item in product lists such. Example: products on collection page, featured products, related products etc."
-      },
-      {
-        "type": "select",
-        "id": "product_card_title_style",
-        "label": "Hide long product title",
-        "info": "Use fade out effect for text that doesn't fit so product cards have equal height",
-        "options": [
-          {
-            "value": "full",
-            "label": "Display full title"
-          },
-          {
-            "value": "1_row",
-            "label": "1 row - fade out the rest of text"
-          },
-          {
-            "value": "2_rows",
-            "label": "2 rows - truncate the rest of text"
-          }
-        ],
-        "default": "1_row"
-      },
-      {
-        "type": "checkbox",
-        "id": "margin_on_mobile",
-        "label": "Add margin (mobile version)",
-        "default": false,
-        "info": "Adds empty space between a product card and edge of the screen"
-      }
-    ]
-  },
-
-  {
-    "name": "Deal of the day",
-    "settings": [
-      {
-        "type": "header",
-        "content": "info"
-      },
-      {
-        "type": "paragraph",
-        "content": "To display a product in the deal of the day widget, tag it with 'deal-yyyy-mm-dd'. This product will appear as the deal of the day on the date that you picked (eg. deal-2017-05-10). You can tag more products and add more than one tag to the same product. Note that if you have too much 1st level menu items, the widget might not fit in the navigation bar."
-      },
-      {
-        "type":"header",
-        "content": "general"
-      },
-      {
-        "type": "checkbox",
-        "id": "deal_of_the_day_enabled",
-        "label": "Enable deal of the day",
-        "info": "If you are not using deal-yyyy-mm-dd tags in your products, you shoud disable this feature. Leaving it enabled may cause performance issues.",
-        "default": false
-      },
-      {
-        "type": "select",
-        "id": "deal_of_the_day_display",
-        "label": "Display",
-        "default": "all",
-        "options": [
-          {"value": "all", "label": "Desktop & Mobile"},
-          {"value": "mobile", "label": "Mobile only"},
-          {"value": "desktop", "label": "Desktop only"}
-        ]
-      },
-      {
-        "type": "checkbox",
-        "id": "deal_of_the_day_hide_title",
-        "label": "Hide title and countdown",
-        "info": "This will save space in your navigation bar...",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "deal_of_the_day_discount_percentage",
-        "label": "Show discount percentage",
-        "default": true
-      },
-      {
-        "type": "color",
-        "id": "deal_of_the_day_discount_percentage_color",
-        "label": "Discount percentage color",
-        "default": "#f53333"
-      },
-      {
-        "type":"header",
-        "content": "Navigation Bar"
-      },
-      {
-        "type": "text",
-        "id": "deal_of_the_day_text",
-        "label": "Main text",
-        "default": "DEAL OF THE DAY"
-      },
-
-      {
-        "type": "text",
-        "id": "deal_of_the_day_ends_in_text",
-        "label": "Timeout text",
-        "default": "ENDS IN"
-      },
-      {
-        "type":"header",
-        "content": "Product Page"
-      },
-      {
-        "type": "text",
-        "id": "deal_of_the_day_product_text",
-        "label": "Main text ",
-        "default": "DEAL OF THE DAY ENDS IN "
-      },
-      {
-        "type": "color",
-        "id": "deal_of_the_day_progressbar_color",
-        "label": "Progress bar color",
-        "default": "#f53333"
-        //"info": "Used for text links and buttons"
-      }
-
-
     ]
   },
 
@@ -233,45 +71,6 @@
         "id": "sticky_add_to_cart",
         "label": "Enable sticky Add to cart (mobile version)",
         "default": true
-      }
-    ]
-  },
-  {
-    "name": "Shipping Rates Calculator",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "shipping_calculator",
-        "label": "Enable shipping calculator",
-        "default": true
-      },
-      {
-        "type": "text",
-        "id": "shipping_calculator_heading",
-        "label": "Heading text",
-        "default": "Get shipping estimates"
-      },
-      {
-        "type": "text",
-        "id": "shipping_calculator_default_country",
-        "label": "Default country selection",
-        "default": "United States"
-      },
-      {
-        "type": "paragraph",
-        "content": "If your customer is logged-in, the country in his default shipping address will be selected. If you are not sure about the  spelling to use here, refer to the first checkout page."
-      },
-      {
-        "type": "text",
-        "id": "shipping_calculator_submit_button_label",
-        "label": "Submit button label",
-        "default": "Calculate shipping"
-      },
-      {
-        "type": "text",
-        "id": "shipping_calculator_submit_button_label_disabled",
-        "label": "Submit button label when calculating",
-        "default": "Calculating..."
       }
     ]
   },
@@ -369,6 +168,142 @@
     ]
   },
   {
+    "name": "Currency",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "To offer multiple currencies on your online store, you must first [edit your store's currency formatting](https:\/\/help.shopify.com\/manual\/using-themes\/troubleshooting\/help-script-find-money-formats)."
+      },
+      {
+        "type": "checkbox",
+        "id": "show_multiple_currencies",
+        "label": "Enable currency conversion",
+        "default": false,
+        "info": "Even though prices are displayed in different currencies, orders will still be processed in your store's currency."
+      },
+      {
+        "type": "select",
+        "id": "currency_format",
+        "label": "Format",
+        "options": [
+          {
+            "value": "money_format",
+            "label": "Without currency ($10.00)"
+          },
+          {
+            "value": "money_with_currency_format",
+            "label": "With currency ($10.00 CAD)"
+          }
+        ],
+        "default": "money_with_currency_format"
+      },
+      {
+        "type": "text",
+        "id": "supported_currencies",
+        "label": "Supported currencies",
+        "default": "INR GBP CAD USD AUD EUR JPY",
+        "info": "Use the country's ISO [currency code](http:\/\/www.xe.com\/iso4217.php). Separate your currency codes with a space."
+      },
+      {
+        "type": "text",
+        "id": "default_currency",
+        "label": "Default currency",
+        "default": "USD"
+      }
+    ]
+  },
+
+  {
+    "name": "Deal of the day",
+    "settings": [
+      {
+        "type": "header",
+        "content": "info"
+      },
+      {
+        "type": "paragraph",
+        "content": "To display a product in the deal of the day widget, tag it with 'deal-yyyy-mm-dd'. This product will appear as the deal of the day on the date that you picked (eg. deal-2017-05-10). You can tag more products and add more than one tag to the same product. Note that if you have too much 1st level menu items, the widget might not fit in the navigation bar."
+      },
+      {
+        "type":"header",
+        "content": "general"
+      },
+      {
+        "type": "checkbox",
+        "id": "deal_of_the_day_enabled",
+        "label": "Enable deal of the day",
+        "info": "If you are not using deal-yyyy-mm-dd tags in your products, you shoud disable this feature. Leaving it enabled may cause performance issues.",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "deal_of_the_day_display",
+        "label": "Display",
+        "default": "all",
+        "options": [
+          {"value": "all", "label": "Desktop & Mobile"},
+          {"value": "mobile", "label": "Mobile only"},
+          {"value": "desktop", "label": "Desktop only"}
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "deal_of_the_day_hide_title",
+        "label": "Hide title and countdown",
+        "info": "This will save space in your navigation bar...",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "deal_of_the_day_discount_percentage",
+        "label": "Show discount percentage",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "deal_of_the_day_discount_percentage_color",
+        "label": "Discount percentage color",
+        "default": "#f53333"
+      },
+      {
+        "type":"header",
+        "content": "Navigation Bar"
+      },
+      {
+        "type": "text",
+        "id": "deal_of_the_day_text",
+        "label": "Main text",
+        "default": "DEAL OF THE DAY"
+      },
+
+      {
+        "type": "text",
+        "id": "deal_of_the_day_ends_in_text",
+        "label": "Timeout text",
+        "default": "ENDS IN"
+      },
+      {
+        "type":"header",
+        "content": "Product Page"
+      },
+      {
+        "type": "text",
+        "id": "deal_of_the_day_product_text",
+        "label": "Main text ",
+        "default": "DEAL OF THE DAY ENDS IN "
+      },
+      {
+        "type": "color",
+        "id": "deal_of_the_day_progressbar_color",
+        "label": "Progress bar color",
+        "default": "#f53333"
+        //"info": "Used for text links and buttons"
+      }
+
+
+    ]
+  },
+  {
     "name": "Favicon",
     "settings": [
       {
@@ -376,6 +311,277 @@
         "id": "favicon",
         "label": "Favicon",
         "info": "64x64 px .png recommended"
+      }
+    ]
+  },
+
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Template"
+      },
+      {
+        "type": "select",
+        "id": "fixed_header",
+        "label": "Fixed header",
+        "options": [
+          {
+            "value": "disable",
+            "label": "Disable"
+          },
+          {
+            "value": "all",
+            "label": "Desktop & Mobile"
+          },
+          {
+            "value": "mobile",
+            "label": "Mobile only"
+          },
+          {
+            "value": "desktop",
+            "label": "Desktop only"
+          }
+        ],
+        "default": "disable",
+        "info": "Header stays fixed to the top of the screen, when you are scrolling"
+      },
+      {
+        "type": "header",
+        "content": "Product card"
+      },
+      {
+        "type": "paragraph",
+        "content": "Product card is an individual item in product lists such. Example: products on collection page, featured products, related products etc."
+      },
+      {
+        "type": "select",
+        "id": "product_card_title_style",
+        "label": "Hide long product title",
+        "info": "Use fade out effect for text that doesn't fit so product cards have equal height",
+        "options": [
+          {
+            "value": "full",
+            "label": "Display full title"
+          },
+          {
+            "value": "1_row",
+            "label": "1 row - fade out the rest of text"
+          },
+          {
+            "value": "2_rows",
+            "label": "2 rows - truncate the rest of text"
+          }
+        ],
+        "default": "1_row"
+      },
+      {
+        "type": "checkbox",
+        "id": "margin_on_mobile",
+        "label": "Add margin (mobile version)",
+        "default": false,
+        "info": "Adds empty space between a product card and edge of the screen"
+      }
+    ]
+  },
+  {
+    "name": "License",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "license_key",
+        "label": "License Key",
+        "info": "Put here the license key you recieved when the theme was purchased"
+      }
+    ]
+  },
+  {
+    "name": "Misc",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "custom_scripts",
+        "label": "Custom scripts",
+        "info": "This code included at the bottom of the page on each page load. Note: you need to wrap it with <script>your_code_here<\/script> tag if this is JavaScript code"
+      }
+    ]
+  },
+  {
+    "name": "Product Tabs",
+    "settings": [
+      {
+        "type": "header",
+        "content": "CREATE TABS"
+      },
+      {
+        "type": "paragraph",
+        "content": "Browse any product page within the theme editor and click on the Product page section."
+      },
+      {
+        "type": "paragraph",
+        "content": "Scroll down to TABS and check the Use tabs box. Below, click Add content and select Tab. Add a tab title and select a blog in the dropdown."
+      },
+      {
+        "type": "header",
+        "content": "ADD CONTENT (Blog posts)"
+      },
+      {
+        "type": "paragraph",
+        "content": "Create a new [post](\/admin\/articles\/new) for the content of this tab."
+      },
+      {
+        "type": "paragraph",
+        "content": "Make sure you select the right blog in the dropdown next to \"Author\". By default it's \"News\"."
+      },
+      {
+        "type": "paragraph",
+        "content": "Make sure the post visibility is set to Visible, not Hidden."
+      },
+      {
+        "type": "paragraph",
+        "content": "Tag the blog post with the product title or product handle where you want to display this tab. You can tag more than one product."
+      },
+      {
+        "type": "paragraph",
+        "content": "You can also tag the collection name or collection handle and the tab will be displayed in all the product pages that are part of this collection. You can tag more than one collection."
+      },
+      {
+        "type": "paragraph",
+        "content": "To display the tab on all products, use the this tag: `product-all` or `collection-all`."
+      },
+      {
+        "type": "paragraph",
+        "content": "Repeat the steps above if you want each product (or collection) to have its own tabs, as well as its own tabs content. If any post is duplicated, only the most recent will be displayed."
+      }
+    ]
+  },
+  {
+    "name": "Shipping Rates Calculator",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "shipping_calculator",
+        "label": "Enable shipping calculator",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "shipping_calculator_heading",
+        "label": "Heading text",
+        "default": "Get shipping estimates"
+      },
+      {
+        "type": "text",
+        "id": "shipping_calculator_default_country",
+        "label": "Default country selection",
+        "default": "United States"
+      },
+      {
+        "type": "paragraph",
+        "content": "If your customer is logged-in, the country in his default shipping address will be selected. If you are not sure about the  spelling to use here, refer to the first checkout page."
+      },
+      {
+        "type": "text",
+        "id": "shipping_calculator_submit_button_label",
+        "label": "Submit button label",
+        "default": "Calculate shipping"
+      },
+      {
+        "type": "text",
+        "id": "shipping_calculator_submit_button_label_disabled",
+        "label": "Submit button label when calculating",
+        "default": "Calculating..."
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social accounts"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook",
+        "info": "https:\/\/facebook.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter",
+        "info": "https:\/\/twitter.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "info": "http:\/\/instagram.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr",
+        "info": "http:\/\/shopify.tumblr.com"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest",
+        "info": "https:\/\/pinterest.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "YouTube",
+        "info": "https:\/\/www.youtube.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_snapchat_link",
+        "label": "Snapchat",
+        "info": "https:\/\/www.snapchat.com\/add\/shopify"
+      },
+      {
+        "type": "header",
+        "content": "Sharing"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_facebook",
+        "label": "Enable facebook sharing",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_twitter",
+        "label": "Enable twitter sharing",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_pinterest",
+        "label": "Enable pinterest sharing",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "share_gplus",
+        "label": "Enable google+ sharing",
+        "default": true
+      },
+
+      {
+        "type": "header",
+        "content": "Facebook \/ Open Graph"
+      },
+      {
+        "type": "image_picker",
+        "id": "og_image",
+        "label": "Custom facebook image (og:image)",
+        "info": "Recommended size 1200x630 px"
       }
     ]
   },
@@ -923,141 +1129,6 @@
     ]
   },
   {
-    "name": "Social media",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Social accounts"
-      },
-      {
-        "type": "text",
-        "id": "social_facebook_link",
-        "label": "Facebook",
-        "info": "https:\/\/facebook.com\/shopify"
-      },
-      {
-        "type": "text",
-        "id": "social_twitter_link",
-        "label": "Twitter",
-        "info": "https:\/\/twitter.com\/shopify"
-      },
-      {
-        "type": "text",
-        "id": "social_instagram_link",
-        "label": "Instagram",
-        "info": "http:\/\/instagram.com\/shopify"
-      },
-      {
-        "type": "text",
-        "id": "social_tumblr_link",
-        "label": "Tumblr",
-        "info": "http:\/\/shopify.tumblr.com"
-      },
-      {
-        "type": "text",
-        "id": "social_pinterest_link",
-        "label": "Pinterest",
-        "info": "https:\/\/pinterest.com\/shopify"
-      },
-      {
-        "type": "text",
-        "id": "social_youtube_link",
-        "label": "YouTube",
-        "info": "https:\/\/www.youtube.com\/shopify"
-      },
-      {
-        "type": "text",
-        "id": "social_snapchat_link",
-        "label": "Snapchat",
-        "info": "https:\/\/www.snapchat.com\/add\/shopify"
-      },
-      {
-        "type": "header",
-        "content": "Sharing"
-      },
-      {
-        "type": "checkbox",
-        "id": "share_facebook",
-        "label": "Enable facebook sharing",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "share_twitter",
-        "label": "Enable twitter sharing",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "share_pinterest",
-        "label": "Enable pinterest sharing",
-        "default": true
-      },
-      {
-        "type": "checkbox",
-        "id": "share_gplus",
-        "label": "Enable google+ sharing",
-        "default": true
-      },
-
-      {
-        "type": "header",
-        "content": "Facebook \/ Open Graph"
-      },
-      {
-        "type": "image_picker",
-        "id": "og_image",
-        "label": "Custom facebook image (og:image)",
-        "info": "Recommended size 1200x630 px"
-      }
-    ]
-  },
-  {
-    "name": "Currency",
-    "settings": [
-      {
-        "type": "paragraph",
-        "content": "To offer multiple currencies on your online store, you must first [edit your store's currency formatting](https:\/\/help.shopify.com\/manual\/using-themes\/troubleshooting\/help-script-find-money-formats)."
-      },
-      {
-        "type": "checkbox",
-        "id": "show_multiple_currencies",
-        "label": "Enable currency conversion",
-        "default": false,
-        "info": "Even though prices are displayed in different currencies, orders will still be processed in your store's currency."
-      },
-      {
-        "type": "select",
-        "id": "currency_format",
-        "label": "Format",
-        "options": [
-          {
-            "value": "money_format",
-            "label": "Without currency ($10.00)"
-          },
-          {
-            "value": "money_with_currency_format",
-            "label": "With currency ($10.00 CAD)"
-          }
-        ],
-        "default": "money_with_currency_format"
-      },
-      {
-        "type": "text",
-        "id": "supported_currencies",
-        "label": "Supported currencies",
-        "default": "INR GBP CAD USD AUD EUR JPY",
-        "info": "Use the country's ISO [currency code](http:\/\/www.xe.com\/iso4217.php). Separate your currency codes with a space."
-      },
-      {
-        "type": "text",
-        "id": "default_currency",
-        "label": "Default currency",
-        "default": "USD"
-      }
-    ]
-  },
-  {
     "name": "Variant Swatches",
     "settings": [
       {
@@ -1066,77 +1137,6 @@
         "label": "Use color swatches for following options",
         "default": "Color, Colour",
         "info": "List option names separated by comma eg. Color, Material"
-      }
-    ]
-  },
-  {
-    "name": "Product Tabs",
-    "settings": [
-      {
-        "type": "header",
-        "content": "CREATE TABS"
-      },
-      {
-        "type": "paragraph",
-        "content": "Browse any product page within the theme editor and click on the Product page section."
-      },
-      {
-        "type": "paragraph",
-        "content": "Scroll down to TABS and check the Use tabs box. Below, click Add content and select Tab. Add a tab title and select a blog in the dropdown."
-      },
-      {
-        "type": "header",
-        "content": "ADD CONTENT (Blog posts)"
-      },
-      {
-        "type": "paragraph",
-        "content": "Create a new [post](\/admin\/articles\/new) for the content of this tab."
-      },
-      {
-        "type": "paragraph",
-        "content": "Make sure you select the right blog in the dropdown next to \"Author\". By default it's \"News\"."
-      },
-      {
-        "type": "paragraph",
-        "content": "Make sure the post visibility is set to Visible, not Hidden."
-      },
-      {
-        "type": "paragraph",
-        "content": "Tag the blog post with the product title or product handle where you want to display this tab. You can tag more than one product."
-      },
-      {
-        "type": "paragraph",
-        "content": "You can also tag the collection name or collection handle and the tab will be displayed in all the product pages that are part of this collection. You can tag more than one collection."
-      },
-      {
-        "type": "paragraph",
-        "content": "To display the tab on all products, use the this tag: `product-all` or `collection-all`."
-      },
-      {
-        "type": "paragraph",
-        "content": "Repeat the steps above if you want each product (or collection) to have its own tabs, as well as its own tabs content. If any post is duplicated, only the most recent will be displayed."
-      }
-    ]
-  },
-  {
-    "name": "Misc",
-    "settings": [
-      {
-        "type": "textarea",
-        "id": "custom_scripts",
-        "label": "Custom scripts",
-        "info": "This code included at the bottom of the page on each page load. Note: you need to wrap it with <script>your_code_here<\/script> tag if this is JavaScript code"
-      }
-    ]
-  },
-  {
-    "name": "License",
-    "settings": [
-      {
-        "type": "textarea",
-        "id": "license_key",
-        "label": "License Key",
-        "info": "Put here the license key you recieved when the theme was purchased"
       }
     ]
   }
