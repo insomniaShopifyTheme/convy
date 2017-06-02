@@ -306,6 +306,7 @@ theme.dealOfTheDay = function() {
     var price = localstorage_dotd.product.variants[0].price;
 
     var discount_percentage = (price - compare_at) * 100 / compare_at;
+    discount_percentage = Math.round(discount_percentage * 10) / 10;
 
     $dealOfTheDay.find('.discount-percentage').html(discount_percentage + '%');
 
