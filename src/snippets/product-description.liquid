@@ -26,16 +26,19 @@
       {% for block in section.blocks %}
         {% if block.type == 'tab' and block.settings.display_in_mobile %}
           {% assign blog = blogs[block.settings.blog] %}
-          <dt class="accordion__tab-title">
-            {% if block.settings.title != blank %}
-              {{ block.settings.title }}
-            {% else %}
-              {{ blog.title }}
-            {% endif %}
-          </dt>
-          <dd class="accordion__tab-content rte">
-            {% include "product-tabs-content" %}
-          </dd>
+          {% include "product-tabs-content", tab_content: blank %}
+          {% if tab_content != blank %}
+            <dt class="accordion__tab-title">
+              {% if block.settings.title != blank %}
+                {{ block.settings.title }}
+              {% else %}
+                {{ blog.title }}
+              {% endif %}
+            </dt>
+            <dd class="accordion__tab-content rte">
+              {{ tab_content }}
+            </dd>
+          {% endif %}
         {% endif %}
       {% endfor %}
     {% endif %}

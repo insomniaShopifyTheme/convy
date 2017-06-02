@@ -3,17 +3,33 @@
     <li class='tab'><a href="#tab-description">{{ "products.product.tabs.description" | t }}</a></li>
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
+        {% assign custom_tabs_content = blank %}
         {% if block.type == 'tab' %}
           {% assign blog = blogs[block.settings.blog] %}
-          <li class='tab' {{ block.shopify_attributes }}>
-            <a href="#tab-{{ block.id }}">
-              {% if block.settings.title != blank %}
-                {{ block.settings.title }}
-              {% else %}
-                {{ blog.title }}
-              {% endif %}
-            </a>
-          </li>
+          {% include "product-tabs-content", tab_content: blank %}
+          {% if tab_content != blank %}
+            <li class='tab' {{ block.shopify_attributes }}>
+              <a href="#tab-{{ block.id }}">
+                {% if block.settings.title != blank %}
+                  {{ block.settings.title }}
+                {% else %}
+                  {{ blog.title }}
+                {% endif %}
+              </a>
+            </li>
+            {% comment %}
+              Collect tabs content for later here
+              so that we can avoid another loop
+            {% endcomment %}
+            {% capture this_tab_content %}
+              <div id="tab-{{ block.id }}">
+                <div class="tab__page-content rte">
+                  {{tab_content}}
+                </div>
+              </div>
+            {% endcapture %}
+            {%- assign custom_tabs_content = custom_tabs_content | append: this_tab_content -%}
+          {% endif %}
         {% endif %}
       {% endfor %}
     {% endif %}
@@ -26,17 +42,8 @@
       {{ product.description }}
     </div>
   </div>
-  {% if section.blocks.size > 0 %}
-    {% for block in section.blocks %}
-      {% if block.type == 'tab' %}
-        {% assign blog = blogs[block.settings.blog] %}
-        <div id="tab-{{ block.id }}">
-          <div class="tab__page-content rte">
-            {% include "product-tabs-content" %}
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
+  {% if custom_tabs_content != blank %}
+    {{ custom_tabs_content }}
   {% endif %}
   {% if section.settings.reviews_tab %}
   <div id="tab-reviews">

@@ -12,11 +12,11 @@
     "settings": [
       {
         "type": "header",
-        "content": "Link"
+        "content": "Customer support"
       },
       {
         "type": "paragraph",
-        "content": "[Support](http:\/\/support.konversiontheme.com\/support\/)"
+        "content": "*[Get help](http://support.tabarnapp.com/en)*"
       }
     ]
   },
