@@ -1,0 +1,46 @@
+{% assign for_product = false %}
+{% assign for_collection = false %}
+{% assign tag_product = product.handle | prepend: "product-" %}
+{% assign tag_collection = "" %}
+{% assign tag_all = "product-all, collection-all" %}
+{% paginate blog.articles by blog.articles_count %}
+
+  {% for temp in blog.all_tags %}
+    {% assign tag = temp | handleize %}
+    {% if tag_product contains tag %}
+      {% assign for_product = true %}
+    {% else %}
+      {% for collection in product.collections %}
+        {% assign temp_collection = collection.handle | prepend: "collection-" | append: ", " %}
+        {% assign tag_collection = tag_collection | append: temp_collection %}
+        {% if tag_collection contains tag %}
+          {% assign for_collection = true %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign is_found = false %}
+
+  {% for article in blog.articles %}
+    {% for temp in article.tags %}
+      {% assign tag = temp | handleize %}
+      {% if for_product %}
+        {% assign search_tags = tag_product %}
+      {% elsif for_collection %}
+        {% assign search_tags = tag_collection %}
+      {% else %}
+        {% assign search_tags = tag_all %}
+      {% endif %}
+      {% if search_tags contains tag %}
+        {% assign tab_content = article.content %}
+        {% assign is_found = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+    {% if is_found %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+{% endpaginate %}

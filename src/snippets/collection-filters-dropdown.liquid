@@ -1,11 +1,13 @@
 <select name="SortTags" id="SortTags">
   <option value=""> {{ "collections.general.all_collections" | t }}</option>
   {% for tag in collection.all_tags %}
-    {% if current_tags contains tag %}
-      <option value="{{ tag | handle }}" selected>{{ tag }}</option>
-    {% else %}
-      <option value="{{ tag | handle }}">{{ tag }}</option>
-    {% endif %}
+    {% unless tag contains "deal-" %}
+      {% if current_tags contains tag %}
+        <option value="{{ tag | handle }}" selected>{{ tag }}</option>
+      {% else %}
+        <option value="{{ tag | handle }}">{{ tag }}</option>
+      {% endif %}
+    {% endunless %}
   {% endfor %}
 </select>
 <script>

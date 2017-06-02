@@ -1,9 +1,13 @@
 /*================ Testimonials Section ================*/
 
 .section-testimonials {
-  .slider-wrapper {
+  .section-testimonials--alt {
+    @include inverted-section();
+  }
+  .grid-wrapper, .slider-wrapper {
     margin-bottom: 20px; // space for dots
   }
+
   .slick-slider .slick-dots {
     bottom: -10px;
     margin: 0 auto;
@@ -21,6 +25,24 @@
     }
   }
 }
+.grid-wrapper{
+  padding: 0px 15px;
+
+  .testimonial{
+    height: 240px;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+  }
+
+  .testimonial__title{
+    margin-bottom: 30px;
+    margin-left: 30px;
+    @include at-query($max, $large) {
+      margin-top: 20px;
+    }
+  }
+}
 
 .testimonial {
   .testimonial__title {
@@ -29,7 +51,6 @@
   }
   .testimonial__text {
     font-family: $font-stack-heading;
-    text-transform: uppercase;
     text-align: center;
     margin-bottom: 1rem;
     @include at-query($max, $small) {
@@ -43,6 +64,8 @@
       border-radius: 50%;
       border: 1px solid $color-primary;
       margin: 0 auto;
+      height: 90px;
+      width: 90px;
     }
   }
   .testimonial__sign {

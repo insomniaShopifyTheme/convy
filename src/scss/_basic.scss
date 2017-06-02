@@ -99,11 +99,12 @@ body {
 @mixin fixed-header() {
   &>header {
     position: fixed;
+    top: 0 !important;
     width: 100%;
     z-index: $z-index-toolbar;
   }
 }
-body.fixed-header--all, {
+body.fixed-header--all {
   @include fixed-header;
 }
 @include at-query($max, $pre-large) {

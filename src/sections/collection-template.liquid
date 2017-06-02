@@ -1,14 +1,7 @@
 {%- assign limit = 6 -%}
 
 <div data-section-id="{{ section.id }}" data-section-type="collection-template">
-{% assign is_infinite = section.settings.dispaly_infinite %}
-{% if is_infinite %}
-  {% assign limit = collection.all_products_count %}
-{% else %}
-  {% assign limit = section.settings.display_number_of_rows %}
-{% endif %}
-{% paginate collection.products by limit %}
-
+  
 {% for block in section.blocks %}
   {% if block.type == "banner" and block.settings.image != blank %}
   {%- assign block_collection = collections[block.settings.collection] -%}
@@ -71,7 +64,7 @@
   {% endif %}
   {% endif %}
 {% endfor %}
-
+  
   <header class="page-header">
     {% if section.settings.breadcrumbs %}
       {% include 'breadcrumb' %}
@@ -81,58 +74,78 @@
     {% endif %}
   </header>
 
-  <div class="collection-template page-width--large">
-    {% if section.settings.dispaly_filters or section.settings.dispaly_sorting %}
-      {%- assign has_sidebar = true -%}
+  {% if section.settings.dispaly_filters or section.settings.dispaly_sorting %}
+	{% if section.settings.location_filter_sorting == "top" %}
+  	  {% assign desktop_class = "" %}
+    {% else %}
+  	  {% assign desktop_class = "large--hide" %}
     {% endif %}
-    <div class="grid">
-
-      <div class="grid__item one-whole{% if has_sidebar %} large--one-quarter{% endif %}">
-        <div class="collection-controls grid--full large--hide">
-          {% if section.settings.dispaly_filters %}
-            <div class="grid__item {% if section.settings.dispaly_sorting %}one-half{% else %}one-whole{% endif %}">
-              {% include 'collection-filters-dropdown' %}
-            </div>
-          {% endif %}
-          {% if section.settings.dispaly_sorting %}
-            <div class="grid__item {% if section.settings.dispaly_filters %}one-half{% else %}one-whole{% endif %}">
-              {% include 'collection-sorting-dropdown' %}
-            </div>
-          {% endif %}
-        </div>
-        {% if has_sidebar %}
-          <div class="collection-sidebar medium-down--hide">
+    <div class="collection-template top-filter page-width--large {{ desktop_class }}">
+      <div class="grid">
+        <div class="grid__item one-whole">
+          <div class="collection-controls grid--full">
             {% if section.settings.dispaly_filters %}
-              {% include 'collection-filter' %}
+              <div class="grid__item {% if section.settings.dispaly_sorting %}one-half{% else %}one-whole{% endif %}">
+                {% include 'collection-filters-dropdown' %}
+              </div>
             {% endif %}
             {% if section.settings.dispaly_sorting %}
-              {% include 'collection-sorting' %}
+              <div class="grid__item {% if section.settings.dispaly_filters %}one-half{% else %}one-whole{% endif %}">
+                {% include 'collection-sorting-dropdown' %}
+              </div>
             {% endif %}
           </div>
-        {% endif %}
+        </div>
       </div>
+    </div>
+  {% endif %}
 
-      <div class="grid__item one-whole{% if has_sidebar %} large--three-quarters{% endif %}">
+  {% comment %}
+  ================= MOBILE VERSION =================
+  {% endcomment %}
+  
+{% assign is_infinite_mobile = section.settings.dispaly_infinite_mobile %}
+
+{% case section.settings.mobile_layout %}
+  {% when '1-col' %}
+    {% assign mobile_cols = 1 %}
+  {% when '2-col' %}
+    {% assign mobile_cols = 2 %}
+{% endcase %}
+
+{% assign mobile_limit = section.settings.display_number_of_rows_mobile | times: mobile_cols %}
+{% paginate collection.products by mobile_limit %}
+
+  <div class="collection-template page-width--large large--hide">
+    <div class="grid">
+
+      <div class="grid__item one-whole">
         {% case section.settings.mobile_layout %}
           {% when '1-col' %}
             {%- assign mobile_col_sizes = "medium-down--one-whole" -%}
           {% else %}
             {%- assign mobile_col_sizes = "medium-down--one-half" -%}
         {% endcase %}
-        <div class="grid--full grid--uniform product-list product-list--{{ section.settings.mobile_layout }}">
+        <div class="grid--full grid--uniform product-list product-list--{{ section.settings.mobile_layout }} product-mobile">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
           {%- assign card_hoverable = section.settings.hoverable -%}
           {% for product in collection.products %}
-            <div class="grid__item {{ mobile_col_sizes }} {% if has_sidebar %} large--one-third{% else %} large--one-quarter{% endif %}">
+            <div class="grid__item {{ mobile_col_sizes }}">
               <div class="product-list__item">
                 {% include 'product-card' %}
               </div>
             </div>
           {% endfor %}
-        </div>
 
-        {% if paginate.pages > 1 %}
+          {% if paginate.next and is_infinite_mobile == true %}
+            <div class="more-mobile"><a href="{{ paginate.next.url }}">More</a></div>        
+          {% endif %}
+        </div>
+       
+		<div id="product-list-foot-mobile"></div>
+        
+        {% if paginate.pages > 1 and is_infinite_mobile == false %}
           <hr>
           <div class="pagination">
             {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
@@ -145,6 +158,85 @@
   </div>
 
 {% endpaginate %}
+
+  {% comment %}
+  ================= DESKTOP VERSION =================
+  {% endcomment %}
+  
+{% assign is_infinite_desktop = section.settings.dispaly_infinite_desktop %}
+
+{% case section.settings.desktop_layout %}
+  {% when '2-col' %}
+    {%- assign desktop_col_sizes = "large--one-half" -%}
+    {% assign desktop_cols = 2 %}
+  {% when '3-col' %}
+    {%- assign desktop_col_sizes = "large--one-third" -%}
+    {% assign desktop_cols = 3 %}
+  {% when '4-col' %}
+    {%- assign desktop_col_sizes = "large--one-quarter" -%}
+    {% assign desktop_cols = 4 %}
+{% endcase %}
+
+{% assign desktop_limit = section.settings.display_number_of_rows_desktop | times: desktop_cols %}
+{% paginate collection.products by desktop_limit %}
+
+  <div class="collection-template page-width--large medium-down--hide">
+    {% if section.settings.dispaly_filters or section.settings.dispaly_sorting %}
+      {% if section.settings.location_filter_sorting == "top" %}
+        {% assign has_sidebar = false %}
+      {% else %}
+        {% assign has_sidebar = true %}
+      {% endif %}
+    {% endif %}
+    <div class="grid">
+
+      <div class="grid__item one-whole{% if has_sidebar %} large--one-quarter{% endif %}">
+        {% if has_sidebar %}
+          <div class="collection-sidebar">
+            {% if section.settings.dispaly_filters %}
+              {% include 'collection-filter' %}
+            {% endif %}
+            {% if section.settings.dispaly_sorting %}
+              {% include 'collection-sorting' %}
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+
+      <div class="grid__item one-whole{% if has_sidebar %} large--three-quarters{% endif %}">
+        <div class="grid--full grid--uniform product-list product-desktop">
+          {%- assign btn_action = section.settings.product_btn_action -%}
+          {%- assign btn_text = section.settings.product_btn_text -%}
+          {%- assign card_hoverable = section.settings.hoverable -%}
+          {% for product in collection.products %}
+            <div class="grid__item {{ desktop_col_sizes }}">
+              <div class="product-list__item">
+                {% include 'product-card' %}
+              </div>
+            </div>
+          {% endfor %}
+
+          {% if paginate.next and is_infinite_desktop == true %}
+            <div class="more-desktop"><a href="{{ paginate.next.url }}">More</a></div>        
+          {% endif %}
+        </div>
+       
+		<div id="product-list-foot-desktop"></div>
+        
+        {% if paginate.pages > 1 and is_infinite_desktop == false %}
+          <hr>
+          <div class="pagination">
+            {{ paginate | default_pagination | replace: '&laquo; Previous', '&larr;' | replace: 'Next &raquo;', '&rarr;' }}
+          </div>
+        {% endif %}
+      </div>
+
+    </div>
+
+  </div>
+
+{% endpaginate %}
+  
 </div>
 
 {% schema %}
@@ -182,8 +274,32 @@
         "default": true
       },
       {
+        "type": "radio",
+        "id": "location_filter_sorting",
+        "label": "Location for filters & sorting",
+        "default": "top",
+        "options": [
+          {"value": "top", "label": "Top Right"},
+          {"value": "left", "label": "Left side"}
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Mobile Settings"
+      },
+      {
+        "type": "radio",
+        "id": "mobile_layout",
+        "label": "Mobile Layout",
+        "default": "2-col",
+        "options": [
+          {"value": "1-col", "label": "1-column"},
+          {"value": "2-col", "label": "2-column"}
+        ]
+      },
+      {
         "type": "select",
-        "id": "display_number_of_rows",
+        "id": "display_number_of_rows_mobile",
         "label": "Number of rows",
         "options": [
           {
@@ -227,23 +343,82 @@
             "label": "10"
           }
         ],
-        "default": "6"
+        "default": "2"
       },
       {
         "type": "checkbox",
-        "id": "dispaly_infinite",
-        "label": "Display infinite",
+        "id": "dispaly_infinite_mobile",
+        "label": "Enable infinite scroll",
         "default": false
       },
       {
+        "type": "header",
+        "content": "Desktop Settings"
+      },
+      {
         "type": "radio",
-        "id": "mobile_layout",
-        "label": "Mobile Layout",
-        "default": "2-col",
+        "id": "desktop_layout",
+        "label": "Desktop Layout",
+        "default": "4-col",
         "options": [
-          {"value": "1-col", "label": "1-column"},
-          {"value": "2-col", "label": "2-column"}
+          {"value": "2-col", "label": "2-column"},
+          {"value": "3-col", "label": "3-column"},
+          {"value": "4-col", "label": "4-column"}
         ]
+      },
+      {
+        "type": "select",
+        "id": "display_number_of_rows_desktop",
+        "label": "Number of rows",
+        "options": [
+          {
+            "value": "1",
+            "label": "1"
+          },
+          {
+            "value": "2",
+            "label": "2"
+          },
+          {
+            "value": "3",
+            "label": "3"
+          },
+          {
+            "value": "4",
+            "label": "4"
+          },
+          {
+            "value": "5",
+            "label": "5"
+          },
+          {
+            "value": "6",
+            "label": "6"
+          },
+          {
+            "value": "7",
+            "label": "7"
+          },
+          {
+            "value": "8",
+            "label": "8"
+          },
+          {
+            "value": "9",
+            "label": "9"
+          },
+          {
+            "value": "10",
+            "label": "10"
+          }
+        ],
+        "default": "2"
+      },
+      {
+        "type": "checkbox",
+        "id": "dispaly_infinite_desktop",
+        "label": "Enable infinite scroll",
+        "default": false
       },
       {
         "type": "header",

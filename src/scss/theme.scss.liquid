@@ -37,7 +37,9 @@
   separator
   content
   featured collections
+  featured collection
   featured products
+  featured product
 
 
 ==============================================================================*/
@@ -90,11 +92,13 @@ $color-special-text: {{ settings.color_text_alt }};
 $color-meta-text: #afafaf;
 $color-pale: #878787;
 $color-menu: {{ settings.color_menu }};
+$color-submenu: {{ settings.color_submenu }};
 
 // Backgrounds
 $color-bg: {{ settings.color_bg }};
 $color-bg-alt: {{ settings.color_bg_alt }};
 $color-bg-menu: {{ settings.color_menu_bg }};
+$color-bg-submenu: {{ settings.color_submenu_bg }};
 
 // Text colors
 $color-text-body: {{ settings.color_text }};
@@ -146,6 +150,12 @@ $radius: 3px;
 $topbar-height: 40px;
 $header-height-mobile: 55px;
 $header-height: 55px;
+$product-add-to-cart-bar-height: 60px;
+{% if settings.fixed_header == 'disable' %}
+  $top-add-to-cart-bar: 0;
+{% else %}
+  $top-add-to-cart-bar: $topbar-height + $header-height;
+{% endif %}
 
 // Z-index
 $zindex-nav-dropdowns: 5;
@@ -246,6 +256,8 @@ $slick-next-character: "\3009";
 @import url('components/_tabs.scss');
 @import url('components/_collection-card.scss');
 @import url('components/_konversion-modal.scss');
+@import url('components/_facebook-buttons.scss');
+@import url('components/_deal-of-the-day.scss');
 
 
 
@@ -275,6 +287,7 @@ $slick-next-character: "\3009";
 @import url('sections/_separator.scss');
 @import url('sections/_content.scss');
 @import url('sections/_featured_collections.scss');
+@import url('sections/_featured_collection.scss');
 @import url('sections/_featured_products.scss');
 @import url('sections/_featured_product.scss');
 @import url('sections/_icon_list.scss');

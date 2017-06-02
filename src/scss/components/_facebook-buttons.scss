@@ -1,0 +1,23 @@
+.facebook-buttons__wrapper{
+  display: -webkit-inline-box;
+  float: left;
+  height: $topbar-height;
+  padding: 5px 10px 0px 10px;
+
+  .fake-like-button{
+    width: 92px;
+    height: 29px;
+    margin: 5px 0px 0px 4px;
+    background-repeat: no-repeat;
+    background-image: url('fake-like-btn.png');
+    cursor: pointer;
+  }
+  .fake-share-button{
+    width: 87px;
+    height: 29px;
+    margin: 5px 0px 0px 0px;
+    background-repeat: no-repeat;
+    background-image: url('fake-share-btn.png');
+    cursor: pointer;
+  }
+}

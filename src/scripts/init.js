@@ -5,6 +5,8 @@ theme.init = function () {
   theme.modalInit();
   theme.mobileNavInit();
   theme.loginForms();
+  theme.dealOfTheDay();
+  theme.topBar();
 };
 
 // Blog: filter by tag
@@ -14,7 +16,7 @@ theme.init = function () {
     return;
   }
   $filterBy.on('change', function() {
-    location.href = $(this).val();
+    location.href = $(this).val(); 
   });
 })();
 
@@ -28,6 +30,7 @@ $(document).ready(function() {
   sections.register('product-template', theme.ProductPageSection);
   sections.register('collection-template', theme.CollectionTemplate);
   sections.register('contact-template', theme.ContactTemplate);
+  sections.register('featured-collection-section', theme.FeaturedCollectionSection);
   sections.register('featured-product-section', theme.FeaturedProductSection);
 
   $('[data-tooltip!=""]').qtip({

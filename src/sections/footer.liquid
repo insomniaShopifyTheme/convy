@@ -44,6 +44,8 @@
     {%- assign col_size = 'one-whole medium--one-half large--one-quarter' -%}
   {% when 5 %}
     {%- assign col_size = 'one-whole large--one-fifth' -%}
+  {% when 6 %}
+    {%- assign col_size = 'one-whole large--one-sixth' -%}
   {% else %}
     {%- assign col_size = 'one-whole' -%}
 {% endcase %}
@@ -113,6 +115,19 @@
                 </a>
               {% endif %}
             </div>
+          {% when 'image' %}
+            <div class="text-{{ block.settings.align_text }}">
+              {% if block.settings.title != blank %}
+                <h4 class="text-{{ block.settings.align_text }} footer-col__title">{{ block.settings.title | escape }}</h4>
+              {% endif %}
+              {% if block.settings.image_link != blank %}
+                <a href="{{ block.settings.image_link }}">
+                  <img src="{{ block.settings.image | img_url: "master" }}">
+                </a>
+              {% else %}
+              	  <img src="{{ block.settings.image | img_url: "master" }}">
+              {% endif %}
+            </div>
           {% when 'html' %}
             {% if block.settings.code != blank %}
               {{ block.settings.code }}
@@ -174,7 +189,7 @@
   {
     "name": "Footer",
     "class": "section-footer",
-    "max_blocks": 5,
+    "max_blocks": 6,
     "settings": [
       {
         "type": "checkbox",
@@ -453,6 +468,50 @@
             "type": "url",
             "id": "button_link",
             "label": "Button link"
+          },
+          {
+            "type": "select",
+            "id": "align_text",
+            "label": "Align",
+            "default": "left",
+            "options": [
+              {"value": "left", "label": "Left"},
+              {"value": "center", "label": "Centered"},
+              {"value": "right", "label": "Right"}
+            ]
+          },
+          {
+            "type": "select",
+            "id": "display",
+            "label": "Display",
+            "default": "all",
+            "options": [
+              {"value": "all", "label": "Desktop & Mobile"},
+              {"value": "mobile", "label": "Mobile only"},
+              {"value": "desktop", "label": "Desktop only"}
+            ]
+          }
+        ]
+      },
+      {
+        "type": "image",
+        "name": "Image",
+        "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Footer image"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "url",
+            "id": "image_link",
+            "label": "Image link"
           },
           {
             "type": "select",

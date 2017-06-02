@@ -1,0 +1,63 @@
+/*================ Featured Collection Section ================*/
+
+.section-featured-collection {
+  .product-list {
+    text-align: center;
+    @include at-query($max, $pre-large) {
+      &.grid--uniform {
+        {% unless settings.margin_on_mobile %}
+          margin-left: -5px;
+        {% endunless %}
+      }
+      &>.grid__item {
+        padding-left: 5px;
+        {% if settings.margin_on_mobile %}
+          padding-right: 5px;
+        {% endif %}
+      }
+      &.product-list--col-1 {
+        &.grid--uniform {
+          margin-left: 0;
+        }
+        &>.grid__item {
+          padding-left: $gutter;
+          padding-right: $gutter;
+        }
+      }
+    }
+    @include at-query($min, $large) {
+      &.grid--uniform {
+      	margin-left: -($gutter / 2);
+      }
+      &>.grid__item {
+        padding-left: $gutter / 2;
+        margin-bottom: $gutter;
+      }
+    }
+    .grid__item {
+      float: none;
+      display: inline-block;
+      @include at-query($max, $pre-large) {
+        margin-bottom: $gutter / 2;
+		&.medium-down--one-half {
+      	  width: calc(50% - 2px);
+        }
+      }
+      @include at-query($min, $large) {
+        margin-bottom: $gutter;
+        &.large--one-quarter {
+      	  width: calc(25% - 3px);
+        }
+        &.large--one-third {
+          width: calc(33.333% - 3px);
+        }
+        &.large--one-half {
+          width: calc(50% - 2px);
+        }
+      }
+    }
+  }
+  @include at-query($min, $medium) {
+    padding: 0 $gutter $gutter;
+  }
+}

@@ -45,7 +45,10 @@ gulp.task('scripts', function() {
       globalConfig.scripts_src + '/product-template.js',
       globalConfig.scripts_src + '/collection-template.js',
       globalConfig.scripts_src + '/contact-template.js',
+      globalConfig.scripts_src + '/featured-collection-section.js',
       globalConfig.scripts_src + '/featured-product-section.js',
+      globalConfig.scripts_src + '/deal-of-the-day.js',
+      globalConfig.scripts_src + '/top-bar.js',
       globalConfig.scripts_src + '/admin.dev.js',
       globalConfig.scripts_src + '/check_license.js',
       globalConfig.scripts_src + '/init.js',
@@ -125,7 +128,7 @@ gulp.task('watch', function() {
 });
 
 
-//build 
+//build
 gulp.task('build', gulpSequence('clean', 'sync_files', 'styles', 'scripts', 'compile_liquid'));
 
 // Default task
