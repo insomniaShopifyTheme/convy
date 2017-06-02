@@ -1,7 +1,43 @@
-<ul class="sf-menu sf-js-enabled sf-arrows  {% if linklists.main-menu.links.size >= 7 %}sf-menu-shrink-x2{% else if linklists.main-menu.links.size >= 5 %}sf-menu-shrink-x1{% endif %}">
-  {% for link in linklists.main-menu.links %}
+{% if menu_type == "text-menu" %}
+  <ul class="sf-menu sf-js-enabled sf-arrows {% if linklists.main-menu.links.size >= 7 %}sf-menu-shrink-x2{% else if linklists.main-menu.links.size >= 5 %}sf-menu-shrink-x1{% endif %}">
+    {% for link in linklists.main-menu.links %}
+      {% assign child_list_handle = link.title | handleize %}
+      {% if linklists[child_list_handle].links != blank %}
+        <li{% if link.active %} class="current"{% endif %}>
+          <a href="{{ link.url }}" class="sf-with-ul">{{ link.title }}</a>
+          <ul style="display: none;">
+            {% for childlink in linklists[child_list_handle].links %}
+              {% assign grandchild_list_handle = childlink.title | handleize %}
+              {% if linklists[grandchild_list_handle].links != blank %}
+                <li{% if childlink.active %} class="current"{% endif %}>
+                  <a href="{{ childlink.link }}" class="sf-with-ul">{{ childlink.title }}</a>
+                  <ul>
+                    {% for grandchildlink in linklists[grandchild_list_handle].links %}
+                      <li{% if grandchildlink.active %} class="current"{% endif %}>
+                        <a href="{{ grandchildlink.url }}">{{ grandchildlink.title | escape }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% else %}
+                <li{% if childlink.active %} class="current"{% endif %}>
+                  <a href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </li>
+      {% else %}
+        <li{% if link.active %} class="current"{% endif %}>
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% else %}
+  <ul class="cbp-hsmenu">
+    {% for link in linklists.main-menu.links %}
     {% assign child_list_handle = link.title | handleize %}
-
     {% if linklists[child_list_handle].links != blank %}
     <li{% if link.active %} class="current"{% endif %}>
       <a href="{{ link.url }}">{{ link.title }}</a>
@@ -46,5 +82,6 @@
       <a href="{{ link.url }}">{{ link.title }}</a>
     </li>
     {% endif %}
-  {% endfor %}
-</ul>
+    {% endfor %}
+  </ul>
+{% endif %}

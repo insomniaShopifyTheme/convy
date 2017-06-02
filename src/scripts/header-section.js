@@ -128,9 +128,8 @@ theme.HeaderSection = (function() {
         speed: 200,
       });
     } else {
-		var menu = new cbpHorizontalSlideOutMenu( document.getElementById( 'cbp-hsmenu-wrapper' ) );
+		  var menu = new cbpHorizontalSlideOutMenu( document.getElementById( 'cbp-hsmenu-wrapper' ) );
     }
-    
     $container.find('.js-expand-search').on('click', this._toggleSearchField.bind(this));
     var _self = this;
     $container.find('.header-search').on('keyup', function(e) {
