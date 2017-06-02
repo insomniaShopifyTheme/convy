@@ -110,7 +110,6 @@
     }
     h2 {
       font-size: 15px;
-      color: $color-menu;
     }
   }
   .content-product-img {
@@ -142,11 +141,24 @@
 
     .compared_at {
       text-decoration: line-through;
-      color: $color-menu;
     }
     .price {
       color: $color-special;
     }
 
   }
+  /*================ Desktop Version ================*/
+  @include at-query($min, $large) {
+    .content-countdown {
+      h2 {
+        color: $color-menu;
+      }
+    }
+    .content-price {
+      .compared_at {
+        color: $color-menu;
+      }
+    }
+  }
+
 }
