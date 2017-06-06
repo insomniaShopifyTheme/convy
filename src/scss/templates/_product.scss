@@ -69,12 +69,12 @@
     font-weight: 600;
     float: right;
     text-align: right;
-    padding: 13px 0px;
+    padding: 13px 15px;
     color: #3e3e3e;
   }
 
   .btn--add-to-cart{
-    float: left;
+    float: right;
     height: $product-add-to-cart-bar-height;
     text-transform: uppercase;
     padding: 0px 50px
@@ -323,7 +323,7 @@
   }
 
   .related-products {
-    margin: $gutter 0 50px;
+    margin: $gutter 0 20px;
     // See also sections/_featured_products.scss
     .product-list {
       .slick-list {

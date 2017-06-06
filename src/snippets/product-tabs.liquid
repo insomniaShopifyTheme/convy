@@ -6,7 +6,9 @@
         {% assign custom_tabs_content = blank %}
         {% if block.type == 'tab' %}
           {% assign blog = blogs[block.settings.blog] %}
+
           {% include "product-tabs-content", tab_content: blank %}
+
           {% if tab_content != blank %}
             <li class='tab' {{ block.shopify_attributes }}>
               <a href="#tab-{{ block.id }}">
