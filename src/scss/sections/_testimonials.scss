@@ -45,6 +45,16 @@
 }
 
 .testimonial {
+  height: 240px;
+
+  display: table;
+
+
+  .inner-content{
+    vertical-align: middle;
+    display: table-cell;
+
+  }
   .testimonial__title {
     @extend .text-center;
     @extend .section-heading;

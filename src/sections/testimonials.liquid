@@ -25,10 +25,6 @@
               <div class="testimonial__image small--hide">
                 <img src="{{ testimonial.image | img_url: '90x90', crop: 'center' }}" alt="{{ testimonial.name }}">
               </div>
-              {% else %}
-                <div class="testimonial__image ">
-                  <img  src="{{ 'quotation.png' | asset_url }}" alt="{{ testimonial.name }}">
-                </div>
               {% endif %}
               <p class="testimonial__sign">
                 {% if testimonial.link != blank %}
@@ -59,31 +55,31 @@
                 <div class="grid__item {{ grid_item_size }} small--one-whole testimonial" {{ block.shopify_attributes }}>
                   {%- assign testimonial = block.settings -%}
 
-                  {% if testimonial.image != blank %}
-                    <div class="testimonial__image ">
-                      <img src="{{ testimonial.image | img_url: '90x90', crop: 'center' }}" alt="{{ testimonial.name }}">
-                    </div>
-                  {% else %}
-                    <div class="testimonial__image ">
-                      <img  src="{{ 'quotation.png' | asset_url }}" alt="{{ testimonial.name }}">
-                    </div>
-                  {% endif %}
-                  <p class="testimonial__sign">
-                    {% if testimonial.link != blank %}
-                      <a href="{{ block.settings.link }}" target="_blank">
-                    {% endif %}
-                    {{ testimonial.name }}{% if testimonial.company != blank %}, {{ testimonial.company }}{% endif %}
-                    {% if testimonial.link != blank %}
-                      </a>
-                    {% endif %}
+                  <div class="inner-content">
+                      {% if testimonial.image != blank %}
+                        <div class="testimonial__image ">
+                          <img src="{{ testimonial.image | img_url: '90x90', crop: 'center' }}" alt="{{ testimonial.name }}">
+                        </div>
+                      {% endif %}
 
-                  </p>
-                  <div class="grid">
-                    <div class="testimonial__text grid__item ten-twelfths push--one-twelfth">
-                      {{ testimonial.text | truncate: 100 }}
+                      <p class="testimonial__sign">
+                        {% if testimonial.link != blank %}
+                          <a href="{{ block.settings.link }}" target="_blank">
+                        {% endif %}
+                        {{ testimonial.name }}{% if testimonial.company != blank %}, {{ testimonial.company }}{% endif %}
+                        {% if testimonial.link != blank %}
+                          </a>
+                        {% endif %}
+
+                      </p>
+                      <div class="grid">
+                        <div class="testimonial__text grid__item ten-twelfths push--one-twelfth">
+                          {{ testimonial.text | truncate: 100 }}
+
+                        </div>
+                      </div>
 
                     </div>
-                  </div>
 
                 </div>
 
