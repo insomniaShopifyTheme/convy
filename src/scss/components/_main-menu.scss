@@ -106,7 +106,14 @@
 .sf-arrows ul .sfHover > .sf-with-ul:after {
   border-left-color: #b7b7b7;
 }
-/* styling for product menu */
+
+
+
+
+
+/* ---------- styling for product menu ---------- */
+
+
 #cbp-hsmenu-wrapper {
 	position: relative;
 }
@@ -118,7 +125,44 @@
 #cbp-hsmenu-wrapper .cbp-hsmenu {
   	float: left;
   	height: 100%;
+
+    //menu shrink
+    &.sf-menu-shrink-x1{
+      @media (max-width: 1470px) {
+         & > li > a{
+          padding: 0.90em 0.4em;
+          font-size: 15px;
+          height: 50px;
+
+          &:not(:only-child){
+            padding-right: 15px;
+          }
+          &:not(:only-child):after{
+            right: 0.2em;
+          }
+        }
+      }
+    }
+
+    &.sf-menu-shrink-x2{
+      @media (max-width: 1470px) {
+        & > li > a{
+          padding: 1.2em 0.4em;
+          font-size: 13px;
+          height: 50px;
+          &:not(:only-child):after{
+            display: none;
+          }
+        }
+      }
+    }
+
 }
+
+.cbp-hsmenu .sf-with-ul{
+  padding-right: 1.9em ;
+}
+
 
 .cbp-hsmenu > li {
   	float: left;
@@ -129,19 +173,19 @@
 .cbp-hsmenu > li:first-child {
 	margin-left: 0;
 }
-.cbp-hsmenu > li.current, 
+.cbp-hsmenu > li.current,
 .cbp-hsmenu > li:hover {
-	border-bottom: 5px solid #bbb;
-    box-sizing: border-box;  
+	border-bottom: 5px solid $color-special;
+    box-sizing: border-box;
 }
 .cbp-hsmenu > li > a {
-    color: $color-menu;
-    padding: .9rem 1em .75em;
+  color: $color-menu;
+  padding: .9rem 1em .75em;
 	display: inline-block;
 	position: relative;
 	z-index: 10000;
 	outline: none;
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 .no-touch .cbp-hsmenu > li > a:hover,
 .no-touch .cbp-hsmenu > li > a:focus,
@@ -170,18 +214,19 @@
 	position: absolute;
 	left: calc((100vw - 100%) / 2 * -1);
 	top: 100%;
-    width: 100vw;  
+    width: 100vw;
 	z-index: 0;
 	text-align: center; /* for aligning the sub items */
 	visibility: hidden;
+
 }
-.cbp-hssubmenu:before, 
-.cbp-hssubmenu:after { 
-	content: " "; 
-	display: table; 
+.cbp-hssubmenu:before,
+.cbp-hssubmenu:after {
+	content: " ";
+	display: table;
 }
-.cbp-hssubmenu:after { 
-	clear: both; 
+.cbp-hssubmenu:after {
+	clear: both;
 }
 .cbp-hssubmenu > li {
 	width: 16.2%;
@@ -241,7 +286,7 @@
 	width: 100%;
 	top: 100%;
 	left: 0;
-	z-index: 0;
+	z-index: 20;
 	height: 0px;
 }
 .no-touch .cbp-hsmenubg {
