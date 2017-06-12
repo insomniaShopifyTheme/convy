@@ -37,9 +37,10 @@
               }
             </style>
           {% else %}
+            {% capture demo_slide_image %}{% cycle 'demo-slide-1.svg', 'demo-slide-2.svg' %}{% endcapture %}
             <style>
               .slideshow__image--{{ block.id }} {
-                background-image: url('{{ "banner-placeholder.png" | asset_url }}');
+                background-image: url('{{ demo_slide_image | asset_url }}');
                 background-position: center {{ block.settings.alignment }};
               }
             </style>

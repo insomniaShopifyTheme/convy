@@ -17,3 +17,6 @@ node_modules/
 config.yml
 tmp/
 .idea
+
+# Prevent overriding theme settings
+src/config/settings_data.json
