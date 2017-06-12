@@ -6,48 +6,122 @@
 {% assign nr_tags = 0 %}
 
 {% for tag in collection.all_tags %}
-  {% if tag contains "deal-" %}{% else %}
+  {% if tag contains "deal-" or tag contains "filter-"%}{% else %}
     {% assign nr_tags = nr_tags | plus: 1 %}
   {% endif %}
 {% endfor %}
 
 {% if nr_tags > 0 %}
 <div class="collection-filter">
-  <h3 class="collection-filter__title">{{ 'collections.filters.title' | t }}:</h3>
-  <h4 class="collection-filter__subtitle">
-    {{ 'collections.filters.by_tags' | t }}
-  </h4>
+  <h3 class="collection-filter__title">{{ 'collections.filters.title' | t | capitalize }}:</h3>
   <ul class="collection-filter__items collection-filter__items--tags no-bullets">
-    {% for tag in collection.all_tags %}
 
-      {%- assign tag_safe = tag | escape -%}
-      {%- assign tag_safe_amp = tag | replace: '&', 'amp' | handle -%}
 
-      {% if tag contains "deal-" %}
-      {% else %}
-      <li>
-        {% if current_tags contains tag %}
-          <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ tag | link_to_remove_tag: tag }}</label>
 
-        {% comment %}
-          Workaround for shopify's problem with tags containing ampersands
-        {% endcomment %}
-        {% elsif current_tags contains tag_safe %}
-          <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ tag | link_to_remove_tag: tag_safe }}</label>
-        {% elsif current_tags contains tag_safe_amp %}
-          <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ tag | link_to_remove_tag: tag_safe_amp }}</label>
-        {% else %}
-          <label><input type="checkbox" value="{{ tag }}"> {{ tag | link_to_add_tag: tag }}</label>
-        {% endif %}
-      </li>
+  {% comment %}
+    Tag filters
+  {% endcomment %}
+
+
+  {% assign max_items = section.settings.collapse_filters_max %}
+
+  {% assign filterTitleList = ',' %}
+  {% assign filterNameList = ',' %}
+
+  {% assign not_first_subtitle = false %}
+  {% for tag in collection.all_tags %}
+
+  {%- assign tag_safe = tag | escape -%}
+  {%- assign tag_safe_amp = tag | replace: '&', 'amp' | handle -%}
+
+
+    {% if tag contains "filter-" %}
+      {% assign splitedTag = tag | split: '-' %}
+      {% assign filterTitle = splitedTag[1] %}
+      {% assign filterName = splitedTag[2] %}
+
+
+      {% capture compareFilterTitle %},{{ filterTitle }},{% endcapture %}
+
+      {% if filterTitleList contains compareFilterTitle %}{% else %}
+          {% if not_first_subtitle %}
+            </div>
+          {% endif %}
+          {% assign not_first_subtitle = true %}
+
+
+          <h4 class="collection-filter__subtitle collapsible-title" toggle="c-{{ filterTitle }}" max-items="{{ max_items }}">{{ filterTitle | capitalize}}</h4>
+          {% capture tempTitleList %}{{filterTitleList}}{{ filterTitle }},{% endcapture %}
+          {% assign filterTitleList = tempTitleList %}
+          <div class="collapsible-content c-{{ filterTitle }}">
+
       {% endif %}
 
-    {% endfor %}
-    {% if current_tags %}
+          {% capture compareFilterName %},{{ filterName }},{% endcapture %}
+
+          {% if filterNameList contains compareFilterName %}{% else %}
+                  <li>
+                    {% if current_tags contains tag %}
+                      <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ filterName | link_to_remove_tag: tag }}</label>
+                    {% elsif current_tags contains tag_safe %}
+                      <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ filterName | link_to_remove_tag: tag_safe }}</label>
+                    {% elsif current_tags contains tag_safe_amp %}
+                      <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ filterName | link_to_remove_tag: tag_safe_amp }}</label>
+                    {% else %}
+                      <label><input type="checkbox" value="{{ tag }}"> {{ filterName | link_to_add_tag: tag }}</label>
+                    {% endif %}
+                  </li>
+
+
+                  {% capture tempNameList %}{{filterNameList}}{{ filterName }},{% endcapture %}
+                  {% assign filterNameList = tempNameList %}
+           {% endif %}
+
+    {% endif %}
+
+  {% endfor %}
+
+  </ul>
+
+{% unless section.settings.hide_non_categorized %}
+  <h4 class="collection-filter__subtitle collapsible-title" toggle="c-other" max-items="{{ max_items }}">Other</h4>
+
+  <ul class="collection-filter__items collection-filter__items--tags no-bullets">
+    <div class="collapsible-content c-other">
+
+      {% for tag in collection.all_tags %}
+
+        {%- assign tag_safe = tag | escape -%}
+        {%- assign tag_safe_amp = tag | replace: '&', 'amp' | handle -%}
+
+        {% if tag contains "deal-" or tag contains "filter-" %}
+        {% else %}
+        <li>
+          {% if current_tags contains tag %}
+            <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ tag | link_to_remove_tag: tag }}</label>
+          {% elsif current_tags contains tag_safe %}
+            <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ tag | link_to_remove_tag: tag_safe }}</label>
+          {% elsif current_tags contains tag_safe_amp %}
+            <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ tag | link_to_remove_tag: tag_safe_amp }}</label>
+          {% else %}
+            <label><input type="checkbox" value="{{ tag }}"> {{ tag | link_to_add_tag: tag }}</label>
+          {% endif %}
+        </li>
+        {% endif %}
+
+      {% endfor %}
+    </div>
+  </ul>
+{% endunless %}
+{% if current_tags %}
+  <ul class="collection-filter__items collection-filter__items--tags no-bullets">
       <li class="collection-filter__reset">
         <a href="/collections/{{ collection.handle }}">{{ 'collections.filters.reset' | t }}</a>
       </li>
-    {% endif %}
   </ul>
+{% endif %}
+
+  <hr>
+
 </div>
 {% endif %}

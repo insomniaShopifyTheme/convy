@@ -69,18 +69,69 @@ $image-large: 728px;
     }
     .collection-filter {
       margin-bottom: $gutter;
+      visibility: hidden;
       .collection-filter__title {
         color: $color-meta-text;
         font-size: 1.15rem;
         font-weight: normal;
+
       }
       .collection-filter__subtitle {
         font-size: 1rem;
         font-weight: bold;
+
         .collection-filter__toggle {
           float: right;
           font-size: 0.8rem;
           margin-right: $gutter;
+        }
+
+
+      }
+      .collapsible-title{
+        display: block;
+        position: relative;
+        cursor: pointer;
+        margin-left: 15px;
+
+        &::after{
+          content: "\25c2";
+          font-size: 1.3em;
+          display: table;
+          left: -16px;
+          top: -17px;
+          line-height: 50px;
+          position: absolute;
+          text-shadow: 0 -1px #111;
+          @include transition(.3s);
+
+          -webkit-transform: rotate(-90deg);
+          -moz-transform: rotate(-90deg);
+          -ms-transform: rotate(-90deg);
+          -o-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+        }
+
+
+
+        &.closed::after{
+          -webkit-transform: rotate(-180deg);
+          -moz-transform: rotate(-180deg);
+          -ms-transform: rotate(-180deg);
+          -o-transform: rotate(-180deg);
+          transform: rotate(-180deg);
+        }
+      }
+      .collapsible-content{
+        margin-left: 13px;
+        overflow: hidden;
+        height: inherit;
+
+        @include transition(.7s);
+
+        &.closed{
+          height: 0px;
+
         }
       }
       .collection-filter__reset {
@@ -159,4 +210,3 @@ $image-large: 728px;
     }
   }
 }
-
