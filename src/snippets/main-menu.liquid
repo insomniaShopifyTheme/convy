@@ -35,7 +35,7 @@
     {% endfor %}
   </ul>
 {% else %}
-  <ul class="cbp-hsmenu">
+  <ul class="cbp-hsmenu  {% if linklists.main-menu.links.size >= 7 %}sf-menu-shrink-x2{% else if linklists.main-menu.links.size >= 5 %}sf-menu-shrink-x1{% endif %}">
     {% for link in linklists.main-menu.links %}
     {% assign child_list_handle = link.title | handleize %}
     {% if linklists[child_list_handle].links != blank %}

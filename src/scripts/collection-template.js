@@ -8,12 +8,12 @@ theme.CollectionTemplate = (function() {
     theme.productCardsInit($container);
 
     $container.find('.collection-filter__items--tags input').change(this.filterUpdate.bind(this));
-    
+
     $(window).scroll(function(){
       if($(window).width() < 1024) {
         theme.ScrollExecute();
       } else {
-        theme.ScrollExecute({          
+        theme.ScrollExecute({
           more_class: ".more-desktop",
           product_wrapper: ".product-desktop",
           end_point: "#product-list-foot-desktop",
@@ -21,6 +21,8 @@ theme.CollectionTemplate = (function() {
         });
       }
     });
+
+    this.tagFilterCollapse();
   }
 
   return CollectionTemplate;
@@ -33,10 +35,64 @@ theme.CollectionTemplate.prototype = _.extend({}, theme.CollectionTemplate.proto
     window.location = $filterLink.prop('href');
   },
 
+  tagFilterCollapse: function() {
+
+    var $collapsibleTitle = $('.collapsible-title'),
+        $collectionFilter = $('.collection-filter');
+
+    $collapsibleTitle.on('click', toggle);
+
+    function toggle(e){
+      $thisCollapsibleTitle = $(this);
+      var toggleElement = $thisCollapsibleTitle.attr('toggle'),
+          $collapsibleContent = $('.'+toggleElement);
+
+      if($thisCollapsibleTitle.hasClass('closed')){
+        $thisCollapsibleTitle.removeClass('closed');
+        $collapsibleContent.removeClass('closed');
+      }else{
+        $thisCollapsibleTitle.addClass('closed');
+        $collapsibleContent.addClass('closed');
+      }
+    }
+
+
+    $collapsibleTitle.each(function(){
+      $thisCollapsibleTitle = $(this);
+      var collapsibleContent = '.'+$thisCollapsibleTitle.attr('toggle'),
+          maxItems = $thisCollapsibleTitle.attr('max-items'),
+          collapsibleContent_li = $(collapsibleContent+'> li'),
+          _checked = [];
+
+      collapsibleContent_li.each(function(i, v){
+        _checked[i] = $(this).find('input[type=checkbox]').attr('checked');
+      });
+
+      if(!isNaN(maxItems) && maxItems != 0){
+
+
+        if(collapsibleContent_li.length >= maxItems){
+          if($.inArray('checked',_checked) == -1){
+            collapse();
+          }
+        }
+      }
+
+      function collapse(){
+        $thisCollapsibleTitle.addClass('closed');
+        $(collapsibleContent).addClass('closed');
+      }
+    });
+
+
+    $collectionFilter.css('visibility', 'visible');
+
+  }
+
 });
 
 theme.ScrollExecute = (function(){
-  function ScrollExecute(opt){    
+  function ScrollExecute(opt){
     opt = $.extend({}, {
       more_class: ".more-mobile",
       product_wrapper: ".product-mobile",
@@ -46,12 +102,12 @@ theme.ScrollExecute = (function(){
       loading_bar: '<img src=\"{{ "ajax-loader.gif" | asset_url }}\" />',
       delay: 200
     }, opt);
-    
+
     ///
     setTimeout(function(){
       if($(document).height() - opt.scroll_height < ($(document).scrollTop() + $(window).height())) {
           var loadingImage;
-          scrollNode = $(opt.more_class).last();    
+          scrollNode = $(opt.more_class).last();
           scrollURL = $(opt.more_class).find('a').last().attr("href");
 
         var moreview_ajax = function(pInfScrLoading){
@@ -85,7 +141,7 @@ theme.ScrollExecute = (function(){
                 },
                 dataType: "html"
               });
-          }      	
+          }
         };
 
         if(opt.device == "mobile"){
@@ -96,6 +152,6 @@ theme.ScrollExecute = (function(){
       }
     }, opt.delay);
   }
-  
+
   return ScrollExecute;
-})(); 
+})();

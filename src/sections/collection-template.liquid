@@ -1,7 +1,7 @@
 {%- assign limit = 6 -%}
 
 <div data-section-id="{{ section.id }}" data-section-type="collection-template">
-  
+
 {% for block in section.blocks %}
   {% if block.type == "banner" and block.settings.image != blank %}
   {%- assign block_collection = collections[block.settings.collection] -%}
@@ -64,7 +64,7 @@
   {% endif %}
   {% endif %}
 {% endfor %}
-  
+
   <header class="page-header">
     {% if section.settings.breadcrumbs %}
       {% include 'breadcrumb' %}
@@ -103,7 +103,7 @@
   {% comment %}
   ================= MOBILE VERSION =================
   {% endcomment %}
-  
+
 {% assign is_infinite_mobile = section.settings.dispaly_infinite_mobile %}
 
 {% case section.settings.mobile_layout %}
@@ -139,12 +139,12 @@
           {% endfor %}
 
           {% if paginate.next and is_infinite_mobile == true %}
-            <div class="more-mobile"><a href="{{ paginate.next.url }}">More</a></div>        
+            <div class="more-mobile"><a href="{{ paginate.next.url }}">More</a></div>
           {% endif %}
         </div>
-       
+
 		<div id="product-list-foot-mobile"></div>
-        
+
         {% if paginate.pages > 1 and is_infinite_mobile == false %}
           <hr>
           <div class="pagination">
@@ -162,7 +162,7 @@
   {% comment %}
   ================= DESKTOP VERSION =================
   {% endcomment %}
-  
+
 {% assign is_infinite_desktop = section.settings.dispaly_infinite_desktop %}
 
 {% case section.settings.desktop_layout %}
@@ -217,12 +217,12 @@
           {% endfor %}
 
           {% if paginate.next and is_infinite_desktop == true %}
-            <div class="more-desktop"><a href="{{ paginate.next.url }}">More</a></div>        
+            <div class="more-desktop"><a href="{{ paginate.next.url }}">More</a></div>
           {% endif %}
         </div>
-       
+
 		<div id="product-list-foot-desktop"></div>
-        
+
         {% if paginate.pages > 1 and is_infinite_desktop == false %}
           <hr>
           <div class="pagination">
@@ -236,7 +236,7 @@
   </div>
 
 {% endpaginate %}
-  
+
 </div>
 
 {% schema %}
@@ -257,16 +257,17 @@
       },
       {
         "type": "checkbox",
-        "id": "hoverable",
-        "label": "Use hover effect in desktop version",
-        "default": true
-      },
-      {
-        "type": "checkbox",
         "id": "dispaly_filters",
         "label": "Display tag filters",
         "default": true
       },
+      {
+        "type": "checkbox",
+        "id": "hoverable",
+        "label": "Use hover effect in desktop version",
+        "default": true
+      },
+
       {
         "type": "checkbox",
         "id": "dispaly_sorting",
@@ -283,6 +284,63 @@
           {"value": "left", "label": "Left side"}
         ]
       },
+      {
+        "type": "header",
+        "content": "Categorize Tags"
+      },
+      {
+        "type": "paragraph",
+        "content": "To categorize tags just add a tag filter-{category}-{item} to your product. E.g. add 'filter-color-blue' and 'filter-color-red' to your product, this will add a category 'color' with 'blue' and 'red' as items in your tag filters."
+      },
+
+
+      {
+        "type": "select",
+        "id": "collapse_filters_max",
+        "label": "Collapse category when it has:",
+        "options": [
+          {
+            "value": "0",
+            "label": "Never collapse"
+          },
+          {
+            "value": "1",
+            "label": "1 item (Always collapse)"
+          },
+          {
+            "value": "5",
+            "label": "5 items"
+          },
+          {
+            "value": "6",
+            "label": "6 items"
+          },
+          {
+            "value": "7",
+            "label": "7 items"
+          },
+          {
+            "value": "8",
+            "label": "8 items"
+          },
+          {
+            "value": "9",
+            "label": "9 items"
+          },
+          {
+            "value": "10",
+            "label": "10+ items"
+          }
+        ],
+        "default": "5"
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_non_categorized",
+        "label": "Hide all non-categorized tags from filters",
+        "default": false
+      },
+
       {
         "type": "header",
         "content": "Mobile Settings"
@@ -420,6 +478,8 @@
         "label": "Enable infinite scroll",
         "default": false
       },
+
+
       {
         "type": "header",
         "content": "Product button"
@@ -468,7 +528,7 @@
             "type": "collection",
             "id": "collection",
             "label": "Collection",
-            "info": "Select collection that you want to add an image banner for"
+            "info": "Select collection that you want to add an image banner for. Select 'None' if you want to display the banner on the Catalog page (the 'All products' page)."
           },
           {
             "type": "image_picker",

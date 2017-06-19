@@ -1,9 +1,17 @@
 <style>
-  
+
   #separator_{{ section.id }} {
     background-color: {{ section.settings.color }};
     height: {{ section.settings.height }};
+
   }
+
+  {% if section.settings.have-margin-bottom %}
+  .section-separator {
+    padding-bottom: 0 !important;
+  }
+  {% endif %}
+
 </style>
 {% case section.settings.display %}
   {% when "mobile" %}
@@ -59,6 +67,12 @@
           }
         ],
         "default": "10px"
+      },
+      {
+        "type": "checkbox",
+        "id": "have-margin-bottom",
+        "label": "Remove margin",
+        "default": false
       }
     ],
     "presets": [{

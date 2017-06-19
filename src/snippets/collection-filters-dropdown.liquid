@@ -1,14 +1,54 @@
+{% assign filterTitleList = ',' %}
+
+
 <select name="SortTags" id="SortTags">
   <option value=""> {{ "collections.general.all_collections" | t }}</option>
   {% for tag in collection.all_tags %}
-    {% unless tag contains "deal-" %}
+
+    {% assign splitedTag = tag | split: '-' %}
+    {% assign filterTitle = splitedTag[1] %}
+    {% assign filterName = splitedTag[2] %}
+
+    {% if tag contains "filter-" %}
+
+    {% capture compareFilterTitle %},{{ filterTitle }},{% endcapture %}
+
+      {% if filterTitleList contains compareFilterTitle %}{% else %}
+          <option value="#"></option>
+          <option value="#">{{ filterTitle | capitalize}}</option>
+          {% capture tempTitleList %}{{filterTitleList}}{{ filterTitle }},{% endcapture %}
+          {% assign filterTitleList = tempTitleList %}
+      {% endif %}
+
       {% if current_tags contains tag %}
-        <option value="{{ tag | handle }}" selected>{{ tag }}</option>
+        <option value="{{ tag | handle }}" selected>- {{ filterName }}</option>
       {% else %}
-        <option value="{{ tag | handle }}">{{ tag }}</option>
+        <option value="{{ tag | handle }}">- {{ filterName }}</option>
+      {% endif %}
+
+    {% endif %}
+
+  {% endfor %}
+
+  {% unless section.settings.hide_non_categorized %}
+
+  <option value="#"></option>
+  <option value="#">Other</option>
+
+  {% for tag in collection.all_tags %}
+
+    {% unless tag contains "deal-" or tag contains "filter-" %}
+
+      {% if current_tags contains tag %}
+        <option value="{{ tag | handle }}" selected>- {{ tag }}</option>
+      {% else %}
+        <option value="{{ tag | handle }}">- {{ tag }}</option>
       {% endif %}
     {% endunless %}
   {% endfor %}
+
+  {% endunless %}
+
 </select>
 <script>
   /* Product Tag Filters - Good for any number of filters on any type of collection pages */

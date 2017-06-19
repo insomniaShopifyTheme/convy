@@ -92,6 +92,10 @@ body {
 
 .section-heading {
   margin-bottom: $gutter / 3 * 2;
+  margin-top: $gutter;
+  @include at-query($max, $small) {
+    margin-top: $gutter / 2;
+  }
 }
 
 // Fixed Header

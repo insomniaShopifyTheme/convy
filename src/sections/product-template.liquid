@@ -76,16 +76,18 @@
 
     <div class="grid__item one-whole large--two-thirds">
 
-      {% if section.settings.display_icons %}
-        <div class="large--hide">
-          {% include 'product-icons' %}
-        </div>
-      {% endif %}
+
 
       {% if section.settings.related_products %}
       <div class="related-products">
         {% include 'related-products' %}
       </div>
+      {% endif %}
+
+      {% if section.settings.display_icons %}
+        <div class="large--hide">
+          {% include 'product-icons' %}
+        </div>
       {% endif %}
 
       {% if settings.app_product_reviews_enabled %}
@@ -355,15 +357,11 @@
         "content": "'Add to cart' top bar"
       },
       {
-        "type": "paragraph",
-        "content": "NOTE: you can see these options to take effect after you click on 'SAVE' button"
-      },
-      {
         "type": "checkbox",
         "id": "add_to_cart_bar_enabled",
         "label": "Display add to cart bar",
-        "default": true,
-        "info": "This bar will apear after the scroll passes the 'ADD TO CART' button"
+        "info": "This bar will only appear after the scroll passes 'ADD TO CART' button",
+        "default": true
       },
       {
         "type":      "color",
@@ -374,13 +372,13 @@
       {
         "type":      "color",
         "id":        "add_to_cart_bar_text_color",
-        "label":     "Text color",
+        "label":     "Product title color",
         "default":   "#000"
       },
       {
         "type":      "color",
         "id":        "add_to_cart_bar_price_color",
-        "label":     "Text color",
+        "label":     "Price color",
         "default":   "#000"
       }
     ],
