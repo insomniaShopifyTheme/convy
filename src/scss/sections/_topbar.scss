@@ -39,14 +39,15 @@
   .social-icons {
     margin: 0 $gutter 0 0;
 
-    @include at-query($max, 1300px) {
+    @include at-query($max, $xlarge) {
       margin: 0 ($gutter - 20px) 0 0;
     }
-    @include at-query($max, 1200px) {
-      display: none;
-    }
+    // Vlad: Removed that because it's too confusing when icons disappear at non-standard breakpoint
+    // @include at-query($max, $wide) {
+    //   display: none;
+    // }
     li {
-      @include at-query($max, 1300px) {
+      @include at-query($max, $xlarge) {
         margin-left: 20px
       }
       .icon {

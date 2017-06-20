@@ -1,14 +1,13 @@
-{% if section.settings.facebook_page_link != blank  %}
-  {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));</script>
-  {% endif %}
+{% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
+  {%- assign display_facebook_buttons = true -%}
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 {% endif %}
 
 <style>
@@ -44,25 +43,18 @@
 <div class="section-topbar{{ visibility_classes }}">
   <div class="grid--full">
     <div class="grid__item medium-down--hide one-third ">
-    {% if section.settings.facebook_page_link != blank  %}
-     {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
-
-        {% if section.settings.facebook_buttons_position == 'right' %}
-          {% if section.settings.social_icons %}
-            {% include 'social-icons-list' %}
-          {% endif %}
-        {% else %}
-          {% include 'facebook-buttons' %}
-        {% endif %}
+      {% if display_facebook_buttons and section.settings.facebook_buttons_position == 'left' %}
+        {% include 'facebook-buttons' %}
+      {% elsif section.settings.social_icons and section.settings.facebook_buttons_position != 'left' %}
+        {% include 'social-icons-list' %}
       {% endif %}
-    {% endif %}
     </div>
     <div class="grid__item medium-down--one-whole one-third ">
     {% if section.settings.message_text != blank or section.settings.message_link_text != blank %}
       <div class="section-topbar__message {{ visibility_classes }}">
         {% if section.settings.message_link != blank and section.settings.message_link_text == blank %}
           <a href="{{ section.settings.message_link }}" class="section-topbar__message-link">
-            {{ section.settings.message_text | escape }} 
+            {{ section.settings.message_text }}
           </a>
         {% elsif section.settings.message_link != blank and section.settings.message_link_text != blank %}
           {{ section.settings.message_text | escape }}
@@ -70,7 +62,7 @@
             {{ section.settings.message_link_text }}
           </a>
         {% else %}
-          {{ section.settings.message_text | escape }}
+          {{ section.settings.message_text }}
         {% endif %}
       </div>
     {% endif %}
@@ -83,24 +75,10 @@
         {% include 'currency-picker' %}
       {% endif %}
 
-      {% if section.settings.facebook_page_link != blank  %}
-        {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
-            {% if section.settings.facebook_buttons_position == 'left' %}
-              {% if section.settings.social_icons %}
-                {% include 'social-icons-list' %}
-              {% endif %}
-            {% else %}
-                {% include 'facebook-buttons' %}
-            {% endif %}
-        {% else %}
-          {% if section.settings.social_icons %}
-            {% include 'social-icons-list' %}
-          {% endif %}
-        {% endif %}
-      {% else %}
-        {% if section.settings.social_icons %}
-          {% include 'social-icons-list' %}
-        {% endif %}
+      {% if display_facebook_buttons and section.settings.facebook_buttons_position == 'right' %}
+        {% include 'facebook-buttons' %}
+      {% elsif section.settings.social_icons and section.settings.facebook_buttons_position != 'right' %}
+        {% include 'social-icons-list' %}
       {% endif %}
 
     </div>
@@ -126,7 +104,8 @@
         "type": "checkbox",
         "id": "social_icons",
         "label": "Display social icons",
-        "default": true
+        "default": true,
+        "info": "Set up your social profiles at General Settings > Social Media"
       },
 
       {
