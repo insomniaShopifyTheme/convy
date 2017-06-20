@@ -7,15 +7,19 @@
   <div class="page-width--large">
     <div class="logos-list text-center clearfix">
       {% for block in section.blocks %}
-        <div class="logos__item{% if block.settings.image == blank %} logos__item--blank{% endif %}" {{ block.shopify_attributes }}>
-          {% unless block.settings.image == blank %}
+        <div class="logos__item" {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
             {{ block.settings.image | img_url: '160x160' | img_tag: 'Logo Image', 'logos__image' }}
-          {% endunless %}
+          {% else %}
+            {{ "blank-logo.png" | asset_img_url: '160x160' | img_tag: 'Logo Image', 'logos__image' }}
+          {% endif %}
         </div>
       {% else %}
-        <div class="empty-section">
-          {{ 'homepage.onboarding.no_content' | t }}
-        </div>
+        {% for i in (1..4) %}
+          <div class="logos__item">
+            {{ "blank-logo.png" | asset_img_url: '160x160' | img_tag: 'Logo Image', 'logos__image' }}
+          </div>
+        {% endfor %}
       {% endfor %}
     </div>
   </div>

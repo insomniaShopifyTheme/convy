@@ -1,8 +1,11 @@
+{%- assign card_hoverable = section.settings.hoverable -%}
+
 <div data-section-id="{{ section.id }}" data-section-type="slider-section">
 
   {% if section.settings.title != blank %}
     <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
   {% endif %}
+
   {% comment %}
     Only enable slider if there are more than 3 products
   {% endcomment %}
@@ -11,11 +14,14 @@
       <div class="product-list slider" id="slider_{{ section.id }}">
         {% for block in section.blocks limit: section.blocks.size %}
           <div class="product-list__item slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
-            {%- assign product = all_products[block.settings.product] -%}
-            {%- assign btn_action = block.settings.btn_action -%}
-            {%- assign btn_text = block.settings.btn_text -%}
-            {%- assign card_hoverable = section.settings.hoverable -%}
-            {% include 'product-card' %}
+            {% if block.settings.product != blank %}
+              {%- assign product = all_products[block.settings.product] -%}
+              {%- assign btn_action = block.settings.btn_action -%}
+              {%- assign btn_text = block.settings.btn_text -%}
+              {% include 'product-card' %}
+            {% else %}
+              {% include 'blank-product-card' %}
+            {% endif %}
           </div>
         {% endfor %}
       </div>
@@ -32,18 +38,20 @@
     <div class="grid no-slider--grid">
       {% for block in section.blocks limit: section.blocks.size %}
         <div class="grid__item {{ col_sizes }}" {{ block.shopify_attributes }}>
-          {%- assign product = all_products[block.settings.product] -%}
-          {%- assign btn_action = block.settings.btn_action -%}
-          {%- assign btn_text = block.settings.btn_text -%}
-          {%- assign card_hoverable = section.settings.hoverable -%}
-          {% include 'product-card' %}
+          {% if block.settings.product != blank %}
+            {%- assign product = all_products[block.settings.product] -%}
+            {%- assign btn_action = block.settings.btn_action -%}
+            {%- assign btn_text = block.settings.btn_text -%}
+            {% include 'product-card' %}
+          {% else %}
+            {% include 'blank-product-card' %}
+          {% endif %}
         </div>
       {% endfor %}
     </div>
   {% else %}
     <div class="grid no-slider--grid">
       <div class="grid__item one-whole medium--one-third push--medium--one-third">
-        {%- assign card_hoverable = section.settings.hoverable -%}
         {% include 'blank-product-card' %}
       </div>
     </div>
