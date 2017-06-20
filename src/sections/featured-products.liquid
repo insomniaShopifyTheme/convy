@@ -41,8 +41,11 @@
       {% endfor %}
     </div>
   {% else %}
-    <div class="empty-section">
-      {{ 'homepage.onboarding.no_products' | t }}
+    <div class="grid no-slider--grid">
+      <div class="grid__item one-whole medium--one-third push--medium--one-third">
+        {%- assign card_hoverable = section.settings.hoverable -%}
+        {% include 'blank-product-card' %}
+      </div>
     </div>
   {% endif %}
 

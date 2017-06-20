@@ -1,0 +1,23 @@
+<div class="product-card{% if card_hoverable %} product-card--hoverable{% else %} product-card--no-hover{% endif %}" data-product-id="999999">
+  <div class="ribbon">
+    <div class="ribbon--red product-discount">
+      – 25%
+    </div>
+  </div>
+  <a href="{{ shop.secure_url }}" class="product-card__image">
+    {{ 'blank-product.png' | asset_img_url: '400x400' | img_tag: "Product Image" }}
+  </a>
+  <div class="product-card__info">
+    <div class="product-card__title product-card__title--{{ settings.product_card_title_style }}">
+      <a href="{{ shop.secure_url }}">Black T-Shirt</a>
+      <div class="dimmer"></div>
+    </div>
+    <div class="product-card__price product-price">
+      <s class="product-price__old">{{ 2000 | money }}</s>
+      <span class="product-price__price product-price__sale">{{ 1500 | money }}</span>
+    </div>
+  </div>
+  <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-card__form product-form-product_999999" data-section="product_999999" data-variants="false" data-action-type="product_page" >
+    <a href="{{ shop.secure_url }}" class="btn btn--special btn--full product-card__button">ADD TO CART</a>
+  </form>
+</div>
