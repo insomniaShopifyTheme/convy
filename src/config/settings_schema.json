@@ -21,6 +21,17 @@
     ]
   },
   {
+    "name": "☆ License ☆",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "license_key",
+        "label": "License Key",
+        "info": "Put here the license key you recieved when the theme was purchased"
+      }
+    ]
+  },
+  {
     "name": "Apps",
     "settings": [
       {
@@ -382,17 +393,6 @@
         "label": "Add margin (mobile version)",
         "default": false,
         "info": "Adds empty space between a product card and edge of the screen"
-      }
-    ]
-  },
-  {
-    "name": "License",
-    "settings": [
-      {
-        "type": "textarea",
-        "id": "license_key",
-        "label": "License Key",
-        "info": "Put here the license key you recieved when the theme was purchased"
       }
     ]
   },
