@@ -1,0 +1,10 @@
+<div class="collection-card{% if section.settings.hover_effect %} hover-effect{% endif %}{% if section.settings.title_style == 'over' %} collection-card--overlay{% endif %}">
+  {% capture collection_title %}{% cycle 'Bags', 'Shoes', 'Accessories', 'Wholesalers' %}{% endcapture %}
+  {% capture collection_image %}{% cycle 'blank-collection-1.png', 'blank-collection-2.png', 'blank-collection-3.png', 'blank-collection-1.png' %}{% endcapture %}
+  <a href="{{ shop.secure_url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}" class="grid__image">
+    {{ collection_image | asset_img_url: '400x400', crop: 'center' | img_tag: collection_title }}
+  </a>
+  <p class="collection-card__title{% if section.settings.title_style == 'over' %} collection-card__title--overlay{% endif %}">
+    <a href="{{ shop.secure_url }}" title="{{ 'collections.general.link_title' | t: title: collection_title }}">{{ collection_title }}</a>
+  </p>
+</div>

@@ -21,9 +21,11 @@
           {% include 'collection-card' %}
         </div>
       {% else %}
-        <div class="empty-section">
-          {{ 'homepage.onboarding.no_collections' | t }}
-        </div>
+        {% for i in (1..4) %}
+          <div class="collection-list__item slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
+            {% include 'empty-collection-card' %}
+          </div>
+        {% endfor %}
       {% endfor %}
     </div>
   </div>
