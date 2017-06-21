@@ -1,5 +1,7 @@
 /*================ Separator Section ================*/
 
 .section-separator {
-  padding-bottom: $gutter;
+  .separator-inner {
+    margin-bottom: $gutter;
+  }
 }
