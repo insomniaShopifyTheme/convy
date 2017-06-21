@@ -2,3 +2,5 @@ development:
   password: c99b9d23c692c8f69fa6f46f82f564c1
   theme_id: "167746700"
   store: konv.myshopify.com
+  ignore_files:
+    - config/settings_data.json # Prevent overriding theme settings

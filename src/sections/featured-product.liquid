@@ -2,7 +2,6 @@
   <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
 {% endif %}
 
-{% if section.settings.product %}
 {%- assign product = all_products[section.settings.product] -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- assign featured_product_section = true -%}
@@ -12,21 +11,29 @@
       {%- assign btn_action = section.settings.btn_action -%}
       {%- assign btn_text = section.settings.btn_text -%}
       {%- assign card_hoverable = true -%}
-      {% include 'product-card' %}
+      {% if section.settings.product != blank %}
+        {% include 'product-card' %}
+      {% else %}
+        {% include 'blank-product-card' %}
+      {% endif %}
     </div>
   </div>
   <div class="product-preview page-width--large medium-down--hide">
-    <div class="grid">
-      <div class="grid__item six-twelfths push--one-twelfth">
-        {% include 'product-gallery' %}
-      </div>
-      <div class="grid__item four-twelfths push--one-twelfth">
-        <div class="product-info">
-          {% include 'product-page-info' %}
-          {% include 'product-meta' %}
+    {% if section.settings.product != blank %}
+      <div class="grid">
+        <div class="grid__item six-twelfths push--one-twelfth">
+          {% include 'product-gallery' %}
         </div>
-      </div> <!-- end desktop -->
-    </div>
+        <div class="grid__item four-twelfths push--one-twelfth">
+          <div class="product-info">
+            {% include 'product-page-info' %}
+            {% include 'product-meta' %}
+          </div>
+        </div> <!-- end desktop -->
+      </div>
+    {% else %}
+      {% include 'blank-featured-product' %}
+    {% endif %}
   </div>
   {% unless product.empty? %}
     <script type="application/json" id="ProductJson-product_{{ product.id }}">
@@ -35,12 +42,6 @@
   {% endunless %}
 </div>
 {%- assign featured_product_section = false -%}
-{% else %}
-  <div class="empty-section">
-    {{ 'homepage.onboarding.no_content' | t }}
-  </div>
-{% endif %}
-
 
 {% schema %}
   {

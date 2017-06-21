@@ -14,11 +14,6 @@
   }
   .logos__item {
     margin: ($gutter / 3) 0 0 ($gutter / 3);
-    &.logos__item--blank {
-      background-color: rgba(0, 0, 0, 0.15);
-      height: 80px;
-      width: 60px;
-    }
   }
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {

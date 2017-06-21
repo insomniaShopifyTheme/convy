@@ -1,0 +1,518 @@
+{
+  "current": {
+    "app_product_reviews_enabled": false,
+    "ajax_cart_method": "drawer",
+    "cart_notes_enable": false,
+    "sticky_add_to_cart": true,
+    "color_primary": "#393939",
+    "color_secondary": "#41cd62",
+    "color_text": "#333333",
+    "color_bg": "#ffffff",
+    "color_borders": "#e0e0e0",
+    "color_menu": "#393939",
+    "color_menu_bg": "#ffffff",
+    "color_submenu": "#393939",
+    "color_submenu_bg": "#ffffff",
+    "color_bg_alt": "#090909",
+    "color_text_alt": "#fff",
+    "color_discount": "#f53333",
+    "show_multiple_currencies": false,
+    "currency_format": "money_with_currency_format",
+    "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
+    "default_currency": "USD",
+    "deal_of_the_day_enabled": false,
+    "deal_of_the_day_display": "all",
+    "deal_of_the_day_hide_title": false,
+    "deal_of_the_day_discount_percentage": true,
+    "deal_of_the_day_discount_percentage_color": "#f53333",
+    "deal_of_the_day_text": "DEAL OF THE DAY",
+    "deal_of_the_day_ends_in_text": "ENDS IN",
+    "deal_of_the_day_product_text": "DEAL OF THE DAY ENDS IN",
+    "deal_of_the_day_progressbar_color": "#f53333",
+    "favicon": "",
+    "fixed_header": "all",
+    "product_card_title_style": "1_row",
+    "margin_on_mobile": false,
+    "license_key": "elhaNEZPNDBTSUk1bzZYS0FNb0pRY3NyZVpTMnFlL0dYRFdVdWxVc0Q1Zz06OgJFD47rYTpA+zdE3ufPkEw=",
+    "custom_scripts": "",
+    "shipping_calculator": true,
+    "shipping_calculator_heading": "Get shipping estimates",
+    "shipping_calculator_default_country": "United States",
+    "shipping_calculator_submit_button_label": "Calculate shipping",
+    "shipping_calculator_submit_button_label_disabled": "Calculating...",
+    "social_facebook_link": "https:\/\/www.facebook.com\/pages\/Tabarnapp\/292814031076984",
+    "social_twitter_link": "https:\/\/twitter.com\/demoweb_co",
+    "social_instagram_link": "",
+    "social_tumblr_link": "",
+    "social_pinterest_link": "",
+    "social_youtube_link": "https:\/\/www.youtube.com\/user\/derekmorinjob",
+    "social_snapchat_link": "",
+    "share_facebook": true,
+    "share_twitter": true,
+    "share_pinterest": true,
+    "share_gplus": true,
+    "og_image": "",
+    "font_family_headings": "Google_Work+Sans_600_sans",
+    "font_size_headings": "26px",
+    "font_family_base": "Google_Lato_400_sans",
+    "font_size_base": "16px",
+    "option_color_swatches": "Color, Colour",
+    "checkout_header_image": "",
+    "checkout_logo_image": "",
+    "checkout_logo_position": "left",
+    "checkout_logo_size": "medium",
+    "checkout_body_background_image": "",
+    "checkout_body_background_color": "#fff",
+    "checkout_input_background_color_mode": "white",
+    "checkout_sidebar_background_image": "",
+    "checkout_sidebar_background_color": "#fafafa",
+    "checkout_heading_font": "Helvetica Neue",
+    "checkout_body_font": "Helvetica Neue",
+    "checkout_accent_color": "#1990c6",
+    "checkout_button_color": "#1990c6",
+    "checkout_error_color": "#ff6d6d",
+    "sections": {
+      "topbar": {
+        "type": "topbar",
+        "settings": {
+          "display": "all",
+          "social_icons": true,
+          "facebook_buttons_position": "left",
+          "facebook_page_link": "",
+          "show_facebook_like_button": true,
+          "show_facebook_share_button": true,
+          "message_text": "SITEWIDE ANNOUNCEMENT",
+          "message_link_text": "SHOP NOW",
+          "message_link": "shopify:\/\/collections",
+          "color_bg": "#191919",
+          "color_text": "#a5a5a5",
+          "color_button_bg": "transparent",
+          "color_button_border": "#a5a5a5",
+          "color_button_text": "#ffffff"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_text": "",
+          "logo_use_image": false,
+          "logo_image": "",
+          "logo_max_width": "220",
+          "logo_margin": "0",
+          "menu_type": "text-menu",
+          "display_product_price": false,
+          "display_profile_icon": true
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "display_border": false,
+          "color_bg": "#ffffff",
+          "color_headings": "#393939",
+          "color_text": "#393939",
+          "color_links": "#393939",
+          "color_menu_items": "#393939",
+          "color_button_bg": "transparent",
+          "color_button_border": "#393939",
+          "color_button_text": "#393939",
+          "display_social": true,
+          "powered_by": true,
+          "theme_copyright": true,
+          "payment_icons": false,
+          "affiliate_id": "",
+          "color_social_bg": "#0d0d0d",
+          "color_social_icons": "#ffffff"
+        }
+      },
+      "1496645688611": {
+        "type": "slideshow",
+        "blocks": {
+          "1496645688611-0": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "title": "<p>Slide Heading<\/p>",
+              "text": "<p>Tell your brand's story through video and images<\/p>",
+              "primary_button_label": "SHOP NOW",
+              "primary_button_link": "shopify:\/\/collections",
+              "secondary_button_label": "",
+              "secondary_button_link": "",
+              "alignment": "center",
+              "text_location": "center",
+              "text_alignment": "center",
+              "color_title": "#ffffff",
+              "color_text": "#fff",
+              "image_overlay_opacity": "0.35",
+              "color_image_overlay": "#000000",
+              "primary_button_border_color": "rgba(0,0,0,0)",
+              "primary_button_bg_color": "#0ecd69",
+              "primary_button_text_color": "#fff",
+              "secondary_button_border_color": "#fff",
+              "secondary_button_bg_color": "transparent",
+              "secondary_button_text_color": "#fff"
+            }
+          },
+          "1496645688611-1": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "title": "<p>Slide Heading<\/p>",
+              "text": "<p>Tell your brand's story through video and images<\/p>",
+              "primary_button_label": "",
+              "primary_button_link": "",
+              "secondary_button_label": "",
+              "secondary_button_link": "",
+              "alignment": "center",
+              "text_location": "center",
+              "text_alignment": "center",
+              "color_title": "#fff",
+              "color_text": "#fff",
+              "image_overlay_opacity": "0.25",
+              "color_image_overlay": "#000000",
+              "primary_button_border_color": "#fff",
+              "primary_button_bg_color": "transparent",
+              "primary_button_text_color": "#fff",
+              "secondary_button_border_color": "#fff",
+              "secondary_button_bg_color": "transparent",
+              "secondary_button_text_color": "#fff"
+            }
+          }
+        },
+        "block_order": [
+          "1496645688611-0",
+          "1496645688611-1"
+        ],
+        "settings": {
+          "autoplay": true,
+          "autoplay_speed": "5000",
+          "slideshow_height": "medium",
+          "text_size": "xlarge"
+        }
+      },
+      "1496656693081": {
+        "type": "icon-list",
+        "blocks": {
+          "1496656693081-0": {
+            "type": "icon_image",
+            "settings": {
+              "image": "",
+              "icon": "icon-plane.png",
+              "text": "Free shipping"
+            }
+          },
+          "1496656693081-1": {
+            "type": "icon_image",
+            "settings": {
+              "image": "",
+              "icon": "icon-truck.png",
+              "text": "Free returns"
+            }
+          },
+          "1496656693081-2": {
+            "type": "icon_image",
+            "settings": {
+              "image": "",
+              "icon": "icon-badge.png",
+              "text": "Best quality"
+            }
+          },
+          "1496656693081-3": {
+            "type": "icon_image",
+            "settings": {
+              "image": "",
+              "icon": "icon-shield.png",
+              "text": "Safe checkout"
+            }
+          }
+        },
+        "block_order": [
+          "1496656693081-0",
+          "1496656693081-1",
+          "1496656693081-2",
+          "1496656693081-3"
+        ],
+        "settings": {
+          "title": "",
+          "inverted": true
+        }
+      },
+      "1497955494101": {
+        "type": "featured-products",
+        "settings": {
+          "title": "DEAL OF THE DAY",
+          "hoverable": true
+        }
+      },
+      "1497958158163": {
+        "type": "separator",
+        "settings": {
+          "display": "all",
+          "color": "#41cd62",
+          "height": "15px",
+          "no_margin": false
+        }
+      },
+      "1497965699291": {
+        "type": "newsletter",
+        "settings": {
+          "inverted": false,
+          "title": "GET OUR DAILY DEAL VIA INBOX",
+          "text": "<p>Receive our promotions before the plebs. Subscribe today!<\/p>",
+          "button_text": "SUBSCRIBE"
+        }
+      },
+      "1497965754298": {
+        "type": "separator",
+        "settings": {
+          "display": "all",
+          "color": "#41cd62",
+          "height": "15px",
+          "no_margin": false
+        }
+      },
+      "1497966686972": {
+        "type": "logos",
+        "blocks": {
+          "1497966686972-0": {
+            "type": "logo_image",
+            "settings": {
+              "image": ""
+            }
+          },
+          "1497966686972-1": {
+            "type": "logo_image",
+            "settings": {
+              "image": ""
+            }
+          },
+          "1497966686972-2": {
+            "type": "logo_image",
+            "settings": {
+              "image": ""
+            }
+          },
+          "1497966686972-3": {
+            "type": "logo_image",
+            "settings": {
+              "image": ""
+            }
+          }
+        },
+        "block_order": [
+          "1497966686972-0",
+          "1497966686972-1",
+          "1497966686972-2",
+          "1497966686972-3"
+        ],
+        "settings": {
+          "title": ""
+        }
+      },
+      "1497967594955": {
+        "type": "featured-collection",
+        "settings": {
+          "title": "",
+          "hoverable": true
+        }
+      },
+      "1497970810915": {
+        "type": "slideshow",
+        "blocks": {
+          "1497970810915-0": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "title": "<p>Slide Heading<\/p>",
+              "text": "<p>Tell your brand's story through video and images<\/p>",
+              "primary_button_label": "",
+              "primary_button_link": "",
+              "secondary_button_label": "",
+              "secondary_button_link": "",
+              "alignment": "center",
+              "text_location": "center",
+              "text_alignment": "center",
+              "color_title": "#fff",
+              "color_text": "#fff",
+              "image_overlay_opacity": "0.25",
+              "color_image_overlay": "#000000",
+              "primary_button_border_color": "#fff",
+              "primary_button_bg_color": "transparent",
+              "primary_button_text_color": "#fff",
+              "secondary_button_border_color": "#fff",
+              "secondary_button_bg_color": "transparent",
+              "secondary_button_text_color": "#fff"
+            }
+          }
+        },
+        "block_order": [
+          "1497970810915-0"
+        ],
+        "settings": {
+          "autoplay": true,
+          "autoplay_speed": "5000",
+          "slideshow_height": "xsmall",
+          "text_size": "medium"
+        }
+      },
+      "1497971134137": {
+        "type": "testimonials",
+        "settings": {
+          "type": "grid",
+          "inverted": true,
+          "effect": "fade",
+          "title": ""
+        }
+      },
+      "1497973148306": {
+        "type": "separator",
+        "settings": {
+          "display": "all",
+          "color": "#41cd62",
+          "height": "15px",
+          "no_margin": false
+        }
+      },
+      "1497973801821": {
+        "type": "featured-product",
+        "settings": {
+          "title": "",
+          "product": "",
+          "btn_action": "add_to_cart",
+          "btn_text": "Add to Cart",
+          "product_options_style": "dropdown",
+          "display_quantity_selector": true,
+          "gallery_zoom_type": "mouseover",
+          "gallery_arrows": true
+        }
+      },
+      "1498026043184": {
+        "type": "separator",
+        "settings": {
+          "display": "all",
+          "color": "#41cd62",
+          "height": "5px",
+          "no_margin": true
+        }
+      },
+      "1498056121306": {
+        "type": "featured-collections",
+        "settings": {
+          "title": "",
+          "title_style": "over",
+          "color_title": "#ffffff",
+          "hover_effect": true,
+          "image_overlay_opacity": "0.5",
+          "color_image_overlay": "#000000"
+        }
+      },
+      "1498057229709": {
+        "type": "custom-content",
+        "blocks": {
+          "1498057229709-0": {
+            "type": "text",
+            "settings": {
+              "title": "",
+              "text": "",
+              "button_label": "",
+              "button_link": "",
+              "align_text": "left",
+              "column_width": "one-whole"
+            }
+          }
+        },
+        "block_order": [
+          "1498057229709-0"
+        ],
+        "settings": {
+          "display": "all",
+          "inverted": false,
+          "disable_padding": false
+        }
+      },
+      "1498057558914": {
+        "type": "custom-content",
+        "blocks": {
+          "1498057614924": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "link": "",
+              "column_width": "one-whole"
+            }
+          }
+        },
+        "block_order": [
+          "1498057614924"
+        ],
+        "settings": {
+          "display": "all",
+          "inverted": false,
+          "disable_padding": false
+        }
+      },
+      "1498058006650": {
+        "type": "separator",
+        "settings": {
+          "display": "all",
+          "color": "#41cd62",
+          "height": "5px",
+          "no_margin": false
+        }
+      },
+      "1498058027811": {
+        "type": "custom-content",
+        "blocks": {
+          "1498058027811-0": {
+            "type": "text",
+            "settings": {
+              "title": "ABOUT US",
+              "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed venenatis ex. Maecenas scelerisque dictum tortor, ac venenatis lacus aliquet sit amet. Fusce molestie diam in tellus condimentum, sed sollicitudin arcu vehicula. Nulla quam neque, volutpat a metus ut, vulputate mollis justo. Nullam eu nisi nec ligula vestibulum euismod.<\/p>",
+              "button_label": "",
+              "button_link": "",
+              "align_text": "center",
+              "column_width": "one-half"
+            }
+          },
+          "1498058034528": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "link": "",
+              "column_width": "one-half"
+            }
+          }
+        },
+        "block_order": [
+          "1498058027811-0",
+          "1498058034528"
+        ],
+        "settings": {
+          "display": "all",
+          "inverted": false,
+          "disable_padding": false
+        }
+      }
+    },
+    "content_for_index": [
+      "1496645688611",
+      "1496656693081",
+      "1497955494101",
+      "1497958158163",
+      "1497965699291",
+      "1497965754298",
+      "1497966686972",
+      "1497967594955",
+      "1497970810915",
+      "1497971134137",
+      "1497973148306",
+      "1497973801821",
+      "1498056121306",
+      "1498026043184",
+      "1498057229709",
+      "1498057558914",
+      "1498058006650",
+      "1498058027811"
+    ]
+  }
+}

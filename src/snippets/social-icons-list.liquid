@@ -13,26 +13,6 @@
 {% endif %}
 
 {% if has_icons %}
-  {% if section.settings.facebook_page_link != blank  %}
-    {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button %}
-        {% if section.settings.facebook_buttons_position == 'left' %}
-          {% assign position = 'right' %}
-        {% else %}
-          {% assign position = 'left' %}
-        {% endif %}
-    {% else %}
-        {% assign position = 'right' %}
-    {% endif %}
-  {% endif %}
-
-
-{% if position %}
-<style>
-  .social-icons{
-    float: {{ position }};
-  }
-</style>
-{% endif %}
 
   <ul class="inline-list social-icons" >
     {% if settings.social_facebook_link != blank %}

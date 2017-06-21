@@ -1,0 +1,54 @@
+<div class="grid">
+  <div class="grid__item six-twelfths push--one-twelfth">
+    <div class="product-images page-width grid grid--full" id="product_999999_images">
+      <div class="product-images__thumbs grid__item one-fifth">
+        <ul class="no-bullets js-product-thumbs" data-arrows="{{ section.settings.thumbs_arrows }}">
+          {% for i in (1..4) %}
+            <li>
+              <div class="thumb-overlay">
+                {{ 'blank-product.png' | asset_img_url: 'compact' | img_tag: "Product Thumbnail" }}
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="product-images__image grid__item four-fifths">
+        <ul class="no-bullets js-product-image" data-arrows="{{ section.settings.gallery_arrows }}">
+          {% for i in (1..4) %}
+            <li>
+              <img src="{{ 'blank-product.png' | asset_img_url: '400x400' }}" alt="Product Image" data-original="{{ 'blank-product.png' | asset_img_url: 'original' }}" data-zoom-type="{{ section.settings.gallery_zoom_type }}">
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="grid__item four-twelfths push--one-twelfth">
+    <div class="product-info">
+
+
+      <div class="product-info__title">
+        <h3><a href="{{ shop.secure_url }}">Black T-Shirt</a></h3>
+      </div>
+      <div class="product-price">
+        <div class="product-price__sale">
+          <s class="product-price__old">{{ 2500 | money }}</s>
+          <span class="product-price__percent">-20%</span>
+        </div>
+        <span class="product-price__price">{{ 2000 | money }}</span>
+      </div>
+      <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form--desktop product-form-product_999999" data-section="product_999999" data-action-type="product_page">
+        <div class="product-form__cart">
+          <button type="submit" name="add" id="AddToCart-product_999999" class="btn btn--special btn--full product-form__cart-submit product-form__cart--trigger">
+            <span class="product-form__cart-submit-text" data-original-text="CHECK OUT THIS PRODUCT">
+              CHECK OUT THIS PRODUCT
+            </span>
+          </button>
+        </div>
+      </form>
+      <script type="application/json" id="ProductJson-product_{{ product.id }}">
+        {"id": 999999, "title": "Men's Art T-Shirt", "handle": "art-t-shirt"}
+      </script>
+    </div>
+  </div> <!-- end desktop -->
+</div>

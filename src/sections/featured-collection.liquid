@@ -3,7 +3,7 @@
   {% if section.settings.title != blank %}
     <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
   {% endif %}
-  
+
   <div class="page-width--large">
       {% for block in section.blocks limit: section.blocks.size %}
         {%- assign collection = collections[block.settings.collection] -%}
@@ -21,7 +21,7 @@
 	    {%- assign btn_action = block.settings.btn_action -%}
         {%- assign btn_text = block.settings.btn_text -%}
         {%- assign card_hoverable = section.settings.hoverable -%}
-      
+
         {% case display_number_of_products_desktop %}
           {% when '1' %}
             {%- assign desktop_col_sizes = "" -%}
@@ -55,9 +55,22 @@
               </div>
             {% else %}
               <div class="empty-section">
-                {{ 'homepage.onboarding.no_products' | t }}
+                Selected collection doesn't have products
               </div>
             {% endfor %}
+        </div>
+      {% else %}
+        <div class="grid--uniform product-list">
+          {% for i in (1..3) %}
+            {% if forloop.index > 2 %}
+              {% assign mobile_hide = "medium-down--hide" %}
+            {% endif %}
+            <div class="grid__item large--one-third medium-down--one-half {{ mobile_hide }}">
+              <div class="product-list__item">
+                {% include 'blank-product-card' %}
+              </div>
+            </div>
+          {% endfor %}
         </div>
       {% endfor %}
   </div>

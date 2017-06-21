@@ -3,14 +3,11 @@
   #separator_{{ section.id }} {
     background-color: {{ section.settings.color }};
     height: {{ section.settings.height }};
-
+    {% if section.settings.no_margin %}
+      margin-bottom: 0;
+    {% endif %}
   }
 
-  {% if section.settings.have-margin-bottom %}
-  .section-separator {
-    padding-bottom: 0 !important;
-  }
-  {% endif %}
 
 </style>
 {% case section.settings.display %}
@@ -19,7 +16,7 @@
   {% when "desktop" %}
     {%- assign visibility_classes = "medium-down--hide" -%}
 {% endcase %}
-<div id="separator_{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="separator-section" class="{{ visibility_classes }}">
+<div id="separator_{{ section.id }}" data-section-id="{{ section.id }}" data-section-type="separator-section" class="separator-inner {{ visibility_classes }}">
 </div>
 
 {% schema %}
@@ -70,7 +67,7 @@
       },
       {
         "type": "checkbox",
-        "id": "have-margin-bottom",
+        "id": "no_margin",
         "label": "Remove margin",
         "default": false
       }

@@ -3,9 +3,22 @@
 .section-testimonials {
   .section-testimonials--alt {
     @include inverted-section();
+    // slider dots & arrows color
+    .slick-slider {
+      li button::before {
+        color: $color-text-alt;
+      }
+      button.slick-arrow {
+        opacity: 1 !important;
+        &::before {
+          color: $color-text-alt;
+          opacity: 1 !important;
+        }
+      }
+    }
   }
   .grid-wrapper, .slider-wrapper {
-    margin-bottom: 20px; // space for dots
+    padding-bottom: 15px; // space for dots
   }
 
   .slick-slider .slick-dots {
