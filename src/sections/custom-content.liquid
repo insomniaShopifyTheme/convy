@@ -19,7 +19,11 @@
               </a>
             {% endif %}
           {% else %}
-            <h2 class="text-center">{{ block.settings.no_image }}</h2>
+            {% if section.blocks.size == 2 %}
+              {{ "blank-image-2.png" | asset_img_url: '1400x1400', crop: 'middle' | img_tag }}
+            {% else %}
+              {{ "blank-image-1.png" | asset_img_url: '1400x1400', crop: 'middle' | img_tag }}
+            {% endif %}
           {% endif %}
         {% when 'text' %}
           <div class="text-{{ block.settings.align_text }}">
@@ -93,7 +97,7 @@
             "type": "richtext",
             "id": "text",
             "label": "Text",
-            "default": "<p>Why do we use it?<br> It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p>"
+            "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed venenatis ex. Maecenas scelerisque dictum tortor, ac venenatis lacus aliquet sit amet. Fusce molestie diam in tellus condimentum, sed sollicitudin arcu vehicula. Nulla quam neque, volutpat a metus ut, vulputate mollis justo. Nullam eu nisi nec ligula vestibulum euismod.</p>"
           },
           {
             "type": "text",

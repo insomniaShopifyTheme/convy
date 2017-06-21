@@ -30,7 +30,7 @@
     "deal_of_the_day_product_text": "DEAL OF THE DAY ENDS IN",
     "deal_of_the_day_progressbar_color": "#f53333",
     "favicon": "",
-    "fixed_header": "disable",
+    "fixed_header": "all",
     "product_card_title_style": "1_row",
     "margin_on_mobile": false,
     "license_key": "elhaNEZPNDBTSUk1bzZYS0FNb0pRY3NyZVpTMnFlL0dYRFdVdWxVc0Q1Zz06OgJFD47rYTpA+zdE3ufPkEw=",
@@ -40,12 +40,12 @@
     "shipping_calculator_default_country": "United States",
     "shipping_calculator_submit_button_label": "Calculate shipping",
     "shipping_calculator_submit_button_label_disabled": "Calculating...",
-    "social_facebook_link": "",
-    "social_twitter_link": "",
+    "social_facebook_link": "https:\/\/www.facebook.com\/pages\/Tabarnapp\/292814031076984",
+    "social_twitter_link": "https:\/\/twitter.com\/demoweb_co",
     "social_instagram_link": "",
     "social_tumblr_link": "",
     "social_pinterest_link": "",
-    "social_youtube_link": "",
+    "social_youtube_link": "https:\/\/www.youtube.com\/user\/derekmorinjob",
     "social_snapchat_link": "",
     "share_facebook": true,
     "share_twitter": true,
@@ -79,11 +79,11 @@
           "social_icons": true,
           "facebook_buttons_position": "left",
           "facebook_page_link": "",
-          "show_facebook_like_button": false,
-          "show_facebook_share_button": false,
-          "message_text": "",
-          "message_link_text": "",
-          "message_link": "",
+          "show_facebook_like_button": true,
+          "show_facebook_share_button": true,
+          "message_text": "SITEWIDE ANNOUNCEMENT",
+          "message_link_text": "SHOP NOW",
+          "message_link": "shopify:\/\/collections",
           "color_bg": "#191919",
           "color_text": "#a5a5a5",
           "color_button_bg": "transparent",
@@ -100,7 +100,7 @@
           "logo_max_width": "220",
           "logo_margin": "0",
           "menu_type": "text-menu",
-          "display_product_price": true,
+          "display_product_price": false,
           "display_profile_icon": true
         }
       },
@@ -237,31 +237,282 @@
           "inverted": true
         }
       },
-      "1496675085269": {
+      "1497955494101": {
         "type": "featured-products",
+        "settings": {
+          "title": "DEAL OF THE DAY",
+          "hoverable": true
+        }
+      },
+      "1497958158163": {
+        "type": "separator",
+        "settings": {
+          "display": "all",
+          "color": "#41cd62",
+          "height": "15px",
+          "no_margin": false
+        }
+      },
+      "1497965699291": {
+        "type": "newsletter",
+        "settings": {
+          "inverted": false,
+          "title": "GET OUR DAILY DEAL VIA INBOX",
+          "text": "<p>Receive our promotions before the plebs. Subscribe today!<\/p>",
+          "button_text": "SUBSCRIBE"
+        }
+      },
+      "1497965754298": {
+        "type": "separator",
+        "settings": {
+          "display": "all",
+          "color": "#41cd62",
+          "height": "15px",
+          "no_margin": false
+        }
+      },
+      "1497966686972": {
+        "type": "logos",
         "blocks": {
-          "1496675105512": {
-            "type": "product",
+          "1497966686972-0": {
+            "type": "logo_image",
             "settings": {
-              "product": "",
-              "btn_action": "add_to_cart",
-              "btn_text": "Add to Cart"
+              "image": ""
+            }
+          },
+          "1497966686972-1": {
+            "type": "logo_image",
+            "settings": {
+              "image": ""
+            }
+          },
+          "1497966686972-2": {
+            "type": "logo_image",
+            "settings": {
+              "image": ""
+            }
+          },
+          "1497966686972-3": {
+            "type": "logo_image",
+            "settings": {
+              "image": ""
             }
           }
         },
         "block_order": [
-          "1496675105512"
+          "1497966686972-0",
+          "1497966686972-1",
+          "1497966686972-2",
+          "1497966686972-3"
         ],
         "settings": {
-          "title": "Deal of the day",
+          "title": ""
+        }
+      },
+      "1497967594955": {
+        "type": "featured-collection",
+        "settings": {
+          "title": "",
           "hoverable": true
+        }
+      },
+      "1497970810915": {
+        "type": "slideshow",
+        "blocks": {
+          "1497970810915-0": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "title": "<p>Slide Heading<\/p>",
+              "text": "<p>Tell your brand's story through video and images<\/p>",
+              "primary_button_label": "",
+              "primary_button_link": "",
+              "secondary_button_label": "",
+              "secondary_button_link": "",
+              "alignment": "center",
+              "text_location": "center",
+              "text_alignment": "center",
+              "color_title": "#fff",
+              "color_text": "#fff",
+              "image_overlay_opacity": "0.25",
+              "color_image_overlay": "#000000",
+              "primary_button_border_color": "#fff",
+              "primary_button_bg_color": "transparent",
+              "primary_button_text_color": "#fff",
+              "secondary_button_border_color": "#fff",
+              "secondary_button_bg_color": "transparent",
+              "secondary_button_text_color": "#fff"
+            }
+          }
+        },
+        "block_order": [
+          "1497970810915-0"
+        ],
+        "settings": {
+          "autoplay": true,
+          "autoplay_speed": "5000",
+          "slideshow_height": "xsmall",
+          "text_size": "medium"
+        }
+      },
+      "1497971134137": {
+        "type": "testimonials",
+        "settings": {
+          "type": "grid",
+          "inverted": true,
+          "effect": "fade",
+          "title": ""
+        }
+      },
+      "1497973148306": {
+        "type": "separator",
+        "settings": {
+          "display": "all",
+          "color": "#41cd62",
+          "height": "15px",
+          "no_margin": false
+        }
+      },
+      "1497973801821": {
+        "type": "featured-product",
+        "settings": {
+          "title": "",
+          "product": "",
+          "btn_action": "add_to_cart",
+          "btn_text": "Add to Cart",
+          "product_options_style": "dropdown",
+          "display_quantity_selector": true,
+          "gallery_zoom_type": "mouseover",
+          "gallery_arrows": true
+        }
+      },
+      "1498026043184": {
+        "type": "separator",
+        "settings": {
+          "display": "all",
+          "color": "#41cd62",
+          "height": "5px",
+          "no_margin": true
+        }
+      },
+      "1498056121306": {
+        "type": "featured-collections",
+        "settings": {
+          "title": "",
+          "title_style": "over",
+          "color_title": "#ffffff",
+          "hover_effect": true,
+          "image_overlay_opacity": "0.5",
+          "color_image_overlay": "#000000"
+        }
+      },
+      "1498057229709": {
+        "type": "custom-content",
+        "blocks": {
+          "1498057229709-0": {
+            "type": "text",
+            "settings": {
+              "title": "",
+              "text": "",
+              "button_label": "",
+              "button_link": "",
+              "align_text": "left",
+              "column_width": "one-whole"
+            }
+          }
+        },
+        "block_order": [
+          "1498057229709-0"
+        ],
+        "settings": {
+          "display": "all",
+          "inverted": false,
+          "disable_padding": false
+        }
+      },
+      "1498057558914": {
+        "type": "custom-content",
+        "blocks": {
+          "1498057614924": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "link": "",
+              "column_width": "one-whole"
+            }
+          }
+        },
+        "block_order": [
+          "1498057614924"
+        ],
+        "settings": {
+          "display": "all",
+          "inverted": false,
+          "disable_padding": false
+        }
+      },
+      "1498058006650": {
+        "type": "separator",
+        "settings": {
+          "display": "all",
+          "color": "#41cd62",
+          "height": "5px",
+          "no_margin": false
+        }
+      },
+      "1498058027811": {
+        "type": "custom-content",
+        "blocks": {
+          "1498058027811-0": {
+            "type": "text",
+            "settings": {
+              "title": "ABOUT US",
+              "text": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sed venenatis ex. Maecenas scelerisque dictum tortor, ac venenatis lacus aliquet sit amet. Fusce molestie diam in tellus condimentum, sed sollicitudin arcu vehicula. Nulla quam neque, volutpat a metus ut, vulputate mollis justo. Nullam eu nisi nec ligula vestibulum euismod.<\/p>",
+              "button_label": "",
+              "button_link": "",
+              "align_text": "center",
+              "column_width": "one-half"
+            }
+          },
+          "1498058034528": {
+            "type": "image",
+            "settings": {
+              "image": "",
+              "link": "",
+              "column_width": "one-half"
+            }
+          }
+        },
+        "block_order": [
+          "1498058027811-0",
+          "1498058034528"
+        ],
+        "settings": {
+          "display": "all",
+          "inverted": false,
+          "disable_padding": false
         }
       }
     },
     "content_for_index": [
       "1496645688611",
       "1496656693081",
-      "1496675085269"
+      "1497955494101",
+      "1497958158163",
+      "1497965699291",
+      "1497965754298",
+      "1497966686972",
+      "1497967594955",
+      "1497970810915",
+      "1497971134137",
+      "1497973148306",
+      "1497973801821",
+      "1498056121306",
+      "1498026043184",
+      "1498057229709",
+      "1498057558914",
+      "1498058006650",
+      "1498058027811"
     ]
   }
 }
