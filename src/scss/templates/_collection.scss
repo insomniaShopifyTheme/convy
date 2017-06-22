@@ -70,6 +70,11 @@ $image-large: 728px;
     .collection-filter {
       margin-bottom: $gutter;
       visibility: hidden;
+
+      .collection-filter__items--tags{
+        padding-left: 15px;
+      }
+
       .collection-filter__title {
         color: $color-meta-text;
         font-size: 1.15rem;
@@ -86,13 +91,12 @@ $image-large: 728px;
           margin-right: $gutter;
         }
 
-
       }
       .collapsible-title{
         display: block;
         position: relative;
         cursor: pointer;
-        margin-left: 15px;
+        margin: 10px 15px 0px 0px;
 
         &::after{
           content: "\25c2";
@@ -123,7 +127,6 @@ $image-large: 728px;
         }
       }
       .collapsible-content{
-        margin-left: 13px;
         overflow: hidden;
         height: inherit;
 
