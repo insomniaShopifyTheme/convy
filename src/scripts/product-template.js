@@ -158,7 +158,6 @@ theme.ProductPageSection = (function() {
     this._removeReviewsDuplicate();
     theme.initSwatches();
     this._initAccordion();
-    this._initAddToCartTopBar();
   }
 
   return ProductPageSection;
@@ -445,7 +444,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     });
 
     $barAddToCartBtn.on('click', function(event){
-      $addToCartBarBtn.trigger('click');
+      $addToCartBarBtn.click();
       $('html, body').animate({ scrollTop: 0 }, 'fast');
       event.preventDefault();
     });
@@ -485,14 +484,11 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       el1.change(function(){
         if(el1.val() != 'non'){
           el2.val(el1.val());
-          el2.trigger('change');
         }
-
       });
       el2.change(function(){
         if(el2.val() != 'non'){
-          el1.val(el2.val());
-          el1.trigger('change');
+          el1.val(el2.val()).trigger('change');
         }
       });
     }
