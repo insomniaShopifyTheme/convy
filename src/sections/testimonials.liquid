@@ -24,7 +24,7 @@
             {%- assign testimonial = block.settings -%}
             <h2 class="testimonial__title">{{ section.settings.title | escape }}</h2>
             <div class="grid">
-              <div class="testimonial__text grid__item ten-twelfths push--one-twelfth">
+              <div class="testimonial__text grid__item ten-twelfths push--one-twelfth "{% if testimonial.image == blank %}style="margin-top: 40px;"{% endif %}>
                 {{ testimonial.text | newline_to_br }}
               </div>
             </div>
