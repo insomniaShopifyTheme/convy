@@ -194,7 +194,7 @@ $font-weight-bold: 700;
 {% else %}
 
   {%- assign font_base_other_parts = settings.font_family_base_other | split: '_' -%}
-  {% capture base_family_other %}"{{ font_base_other_parts[0] }}"{% if font_base_other_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+  {% capture base_family_other %}"{{ font_base_other_parts[0] | replace: '+', ' ' }}"{% if font_base_other_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
   {% assign base_family = base_family_other %}
 
 {% endif %}
@@ -211,7 +211,7 @@ $font-weight-bold: 700;
   {% endif %}
 {% else %}
   {%- assign font_headings_other_parts = settings.font_family_headings_other | split: '_' -%}
-  {% capture headings_family_other %}"{{ font_headings_other_parts[0] }}"{% if font_headings_other_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
+  {% capture headings_family_other %}"{{ font_headings_other_parts[0] | replace: '+', ' '}}"{% if font_headings_other_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
   {% assign headings_family = headings_family_other %}
   {% assign headings_weight = font_headings_other_parts[1] %}
 {% endif %}
