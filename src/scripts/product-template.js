@@ -198,7 +198,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       var $stickyBtn = $(this.selectors.stickyCartButton);
       var startPosition = $(this.selectors.stickyBtnStart).position();
       var distanceYBottom = window.pageYOffset + theme.cache.$window.height();
-      var stickAt = distanceYBottom + 70;
+      var stickAt = distanceYBottom + 450;
       if (startPosition.top <= stickAt) {
         $stickyBtn.addClass('stuck');
       } else {
