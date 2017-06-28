@@ -13,6 +13,11 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+select, input{
+  outline: none;
+}
+
 .main-content {
   flex: 1;
 }
@@ -182,20 +187,24 @@ a,
   color: $color-link;
   text-decoration: none;
   background: transparent;
+  outline: none;
 }
 
 a:hover,
 a:focus {
   color: $color-link-hover;
+  outline: none;
 }
 
 button {
   overflow: visible;
+  outline: none;
 }
 
 button[disabled],
 html input[disabled] {
   cursor: default;
+  outline: none;
 }
 
 .btn,

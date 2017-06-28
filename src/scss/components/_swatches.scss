@@ -3,6 +3,8 @@ $swatch-size: 40px;
 .swatches {
   .swatches__options {
     @include clearfix;
+    display: inline-block;
+    text-align: center;
   }
   label {
     @include clearfix;
@@ -31,6 +33,10 @@ $swatch-size: 40px;
       border: none;
       border-bottom: 6px solid $color-special;
       border-color: $color-special;
+
+      border-right: solid 1px $color-border;
+      border-top: solid 1px $color-border;
+      border-left: solid 1px $color-border;
     }
   }
 }

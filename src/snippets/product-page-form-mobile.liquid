@@ -1,15 +1,24 @@
+
 <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
   <meta itemprop="priceCurrency" content="{{ shop.currency }}">
   <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
-  <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form--mobile product-form-product_{{ product.id }}" data-section="product_{{ product.id }}">
+
+
+  <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form--mobile product-form-product_{{ product.id }}" data-section="product_{{ product.id }}" >
     {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
       {% if section.settings.product_options_style contains 'swatches' %}
-        <div class="product-options--swatches grid--full">
-          {% include 'product-quantity-selector' %}
+        <div class="product-options--swatches grid--full text-center">
           {% for option in product.options_with_values %}
-            {% include 'product-option' %}
             {% include 'product-swatch' %}
           {% endfor %}
+        </div>
+        <div class="product-options grid--full">
+          <div class="grid__item one-quarter"></div>
+          <div class="grid__item two-quarters text-center">
+            {%- assign show_label = true -%}
+            {% include 'product-quantity-selector' %}
+          </div>
+          <div class="grid__item one-quarter"></div>
         </div>
       {% else %}
         {%- assign options_count_mod = product.options.size | modulo: 2 -%}
@@ -24,17 +33,17 @@
         <div class="product-options grid--full">
         {% for option in product.options_with_values limit: max_options %}
           {% capture current %}{% cycle 'first', 'last' %}{% endcapture %}
-          <div class="grid__item one-half">
+          <div class="grid__item one-whole">
             {% include 'product-option' %}
           </div>
         {% endfor %}
         {% if product.options.size > max_options %}
           {% for option in product.options_with_values offset: max_options %}
             {%- assign current = 'first' -%}
-            <div class="grid__item one-half">
+            <div class="grid__item one-whole">
               {% include 'product-option' %}
             </div>
-            <div class="grid__item one-half">
+            <div class="grid__item one-whole">
               {% include 'product-quantity-selector' %}
             </div>
           {% endfor %}
@@ -86,7 +95,7 @@
       <div class="js-sticky-btn-start"></div>
     {% else %}
       <div class="product-form__cart">
-        <button type="submit" name="add" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit">
+        <button type="submit" name="add" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit" >
           <span class="product-form__cart-submit-text">
             {% if current_variant.available %}
               {{ 'products.product.add_to_cart' | t }}

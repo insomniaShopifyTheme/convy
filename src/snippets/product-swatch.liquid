@@ -4,7 +4,7 @@
   <label {% if option.name == 'default' or section.settings.display_option_labels == false and show_label != true %} class="hidden-label"{% endif %}>
     {{ option.name }}
   </label>
-  <div class="swatches__options">
+  <div class="swatches__options" >
   {% for value in option.values %}
 
     {% if color_options contains option.name %}

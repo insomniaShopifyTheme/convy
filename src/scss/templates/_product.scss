@@ -236,7 +236,9 @@
         padding-left: 0.5rem;
       }
       .product-form__input {
+
         @include konversion-input();
+
       }
     }
     .product-form__item--first .product-form__input {
