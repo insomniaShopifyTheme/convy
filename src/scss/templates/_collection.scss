@@ -55,6 +55,7 @@ $image-large: 728px;
     &.top-filter {
       padding: 0 $gutter;
       .collection-controls {
+        margin-top: 20px;
         float: right;
         .grid__item {
           width: 200px;
