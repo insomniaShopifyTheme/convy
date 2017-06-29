@@ -125,9 +125,9 @@ theme.ProductPageSection = (function() {
       addToCartBar: '.product-add-to-cart-bar ',
       addToCartBarBtn: '.product-add-to-cart-bar .btn--add-to-cart',
       addToCartBarBtnText: '.product-add-to-cart-bar .btn--add-to-cart .product-form__cart-submit-text',
-      addToCartBarPrice: '.product-add-to-cart-bar .product-price',
+      addToCartBarPrice: '.product-add-to-cart-bar .product-price'
 
-    }
+    };
 
     // Thumbs & Slider
     var slider = this.slider = '#' + sectionId + '_images';
@@ -169,7 +169,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     if (_.isFunction(ajaxCart.qtySelectors)) {
       ajaxCart.qtySelectors();
     }
-    this._initAddToCartTopBar();
+    this._initAddToCartStickyBar();
   },
 
   onUnload: function() {
@@ -427,7 +427,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     });
   },
 
-  _initAddToCartTopBar: function() {
+  _initAddToCartStickyBar: function() {
 
     var $window = $(window),
         $addToCartBarBtn = $(this.selectors.productInfoDesktop).find('.product-form__cart-submit'),

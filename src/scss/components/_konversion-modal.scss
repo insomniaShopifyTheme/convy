@@ -13,6 +13,8 @@ $cart-modal-width: 540px;
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  text-align: center;
+
   /* Modal Content/Box */
   .modal-content {
     position: relative;
@@ -24,8 +26,13 @@ $cart-modal-width: 540px;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
   }
+
+
   /* Modal Header */
   .modal-header {
     padding: $gutter / 3 $gutter / 2;
@@ -62,6 +69,14 @@ $cart-modal-width: 540px;
       width: $cart-modal-width;
     }
   }
+}
+
+.konversion-modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
 }
 
 /* Add Animation */
