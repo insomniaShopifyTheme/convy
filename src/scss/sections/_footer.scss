@@ -4,6 +4,13 @@
   .section-footer__wrapper--bordered {
     border-top: 1px solid $color-border;
   }
+
+  .section-footer__container{
+    max-width: $large;
+    margin: auto;
+    position: relative;
+    display: block;
+  }
   ul {
     margin-bottom: 0;
   }
