@@ -182,7 +182,6 @@ $font-weight-normal: 400;
 $font-weight-bold: 700;
 
 {% if settings.font_family_base_other == 'none' %}
-
   {% if settings.font_family_base contains 'Google' %}
     {% assign font_base_parts = settings.font_family_base | split: '_' %}
     {% assign font_base_name = font_base_parts[1] %}
@@ -190,13 +189,10 @@ $font-weight-bold: 700;
   {% else %}
     {% assign base_family = settings.font_family_base %}
   {% endif %}
-
 {% else %}
-
   {%- assign font_base_other_parts = settings.font_family_base_other | split: '_' -%}
   {% capture base_family_other %}"{{ font_base_other_parts[0] | replace: '+', ' ' }}"{% if font_base_other_parts.last == 'serif' %}, serif {% else %}, "HelveticaNeue", "Helvetica Neue", sans-serif{% endif %}{% endcapture %}
   {% assign base_family = base_family_other %}
-
 {% endif %}
 
 {% if settings.font_family_headings_other == 'none' %}
@@ -207,7 +203,7 @@ $font-weight-bold: 700;
     {% assign headings_weight = font_headings_parts[2] | split: ',' %}
   {% else %}
     {% assign headings_family = settings.font_family_headings %}
-    {% assign headings_weight = $font-weight-normal %}
+    {% assign headings_weight = font-weight-normal %}
   {% endif %}
 {% else %}
   {%- assign font_headings_other_parts = settings.font_family_headings_other | split: '_' -%}
@@ -217,7 +213,7 @@ $font-weight-bold: 700;
 {% endif %}
 
 $font-stack-heading: {{ headings_family }};
-$font-weight-heading: {{ headings_weight }};
+$font-weight-heading: {% if headings_weight %}{{ headings_weight }}{% else %}400{% endif %};
 $font-size-heading: {{ settings.font_size_headings }};
 
 $font-stack-body: {{ base_family }};

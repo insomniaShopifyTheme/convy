@@ -498,7 +498,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
         var topBarSelect = $(this);
         var index = $(this).attr('data-index').replace('option', '').trim();
         topBarSelect.change(function(){
-          $('.swatches__option.swatches__option-index-'+index+'.swatches__option--'+$(this).val()).click();
+          $('.swatches__option.swatches__option-index-'+index+'.swatches__option--'+$(this).val().replace(/\s+/g, '-').toLowerCase()).click();
         })
       });
     }

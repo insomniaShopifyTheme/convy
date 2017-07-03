@@ -81,6 +81,7 @@ ShopifyAPI.onError = function(XMLHttpRequest, textStatus) {
     - Allow custom error callback
 ==============================================================================*/
 ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
+
   var $body = $(document.body),
   params = {
     type: 'POST',
@@ -259,6 +260,8 @@ var ajaxCart = (function(module, $) {
 
       // Remove any previous quantity errors
       $('.qty-error').remove();
+
+
 
       ShopifyAPI.addItemFromForm(evt.target, itemAddedCallback, itemErrorCallback);
     });

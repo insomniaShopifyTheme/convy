@@ -9,6 +9,7 @@
       {% if section.settings.product_options_style contains 'swatches' %}
         <div class="product-options--swatches grid--full text-center">
           {% for option in product.options_with_values %}
+            {% include 'product-option' %}<!-- Never remove the product-option include, swatches need the select inputs to work! -->
             {% include 'product-swatch' %}
           {% endfor %}
         </div>
