@@ -3,19 +3,6 @@
 
 */
 
-theme.setup_license = function() {
-  var license_key = "{{ settings.license_key | remove: ' ' | strip_newlines | sha256 }}";
-  var key = "{{ settings.license_key | remove: ' ' | strip_newlines | sha1 }}";
-  if (license_key !== "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855") {
-    $.getJSON("https://get.tabarnapp.com/cdn/cl.php?l=" + license_key, function(data) {
-      if (data && data.status !== 0) {
-        localStorage.setItem(key, data.status);
-      } else {
-        localStorage.setItem(key, 0);
-      }
-    });
-  }
-}
 theme.check_interval = false;
 
 theme.check_license = function() {
@@ -56,7 +43,21 @@ theme.check_license = function() {
 }
 
 
+theme.setup_license = function() {
+  var license_key = "{{ settings.license_key | remove: ' ' | strip_newlines | sha256 }}";
+  var key = "{{ settings.license_key | remove: ' ' | strip_newlines | sha1 }}";
+  if (license_key !== "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855") {
+    $.getJSON("https://get.tabarnapp.com/cdn/cl.php?l=" + license_key, function(data) {
+      if (data && data.status !== 0) {
+        localStorage.setItem(key, data.status);
+      } else {
+        localStorage.setItem(key, 0);
+      }
+      theme.check_license();
+    });
+  }
+}
+
 if (window.top.location !== window.location) {
   theme.setup_license();
-  theme.check_license();
 }
