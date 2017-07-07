@@ -6,7 +6,7 @@
 {% assign nr_tags = 0 %}
 
 {% for tag in collection.all_tags %}
-  {% if tag contains "deal-" or tag contains "filter-"%}{% else %}
+  {% if tag contains "deal-" or tag contains "filter-" or tag contains "countdown-" %}{% else %}
     {% assign nr_tags = nr_tags | plus: 1 %}
   {% endif %}
 {% endfor %}
@@ -94,7 +94,7 @@
         {%- assign tag_safe = tag | escape -%}
         {%- assign tag_safe_amp = tag | replace: '&', 'amp' | handle -%}
 
-        {% if tag contains "deal-" or tag contains "filter-" %}
+        {% if tag contains "deal-" or tag contains "filter-" or tag contains "countdown-" %}
         {% else %} 
         <li>
           {% if current_tags contains tag %}
