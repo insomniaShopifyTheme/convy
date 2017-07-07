@@ -30,6 +30,11 @@
             {{ 'products.product.sold_out' | t }}
           {% endif %}
         </span>
+        {% if settings.countdown_offer_enabled %}
+            <span class="countdown-offer-clock hide"  >
+              <i class="fa fa-clock-o" aria-hidden="true"></i> <span class="countdown-clock" >0d 0h 0m 0s</span>
+            </span>
+        {% endif %}
       </button>
     </div>
     <select name="id" id="ProductSelect-product_{{ product.id }}--desktop" class="product-form__variants no-js hider">

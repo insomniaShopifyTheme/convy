@@ -252,6 +252,27 @@
     ]
   },
   {
+    "name": "Countdown Offer",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "To add the countdown offer to a product, just tag your product with 'countdown-{days}-{hours}-{minutes}'. Eg. countdown-0-2-30 the timer will end in 2 hours and 30 minutes. [Watch the illustration](http://g.recordit.co/5hFvZjEL0u.gif)"
+      },
+      {
+        "type": "checkbox",
+        "id": "countdown_offer_enabled",
+        "label": "Display countdown",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "countdown_offer_repeat",
+        "label": "Repeat at the end",
+        "default": true
+      }
+    ]
+  },
+  {
     "name": "Deal of the day",
     "settings": [
       {

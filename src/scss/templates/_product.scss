@@ -451,6 +451,8 @@
   width: 100%;
   transition: all 0.5s;
   height: 0;
+  z-index: 5;
+
   &.stuck {
     height: 70px;
   }
