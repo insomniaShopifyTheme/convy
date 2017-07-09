@@ -425,6 +425,8 @@ var ajaxCart = (function(module, $) {
 
     if ('{{ settings.ajax_cart_method }}' == 'popup' && theme.isMobile() || '{{ settings.ajax_cart_method }}' == 'popup') {
       theme.cartModal.onlyShow();
+    } else if('{{ settings.ajax_cart_method }}' == 'page') {
+      window.location = '/cart';
     } else {
       $body.removeClass('drawer--is-loading');
       $body.trigger('afterCartLoad.ajaxCart', cart);
