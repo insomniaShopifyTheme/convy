@@ -192,13 +192,13 @@
 .cbp-hsmenu > li.cbp-hsitem-open > a {
 }
 .cbp-hsmenu > li > a:not(:only-child) {
-  padding-right: 2.5em;
+  padding-right: 2.0em;
 }
 .cbp-hsmenu > li > a:not(:only-child):after {
 	content: '';
     position: absolute;
     top: 50%;
-    right: 1em;
+    right: 0.9em;
     /*margin-top: -3px;*/
     height: 0;
     width: 0;
@@ -212,9 +212,9 @@
 }
 .cbp-hssubmenu {
 	position: absolute;
-	left: calc((100vw - 100%) / 2 * -1);
+	left: calc((99vw - 100%) / 2 * -1);
 	top: 100%;
-    width: 100vw;
+    width: 99vw;
 	z-index: 0;
 	text-align: center; /* for aligning the sub items */
 	visibility: hidden;

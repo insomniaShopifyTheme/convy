@@ -81,6 +81,7 @@ ShopifyAPI.onError = function(XMLHttpRequest, textStatus) {
     - Allow custom error callback
 ==============================================================================*/
 ShopifyAPI.addItemFromForm = function(form, callback, errorCallback) {
+
   var $body = $(document.body),
   params = {
     type: 'POST',
@@ -260,6 +261,8 @@ var ajaxCart = (function(module, $) {
       // Remove any previous quantity errors
       $('.qty-error').remove();
 
+
+
       ShopifyAPI.addItemFromForm(evt.target, itemAddedCallback, itemErrorCallback);
     });
   };
@@ -294,20 +297,25 @@ var ajaxCart = (function(module, $) {
       var position = $(img).offset();
       var right = $(theme.cache.$body).width() - position.left - $(img).width();
 
-      $("body").append('<div class="floating-cart '+ cartClass +'"></div>');
-      var cart = $('div.floating-cart');
-      $("<img src='"+img.src+"' class='floating-image-large' />").appendTo(cart);
+      var cart_type = '{{ settings.ajax_cart_method }}';
+      if(cart_type != 'popup'){
+        $("body").append('<div class="floating-cart '+ cartClass +'"></div>');
+        var cart = $('div.floating-cart');
+        $("<img src='"+img.src+"' class='floating-image-large' />").appendTo(cart);
 
-      $(cart).css({'top' : position.top + 'px', "right" : right + 'px'}).fadeIn("slow").addClass('moveToCart');
-      setTimeout(function(){
-        $("body").addClass("MakeFloatingCart");
+        $(cart).css({'top' : position.top + 'px', "right" : right + 'px'}).fadeIn("slow").addClass('moveToCart');
+        setTimeout(function(){
+          $("body").addClass("MakeFloatingCart");
+          ShopifyAPI.getCart(cartUpdateCallback);
+        }, 400);
+
+        setTimeout(function(){
+          $('div.floating-cart').remove();
+          $("body").removeClass("MakeFloatingCart");
+        }, 850);
+      }else{
         ShopifyAPI.getCart(cartUpdateCallback);
-      }, 400);
-
-      setTimeout(function(){
-        $('div.floating-cart').remove();
-        $("body").removeClass("MakeFloatingCart");
-      }, 850);
+      }
     } else {
       ShopifyAPI.getCart(cartUpdateCallback);
     }
@@ -415,8 +423,10 @@ var ajaxCart = (function(module, $) {
       return false;
     }
 
-    if ('{{ settings.ajax_cart_method }}' == 'popup' && theme.isMobile()) {
+    if ('{{ settings.ajax_cart_method }}' == 'popup' && theme.isMobile() || '{{ settings.ajax_cart_method }}' == 'popup') {
       theme.cartModal.onlyShow();
+    } else if('{{ settings.ajax_cart_method }}' == 'page') {
+      window.location = '/cart';
     } else {
       $body.removeClass('drawer--is-loading');
       $body.trigger('afterCartLoad.ajaxCart', cart);

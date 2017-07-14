@@ -323,8 +323,6 @@ theme.dealOfTheDay = function() {
     countDownTimer(currentDateHours, dealDate);
   }
 
-
-
   //get object from local storage
   var localstorage_dotd = JSON.parse(localStorage.getItem("deal_of_the_day"));
 

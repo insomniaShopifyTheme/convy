@@ -119,7 +119,16 @@ theme.ProductPageSection = (function() {
       productDescription: '.product-template .product-info__description',
       productFullDescription: '.product-template .product-info__full_description',
       accordion: '#' + sectionId + ' .accordion',
-    }
+      productInfo: '.product-info',
+      productVariants: '.content-product-variants',
+      productInfoDesktop: '.product-info-desktop',
+      addToCartBar: '.product-add-to-cart-bar ',
+      addToCartBarBtn: '.product-add-to-cart-bar .btn--add-to-cart',
+      addToCartBarBtnText: '.product-add-to-cart-bar .btn--add-to-cart .product-form__cart-submit-text',
+      addToCartBarPrice: '.product-add-to-cart-bar .product-price',
+      countDownOffer: '.countdown-offer-clock'
+
+    };
 
     // Thumbs & Slider
     var slider = this.slider = '#' + sectionId + '_images';
@@ -150,7 +159,7 @@ theme.ProductPageSection = (function() {
     this._removeReviewsDuplicate();
     theme.initSwatches();
     this._initAccordion();
-    this._initAddToCartTopBar();
+    this._initCountDownOffer();
   }
 
   return ProductPageSection;
@@ -162,6 +171,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     if (_.isFunction(ajaxCart.qtySelectors)) {
       ajaxCart.qtySelectors();
     }
+    this._initAddToCartStickyBar();
   },
 
   onUnload: function() {
@@ -190,7 +200,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       var $stickyBtn = $(this.selectors.stickyCartButton);
       var startPosition = $(this.selectors.stickyBtnStart).position();
       var distanceYBottom = window.pageYOffset + theme.cache.$window.height();
-      var stickAt = distanceYBottom + 70;
+      var stickAt = distanceYBottom + 450;
       if (startPosition.top <= stickAt) {
         $stickyBtn.addClass('stuck');
       } else {
@@ -258,6 +268,14 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     $(this.selectors.stickyCartButtonText).text($(this.selectors.addToCartText).text());
     $(this.selectors.stickyCartButton).find('button').prop('disabled', $(this.selectors.addToCart).prop('disabled'));
 
+    //Update Add to cart bar
+    $(this.selectors.addToCartBarBtn).prop('disabled', $(this.selectors.addToCart).prop('disabled'))
+    $(this.selectors.addToCartBarBtnText).text($(this.selectors.addToCartText).text());
+    if(this.$container.find(this.selectors.productPrices).hasClass('visibility-hidden')){
+      $(this.selectors.addToCartBarPrice).addClass('visibility-hidden').css('width', 0);
+    }else{
+      $(this.selectors.addToCartBarPrice).removeClass('visibility-hidden').css('width', 'auto');
+    }
   },
 
   _switchImage: function(evt) {
@@ -411,82 +429,262 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     });
   },
 
-  _initAddToCartTopBar: function() {
+  _initAddToCartStickyBar: function() {
 
     var $window = $(window),
-        $addToCartButton = $(".product-form__cart--trigger"),
-        addToCartButtonOffsetFromTop = $addToCartButton.offset().top,
-        $bar = $('.product-add-to-cart-bar'),
-        $barAddToCartButton = $bar.find('.btn--add-to-cart');
+        $addToCartBarBtn = $(this.selectors.productInfoDesktop).find('.product-form__cart-submit'),
+        addToCartBtnOffsetFromTop = $(this.selectors.addToCart).offset().top,
+        $bar = $(this.selectors.addToCartBar),
+        $barAddToCartBtn = $(this.selectors.addToCartBarBtn);
 
-    $window.scroll(bindScroll);
-
-    function bindScroll(){
-
-      if ($window.scrollTop() > addToCartButtonOffsetFromTop) {
+    $window.scroll(function(){
+      if ($window.scrollTop() > addToCartBtnOffsetFromTop) {
         $bar.addClass('shown');
       }else {
         $bar.removeClass('shown');
       }
-    }
+    });
 
-    $barAddToCartButton.on('click', function(event){
-      $addToCartButton.trigger('click');
+    $barAddToCartBtn.on('click', function(event){
+      $addToCartBarBtn.click();
       $('html, body').animate({ scrollTop: 0 }, 'fast');
       event.preventDefault();
     });
 
-
     /**
-     * Match product variants input values with topbar input values
+     * Reflect product variants with Add to cart bar variants
      **/
 
-    // Workaround to get js generated elements from DOM after the window is loaded
-    $window.on('load', function() {
+    var $topbarProductQuantityMinus = $bar.find('.js-qty__adjust--minus');
+    var $topbarProductQuantityPlus = $bar.find('.js-qty__adjust--plus');
+    var $topbarProductQuantityNum = $bar.find('.js-qty__num');
+    var $productQuantityMinus = $(this.selectors.productInfo).find('.js-qty__adjust--minus');
+    var $productQuantityPlus = $(this.selectors.productInfo).find('.js-qty__adjust--plus');
+    var $productQuantityNum = $(this.selectors.productInfo).find('.js-qty__num');
+    var hasSwatches = $(this.selectors.productVariants).hasClass('product-options--swatches');
 
-      var $topbarProductQuantityMinus = $bar.find('.js-qty__adjust--minus');
-      var $topbarProductQuantityPlus = $bar.find('.js-qty__adjust--plus');
-      var $topbarProductQuantityNum = $bar.find('.js-qty__num');
+    $topbarProductQuantityMinus.click(matchQuantityInputs);
+    $topbarProductQuantityPlus.click(matchQuantityInputs);
+    $productQuantityMinus.click(matchQuantityInputs);
+    $productQuantityPlus.click(matchQuantityInputs);
 
-      var $productQuantityMinus = $('.product-info').find('.js-qty__adjust--minus');
-      var $productQuantityPlus = $('.product-info').find('.js-qty__adjust--plus');
-      var $productQuantityNum = $('.product-info').find('.js-qty__num');
+    function matchQuantityInputs(){
+      //if is topbar
+      if($(this).closest('.product-add-to-cart-bar')[0] != undefined){
+        $productQuantityNum.val($topbarProductQuantityNum.val());
+      }else{
+        $topbarProductQuantityNum.val($productQuantityNum.val());
+      }
+    }
 
-      $topbarProductQuantityMinus.click(matchQuantityInputs);
-      $topbarProductQuantityPlus.click(matchQuantityInputs);
-      $productQuantityMinus.click(matchQuantityInputs);
-      $productQuantityPlus.click(matchQuantityInputs);
+    $bar.find('.product-options__selector').each(function(i, v){
+      var topBarSelect = $(this);
+      matchSelectValues($('.product-info').find('.product-options__selector').eq(i), topBarSelect);
+    });
 
-      function matchQuantityInputs(){
-        //if is topbar
-        if($(this).closest('.product-add-to-cart-bar')[0] != undefined){
-          $productQuantityNum.val($topbarProductQuantityNum.val());
+    function matchSelectValues(el1, el2){
+      el1.change(function(){
+        if(el1.val() != 'non'){
+          el2.val(el1.val());
+        }
+      });
+      el2.change(function(){
+        if(el2.val() != 'non'){
+          el1.val(el2.val()).trigger('change');
+        }
+      });
+    }
+
+    if(hasSwatches){
+      $bar.find('.product-options__selector').each(function(i, v){
+        var topBarSelect = $(this);
+        var index = $(this).attr('data-index').replace('option', '').trim();
+        topBarSelect.change(function(){
+          $('.swatches__option.swatches__option-index-'+index+'.swatches__option--'+$(this).val().replace(/\s+/g, '-').toLowerCase()).click();
+        })
+      });
+    }
+  },
+
+  
+
+  _initCountDownOffer: function() {
+    var _restart = '{{ settings.countdown_offer_repeat }}';
+
+    var timers = {
+      coc: $('.countdown-offer-clock'),
+      show : function () {
+        this.coc.removeClass('hide');
+      },
+      hide : function () {
+        this.coc.addClass('hide');
+      }
+    };
+
+    // Cookie management
+    var _cookie = {
+      set : function (cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      },
+      get : function (cname) {
+        var name = cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      },
+      check : function (cname) {
+        var cname_ = _cookie.get(cname);
+        if(cname_ != "" && cname_ != null) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      remove : function (cname) {
+        var d = new Date();
+        d.setTime(d.getTime() + (-1000*24*60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + 'deleted' + ";" + expires + ";path=/";
+      }
+    };
+
+    // If the array contain str string return first val found
+    function arrayContain(arr, str) {
+      var ret = null;
+      $.each(arr, function (i, v) {
+        if(v.includes(str)){
+          ret = v;
+        }
+      });
+      if(ret){
+        return ret;
+      }else{
+        return false;
+      }
+    }
+
+    // Countdown timer
+    function countDownOfferTimer(toDateSplittedStr, productId, $element) {
+      var timer;
+      var cookieName = "endDate" + productId;
+      var endDate = null;
+
+
+      //Check if cookie already exists
+      if(_cookie.check(cookieName)){
+        var part = _cookie.get(cookieName).split('-');
+        var timestamp = part[0];
+        if(part[1] == parseInt(toDateSplittedStr[0], 10) + parseInt(toDateSplittedStr[1], 10) +parseInt(toDateSplittedStr[2], 10)){
+          endDate = new Date(parseInt(timestamp));
         }else{
-          $topbarProductQuantityNum.val($productQuantityNum.val());
+          createOrUpdate();
+        }
+      }else{
+        createOrUpdate();
+      }
+
+      //create or update cookie
+      function createOrUpdate() {
+        var now = new Date();
+        endDate = now.addDays(parseInt(toDateSplittedStr[0], 10)).addHours(parseInt(toDateSplittedStr[1], 10)).addMinutes(parseInt(toDateSplittedStr[2], 10));
+        _cookie.set(cookieName, endDate.getTime()+'-'+parseInt(toDateSplittedStr[0], 10) + parseInt(toDateSplittedStr[1], 10) +parseInt(toDateSplittedStr[2], 10), 30);
+      }
+
+
+      //restart timer
+      function restart() {
+        //console.log('restart');
+        timers.hide();
+        if(_restart == 'true') {
+          createOrUpdate();
+          interval();
         }
       }
 
-      $bar.find('.product-options__selector').each(function(i, v){
-        var topBarSelect = $(this);
-        matchSelectValues($('.product-info').find('.product-options__selector').eq(i), topBarSelect);
-      });
 
-      function matchSelectValues(el1, el2){
-        el1.change(function(){
-          if(el1.val() != 'non'){
-            el2.val(el1.val());
+
+      //Timer interval
+      function interval() {
+        setTimeout(function () {
+          timers.show();
+        }, 1000);
+        var currentDate = new Date();
+        var difference = endDate.getTime() - currentDate.getTime();
+        timer = setInterval(function() {
+          var diff = difference;
+          if (diff < 0) {
+            clearInterval(timer);
+            restart();
+          } else {
+            var seconds = Math.floor(diff / 1000);
+            var minutes = Math.floor(seconds / 60);
+            var hours = Math.floor(minutes / 60);
+            var days = Math.floor(hours / 24);
+            hours %= 24;
+            minutes %= 60;
+            seconds %= 60;
+            days %= 24;
+            $element.text(days+ 'd ' +hours+ 'h ' +minutes + 'm ' +seconds+ 's ');
           }
-        });
-        el2.change(function(){
-          if(el2.val() != 'non'){
-            el1.val(el2.val());
-          }
-        });
+          difference -= 1000;
+        }, 1000);
       }
+      interval();
+    }
 
-    });
+    //if setting is enabled
+    if('{{ settings.countdown_offer_enabled }}' == 'true'){
+
+      var $countDownOffer = $(this.selectors.countDownOffer);
+      var api_endpoint = window.location.href +'.json';
+
+      //Get product data from product json
+      var data = $.parseJSON($.ajax({
+        url:  api_endpoint,
+        dataType: "json",
+        async: false
+      }).responseText);
+
+      var productId = data.product.id;
+      var tags = data.product.tags.split(', ');
+      var toDate = arrayContain(tags, 'countdown-');//return first tag with 'countdown-' str
+
+
+      //if tag 'countdown-' exists show timer else remove cookie
+      if(toDate){
+
+        //style it (not sure about this)
+        $countDownOffer.css('display', 'block')
+            .css('text-transform','lowercase')
+            .css('font-size', '13px');
+
+        if($countDownOffer.parents('.product-form__cart--sticky').length == 1){
+          $countDownOffer.parents('.product-form__cart--sticky')
+              .find(this.selectors.countDownOffer)
+              .css('margin-top', '-20px');
+        }
+        var toDateSplittedStr = toDate.split('-'); // days-hours-minutes
+        toDateSplittedStr.shift();//remove first elem from array
+
+        //Initialize countdown
+        countDownOfferTimer(toDateSplittedStr, productId, $('.countdown-offer-clock .countdown-clock'))
+
+      }else{
+        _cookie.remove('endDate'+ productId);
+      }
+    }
   }
-
-
 
 });

@@ -37,7 +37,7 @@
 
   {% for tag in collection.all_tags %}
 
-    {% unless tag contains "deal-" or tag contains "filter-" %}
+    {% unless tag contains "deal-" or tag contains "filter-" or tag contains "countdown-" %}
 
       {% if current_tags contains tag %}
         <option value="{{ tag | handle }}" selected>- {{ tag }}</option>

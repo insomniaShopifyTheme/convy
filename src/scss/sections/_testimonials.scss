@@ -42,7 +42,7 @@
   padding: 0px 15px;
 
   .testimonial{
-    height: 240px;
+    //height: 240px;
     overflow: hidden;
     margin-bottom: 20px;
 
@@ -58,11 +58,9 @@
 }
 
 .testimonial {
-  height: 240px;
+  //height: 240px;
 
   display: table;
-
-
   .inner-content{
     vertical-align: middle;
     display: table-cell;

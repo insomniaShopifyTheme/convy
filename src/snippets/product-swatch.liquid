@@ -4,8 +4,9 @@
   <label {% if option.name == 'default' or section.settings.display_option_labels == false and show_label != true %} class="hidden-label"{% endif %}>
     {{ option.name }}
   </label>
-  <div class="swatches__options">
+  <div class="swatches__options" >
   {% for value in option.values %}
+
     {% if color_options contains option.name %}
       <style>
         .swatches__option.swatches__option--{{ value | handleize }} {
@@ -24,7 +25,7 @@
         }
       </style>
     {% endif %}
-    <label class="swatches__option swatches__option--{{ value | handleize }}{% if option.selected_value == value %} swatches__option--selected{% endif %}" data-value="{{ value | escape }}" {% if color_options contains option.name %} data-color-tooltip="{{ value }}"{% endif %}>
+    <label class="swatches__option swatches__option-index-{{ option_index }} swatches__option--{{ value | handleize }}{% if option.selected_value == value %} swatches__option--selected{% endif %}" data-value="{{ value | escape }}" {% if color_options contains option.name %} data-color-tooltip="{{ value }}"{% endif %}>
       <input type="radio" name="option-{{ option_index }}" value="{{ value | escape }}"{% if option.selected_value == value %} checked{% endif %} />
       {% unless color_options contains option.name %}
         {{ value }}

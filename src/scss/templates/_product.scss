@@ -236,7 +236,9 @@
         padding-left: 0.5rem;
       }
       .product-form__input {
+
         @include konversion-input();
+
       }
     }
     .product-form__item--first .product-form__input {
@@ -382,12 +384,12 @@
     .product-form {
       .js-qty {
         @include konversion-cart-qty-input();
-        width: 120px;
+        width: 140px;
         button {
           display: inline-block;
         }
         .js-qty__num {
-          width: 45px;
+          width: 63px;
         }
       }
       .product-form__item {
@@ -449,6 +451,8 @@
   width: 100%;
   transition: all 0.5s;
   height: 0;
+  z-index: 5;
+
   &.stuck {
     height: 70px;
   }

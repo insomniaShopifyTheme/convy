@@ -1,3 +1,14 @@
+<style>
+  {% if section.settings.switch_account_search_position %}
+  .section-header .header-search__wrapper{
+    float: right!important;
+  }
+  .section-header .user-account{
+    float: left!important;
+  }
+  {% endif %}
+</style>
+
 {% assign menu_type = section.settings.menu_type %}
 <div class="grid--full section-header__wrapper" data-section-id="{{ section.id }}" data-section-type="header-section" data-menu-type="{{ menu_type }}" {% if menu_type == "product-menu"%}id="cbp-hsmenu-wrapper"{% endif %}>
   <div class="grid__item two-twelfths large--hide text-center">
@@ -36,8 +47,9 @@
   </div>
   <div class="grid__item medium-down--hide large--eight-twelfths menu-cell">
     {% include 'main-menu' %}
+
     <div class="header-search__wrapper">
-      <div class="header-search">
+      <div class="header-search {% if section.settings.switch_account_search_position %} header-search__position-right {% endif %}">
         <button type="button" class="header-icon icon-fallback-text js-expand-search">
           <span class="icon icon-search" aria-hidden="true"></span>
           <span class="fallback-text" aria-hidden="true">Search</span>
@@ -167,7 +179,18 @@
         "id": "display_profile_icon",
         "label": "Display user profile icon",
         "default": true
+      },
+      {
+      "type": "header",
+      "content": "Switch position"
+      },
+      {
+      "type": "checkbox",
+      "id": "switch_account_search_position",
+      "label": "Switch 'Search' field position with 'Account' ",
+      "default": false
       }
+
     ]
   }
 {% endschema %}

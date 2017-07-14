@@ -30,7 +30,7 @@ $image-large: 728px;
         {% if settings.margin_on_mobile %}
           padding-right: 5px;
         {% endif %}
-        margin-bottom: ($gutter / 4);
+        margin-bottom: ($gutter / 4); 
       }
       &.product-list--1-col {
         &.grid--uniform {
@@ -55,6 +55,7 @@ $image-large: 728px;
     &.top-filter {
       padding: 0 $gutter;
       .collection-controls {
+        margin-top: 20px;
         float: right;
         .grid__item {
           width: 200px;
@@ -70,6 +71,11 @@ $image-large: 728px;
     .collection-filter {
       margin-bottom: $gutter;
       visibility: hidden;
+
+      .collection-filter__items--tags{
+        padding-left: 15px;
+      }
+
       .collection-filter__title {
         color: $color-meta-text;
         font-size: 1.15rem;
@@ -86,13 +92,15 @@ $image-large: 728px;
           margin-right: $gutter;
         }
 
-
+        &.other-tags{
+          margin-left: 15px;
+        }
       }
       .collapsible-title{
         display: block;
         position: relative;
         cursor: pointer;
-        margin-left: 15px;
+        margin: 10px 15px 0px 0px;
 
         &::after{
           content: "\25c2";
@@ -123,7 +131,6 @@ $image-large: 728px;
         }
       }
       .collapsible-content{
-        margin-left: 13px;
         overflow: hidden;
         height: inherit;
 

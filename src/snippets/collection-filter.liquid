@@ -6,7 +6,7 @@
 {% assign nr_tags = 0 %}
 
 {% for tag in collection.all_tags %}
-  {% if tag contains "deal-" or tag contains "filter-"%}{% else %}
+  {% if tag contains "deal-" or tag contains "filter-" or tag contains "countdown-" %}{% else %}
     {% assign nr_tags = nr_tags | plus: 1 %}
   {% endif %}
 {% endfor %}
@@ -84,7 +84,7 @@
   </ul>
 
 {% unless section.settings.hide_non_categorized %}
-  <h4 class="collection-filter__subtitle collapsible-title" toggle="c-other" max-items="{{ max_items }}">Other</h4>
+  <h4 class="collection-filter__subtitle collapsible-title other-tags" toggle="c-other" max-items="{{ max_items }}">Other</h4>
 
   <ul class="collection-filter__items collection-filter__items--tags no-bullets">
     <div class="collapsible-content c-other">
@@ -94,8 +94,8 @@
         {%- assign tag_safe = tag | escape -%}
         {%- assign tag_safe_amp = tag | replace: '&', 'amp' | handle -%}
 
-        {% if tag contains "deal-" or tag contains "filter-" %}
-        {% else %}
+        {% if tag contains "deal-" or tag contains "filter-" or tag contains "countdown-" %}
+        {% else %} 
         <li>
           {% if current_tags contains tag %}
             <label><input type="checkbox" value="{{ tag }}" checked="true"> {{ tag | link_to_remove_tag: tag }}</label>

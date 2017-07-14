@@ -1,5 +1,5 @@
 
-{% if section.settings.add_to_cart_bar_enabled %}
+{% if settings.add_to_cart_bar_enabled %}
   {% include 'product-add-to-cart-bar' %}
 {% endif %}
 
@@ -41,7 +41,7 @@
     {% endcomment %}
     <div class="grid__item one-whole large--hide">
 
-      <div class="product-info page-width">
+      <div class="product-info page-width product-info-mobile">
         <div class="product-price clearfix">
           {% include 'product-page-price' %}
         </div>
@@ -63,7 +63,7 @@
       ================= DESKTOP VERSION =================
     {% endcomment %}
     <div class="grid__item one-whole medium-down--hide large--one-third">
-      <div class="product-info">
+      <div class="product-info product-info-desktop">
         {% include 'deal-of-the-day-product' %}
         {% include 'product-page-info' %}
         {% include 'product-meta' %}
@@ -351,35 +351,6 @@
         "label": "Product reviews tab",
         "default": true,
         "info": "takes effect only if tabs enabled; also requires Product Reviews app integration (see General Settings > Apps)"
-      },
-      {
-        "type": "header",
-        "content": "'Add to cart' top bar"
-      },
-      {
-        "type": "checkbox",
-        "id": "add_to_cart_bar_enabled",
-        "label": "Display add to cart bar",
-        "info": "This bar will only appear after the scroll passes 'ADD TO CART' button",
-        "default": true
-      },
-      {
-        "type":      "color",
-        "id":        "add_to_cart_bar_background_color",
-        "label":     "Background color",
-        "default":   "#fff"
-      },
-      {
-        "type":      "color",
-        "id":        "add_to_cart_bar_text_color",
-        "label":     "Product title color",
-        "default":   "#000"
-      },
-      {
-        "type":      "color",
-        "id":        "add_to_cart_bar_price_color",
-        "label":     "Price color",
-        "default":   "#000"
       }
     ],
     "blocks": [

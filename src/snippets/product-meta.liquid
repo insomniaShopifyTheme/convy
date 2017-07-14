@@ -18,7 +18,9 @@
       <td>
         <ul class="comma-list">
           {% for has_tag in product.tags %}
+            {% unless has_tag contains 'deal-' or has_tag contains 'filter-' or has_tag contains 'countdown-' %}
             <li class="comma-list__item"><a href="/collections/all/{{ has_tag | handleize }}">{{ has_tag }}</a></li>
+            {% endunless %}
           {% endfor %}
         </ul>
       </td>

@@ -105,7 +105,7 @@ $my-account-z-index: 10;
 
     color: $color-menu;
     height: 100%;
-    width: 30px;
+    width: 51px;
     &:focus,
     &:active {
       outline: none;
@@ -141,7 +141,7 @@ $my-account-z-index: 10;
     &.header-search--active {
       border: 1px solid $color-border;
       border-bottom: none;
-      width: 240px;
+      width: 255px;
       form {
         border-right: 1px solid $color-border;
         display: inline-block;
@@ -155,6 +155,16 @@ $my-account-z-index: 10;
           &:focus {
             outline: none;
           }
+        }
+      }
+    }
+
+    &.header-search__position-right{
+      float: inherit;
+      form {
+        float: right;
+        input {
+          float: right;
         }
       }
     }
@@ -229,7 +239,7 @@ $my-account-z-index: 10;
     .cart-cell {
       .section-header__cart-link {
         font-size: 1.4rem;
-        font-weight: normal;
+        font-weight: $font-weight-heading;
       }
     }
     .section-header__cart-link {

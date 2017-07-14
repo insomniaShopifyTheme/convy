@@ -28,6 +28,7 @@ gulp.task('scripts', function() {
   return gulp.src([
       globalConfig.scripts_src + '/lib/jquery.selectric.js',
       globalConfig.scripts_src + '/lib/sweetalert2.min.js',
+      globalConfig.scripts_src + '/lib/date.js',
       globalConfig.scripts_src + '/setup.js',
       globalConfig.scripts_src + '/theme/currency.js',
       globalConfig.scripts_src + '/theme/sections.js',
