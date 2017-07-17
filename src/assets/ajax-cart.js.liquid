@@ -405,6 +405,7 @@ var ajaxCart = (function(module, $) {
 
     // Gather all cart data and add to DOM
     data = {
+      isOverflow: _.keys(items).length > 2,
       items: items,
       note: cart.note,
       totalPrice: Shopify.formatMoney(cart.total_price, settings.moneyFormat),

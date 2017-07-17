@@ -1,0 +1,32 @@
+{% if settings.ajax_cart_method == 'drawer' %}
+    <div id="CartDrawer" class="drawer drawer--right">
+        <div class="drawer__header">
+            <div class="drawer__title h3">{{ 'cart.general.title' | t }} <a href="/cart" class="icon icon-link"></a></div>
+            <div class="drawer__close js-drawer-close">
+
+                <button type="button" class="icon-fallback-text">
+                    <span class="icon icon-x" aria-hidden="true"></span>
+                    <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+                </button>
+            </div>
+        </div>
+        <div id="CartContainer"></div>
+    </div>
+    {% elsif settings.ajax_cart_method == 'popup' %}
+    <div class="konversion-modal" id="CartModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal__close js-modal-close">
+                    <button type="button" class="icon-fallback-text">
+                        <span class="icon icon-x" aria-hidden="true"></span>
+                        <span class="fallback-text">{{ 'cart.general.close_cart' | t | json }}</span>
+                    </button>
+                </div>
+                <div class="modal__title h3">{{ 'cart.general.title' | t }} <a href="/cart" class="icon icon-link"></a></div>
+            </div>
+            <div class="modal-body">
+                <div id="CartContainer"></div>
+            </div>
+        </div>
+    </div>
+{% endif %}
