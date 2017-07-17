@@ -18,7 +18,13 @@
       text-transform: uppercase;
     }
     & > ul {
-      margin-top: 3px;
+      margin-top: 5px;
+      li{
+        float: left;
+        width: 250px;
+        border-left: 1px solid rgba(0, 0, 0, 0.05);
+        overflow: hidden;
+      }
     }
   }
   li {
@@ -29,6 +35,8 @@
     }
   }
   ul {
+    background: $color-bg-menu;
+
     li {
       background: $color-bg-menu;
       &:hover,
@@ -40,6 +48,7 @@
       }
     }
     ul {
+
       li {
         background: $color-bg-menu;
         a {
@@ -50,8 +59,8 @@
   }
 
   //menu shrink
-  &.sf-menu-shrink-x1{
-    @media (max-width: 1470px) {
+  &.sf-menu-shrink{
+    @include at-query($max, $main-menu ) {
       li > a{
         padding: 0.90em 0.4em;
         font-size: 15px;
@@ -62,14 +71,13 @@
         }
         &.sf-with-ul:after{
           right: 0.2em;
-
         }
       }
     }
   }
 
-  &.sf-menu-shrink-x2{
-    @media (max-width: 1470px) {
+  &.sf-menu-shrink-2x{
+    @include at-query($max, $main-menu) {
       li > a{
         padding: 1.2em 0.4em;
         font-size: 13px;
@@ -127,8 +135,8 @@
   	height: 100%;
 
     //menu shrink
-    &.sf-menu-shrink-x1{
-      @media (max-width: 1470px) {
+    &.sf-menu-shrink{
+      @include at-query($max, $main-menu) {
          & > li > a{
           padding: 0.90em 0.4em;
           font-size: 15px;
@@ -144,8 +152,8 @@
       }
     }
 
-    &.sf-menu-shrink-x2{
-      @media (max-width: 1470px) {
+    &.sf-menu-shrink-2x{
+      @include at-query($max, $main-menu) {
         & > li > a{
           padding: 1.2em 0.4em;
           font-size: 13px;

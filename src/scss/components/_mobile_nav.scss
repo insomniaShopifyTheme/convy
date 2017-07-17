@@ -81,3 +81,13 @@ $drawer-footer-height: 40px;
   }
 
 }
+
+
+/*================ Desktop Version ================*/
+@include at-query($min, $large) {
+
+  .mm-menu {
+    margin-top: $drawer-header-height;
+    margin-bottom: 0;
+  }
+}

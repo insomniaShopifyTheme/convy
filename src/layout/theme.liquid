@@ -82,6 +82,7 @@
   </header>
 
   {% include 'mobile-nav' %}
+  {% include 'desktop-nav-drawer' %}
   {% if settings.ajax_cart_method == 'drawer' %}
   <div id="CartDrawer" class="drawer drawer--right">
     <div class="drawer__header">
@@ -113,8 +114,10 @@
     </div>
   </div>
   {% endif %}
+  {% include 'deal-of-the-day-navbar-mobile-small' %}
 
   <main class="main-content" role="main" id="page_container">
+
     {{ content_for_layout }}
   </main>
 

@@ -2,7 +2,7 @@
     Mobile nav
   *****************************************************************************/
 theme.mobileNavInit = function() {
-  $("#MobileMenu").mmenu({
+  $(".mobileMenu").mmenu({
     offCanvas: false
   });
 };

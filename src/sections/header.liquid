@@ -20,7 +20,7 @@
       </div>
     </div>
   </div>
-  <div class="grid__item eight-twelfths large--two-twelfths logo-cell">
+  <div class="grid__item medium-down--eight-twelfths logo-cell">
     {% if template == 'index' %}
       <h1 class="section-header__logo{% if section.settings.logo_use_image %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
     {% else %}
@@ -32,9 +32,9 @@
           <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo" style="margin-top: {{ section.settings.logo_margin }}">
         </a>
       {% elsif section.settings.logo_text != blank %}
-        <a href="/" itemprop="name">{{ section.settings.logo_text }}</a>
+        <a href="/" itemprop="name">{{ section.settings.logo_text | truncate: 18, "" }}</a>
       {% else %}
-        <a href="/" itemprop="name">{{ shop.name }}</a>
+        <a href="/" itemprop="name">{{ shop.name | truncate: 18, "" }}</a>
       {% endif %}
     {% unless template == 'index' %}
       </div>
@@ -43,52 +43,79 @@
     {% endunless %}
 
     {% include 'deal-of-the-day-navbar-mobile-medium' %}
-
   </div>
-  <div class="grid__item medium-down--hide large--eight-twelfths menu-cell">
+  <div class="grid__item medium-down--hide menu-cell">
     {% include 'main-menu' %}
 
-    <div class="header-search__wrapper">
-      <div class="header-search {% if section.settings.switch_account_search_position %} header-search__position-right {% endif %}">
-        <button type="button" class="header-icon icon-fallback-text js-expand-search">
-          <span class="icon icon-search" aria-hidden="true"></span>
-          <span class="fallback-text" aria-hidden="true">Search</span>
-        </button>
-        {% include 'search-bar' %}
+    {% if section.settings.switch_account_search_position %}
+      {% if shop.customer_accounts_enabled %}
+        <div class="user-account medium-down--hide">
+          <a class="header-icon icon-fallback-text" href="/account">
+            {% if section.settings.display_profile_icon %}
+              <span class="icon icon-user" aria-hidden="true"></span>
+            {% endif %}
+            {{ 'customer.account.title' | t | remove: "My"}}
+          </a>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="header-search__wrapper">
+        <div class="header-search {% if section.settings.switch_account_search_position %} header-search__position-right {% endif %}">
+          <button type="button" class="header-icon icon-fallback-text js-expand-search">
+            <span class="icon icon-search" aria-hidden="true"></span>
+            <span class="fallback-text" aria-hidden="true">Search</span>
+          </button>
+          {% include 'search-bar' %}
+        </div>
       </div>
-    </div>
-
-
-    {% if shop.customer_accounts_enabled %}
-    <div class="user-account">
-      <a class="header-icon icon-fallback-text" href="/account">
-        {% if section.settings.display_profile_icon %}
-          <span class="icon icon-user" aria-hidden="true"></span>
-        {% endif %}
-        {{ 'customer.account.title' | t | remove: "My"}}
-      </a>
-    </div>
     {% endif %}
-    {% include 'deal-of-the-day-navbar-desktop' %}
 
   </div>
-  <div class="grid__item two-twelfths cart-cell">
-    <a href="/cart" id="CartIcon" class="h1 section-header__cart-link {% if settings.ajax_cart_method == 'drawer' %}js-drawer-open-right{% elsif settings.ajax_cart_method == 'popup' %}js-modal-open{% endif %}" aria-controls="CartDrawer" aria-expanded="false">
-      <span class="section-header__cart-count medium-down--hide js-cart-count">
-        <span>{{ cart.item_count }}</span>
-      </span>
-      <span class="medium-down--hide">
-        {{ 'layout.cart.items_count' | t: count: cart.item_count }}
-      </span>
-      <span class="icon icon-cart" aria-hidden="true">
-        <span class="icon-cart__badge large--hide js-cart-count">
+
+  <div class="right-side__wrapper">
+
+    <div class="grid__item two-twelfths cart-cell {% if settings.deal_of_the_day_enabled %}deal-of-the-day-active{% endif %}" >
+      <a href="/cart" id="CartIcon" class="h1 section-header__cart-link {% if settings.ajax_cart_method == 'drawer' %}js-drawer-open-right{% elsif settings.ajax_cart_method == 'popup' %}js-modal-open{% endif %}" aria-controls="CartDrawer" aria-expanded="false">
+        <span class="section-header__cart-count js-cart-count">
           <span>{{ cart.item_count }}</span>
         </span>
-      </span>
-    </a>
+        <span class="section-header__cart-text ">
+          {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+        </span>
+        <span class="icon icon-cart" aria-hidden="true">
+          <span class="icon-cart__badge js-cart-count">
+            <span>{{ cart.item_count }}</span>
+          </span>
+        </span>
+      </a>
+    </div>
+    {% include 'deal-of-the-day-navbar-desktop' %}
+
+    {% if section.settings.switch_account_search_position %}
+      <div class="header-search__wrapper medium-down--hide">
+        <div class="header-search {% if section.settings.switch_account_search_position %} header-search__position-right {% endif %}">
+          <button type="button" class="header-icon icon-fallback-text js-expand-search">
+            <span class="icon icon-search" aria-hidden="true"></span>
+            <span class="fallback-text" aria-hidden="true">Search</span>
+          </button>
+          {% include 'search-bar' %}
+        </div>
+      </div>
+    {% else %}
+      {% if shop.customer_accounts_enabled %}
+        <div class="user-account medium-down--hide">
+          <a class="header-icon icon-fallback-text" href="/account">
+            {% if section.settings.display_profile_icon %}
+              <span class="icon icon-user" aria-hidden="true"></span>
+            {% endif %}
+            {{ 'customer.account.title' | t | remove: "My"}}
+          </a>
+        </div>
+      {% endif %}
+    {% endif %}
+
   </div>
 
-  {% include 'deal-of-the-day-navbar-mobile-small' %}
 
 </div>
 
@@ -105,7 +132,7 @@
         "type": "text",
         "id": "logo_text",
         "label": "Custom Text",
-        "info": "Shop name by default"
+        "info": "Shop name by default. Limited to 18 characters"
       },
       {
         "type": "checkbox",
@@ -165,6 +192,22 @@
         "id": "display_product_price",
         "label": "Display product price in Product menu",
         "default": true
+      },
+
+      {
+        "type": "select",
+        "id": "submenu_columns",
+        "label": "Display submenu items in columns",
+        "options": [
+          {"value": "1", "label": "1"},
+          {"value": "2", "label": "2"},
+          {"value": "3", "label": "3"},
+          {"value": "4", "label": "4"},
+          {"value": "5", "label": "5"},
+          {"value": "6", "label": "6"}
+        ],
+        "default": "1",
+        "info": "This will only work if the submenu has more than 6 items."
       },
       {
         "type": "header",

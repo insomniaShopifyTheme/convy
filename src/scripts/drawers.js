@@ -159,6 +159,7 @@ theme.Drawers = (function () {
 })();
 
 theme.drawersInit = function () {
+  theme.DesktopLeftDrawer = new theme.Drawers('DesktopNavDrawer', 'desktop-left');
   theme.LeftDrawer = new theme.Drawers('NavDrawer', 'left');
   theme.RightDrawer = new theme.Drawers('CartDrawer', 'right', {
     'onDrawerOpen': ajaxCart.load
@@ -168,6 +169,8 @@ theme.drawersInit = function () {
       theme.LeftDrawer.close();
     } else if(theme.RightDrawer.drawerIsOpen) {
       theme.RightDrawer.close();
+    } else if(theme.DesktopLeftDrawer.drawerIsOpen) {
+      theme.DesktopLeftDrawer.close();
     }
   });
 };
