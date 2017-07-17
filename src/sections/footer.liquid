@@ -85,11 +85,11 @@
         <div class="footer-col footer-col--{{ block.type }} grid__item {{ col_size }}{{ visibility_classes }}" {{ block.shopify_attributes }}>
           {% case block.type %}
             {% when 'menu' %}
-              <h4 class="footer-col__title text-{{ block.settings.align_text }}">
+              <h4 class="footer-col__title text-{{ block.settings.align_text }} {% if block.settings.is_collapsible %} menu-collapse-btn collapsed {% endif %}" data-collapsible-id="{{ forloop.index }}">
                 {{ block.settings.title }}
               </h4>
               {% if linklists[block.settings.menu].links.size > 0 %}
-                <ul class="footer-col__linklist" style="margin-left: {{ block.settings.left_margin }}">
+                <ul class="footer-col__linklist {% if block.settings.is_collapsible %}collapsible-content collapsed {% endif %} collapsible-id-{{ forloop.index }}" style="margin-left: {{ block.settings.left_margin }}">
                   {% for link in linklists[block.settings.menu].links %}
                     <li class="footer-col__linklist-item text-{{ block.settings.align_items }}">
                       <a href="{{ link.url }}">{{ link.title }}</a>
@@ -393,6 +393,13 @@
               {"value": "mobile", "label": "Mobile only"},
               {"value": "desktop", "label": "Desktop only"}
             ]
+          },
+          {
+            "type": "checkbox",
+            "id": "is_collapsible",
+            "label": "Is collapsible",
+            "default": false,
+            "info": "Collapse the content of the menu. Only works on mobile version."
           }
         ]
       },

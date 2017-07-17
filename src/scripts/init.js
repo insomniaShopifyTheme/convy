@@ -7,6 +7,7 @@ theme.init = function () {
   theme.loginForms();
   theme.dealOfTheDay();
   theme.topBar();
+  theme.footer();
 };
 
 // Blog: filter by tag
