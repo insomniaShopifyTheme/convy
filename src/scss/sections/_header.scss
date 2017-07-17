@@ -114,6 +114,7 @@ $my-account-z-index: 10;
     float: left;
     overflow: visible;
     height: $header-height;
+    background: $color-bg-menu;
   }
   .header-search {
     border-bottom: none;
@@ -288,6 +289,8 @@ $my-account-z-index: 10;
   .right-side__wrapper{
     position: absolute;
     right: 0;
+    background: $color-bg-menu;
+    z-index: 1;
     @include at-query($max, $large) {
       position: relative;
     }
@@ -322,6 +325,8 @@ $my-account-z-index: 10;
     .menu-cell{
       float: left;
       width: auto;
+      z-index: 2;
+      background: $color-bg-menu;
     }
     .section-header__cart-link {
       margin: 0;
