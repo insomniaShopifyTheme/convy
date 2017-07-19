@@ -50,6 +50,21 @@
   }
 }
 
+.drawer--desktop-left {
+  width: $drawer-desktop-nav-width;
+  left: -$drawer-desktop-nav-width;
+  border-right: 1px solid $color-drawer-border;
+
+  .js-drawer-open-desktop-left & {
+    display: block;
+    @include transform(translateX($drawer-desktop-nav-width));
+
+    .lt-ie9 & {
+      left: 0;
+    }
+  }
+}
+
 .drawer--right {
   width: $drawer-cart-width;
   right: -$drawer-cart-width;

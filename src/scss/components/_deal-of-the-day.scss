@@ -3,35 +3,50 @@
   float: right;
   padding: 0px 12px;
   overflow: hidden;
-
+  position: relative;
   border-left: solid 1px rgba(0, 0, 0, 0.2);
   border-right: solid 1px rgba(0, 0, 0, 0.2);
+  height: $header-height;
+
+  &.desktop{
+
+    @include at-query($max, $large) {
+      height: 0;
+      width: 0;
+      visibility: hidden;
+    }
+
+    @include at-query($max, $xlarge) {
+      .content-countdown{
+        display: none;
+      }
+    }
+
+  }
 
   &.mobile-small{
     text-align: center;
-
     width: 100%;
     visibility: hidden;
     border: none;
     height: 0;
-    @include at-query($max, $medium) {
-      height: auto;
-      visibility: visible;
-      border-top: solid 1px rgba(0, 0, 0, 0.1);
-
-      .wrapper{
-        overflow: hidden;
-        margin: auto;
-        display: table;
-        .content-product-img {
-          img {
-            margin-top: 2px;
-          }
+    margin: 0;
+    .wrapper{
+      overflow: hidden;
+      margin: auto;
+      display: table;
+      .content-product-img {
+        img {
+          margin-top: 2px;
         }
       }
     }
-
-
+    @include at-query($max, $medium) {
+      height: auto;
+      visibility: visible;
+      margin-top: $topbar-height + $header-height + 10;
+      margin-bottom: -$header-height;
+    }
   }
   &.mobile-medium{
     position: absolute;
@@ -46,17 +61,15 @@
     height: 0;
     visibility: hidden;
     text-align: center;
-
-    @include at-query($max, $large) {
-      height: 55px;
+    @include at-query($max, $pre-large) {
+      height: $header-height;
       visibility: visible;
     }
     @include at-query($max, $medium) {
       height: 0;
+      width: 0;
       visibility: hidden;
     }
-
-
     .content-product-img{
       margin: auto;
       height: 100%;
@@ -88,9 +101,6 @@
     }
   }
 
-
-
-
   h2, p {
     line-height: 18px;
     letter-spacing: -1px;
@@ -104,6 +114,7 @@
     height: 100%;
     float: left;
     padding: 10px 0px;
+    display: block;
 
     .countdown {
       color: $color-special;
@@ -112,6 +123,7 @@
       font-size: 15px;
     }
   }
+
   .content-product-img {
     height: 100%;
     float: left;
@@ -129,6 +141,7 @@
       right: 14px;
     }
   }
+
   .content-price {
     text-align: left;
     height: 100%;
@@ -147,6 +160,7 @@
     }
 
   }
+
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {
     .content-countdown {

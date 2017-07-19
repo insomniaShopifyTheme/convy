@@ -1,4 +1,4 @@
-<div id="NavDrawer" class="drawer drawer--left">
+<div id="DesktopNavDrawer" class="drawer drawer--desktop-left">
   <div class="drawer__header">
     <div class="drawer__title h3">{{ 'layout.drawers.browse' | t }}</div>
     <div class="drawer__close js-drawer-close">
@@ -8,12 +8,6 @@
       </button>
     </div>
   </div>
-  <form action="/search" method="get" class="drawer__search" role="search">
-    <div class="drawer__search-icon">
-      <span class="icon icon-search"></span>
-    </div>
-    <input class="drawer__search-input" type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.placeholder' | t }}">
-  </form>
   <!-- begin mobile-nav -->
   <div class="mobileMenu">
     <ul class="mobile-nav">
@@ -51,40 +45,6 @@
         {% endif %}
       {% endfor %}
 
-      {% comment %}
-        If customer accounts are enabled, provide login and create account links
-      {% endcomment %}
-      {% if shop.customer_accounts_enabled %}
-        {% if customer %}
-          <li class="mobile-nav__item">
-            {% if customer.first_name != blank %}
-              {% capture first_name %}{{ customer.first_name }}{% endcapture %}
-              <a href="/account">{{ 'layout.customer.logged_in_as_html' | t: first_name: first_name }}</a>
-            {% else %}
-              <a href="/account">{{ 'layout.customer.account' | t }}</a>
-            {% endif %}
-          </li>
-          <li class="mobile-nav__item">
-            {{ 'layout.customer.log_out' | t | customer_logout_link }}
-          </li>
-        {% else %}
-          <li class="mobile-nav__item">
-            {{ 'layout.customer.log_in' | t | customer_login_link }}
-          </li>
-          <li class="mobile-nav__item">
-            {{ 'layout.customer.create_account' | t | customer_register_link }}
-          </li>
-        {% endif %}
-      {% endif %}
     </ul>
-  </div>
-
-  <!-- //mobile-nav -->
-  <div class="drawer__footer">
-    {% if settings.show_multiple_currencies %}
-      {% include 'currency-picker' %}
-    {% endif %}
-    {% include 'social-icons-list' %}
-
   </div>
 </div>

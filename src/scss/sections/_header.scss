@@ -71,14 +71,12 @@ $my-account-z-index: 10;
     img {
       max-height: 100%;
     }
-    @media (max-width: 2200px) AND (min-width: 1023px) {
-      a {
-        font-size: 1.4vw;
+    a {
+      @include at-query($max, $xlarge) {
+        font-size: 2vw;
       }
-    }
-    @media (max-width: 1023px) {
-      a {
-        font-size: 4vw;
+      @include at-query($max, $pre-large) {
+        font-size: 1.5rem !important;
       }
     }
   }
@@ -115,7 +113,8 @@ $my-account-z-index: 10;
     width: 60px;
     float: left;
     overflow: visible;
-    height: 100%;
+    height: $header-height;
+    background: $color-bg-menu;
   }
   .header-search {
     border-bottom: none;
@@ -185,7 +184,7 @@ $my-account-z-index: 10;
       font-size: 1.2rem;
     }
 
-    @media (max-width: 1470px) {
+    @include at-query($max, $main-menu) {
       padding: 0.5rem;
       font-size: 14px;
       .icon {
@@ -196,9 +195,11 @@ $my-account-z-index: 10;
 
   .cart-cell {
     text-align: center;
+    padding: 0;
     .icon-cart {
       font-size: 1.5rem;
       position: relative;
+      display: none;
       .icon-cart__badge {
         background: $color-bg;
         border-radius: 50%;
@@ -214,7 +215,48 @@ $my-account-z-index: 10;
         width: 20px;
       }
     }
+
+    &.deal-of-the-day-active{
+      @include at-query($min, $large) {
+        width: 100px !important;
+        line-height: 1.2;
+
+        .section-header__cart-count {
+          display: none;
+        }
+        .section-header__cart-text {
+          display: none;
+        }
+        .icon-cart {
+          display: inline-block;
+        }
+        .section-header__cart-link {
+          //margin: 0;
+          padding: 1.2rem 0;
+        }
+        .icon-cart__badge {
+          line-height: 15px;
+        }
+      }
+    }
+
+    @include at-query($max, $wide+100px) {
+      .section-header__cart-count{
+        display: none;
+      }
+      .section-header__cart-text{
+        display: none;
+      }
+      .icon-cart {
+        display: inline-block;
+      }
+      .section-header__cart-link {
+        //margin: 0;
+        padding: 1.2rem 0;
+      }
+    }
   }
+
   .section-header__cart-link {
     background-color: $color-special;
     color: $color-text-alt;
@@ -222,8 +264,38 @@ $my-account-z-index: 10;
     height: $header-height-mobile;
     margin: 0;
     padding: 1.2rem 0;
+    @include at-query($max, $wide+100px) {
+      span{
+        line-height: 1.2;
+      }
+    }
   }
 
+  .navigation-open-more{
+    float: left;
+    border:$color-placeholder solid 1px;
+    color: #000;
+    border-radius: 3px;
+    padding: 3px 5px;
+    margin-top: 13px;
+    margin-left:10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    &:hover{
+      border:$success-green solid 1px;
+    }
+  }
+
+  .right-side__wrapper{
+    position: absolute;
+    right: 0;
+    background: $color-bg-menu;
+    z-index: 1;
+    @include at-query($max, $large) {
+      position: relative;
+    }
+
+  }
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {
     h1, .h1 {
@@ -233,19 +305,38 @@ $my-account-z-index: 10;
       white-space: nowrap;
     }
     .logo-cell {
-      padding-left: $gutter;
+      padding: 0 $gutter - 10px 0 $gutter;
       text-align: left;
+      float: left;
+      width: auto;
     }
     .cart-cell {
+      float: right;
+      width: 250px;
+      @media (max-width: $wide+100px) {
+        width: 120px;
+      }
       .section-header__cart-link {
         font-size: 1.4rem;
         font-weight: $font-weight-heading;
       }
     }
+
+    .menu-cell{
+      float: left;
+      width: auto;
+      z-index: 2;
+      background: $color-bg-menu;
+    }
     .section-header__cart-link {
       margin: 0;
       padding: 0.5rem 0;
+      @include at-query($max, $wide+100px) {
+        padding: 1.2rem 0;
+      }
     }
+
+
   }
 
 
