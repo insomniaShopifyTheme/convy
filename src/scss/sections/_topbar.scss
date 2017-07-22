@@ -3,6 +3,7 @@
 .section-topbar {
   background-color: #191919;
   height: $topbar-height;
+  display: none;
   @include at-query($max, $small) {
     height: auto;
 
