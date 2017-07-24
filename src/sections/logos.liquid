@@ -1,4 +1,12 @@
-<div class="section-logos__wrapper">
+<!-- invert logo color -->
+  {% if section.settings.invert_logo_color%}
+            {% assign styleColor = "invert-section-logos" %}
+          {% else %}
+            {% assign styleColor = "section-logos" %}
+  {% endif %}
+<!-- end of invert logo color -->
+
+<div class="{{styleColor}}__wrapper">
 
   {% if section.settings.title != blank %}
     <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
@@ -37,6 +45,11 @@
         "id": "title",
         "label": "Heading",
         "default": "Logo list"
+      },
+      {
+        "type": "checkbox",
+        "id": "invert_logo_color",
+        "label": "Invert color"
       }
     ],
     "blocks": [
