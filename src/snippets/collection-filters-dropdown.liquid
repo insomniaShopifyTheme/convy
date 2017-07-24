@@ -13,17 +13,17 @@
 
     {% capture compareFilterTitle %},{{ filterTitle }},{% endcapture %}
 
-      {% if filterTitleList contains compareFilterTitle %}{% else %}
-          <option value="#"></option>
-          <option value="#">{{ filterTitle | capitalize}}</option>
+      {% unless filterTitleList contains compareFilterTitle %}
+          </optgroup>
+          <optgroup label="{{ filterTitle | capitalize}}">
           {% capture tempTitleList %}{{filterTitleList}}{{ filterTitle }},{% endcapture %}
           {% assign filterTitleList = tempTitleList %}
-      {% endif %}
+      {% endunless %}
 
       {% if current_tags contains tag %}
-        <option value="{{ tag | handle }}" selected>- {{ filterName }}</option>
+        <option value="{{ tag | handle }}" selected>{{ filterName }}</option>
       {% else %}
-        <option value="{{ tag | handle }}">- {{ filterName }}</option>
+        <option value="{{ tag | handle }}">{{ filterName }}</option>
       {% endif %}
 
     {% endif %}
@@ -32,20 +32,19 @@
 
   {% unless section.settings.hide_non_categorized %}
 
-  <option value="#"></option>
-  <option value="#">Other</option>
+    <optgroup label="Other">
+      {% for tag in collection.all_tags %}
 
-  {% for tag in collection.all_tags %}
+        {% unless tag contains "deal-" or tag contains "filter-" or tag contains "countdown-" %}
 
-    {% unless tag contains "deal-" or tag contains "filter-" or tag contains "countdown-" %}
-
-      {% if current_tags contains tag %}
-        <option value="{{ tag | handle }}" selected>- {{ tag }}</option>
-      {% else %}
-        <option value="{{ tag | handle }}">- {{ tag }}</option>
-      {% endif %}
-    {% endunless %}
-  {% endfor %}
+          {% if current_tags contains tag %}
+            <option value="{{ tag | handle }}" selected>{{ tag }}</option>
+          {% else %}
+            <option value="{{ tag | handle }}">{{ tag }}</option>
+          {% endif %}
+        {% endunless %}
+      {% endfor %}
+    </optgroup>
 
   {% endunless %}
 
