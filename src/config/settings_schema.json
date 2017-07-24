@@ -83,6 +83,13 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "add_to_cart_float_animation",
+        "label": "Enable floating image animation",
+        "default": true,
+        "info": "This animation appears when you add a product to the cart."
+      },
+      {
         "type": "header",
         "content": "'Add to cart' sticky bar (Desktop version)"
       },
@@ -598,7 +605,7 @@
       },
       {
         "type": "header",
-        "content": "Sharing"
+        "content": "SHARING ON PRODUCT PAGE"
       },
       {
         "type": "checkbox",

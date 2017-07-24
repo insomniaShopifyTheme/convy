@@ -298,7 +298,8 @@ var ajaxCart = (function(module, $) {
       var right = $(theme.cache.$body).width() - position.left - $(img).width();
 
       var cart_type = '{{ settings.ajax_cart_method }}';
-      if(cart_type != 'popup'){
+      var isAnimationEnabled = '{{ settings.add_to_cart_float_animation }}' === 'true';
+      if(cart_type != 'popup' && isAnimationEnabled){
         $("body").append('<div class="floating-cart '+ cartClass +'"></div>');
         var cart = $('div.floating-cart');
         $("<img src='"+img.src+"' class='floating-image-large' />").appendTo(cart);
