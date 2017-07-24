@@ -1,7 +1,7 @@
 <script id="CartTemplate" type="text/template">
   {% raw %}
   <form action="/cart" method="post" novalidate class="cart ajaxcart cart-widget">
-    <div class="overflow-wrapper {{#if isOverflow}}more{{/if}}">
+    <div class="{{#if cartMethodIsDrawer}}overflow-wrapper {{#if isOverflow}}more{{/if}}{{/if}}">
       <table class="cart-table full">
         <tbody>
         {{#items}}
@@ -43,6 +43,8 @@
                   <span class="visually-hidden">{% endraw %}{{ 'cart.general.increase_quantity' | t }}{% raw %}</span>
                 </button>
               </div>
+              <a href="#" class="ajaxcart__remove" data-line="{{line}}"><span class="icon icon-trash" aria-hidden="true"></span></a>
+
             </div>
           </td>
           <td class="cart-table__summary">

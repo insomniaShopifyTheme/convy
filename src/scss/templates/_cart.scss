@@ -10,10 +10,11 @@ $cart-secondary-color: $color-pale;
   margin-right: $drawer-padding * -1;
 }
 .overflow-wrapper{
-  overflow-y: scroll;
+  overflow-y: hidden;
   position: relative;
+  max-height: 370px;
 }
-.overflow-wrapper.more::after{
+.overflow-wrapper.more::after, .overflow-wrapper::after{
   -moz-box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
   -webkit-box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
   box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
@@ -23,6 +24,7 @@ $cart-secondary-color: $color-pale;
   bottom: 156px;
   width: 135%;
   background: #fff;
+  display: none;
 }
 
 
@@ -55,10 +57,15 @@ $cart-secondary-color: $color-pale;
       width: 165px;
       .cart__remove {
         float: right;
-        padding-top: 5px;
+        padding-top: 7px;
+      }
+      .ajaxcart__remove{
+        float: left;
+        padding: 6px;
       }
     }
     .js-qty, .ajaxcart__qty {
+      float: left;
       @include konversion-cart-qty-input();
       .js-qty__num, .ajaxcart__qty-num {
         color: $cart-secondary-color;
@@ -212,6 +219,18 @@ $cart-secondary-color: $color-pale;
       margin: $gutter / 2 0;
     }
   }
+
+  .overflow-wrapper{
+    height: 100%;
+  }
+
+  .overflow-wrapper.more{
+    overflow-y: auto;
+  }
+  .overflow-wrapper.more::after{
+    display: block;
+  }
+
 }
 
 
@@ -259,8 +278,12 @@ $cart-secondary-color: $color-pale;
 }
 
 
-@media screen and (min-height: 610px) {
-  .overflow-wrapper.more{
-    height: 350px;
+@media screen and (max-height: 690px) and (max-height: $large){
+  .overflow-wrapper{
+    height: 200px;
+    overflow-y: auto;
+  }
+  .overflow-wrapper::after{
+    display: block;
   }
 }

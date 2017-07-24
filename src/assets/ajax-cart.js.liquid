@@ -403,9 +403,14 @@ var ajaxCart = (function(module, $) {
       items.push(item);
     });
 
+    var cartMethodIsDrawer = false;
+    if('{{ settings.ajax_cart_method }}' === 'drawer'){
+      cartMethodIsDrawer = true;
+    }
     // Gather all cart data and add to DOM
     data = {
-      isOverflow: _.keys(items).length > 2,
+      cartMethodIsDrawer: cartMethodIsDrawer,
+      isOverflow: _.keys(items).length > 3,
       items: items,
       note: cart.note,
       totalPrice: Shopify.formatMoney(cart.total_price, settings.moneyFormat),
@@ -439,6 +444,22 @@ var ajaxCart = (function(module, $) {
 
   adjustCart = function () {
     // Delegate all events because elements reload with the cart
+
+    //Remove product from cart
+    //change quantity to 0
+    $body.on('click', '.ajaxcart__remove', function () {
+      if (isUpdating) {
+        return;
+      }
+
+      var line = $(this).data('line');
+      var qty = 0;
+
+      // If it has a data-line, update the cart
+      if (line) {
+        updateQuantity(line, qty);
+      }
+    });
 
     // Add or remove from the quantity
     $body.on('click', '.ajaxcart__qty-adjust', function() {
