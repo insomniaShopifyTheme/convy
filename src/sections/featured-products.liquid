@@ -31,11 +31,11 @@
       {% when 3 %}
         {%- assign col_sizes = "one-whole medium--one-third" -%}
       {% when 2 %}
-        {%- assign col_sizes = "one-half medium--one-quarter push--medium--one-quarter" -%}
+        {%- assign col_sizes = "one-half medium--one-half" -%}
       {% when 1 %}
         {%- assign col_sizes = "one-whole medium--one-third push--medium--one-third" -%}
     {% endcase %}
-    <div class="grid no-slider--grid">
+    <div class="grid no-slider--grid small--hide">
       {% for block in section.blocks limit: section.blocks.size %}
         <div class="grid__item {{ col_sizes }}" {{ block.shopify_attributes }}>
           {% if block.settings.product != blank %}
@@ -49,6 +49,23 @@
         </div>
       {% endfor %}
     </div>
+    <div class="slider-wrapper medium--hide large--hide">
+      <div class="product-list slider" id="slider_{{ section.id }}">
+        {% for block in section.blocks limit: section.blocks.size %}
+          <div class="product-list__item slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
+            {% if block.settings.product != blank %}
+              {%- assign product = all_products[block.settings.product] -%}
+              {%- assign btn_action = block.settings.btn_action -%}
+              {%- assign btn_text = block.settings.btn_text -%}
+              {% include 'product-card' %}
+            {% else %}
+              {% include 'blank-product-card' %}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
   {% else %}
     <div class="grid no-slider--grid">
       <div class="grid__item one-whole medium--one-third push--medium--one-third">

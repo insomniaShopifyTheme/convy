@@ -452,6 +452,38 @@
         "label": "Add margin (mobile version)",
         "default": false,
         "info": "Adds empty space between a product card and edge of the screen"
+      },
+      {
+        "type": "select",
+        "id": "product_card_height",
+        "label": "Product card height size",
+        "options": [
+          {
+            "value": "255px",
+            "label": "Square (static)"
+          },
+          {
+            "value": "300px",
+            "label": "300px"
+          },
+          {
+            "value": "350px",
+            "label": "350px"
+          },
+          {
+            "value": "400px",
+            "label": "400px "
+          },
+          {
+            "value": "450px",
+            "label": "450px "
+          },
+          {
+            "value": "500px",
+            "label": "500px "
+          }
+        ],
+        "default": "255px"
       }
     ]
   },
