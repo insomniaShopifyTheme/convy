@@ -452,6 +452,12 @@
     "name": "Misc",
     "settings": [
       {
+        "type": "text",
+        "id": "password_page_title",
+        "label": "SEO title for password page",
+        "info": "Default is shop name"
+      },
+      {
         "type": "textarea",
         "id": "custom_scripts",
         "label": "Custom scripts",
