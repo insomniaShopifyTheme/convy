@@ -123,7 +123,9 @@ body.fixed-header--all {
   body.fixed-header--all,
   body.fixed-header--mobile {
     .main-content {
-      padding-top: $header-height-mobile;
+      //padding-top: $header-height-mobile;
+      padding-top: $topbar-height + $header-height;
+
     }
   }
 }

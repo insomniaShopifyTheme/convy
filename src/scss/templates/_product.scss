@@ -92,6 +92,9 @@
     }
     .product-images__image {
       text-align: center;
+      img{
+        display: block;
+      }
       // Display only first slide before slick initialized
       ul:not(.slick-initialized) > li:not(:first-child) {
         display: none;
@@ -345,6 +348,9 @@
   @include at-query($min, $large) {
     .product-images {
       .product-images__image {
+        img{
+          display: initial;
+        }
         .slick-slider {
           .slick-arrow {
             transition: width 0.1s;
@@ -427,6 +433,8 @@
   .product-form__cart-submit {
     text-transform: uppercase;
     font-family: $font-stack-heading;
+    font-size: 20px;
+    padding: 16px 30px;
   }
 }
 
@@ -455,5 +463,17 @@
 
   &.stuck {
     height: 70px;
+  }
+}
+
+@include at-query($max, $xsmall){
+  .product-form__cart{
+    &.stuck{
+      height: 54px;
+    }
+    button{
+      font-size: 1rem !important;
+      line-height: 1.5rem !important;
+    }
   }
 }

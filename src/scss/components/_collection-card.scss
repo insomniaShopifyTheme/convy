@@ -33,11 +33,16 @@
       width: auto;
       max-height: 100%;
     }
+
   }
   &.collection-card--overlay {
     .grid__image {
-      @include overlay(5, $color-image-overlay, 0.3);
+      height: auto;
+      min-height: inherit;
+      line-height: inherit;
       z-index: 6;
+      @include overlay(5, $color-image-overlay, 0.3);
+
       &::after{
         content: "";
         display: block;
@@ -45,6 +50,7 @@
       }
 
       img {
+        display: block;
         position: absolute;
         left: 50%;
         top: 50%;

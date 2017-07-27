@@ -14,6 +14,15 @@ $my-account-z-index: 10;
     }
   }
 
+  .with-menu-word::before{
+    content: 'MENU';
+    position: absolute;
+    display: block;
+    font-size: 11px;
+    margin-left: 47px;
+    margin-top: 19px;
+  }
+
   .section-header__hamburger {
     position: relative;
     margin: 0 auto;

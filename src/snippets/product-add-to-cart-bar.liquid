@@ -36,7 +36,6 @@
 
           {% if section.settings.display_quantity_selector %}
             <div class="product-quantity">
-              <label {% if section.settings.display_option_labels == false and show_label != true %}class="hidden-label" {% endif %}for="Quantity">{{ 'products.product.quantity' | t }}</label>
               <input type="number" value="1" min="1" class="product-quantity__input" pattern="[0-9]*" {% if current_variant != blank and current_variant.available == false %}disabled="disabled"{% endif %}>
             </div>
           {% endif %}

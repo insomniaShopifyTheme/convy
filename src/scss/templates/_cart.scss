@@ -10,23 +10,14 @@ $cart-secondary-color: $color-pale;
   margin-right: $drawer-padding * -1;
 }
 .overflow-wrapper{
-  overflow-y: hidden;
+  overflow-y: auto;
   position: relative;
-  max-height: 370px;
-}
-.overflow-wrapper.more::after, .overflow-wrapper::after{
-  -moz-box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
-  -webkit-box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
-  box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
-  position: fixed;
-  content: '';
-  height: 34px;
-  bottom: 156px;
-  width: 135%;
-  background: #fff;
-  display: none;
+  height: auto;
 }
 
+.overflow-wrapper.more::after{
+  display: none;
+}
 
 .cart-table {
   tr {
@@ -221,15 +212,28 @@ $cart-secondary-color: $color-pale;
   }
 
   .overflow-wrapper{
+    overflow-y: auto;
+    position: relative;
+    max-height: 370px;
     height: 100%;
   }
 
-  .overflow-wrapper.more{
-    overflow-y: auto;
+  .overflow-wrapper.more::after, .overflow-wrapper::after{
+    -moz-box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
+    -webkit-box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
+    box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
+    position: fixed;
+    content: '';
+    height: 34px;
+    bottom: 156px;
+    width: 135%;
+    background: #fff;
+    display: none;
   }
   .overflow-wrapper.more::after{
     display: block;
   }
+
 
 }
 
@@ -277,13 +281,14 @@ $cart-secondary-color: $color-pale;
   }
 }
 
-
-@media screen and (max-height: 690px) and (max-height: $large){
-  .overflow-wrapper{
-    height: 200px;
-    overflow-y: auto;
-  }
-  .overflow-wrapper::after{
-    display: block;
+@include at-query($min, $large) {
+  @media screen and (max-height: 690px) and (max-height: $large){
+    .overflow-wrapper{
+      height: 200px;
+      overflow-y: auto;
+    }
+    .overflow-wrapper::after{
+      display: block;
+    }
   }
 }
