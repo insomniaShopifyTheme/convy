@@ -132,8 +132,8 @@
             "type": "image",
             "settings": {
               "image": "",
-              "title": "<p>Slide Heading<\/p>",
-              "text": "<p>Tell your brand's story through video and images<\/p>",
+              "title": "Slide Heading",
+              "subtitle": "<p>Tell your brand's story through video and images<\/p>",
               "primary_button_label": "SHOP NOW",
               "primary_button_link": "shopify:\/\/collections",
               "secondary_button_label": "",
@@ -157,8 +157,8 @@
             "type": "image",
             "settings": {
               "image": "",
-              "title": "<p>Slide Heading<\/p>",
-              "text": "<p>Tell your brand's story through video and images<\/p>",
+              "title": "Slide Heading",
+              "subtitle": "<p>Tell your brand's story through video and images<\/p>",
               "primary_button_label": "",
               "primary_button_link": "",
               "secondary_button_label": "",
@@ -323,7 +323,7 @@
             "type": "image",
             "settings": {
               "image": "",
-              "title": "<p>Slide Heading<\/p>",
+              "title": "Slide Heading",
               "text": "<p>Tell your brand's story through video and images<\/p>",
               "primary_button_label": "",
               "primary_button_link": "",
