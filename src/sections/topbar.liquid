@@ -1,3 +1,33 @@
+{% unless section.settings.display == "disable"  %}
+
+{%- assign topbar_height = 40 -%}
+{%- assign header_height = 55 -%}
+{%- assign body_padding = topbar_height | plus: header_height -%}
+<style>
+  {% if section.settings.display == "mobile" or section.settings.display == "all"  %}
+    @media screen and (max-width: 1023px) {
+      body.fixed-header--all .main-content,
+      body.fixed-header--mobile .main-content {
+        padding-top: {{ body_padding }}px;
+      }
+      .product-add-to-cart-bar {
+        top: {{ body_padding }}px;
+      }
+    }
+  {% endif %}
+  {% if section.settings.display == "desktop" or section.settings.display == "all"  %}
+    @media screen and (min-width: 1024px) {
+      body.fixed-header--all .main-content,
+      body.fixed-header--desktop .main-content {
+        padding-top: {{ body_padding }}px;
+      }
+      .product-add-to-cart-bar {
+        top: {{ body_padding }}px;
+      }
+    }
+  {% endif %}
+</style>
+
 {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
   {%- assign display_facebook_buttons = true -%}
   <div id="fb-root"></div>
@@ -15,6 +45,10 @@
     background-color: {{ section.settings.color_bg }};
   }
   .section-topbar__message {
+    color: {{ section.settings.color_text }};
+  }
+  .section-topbar__message .section-topbar__message-link,
+  .section-topbar__message .section-topbar__message--phone {
     color: {{ section.settings.color_text }};
   }
   .btn.section-topbar__button {
@@ -57,12 +91,24 @@
             {{ section.settings.message_text }}
           </a>
         {% elsif section.settings.message_link != blank and section.settings.message_link_text != blank %}
-          {{ section.settings.message_text | escape }}
+          {% if section.settings.is_phone_number %}
+            <a class="section-topbar__message--phone" href="tel:{{ section.settings.message_text | replace: ' ', '' }}">
+              {{ section.settings.message_text | escape }}
+            </a>
+          {% else %}
+            {{ section.settings.message_text | escape }}
+          {% endif %}
           <a href="{{ section.settings.message_link }}" class="btn btn--secondary section-topbar__button">
             {{ section.settings.message_link_text }}
           </a>
         {% else %}
-          {{ section.settings.message_text }}
+          {% if section.settings.is_phone_number %}
+            <a class="section-topbar__message--phone" href="tel:{{ section.settings.message_text | replace: ' ', '' }}">
+              {{ section.settings.message_text | escape }}
+            </a>
+          {% else %}
+            {{ section.settings.message_text }}
+          {% endif %}
         {% endif %}
       </div>
     {% endif %}
@@ -85,6 +131,8 @@
   </div>
 </div>
 
+{% endunless %}
+
 {% schema %}
   {
     "name": "Topbar",
@@ -97,13 +145,14 @@
         "options": [
           {"value": "all", "label": "Desktop & Mobile"},
           {"value": "mobile", "label": "Mobile only"},
-          {"value": "desktop", "label": "Desktop only"}
+          {"value": "desktop", "label": "Desktop only"},
+          {"value": "disable", "label": "Disable"}
         ]
       },
       {
         "type": "checkbox",
         "id": "social_icons",
-        "label": "Display social icons",
+        "label": "Display social icons on desktop",
         "default": true,
         "info": "Set up your social profiles at General Settings > Social Media"
       },
@@ -144,12 +193,19 @@
       },
       {
         "type": "header",
-        "content": "Announcement"
+        "content": "Announcement / Tel."
       },
       {
         "type": "text",
         "id": "message_text",
-        "label": "Message text"
+        "label": "Announcement message or phone number"
+      },
+      {
+        "type": "checkbox",
+        "id": "is_phone_number",
+        "label": "This is a phone number",
+        "default": false,
+        "info": "If checked people can start call by tapping the number"
       },
       {
         "type": "text",

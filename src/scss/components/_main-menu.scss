@@ -267,14 +267,10 @@
 .no-touch .cbp-hssubmenu > li a:hover img {
 	opacity: 0.5;
 }
-.cbp-hssubmenu > li a span {
+.cbp-hssubmenu > li a span:not(.money) {
 	display: block;
 	min-height: 3em;
 	margin-top: 0.4em;
-}
-.cbp-hssubmenu > li a span s {
-	font-size: 14px;
-  	padding-right: 5px;
 }
 .cbp-hsmenu > li.cbp-hsitem-open .cbp-hssubmenu {
 	z-index: 1000;
@@ -299,4 +295,18 @@
 	-webkit-transition: height 0.3s;
 	-moz-transition: height 0.3s;
 	transition: height 0.3s;
+}
+
+.product-menu__item {
+  .product-menu__item-image {
+
+  }
+  .product-menu__item-info {
+    .product-price__sale {
+      color: $color-special;
+    }
+    .product-price__old {
+      padding-right: 5px;
+    }
+  }
 }

@@ -58,6 +58,10 @@
                 text-align: {{ block.settings.text_alignment }}!important;
               }
               .slideshow__slide--{{ block.id }} .slideshow__subtitle {
+                color: {{ block.settings.color_subtitle }};
+                text-align: {{ block.settings.text_alignment }}!important;
+              }
+              .slideshow__slide--{{ block.id }} .slideshow__content {
                 color: {{ block.settings.color_text }};
                 text-align: {{ block.settings.text_alignment }}!important;
               }
@@ -105,8 +109,13 @@
                       {{ block.settings.title }}
                     </div>
                   {% endunless %}
+                  {% unless block.settings.subtitle == blank %}
+                    <div class="slideshow__subtitle slideshow__subtitle--{{ section.settings.subtitle_text_size }}">
+                      {{ block.settings.subtitle }}
+                    </div>
+                  {% endunless %}
                   {% unless block.settings.text == blank %}
-                    <div class="slideshow__subtitle slideshow__subtitle--{{ section.settings.subtitle_text_size }}">{{ block.settings.text }}</div>
+                    <div class="slideshow__content slideshow__content--{{ section.settings.content_text_size }}">{{ block.settings.text }}</div>
                   {% endunless %}
                   <div class="slideshow__buttons">
                     {% if block.settings.primary_button_label != blank and block.settings.primary_button_link != blank %}
@@ -205,6 +214,10 @@
         "default": "large",
         "options": [
           {
+            "label": "Tiny",
+            "value": "tiny"
+          },
+          {
             "label": "Small",
             "value": "small"
           },
@@ -219,6 +232,10 @@
           {
             "label": "Extra Large",
             "value": "xlarge"
+          },
+          {
+            "label": "Gigantic",
+            "value": "gigantic"
           }
         ]
       },
@@ -227,8 +244,11 @@
         "id": "subtitle_text_size",
         "label": "Subtitle text size",
         "default": "large",
-        "info": "Tip: don't forget to check both mobile and desktop versions of your slides",
         "options": [
+          {
+            "label": "Tiny",
+            "value": "tiny"
+          },
           {
             "label": "Small",
             "value": "small"
@@ -244,6 +264,43 @@
           {
             "label": "Extra Large",
             "value": "xlarge"
+          },
+          {
+            "label": "Gigantic",
+            "value": "gigantic"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "content_text_size",
+        "label": "Content text size",
+        "default": "small",
+        "info": "Tip: don't forget to check both mobile and desktop versions of your slides",
+        "options": [
+          {
+            "label": "Tiny",
+            "value": "tiny"
+          },
+          {
+            "label": "Small",
+            "value": "small"
+          },
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          },
+          {
+            "label": "Extra Large",
+            "value": "xlarge"
+          },
+          {
+            "label": "Gigantic",
+            "value": "gigantic"
           }
         ]
       }
@@ -264,16 +321,22 @@
             "info": "Recommended size 2000x1400 px"
           },
           {
-            "type": "richtext",
+            "type": "text",
             "id": "title",
             "label": "Heading",
             "default": "<p>Slide Heading</p>"
           },
           {
             "type": "richtext",
+            "id": "subtitle",
+            "label": "Subtitle",
+            "default": "<p>Tell your brand's story through video and images</p>"
+          },
+          {
+            "type": "richtext",
             "id": "text",
             "label": "Text",
-            "default": "<p>Tell your brand's story through video and images</p>"
+            "default": "<p></p>"
           },
           {
             "type": "text",
@@ -363,6 +426,12 @@
             "type": "color",
             "id": "color_title",
             "label": "Title color",
+            "default": "#fff"
+          },
+          {
+            "type": "color",
+            "id": "color_subtitle",
+            "label": "Subtitle color",
             "default": "#fff"
           },
           {

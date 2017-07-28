@@ -643,6 +643,16 @@
       },
       {
         "type": "header",
+        "content": "SOCIAL ICONS"
+      },
+      {
+        "type": "checkbox",
+        "id": "social_icons_menu_drawer",
+        "label": "Display social icons in menu drawer (mobile)",
+        "default": true
+      },
+      {
+        "type": "header",
         "content": "SHARING ON PRODUCT PAGE"
       },
       {

@@ -64,22 +64,21 @@
       <ul class="cbp-hssubmenu">
         {% for childlink in linklists[child_list_handle].links %}
           {% if childlink.type == "product_link" %}
-          <li>
+          <li class="product-menu__item">
             <a href="{{ childlink.url }}" alt="{{ childlink.title | escape }}">
-              <img src="{{ childlink.object.featured_image | img_url: '160x' }}" alt="{{ childlink.object.title }}">
-              <span>
-                {{ childlink.title | escape }}<br>
+              <img class="product-menu__item-image" src="{{ childlink.object.featured_image | img_url: 'x160' }}" alt="{{ childlink.object.title }}">
+              <div class="product-menu__item-info">
+                {{ childlink.title | escape }} <br>
                 {% if section.settings.display_product_price %}
                   {%- assign money_price = childlink.object.price | money -%}
-
                   {% if childlink.object.compare_at_price > childlink.object.price %}
-                    <s>{{ childlink.object.compare_at_price | money }}</s>
-                    {{ money_price }}
+                    <s class="product-price__old">{{ childlink.object.compare_at_price | money }}</s>
+                    <strong class="product-price__sale">{{ money_price }}</strong>
                   {% else %}
                     {{ money_price }}
                   {% endif %}
                 {% endif %}
-              </span>
+              </div>
             </a>
           </li>
           {% elsif childlink.type == "collection_link" %}

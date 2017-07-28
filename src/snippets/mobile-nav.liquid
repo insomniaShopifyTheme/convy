@@ -84,7 +84,8 @@
     {% if settings.show_multiple_currencies %}
       {% include 'currency-picker' %}
     {% endif %}
-    {% include 'social-icons-list' %}
-
+    {% if settings.social_icons_menu_drawer %}
+      {% include 'social-icons-list' %}
+    {% endif %}
   </div>
 </div>
