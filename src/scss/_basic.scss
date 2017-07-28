@@ -108,7 +108,7 @@ select, input{
 @mixin fixed-header() {
   &>header {
     position: fixed;
-    top: 0 !important;
+    top: 0;
     width: 100%;
     z-index: $z-index-toolbar;
   }
@@ -124,7 +124,7 @@ body.fixed-header--all {
   body.fixed-header--mobile {
     .main-content {
       //padding-top: $header-height-mobile;
-      padding-top: $topbar-height + $header-height;
+      padding-top: $header-height;
 
     }
   }
@@ -139,7 +139,7 @@ body.fixed-header--all {
       position: fixed;
     }
     .main-content {
-      padding-top: $topbar-height + $header-height;
+      padding-top: $header-height;
     }
   }
 }

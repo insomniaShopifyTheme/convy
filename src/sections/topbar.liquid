@@ -1,3 +1,33 @@
+{% unless section.settings.display == "disable"  %}
+
+{%- assign topbar_height = 40 -%}
+{%- assign header_height = 55 -%}
+{%- assign body_padding = topbar_height | plus: header_height -%}
+<style>
+  {% if section.settings.display == "mobile" or section.settings.display == "all"  %}
+    @media screen and (max-width: 1023px) {
+      body.fixed-header--all .main-content,
+      body.fixed-header--mobile .main-content {
+        padding-top: {{ body_padding }}px;
+      }
+      .product-add-to-cart-bar {
+        top: {{ body_padding }}px;
+      }
+    }
+  {% endif %}
+  {% if section.settings.display == "desktop" or section.settings.display == "all"  %}
+    @media screen and (min-width: 1024px) {
+      body.fixed-header--all .main-content,
+      body.fixed-header--desktop .main-content {
+        padding-top: {{ body_padding }}px;
+      }
+      .product-add-to-cart-bar {
+        top: {{ body_padding }}px;
+      }
+    }
+  {% endif %}
+</style>
+
 {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
   {%- assign display_facebook_buttons = true -%}
   <div id="fb-root"></div>
@@ -85,6 +115,8 @@
   </div>
 </div>
 
+{% endunless %}
+
 {% schema %}
   {
     "name": "Topbar",
@@ -97,7 +129,8 @@
         "options": [
           {"value": "all", "label": "Desktop & Mobile"},
           {"value": "mobile", "label": "Mobile only"},
-          {"value": "desktop", "label": "Desktop only"}
+          {"value": "desktop", "label": "Desktop only"},
+          {"value": "disable", "label": "Disable"}
         ]
       },
       {
