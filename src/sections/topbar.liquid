@@ -47,6 +47,10 @@
   .section-topbar__message {
     color: {{ section.settings.color_text }};
   }
+  .section-topbar__message .section-topbar__message-link,
+  .section-topbar__message .section-topbar__message--phone {
+    color: {{ section.settings.color_text }};
+  }
   .btn.section-topbar__button {
     color: {{ section.settings.color_button_text }};
     background-color: {{ section.settings.color_button_bg }};
@@ -194,7 +198,7 @@
       {
         "type": "text",
         "id": "message_text",
-        "label": "Message text or phone number"
+        "label": "Announcement message or phone number"
       },
       {
         "type": "checkbox",
