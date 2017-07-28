@@ -8,6 +8,7 @@ $newsletter-form-max-width: 450px;
   
   .section-newsletter-container {
     @extend .normal-section-padding;
+    overflow: hidden;
     .newsletter-form {
       .newsletter-form__text {
         p {

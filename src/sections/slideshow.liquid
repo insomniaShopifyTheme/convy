@@ -101,12 +101,12 @@
               <div class="grid">
                 <div class="grid__item {{ grid_cell_classes }}">
                   {% unless block.settings.title == blank %}
-                    <div class="slideshow__title slideshow__title--{{ section.settings.text_size }}">
+                    <div class="slideshow__title slideshow__title--{{ section.settings.title_text_size }}">
                       {{ block.settings.title }}
                     </div>
                   {% endunless %}
                   {% unless block.settings.text == blank %}
-                    <div class="slideshow__subtitle slideshow__subtitle--{{ section.settings.text_size }}">{{ block.settings.text }}</div>
+                    <div class="slideshow__subtitle slideshow__subtitle--{{ section.settings.subtitle_text_size }}">{{ block.settings.text }}</div>
                   {% endunless %}
                   <div class="slideshow__buttons">
                     {% if block.settings.primary_button_label != blank and block.settings.primary_button_link != blank %}
@@ -200,8 +200,32 @@
       },
       {
         "type": "select",
-        "id": "text_size",
-        "label": "Text size",
+        "id": "title_text_size",
+        "label": "Title text size",
+        "default": "large",
+        "options": [
+          {
+            "label": "Small",
+            "value": "small"
+          },
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          },
+          {
+            "label": "Extra Large",
+            "value": "xlarge"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "subtitle_text_size",
+        "label": "Subtitle text size",
         "default": "large",
         "info": "Tip: don't forget to check both mobile and desktop versions of your slides",
         "options": [

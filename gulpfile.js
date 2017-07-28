@@ -55,6 +55,7 @@ gulp.task('scripts', function() {
       globalConfig.scripts_src + '/admin.dev.js',
       globalConfig.scripts_src + '/check_license.js',
       globalConfig.scripts_src + '/init.js',
+      globalConfig.scripts_src + '/password-page.js',
     ])
     .pipe(concat('theme.js.liquid'))
     .pipe(gulp.dest('./dist/assets/'));

@@ -491,6 +491,12 @@
     "name": "Misc",
     "settings": [
       {
+        "type": "text",
+        "id": "password_page_title",
+        "label": "SEO title for password page",
+        "info": "Default is shop name"
+      },
+      {
         "type": "textarea",
         "id": "custom_scripts",
         "label": "Custom scripts",
@@ -736,7 +742,7 @@
       {
         "type": "text",
         "id": "option_color_swatches",
-        "label": "Use color swatches for following options",
+        "label": "Use dropdown for following options",
         "default": "Color, Colour",
         "info": "List option names separated by comma eg. Color, Material"
       }
