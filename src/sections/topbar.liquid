@@ -87,12 +87,24 @@
             {{ section.settings.message_text }}
           </a>
         {% elsif section.settings.message_link != blank and section.settings.message_link_text != blank %}
-          {{ section.settings.message_text | escape }}
+          {% if section.settings.is_phone_number %}
+            <a class="section-topbar__message--phone" href="tel:{{ section.settings.message_text | replace: ' ', '' }}">
+              {{ section.settings.message_text | escape }}
+            </a>
+          {% else %}
+            {{ section.settings.message_text | escape }}
+          {% endif %}
           <a href="{{ section.settings.message_link }}" class="btn btn--secondary section-topbar__button">
             {{ section.settings.message_link_text }}
           </a>
         {% else %}
-          {{ section.settings.message_text }}
+          {% if section.settings.is_phone_number %}
+            <a class="section-topbar__message--phone" href="tel:{{ section.settings.message_text | replace: ' ', '' }}">
+              {{ section.settings.message_text | escape }}
+            </a>
+          {% else %}
+            {{ section.settings.message_text }}
+          {% endif %}
         {% endif %}
       </div>
     {% endif %}
@@ -177,12 +189,19 @@
       },
       {
         "type": "header",
-        "content": "Announcement"
+        "content": "Announcement / Tel."
       },
       {
         "type": "text",
         "id": "message_text",
-        "label": "Message text"
+        "label": "Message text or phone number"
+      },
+      {
+        "type": "checkbox",
+        "id": "is_phone_number",
+        "label": "This is a phone number",
+        "default": false,
+        "info": "If checked people can start call by tapping the number"
       },
       {
         "type": "text",
