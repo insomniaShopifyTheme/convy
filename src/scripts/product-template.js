@@ -141,7 +141,11 @@ theme.ProductPageSection = (function() {
     // Zoom image
     $('.product-images--single .product-images__image, .product-images__image li').each(function(idx, el) {
       var $img = $(el).find('img');
-      $(el).zoom({ on: $img.data('zoom-type'), url: $img.data('original') });
+      if(theme.isMobile()){
+        new RTP.PinchZoom($img, {});
+      }else{
+        $(el).zoom({ on: $img.data('zoom-type'), url: $img.data('original') });
+      }
     });
 
     $('#tab-container').easytabs();

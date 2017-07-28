@@ -29,6 +29,7 @@ gulp.task('scripts', function() {
       globalConfig.scripts_src + '/lib/jquery.selectric.js',
       globalConfig.scripts_src + '/lib/sweetalert2.min.js',
       globalConfig.scripts_src + '/lib/date.js',
+      globalConfig.scripts_src + '/lib/pinch-zoom.js',
       globalConfig.scripts_src + '/setup.js',
       globalConfig.scripts_src + '/theme/currency.js',
       globalConfig.scripts_src + '/theme/sections.js',
@@ -54,7 +55,7 @@ gulp.task('scripts', function() {
       globalConfig.scripts_src + '/admin.dev.js',
       globalConfig.scripts_src + '/check_license.js',
       globalConfig.scripts_src + '/init.js',
-      globalConfig.scripts_src + '/instagram-feed.js',
+      globalConfig.scripts_src + '/password-page.js',
     ])
     .pipe(concat('theme.js.liquid'))
     .pipe(gulp.dest('./dist/assets/'));

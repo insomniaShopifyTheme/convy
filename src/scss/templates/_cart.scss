@@ -10,21 +10,14 @@ $cart-secondary-color: $color-pale;
   margin-right: $drawer-padding * -1;
 }
 .overflow-wrapper{
-  overflow-y: scroll;
+  overflow-y: auto;
   position: relative;
-}
-.overflow-wrapper.more::after{
-  -moz-box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
-  -webkit-box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
-  box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
-  position: fixed;
-  content: '';
-  height: 34px;
-  bottom: 156px;
-  width: 135%;
-  background: #fff;
+  height: auto;
 }
 
+.overflow-wrapper.more::after{
+  display: none;
+}
 
 .cart-table {
   tr {
@@ -55,10 +48,15 @@ $cart-secondary-color: $color-pale;
       width: 165px;
       .cart__remove {
         float: right;
-        padding-top: 5px;
+        padding-top: 7px;
+      }
+      .ajaxcart__remove{
+        float: left;
+        padding: 6px;
       }
     }
     .js-qty, .ajaxcart__qty {
+      float: left;
       @include konversion-cart-qty-input();
       .js-qty__num, .ajaxcart__qty-num {
         color: $cart-secondary-color;
@@ -212,6 +210,31 @@ $cart-secondary-color: $color-pale;
       margin: $gutter / 2 0;
     }
   }
+
+  .overflow-wrapper{
+    overflow-y: auto;
+    position: relative;
+    max-height: 370px;
+    height: 100%;
+  }
+
+  .overflow-wrapper.more::after, .overflow-wrapper::after{
+    -moz-box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
+    -webkit-box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
+    box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
+    position: fixed;
+    content: '';
+    height: 34px;
+    bottom: 156px;
+    width: 135%;
+    background: #fff;
+    display: none;
+  }
+  .overflow-wrapper.more::after{
+    display: block;
+  }
+
+
 }
 
 
@@ -258,9 +281,14 @@ $cart-secondary-color: $color-pale;
   }
 }
 
-
-@media screen and (min-height: 610px) {
-  .overflow-wrapper.more{
-    height: 350px;
+@include at-query($min, $large) {
+  @media screen and (max-height: 690px) and (max-height: $large){
+    .overflow-wrapper{
+      height: 200px;
+      overflow-y: auto;
+    }
+    .overflow-wrapper::after{
+      display: block;
+    }
   }
 }

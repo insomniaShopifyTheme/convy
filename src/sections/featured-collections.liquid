@@ -13,6 +13,8 @@
   {% if section.settings.title != blank %}
     <h2 class="text-center section-heading">{{ section.settings.title | escape }}</h2>
   {% endif %}
+
+  {% if section.blocks.size > 4 %}
   <div class="slider-wrapper">
     <div class="collection-list slider" id="slider_{{ section.id }}">
       {% for block in section.blocks limit: section.blocks.size %}
@@ -20,16 +22,55 @@
           {%- assign collection = collections[block.settings.collection] -%}
           {% include 'collection-card' %}
         </div>
-      {% else %}
-        {% for i in (1..4) %}
-          <div class="collection-list__item slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
-            {% include 'empty-collection-card' %}
-          </div>
-        {% endfor %}
       {% endfor %}
     </div>
   </div>
 
+  {% elsif section.blocks.size > 0 %}
+
+    {% case  section.blocks.size %}
+      {% when 4 %}
+      {%- assign col_sizes = "one-whole medium--one-quarter" -%}
+      {% when 3 %}
+      {%- assign col_sizes = "one-whole medium--one-third" -%}
+      {% when 2 %}
+      {%- assign col_sizes = "one-half medium--one-half " -%}
+      {% when 1 %}
+      {%- assign col_sizes = "one-whole medium--one-third push--medium--one-third" -%}
+    {% endcase %}
+
+      <div class="grid no-slider--grid collection-list-grid small--hide">
+        {% for block in section.blocks limit: section.blocks.size %}
+          <div class="grid__item {{ col_sizes }} collection-list__item" {{ block.shopify_attributes }}>
+            {%- assign collection = collections[block.settings.collection] -%}
+            {% include 'collection-card' %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="slider-wrapper medium--hide large--hide">
+        <div class="collection-list slider" id="slider_{{ section.id }}">
+          {% for block in section.blocks limit: section.blocks.size %}
+            <div class="collection-list__item slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
+              {%- assign collection = collections[block.settings.collection] -%}
+              {% include 'collection-card' %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+
+    {% else %}
+      <div class="slider-wrapper">
+        <div class="collection-list slider" id="slider_{{ section.id }}">
+          {% for i in (1..4) %}
+            <div class="collection-list__item slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
+              {% include 'empty-collection-card' %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
 </div>
 
 {% schema %}

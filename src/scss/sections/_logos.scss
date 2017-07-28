@@ -15,6 +15,12 @@
   .logos__item {
     margin: ($gutter / 3) 0 0 ($gutter / 3);
   }
+  
+.invert-section-logos__wrapper {
+  @extend .section-logos__wrapper;
+  @include inverted-section();
+  }
+
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {
     .logos__item {

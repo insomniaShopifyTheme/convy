@@ -7,18 +7,27 @@
     float: left!important;
   }
   {% endif %}
+
+  .section-header .with-menu-word::before{
+    content: '{{ section.settings.menu_word_mobile }}' !important;
+  }
+
+
+
 </style>
 
 {% assign menu_type = section.settings.menu_type %}
 <div class="grid--full section-header__wrapper" data-section-id="{{ section.id }}" data-section-type="header-section" data-menu-type="{{ menu_type }}" {% if menu_type == "product-menu"%}id="cbp-hsmenu-wrapper"{% endif %}>
-  <div class="grid__item two-twelfths large--hide text-center">
+  <div class="grid__item two-twelfths large--hide text-center {% if section.settings.display_menu_word_mobile %}with-menu-word{% endif %}">
     <div class="section-header__hamburger js-drawer-open-left">
       <div class="hamburger">
         <div class="hamburger__bar hamburger__bar--diagonal part-1"></div>
         <div class="hamburger__bar hamburger__bar--horizontal"></div>
         <div class="hamburger__bar hamburger__bar--diagonal part-2"></div>
       </div>
+
     </div>
+
   </div>
   <div class="grid__item medium-down--eight-twelfths logo-cell">
     {% if template == 'index' %}
@@ -193,7 +202,6 @@
         "label": "Display product price in Product menu",
         "default": true
       },
-
       {
         "type": "select",
         "id": "submenu_columns",
@@ -208,6 +216,19 @@
         ],
         "default": "1",
         "info": "This will only work if the submenu has more than 6 items."
+      },
+      {
+        "type": "checkbox",
+        "id": "display_menu_word_mobile",
+        "label": "Display 'MENU' word",
+        "info": "Display 'MENU' word at the right of the menu button on mobile version.",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "menu_word_mobile",
+        "label": "Menu Word",
+        "default": "MENU"
       },
       {
         "type": "header",

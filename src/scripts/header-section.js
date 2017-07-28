@@ -35,7 +35,7 @@
 			this._initEvents();
 		},
 		_openMenu : function( el, ev ) {
-			
+
 			var self = this,
 				item = el.parentNode,
 				items = Array.prototype.slice.call( this.menuItems ),
@@ -49,6 +49,10 @@
 					self.current = -1;
 					self.menuBg.style.height = '0px';
 				};
+
+			//workaround to center the product menu
+			var offsetLeft = $(submenu).offset().left;
+			$(submenu).css('margin-left', -offsetLeft);
 
 			if( submenu ) {
 

@@ -39,6 +39,18 @@
       "submit": "Recherche",
       "close": "Fermer (esc)",
       "provide_terms_placeholder": "Entrer des termes de recherche"
+    },
+    "password_page": {
+      "login_form_heading": "Accéder à la boutique à l'aide d'un mot de passe:",
+      "login_form_password_label": "Mot de passe",
+      "login_form_password_placeholder": "Votre mot de passe",
+      "login_form_submit": "Entrer",
+      "signup_form_email_label": "Courriel",
+      "signup_form_success": "Nous vous ferons parvenir un courriel juste avant l'ouverture!",
+      "admin_link_html": "Êtes-vous le propriétaire de la boutique? <a href=\"/admin\" class=\"text-link\">Connectez-vous ici</a>.",
+      "password_link": "Entrer avec un mot de passe",
+      "powered_by_shopify_html": "Cette boutique sera propulsée par {{ shopify }}",
+      "close": "Fermer (Esc)"
     }
   },
   "blogs": {

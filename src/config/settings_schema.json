@@ -83,6 +83,13 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "add_to_cart_float_animation",
+        "label": "Enable floating image animation",
+        "default": true,
+        "info": "This animation appears when you add a product to the cart."
+      },
+      {
         "type": "header",
         "content": "'Add to cart' sticky bar (Desktop version)"
       },
@@ -291,7 +298,7 @@
         "type": "checkbox",
         "id": "deal_of_the_day_enabled",
         "label": "Enable deal of the day",
-        "info": "If you are not using deal-yyyy-mm-dd tags in your products, you shoud disable this feature. Leaving it enabled may cause performance issues.",
+        "info": "If you are not using any deal-yyyy-mm-dd tag in your products, you should disable this feature. Leaving it enabled may cause a performance drop.",
         "default": false
       },
       {
@@ -445,12 +452,50 @@
         "label": "Add margin (mobile version)",
         "default": false,
         "info": "Adds empty space between a product card and edge of the screen"
+      },
+      {
+        "type": "select",
+        "id": "product_card_height",
+        "label": "Product card height size",
+        "options": [
+          {
+            "value": "255px",
+            "label": "Square (static)"
+          },
+          {
+            "value": "300px",
+            "label": "300px"
+          },
+          {
+            "value": "350px",
+            "label": "350px"
+          },
+          {
+            "value": "400px",
+            "label": "400px "
+          },
+          {
+            "value": "450px",
+            "label": "450px "
+          },
+          {
+            "value": "500px",
+            "label": "500px "
+          }
+        ],
+        "default": "255px"
       }
     ]
   },
   {
     "name": "Misc",
     "settings": [
+      {
+        "type": "text",
+        "id": "password_page_title",
+        "label": "SEO title for password page",
+        "info": "Default is shop name"
+      },
       {
         "type": "textarea",
         "id": "custom_scripts",
@@ -598,7 +643,7 @@
       },
       {
         "type": "header",
-        "content": "Sharing"
+        "content": "SHARING ON PRODUCT PAGE"
       },
       {
         "type": "checkbox",
@@ -697,7 +742,7 @@
       {
         "type": "text",
         "id": "option_color_swatches",
-        "label": "Use color swatches for following options",
+        "label": "Use dropdown for following options",
         "default": "Color, Colour",
         "info": "List option names separated by comma eg. Color, Material"
       }

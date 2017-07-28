@@ -219,14 +219,12 @@
   	border-bottom-color: $color-menu;
 }
 .cbp-hssubmenu {
-	position: absolute;
-	left: calc((99vw - 100%) / 2 * -1);
-	top: 100%;
-    width: 99vw;
-	z-index: 0;
-	text-align: center; /* for aligning the sub items */
-	visibility: hidden;
-
+    position: absolute;
+    top: 100%;
+    width: 100vw;
+    z-index: 0;
+    text-align: center; /* for aligning the sub items */
+    visibility: hidden;
 }
 .cbp-hssubmenu:before,
 .cbp-hssubmenu:after {
@@ -294,7 +292,7 @@
 	width: 100%;
 	top: 100%;
 	left: 0;
-	z-index: 20;
+	z-index: 1;
 	height: 0px;
 }
 .no-touch .cbp-hsmenubg {

@@ -18,7 +18,7 @@ theme.dealOfTheDay = function() {
   var $dealOfTheDay = $('.content-deal-of-the-day');
   var $dealOfTheDayProduct = $('.deal-of-the-day-product');
 
-  var api_endpoint = backend.shopUrl + '/products.json';
+  var api_endpoint = backend.shopUrl + '/products.json?limit=250';
 
   var currentDateHours = '{{ "now" | date: "%Y-%m-%d-%H-%M-%S"}}';
   var s_currentDate = currentDateHours.split('-');
@@ -191,7 +191,6 @@ theme.dealOfTheDay = function() {
   };
 
   var storeCurrencySymbol = currencySymbols[backend.currencyName];
-
 
   function getShopProductsByTag(tag, callback) {
     $.get(api_endpoint, {}, function(data) {
