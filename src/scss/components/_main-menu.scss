@@ -249,12 +249,18 @@
 	color: $color-submenu;
 	outline: none;
 	padding: 2em 1em 1em 1em;
+
+    .content-img{
+      height: $product-card-height - 100px;
+      line-height: $product-card-height - 100px;
+      text-align: center;
+    }
 }
 .no-touch .cbp-hssubmenu > li a:hover,
 .no-touch .cbp-hssubmenu > li a:focus {
 	color: #888;
 }
-.cbp-hssubmenu > li a img {
+.cbp-hssubmenu > li a .content-img img {
 	border: none;
 	outline: none;
 	display: inline-block;
@@ -263,6 +269,11 @@
 	-webkit-transition: opacity 0.2s;
 	-moz-transition: opacity 0.2s;
 	transition: opacity 0.2s;
+
+    vertical-align: middle;
+    display: inline-block;
+    width: auto;
+    max-height: 100%;
 }
 .no-touch .cbp-hssubmenu > li a:hover img {
 	opacity: 0.5;
