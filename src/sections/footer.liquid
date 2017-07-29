@@ -193,7 +193,7 @@
                 <span class="powered-by">{{ "layout.footer.powered_by" | t }} <a href="http://getshopify.tabarnapp.com" target="_blank">Shopify</a></span>
               {% endif %}
               {% if section.settings.theme_copyright %}
-                {% capture theme_url %}https://tabarnapp.com/shopify-theme-konversion/{% if section.settings.affiliate_id != blank %}?ref={{ section.settings.affiliate_id }}{% endif %}{% endcapture %}
+                {% capture theme_url %}http://konversiontheme.com/{% if section.settings.affiliate_id != blank %}?ref={{ section.settings.affiliate_id }}{% endif %}{% endcapture %}
                 <span class="theme-by">{{ "layout.footer.theme_by" | t }} <a href="{{ theme_url | trim }}" target="_blank">Konversion</a></span>
               {% endif %}
             </div>

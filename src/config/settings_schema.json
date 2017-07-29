@@ -4,8 +4,8 @@
     "theme_name": "Konversion",
     "theme_author": "Tabarnapp",
     "theme_version": "1.0.0",
-    "theme_documentation_url": "https://tabarnapp.com/shopify-theme-konversion/",
-    "theme_support_email": "support@tabarnapp.com"
+    "theme_documentation_url": "https://desk.zoho.com/portal/tabarnapp/kb/konversion-theme",
+    "theme_support_email": "support@konversiontheme.com"
   },
   {
     "name": "☆ Theme Support ☆",
@@ -16,7 +16,15 @@
       },
       {
         "type": "paragraph",
-        "content": "*[Get help](http://support.tabarnapp.com/en)*"
+        "content": "[Knowledge base](https://desk.zoho.com/portal/tabarnapp/kb/konversion-theme)"
+      },
+      {
+        "type": "paragraph",
+        "content": "[Submit a ticket](https://desk.zoho.com/portal/tabarnapp/newticket)"
+      },
+      {
+        "type": "paragraph",
+        "content": "[Email](mailto:support@konversiontheme.com)"
       }
     ]
   },
@@ -27,7 +35,16 @@
         "type": "textarea",
         "id": "license_key",
         "label": "License Key",
-        "info": "Put here the license key you recieved when the theme was purchased"
+        "info": "Paste above your unique license key. It's located inside the zip file that you downloaded when you purchased the theme. No license yet? Buy one for 1, 3 or 10 stores [here](http://konversiontheme.com/)."
+      }
+    ]
+  },
+  {
+    "name": "☆ Affiliates ☆",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Join our referral program and resell our theme to your clients. Earn up to $595.50 per sale. [Learn more](http://jv.konversiontheme.com)."
       }
     ]
   },
