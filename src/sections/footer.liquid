@@ -66,7 +66,7 @@
     {%- assign col_size = 'one-whole' -%}
 {% endcase %}
 
-<div class="section-footer__wrapper{% if section.settings.display_border %}--bordered{% endif %} ">
+<div class="section-footer__wrapper{% if section.settings.display_border %}--bordered{% endif %} {% unless section.settings.mobile_display_footer_cart_product %}mobile-hidden-product-cart{% endunless %}">
 
   <div class="section-footer__container">
 
@@ -229,6 +229,13 @@
           {"value": "full", "label": "Full"}
         ],
         "default": "normal"
+      },
+      {
+        "type": "checkbox",
+        "id": "mobile_display_footer_cart_product",
+        "label": "Display the footer on product and cart pages ",
+        "default": false,
+        "info": "On mobile version"
       },
       {
         "type": "header",

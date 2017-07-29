@@ -170,6 +170,9 @@
   }
 }
 
-.template-product .section-footer, .template-cart .section-footer {
+.template-product .section-footer .section-footer__wrapper.mobile-hidden-product-cart,
+.template-product .section-footer .section-footer__wrapper--bordered.mobile-hidden-product-cart,
+.template-cart .section-footer .section-footer__wrapper.mobile-hidden-product-cart ,
+.template-cart .section-footer .section-footer__wrapper--bordered.mobile-hidden-product-cart {
   @extend .small--hide;
 }

@@ -66,7 +66,9 @@
           {% if childlink.type == "product_link" %}
           <li class="product-menu__item">
             <a href="{{ childlink.url }}" alt="{{ childlink.title | escape }}">
-              <img class="product-menu__item-image" src="{{ childlink.object.featured_image | img_url: 'x160' }}" alt="{{ childlink.object.title }}">
+              <span class="content-img">
+                <img class="product-menu__item-image" src="{{ childlink.object.featured_image | img_url: 'x160' }}" alt="{{ childlink.object.title }}">
+              </span>
               <div class="product-menu__item-info">
                 {{ childlink.title | escape }} <br>
                 {% if section.settings.display_product_price %}
