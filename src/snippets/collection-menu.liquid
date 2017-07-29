@@ -1,12 +1,12 @@
-<!-- menu link list -->
-  <h3 class="collection-menu">{{section.settings.custom_menu_title}}</h3>
+<div class="collection-menu">
+  <h3 class="collection-menu__title">{{section.settings.custom_menu_title}}</h3>
   {% if section.settings.menu.size > 0 %}
-    <ul class="no-bullets menu-before-sorting">
+    <ul class="no-bullets">
       {% for link in linklists[section.settings.menu].links %}
-        <li class="">
-        <a href="{{ link.url }}">{{ link.title }}</a>
+        <li class="collection-menu__item">
+          <a href="{{ link.url }}">{{ link.title }}</a>
         </li>
       {% endfor %}
     </ul>
   {% endif %}
-<!-- menu link list -->
+</div>

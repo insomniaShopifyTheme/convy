@@ -186,11 +186,6 @@
         {% assign has_sidebar = false %}
       {% else %}
         {% assign has_sidebar = true %}
-        {% if section.settings.custom_menu_position == "top" %}
-            {% assign menu_class = "menu-before-sorting" %}
-          {% else %}
-            {% assign menu_class = "menu" %}
-        {% endif %}
       {% endif %}
     {% endif %}
     <div class="grid">
@@ -201,7 +196,7 @@
 
             {% if section.settings.custom_menu_position == 'before_filters' %}
                {% include 'collection-menu' %}
-            {% endif %}            
+            {% endif %}
 
             {% if section.settings.dispaly_filters %}
               {% include 'collection-filter' %}
@@ -218,7 +213,7 @@
             {% if section.settings.custom_menu_position == 'after_sorting' %}
                {% include 'collection-menu' %}
             {% endif %}
-            
+
           </div>
         {% endif %}
       </div>
@@ -316,7 +311,7 @@
       },
       {
         "type": "paragraph",
-        "content": "Adds a links section to the left sidebar (eg. Collections list)"
+        "content": "Adds a link section to the left sidebar (eg. Collections list)"
       },
       {
         "type": "link_list",
@@ -327,12 +322,12 @@
       {
         "type": "radio",
         "id": "custom_menu_position",
-        "label": "custom menu position",
+        "label": "Custom menu position",
         "default": "before_filters",
         "options": [
           {"value": "before_filters", "label": "Before filters"},
           {"value": "after_filters", "label": "After filters"},
-          {"value": "after_sorting", "label": "after sorting"}
+          {"value": "after_sorting", "label": "After sorting"}
         ]
       },
       {

@@ -5,6 +5,12 @@ $image-small: 360px;
 $image-medium: 512px;
 $image-large: 728px;
 
+@mixin collection-sidebar-title() {
+  color: $color-meta-text;
+  font-size: 1.15rem;
+  font-weight: normal;
+}
+
 .collection-template {
   .collection-controls {
     select {
@@ -77,10 +83,7 @@ $image-large: 728px;
       }
 
       .collection-filter__title {
-        color: $color-meta-text;
-        font-size: 1.15rem;
-        font-weight: normal;
-
+        @include collection-sidebar-title();
       }
       .collection-filter__subtitle {
         font-size: 1rem;
@@ -219,7 +222,8 @@ $image-large: 728px;
 }
 
 .collection-menu {
-  color: $color-meta-text;
-  font-size: 1.15rem;
-  font-weight: normal;
+  margin-bottom: $gutter;
+  .collection-menu__title {
+    @include collection-sidebar-title();
+  }
 }
