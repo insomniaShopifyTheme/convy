@@ -151,14 +151,17 @@ $site-min-width: 360px;
 $gutter: 30px;
 $grid-gutter: 30px; // can be a %, but nested grids will have smaller margins because of it
 $radius: 3px;
+
+// NOTE: whenever changing these values, also change it in sections/topbar.liquid
 $topbar-height: 40px;
 $header-height-mobile: 55px;
 $header-height: 55px;
+
 $product-add-to-cart-bar-height: 60px;
 {% if settings.fixed_header == 'disable' %}
   $top-add-to-cart-bar: 0;
 {% else %}
-  $top-add-to-cart-bar: $topbar-height + $header-height;
+  $top-add-to-cart-bar: $header-height;
 {% endif %}
 
 $product-card-height: {{ settings.product_card_height }};

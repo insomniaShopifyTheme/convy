@@ -19,8 +19,9 @@
     line-height: 1.5rem;
     text-align: center;
     padding: 0.3rem 0;
-    .section-topbar__message-link {
-      color: $color-text-alt;
+    .section-topbar__message--phone {
+      font-weight: bold;
+      font-size: 1rem;
     }
   }
 
@@ -99,6 +100,9 @@
       font-size: 0.9rem;
       line-height: 1.7rem;
       white-space: nowrap;
+      .section-topbar__message--phone {
+        font-size: 1.1rem;
+      }
     }
     .section-topbar__button {
       font-size: 0.9rem;
