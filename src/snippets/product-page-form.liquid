@@ -12,10 +12,14 @@
       {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
         {%- assign show_label = true -%}
         {% for option in product.options_with_values %}
-          {% include 'product-option' %}
-          {% if section.settings.product_options_style contains 'swatches' %}
-            {% include 'product-swatch' %}
-          {% endif %}
+          {% unless option.values contains 'Default Title' %}
+            {% unless option.values.size == 1 and section.settings.hide_variant_with_one_option %}
+              {% include 'product-option' %}
+              {% if section.settings.product_options_style contains 'swatches' %}
+                {% include 'product-swatch' %}
+              {% endif %}
+            {% endunless %}
+          {% endunless %}
         {% endfor %}
         {%- assign show_label = false -%}
       {% endunless %}
