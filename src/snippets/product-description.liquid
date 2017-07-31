@@ -1,12 +1,6 @@
-{% if section.blocks.size > 0 %}
-  {% for block in section.blocks %}
-    {% if block.type == 'tab' and block.settings.display_in_mobile %}
-      {%- assign has_tabs = true -%}
-    {% endif %}
-  {% endfor %}
-{% endif %}
 
-{% if has_tabs %}
+
+{% if section.settings.use_tabs %}
   <dl class="accordion">
     <dt class="accordion__tab-title">Description</dt>
     <dd class="accordion__tab-content">
@@ -20,7 +14,7 @@
   <span class="icon icon-chevron-thin-down" aria-hidden="true"></span>
   <span class="fallback-text">{{ "products.product.read_more" | t }}</span>
 </button>
-{% if has_tabs %}
+{% if section.settings.use_tabs  %}
     </dd>
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
@@ -60,3 +54,13 @@
     {% endif %}
   </dl>
 {% endif %}
+{% unless section.settings.use_tabs %}
+  {% if settings.app_product_reviews_enabled %}
+    <div style="width: 100%;" id="shopify-product-reviews" class="js-delete--mobile" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+  {% else %}
+    <div class="">
+      <h3 class="text-meta text-center">Product Reviews app integration required</h3>
+      <p class="text-meta text-center">Please enable integration in General Settings > Apps</p>
+    </div>
+  {% endif %}
+{% endunless %}
