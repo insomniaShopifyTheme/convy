@@ -90,13 +90,13 @@
       {
         "type": "checkbox",
         "id": "cart_notes_enable",
-        "label": "Enable checkout note in the cart widget",
+        "label": "Display a special instructions field (checkout note) inside the cart drawer",
         "default": false
       },
       {
         "type": "checkbox",
         "id": "sticky_add_to_cart",
-        "label": "Enable sticky Add to cart (mobile version)",
+        "label": "Enable a sticky Add to cart button (on mobile only)",
         "default": true
       },
       {
@@ -113,8 +113,8 @@
       {
         "type": "checkbox",
         "id": "add_to_cart_bar_enabled",
-        "label": "Display add to cart bar",
-        "info": "This bar will only appear after the scroll passes 'ADD TO CART' button",
+        "label": "Add to cart bar (on desktop only)",
+        "info": "Display the Add to cart bar on the product pages. This bar appears after customers scroll below the default Add to cart button on the product pages.",
         "default": true
       },
       {
