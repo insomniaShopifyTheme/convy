@@ -705,6 +705,18 @@
         "id": "og_image",
         "label": "Custom facebook image (og:image)",
         "info": "Recommended size 1200x630 px"
+      },
+      {
+        "type": "text",
+        "id": "og_title",
+        "label": "Custom facebook title (og:title)",
+        "info": "Default is shop name and page title"
+      },
+      {
+        "type": "textarea",
+        "id": "og_description",
+        "label": "Custom facebook description (og:description)",
+        "info": "Default is shop description, product description or article description"
       }
     ]
   },
