@@ -40,8 +40,8 @@
           <span class="product-price">{{ product.price | money }}</span>
 
           <div class="content-inputs">
-
-          {% if section.settings.display_quantity_selector %}
+          {% assign display_quantity_selector = display_quantity_selector | default: section.settings.display_quantity_selector  %}
+          {% if display_quantity_selector %}
             <div class="product-quantity">
               <input type="number" value="1" min="1" class="product-quantity__input" pattern="[0-9]*" {% if current_variant != blank and current_variant.available == false %}disabled="disabled"{% endif %}>
             </div>

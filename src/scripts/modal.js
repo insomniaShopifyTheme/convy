@@ -55,4 +55,7 @@ theme.modalInit = function () {
   if ($('#CartModal').length > 0) {
     theme.cartModal = new theme.Modal('CartModal');
   }
+  if ($('#SplashModal').length > 0) {
+    theme.SplashModalEl = new theme.Modal('SplashModal');
+  }
 };

@@ -1,0 +1,87 @@
+/*================ Newsletter modal ================*/
+
+.modal_product_announcement{
+  //override elements
+  .modal-content{
+    padding: 0;
+    margin: 0;
+    width: {{ settings.pa_modal_size }}px;
+    max-width: 100%;
+
+    .modal-body{
+      display: table;
+      padding: 0;
+    }
+
+    &.with-border{
+      border: {{ settings.modal_border_size }}px solid {{ settings.modal_border_color }};
+    }
+  }
+
+
+  .content-image{
+    display: none;
+    width: 100%;
+    float: left;
+    img{
+      width: 100%;
+    }
+  }
+
+  .content-product-info{
+    width: 100%;
+    padding: 30px 30px;
+    display: block;
+    float: left;
+    &.text-align-left{
+      text-align: left;
+    }
+    &.text-align-right{
+      text-align: right;
+    }
+    &.text-align-center{
+      text-align: center;
+    }
+  }
+
+  .go-to-product-btn{
+    margin-top: 20px;
+  }
+
+
+}
+
+/*================ Desktop Version ================*/
+@include at-query($min, $large) {
+  .modal_product_announcement{
+
+    .content-image{
+      display: table-cell;
+      vertical-align: middle;
+      float: inherit;
+      width:inherit;
+      img{
+        float: left;
+      }
+    }
+
+    .content-newsletter-form{
+      width: 60%;
+      float: inherit;
+      display: table-cell;
+      vertical-align: middle;
+      margin: auto;
+      max-width: 600px;
+    }
+
+    .newsletter-form__input{
+      width: 60%;
+    }
+
+    .newsletter-form__btn{
+      width: 36%;
+      padding: 10px 0px;
+    }
+
+  }
+}

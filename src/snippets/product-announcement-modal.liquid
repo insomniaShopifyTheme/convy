@@ -1,0 +1,70 @@
+<div class="modal-content {% if settings.modal_border %}with-border{% endif %}">
+    <div class="modal-body" >
+
+
+    {%- assign product = all_products[settings.pa_modal_product] -%}
+    {%- assign current_variant = product.selected_or_first_available_variant -%}
+    {% if settings.pa_modal_product != blank %}
+
+        <!-- TODO: Add X to close modal -->
+        {% if settings.pa_modal_image_position == 'left' %}
+            <div class="content-image">
+                <img src="{{ product.images[0].src | img_url: 'large' }}" alt="{{ image.alt | escape }}" >
+            </div>
+        {% endif %}
+
+        <div class="content-product-info text-align-{{ settings.pa_modal_text_alignment }}">
+            <div class="newsletter-form__text ">
+                {% if settings.pa_modal_title %}
+                    <h3>{{ settings.pa_modal_title }}</h3>
+                {% endif %}
+
+                <img src="{{ product.images[0].src | img_url: 'large' }}" alt="{{ image.alt | escape }}" class="{% if settings.pa_modal_image_position != 'center' %}large--hide{% endif %}">
+
+
+                {%- assign current_variant = product.selected_or_first_available_variant -%}
+                {%- assign money_price = current_variant.price | money -%}
+                {% if current_variant.compare_at_price > current_variant.price %}
+                    {%- assign is_on_sale = true -%}
+                    {%- assign discount_percent = current_variant.compare_at_price | minus: current_variant.price | times: 100.0 | divided_by: current_variant.compare_at_price | round -%}
+                {% else %}
+                    {%- assign is_on_sale = false -%}
+                    {%- assign discount_percent = 0 -%}
+                {% endif %}
+                <div class="product-price__sale{% unless is_on_sale %} hide{% endunless %}">
+                    <!--<span class="product-price__old">{{ current_variant.compare_at_price | money }}</span>-->
+                    <span class="product-price__percent">{% if discount_percent > 0 %}-{{ discount_percent }}%{% endif %}</span>
+                </div>
+                <h3 class="product-price__price">{{ money_price }}</h3>
+
+                {% if settings.pa_text_rich %}
+                    <p>{{ settings.pa_text_rich }}</p>
+                {% endif %}
+            </div>
+            <a href="#" name="add" id="AddToCart-product_{{ product.id }}" class="btn btn--special btn--full go-to-product-btn" >
+                <span class="product-form__cart-submit-text" data-original-text="{{ settings.pa_modal_btn_text }}">
+                      {{ settings.pa_modal_btn_text }}
+                </span>
+            </a>
+        </div>
+
+        {% if settings.pa_modal_image_position == 'right' %}
+            <div class="content-image">
+                <img src="{{ product.images[0].src | img_url: 'large' }}" alt="{{ image.alt | escape }}" >
+            </div>
+        {% endif %}
+
+    {% else %}
+        <h5 class="text-center">Please select a product.</h5>
+    {% endif %}
+
+    {% unless product.empty? %}
+    <script type="application/json" id="ProductJson-product_{{ product.id }}">
+
+    </script>
+    {% endunless %}
+
+
+
+    </div>
+</div>

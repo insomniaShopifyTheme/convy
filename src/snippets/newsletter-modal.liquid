@@ -1,0 +1,47 @@
+<div class="modal-content {% if settings.newsletter_modal_border %}with-border{% endif %}">
+    <div class="modal-body">
+        <!-- TODO: Add X to close modal -->
+        {% if settings.newsletter_modal_image_position == 'left' %}
+            {% if settings.newsletter_modal_image_picker != blank %}
+            <div class="content-image">
+                <img src="{{ settings.newsletter_modal_image_picker | img_url: '1200x1200' }}" alt="{{ settings.newsletter_modal_image_alt_text }}">
+            </div>
+            {% endif %}
+        {% endif %}
+
+        <div class="content-newsletter-form text-align-{{ settings.newsletter_modal_text_alignment }}">
+            <div class="newsletter-form">
+                <div class="newsletter-form__text ">
+                    {% if settings.newsletter_modal_title %}
+                        <h2>{{ settings.newsletter_modal_title }}</h2>
+                    {% endif %}
+                    {% if settings.newsletter_modal_text %}
+                        <p>{{ settings.newsletter_modal_text }}</p>
+                    {% endif %}
+                </div>
+
+                {% if settings.newsletter_modal_popup_form %}
+                    {% form 'customer' %}
+                    {{ form.errors | default_errors }}
+                    {% if form.posted_successfully? %}
+                        <p class="note form-success h3">{{ 'general.newsletter_form.confirmation' | t }}</p>
+                    {% else %}
+                        <input type="hidden" name="contact[tags]" value="newsletter">
+                        <div class="newsletter-form__group">
+                            <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Mail" class="newsletter-form__input" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
+                            <input type="submit" class="btn btn--secondary newsletter-form__btn" name="subscribe" id="subscribe" value="{% if settings.newsletter_modal_btn_text != blank %}{{ settings.newsletter_modal_btn_text }}{% else %}{{ 'general.newsletter_form.submit' | t }}{% endif %}">
+                        </div>
+                    {% endif %}
+                    {% endform %}
+                {% endif %}
+            </div>
+        </div>
+        {% if settings.newsletter_modal_image_position == 'right' %}
+            {% if settings.newsletter_modal_image_picker != blank %}
+                <div class="content-image">
+                    <img src="{{ settings.newsletter_modal_image_picker | img_url: '1200x1200' }}" alt="{{ settings.newsletter_modal_image_alt_text }}">
+                </div>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
