@@ -35,6 +35,9 @@
       "password_link": "Entre usando a palavra-passe",
       "powered_by_shopify_html": "Esta loja será movida por {{ shopify }}",
       "close": "Encerrar (Esc)"
+    },
+    "ui": {
+      "close": "Encerrar"
     }
   },
   "blogs": {

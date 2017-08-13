@@ -35,6 +35,9 @@
       "password_link": "Entre usando a senha",
       "powered_by_shopify_html": "Esta loja será patrocinada por {{ shopify }}",
       "close": "Fechar (Esc)"
+    },
+    "ui": {
+      "close": "Fechar"
     }
   },
   "blogs": {

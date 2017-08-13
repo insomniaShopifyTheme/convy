@@ -1,4 +1,12 @@
 <div class="modal-content {% if settings.modal_border %}with-border{% endif %}">
+    <div class="modal-header">
+      <div class="modal__close js-modal-close">
+        <button type="button" class="icon-fallback-text">
+          <span class="icon icon-x" aria-hidden="true"></span>
+          <span class="fallback-text">{{ 'general.ui.close' | t }}</span>
+        </button>
+      </div>
+    </div>
     <div class="modal-body" >
 
 

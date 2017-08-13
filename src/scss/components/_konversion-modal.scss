@@ -47,6 +47,20 @@ $cart-modal-width: 540px;
     }
   }
 
+  &.konversion-modal--splash {
+    .modal-header {
+      padding: 0;
+      border-bottom: none;
+      .modal__close {
+        position: absolute;
+        right: $gutter / 3;
+        top: $gutter / 3;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+
   /* Modal Body */
   .modal-body {
     padding: 2px 1rem;

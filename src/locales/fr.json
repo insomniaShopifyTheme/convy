@@ -51,6 +51,9 @@
       "password_link": "Entrer avec un mot de passe",
       "powered_by_shopify_html": "Cette boutique sera propulsée par {{ shopify }}",
       "close": "Fermer (Esc)"
+    },
+    "ui": {
+      "close": "Fermer"
     }
   },
   "blogs": {

@@ -52,6 +52,9 @@
         "share_on_twitter": "Tweet on Twitter",
         "share_on_pinterest": "Pin on Pinterest"
       }
+    },
+    "ui": {
+      "close": "Close"
     }
   },
   "blogs": {
