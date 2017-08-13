@@ -86,7 +86,9 @@
   {% include 'desktop-nav-drawer' %}
   {% include 'cart-drawer-modal' %}
 
-  {% include 'splash-modals' %}
+  {% if settings.modal_type != 'disable' %}
+    {% include 'splash-modals' %}
+  {% endif %}
 
   {% include 'deal-of-the-day-navbar-mobile-small' %}
 

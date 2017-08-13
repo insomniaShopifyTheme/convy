@@ -534,6 +534,10 @@
         "label":     "Popup type",
         "options": [
           {
+            "value": "disable",
+            "label": "Disable"
+          },
+          {
             "value": "newsletter",
             "label": "Newsletter"
           },
@@ -542,7 +546,7 @@
             "label": "Product announcement"
           }
         ],
-        "default":   "newsletter"
+        "default":   "disable"
       },
       {
         "type": "select",
