@@ -505,6 +505,23 @@
     ]
   },
   {
+    "name": "Misc",
+    "settings": [
+      {
+        "type": "text",
+        "id": "password_page_title",
+        "label": "SEO title for password page",
+        "info": "Default is shop name"
+      },
+      {
+        "type": "textarea",
+        "id": "custom_scripts",
+        "label": "Custom scripts",
+        "info": "This code included at the bottom of the page on each page load. Note: you need to wrap it with <script>your_code_here</script> tag if this is JavaScript code"
+      }
+    ]
+  },
+  {
     "name": "Popups",
     "settings": [
       {
@@ -514,7 +531,7 @@
       {
         "type":      "radio",
         "id":        "modal_type",
-        "label":     "Choose one type of popup",
+        "label":     "Popup type",
         "options": [
           {
             "value": "newsletter",
@@ -530,11 +547,11 @@
       {
         "type": "select",
         "id": "modal_display_delay_seconds",
-        "label": "Seconds until popup is displayed",
+        "label": "Popup delay",
         "options": [
           {
             "value": "0",
-            "label": "0 seconds"
+            "label": "Display Immediately"
           },
           {
             "value": "2",
@@ -800,23 +817,6 @@
         "id": "pa_modal_btn_text",
         "label": "Button text",
         "default": "Go to product"
-      }
-    ]
-  },
-  {
-    "name": "Misc",
-    "settings": [
-      {
-        "type": "text",
-        "id": "password_page_title",
-        "label": "SEO title for password page",
-        "info": "Default is shop name"
-      },
-      {
-        "type": "textarea",
-        "id": "custom_scripts",
-        "label": "Custom scripts",
-        "info": "This code included at the bottom of the page on each page load. Note: you need to wrap it with <script>your_code_here</script> tag if this is JavaScript code"
       }
     ]
   },
