@@ -1,0 +1,102 @@
+/*================ Newsletter modal ================*/
+
+.modal_newsletter{
+  //override elements
+  .modal-content{
+    padding: 0;
+    margin: 0;
+    width: 800px;
+    max-width: 100%;
+
+    .modal-body{
+      display: table;
+      padding: 0;
+    }
+
+    &.with-border{
+      border: {{ settings.modal_border_size }}px solid {{ settings.modal_border_color }};
+    }
+  }
+
+  .content-image{
+    display: none;
+    width: 100%;
+    float: left;
+    img{
+      width: 100%;
+    }
+  }
+
+  .content-newsletter-form{
+    width: 100%;
+    padding: 30px 40px;
+    display: block;
+    float: left;
+    &.text-align-left{
+      text-align: left;
+    }
+    &.text-align-right{
+      text-align: right;
+    }
+    &.text-align-center{
+      text-align: center;
+    }
+  }
+
+  .newsletter-form__input{
+    width: 100%;
+    margin-right: 10px;
+    padding: 10px 10px;
+    margin-bottom:10px;
+  }
+
+  .newsletter-form__btn{
+    width: 100%;
+    padding: 10px 0px;
+    vertical-align: inherit;
+  }
+
+  .newsletter-form__text{
+    margin-bottom: 40px;
+  }
+
+}
+
+/*================ Desktop Version ================*/
+@include at-query($min, $large) {
+  .modal_newsletter{
+
+    .content-image{
+      display: table-cell;
+      vertical-align: middle;
+      float: inherit;
+      width:inherit;
+      img{
+        float: left;
+      }
+    }
+
+    .content-newsletter-form{
+      width: 60%;
+      float: inherit;
+      padding: 30px 30px;
+      display: table-cell;
+      vertical-align: middle;
+      margin: auto;
+      max-width: 600px;
+    }
+    
+    .newsletter-form__input{
+      width: 60%;
+      margin-right: 10px;
+      padding: 10px 10px;
+    }
+
+    .newsletter-form__btn{
+      width: 36%;
+      padding: 10px 0px;
+      vertical-align: inherit;
+    }
+
+  }
+}

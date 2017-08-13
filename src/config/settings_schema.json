@@ -522,6 +522,309 @@
     ]
   },
   {
+    "name": "Popups",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Popup"
+      },
+      {
+        "type":      "radio",
+        "id":        "modal_type",
+        "label":     "Popup type",
+        "options": [
+          {
+            "value": "disable",
+            "label": "Disable"
+          },
+          {
+            "value": "newsletter",
+            "label": "Newsletter"
+          },
+          {
+            "value": "product_announcement",
+            "label": "Product announcement"
+          }
+        ],
+        "default":   "disable"
+      },
+      {
+        "type": "select",
+        "id": "modal_display_delay_seconds",
+        "label": "Popup delay",
+        "options": [
+          {
+            "value": "0",
+            "label": "Display Immediately"
+          },
+          {
+            "value": "2",
+            "label": "2 seconds"
+          },
+          {
+            "value": "5",
+            "label": "5 seconds"
+          },
+          {
+            "value": "10",
+            "label": "10 seconds"
+          },
+          {
+            "value": "30",
+            "label": "30 seconds"
+          },
+          {
+            "value": "60",
+            "label": "60 seconds"
+          },
+          {
+            "value": "120",
+            "label": "120 seconds"
+          }
+        ],
+        "default": "2"
+      },
+      {
+        "type": "select",
+        "id": "modal_days",
+        "label": "Days until popup is displayed again",
+        "options": [
+          {
+            "value": "2",
+            "label": "2 days"
+          },
+          {
+            "value": "7",
+            "label": "7 days"
+          },
+          {
+            "value": "14",
+            "label": "14 days"
+          },
+          {
+            "value": "30",
+            "label": "30 days"
+          },
+          {
+            "value": "90",
+            "label": "90 days"
+          },
+          {
+            "value": "365",
+            "label": "365 days"
+          }
+        ],
+        "default": "2"
+      },
+      {
+        "type": "select",
+        "id": "modal_display",
+        "label": "Display",
+        "default": "all",
+        "options": [
+          {
+            "value": "all",
+            "label": "Desktop & Mobile"
+          },
+          {
+            "value": "mobile",
+            "label": "Mobile only"
+          },
+          {
+            "value": "desktop",
+            "label": "Desktop only"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "modal_border_color",
+        "label": "Border color",
+        "default": "#000"
+      },
+      {
+        "type":      "range",
+        "id":        "modal_border_size",
+        "min":       0,
+        "max":       15,
+        "step":       1,
+        "unit":       "px",
+        "label":     "Border size",
+        "default":   0
+      },
+
+      {
+        "type": "paragraph",
+        "content": "To test the popup feature click on 'Test Mode' checkbox bellow."
+      },
+      {
+        "type": "checkbox",
+        "id": "newsletter_modal_test_mode",
+        "label": "Test mode",
+        "default": false
+      },
+
+      {
+        "type": "header",
+        "content": "Newsletter settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "newsletter_modal_popup_form",
+        "label": "Show signup form",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "newsletter_modal_image_picker",
+        "label": "Use an image"
+      },
+      {
+        "type": "select",
+        "id": "newsletter_modal_image_position",
+        "label": "Image Position",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "left"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_modal_image_alt_text",
+        "label": "Image ALT"
+      },
+      {
+        "type": "text",
+        "id": "newsletter_modal_title",
+        "label": "Title (optional)",
+        "default": "SIGN UP TODAY!"
+      },
+      {
+        "type": "textarea",
+        "id": "newsletter_modal_text",
+        "label": "Text (optional)",
+        "default": "You can write the headline and text for your newsletter popup in the theme settings (Newsletter section). You can also control how often the popup is displayed or disable it entirely."
+      },
+      {
+        "type": "text",
+        "id": "newsletter_modal_btn_text",
+        "label": "Button text (optional)",
+        "default": "SIGN UP!"
+      },
+      {
+        "type": "select",
+        "id": "newsletter_modal_text_alignment",
+        "label": "Text Align",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          }
+        ],
+        "default": "left"
+      },
+
+
+      {
+        "type": "header",
+        "content": "Product announcement settings"
+      },
+      {
+        "type":      "range",
+        "id":        "pa_modal_size",
+        "min":       500,
+        "max":       800,
+        "step":       100,
+        "unit":       "px",
+        "label":     "Modal width size",
+        "default":  700
+      },
+      {
+        "type": "product",
+        "id": "pa_modal_product",
+        "label": "Product"
+      },
+      {
+        "type": "select",
+        "id": "pa_modal_text_alignment",
+        "label": "Text Align",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          }
+        ],
+        "default": "left"
+      },
+
+      {
+        "type": "select",
+        "id": "pa_modal_image_position",
+        "label": "Image",
+        "options": [
+          {
+            "value": "left",
+            "label": "Align left"
+          },
+          {
+            "value": "center",
+            "label": "Align center"
+          },
+          {
+            "value": "right",
+            "label": "Align right"
+          },
+          {
+            "value": "hide",
+            "label": "Hide image"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "text",
+        "id": "pa_modal_title",
+        "label": "Title",
+        "default": "Some title"
+      },
+
+      {
+        "type": "richtext",
+        "id": "pa_text_rich",
+        "label": "Description"
+      },
+      {
+        "type": "text",
+        "id": "pa_modal_btn_text",
+        "label": "Button text",
+        "default": "Go to product"
+      }
+    ]
+  },
+  {
     "name": "Product Tabs",
     "settings": [
       {
@@ -705,6 +1008,18 @@
         "id": "og_image",
         "label": "Custom facebook image (og:image)",
         "info": "Recommended size 1200x630 px"
+      },
+      {
+        "type": "text",
+        "id": "og_title",
+        "label": "Custom facebook title (og:title)",
+        "info": "Default is shop name and page title"
+      },
+      {
+        "type": "textarea",
+        "id": "og_description",
+        "label": "Custom facebook description (og:description)",
+        "info": "Default is shop description, product description or article description"
       }
     ]
   },

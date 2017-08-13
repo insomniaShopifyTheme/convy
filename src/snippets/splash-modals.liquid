@@ -1,0 +1,7 @@
+<div class="konversion-modal konversion-modal--splash {% if settings.modal_display == 'desktop' %}medium-down--hide{% endif %} {% if settings.modal_display == 'mobile' %}large--hide{% endif %} modal_{{ settings.modal_type }}" id="SplashModal" data-days-hidden="{{ settings.modal_days }}" data-showup-delay="{{ settings.modal_display_delay_seconds }}" data-test-mode="{{ settings.newsletter_modal_test_mode }}" >
+    {% if settings.modal_type == 'newsletter' %}
+        {% include 'newsletter-modal' %}
+    {% elsif (settings.modal_type == 'product_announcement')%}
+        {% include 'product-announcement-modal' %}
+    {% endif %}
+</div>
