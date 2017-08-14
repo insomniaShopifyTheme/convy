@@ -1,6 +1,11 @@
 /*================ Content Section ================*/
 
 .section-content {
+
+  .section-content__wrapper {
+    margin: $gutter;
+  }
+
   .section-custom-content--alt {
     @include inverted-section();
   }

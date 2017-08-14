@@ -1,3 +1,6 @@
+{% unless section.settings.disable_padding %}
+<div class="section-content__wrapper">
+{% endunless %}
 <div class="{% if section.settings.disable_padding %}grid--full{% else %}grid{% endif %} {% if section.settings.inverted %} section-custom-content--alt{% endif %}">
 {% for block in section.blocks %}
   <div class="grid__item one-whole large--{{ block.settings.column_width }} custom__item" {{ block.shopify_attributes }}>
@@ -52,6 +55,9 @@
   </div>
 {% endfor %}
 </div>
+{% unless section.settings.disable_padding %}
+</div>
+{% endunless %}
 
 {% schema %}
   {
@@ -78,7 +84,7 @@
       {
         "type": "checkbox",
         "id": "disable_padding",
-        "label": "Disable Cell Padding",
+        "label": "Disable Column Padding",
         "default": false
       }
     ],
