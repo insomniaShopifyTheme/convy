@@ -17,6 +17,15 @@ cp config.example.yml src/config.yml
 
 then edit `src/config.yml`
 
+#### 3. Set up theme settings for your development store
+```
+cp src/config/settings_data.default.json src/config/settings_data.json
+```
+
+#### 4. Provide your license key
+
+Paste you license key to `src/config/settings_data.json > current > license_key`
+
 
 ### Development
 

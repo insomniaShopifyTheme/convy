@@ -17,3 +17,8 @@ node_modules/
 config.yml
 tmp/
 .idea
+
+# this file is different for each developer
+# and should be copied from src/config/settings_data.default.json
+# during the installation
+src/config/settings_data.json

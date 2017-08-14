@@ -74,7 +74,19 @@ gulp.task('clean', function() {
 gulp.task('clean_for_build', function() {
   return del([
     "./dist/config.yml",
+    "./dist/config/settings_data.json",
+    "./dist/config/settings_data.default.json",
   ]);
+});
+//copy default settings
+gulp.task('copy_default_settings', function() {
+  return gulp.src(
+    "./src/config/settings_data.default.json"
+    ).pipe(
+      ext_replace('.json', '.default.json')
+    ).pipe(
+      gulp.dest('./dist/config')
+    );
 });
 
 //gulp prepare test file
@@ -148,4 +160,4 @@ gulp.task("zip_build", function() {
     .pipe(gulp.dest('./dist'))
 });
 
-gulp.task('zip', gulpSequence('build', 'clean_for_build', 'zip_build'));
+gulp.task('zip', gulpSequence('build', 'clean_for_build', 'copy_default_settings', 'zip_build'));

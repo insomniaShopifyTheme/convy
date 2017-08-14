@@ -1,9 +1,15 @@
 {
   "current": {
+    "license_key": "",
     "app_product_reviews_enabled": false,
     "ajax_cart_method": "drawer",
     "cart_notes_enable": false,
     "sticky_add_to_cart": true,
+    "add_to_cart_float_animation": true,
+    "add_to_cart_bar_enabled": true,
+    "add_to_cart_bar_background_color": "#fff",
+    "add_to_cart_bar_text_color": "#000",
+    "add_to_cart_bar_price_color": "#000",
     "color_primary": "#393939",
     "color_secondary": "#41cd62",
     "color_text": "#333333",
@@ -20,6 +26,8 @@
     "currency_format": "money_with_currency_format",
     "supported_currencies": "INR GBP CAD USD AUD EUR JPY",
     "default_currency": "USD",
+    "countdown_offer_enabled": false,
+    "countdown_offer_repeat": true,
     "deal_of_the_day_enabled": false,
     "deal_of_the_day_display": "all",
     "deal_of_the_day_hide_title": false,
@@ -33,8 +41,31 @@
     "fixed_header": "all",
     "product_card_title_style": "1_row",
     "margin_on_mobile": false,
-    "license_key": "elhaNEZPNDBTSUk1bzZYS0FNb0pRY3NyZVpTMnFlL0dYRFdVdWxVc0Q1Zz06OgJFD47rYTpA+zdE3ufPkEw=",
+    "product_card_height": "255px",
+    "password_page_title": "",
     "custom_scripts": "",
+    "modal_type": "disable",
+    "modal_display_delay_seconds": "2",
+    "modal_days": "2",
+    "modal_display": "all",
+    "modal_border_color": "#000",
+    "modal_border_size": 0,
+    "newsletter_modal_test_mode": false,
+    "newsletter_modal_popup_form": true,
+    "newsletter_modal_image_picker": "",
+    "newsletter_modal_image_position": "left",
+    "newsletter_modal_image_alt_text": "",
+    "newsletter_modal_title": "SIGN UP TODAY!",
+    "newsletter_modal_text": "You can write the headline and text for your newsletter popup in the theme settings (Newsletter section). You can also control how often the popup is displayed or disable it entirely.",
+    "newsletter_modal_btn_text": "SIGN UP!",
+    "newsletter_modal_text_alignment": "left",
+    "pa_modal_size": 700,
+    "pa_modal_product": "",
+    "pa_modal_text_alignment": "left",
+    "pa_modal_image_position": "center",
+    "pa_modal_title": "Some title",
+    "pa_text_rich": "",
+    "pa_modal_btn_text": "Go to product",
     "shipping_calculator": true,
     "shipping_calculator_heading": "Get shipping estimates",
     "shipping_calculator_default_country": "United States",
@@ -47,14 +78,19 @@
     "social_pinterest_link": "",
     "social_youtube_link": "https:\/\/www.youtube.com\/user\/derekmorinjob",
     "social_snapchat_link": "",
+    "social_icons_menu_drawer": true,
     "share_facebook": true,
     "share_twitter": true,
     "share_pinterest": true,
     "share_gplus": true,
     "og_image": "",
+    "og_title": "",
+    "og_description": "",
     "font_family_headings": "Google_Work+Sans_600_sans",
+    "font_family_headings_other": "none",
     "font_size_headings": "26px",
     "font_family_base": "Google_Lato_400_sans",
+    "font_family_base_other": "none",
     "font_size_base": "16px",
     "option_color_swatches": "Color, Colour",
     "checkout_header_image": "",
@@ -82,6 +118,7 @@
           "show_facebook_like_button": true,
           "show_facebook_share_button": true,
           "message_text": "SITEWIDE ANNOUNCEMENT",
+          "is_phone_number": false,
           "message_link_text": "SHOP NOW",
           "message_link": "shopify:\/\/collections",
           "color_bg": "#191919",
@@ -101,13 +138,19 @@
           "logo_margin": "0",
           "menu_type": "text-menu",
           "display_product_price": false,
-          "display_profile_icon": true
+          "submenu_columns": "1",
+          "display_menu_word_mobile": false,
+          "menu_word_mobile": "MENU",
+          "display_profile_icon": true,
+          "switch_account_search_position": false
         }
       },
       "footer": {
         "type": "footer",
         "settings": {
           "display_border": false,
+          "footer_width_size": "normal",
+          "mobile_display_footer_cart_product": false,
           "color_bg": "#ffffff",
           "color_headings": "#393939",
           "color_text": "#393939",
@@ -118,11 +161,11 @@
           "color_button_text": "#393939",
           "display_social": true,
           "powered_by": true,
-          "theme_copyright": true,
           "payment_icons": false,
-          "affiliate_id": "",
           "color_social_bg": "#0d0d0d",
-          "color_social_icons": "#ffffff"
+          "color_social_icons": "#ffffff",
+          "theme_copyright": true,
+          "affiliate_link": ""
         }
       },
       "1496645688611": {
@@ -134,6 +177,7 @@
               "image": "",
               "title": "Slide Heading",
               "subtitle": "<p>Tell your brand's story through video and images<\/p>",
+              "text": "<p><\/p>",
               "primary_button_label": "SHOP NOW",
               "primary_button_link": "shopify:\/\/collections",
               "secondary_button_label": "",
@@ -142,6 +186,7 @@
               "text_location": "center",
               "text_alignment": "center",
               "color_title": "#ffffff",
+              "color_subtitle": "#fff",
               "color_text": "#fff",
               "image_overlay_opacity": "0.35",
               "color_image_overlay": "#000000",
@@ -159,6 +204,7 @@
               "image": "",
               "title": "Slide Heading",
               "subtitle": "<p>Tell your brand's story through video and images<\/p>",
+              "text": "<p><\/p>",
               "primary_button_label": "",
               "primary_button_link": "",
               "secondary_button_label": "",
@@ -167,6 +213,7 @@
               "text_location": "center",
               "text_alignment": "center",
               "color_title": "#fff",
+              "color_subtitle": "#fff",
               "color_text": "#fff",
               "image_overlay_opacity": "0.25",
               "color_image_overlay": "#000000",
@@ -187,7 +234,9 @@
           "autoplay": true,
           "autoplay_speed": "5000",
           "slideshow_height": "medium",
-          "text_size": "xlarge"
+          "title_text_size": "large",
+          "subtitle_text_size": "large",
+          "content_text_size": "small"
         }
       },
       "1496656693081": {
@@ -306,7 +355,8 @@
           "1497966686972-3"
         ],
         "settings": {
-          "title": ""
+          "title": "",
+          "invert_logo_color": false
         }
       },
       "1497967594955": {
@@ -324,6 +374,7 @@
             "settings": {
               "image": "",
               "title": "Slide Heading",
+              "subtitle": "<p>Tell your brand's story through video and images<\/p>",
               "text": "<p>Tell your brand's story through video and images<\/p>",
               "primary_button_label": "",
               "primary_button_link": "",
@@ -333,6 +384,7 @@
               "text_location": "center",
               "text_alignment": "center",
               "color_title": "#fff",
+              "color_subtitle": "#fff",
               "color_text": "#fff",
               "image_overlay_opacity": "0.25",
               "color_image_overlay": "#000000",
@@ -352,7 +404,9 @@
           "autoplay": true,
           "autoplay_speed": "5000",
           "slideshow_height": "xsmall",
-          "text_size": "medium"
+          "title_text_size": "large",
+          "subtitle_text_size": "large",
+          "content_text_size": "small"
         }
       },
       "1497971134137": {
@@ -490,7 +544,7 @@
         "settings": {
           "display": "all",
           "inverted": false,
-          "disable_padding": false
+          "disable_padding": true
         }
       }
     },
