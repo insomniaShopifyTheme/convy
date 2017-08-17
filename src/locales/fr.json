@@ -115,6 +115,9 @@
       "total": "Total"
     },
     "shipping-calculator": {
+      "country": "Pays",
+      "province": "Province",
+      "zip_postal_code": "Zip *: français",
       "there_are": "Il y a",
       "shipping_rates": "Tarifs de livraison disponibles pour",
       "starting_at": "à partir de",

@@ -89,6 +89,16 @@
       "price": "Preço",
       "quantity": "Quantidade",
       "total": "Total"
+    },
+    "shipping-calculator": {
+      "country": "País",
+      "province": "Província",
+      "zip_postal_code": "Fecho eclair",
+      "there_are": "tem",
+      "shipping_rates": "Taxas de envio disponíveis para",
+      "starting_at": "Começando às",
+      "shipping_rate_available": "Existe uma taxa de envio disponível para",
+      "do_not_ship": "Nós não enviamos para este destino."
     }
   },
   "collections": {
