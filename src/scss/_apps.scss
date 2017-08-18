@@ -4,3 +4,9 @@
     color: $color-review-count;
   }
 }
+.loox-rating {
+  color: $color-review-stars;
+  span {
+    color: $color-review-count;
+  }
+}

@@ -5,10 +5,18 @@
     <h3 itemprop="name">{{ product.title }}</h3>
   {% endif %}
 </div>
-{% if settings.app_product_reviews_enabled %}
-<div class="product-rating">
-  <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-</div>
+{% if settings.app_product_reviews_enabled != blank %}
+  {% if settings.app_product_reviews_enabled == "product_reviews" %}
+    <div class="product-rating">
+      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+    </div>
+  {% else %}
+    <div class="product-rating">
+      <a href="#looxReviews">
+        <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+      </a>
+    </div>
+  {% endif %}
 {% endif %}
 <div class="product-price">
   {% include 'product-page-price' %}

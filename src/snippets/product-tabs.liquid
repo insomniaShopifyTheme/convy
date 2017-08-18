@@ -49,9 +49,13 @@
   {% endif %}
   {% if section.settings.reviews_tab %}
   <div id="tab-reviews">
-    {% if settings.app_product_reviews_enabled %}
-      <div id="shopify-product-reviews" class="js-delete--mobile" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-    {% else  %}
+    {% if settings.app_product_reviews_enabled != blank %}
+      {% if settings.app_product_reviews_enabled == "product_reviews" %}
+        <div id="shopify-product-reviews" class="js-delete--mobile" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+      {% else %}
+        <div id="looxReviews" class="js-delete--mobile" data-product-id="{{product.id}}">{{ product.metafields.loox.reviews }}</div>
+      {% endif %}
+    {% else %}
       <br>
       <h3 class="text-meta text-center">Product Reviews app integration required</h3>
       <p class="text-meta text-center">Please enable integration in General Settings > Apps</p>

@@ -9,10 +9,16 @@
     <div class="product-info__title">
       <h3>{{ product.title }}</h3>
     </div>
-    {% if settings.app_product_reviews_enabled %}
-    <div class="product-rating">
-      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-    </div>
+    {% if settings.app_product_reviews_enabled != blank %}
+      {% if settings.app_product_reviews_enabled == "product_reviews" %}
+        <div class="product-rating">
+          <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+        </div>
+      {% else %}
+        <div class="product-rating">
+          <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+        </div>
+      {% endif %}
     {% endif %}
     <div class="product-short-description">
       {{ product.description | strip_html | truncatewords: '18', "&hellip;" }}
