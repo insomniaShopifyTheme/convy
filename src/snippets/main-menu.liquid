@@ -16,7 +16,7 @@
                 {% assign grandchild_list_handle = childlink.title | handleize %}
                 {% if linklists[grandchild_list_handle].links != blank %}
                   <li{% if childlink.active %} class="current"{% endif %}>
-                    <a href="{{ childlink.link }}" class="sf-with-ul">{{ childlink.title }}</a>
+                    <a href="{{ childlink.url }}" class="sf-with-ul">{{ childlink.title }}</a>
                     <ul>
                       {% for grandchildlink in linklists[grandchild_list_handle].links %}
                         <li{% if grandchildlink.active %} class="current"{% endif %}>
