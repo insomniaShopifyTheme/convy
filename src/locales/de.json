@@ -89,6 +89,16 @@
       "price": "Preis",
       "quantity": "Menge",
       "total": "Gesamt"
+    },
+    "shipping-calculator": {
+      "country": "Land",
+      "province": "Bundesland",
+      "zip_postal_code": "PLZ",
+      "there_are": "Es sind",
+      "shipping_rates": "Versandkosten",
+      "starting_at": "beginnend mit",
+      "shipping_rate_available": "Es ist eine Versandrate verfügbar",
+      "do_not_ship": "Wir versenden du diesem Zielort."
     }
   },
   "collections": {
@@ -293,7 +303,7 @@
       "unavailable": "Nicht verfügbar",
       "compare_at": "Vergleichen bei",
       "quantity": "Menge",
-      "add_to_cart": "In den Einkaufswagen legen"
+      "add_to_cart": "In den Warenkorb"
     }
   },
   "gift_cards": {

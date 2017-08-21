@@ -47,8 +47,14 @@
         </div>
         <div class="product-info__title clearfix">
           <h3>{{ product.title }}</h3>
-          {% if settings.app_product_reviews_enabled %}
+          {% if settings.app_product_reviews_enabled != blank %}
+            {% if settings.app_product_reviews_enabled == "product_reviews" %}
             <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+            {% else %}
+              <a href="#looxReviews">
+                <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+              </a>
+            {% endif %}
           {% endif %}
         </div>
         {% if section.settings.description_location == 'top' %}
@@ -90,9 +96,13 @@
         </div>
       {% endif %}
 
-      {% if settings.app_product_reviews_enabled %}
+      {% if settings.app_product_reviews_enabled != blank %}
       <div class="{% if section.settings.use_tabs %}large--hide{% endif %}">
-        <div id="shopify-product-reviews" class="js-delete--desktop" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+        {% if settings.app_product_reviews_enabled == "product_reviews" %}
+          <div id="shopify-product-reviews" class="js-delete--desktop" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+        {% else %}
+          <div id="looxReviews" class="js-delete--desktop" data-product-id="{{product.id}}">{{ product.metafields.loox.reviews }}</div>
+        {% endif %}
       </div>
       {% endif %}
     </div>

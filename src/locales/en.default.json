@@ -111,6 +111,9 @@
       "total": "Total"
     },
     "shipping-calculator": {
+      "country": "Country",
+      "province": "Province",
+      "zip_postal_code": "Zip/Postal Code",
       "there_are": "There are",
       "shipping_rates": "shipping rates available for",
       "starting_at": "starting at",

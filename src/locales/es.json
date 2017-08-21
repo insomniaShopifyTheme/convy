@@ -89,6 +89,16 @@
       "price": "Precio",
       "quantity": "Cantidad",
       "total": "Total"
+    },
+    "shipping-calculator": {
+      "country": "País",
+      "province": "Provincia",
+      "zip_postal_code": "Cremallera",
+      "there_are": "Existen",
+      "shipping_rates": "Tarifas de envío disponibles para",
+      "starting_at": "a partir de",
+      "shipping_rate_available": "Hay una tarifa de envío disponible para",
+      "do_not_ship": "No enviamos a este destino."
     }
   },
   "collections": {

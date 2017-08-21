@@ -56,11 +56,24 @@
         "content": "Product Reviews"
       },
       {
-        "type": "checkbox",
+        "type": "radio",
         "id": "app_product_reviews_enabled",
-        "label": "Product reviews by shopify",
-        "default": false,
-        "info": "Enables app integration. You still need to [install the app](https://apps.shopify.com/product-reviews)"
+        "label": "Product reviews app",
+        "options": [
+          {
+            "value": "",
+            "label": "Disable"
+          },
+          {
+            "value": "product_reviews",
+            "label": "Product reviews by shopify, Enables app integration. You still need to [install the app](https:\/\/apps.shopify.com\/product-reviews)"
+          },
+          {
+            "value": "loox_reviews",
+            "label": "Loox - Photo Reviews, Enables app integration. You still need to [install the app](https:\/\/apps.shopify.com\/loox-fashion-reviews)"
+          }
+        ],
+        "default": ""
       }
     ]
   },
