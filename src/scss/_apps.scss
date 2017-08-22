@@ -6,6 +6,7 @@
 }
 .loox-rating {
   color: $color-review-stars;
+  min-height: 25px;
   span {
     color: $color-review-count;
   }
