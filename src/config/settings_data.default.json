@@ -1,7 +1,7 @@
 {
   "current": {
     "license_key": "",
-    "app_product_reviews_enabled": false,
+    "app_product_reviews_enabled": "",
     "ajax_cart_method": "drawer",
     "cart_notes_enable": false,
     "sticky_add_to_cart": true,

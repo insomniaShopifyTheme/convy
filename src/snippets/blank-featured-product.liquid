@@ -6,7 +6,7 @@
           {% for i in (1..4) %}
             <li>
               <div class="thumb-overlay">
-                {{ 'blank-product.png' | asset_img_url: 'compact' | img_tag: "Product Thumbnail" }}
+                {{ 'blank-product-thumb.png' | asset_img_url: '90x90' | img_tag: "Product Thumbnail" }}
               </div>
             </li>
           {% endfor %}
@@ -16,7 +16,7 @@
         <ul class="no-bullets js-product-image" data-arrows="{{ section.settings.gallery_arrows }}">
           {% for i in (1..4) %}
             <li>
-              <img src="{{ 'blank-product.png' | asset_img_url: '400x400' }}" alt="Product Image" data-original="{{ 'blank-product.png' | asset_img_url: 'original' }}" data-zoom-type="{{ gallery_zoom_type | default: section.settings.gallery_zoom_type }}">
+              <img src="{{ 'blank-product.png' | asset_img_url: '400x400' }}" alt="Product Image" data-original="{{ 'blank-product-big.png' | asset_img_url: 'original' }}" data-zoom-type="{{ gallery_zoom_type | default: section.settings.gallery_zoom_type }}">
             </li>
           {% endfor %}
         </ul>
