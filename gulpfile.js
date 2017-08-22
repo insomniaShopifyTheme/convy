@@ -1,3 +1,44 @@
+var globalConfig = {
+  scss_src: './src/scss', // your dev stylesheet directory. No trailing slash
+  scripts_src: './src/scripts'
+};
+
+// Add files to merge to dist/assets/theme.js.liquid
+// *** NOTE ***
+// dist/assets/theme.js.liquid is used for the code that konversion team writes
+// append any external libraries to the src/assets/vendor.js in their minified version
+JS_FILES = [
+  globalConfig.scripts_src + '/lib/jquery.selectric.js',
+  globalConfig.scripts_src + '/setup.js',
+  globalConfig.scripts_src + '/theme/currency.js',
+  globalConfig.scripts_src + '/theme/sections.js',
+  globalConfig.scripts_src + '/theme/variants.js',
+  globalConfig.scripts_src + '/customers.js',
+  globalConfig.scripts_src + '/map.js',
+  globalConfig.scripts_src + '/cookie-manager.js',
+  globalConfig.scripts_src + '/product-card.js',
+  globalConfig.scripts_src + '/drawers.js',
+  globalConfig.scripts_src + '/modal.js',
+  globalConfig.scripts_src + '/splash-modals.js',
+  globalConfig.scripts_src + '/swatches.js',
+  globalConfig.scripts_src + '/mobile-nav.js',
+  globalConfig.scripts_src + '/header-section.js',
+  globalConfig.scripts_src + '/slideshow-section.js',
+  globalConfig.scripts_src + '/slider-section.js',
+  globalConfig.scripts_src + '/product-template.js',
+  globalConfig.scripts_src + '/collection-template.js',
+  globalConfig.scripts_src + '/contact-template.js',
+  globalConfig.scripts_src + '/featured-collection-section.js',
+  globalConfig.scripts_src + '/featured-product-section.js',
+  globalConfig.scripts_src + '/deal-of-the-day.js',
+  globalConfig.scripts_src + '/top-bar.js',
+  globalConfig.scripts_src + '/footer.js',
+  globalConfig.scripts_src + '/admin.dev.js',
+  globalConfig.scripts_src + '/check_license.js',
+  globalConfig.scripts_src + '/init.js',
+  globalConfig.scripts_src + '/password-page.js',
+];
+
 // https://github.com/unlight/gulp-cssimport
 var gulp = require('gulp');
 var cssimport = require("gulp-cssimport");
@@ -10,12 +51,7 @@ var zip = require('gulp-zip');
 var liquid = require("gulp-liquid");
 var ext_replace = require('gulp-ext-replace');
 const replace = require('gulp-replace');
-
-
-var globalConfig = {
-  scss_src: './src/scss', // your dev stylesheet directory. No trailing slash
-  scripts_src: './src/scripts'
-};
+var minify = require('gulp-minify');
 
 // Process CSS
 gulp.task('styles', function() {
@@ -25,41 +61,21 @@ gulp.task('styles', function() {
 })
 
 gulp.task('scripts', function() {
-  return gulp.src([
-      globalConfig.scripts_src + '/lib/jquery.selectric.js',
-      globalConfig.scripts_src + '/lib/sweetalert2.min.js',
-      globalConfig.scripts_src + '/lib/date.js',
-      globalConfig.scripts_src + '/lib/pinch-zoom.js',
-      globalConfig.scripts_src + '/setup.js',
-      globalConfig.scripts_src + '/theme/currency.js',
-      globalConfig.scripts_src + '/theme/sections.js',
-      globalConfig.scripts_src + '/theme/variants.js',
-      globalConfig.scripts_src + '/customers.js',
-      globalConfig.scripts_src + '/map.js',
-      globalConfig.scripts_src + '/cookie-manager.js',
-      globalConfig.scripts_src + '/product-card.js',
-      globalConfig.scripts_src + '/drawers.js',
-      globalConfig.scripts_src + '/modal.js',
-      globalConfig.scripts_src + '/splash-modals.js',
-      globalConfig.scripts_src + '/swatches.js',
-      globalConfig.scripts_src + '/mobile-nav.js',
-      globalConfig.scripts_src + '/header-section.js',
-      globalConfig.scripts_src + '/slideshow-section.js',
-      globalConfig.scripts_src + '/slider-section.js',
-      globalConfig.scripts_src + '/product-template.js',
-      globalConfig.scripts_src + '/collection-template.js',
-      globalConfig.scripts_src + '/contact-template.js',
-      globalConfig.scripts_src + '/featured-collection-section.js',
-      globalConfig.scripts_src + '/featured-product-section.js',
-      globalConfig.scripts_src + '/deal-of-the-day.js',
-      globalConfig.scripts_src + '/top-bar.js',
-      globalConfig.scripts_src + '/footer.js',
-      globalConfig.scripts_src + '/admin.dev.js',
-      globalConfig.scripts_src + '/check_license.js',
-      globalConfig.scripts_src + '/init.js',
-      globalConfig.scripts_src + '/password-page.js',
-    ])
-    .pipe(concat('theme.js.liquid'))
+  // NOTE: when you change this function also adjust scripts_debug
+  return gulp.src(JS_FILES)
+    .pipe(concat('theme.js'))
+    .pipe(minify({
+      ext:{
+        min:'.js.liquid'
+      },
+      noSource: true
+    }))
+    .pipe(gulp.dest('./dist/assets/'));
+});
+
+gulp.task('scripts_debug', function() {
+  return gulp.src(JS_FILES)
+    .pipe(concat('theme-debug.js.liquid'))
     .pipe(gulp.dest('./dist/assets/'));
 });
 
@@ -160,4 +176,4 @@ gulp.task("zip_build", function() {
     .pipe(gulp.dest('./dist'))
 });
 
-gulp.task('zip', gulpSequence('build', 'clean_for_build', 'copy_default_settings', 'zip_build'));
+gulp.task('zip', gulpSequence('build', 'clean_for_build', 'copy_default_settings', 'scripts_debug', 'zip_build'));
