@@ -1,6 +1,6 @@
 <div class="product-icons grid--full">
-  <div class="product-icons__icon grid__item one-quarter">
-    {{ 'prodicon-house.png' | asset_img_url: '45x45' | img_tag: 'Icon' }}
+  <div class="product-icons__col grid__item one-quarter">
+    <div class="product-icons__icon product-icons__icon--house"></div>
     {% if section.settings.icon_1_text != blank %}
       {% if section.settings.icon_1_text contains "[STOCK_QTY]" %}
         {% capture qty %}
@@ -15,20 +15,20 @@
       <p>{{ section.settings.icon_1_text | replace: '[STOCK_QTY]', stock_span_html }}</p>
     {% endif %}
   </div>
-  <div class="product-icons__icon grid__item one-quarter">
-    {{ 'prodicon-plane.png' | asset_img_url: '45x45' | img_tag: 'Icon' }}
+  <div class="product-icons__col grid__item one-quarter">
+    <div class="product-icons__icon product-icons__icon--plane"></div>
     {% if section.settings.icon_2_text != blank %}
       <p>{{ section.settings.icon_2_text }}</p>
     {% endif %}
   </div>
-  <div class="product-icons__icon grid__item one-quarter">
-    {{ 'prodicon-badge.png' | asset_img_url: '45x45' | img_tag: 'Icon' }}
+  <div class="product-icons__col grid__item one-quarter">
+    <div class="product-icons__icon product-icons__icon--badge"></div>
     {% if section.settings.icon_3_text != blank %}
       <p>{{ section.settings.icon_3_text }}</p>
     {% endif %}
   </div>
-  <div class="product-icons__icon grid__item one-quarter">
-    {{ 'prodicon-shield.png' | asset_img_url: '45x45' | img_tag: 'Icon' }}
+  <div class="product-icons__col grid__item one-quarter">
+    <div class="product-icons__icon product-icons__icon--shield"></div>
     {% if section.settings.icon_4_text != blank %}
       <p>{{ section.settings.icon_4_text }}</p>
     {% endif %}

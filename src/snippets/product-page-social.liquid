@@ -8,24 +8,24 @@
 
   <div class="social-sharing" data-permalink="{{ permalinkURL }}">
     {% if settings.share_facebook %}
-      <a target="_blank" href="//www.facebook.com/sharer.php?u={{ permalinkURL }}" class="social-sharing__icon">
-        {{ 'icon-facebook.png' | asset_img_url: '36x36' | img_tag: 'Share' }}
+      <a target="_blank" href="//www.facebook.com/sharer.php?u={{ permalinkURL }}" class="social-sharing__link">
+        <div class="social-sharing__icon social-sharing__icon--facebook"></div>
     </a>
     {% endif %}
     {% if settings.share_twitter %}
-      <a target="_blank" href="//twitter.com/share?url={{ permalinkURL }}" class="social-sharing__icon">
-        {{ 'icon-twitter.png' | asset_img_url: '36x36' | img_tag: 'Tweet' }}
+      <a target="_blank" href="//twitter.com/share?url={{ permalinkURL }}" class="social-sharing__link">
+        <div class="social-sharing__icon social-sharing__icon--twitter"></div>
     </a>
     {% endif %}
     {% if settings.share_pinterest %}
-      <a target="_blank" href="//pinterest.com/pin/create/button/?url={{ permalinkURL }}&amp;media={{ product.featured_image | product_img_url: 'original' }}&amp;description={{ product.title | escape }}" class="social-sharing__icon">
-        {{ 'icon-pinterest.png' | asset_img_url: '36x36' | img_tag: 'Pin it' }}
+      <a target="_blank" href="//pinterest.com/pin/create/button/?url={{ permalinkURL }}&amp;media={{ product.featured_image | product_img_url: 'original' }}&amp;description={{ product.title | escape }}" class="social-sharing__link">
+        <div class="social-sharing__icon social-sharing__icon--pinterest"></div>
     </a>
     {% endif %}
     {% if settings.share_gplus %}
-      <a target="_blank" href="//plus.google.com/share?url={{ permalinkURL }}" class="social-sharing__icon">
+      <a target="_blank" href="//plus.google.com/share?url={{ permalinkURL }}" class="social-sharing__link">
         <!-- Cannot get Google+ share count with JS yet -->
-        {{ 'icon-gplus.png' | asset_img_url: '36x36' | img_tag: '+1' }}
+        <div class="social-sharing__icon social-sharing__icon--gplus"></div>
       </a>
     {% endif %}
   </div>

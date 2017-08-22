@@ -531,8 +531,27 @@ iframe {
 .social-sharing {
   margin-top: $gutter / 2;
   margin-left: 5px;
-  .social-sharing__icon {
+  .social-sharing__link {
     padding-right: 10px;
+    .social-sharing__icon {
+      background-image: url('{{ "social-icons-sprite.png" | asset_img_url: "132x32" }}');
+      background-repeat: no-repeat;
+      display: inline-block;
+      height: 32px;
+      width: 32px;
+      &.social-sharing__icon--facebook {
+        background-position-x: 0;
+      }
+      &.social-sharing__icon--twitter {
+        background-position-x: -33px;
+      }
+      &.social-sharing__icon--pinterest {
+        background-position-x: -66px;
+      }
+      &.social-sharing__icon--gplus {
+        background-position-x: -99px;
+      }
+    }
   }
 }
 

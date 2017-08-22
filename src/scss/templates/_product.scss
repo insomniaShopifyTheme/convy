@@ -297,12 +297,31 @@
   }
 
   .product-icons {
-    .product-icons__icon {
+    .product-icons__col {
       text-align: center;
       font-size: 0.9rem;
     }
     .variant-qty {
       color: $error-red;
+    }
+    .product-icons__icon {
+      background-image: url('{{ "prod-icons.png" | asset_img_url: "180x45" }}');
+      background-repeat: no-repeat;
+      height: 45px;
+      width: 45px;
+      margin: 0 auto;
+      &.product-icons__icon--house {
+        background-position-x: 0;
+      }
+      &.product-icons__icon--plane {
+        background-position-x: -45px
+      }
+      &.product-icons__icon--badge {
+        background-position-x: -90px
+      }
+      &.product-icons__icon--shield {
+        background-position-x: -135px
+      }
     }
   }
 
