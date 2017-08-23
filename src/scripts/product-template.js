@@ -186,11 +186,16 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
   },
 
   _stickyCartBtn: function() {
-    if ($(this.selectors.stickyCartButton).length > 0) {
-      $(this.selectors.stickyCartButton).on('click', this._submitCartForm.bind(this));
-      $(document).on('touchmove.track-add-to-cart-btn', this._trackScrolling.bind(this));
-      $(document).on('scroll.track-add-to-cart-btn', this._trackScrolling.bind(this));
-      this._trackScrolling();
+    if($('.product-template').data('lock-atc-btn') == true){
+      var $stickyBtn = $(this.selectors.stickyCartButton);
+      $stickyBtn.addClass('stuck');
+    }else{
+      if ($(this.selectors.stickyCartButton).length > 0) {
+        $(this.selectors.stickyCartButton).on('click', this._submitCartForm.bind(this));
+        $(document).on('touchmove.track-add-to-cart-btn', this._trackScrolling.bind(this));
+        $(document).on('scroll.track-add-to-cart-btn', this._trackScrolling.bind(this));
+        this._trackScrolling();
+      }
     }
   },
 

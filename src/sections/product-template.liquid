@@ -17,7 +17,7 @@
   {% endif %}
 </header>
 
-<div class="product-template page-width--large" id="product_{{ product.id }}" data-section-id="product_{{ product.id }}" data-section-type="product-template" itemscope itemtype="http://schema.org/Product">
+<div class="product-template page-width--large" id="product_{{ product.id }}" data-lock-atc-btn="{{ section.settings.lock_add_to_cart_btn }}" data-section-id="product_{{ product.id }}" data-section-type="product-template" itemscope itemtype="http://schema.org/Product">
   <meta itemprop="name" content="{{ product.title }}">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="https:{{ product.featured_image.src | img_url: '800x' }}">
@@ -33,6 +33,16 @@
         <div class="medium-down--hide product-description rte">
           {{ product.description }}
         </div>
+        {% if section.settings.product_reviews %}
+            {% if settings.app_product_reviews_enabled %}
+              <div id="shopify-product-reviews" class="js-delete--mobile medium-down--hide" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+            {% else  %}
+              <div class="medium-down--hide">
+                <h3 class="text-meta text-center">Product Reviews app integration required</h3>
+                <p class="text-meta text-center">Please enable integration in General Settings > Apps</p>
+              </div>
+            {% endif %}
+        {% endif %}
       {% endif %}
 
     </div>
@@ -96,8 +106,8 @@
         </div>
       {% endif %}
 
-      {% if settings.app_product_reviews_enabled != blank %}
-      <div class="{% if section.settings.use_tabs %}large--hide{% endif %}">
+      {% if settings.app_product_reviews_enabled != blank and section.settings.product_reviews %}
+      <div>
         {% if settings.app_product_reviews_enabled == "product_reviews" %}
           <div id="shopify-product-reviews" class="js-delete--desktop" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
         {% else %}
@@ -351,8 +361,19 @@
         "default": true
       },
       {
+        "type": "checkbox",
+        "id": "lock_add_to_cart_btn",
+        "label": "Lock 'Add to cart' button",
+        "default": false,
+        "info": "By default, the sticky Add to cart button will disappear when users scroll up."
+      },
+      {
         "type": "header",
         "content": "Tabs"
+      },
+      {
+        "type": "paragraph",
+        "content": "Learn how to create tabs by clicking [here](https://desk.zoho.com/portal/tabarnapp/kb/articles/product-page-sections#content-tabs) then scroll down to 'Content tabs' section"
       },
       {
         "type": "checkbox",
@@ -362,11 +383,19 @@
         "info": "Click Add Content below and select Tab. See instructions in General Settings > Product Tabs"
       },
       {
+        "type": "header",
+        "content": "Reviews"
+      },
+      {
+        "type": "paragraph",
+        "content": "Product Reviews app requires integration (see General Settings > Apps)"
+      },
+      {
         "type": "checkbox",
-        "id": "reviews_tab",
-        "label": "Product reviews tab",
+        "id": "product_reviews",
+        "label": "Display product reviews",
         "default": true,
-        "info": "takes effect only if tabs enabled; also requires Product Reviews app integration (see General Settings > Apps)"
+        "info": "If content tabs are disabled, product reviews will be displayed under the product description section. If tabs are enabled, product reviews will be inside the last tab called Reviews."
       }
     ],
     "blocks": [

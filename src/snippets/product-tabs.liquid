@@ -35,7 +35,7 @@
         {% endif %}
       {% endfor %}
     {% endif %}
-    {% if section.settings.reviews_tab %}
+    {% if section.settings.product_reviews %}
     <li class='tab'><a href="#tab-reviews">{{ "products.product.tabs.reviews" | t }}</a></li>
     {% endif %}
   </ul>
@@ -47,7 +47,8 @@
   {% if custom_tabs_content != blank %}
     {{ custom_tabs_content }}
   {% endif %}
-  {% if section.settings.reviews_tab %}
+
+  {% if section.settings.product_reviews %}
   <div id="tab-reviews">
     {% if settings.app_product_reviews_enabled != blank %}
       {% if settings.app_product_reviews_enabled == "product_reviews" %}
