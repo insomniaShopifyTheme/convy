@@ -372,15 +372,26 @@
         "content": "Tabs"
       },
       {
-        "type": "paragraph",
-        "content": "Learn how to create tabs by clicking [here](https://desk.zoho.com/portal/tabarnapp/kb/articles/product-page-sections#content-tabs) then scroll down to 'Content tabs' section"
-      },
-      {
         "type": "checkbox",
         "id": "use_tabs",
         "label": "Use tabs",
-        "default": true,
-        "info": "Click Add Content below and select Tab. See instructions in General Settings > Product Tabs"
+        "default": true
+      },
+      {
+        "type": "paragraph",
+        "content": "1. Create navigation menu with a handle `product-tabs`"
+      },
+      {
+        "type": "paragraph",
+        "content": "2. Add menu item and select page"
+      },
+      {
+        "type": "paragraph",
+        "content": "3. Name your menu item as follows: \"collection/collection-handle\" to display a tab for all products in particular collection; \"product/product-handle\" particular product; \"global\" display tab on all product pages"
+      },
+      {
+        "type": "paragraph",
+        "content": "[Click here to learn more](https://desk.zoho.com/portal/tabarnapp/kb/articles/product-page-sections#content-tabs) then scroll down to 'Content tabs' section"
       },
       {
         "type": "header",
@@ -395,14 +406,18 @@
         "id": "product_reviews",
         "label": "Display product reviews",
         "default": true,
-        "info": "If content tabs are disabled, product reviews will be displayed under the product description section. If tabs are enabled, product reviews will be inside the last tab called Reviews."
+        "info": "If content tabs are disabled, product reviews will be displayed under the product description section. If tabs are enabled, product reviews will be inside the tab called Reviews."
       }
     ],
     "blocks": [
       {
         "type": "tab",
-        "name": "Tab",
+        "name": "Tab (LEGACY)",
         "settings": [
+          {
+            "type": "paragraph",
+            "content": "This is an old way of adding tabs to your product page, that we left for backward compatibility. Please use the new and better way. See details above in the \"Tabs\" section or [here](https://desk.zoho.com/portal/tabarnapp/kb/articles/product-page-sections#content-tabs)."
+          },
           {
             "type": "text",
             "id": "title",

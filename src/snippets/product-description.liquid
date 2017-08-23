@@ -52,6 +52,22 @@
         </dd>
       {% endif %}
     {% endif %}
+
+    {% if linklists["product-tabs"].links.size > 0 %}
+      {% for link in linklists["product-tabs"].links %}
+        {%- assign tab_content = blank -%}
+        {% include "product-tab-content", tab_content: tab_content %}
+        {% if tab_content != blank %}
+          <dt class="accordion__tab-title">
+            {{ link.object.title }}
+          </dt>
+          <dd class="accordion__tab-content rte">
+            {{ tab_content }}
+          </dd>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
   </dl>
 {% endif %}
 

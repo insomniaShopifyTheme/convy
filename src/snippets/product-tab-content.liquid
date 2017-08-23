@@ -1,0 +1,14 @@
+{% assign product_match = product.handle | prepend: "product/" %}
+
+{% if link.title == "global" or link.title contains "global/" or link.title == product_match %}
+  {% assign tab_content = link.object.content %}
+{% else %}
+  {% for collection in product.collections %}
+    {% assign collection_match = collection.handle | prepend: "collection/" %}
+    {% if link.title == collection_match %}
+      {% assign tab_content = link.object.content %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
