@@ -1,17 +1,23 @@
 {% unless section.settings.display == "disable"  %}
 
 {%- assign topbar_height = 40 -%}
-{%- assign header_height = 55 -%}
+{%- assign header_height_mobile = 55 -%}
+{% if settings.header_height == 'tall' %}
+  {%- assign header_height = 120 -%}
+{% else %}
+  {%- assign header_height = header_height_mobile -%}
+{% endif %}
+{%- assign body_padding_mobile = topbar_height | plus: header_height_mobile -%}
 {%- assign body_padding = topbar_height | plus: header_height -%}
 <style>
   {% if section.settings.display == "mobile" or section.settings.display == "all"  %}
     @media screen and (max-width: 1023px) {
       body.fixed-header--all .main-content,
       body.fixed-header--mobile .main-content {
-        padding-top: {{ body_padding }}px;
+        padding-top: {{ body_padding_mobile }}px;
       }
       .product-add-to-cart-bar {
-        top: {{ body_padding }}px;
+        top: {{ body_padding_mobile }}px;
       }
     }
   {% endif %}

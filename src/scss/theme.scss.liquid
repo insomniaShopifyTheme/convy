@@ -155,7 +155,11 @@ $radius: 3px;
 // NOTE: whenever changing these values, also change it in sections/topbar.liquid
 $topbar-height: 40px;
 $header-height-mobile: 55px;
-$header-height: 55px;
+{% if settings.header_height == 'tall' %}
+  $header-height: 120px;
+{% else %}
+  $header-height: 55px;
+{% endif %}
 
 $product-add-to-cart-bar-height: 60px;
 {% if settings.fixed_header == 'disable' %}

@@ -12,7 +12,11 @@
     content: '{{ section.settings.menu_word_mobile }}' !important;
   }
 
-
+  @media screen and (min-width: 1024px) {
+    .section-header__logo-link img {
+      margin-top: {{ section.settings.logo_margin }};
+    }
+  }
 
 </style>
 
@@ -38,7 +42,7 @@
       {% if section.settings.logo_use_image %}
         <a href="/" class="section-header__logo-link">
           {% assign logo_max_width = section.settings.logo_max_width | append: 'x' %}
-          <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo" style="margin-top: {{ section.settings.logo_margin }}">
+          <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
         </a>
       {% elsif section.settings.logo_text != blank %}
         <a href="/" itemprop="name">{{ section.settings.logo_text | truncate: 18, "" }}</a>
@@ -151,7 +155,8 @@
       {
         "type": "image_picker",
         "id": "logo_image",
-        "label": "Image file"
+        "label": "Image file",
+        "info": "If your logo is more vertical than horizontal, you might want to change the header height from standard to tall in General Settings > Layout > Header"
       },
       {
         "type": "text",
