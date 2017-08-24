@@ -66,15 +66,15 @@
           },
           {
             "value": "product_reviews",
-            "label": "Product reviews by shopify, Enables app integration. You still need to [install the app](https:\/\/apps.shopify.com\/product-reviews)"
+            "label": "Product reviews by shopify. Enable the app. You still need to [install the app](https:\/\/apps.shopify.com\/product-reviews)."
           },
           {
             "value": "loox_reviews",
-            "label": "Loox - Photo Reviews, Enables app integration. You still need to [install the app](https:\/\/apps.shopify.com\/loox-fashion-reviews)"
+            "label": "Loox - Photo Reviews. Enable the app. You still need to [install the app](https:\/\/apps.shopify.com\/loox-fashion-reviews)."
           },
           {
             "value": "yotpo_reviews",
-            "label": "Yotpo Reviews, Photos, and Q&A, Enables app integration. You still need to [install the app](https:\/\/apps.shopify.com\/yotpo-social-reviews)"
+            "label": "Yotpo Reviews, Photos, and Q&A. Enable the app. You still need to [install the app](https:\/\/apps.shopify.com\/yotpo-social-reviews)."
           }
         ],
         "default": ""
@@ -85,7 +85,8 @@
       },
       {
         "type": "text",
-        "id": "yotpo_app_key"
+        "id": "yotpo_app_key",
+        "label": "Learn how to get your app key [here](https:\/\/desk.zoho.com\/portal\/tabarnapp\/kb\/articles\/konversion-integrates-with-yotpo)."
       }
     ]
   },
