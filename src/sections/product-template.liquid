@@ -34,14 +34,30 @@
           {{ product.description }}
         </div>
         {% if section.settings.product_reviews %}
-            {% if settings.app_product_reviews_enabled %}
-              <div id="shopify-product-reviews" class="js-delete--mobile medium-down--hide" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-            {% else  %}
-              <div class="medium-down--hide">
-                <h3 class="text-meta text-center">Product Reviews app integration required</h3>
-                <p class="text-meta text-center">Please enable integration in General Settings > Apps</p>
+          {% if settings.app_product_reviews_enabled == "product_reviews" %}
+      		  <div class="medium-down--hide">
+              <div id="shopify-product-reviews" class="js-delete--mobile" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
+            </div>
+      		{% elsif settings.app_product_reviews_enabled == "loox_reviews" %}
+      		  <div class="medium-down--hide">
+              <div id="looxReviews" class="js-delete--mobile" data-product-id="{{product.id}}">{{ product.metafields.loox.reviews }}</div>
+            </div>
+      		{% elsif settings.app_product_reviews_enabled == "yotpo_reviews" %}
+      		  <div class="medium-down--hide">
+              <div class="yotpo yotpo-main-widget js-delete--mobile"
+                  data-product-id="{{ product.id }}"
+                  data-name="{{ product.title | escape }}"
+                  data-url="{{ shop.url }}{{ product.url }}"
+                  data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+                  data-description="{{ product.description | escape }}">
               </div>
-            {% endif %}
+            </div>
+          {% else  %}
+            <div class="medium-down--hide">
+              <h3 class="text-meta text-center">Product Reviews app integration required</h3>
+              <p class="text-meta text-center">Please enable integration in General Settings > Apps</p>
+            </div>
+          {% endif %}
         {% endif %}
       {% endif %}
 
@@ -59,11 +75,23 @@
           <h3>{{ product.title }}</h3>
           {% if settings.app_product_reviews_enabled != blank %}
             {% if settings.app_product_reviews_enabled == "product_reviews" %}
-            <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-            {% else %}
+              <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+            {% elsif settings.app_product_reviews_enabled == "loox_reviews" %}
               <a href="#looxReviews">
                 <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
               </a>
+            {% elsif settings.app_product_reviews_enabled == "yotpo_reviews" %}
+              <div class="yotpo bottomLine"
+                   data-appkey="{{ settings.yotpo_app_key }}"
+                   data-domain="{{shop.permanent_domain | escape }}"
+                   data-product-id="{{ product.id }}"
+                   data-product-models="{{ product.id }}"
+                   data-name="{{ product.title | escape }}"
+                   data-url="{{ shop.url }}{{ product.url }}"
+                   data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                   data-description="{{ product.description | escape }}"
+                   data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+              </div>
             {% endif %}
           {% endif %}
         </div>
@@ -92,8 +120,6 @@
 
     <div class="grid__item one-whole large--two-thirds">
 
-
-
       {% if section.settings.related_products %}
       <div class="related-products">
         {% include 'related-products' %}
@@ -106,18 +132,10 @@
         </div>
       {% endif %}
 
-      {% if settings.app_product_reviews_enabled != blank and section.settings.product_reviews %}
-      <div>
-        {% if settings.app_product_reviews_enabled == "product_reviews" %}
-          <div id="shopify-product-reviews" class="js-delete--desktop" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-        {% else %}
-          <div id="looxReviews" class="js-delete--desktop" data-product-id="{{product.id}}">{{ product.metafields.loox.reviews }}</div>
-        {% endif %}
-      </div>
-      {% endif %}
     </div>
 
   </div> <!-- end grid -->
+
   {% capture jsonld_brand_url %}https://{{ shop.domain }}{{ product.vendor | url_for_vendor }}{% endcapture %}
   <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "Product", "@id": {{ canonical_url | json }}, "brand": { "@type": "Brand", "name": {{ product.vendor | json }}, "url": {{ jsonld_brand_url | json }} }, "sku": {{ product.selected_or_first_available_variant.sku | json }}, "description": {{ product.description | strip_html | json }}, "url": {{ canonical_url | json }}, "name": {{ product.title | json }}, {% if product.featured_image %} "image": "https:{{ product.featured_image | product_img_url: 'grande' }}", {% endif %} "offers": [{% for variant in product.variants %}{ "@type": "Offer", "price": "{{ variant.price | divided_by: 100.0 }}", "priceCurrency": "{{ shop.currency }}",{% unless shop.metafields.jsonld.itemCondition == blank %} "itemCondition": "http://schema.org/{{ shop.metafields.jsonld.itemCondition }}",{% endunless %} "availability": "{% if variant.available %}InStock{% else %}OutOfStock{% endif %}" }{% unless forloop.last %},{% endunless %}{% endfor %}] } </script>
 </div>

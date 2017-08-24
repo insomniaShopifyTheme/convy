@@ -14,9 +14,15 @@
         <div class="product-rating">
           <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
         </div>
-      {% else %}
+      {% elsif settings.app_product_reviews_enabled == "loox_reviews" %}
         <div class="product-rating">
           <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+        </div>
+      {% elsif settings.app_product_reviews_enabled == "yotpo_reviews" %}
+        <div class="product-rating">
+          <div class="yotpo bottomLine"
+            data-product-id="{{ product.id }}">
+          </div>
         </div>
       {% endif %}
     {% endif %}
