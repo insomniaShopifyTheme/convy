@@ -24,8 +24,12 @@
     {% if settings.app_product_reviews_enabled != blank %}
       {% if settings.app_product_reviews_enabled == "product_reviews" %}
         <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-      {% else %}
+      {% elsif settings.app_product_reviews_enabled == "loox_reviews" %}
         <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+      {% elsif settings.app_product_reviews_enabled == "yotpo_reviews" %}
+        <div class="yotpo bottomLine"
+             data-product-id="{{ product.id }}">
+        </div>
       {% endif %}
     {% endif %}
     <div class="product-card__title product-card__title--{{ settings.product_card_title_style }}">

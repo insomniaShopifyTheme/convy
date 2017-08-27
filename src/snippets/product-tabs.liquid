@@ -82,8 +82,16 @@
     {% if settings.app_product_reviews_enabled != blank %}
       {% if settings.app_product_reviews_enabled == "product_reviews" %}
         <div id="shopify-product-reviews" class="js-delete--mobile" data-id="{{product.id}}">{{ product.metafields.spr.reviews }}</div>
-      {% else %}
+      {% elsif settings.app_product_reviews_enabled == "loox_reviews" %}
         <div id="looxReviews" class="js-delete--mobile" data-product-id="{{product.id}}">{{ product.metafields.loox.reviews }}</div>
+      {% elsif settings.app_product_reviews_enabled == "yotpo_reviews" %}
+        <div class="yotpo yotpo-main-widget js-delete--mobile"
+             data-product-id="{{ product.id }}"
+             data-name="{{ product.title | escape }}"
+             data-url="{{ shop.url }}{{ product.url }}"
+             data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+             data-description="{{ product.description | escape }}">
+        </div>            
       {% endif %}
     {% else %}
       <br>
