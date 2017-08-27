@@ -27,7 +27,12 @@
       {% endif %}
     {% endif %}
     <div class="product-short-description">
-      {{ product.description | strip_html | truncatewords: '18', "&hellip;" }}
+      {% include "product-description-split",
+        product_description: product.description,
+        excerpt_size: "18",
+        product_short_desc: blank
+      %}
+      {{ product_short_desc }}
     </div>
   </div>
 

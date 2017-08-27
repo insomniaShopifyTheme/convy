@@ -70,7 +70,7 @@
   </ul>
   <div id="tab-description">
     <div class="product-description rte">
-      {{ product.description }}
+      {{ product_description }}
     </div>
   </div>
   {% if custom_tabs_content != blank %}
@@ -90,8 +90,8 @@
              data-name="{{ product.title | escape }}"
              data-url="{{ shop.url }}{{ product.url }}"
              data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
-             data-description="{{ product.description | escape }}">
-        </div>            
+             data-description="{{ product_description | escape }}">
+        </div>
       {% endif %}
     {% else %}
       <br>

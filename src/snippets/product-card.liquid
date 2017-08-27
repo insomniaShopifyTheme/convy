@@ -41,7 +41,12 @@
     </div>
     {% if card_show_description %}
       <div class="product-card__description">
-        {{ product.description | truncatewords: '15', "&hellip;" }}
+        {% include "product-description-split",
+          product_description: product.description,
+          excerpt_size: "18",
+          product_short_desc: blank
+        %}
+        {{ product_short_desc }}
       </div>
     {% endif %}
   </div>

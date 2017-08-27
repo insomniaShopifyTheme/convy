@@ -26,6 +26,11 @@
         </div>
         <div class="grid__item four-twelfths push--one-twelfth">
           <div class="product-info">
+            {% include "product-description-split",
+              product_description: product.description,
+              excerpt_size: section.settings.excerpt_word_count,
+              product_short_desc: blank
+            %}
             {% include 'product-page-info' %}
             {% include 'product-meta' %}
           </div>
@@ -144,6 +149,33 @@
         "id": "gallery_arrows",
         "label": "Display arrows",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Short Description"
+      },
+      {
+        "type": "select",
+        "id": "excerpt_word_count",
+        "label": "Excerpt size",
+        "options": [
+          {"value": "0", "label": "Disable automatic excerpts"},
+          {"value": "10", "label": "10 words"},
+          {"value": "15", "label": "15 words"},
+          {"value": "20", "label": "20 words"},
+          {"value": "25", "label": "25 words"},
+          {"value": "30", "label": "30 words"},
+          {"value": "35", "label": "35 words"},
+          {"value": "40", "label": "40 words"},
+          {"value": "45", "label": "45 words"},
+          {"value": "50", "label": "50 words"}
+        ],
+        "default": "15",
+        "info": "Maximum amount of words to excerpt from product description"
+      },
+      {
+        "type": "paragraph",
+        "content": "NOTE: HTML is stripped from short description. If you want to format short description text (eg. Add bullet points), insert [end-short-description] in the product content, and all the content above will be considered as a short description, the rest as a product description."
       }
     ],
     "presets": [

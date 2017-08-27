@@ -17,6 +17,12 @@
   {% endif %}
 </header>
 
+{% include "product-description-split",
+  product_description: product.description,
+  excerpt_size: section.settings.excerpt_word_count,
+  product_short_desc: blank
+%}
+
 <div class="product-template page-width--large" id="product_{{ product.id }}" data-lock-atc-btn="{{ section.settings.lock_add_to_cart_btn }}" data-section-id="product_{{ product.id }}" data-section-type="product-template" itemscope itemtype="http://schema.org/Product">
   <meta itemprop="name" content="{{ product.title }}">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
@@ -31,7 +37,7 @@
         {% include 'product-tabs' %}
       {% else %}
         <div class="medium-down--hide product-description rte">
-          {{ product.description }}
+          {{ product_description }}
         </div>
         {% if section.settings.product_reviews %}
           {% if settings.app_product_reviews_enabled == "product_reviews" %}
@@ -49,7 +55,7 @@
                   data-name="{{ product.title | escape }}"
                   data-url="{{ shop.url }}{{ product.url }}"
                   data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
-                  data-description="{{ product.description | escape }}">
+                  data-description="{{ product_description | escape }}">
               </div>
             </div>
           {% else  %}
@@ -89,7 +95,7 @@
                    data-name="{{ product.title | escape }}"
                    data-url="{{ shop.url }}{{ product.url }}"
                    data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
-                   data-description="{{ product.description | escape }}"
+                   data-description="{{ product_description | escape }}"
                    data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
               </div>
             {% endif %}
@@ -137,7 +143,7 @@
   </div> <!-- end grid -->
 
   {% capture jsonld_brand_url %}https://{{ shop.domain }}{{ product.vendor | url_for_vendor }}{% endcapture %}
-  <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "Product", "@id": {{ canonical_url | json }}, "brand": { "@type": "Brand", "name": {{ product.vendor | json }}, "url": {{ jsonld_brand_url | json }} }, "sku": {{ product.selected_or_first_available_variant.sku | json }}, "description": {{ product.description | strip_html | json }}, "url": {{ canonical_url | json }}, "name": {{ product.title | json }}, {% if product.featured_image %} "image": "https:{{ product.featured_image | product_img_url: 'grande' }}", {% endif %} "offers": [{% for variant in product.variants %}{ "@type": "Offer", "price": "{{ variant.price | divided_by: 100.0 }}", "priceCurrency": "{{ shop.currency }}",{% unless shop.metafields.jsonld.itemCondition == blank %} "itemCondition": "http://schema.org/{{ shop.metafields.jsonld.itemCondition }}",{% endunless %} "availability": "{% if variant.available %}InStock{% else %}OutOfStock{% endif %}" }{% unless forloop.last %},{% endunless %}{% endfor %}] } </script>
+  <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "Product", "@id": {{ canonical_url | json }}, "brand": { "@type": "Brand", "name": {{ product.vendor | json }}, "url": {{ jsonld_brand_url | json }} }, "sku": {{ product.selected_or_first_available_variant.sku | json }}, "description": {{ product_description | strip_html | json }}, "url": {{ canonical_url | json }}, "name": {{ product.title | json }}, {% if product.featured_image %} "image": "https:{{ product.featured_image | product_img_url: 'grande' }}", {% endif %} "offers": [{% for variant in product.variants %}{ "@type": "Offer", "price": "{{ variant.price | divided_by: 100.0 }}", "priceCurrency": "{{ shop.currency }}",{% unless shop.metafields.jsonld.itemCondition == blank %} "itemCondition": "http://schema.org/{{ shop.metafields.jsonld.itemCondition }}",{% endunless %} "availability": "{% if variant.available %}InStock{% else %}OutOfStock{% endif %}" }{% unless forloop.last %},{% endunless %}{% endfor %}] } </script>
 </div>
 
 {% unless product.empty? %}
@@ -191,6 +197,33 @@
         "id": "thumbs_arrows",
         "label": "Display Thumbs arrows",
         "default": true
+      },
+      {
+        "type": "header",
+        "content": "Short Description"
+      },
+      {
+        "type": "select",
+        "id": "excerpt_word_count",
+        "label": "Excerpt size",
+        "options": [
+          {"value": "0", "label": "Disable automatic excerpts"},
+          {"value": "10", "label": "10 words"},
+          {"value": "15", "label": "15 words"},
+          {"value": "20", "label": "20 words"},
+          {"value": "25", "label": "25 words"},
+          {"value": "30", "label": "30 words"},
+          {"value": "35", "label": "35 words"},
+          {"value": "40", "label": "40 words"},
+          {"value": "45", "label": "45 words"},
+          {"value": "50", "label": "50 words"}
+        ],
+        "default": "15",
+        "info": "Maximum amount of words to excerpt from product description"
+      },
+      {
+        "type": "paragraph",
+        "content": "NOTE: HTML is stripped from short description. If you want to format short description text (eg. Add bullet points), insert [end-short-description] in the product content, and all the content above will be considered as a short description, the rest as a product description."
       },
       {
         "type": "header",

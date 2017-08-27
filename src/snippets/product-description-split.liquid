@@ -1,0 +1,10 @@
+{%- assign break_tag = "[end-short-description]" -%}
+{%- assign product_description = product_description | strip -%}
+{% if product_description contains break_tag %}
+  {%- assign clean_desc = product_description | replace: '<span>[end-short-description]</span>', '[end-short-description]' | replace: '<p>[end-short-description]</p>', '[end-short-description]' -%}
+  {%- assign desc_parts = clean_desc | split: break_tag -%}
+  {%- assign product_short_desc = desc_parts | first | strip -%}
+  {%- assign product_description = desc_parts | last | strip -%}
+{% elsif excerpt_size != "0" %}
+  {%- assign product_short_desc = product_description | strip_html | truncatewords: excerpt_size, "&hellip;" -%}
+{% endif %}
