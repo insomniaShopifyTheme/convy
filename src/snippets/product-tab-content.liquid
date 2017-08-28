@@ -1,5 +1,3 @@
-{% assign product_match = product.handle | prepend: "product/" %}
-
 {% if link.title == "global" or link.title contains "global/" or link.title == product_match %}
   {% assign tab_content = link.object.content %}
 {% else %}

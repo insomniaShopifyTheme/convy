@@ -1,6 +1,25 @@
+{% assign product_match = product.handle | prepend: "product/" %}
+{% assign reviews_tab_default_position = true %}
+{% assign description_tab_default_position = true %}
+
+{% for link in linklists["product-tabs"].links %}
+  {% if link.title == "global" or link.title contains "global/" or link.title == product_match %}
+    {% assign tab_link = link.url | replace: '#', '' | downcase %}
+    {% if tab_link == "reviews" %}
+      {% assign reviews_tab_default_position = false %}
+    {% endif %}
+    {% if tab_link == "description" %}
+      {% assign description_tab_default_position = false %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
 <div id="tab-container" class="medium-down--hide tab-container">
   <ul class='etabs'>
+    {% if description_tab_default_position %}
     <li class='tab'><a href="#tab-description">{{ "products.product.tabs.description" | t }}</a></li>
+    {% endif %}
+
     {% if section.blocks.size > 0 %}
       {% for block in section.blocks %}
         {% assign custom_tabs_content = blank %}
@@ -35,7 +54,7 @@
         {% endif %}
       {% endfor %}
     {% endif %}
-    {% if section.settings.product_reviews %}
+    {% if section.settings.product_reviews and reviews_tab_default_position%}
       <li class='tab'><a href="#tab-reviews">{{ "products.product.tabs.reviews" | t }}</a></li>
     {% endif %}
 
@@ -44,10 +63,21 @@
         {%- assign tab_content = blank -%}
         {% include "product-tab-content", tab_content: tab_content %}
 
+        {% assign tab_link = link.url | replace: '#', '' | downcase %}
+
+        {% if tab_link == "description"  %}
+          <li class='tab'><a href="#tab-description">{{ "products.product.tabs.description" | t }}</a></li>
+        {% endif %}
+
+        {% if tab_link == "reviews" and section.settings.product_reviews %}
+          <li class='tab'><a href="#tab-reviews">{{ "products.product.tabs.reviews" | t }}</a></li>
+        {% endif %}
+
         {% if tab_content != blank %}
           <li class='tab'>
-            <a href="#tab-{{ link.object.id }}">
-              {{ link.object.title }}
+            <a href="#tab-{{ link.object.id }}-{{ forloop.index }}">
+              {% assign title_slice = link.object.title  | split: ' ' %}
+              {{ title_slice[0] }}
             </a>
           </li>
           {% comment %}
@@ -55,7 +85,7 @@
             so that we can avoid another loop
           {% endcomment %}
           {% capture this_tab_content %}
-            <div id="tab-{{ link.object.id }}">
+            <div id="tab-{{ link.object.id }}-{{ forloop.index }}">
               <div class="tab__page-content rte">
                 {{tab_content}}
               </div>
@@ -65,8 +95,10 @@
         {% endif %}
 
       {% endfor %}
+      {% if linklists["product-tabs"].links contains "Reviews" %}
+        Contains Reviews
+      {% endif %}
     {% endif %}
-
   </ul>
   <div id="tab-description">
     <div class="product-description rte">
