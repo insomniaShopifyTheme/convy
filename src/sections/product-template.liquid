@@ -373,6 +373,22 @@
         "default": "hover"
       },
       {
+        "type": "paragraph",
+        "content": "By default, products from the same collection are displayed in the related products section. Here's how to manually select related products for each product page:"
+      },
+      {
+        "type": "paragraph",
+        "content": "1. Create a menu called Related products (with a handle related-products)"
+      },
+      {
+        "type": "paragraph",
+        "content": "2. Add menu item(s) with product/product-handle (eg. product/cool-shirt)"
+      },
+      {
+        "type": "paragraph",
+        "content": "3. Select product(s) to be displayed on the product page defined in #2 above. [Learn more](https://desk.zoho.com/portal/tabarnapp/kb/articles/related-products-how-to-manually-select-the-related-products-in-each-product-page)"
+      },
+      {
         "type": "header",
         "content": "Mobile version tweaks"
       },
@@ -408,8 +424,18 @@
       {
         "type": "checkbox",
         "id": "display_option_labels",
-        "label": "Display label above product option selectors",
+        "label": "Display label above variant option selectors",
         "default": true
+      },
+      {
+        "type": "radio",
+        "id": "options_layout",
+        "label": "Variant options layout",
+        "default": "2-column",
+        "options": [
+          {"value": "1-column", "label": "1-column"},
+          {"value": "2-column", "label": "2-column"}
+        ]
       },
       {
         "type": "checkbox",

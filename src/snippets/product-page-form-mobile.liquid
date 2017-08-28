@@ -5,7 +5,19 @@
 
 
   <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form--mobile product-form-product_{{ product.id }}" data-section="product_{{ product.id }}" >
-    {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+    {% capture qty_selector_html %}
+      <div class="product-options grid--full">
+        <div class="grid__item one-quarter"></div>
+        <div class="grid__item two-quarters text-center">
+          {%- assign show_label = true -%}
+          {% include 'product-quantity-selector' %}
+        </div>
+        <div class="grid__item one-quarter"></div>
+      </div>
+    {% endcapture %}
+    {% if product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+      {{ qty_selector_html }}
+    {% else %}
       {% if section.settings.product_options_style contains 'swatches' %}
         <div class="product-options--swatches grid--full text-center">
           {% for option in product.options_with_values %}
@@ -13,28 +25,53 @@
             {% include 'product-swatch' %}
           {% endfor %}
         </div>
-
+        {{ qty_selector_html }}
       {% else %}
 
+        {%- assign show_label = section.settings.display_option_labels -%}
+        {%- assign options_count_mod = product.options.size | modulo: 2 -%}
+        {% if options_count_mod == 0 %}
+          {%- assign max_options = product.options.size -%}
+        {% else %}
+          {%- assign max_options = product.options.size | minus: 1 -%}
+        {% endif %}
+        {% if section.settings.options_layout == '2-column' %}
+          {%- assign option_cell_size = "one-half" -%}
+        {% else %}
+          {%- assign option_cell_size = "one-whole" -%}
+        {% endif %}
+        {% comment %}
+          Show maximum, but even amount of options
+        {% endcomment %}
         <div class="product-options grid--full">
-        {% for option in product.options_with_values  %}
-          {% capture current %}{% cycle 'first', 'last' %}{% endcapture %}
-          <div class="grid__item one-whole">
-            {% include 'product-option' %}
-          </div>
-        {% endfor %}
-
+          {% for option in product.options_with_values limit: max_options %}
+            {% capture current %}{% cycle 'first', 'last' %}{% endcapture %}
+            <div class="grid__item {{ option_cell_size }}">
+              {% include 'product-option' %}
+            </div>
+          {% endfor %}
+          {% if product.options.size > max_options %}
+            {% for option in product.options_with_values offset: max_options %}
+              {%- assign current = 'first' -%}
+              <div class="grid__item {{ option_cell_size }}">
+                {% include 'product-option' %}
+              </div>
+              <div class="grid__item {{ option_cell_size }}">
+                {% include 'product-quantity-selector' %}
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="grid__item one-quarter"></div>
+            <div class="grid__item two-quarters text-center">
+              {%- assign show_label = true -%}
+              {% include 'product-quantity-selector' %}
+            </div>
+            <div class="grid__item one-quarter"></div>
+          {% endif %}
         </div>
+
       {% endif %}
-    {% endunless %}
-    <div class="product-options grid--full">
-      <div class="grid__item one-quarter"></div>
-      <div class="grid__item two-quarters text-center">
-        {%- assign show_label = true -%}
-        {% include 'product-quantity-selector' %}
-      </div>
-      <div class="grid__item one-quarter"></div>
-    </div>
+    {% endif %}
 
     <select name="id" id="ProductSelect-product_{{ product.id }}" data-section="product_{{ product.id }}" class="product-form__variants no-js hide">
       {% for variant in product.variants %}
