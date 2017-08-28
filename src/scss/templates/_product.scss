@@ -290,6 +290,11 @@
       {% if settings.margin_on_mobile %}
         margin-right: 5px;
       {% endif %}
+      .product-card__form {
+        // Don't streach the "add to cart" button too much
+        // in case there is only one product in the section
+        max-width: 300px;
+      }
     }
   }
   .related-products__title, .spr-header-title {

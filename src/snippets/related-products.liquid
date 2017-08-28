@@ -1,40 +1,78 @@
-{% assign number_of_products = section.settings.related_products_count %}
-{% assign number_of_products_to_fetch = number_of_products | plus: 1 %}
+{%- assign current_product = product -%}
 
-{% if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' %}
-  {% assign found_a_collection = false %}
-  {% for c in product.collections %}
-    {% if found_a_collection == false and c.handle != 'frontpage' and c.handle != 'all' and c.all_products_count > 1 %}
-      {% assign found_a_collection = true %}
-      {% assign collection = c %}
-    {% endif %}
-  {% endfor %}
+{% if section.settings.related_products_button != 'none' %}
+  {%- assign btn_action = 'add_to_cart' -%}
+  {%- assign btn_text = 'products.product.add_to_cart' | t -%}
+{% endif %}
+{% if section.settings.related_products_button == 'hover' %}
+  {%- assign card_hoverable = true -%}
 {% endif %}
 
-{% if collection and collection.products_count > 1 %}
-  <h2 class="related-products__title">{{ section.settings.related_products_title }}</h2>
-  <div class="slider-wrapper">
-    <div class="product-list slider" id="slider_related-products">
-      {% assign current_product = product %}
-      {% assign current_product_found = false %}
+{% comment %}
+  ********************************************
+  Linklist based customizable related products
+  ********************************************
+{% endcomment %}
+{% if linklists["related-products"].links.size > 0 %}
+  {% assign product_match = current_product.handle | prepend: "product/" %}
+  {% capture related_products_list %}
+    {% for link in linklists["related-products"].links %}
+      {% if link.type == "product_link" and link.title == product_match %}
+        {% assign product = link.object %}
+        <div class="product-list__item slider__slide--{{ product.id }}">
+          {% include 'product-card' %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% endcapture %}
+{% endif %}
+{%- assign related_products_list = related_products_list | strip -%}
+
+{% comment %}
+  *********************************************
+  Fallback to collection based related products
+  *********************************************
+{% endcomment %}
+{% if related_products_list == blank %}
+  {% assign number_of_products = section.settings.related_products_count %}
+  {% assign number_of_products_to_fetch = number_of_products | plus: 1 %}
+
+  {% if collection == null or collection.handle == 'frontpage' or collection.handle == 'all' %}
+    {% assign found_a_collection = false %}
+    {% for c in product.collections %}
+      {% if found_a_collection == false and c.handle != 'frontpage' and c.handle != 'all' and c.all_products_count > 1 %}
+        {% assign found_a_collection = true %}
+        {% assign collection = c %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+
+  {% if collection and collection.products_count > 1 %}
+    {% assign current_product_found = false %}
+    {% capture related_products_list %}
       {% for product in collection.products limit: number_of_products_to_fetch %}
         {% if product.handle == current_product.handle %}
-          {% assign current_product_found = true %}
+          {%- assign current_product_found = true -%}
         {% else %}
           {% unless current_product_found == false and forloop.last %}
-            {% if section.settings.related_products_button != 'none' %}
-              {%- assign btn_action = 'add_to_cart' -%}
-              {%- assign btn_text = 'products.product.add_to_cart' | t -%}
-            {% endif %}
-            {% if section.settings.related_products_button == 'hover' %}
-              {%- assign card_hoverable = true -%}
-            {% endif %}
             <div class="product-list__item slider__slide--{{ product.id }}">
               {% include 'product-card' %}
             </div>
           {% endunless %}
         {% endif %}
       {% endfor %}
+    {% endcapture %}
+  {% endif %}
+{% endif %}
+{%- assign related_products_list = related_products_list | strip -%}
+
+{% if related_products_list != blank %}
+  <h2 class="related-products__title">{{ section.settings.related_products_title }}</h2>
+  <div class="slider-wrapper">
+    <div class="product-list slider" id="slider_related-products">
+      {{ related_products_list }}
     </div>
   </div>
 {% endif %}
+
+{% assign product = current_product %}
