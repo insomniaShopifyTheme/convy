@@ -46,6 +46,10 @@
           {% if block.settings.code != blank %}
             {{ block.settings.code }}
           {% endif %}
+        {% when 'map_embed' %}
+          {% if block.settings.code != blank %}
+            {{ block.settings.code }}
+          {% endif %}
       {% endcase %}
     </div>
   </div>
@@ -191,6 +195,36 @@
             "type": "textarea",
             "id": "code",
             "label": "HTML"
+          },
+          {
+            "type": "select",
+            "id": "column_width",
+            "label": "Column width",
+            "options": [
+              {"value": "one-whole", "label": "100%", "group": "Full-width"},
+              {"value": "one-half", "label": "50%", "group": "Halves"},
+              {"value": "one-third", "label": "33.3%", "group": "Thirds"},
+              {"value": "two-thirds", "label": "66.6%", "group": "Thirds"},
+              {"value": "one-quarter", "label": "25%", "group": "Quarters"},
+              {"value": "two-quarters", "label": "50%", "group": "Quarters"},
+              {"value": "three-quarters", "label": "75%", "group": "Quarters"},
+              {"value": "one-fifth", "label": "20%", "group": "Fifths"},
+              {"value": "two-fifths", "label": "40%", "group": "Fifths"},
+              {"value": "three-fifths", "label": "60%", "group": "Fifths"},
+              {"value": "four-fifths", "label": "80%", "group": "Fifths"}
+            ],
+            "default": "one-whole"
+          }
+        ]
+      },
+      {
+        "type": "map_embed",
+        "name": "Embed a map",
+        "settings": [
+          {
+            "type": "textarea",
+            "id": "code",
+            "label": "Embed code"
           },
           {
             "type": "select",

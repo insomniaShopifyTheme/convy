@@ -36,6 +36,10 @@
         "id": "license_key",
         "label": "License Key",
         "info": "Paste above your unique license key. It's located inside the zip file that you downloaded when you purchased the theme. No license yet? Buy one for 1, 3 or 10 stores [here](http:\/\/konversiontheme.com\/)."
+      },
+      {
+        "type": "paragraph",
+        "content": "Tip: license key might end with ==, make sure you copy the whole string"
       }
     ]
   },

@@ -1,0 +1,92 @@
+{% include 'map' %}
+
+{% schema %}
+  {
+    "name": "Map",
+    "class": "section-map",
+    "settings": [
+      {
+        "type": "select",
+        "id": "map_display",
+        "label": "Display",
+        "default": "all",
+        "options": [
+          {"value": "all", "label": "Desktop & Mobile"},
+          {"value": "desktop", "label": "Desktop only"}
+        ]
+      },
+      {
+        "type": "text",
+        "id": "map_api_key",
+        "label": "API Key",
+        "info": "Please generate your own API key at [developers.google.com](https://developers.google.com/maps/documentation/embed/guide#api_key)"
+      },
+      {
+         "type": "select",
+         "id": "map_mode",
+         "label": "Map Mode",
+         "options": [
+            {"value": "place", "label": "Place mode"},
+            {"value": "search", "label": "Search mode"},
+            {"value": "view", "label": "View mode (coordinates)"}
+          ],
+         "default": "search",
+         "info": "Learn more about [map modes](https://developers.google.com/maps/documentation/embed/guide#map_modes)"
+      },
+      {
+         "type": "text",
+         "id": "map_query",
+         "label": "Location query or coordinates",
+         "default": "coffee shops near Montreal, QC, Canada",
+         "info": "Provide search query, [Place ID](https://developers.google.com/places/place-id) or coordinates eg. 45.5017,-73.5673"
+      },
+      {
+         "type": "select",
+         "id": "map_zoom",
+         "label": "Initial zoom",
+         "options": [
+            {"value": "1", "label": "1"},
+            {"value": "2", "label": "2"},
+            {"value": "3", "label": "3"},
+            {"value": "4", "label": "4"},
+            {"value": "5", "label": "5"},
+            {"value": "6", "label": "6"},
+            {"value": "7", "label": "7"},
+            {"value": "8", "label": "8"},
+            {"value": "9", "label": "9"},
+            {"value": "10", "label": "10"},
+            {"value": "11", "label": "11"},
+            {"value": "12", "label": "12"},
+            {"value": "13", "label": "13"},
+            {"value": "14", "label": "14"},
+            {"value": "15", "label": "15"},
+            {"value": "16", "label": "16"},
+            {"value": "17", "label": "17"},
+            {"value": "18", "label": "18"},
+            {"value": "19", "label": "19"},
+            {"value": "20", "label": "20"}
+          ],
+         "default": "12"
+      },
+      {
+        "type": "checkbox",
+        "id": "map_satelite",
+        "label": "Satellite view",
+        "default": false
+      },
+      {
+        "type": "text",
+        "id": "map_height",
+        "label": "Max height",
+        "default": "450",
+        "info": "Number value eg. 450"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Map",
+        "category": "Misc"
+      }
+    ]
+  }
+{% endschema %}
