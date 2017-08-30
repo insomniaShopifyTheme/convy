@@ -129,7 +129,9 @@
         <div class="grid--full grid--uniform product-list product-list--{{ section.settings.mobile_layout }} product-mobile">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
-          {%- assign card_hoverable = section.settings.hoverable -%}
+          {% if section.settings.hoverable == "hover_add_to_cart" %}
+            {%- assign card_hoverable = section.settings.hoverable -%}
+          {% endif %}
           {% for product in collection.products %}
             <div class="grid__item {{ mobile_col_sizes }}">
               <div class="product-list__item">
@@ -222,7 +224,9 @@
         <div class="grid--full grid--uniform product-list product-desktop">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
-          {%- assign card_hoverable = section.settings.hoverable -%}
+          {% if section.settings.hoverable == "hover_add_to_cart" %}
+            {%- assign card_hoverable = section.settings.hoverable -%}
+          {% endif %}
           {% for product in collection.products %}
             <div class="grid__item {{ desktop_col_sizes }}">
               <div class="product-list__item">
@@ -277,10 +281,15 @@
         "default": true
       },
       {
-        "type": "checkbox",
+        "type": "radio",
         "id": "hoverable",
-        "label": "Use hover effect in desktop version",
-        "default": true
+        "label": "Hover effect:",
+        "default": "none",
+        "options": [
+          {"value": "none", "label": "none"},
+          {"value": "hover_add_to_cart", "label": "Use hover 'add to cart' effect in desktop version"},
+          {"value": "hover_last_image", "label": "Use hover 'last image' effect"}
+        ]
       },
 
       {

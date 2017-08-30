@@ -76,7 +76,7 @@ $product-card-ribbon-z-index: 4;
   .product-card__image {
     display: block;
 
-    @if $product-card-height == 255px {
+    @if $product-card-height == 360px {
       height: $product-card-height;
     } @else {
       min-height: $product-card-height;
@@ -283,7 +283,9 @@ $ribbon-red-to: darken($ribbon-red, 20%);
 
 .reveal .hidden { display: block !important; visibility: visible !important;}
 .product:hover .reveal img { opacity: 1; }
-.reveal { position: relative; }
+.reveal {
+  padding: 50px 0;
+  position: relative; }
 .reveal .hidden {
   position: absolute;
   z-index: -1;
@@ -299,6 +301,7 @@ $ribbon-red-to: darken($ribbon-red, 20%);
 .reveal:hover .hidden {
   z-index: 100000;
   opacity: 1;
+  padding: 50px 0;
 }
 .reveal .caption {
   position: absolute;

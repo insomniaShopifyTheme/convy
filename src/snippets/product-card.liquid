@@ -17,11 +17,13 @@
       </div>
     </div>
   {% endif %}<!-- collection page -->
-  <a href="{{ product_url }}" class="product-card__image" onmouseover="">
+  <a href="{{ product_url }}" class="product-card__image">
     <div class="reveal">
       <img src="{{ product.images.first | img_url: '400x400', crop: 'center'}}" alt="{{ product.images.first.alt | escape }}">
-      <img class="hidden" src="{{ product.images.last | img_url: '400x400', crop: 'center' }}" alt="{{ product.images.last.alt | escape }}" />
-    </div>
+      {% if section.settings.hoverable == "hover_last_image" %}
+        <img class="hidden" src="{{ product.images.last | img_url: '400x400', crop: 'center' }}" alt="{{ product.images.last.alt | escape }}" />
+      {% endif %}
+    </div> 
   </a>
   <div class="product-card__info">
     {% if settings.app_product_reviews_enabled != blank %}
