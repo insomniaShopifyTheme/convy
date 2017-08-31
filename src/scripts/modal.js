@@ -36,7 +36,7 @@ theme.Modal = (function () {
     this.modalIsOpen = true;
     ajaxCart.load();
   };
-
+ 
   // When the cart content is already loaded
   Modal.prototype.onlyShow = function (evt) {
     this.$modal.css({display: "block"});
