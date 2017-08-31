@@ -448,7 +448,9 @@ var ajaxCart = (function(module, $) {
 
     //Remove product from cart
     //change quantity to 0
-    $body.on('click', '.ajaxcart__remove', function () {
+    $body.on('click', '.ajaxcart__remove', function (e) {
+      e.preventDefault();
+
       if (isUpdating) {
         return;
       }

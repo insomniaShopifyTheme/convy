@@ -127,6 +127,17 @@
         "default": "drawer"
       },
       {
+        "type": "select",
+        "id": "cart_font_size",
+        "label": "Font size",
+        "options": [
+          {"value": "small", "label": "Small"},
+          {"value": "normal", "label": "Normal"},
+          {"value": "big", "label": "Big"}
+        ],
+        "default": "big"
+      },
+      {
         "type": "checkbox",
         "id": "cart_notes_enable",
         "label": "Display a special instructions field (checkout note) inside the cart drawer",

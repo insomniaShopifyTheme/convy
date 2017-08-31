@@ -66,7 +66,7 @@ var selectCallback = function(variant, selector) {
   afterPriceCurrencyUpdated(jQuery('[name=currencies]').val());
   jQuery('.selected-currency').text(Currency.currentCurrency);
 };
-$('body').on('ajaxCart.afterCartLoad', function(cart) {
+$('body').on('afterCartLoad.ajaxCart', function(cart) {
   Currency.convertAll(shopCurrency, jQuery('[name=currencies]').val());
   afterPriceCurrencyUpdated(jQuery('[name=currencies]').val());
   jQuery('.selected-currency').text(Currency.currentCurrency);  

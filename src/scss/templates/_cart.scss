@@ -8,6 +8,26 @@ $cart-secondary-color: $color-pale;
 .cart-widget {
   margin-left: $drawer-padding * -1;
   margin-right: $drawer-padding * -1;
+  {% if settings.cart_font_size == "small" or settings.cart_font_size == "normal" %}
+    {% if settings.cart_font_size == "small" %}
+      $cart-font-size-coef: 0.70;
+    {% elsif settings.cart_font_size == "normal" %}
+      $cart-font-size-coef: 0.85;
+    {% endif %}
+    $cart-font-size-coef-mobile: $cart-font-size-coef - 0.1;
+    .h3 {
+      font-size: rem($font-size-heading * $cart-font-size-coef);
+      @include at-query($max, $small) {
+        font-size: rem($font-size-heading * $cart-font-size-coef-mobile);
+      }
+    }
+    .h5 {
+      font-size: rem(floor($font-size-heading * 0.9 * $cart-font-size-coef));
+      @include at-query($max, $small) {
+        font-size: rem($font-size-heading * 0.9 * $cart-font-size-coef-mobile);
+      }
+    }
+  {% endif %}
 }
 .overflow-wrapper{
   overflow-y: auto;
