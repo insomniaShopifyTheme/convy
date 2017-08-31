@@ -63,7 +63,6 @@
         {%- assign tab_content = blank -%}
         {% include "product-tab-content", tab_content: tab_content %}
 
-        {% assign tab_link = link.url | replace: '#', '' | downcase %}
 
         {% if tab_link == "description"  %}
           <li class='tab'><a href="#tab-description">{{ "products.product.tabs.description" | t }}</a></li>
