@@ -1,4 +1,4 @@
-<div class="modal-content {% if settings.modal_border_size > 0 %}with-border{% endif %}">
+<div class="modal-content {% if settings.modal_border_size > 0 %}with-border{% endif %}" data-explosive-offer="{{ settings.pa_modal_explosive_offer }}" data-explosion-gif="{{ "explode-med.gif" | asset_url }}">
     <div class="modal-header">
       <div class="modal__close js-modal-close">
         <button type="button" class="icon-fallback-text">
@@ -40,7 +40,6 @@
                     {%- assign discount_percent = 0 -%}
                 {% endif %}
                 <div class="product-price__sale{% unless is_on_sale %} hide{% endunless %}">
-                    <!--<span class="product-price__old">{{ current_variant.compare_at_price | money }}</span>-->
                     <span class="product-price__percent">{% if discount_percent > 0 %}-{{ discount_percent }}%{% endif %}</span>
                 </div>
                 <h3 class="product-price__price">{{ money_price }}</h3>
@@ -49,7 +48,7 @@
                     <p>{{ settings.pa_text_rich }}</p>
                 {% endif %}
             </div>
-            <a href="#" name="add" id="AddToCart-product_{{ product.id }}" class="btn btn--special btn--full go-to-product-btn" >
+            <a href="{{ product.url }}" name="add" id="AddToCart-product_{{ product.id }}" class="btn btn--special btn--full go-to-product-btn" >
                 <span class="product-form__cart-submit-text" data-original-text="{{ settings.pa_modal_btn_text }}">
                       {{ settings.pa_modal_btn_text }}
                 </span>

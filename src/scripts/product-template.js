@@ -551,7 +551,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     // Countdown timer
     function countDownOfferTimer(toDateSplittedStr, productId, $element) {
       var timer;
-      var cookieName = "endDate" + productId;
+      var cookieName = "konversion-countdown-" + productId;
       var endDate = null;
 
 
@@ -617,8 +617,10 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       interval();
     }
 
+    var countdown_offer_enabled = "{{ settings.countdown_offer_enabled }}";
+    
     //if setting is enabled
-    if('{{ settings.countdown_offer_enabled }}' == 'true'){
+    if(countdown_offer_enabled){
 
       var $countDownOffer = $(this.selectors.countDownOffer);
       var api_endpoint = window.location.href +'.json';

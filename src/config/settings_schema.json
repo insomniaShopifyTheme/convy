@@ -330,7 +330,7 @@
     "settings": [
       {
         "type": "paragraph",
-        "content": "To add the countdown offer to a product, just tag your product with 'countdown-{days}-{hours}-{minutes}'. Eg. countdown-0-2-30 the timer will end in 2 hours and 30 minutes. [Watch the illustration](http:\/\/g.recordit.co\/5hFvZjEL0u.gif)"
+        "content": "To add the countdown offer to a product, just tag your product with 'countdown-{days}-{hours}-{minutes}'. Eg. countdown-0-2-30 the timer will end in 2 hours and 30 minutes. [Watch the gif](http:\/\/g.recordit.co\/5hFvZjEL0u.gif)"
       },
       {
         "type": "checkbox",
@@ -814,7 +814,17 @@
         "step": 100,
         "unit": "px",
         "label": "Modal width size",
-        "default": 700
+        "default": 800
+      },
+      {
+        "type": "range",
+        "id": "pa_modal_product_info_width",
+        "min": 100,
+        "max": 400,
+        "step": 50,
+        "unit": "px",
+        "label": "Product info width",
+        "default": 400
       },
       {
         "type": "product",
@@ -881,6 +891,12 @@
         "id": "pa_modal_btn_text",
         "label": "Button text",
         "default": "Go to product"
+      },
+      {
+        "type": "checkbox",
+        "id": "pa_modal_explosive_offer",
+        "label": "Explosive offer",
+        "default": false
       }
     ]
   },

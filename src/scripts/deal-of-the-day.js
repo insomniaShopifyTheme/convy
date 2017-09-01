@@ -6,15 +6,14 @@ theme.dealOfTheDay = function() {
   //
 
   var enabled_deal = "{{ settings.deal_of_the_day_enabled }}";
-  if (enabled_deal !== "true") return false;
+  if (enabled_deal == false) return false;
 
   if (typeof backend == 'undefined') {
-    var backend = {
-      shopUrl: '',
-      currencyName: 'USD'
-    }
+      var backend = {
+          shopUrl: '',
+          currencyName: 'USD'
+      }
   }
-
   var $dealOfTheDay = $('.content-deal-of-the-day');
   var $dealOfTheDayProduct = $('.deal-of-the-day-product');
 

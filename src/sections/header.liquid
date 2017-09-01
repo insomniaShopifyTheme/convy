@@ -88,7 +88,7 @@
   <div class="right-side__wrapper">
 
     <div class="grid__item two-twelfths cart-cell {% if settings.deal_of_the_day_enabled %}deal-of-the-day-active{% endif %}" >
-      <a href="/cart" id="CartIcon" class="h1 section-header__cart-link {% if settings.ajax_cart_method == 'drawer' %}js-drawer-open-right{% elsif settings.ajax_cart_method == 'popup' %}js-modal-open{% endif %}" aria-controls="CartDrawer" aria-expanded="false">
+      <a href="/cart" id="CartIcon" class="h1 section-header__cart-link {% if settings.ajax_cart_method == 'drawer' %}js-drawer-open-right{% elsif settings.ajax_cart_method == 'popup' %}js-modal-open-CartModal {% endif %}" aria-controls="CartDrawer" aria-expanded="false">
         <span class="section-header__cart-count js-cart-count">
           <span>{{ cart.item_count }}</span>
         </span>

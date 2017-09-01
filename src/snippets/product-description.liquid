@@ -106,7 +106,6 @@
         {%- assign tab_content = blank -%}
         {% include "product-tab-content", tab_content: tab_content %}
 
-        {% assign tab_link = link.url | replace: '#', '' | downcase %}
 
         {% if tab_link == "description"  %}
           {{ description_tab }}
