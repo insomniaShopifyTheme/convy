@@ -14,7 +14,7 @@ theme.Modal = (function () {
 
   Modal.prototype.init = function () {
     var _self = this;
-    $(document).on("click.show-" + this.ID, this.config.open, $.proxy(this.show, this));
+    $(document).on("click.show-" + this.ID, this.config.open+'-'+this.ID, $.proxy(this.show, this));
     $(document).on("click.hide-" + this.ID, this.config.close, $.proxy(this.hide, this));
     // Close when clicked outside
     $(document).on("click.close-" + this.ID, function(event) {
@@ -36,7 +36,7 @@ theme.Modal = (function () {
     this.modalIsOpen = true;
     ajaxCart.load();
   };
- 
+
   // When the cart content is already loaded
   Modal.prototype.onlyShow = function (evt) {
     this.$modal.css({display: "block"});
@@ -57,5 +57,6 @@ theme.modalInit = function () {
   }
   if ($('#SplashModal').length > 0) {
     theme.SplashModalEl = new theme.Modal('SplashModal');
+
   }
 };
