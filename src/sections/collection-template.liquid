@@ -129,8 +129,8 @@
         <div class="grid--full grid--uniform product-list product-list--{{ section.settings.mobile_layout }} product-mobile">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
-          {% if section.settings.hoverable == "hover_add_to_cart" %}
-            {%- assign card_hoverable = section.settings.hoverable -%}
+          {% if section.settings.hoverable_add_to_cart%}
+            {%- assign card_hoverable = section.settings.hoverable_add_to_cart -%}
           {% endif %}
           {% for product in collection.products %}
             <div class="grid__item {{ mobile_col_sizes }}">
@@ -224,8 +224,8 @@
         <div class="grid--full grid--uniform product-list product-desktop">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
-          {% if section.settings.hoverable == "hover_add_to_cart" %}
-            {%- assign card_hoverable = section.settings.hoverable -%}
+          {% if section.settings.hoverable_add_to_cart%}
+            {%- assign card_hoverable = section.settings.hoverable_add_to_cart -%}
           {% endif %}
           {% for product in collection.products %}
             <div class="grid__item {{ desktop_col_sizes }}">
@@ -281,17 +281,17 @@
         "default": true
       },
       {
-        "type": "radio",
-        "id": "hoverable",
-        "label": "Hover effect:",
-        "default": "none",
-        "options": [
-          {"value": "none", "label": "none"},
-          {"value": "hover_add_to_cart", "label": "Use hover 'add to cart' effect in desktop version"},
-          {"value": "hover_last_image", "label": "Use hover 'last image' effect"}
-        ]
+        "type": "checkbox",
+        "id": "hoverable_add_to_cart",
+        "label": "Use hover 'add to cart' effect in desktop version",
+        "default": false
       },
-
+      {
+        "type": "checkbox",
+        "id": "second_image_on_hover",
+        "label": "Display a second product image on hover",
+        "default": false
+      },
       {
         "type": "checkbox",
         "id": "dispaly_sorting",

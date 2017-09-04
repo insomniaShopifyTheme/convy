@@ -1,4 +1,4 @@
-{%- assign card_hoverable = section.settings.hoverable -%}
+{%- assign card_hoverable = section.settings.hoverable_add_to_cart -%}
 
 <div data-section-id="{{ section.id }}" data-section-type="slider-section">
 
@@ -90,9 +90,15 @@
       },
       {
         "type": "checkbox",
-        "id": "hoverable",
+        "id": "hoverable_add_to_cart",
         "label": "Use hover effect in desktop version",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "second_image_on_hover",
+        "label": "Display a second product image on hover",
+        "default": false
       }
     ],
     "blocks": [
