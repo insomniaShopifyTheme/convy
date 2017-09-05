@@ -129,8 +129,8 @@
         <div class="grid--full grid--uniform product-list product-list--{{ section.settings.mobile_layout }} product-mobile">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
-          {% if section.settings.hoverable_add_to_cart%}
-            {%- assign card_hoverable = section.settings.hoverable_add_to_cart -%}
+          {% if section.settings.add_to_cart == 'hoverable'%}
+            {%- assign card_hoverable = section.settings.add_to_cart -%}
           {% endif %}
           {% for product in collection.products %}
             <div class="grid__item {{ mobile_col_sizes }}">
@@ -224,8 +224,8 @@
         <div class="grid--full grid--uniform product-list product-desktop">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
-          {% if section.settings.hoverable_add_to_cart%}
-            {%- assign card_hoverable = section.settings.hoverable_add_to_cart -%}
+          {% if section.settings.add_to_cart == 'hoverable' %}
+            {%- assign card_hoverable = section.settings.add_to_cart -%}
           {% endif %}
           {% for product in collection.products %}
             <div class="grid__item {{ desktop_col_sizes }}">
@@ -281,10 +281,15 @@
         "default": true
       },
       {
-        "type": "checkbox",
-        "id": "hoverable_add_to_cart",
-        "label": "Use hover 'add to cart' effect in desktop version",
-        "default": false
+        "type": "radio",
+        "id": "add_to_cart",
+        "label": "Add to cart button location:",
+        "default": "below_the_product",
+        "options": [
+          {"value": "below_the_product", "label": "Below the product"},
+          {"value": "hoverable", "label": "On hover"},
+          {"value": "none", "label": "None"}
+        ]
       },
       {
         "type": "checkbox",

@@ -20,7 +20,7 @@
         {% endif %}
 	    {%- assign btn_action = block.settings.btn_action -%}
         {%- assign btn_text = block.settings.btn_text -%}
-        {%- assign card_hoverable = section.settings.hoverable_add_to_cart -%}
+        {%- assign card_hoverable = section.settings.add_to_cart -%}
 
         {% case display_number_of_products_desktop %}
           {% when '1' %}
@@ -90,10 +90,15 @@
         "default": "Featured Collection"
       },
       {
-        "type": "checkbox",
-        "id": "hoverable_add_to_cart",
-        "label": "Use hover effect in desktop version",
-        "default": true
+        "type": "radio",
+        "id": "add_to_cart",
+        "label": "Add to cart button location:",
+        "default": "below_the_product",
+        "options": [
+          {"value": "below_the_product", "label": "Below the product"},
+          {"value": "hoverable", "label": "On hover"},
+          {"value": "none", "label": "None"}
+        ]
       },
       {
         "type": "checkbox",
