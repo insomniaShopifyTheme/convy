@@ -6,8 +6,8 @@
 theme.check_interval = false;
 theme.wrn = function() {
   swal({
-    title: "Invalid license!",
-    html: "Your license is invalid. Please check if you provided valid license key in <strong>General Settings</strong> &gt; <strong>License</strong> or purchase a license from <a href='https://www.konversiontheme.com' target='_blank'>www.konversiontheme.com</a>. <br> <span id='swal_mes'></span>",
+    title: "License not activated",
+    html: "Sorry, we could not verify your license. Go to <strong>Customize theme</strong> &gt; <strong>General Settings</strong> &gt; <strong>License</strong> and paste your license key from the license.txt file.  If you don’t have a license, puchase one at <a href='https://www.konversiontheme.com' target='_blank'>www.konversiontheme.com</a>. <br> <span id='swal_mes'></span>",
     type: "error",
     confirmButtonText: "Continue anyway",
     showLoaderOnConfirm: true,
@@ -17,7 +17,7 @@ theme.wrn = function() {
     allowEscapeKey: false,
     allowEnterKey: false,
     showCancelButton: true,
-    cancelButtonText: 'How to activate license',
+    cancelButtonText: 'Activate my license',
     cancelButtonColor: "#0ECD69",
     preConfirm: function() {
       swal.disableButtons();
