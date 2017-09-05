@@ -1,7 +1,7 @@
 .content-deal-of-the-day {
   height: 100%;
   float: right;
-  padding: 0px 12px;
+  padding-left: 10px;
   overflow: hidden;
   position: relative;
   border-left: solid 1px rgba(0, 0, 0, 0.2);
@@ -9,7 +9,6 @@
   height: $header-height-mobile;
 
   &.desktop{
-
     @include at-query($max, $large) {
       height: 0;
       width: 0;
@@ -17,143 +16,95 @@
     }
 
     @include at-query($max, $xlarge) {
-      .content-countdown{
-        display: none;
+      .content-details{
+        padding: 10px;
+        .counter-text{
+          display: none;
+        }
+        .countdown{
+          color: #000;
+        }
+        .content-price {
+          .compared_at{
+            display: none;
+          }
+        }
       }
     }
-
   }
 
-  &.mobile-small{
+  &.mobile{
     text-align: center;
     width: 100%;
     visibility: hidden;
     border: none;
     height: 0;
     margin: 0;
+    border-bottom: 1px solid #e0e0e0;
+
     .wrapper{
       overflow: hidden;
       margin: auto;
       display: table;
+      padding: 10px 0px 15px;
       .content-product-img {
         img {
           margin-top: 2px;
         }
       }
     }
-    @include at-query($max, $medium) {
+    @include at-query($max, $pre-large) {
       height: auto;
       visibility: visible;
       margin-top: $topbar-height + $header-height-mobile + 10;
-      margin-bottom: -$header-height-mobile;
-    }
-  }
-  &.mobile-medium{
-    position: absolute;
-    right: 0;
-    top: 0px;
-    width: 100px;
-    border: none !important;
-    z-index: 0;
-    padding: 0;
-    margin: 0;
-    border-left: solid 1px rgba(0, 0, 0, 0.2);
-    height: 0;
-    visibility: hidden;
-    text-align: center;
-    @include at-query($max, $pre-large) {
-      height: $header-height-mobile;
-      visibility: visible;
-    }
-    @include at-query($max, $medium) {
-      height: 0;
-      width: 0;
-      visibility: hidden;
-    }
-    .content-product-img{
-      margin: auto;
-      height: 100%;
-      display: table;
-      float: none;
-      position: relative;
-
-      .product-image{
-        height: 39px;
-        margin-top: 2px;
-      }
-    }
-
-    .countdown{
-      color: $color-special;
-      position: absolute;
-      right: 15px;
-      font-weight: 900;
-      font-size: 17px;
-      top: 30px;
-    }
-
-    .discount-percentage{
-      font-weight: 900;
-      font-size: 12px;
-      position: absolute;
-      right: 14px;
-      z-index: 1;
+      margin-bottom: -($header-height-mobile + $topbar-height + 10);
     }
   }
 
   h2, p {
-    line-height: 18px;
+    line-height: 17px;
     letter-spacing: -1px;
     margin: 0;
     font-weight: 600;
-    text-align: left;
-
+    display: block;
   }
 
-  .content-countdown {
+  .content-details {
     height: 100%;
     float: left;
-    padding: 10px 0px;
+    padding: 12px 10px 12px 10px;
     display: block;
+    text-align: center;
 
     .countdown {
       color: $color-special;
     }
     h2 {
-      font-size: 15px;
+      font-size: 14px;
     }
   }
 
   .content-product-img {
     height: 100%;
     float: left;
-
     position: relative;
+    margin: 0px 3px;
     img {
       height: 55px;
-
-    }
-    .discount-percentage{
-      font-weight: 900;
-      font-size: 13px;
-      top:2px;
-      position: absolute;
-      right: 14px;
     }
   }
 
   .content-price {
-    text-align: left;
-    height: 100%;
-    float: left;
-    padding: 10px 0px;
-
+    display: inline-block;
     p {
-      font-size: 17px;
+      font-size: 15px;
+      float: left;
+      font-weight: 900;
+      margin-right: 5px;
     }
-
-    .compared_at {
+    .compared_at{
       text-decoration: line-through;
+      font-size: 13px;
     }
     .price {
       color: $color-special;
@@ -163,7 +114,7 @@
 
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {
-    .content-countdown {
+    .content-details {
       h2 {
         color: $color-menu;
       }
