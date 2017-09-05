@@ -4,41 +4,50 @@
 */
 
 theme.check_interval = false;
+theme.wrn = function() {
+  swal({
+    title: "Invalid license!",
+    html: "Your license is invalid. Please check if you provided valid license key in <strong>General Settings</strong> &gt; <strong>License</strong> or purchase a license from <a href='https://www.konversiontheme.com' target='_blank'>www.konversiontheme.com</a>. <br> <span id='swal_mes'></span>",
+    type: "error",
+    confirmButtonText: "Continue anyway",
+    showLoaderOnConfirm: true,
+    confirmButtonColor: "#AAAAAA",
+    showLoaderOnConfirm: true,
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    allowEnterKey: false,
+    showCancelButton: true,
+    cancelButtonText: 'How to activate license',
+    cancelButtonColor: "#0ECD69",
+    preConfirm: function() {
+      swal.disableButtons();
+      return new Promise(function(resolve) {
+        if (theme.check_interval !== false) { clearInterval(theme.check_interval); };
+        var timer = 15;
+        $("#swal_mes").text("Window will be ready in " + timer + " seconds.");
+        theme.check_interval = setInterval(function() {
+          if (timer <= 0) {
+            clearInterval(theme.check_interval);
+            resolve();
+            return;
+          } else {
+            timer -= 1;
+          }
+          $("#swal_mes").text("Window will be ready in " + timer + " seconds.");
 
+        }, 1000);
+      })
+    }
+  }).then(null, function (dismiss) {
+    if (dismiss === 'cancel') {
+      window.open('https://desk.zoho.com/portal/tabarnapp/kb/articles/how-to-activate-your-license', '_blank');
+      theme.wrn();
+    }
+  });
+}
 theme.check_license = function() {
   if (parseInt(localStorage.getItem("{{ settings.license_key | remove: ' ' | strip_newlines | sha1 }}") || -1) <= 0) {
-    swal({
-      title: "Invalid license!",
-      html: "Your license is invalid. Please check if you inputed it correctly or purchase a valid license from <a href='https://www.konversiontheme.com' target='_blank'>www.konversiontheme.com</a>. <br> <span id='swal_mes'></span>",
-      type: "error",
-      confirmButtonText: "Continue anyway",
-      showCancelButton: false,
-      showLoaderOnConfirm: true,
-      confirmButtonColor: "#E35F52",
-      showLoaderOnConfirm: true,
-      allowOutsideClick: false,
-      allowEscapeKey: false,
-      allowEnterKey: false,
-      preConfirm: function() {
-        swal.disableButtons();
-        return new Promise(function(resolve) {
-          if (theme.check_interval !== false) { clearInterval(theme.check_interval); };
-          var timer = 15;
-          $("#swal_mes").text("Window will be ready in " + timer + " seconds.");
-          theme.check_interval = setInterval(function() {
-            if (timer <= 0) {
-              clearInterval(theme.check_interval);
-              resolve();
-              return;
-            } else {
-              timer -= 1;
-            }
-            $("#swal_mes").text("Window will be ready in " + timer + " seconds.");
-
-          }, 1000);
-        })
-      }
-    });
+    theme.wrn();
   }
 }
 

@@ -559,3 +559,8 @@ iframe {
 .spr-badge[data-rating="0.0"] {
   visibility: hidden;
 }
+
+// Swap license alert buttons
+.swal2-cancel.swal2-styled {
+  float: left;
+}
