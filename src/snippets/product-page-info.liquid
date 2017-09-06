@@ -7,9 +7,11 @@
 </div>
 {% if settings.app_product_reviews_enabled != blank %}
   {% if settings.app_product_reviews_enabled == "product_reviews" %}
-    <div class="product-rating">
-      <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
-    </div>
+    <a href="#" class="open-reviews-tab">
+      <div class="product-rating">
+        <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+      </div>
+    </a>
   {% elsif settings.app_product_reviews_enabled == "loox_reviews" %}
     <div class="product-rating">
       <a href="#looxReviews">

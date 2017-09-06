@@ -164,6 +164,7 @@ theme.ProductPageSection = (function() {
     theme.initSwatches();
     this._initAccordion();
     this._initCountDownOffer();
+    this._productReviews();
   }
 
   return ProductPageSection;
@@ -660,6 +661,16 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
         _cookie.remove('endDate'+ productId);
       }
     }
-  }
+  },
 
+  _productReviews: function () {
+    $('.open-reviews-tab').on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({
+        scrollTop: $(".open-reviews-tab").offset().top
+      }, 700);
+      $('.reviews-tab').click();
+    });
+  }
+  
 });
