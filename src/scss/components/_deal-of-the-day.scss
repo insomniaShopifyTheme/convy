@@ -17,7 +17,7 @@
 
     @include at-query($max, $xlarge) {
       .content-details{
-        padding: 10px;
+        padding: 10px 0px 10px 0px;
         .counter-text{
           display: none;
         }

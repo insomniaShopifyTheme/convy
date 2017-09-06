@@ -259,6 +259,10 @@ theme.dealOfTheDay = function() {
     if (diff <= 0) {
       // Timer done
       clearInterval(timer);
+      $('.cart-cell').removeClass('deal-of-the-day-active');
+      $dealOfTheDay.fadeOut();
+      $dealOfTheDayProduct.fadeOut();
+
     } else {
 
       var seconds = Math.floor(diff / 1000);
@@ -274,13 +278,13 @@ theme.dealOfTheDay = function() {
 
       $dealOfTheDay.find(".dealzoneCounter").text(output_rtime);
       $dealOfTheDayProduct.find(".countdown").text(output_rtime);
-
     }
   }
 
   function init() {
     localstorage_dotd = JSON.parse(localStorage.getItem("deal_of_the_day"));
     $dealOfTheDay.fadeIn();
+    $('.cart-cell').addClass('deal-of-the-day-active');
 
     var current_product_id = $dealOfTheDayProduct.attr('product-id');
 
