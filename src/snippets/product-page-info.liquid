@@ -13,25 +13,27 @@
       </div>
     </a>
   {% elsif settings.app_product_reviews_enabled == "loox_reviews" %}
-    <div class="product-rating">
-      <a href="#looxReviews">
-        <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
-      </a>
-    </div>
-  {% elsif settings.app_product_reviews_enabled == "yotpo_reviews" %}
-    <div class="product-rating">
-      <div class="yotpo bottomLine"
-           data-appkey="{{ settings.yotpo_app_key }}"
-           data-domain="{{shop.permanent_domain | escape }}"
-           data-product-id="{{ product.id }}"
-           data-product-models="{{ product.id }}"
-           data-name="{{ product.title | escape }}"
-           data-url="{{ shop.url }}{{ product.url }}"
-           data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
-           data-description="{{ product_description | escape }}"
-           data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+      <div class="product-rating">
+        <a href="#" class="open-reviews-tab">
+          <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+        </a>
       </div>
-    </div>
+  {% elsif settings.app_product_reviews_enabled == "yotpo_reviews" %}
+    <a href="#" class="open-reviews-tab">
+      <div class="product-rating">
+        <div class="yotpo bottomLine"
+             data-appkey="{{ settings.yotpo_app_key }}"
+             data-domain="{{shop.permanent_domain | escape }}"
+             data-product-id="{{ product.id }}"
+             data-product-models="{{ product.id }}"
+             data-name="{{ product.title | escape }}"
+             data-url="{{ shop.url }}{{ product.url }}"
+             data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+             data-description="{{ product_description | escape }}"
+             data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+        </div>
+      </div>
+    </a>
   {% endif %}
 {% endif %}
 <div class="product-price">
