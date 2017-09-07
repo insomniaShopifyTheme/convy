@@ -1,8 +1,8 @@
 <div class="selector-wrapper js product-form__item product-form__item--{{ current }}{% if section.settings.product_options_style contains 'swatches' %} visually-hidden{% endif %}">
-  <label {% if option.name == 'default' or section.settings.display_option_labels == false and show_label != true %}class="hidden-label" {% endif %}for="SingleOptionSelector-{{ forloop.index0 }}">
+  <label {% if option.name == 'default' or section.settings.display_option_labels == false and show_label != true %}class="hidden-label" {% endif %}for="SingleOptionSelector-{{ option_index }}">
     {{ option.name }}
   </label>
-  <select class="product-options__selector product-options__selector-product_{{ product.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
+  <select class="product-options__selector product-options__selector-product_{{ product.id }} product-form__input" id="SingleOptionSelector-{{ option_index }}" data-index="option{{ option_index | plus: 1 }}">
     {% for value in option.values %}
       <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
     {% endfor %}

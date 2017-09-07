@@ -14,6 +14,7 @@
         {% for option in product.options_with_values %}
           {% unless option.values contains 'Default Title' %}
             {% unless option.values.size == 1 and section.settings.hide_variant_with_one_option %}
+              {%- assign option_index = forloop.index0 -%}
               {% include 'product-option' %}
               {% if section.settings.product_options_style contains 'swatches' %}
                 {% include 'product-swatch' %}

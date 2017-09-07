@@ -21,6 +21,7 @@
       {% if section.settings.product_options_style contains 'swatches' %}
         <div class="product-options--swatches grid--full text-center">
           {% for option in product.options_with_values %}
+            {%- assign option_index = forloop.index0 -%}
             {% include 'product-option' %}<!-- Never remove the product-option include, swatches need the select inputs to work! -->
             {% include 'product-swatch' %}
           {% endfor %}
@@ -47,6 +48,7 @@
           {% for option in product.options_with_values limit: max_options %}
             {% capture current %}{% cycle 'first', 'last' %}{% endcapture %}
             <div class="grid__item {{ option_cell_size }}">
+              {%- assign option_index = forloop.index0 -%}
               {% include 'product-option' %}
             </div>
           {% endfor %}
@@ -54,6 +56,7 @@
             {% for option in product.options_with_values offset: max_options %}
               {%- assign current = 'first' -%}
               <div class="grid__item {{ option_cell_size }}">
+                {%- assign option_index = max_options | plus: forloop.index0 -%}
                 {% include 'product-option' %}
               </div>
               <div class="grid__item {{ option_cell_size }}">
