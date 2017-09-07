@@ -116,6 +116,13 @@
       </div>
     {% else %}
       {% if shop.customer_accounts_enabled %}
+        {% if customer %}
+          <div class="user-account medium-down--hide">
+            <a class="header-icon icon-fallback-text" href="/account/logout/">
+              Logout
+            </a>
+          </div>
+        {% endif %}
         <div class="user-account medium-down--hide">
           <a class="header-icon icon-fallback-text" href="/account">
             {% if section.settings.display_profile_icon %}
