@@ -115,23 +115,33 @@
         </div>
       </div>
     {% else %}
-      {% if shop.customer_accounts_enabled %}
-        {% if customer %}
+      {% if section.settings.hide_account_link == false %}
+
+        {% if shop.customer_accounts_enabled %}
+          <!--  logout link -->
+          {% if customer %}
+            <div class="user-account medium-down--hide">
+              <a class="header-icon icon-fallback-text" href="/account/logout/">
+                Logout
+              </a>
+            </div>
+          {% endif %}
+          <!--  end of logout link -->
+
+          <!--  user account link -->
           <div class="user-account medium-down--hide">
-            <a class="header-icon icon-fallback-text" href="/account/logout/">
-              Logout
+            <a class="header-icon icon-fallback-text" href="/account">
+              {% if section.settings.display_profile_icon %}
+                <span class="icon icon-user" aria-hidden="true"></span>
+              {% endif %}
+              {{ 'customer.account.title' | t | remove: "My"}}
             </a>
           </div>
+          <!--  end of account link -->
         {% endif %}
-        <div class="user-account medium-down--hide">
-          <a class="header-icon icon-fallback-text" href="/account">
-            {% if section.settings.display_profile_icon %}
-              <span class="icon icon-user" aria-hidden="true"></span>
-            {% endif %}
-            {{ 'customer.account.title' | t | remove: "My"}}
-          </a>
-        </div>
+
       {% endif %}
+
     {% endif %}
 
   </div>
@@ -255,6 +265,12 @@
         "id": "display_profile_icon",
         "label": "Display user profile icon",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "hide_account_link",
+        "label": "Hide the 'Account' link",
+        "default": false
       },
       {
       "type": "header",
