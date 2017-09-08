@@ -75,8 +75,7 @@
         {% if tab_content != blank %}
           <li class='tab'>
             <a href="#tab-{{ link.object.id }}-{{ forloop.index }}">
-              {% assign title_slice = link.object.title  | split: ' ' %}
-              {{ title_slice[0] }}
+              {{link.object.title}}
             </a>
           </li>
           {% comment %}
