@@ -257,9 +257,11 @@ theme.dealOfTheDay = function() {
   function timeBetweenDates(diff) {
 
     if (diff <= 0) {
-
       // Timer done
       clearInterval(timer);
+      $('.cart-cell').removeClass('deal-of-the-day-active');
+      $dealOfTheDay.fadeOut();
+      $dealOfTheDayProduct.fadeOut();
 
     } else {
 
@@ -274,25 +276,15 @@ theme.dealOfTheDay = function() {
       var remain_time = new Date(0, 0, 0, hours, minutes, seconds);
       var output_rtime = remain_time.toTimeString().split(' ')[0];
 
-      /*jQuery(".dealzoneCounter").text(hours + ":" + minutes + ":" + seconds);*/
       $dealOfTheDay.find(".dealzoneCounter").text(output_rtime);
       $dealOfTheDayProduct.find(".countdown").text(output_rtime);
-
-
-      /* percent of chart */
-      /* 86400000 : 1 day time stamp */
-      var base = 86400000;
-      var percent = 100 - diff / base * 100;
-
-
-      //jQuery('#dealzone_bar_product .barChart__barFill').attr("style", "width: " + percent + "%");
-
     }
   }
 
   function init() {
     localstorage_dotd = JSON.parse(localStorage.getItem("deal_of_the_day"));
     $dealOfTheDay.fadeIn();
+    $('.cart-cell').addClass('deal-of-the-day-active');
 
     var current_product_id = $dealOfTheDayProduct.attr('product-id');
 
@@ -303,12 +295,16 @@ theme.dealOfTheDay = function() {
     var compare_at = localstorage_dotd.product.variants[0].compare_at_price;
     var price = localstorage_dotd.product.variants[0].price;
 
-    var discount_percentage = (price - compare_at) * 100 / compare_at;
-    discount_percentage = Math.round(discount_percentage * 10) / 10;
+    if(compare_at == null){
+      $dealOfTheDay.find('.discount-percentage').css("display", "none");
+      $dealOfTheDay.find('.compared_at').css("display", "none");
+    }else{
+      var discount_percentage = (price - compare_at) * 100 / compare_at;
+      discount_percentage = Math.round(discount_percentage * 10) / 10;
+      $dealOfTheDay.find('.discount-percentage').html(discount_percentage + '%');
+      $dealOfTheDay.find('.compared_at').html(storeCurrencySymbol + compare_at);
+    }
 
-    $dealOfTheDay.find('.discount-percentage').html(discount_percentage + '%');
-
-    $dealOfTheDay.find('.compared_at').html(storeCurrencySymbol + compare_at);
     $dealOfTheDay.find('.price').html(storeCurrencySymbol + price);
 
     //get small image

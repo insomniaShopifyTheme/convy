@@ -2,7 +2,9 @@
   "current": {
     "license_key": "",
     "app_product_reviews_enabled": "",
+    "yotpo_app_key": "",
     "ajax_cart_method": "drawer",
+    "cart_font_size": "big",
     "cart_notes_enable": false,
     "sticky_add_to_cart": true,
     "add_to_cart_float_animation": true,
@@ -30,15 +32,16 @@
     "countdown_offer_repeat": true,
     "deal_of_the_day_enabled": false,
     "deal_of_the_day_display": "all",
-    "deal_of_the_day_hide_title": false,
-    "deal_of_the_day_discount_percentage": true,
+    "deal_of_the_day_image_position": "right",
     "deal_of_the_day_discount_percentage_color": "#f53333",
+    "deal_of_the_day_price_color": "#41cd62",
     "deal_of_the_day_text": "DEAL OF THE DAY",
-    "deal_of_the_day_ends_in_text": "ENDS IN",
+    "deal_of_the_day_countdown_color": "#41cd62",
     "deal_of_the_day_product_text": "DEAL OF THE DAY ENDS IN",
     "deal_of_the_day_progressbar_color": "#f53333",
     "favicon": "",
     "fixed_header": "all",
+    "header_height": "standard",
     "product_card_title_style": "1_row",
     "margin_on_mobile": false,
     "product_card_height": "255px",
@@ -60,12 +63,14 @@
     "newsletter_modal_btn_text": "SIGN UP!",
     "newsletter_modal_text_alignment": "left",
     "pa_modal_size": 700,
+    "pa_modal_product_info_width": 400,
     "pa_modal_product": "",
     "pa_modal_text_alignment": "left",
     "pa_modal_image_position": "center",
     "pa_modal_title": "Some title",
     "pa_text_rich": "",
     "pa_modal_btn_text": "Go to product",
+    "pa_modal_explosive_offer": false,
     "shipping_calculator": true,
     "shipping_calculator_heading": "Get shipping estimates",
     "shipping_calculator_default_country": "United States",
@@ -107,6 +112,9 @@
     "checkout_accent_color": "#1990c6",
     "checkout_button_color": "#1990c6",
     "checkout_error_color": "#ff6d6d",
+    "deal_of_the_day_hide_title": false,
+    "deal_of_the_day_discount_percentage": true,
+    "deal_of_the_day_ends_in_text": "ENDS IN",
     "sections": {
       "topbar": {
         "type": "topbar",
@@ -134,14 +142,19 @@
           "logo_text": "",
           "logo_use_image": false,
           "logo_image": "",
-          "logo_max_width": "220",
-          "logo_margin": "0",
+          "logo_max_width_desktop": 200,
+          "logo_margin": 0,
+          "logo_use_mobile_image": false,
+          "logo_image_mobile": "",
+          "logo_max_width_mobile": 200,
+          "logo_margin_mobile": 0,
           "menu_type": "text-menu",
           "display_product_price": false,
           "submenu_columns": "1",
           "display_menu_word_mobile": false,
           "menu_word_mobile": "MENU",
           "display_profile_icon": true,
+          "hide_account_link": false,
           "switch_account_search_position": false
         }
       },
@@ -307,7 +320,7 @@
         "settings": {
           "inverted": false,
           "title": "GET OUR DAILY DEAL VIA INBOX",
-          "text": "<p>Receive our promotions before the plebs. Subscribe today!<\/p>",
+          "text": "<p>Receive our promotions to your inbox. Subscribe today!<\/p>",
           "button_text": "SUBSCRIBE"
         }
       },
@@ -437,7 +450,8 @@
           "product_options_style": "dropdown",
           "display_quantity_selector": true,
           "gallery_zoom_type": "mouseover",
-          "gallery_arrows": true
+          "gallery_arrows": true,
+          "excerpt_word_count": "15"
         }
       },
       "1498026043184": {
@@ -575,7 +589,7 @@
           "1502235685970": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/2000x1200.jpg",
+              "image": "",
               "image_size": "768x768",
               "crop_type": "center",
               "link": "",
@@ -585,7 +599,7 @@
           "1502235710320": {
             "type": "image",
             "settings": {
-              "image": "shopify:\/\/shop_images\/jiiswpwxpd8-celia-michon.jpg",
+              "image": "",
               "image_size": "768x768",
               "crop_type": "center",
               "link": "",
@@ -635,6 +649,11 @@
               "width": "one-quarter"
             }
           },
+          "1502751729189": {
+            "type": "clearfix",
+            "settings": {
+            }
+          },
           "1502236335531": {
             "type": "content",
             "settings": {
@@ -655,6 +674,11 @@
               "button_link": "",
               "align_text": "center",
               "width": "one-half"
+            }
+          },
+          "1502751722156": {
+            "type": "clearfix",
+            "settings": {
             }
           },
           "1502236376074": {
@@ -692,7 +716,8 @@
           },
           "1502236776881": {
             "type": "clearfix",
-            "settings": {}
+            "settings": {
+            }
           },
           "1502236785633": {
             "type": "content",
@@ -715,14 +740,6 @@
               "align_text": "center",
               "width": "one-whole"
             }
-          },
-          "1502751722156": {
-            "type": "clearfix",
-            "settings": {}
-          },
-          "1502751729189": {
-            "type": "clearfix",
-            "settings": {}
           }
         },
         "block_order": [

@@ -74,11 +74,20 @@
     <div class="grid__item one-whole large--hide">
 
       <div class="product-info page-width product-info-mobile">
-        <div class="product-price clearfix">
-          {% include 'product-page-price' %}
-        </div>
         <div class="product-info__title clearfix">
-          <h3>{{ product.title }}</h3>
+
+          {% if section.settings.price_location %}
+            <h3>{{ product.title }}</h3>
+            <div class="product-price clearfix">
+              {% include 'product-page-price' %}
+            </div>
+          {% else %}
+            <div class="product-price clearfix">
+              {% include 'product-page-price' %}
+            </div>
+            <h3>{{ product.title }}</h3>
+          {% endif %}
+
           {% if settings.app_product_reviews_enabled != blank %}
             {% if settings.app_product_reviews_enabled == "product_reviews" %}
               <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
@@ -443,6 +452,12 @@
         "label": "Lock 'Add to cart' button",
         "default": false,
         "info": "By default, the sticky Add to cart button will disappear when users scroll up."
+      },
+      {
+        "type": "checkbox",
+        "id": "price_location",
+        "label": "Display price below the title",
+        "default": false
       },
       {
         "type": "header",

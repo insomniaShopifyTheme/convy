@@ -19,7 +19,7 @@
 
   {% capture reviews_tab %}
 
-    <dt class="accordion__tab-title">Reviews</dt>
+    <dt class="accordion__tab-title" class="reviews-tab">Reviews</dt>
     {% if settings.app_product_reviews_enabled != blank %}
       <dd class="accordion__tab-content rte">
         {% if settings.app_product_reviews_enabled == "product_reviews" %}
@@ -118,8 +118,8 @@
 
         {% if tab_content != blank %}
           <dt class="accordion__tab-title">
-            {% assign title_slice = link.object.title  | split: ' ' %}
-            {{ title_slice[0] }}
+            {% assign title_slice = link.object.title  | split: '||' %}
+            {{ title_slice[0] | strip }}
           </dt>
           <dd class="accordion__tab-content rte">
             {{ tab_content }}

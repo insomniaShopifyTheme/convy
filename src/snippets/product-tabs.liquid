@@ -55,7 +55,7 @@
       {% endfor %}
     {% endif %}
     {% if section.settings.product_reviews and reviews_tab_default_position%}
-      <li class='tab'><a href="#tab-reviews">{{ "products.product.tabs.reviews" | t }}</a></li>
+      <li class='tab'><a href="#tab-reviews" class="reviews-tab" >{{ "products.product.tabs.reviews" | t }}</a></li>
     {% endif %}
 
     {% if linklists["product-tabs"].links.size > 0 %}
@@ -69,14 +69,14 @@
         {% endif %}
 
         {% if tab_link == "reviews" and section.settings.product_reviews %}
-          <li class='tab'><a href="#tab-reviews">{{ "products.product.tabs.reviews" | t }}</a></li>
+          <li class='tab'><a href="#tab-reviews" class="reviews-tab">{{ "products.product.tabs.reviews" | t }}</a></li>
         {% endif %}
 
         {% if tab_content != blank %}
           <li class='tab'>
             <a href="#tab-{{ link.object.id }}-{{ forloop.index }}">
-              {% assign title_slice = link.object.title  | split: ' ' %}
-              {{ title_slice[0] }}
+              {% assign title_slice = link.object.title  | split: '||' %}
+              {{ title_slice[0] | strip }}
             </a>
           </li>
           {% comment %}

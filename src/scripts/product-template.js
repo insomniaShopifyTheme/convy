@@ -164,6 +164,7 @@ theme.ProductPageSection = (function() {
     theme.initSwatches();
     this._initAccordion();
     this._initCountDownOffer();
+    this._productReviews();
   }
 
   return ProductPageSection;
@@ -186,16 +187,16 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
   },
 
   _stickyCartBtn: function() {
-    if($('.product-template').data('lock-atc-btn') == true){
-      var $stickyBtn = $(this.selectors.stickyCartButton);
-      $stickyBtn.addClass('stuck');
-    }else{
-      if ($(this.selectors.stickyCartButton).length > 0) {
-        $(this.selectors.stickyCartButton).on('click', this._submitCartForm.bind(this));
-        $(document).on('touchmove.track-add-to-cart-btn', this._trackScrolling.bind(this));
-        $(document).on('scroll.track-add-to-cart-btn', this._trackScrolling.bind(this));
+    if ($(this.selectors.stickyCartButton).length > 0) {
+      if($('.product-template').data('lock-atc-btn') == true){
+        var $stickyBtn = $(this.selectors.stickyCartButton);
+        $stickyBtn.addClass('stuck');
+      }else{
         this._trackScrolling();
       }
+      $(this.selectors.stickyCartButton).on('click', this._submitCartForm.bind(this));
+      $(document).on('touchmove.track-add-to-cart-btn', this._trackScrolling.bind(this));
+      $(document).on('scroll.track-add-to-cart-btn', this._trackScrolling.bind(this));
     }
   },
 
@@ -660,6 +661,16 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
         _cookie.remove('endDate'+ productId);
       }
     }
-  }
+  },
 
+  _productReviews: function () {
+    $('.open-reviews-tab').on('click', function(e) {
+      e.preventDefault();
+      $('html, body').animate({
+        scrollTop: $(".open-reviews-tab").offset().top
+      }, 700);
+      $('.reviews-tab').click();
+    });
+  }
+  
 });
