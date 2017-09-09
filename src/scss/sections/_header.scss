@@ -16,6 +16,7 @@ $my-account-z-index: 10;
 
   .with-menu-word::before{
     content: 'MENU';
+    color: $color_menu;
     position: absolute;
     display: block;
     font-size: 11px;
