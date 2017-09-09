@@ -45,7 +45,7 @@
     {% endif %}
       {% if section.settings.logo_use_image %}
         <a href="/" class="section-header__logo-link {% if section.settings.logo_use_mobile_image %}medium-down--hide{% endif %} ">
-          {% assign logo_max_width = section.settings.logo_max_width | append: 'x' %}
+          {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
           <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
         </a>
         {% if section.settings.logo_use_mobile_image %}
@@ -172,12 +172,12 @@
       },
       {
         "type":      "range",
-        "id":        "logo_max_width",
+        "id":        "logo_max_width_desktop",
         "min":        100,
         "max":        500,
-        "step":       50,
+        "step":       25,
         "label":     "Image max width ",
-        "default":   300
+        "default":   200
       },
       {
         "type":      "range",
@@ -209,9 +209,9 @@
         "id":        "logo_max_width_mobile",
         "min":        100,
         "max":        500,
-        "step":       50,
+        "step":       25,
         "label":     "Image max width",
-        "default":   300,
+        "default":   200,
         "info": "Defined in pixels. Do not add the 'px' unit."
       },
       {
