@@ -118,16 +118,6 @@
       {% if section.settings.hide_account_link == false %}
 
         {% if shop.customer_accounts_enabled %}
-          <!--  logout link -->
-          {% if customer %}
-            <div class="user-account medium-down--hide">
-              <a class="header-icon icon-fallback-text" href="/account/logout/">
-                Logout
-              </a>
-            </div>
-          {% endif %}
-          <!--  end of logout link -->
-
           <!--  user account link -->
           <div class="user-account medium-down--hide">
             <a class="header-icon icon-fallback-text" href="/account">
