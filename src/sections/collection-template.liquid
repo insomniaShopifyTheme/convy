@@ -129,7 +129,9 @@
         <div class="grid--full grid--uniform product-list product-list--{{ section.settings.mobile_layout }} product-mobile">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
-          {%- assign card_hoverable = section.settings.hoverable -%}
+          {% if section.settings.add_to_cart == 'hoverable'%}
+            {%- assign card_hoverable = section.settings.add_to_cart -%}
+          {% endif %}
           {% for product in collection.products %}
             <div class="grid__item {{ mobile_col_sizes }}">
               <div class="product-list__item">
@@ -222,7 +224,9 @@
         <div class="grid--full grid--uniform product-list product-desktop">
           {%- assign btn_action = section.settings.product_btn_action -%}
           {%- assign btn_text = section.settings.product_btn_text -%}
-          {%- assign card_hoverable = section.settings.hoverable -%}
+          {% if section.settings.add_to_cart == 'hoverable' %}
+            {%- assign card_hoverable = section.settings.add_to_cart -%}
+          {% endif %}
           {% for product in collection.products %}
             <div class="grid__item {{ desktop_col_sizes }}">
               <div class="product-list__item">
@@ -277,12 +281,22 @@
         "default": true
       },
       {
-        "type": "checkbox",
-        "id": "hoverable",
-        "label": "Use hover effect in desktop version",
-        "default": true
+        "type": "radio",
+        "id": "add_to_cart",
+        "label": "Add to cart button location:",
+        "default": "below_the_product",
+        "options": [
+          {"value": "below_the_product", "label": "Below the product"},
+          {"value": "hoverable", "label": "On hover"},
+          {"value": "none", "label": "None"}
+        ]
       },
-
+      {
+        "type": "checkbox",
+        "id": "second_image_on_hover",
+        "label": "Display a second product image on hover",
+        "default": false
+      },
       {
         "type": "checkbox",
         "id": "dispaly_sorting",

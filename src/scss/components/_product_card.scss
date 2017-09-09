@@ -24,7 +24,7 @@ $product-card-ribbon-z-index: 4;
 }
 
 .product-card {
-
+  overflow: hidden;
   position: relative;
   text-align: center;
 
@@ -76,17 +76,16 @@ $product-card-ribbon-z-index: 4;
   .product-card__image {
     display: block;
 
-    @if $product-card-height == 255px {
+    @if $product-card-height == 360px {
       height: $product-card-height;
     } @else {
       min-height: $product-card-height;
     }
-    line-height: $product-card-height;
+    /* line-height: $product-card-height; */
     text-align: center;
 
     img{
       vertical-align: middle;
-      display: inline-block;
       width: auto;
       max-height: 100%;
     }
@@ -189,6 +188,11 @@ $product-card-ribbon-z-index: 4;
             cursor: pointer;
           }
         }
+
+        .hidden {
+          z-index: 5;
+          opacity: 1;
+        }
       }
     }
   }
@@ -275,4 +279,33 @@ $ribbon-red-to: darken($ribbon-red, 20%);
     background-image:      -o-radial-gradient($ribbon-red, $ribbon-red-to);
     color: #fff;
   }
+}
+
+/* ===================================================================
+// Reveal module in product_card.css for product-card.liquid
+// =================================================================== */
+
+.reveal .hidden { display: block !important; visibility: visible !important;}
+.product:hover .reveal img {
+  margin: 0 auto;
+  opacity: 1;
+}
+.reveal {
+  width: $product-card-height;
+  height: $product-card-height;
+  margin: 0 auto;
+  position: relative; }
+.reveal .hidden {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -moz-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+}
+.reveal:hover .hidden {
+  z-index: 5;
+  opacity: 1;
 }
