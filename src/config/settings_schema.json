@@ -25,10 +25,6 @@
       {
         "type": "paragraph",
         "content": "[Submit a ticket](https:\/\/desk.zoho.com\/portal\/tabarnapp\/newticket)"
-      },
-      {
-        "type": "paragraph",
-        "content": "[Email](mailto:support@konversiontheme.com)"
       }
     ]
   },
@@ -151,7 +147,7 @@
         "type": "checkbox",
         "id": "sticky_add_to_cart",
         "label": "Enable a sticky Add to cart button (on mobile only)",
-        "default": true
+        "default": false
       },
       {
         "type": "checkbox",
@@ -393,17 +389,20 @@
         ]
       },
       {
-        "type": "checkbox",
-        "id": "deal_of_the_day_hide_title",
-        "label": "Hide title and countdown",
-        "info": "This will save space in your navigation bar...",
-        "default": false
-      },
-      {
-        "type": "checkbox",
-        "id": "deal_of_the_day_discount_percentage",
-        "label": "Show discount percentage",
-        "default": true
+        "type": "radio",
+        "id": "deal_of_the_day_image_position",
+        "label": "Image position",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "right"
       },
       {
         "type": "color",
@@ -411,6 +410,14 @@
         "label": "Discount percentage color",
         "default": "#f53333"
       },
+
+      {
+        "type": "color",
+        "id": "deal_of_the_day_price_color",
+        "label": "Price color",
+        "default": "#41cd62"
+      },
+
       {
         "type": "header",
         "content": "Navigation Bar"
@@ -419,14 +426,15 @@
         "type": "text",
         "id": "deal_of_the_day_text",
         "label": "Main text",
-        "default": "DEAL OF THE DAY"
+        "default": "DEAL ENDS IN"
       },
       {
-        "type": "text",
-        "id": "deal_of_the_day_ends_in_text",
-        "label": "Timeout text",
-        "default": "ENDS IN"
+        "type": "color",
+        "id": "deal_of_the_day_countdown_color",
+        "label": "Countdown clock color",
+        "default": "#41cd62"
       },
+
       {
         "type": "header",
         "content": "Product Page"

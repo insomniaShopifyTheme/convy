@@ -1,0 +1,41 @@
+{% if settings.deal_of_the_day_enabled %}
+
+    {% if settings.deal_of_the_day_display == 'all' or settings.deal_of_the_day_display == 'mobile' %}
+
+    <style>
+        .content-deal-of-the-day .discount-percentage{
+            color: {{ settings.deal_of_the_day_discount_percentage_color }};
+        }
+
+        .content-deal-of-the-day .content-price .price{
+            color: {{ settings.deal_of_the_day_price_color }};
+        }
+        .content-deal-of-the-day .countdown{
+            color: {{ settings.deal_of_the_day_countdown_color }};
+        }
+    </style>
+    <div class="content-deal-of-the-day mobile" style="display: none;">
+        <div class="wrapper">
+            <a href="#" class="product-link">
+                {% if settings.deal_of_the_day_image_position == 'left' %}
+                    <div class="content-product-img">
+                        <img class="product-image" src="#" alt="">
+                    </div>
+                {% endif %}
+                <div class="content-details">
+                    <h2><span class="counter-text">{{ settings.deal_of_the_day_text }}</span> <span class="countdown dealzoneCounter"></span></h2>
+                    <div class="content-price">
+                        <p class="compared_at"></p><p class="price"></p><p class="discount-percentage"></p>
+                    </div>
+                </div>
+                {% if settings.deal_of_the_day_image_position == 'right' %}
+                    <div class="content-product-img">
+                        <img class="product-image" src="#" alt="">
+                    </div>
+                {% endif %}
+            </a>
+        </div>
+    </div>
+
+    {% endif %}
+{% endif %}
