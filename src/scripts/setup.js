@@ -1,5 +1,6 @@
 // Theme functions
 window.theme = window.theme || {};
+window.theme.version = "1.1.1"
 
 theme.cacheSelectors = function () {
   theme.cache = {
