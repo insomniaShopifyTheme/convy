@@ -118,8 +118,8 @@
 
         {% if tab_content != blank %}
           <dt class="accordion__tab-title">
-            {% assign title_slice = link.object.title  | split: ' ' %}
-            {{ title_slice[0] }}
+            {% assign title_slice = link.object.title  | split: '||' %}
+            {{ title_slice[0] | strip }}
           </dt>
           <dd class="accordion__tab-content rte">
             {{ tab_content }}
