@@ -61,7 +61,7 @@
     {% include 'main-menu' %}
 
     {% if section.settings.switch_account_search_position %}
-      {% if shop.customer_accounts_enabled %}
+      {% if shop.customer_accounts_enabled and section.settings.hide_account_link == false %}
         <div class="user-account medium-down--hide">
           <a class="header-icon icon-fallback-text" href="/account">
             {% if section.settings.display_profile_icon %}
@@ -115,21 +115,15 @@
         </div>
       </div>
     {% else %}
-      {% if section.settings.hide_account_link == false %}
-
-        {% if shop.customer_accounts_enabled %}
-          <!--  user account link -->
-          <div class="user-account medium-down--hide">
-            <a class="header-icon icon-fallback-text" href="/account">
-              {% if section.settings.display_profile_icon %}
-                <span class="icon icon-user" aria-hidden="true"></span>
-              {% endif %}
-              {{ 'customer.account.title' | t | remove: "My"}}
-            </a>
-          </div>
-          <!--  end of account link -->
-        {% endif %}
-
+      {% if shop.customer_accounts_enabled and section.settings.hide_account_link == false %}
+        <div class="user-account medium-down--hide">
+          <a class="header-icon icon-fallback-text" href="/account">
+            {% if section.settings.display_profile_icon %}
+              <span class="icon icon-user" aria-hidden="true"></span>
+            {% endif %}
+            {{ 'customer.account.title' | t | remove: "My"}}
+          </a>
+        </div>
       {% endif %}
 
     {% endif %}
