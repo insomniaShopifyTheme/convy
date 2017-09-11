@@ -41,6 +41,8 @@ cd ./dist && theme watch
 
 ### Release
 
+Bump version at `src/config/settings_schema.json` and `src/scripts/setup.js`
+
 #### 1. Gulp tasks
 ```
 gulp  //builds theme and starts watching
