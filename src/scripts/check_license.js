@@ -54,8 +54,8 @@ theme.wrn = function() {
   });
 }
 theme.check_license = function() {
-  const new_license = "{{ settings.license_key | remove: ' ' | strip_newlines | sha1 }}";
-  const last_license = localStorage.getItem('tabarnapp_last_license');
+  var new_license = "{{ settings.license_key | remove: ' ' | strip_newlines | sha1 }}";
+  var last_license = localStorage.getItem('tabarnapp_last_license');
 
   if (parseInt(localStorage.getItem(new_license) || -1) <= 0) {
     localStorage.setItem('tabarnapp_last_license', new_license);
