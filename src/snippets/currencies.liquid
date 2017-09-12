@@ -11,9 +11,32 @@ Currency.moneyFormats[shopCurrency].money_with_currency_format = {{ shop.money_w
 Currency.moneyFormats[shopCurrency].money_format = {{ shop.money_format | strip_html | json }};
 
 /* Remove currency code from compare_at_price */
-afterPriceCurrencyUpdated = function(newCurrency) {
-  jQuery('.product-price__old').each(function(idx, el){
+Currency.afterPriceCurrencyUpdated = function(newCurrency) {
+  jQuery('.product-price__old .money').each(function(idx, el){
     $(el).text($(el).text().replace(' ' + newCurrency, ''));
+  });
+  // Update currency in product-card dropdown options
+  $(".product-card__form").each(function(index, formEl){
+    var $pricesRef = $(formEl).find(".variant-prices-ref");
+    if ($pricesRef.length > 0) {
+      // Update text of the native select
+      $(formEl).find(".product-form__variants option:not(:disabled)").each(function(idx, el){
+        try {
+          var optionPieces = $(el).text().split("-"),
+            pricePiece = optionPieces[optionPieces.length-1],
+            variantId = $(el).val(),
+            inCurrency = $pricesRef.find("[data-variant-id=" + variantId + "] span").text(),
+            newText = $(el).text().replace(pricePiece, inCurrency).trim();
+          $(el).text(" " + newText);
+          var selectricEl = $(formEl).find(".selectric-items li.money").get(idx);
+          if (selectricEl) {
+            $(selectricEl).text(newText);
+          }
+        } catch(e) {
+          console.warn("Couldn't update currency for: " + $(el).text().trim() + " (" + e.message + ")");
+        }
+      });
+    }
   });
 }
 
@@ -35,7 +58,7 @@ jQuery('span.money').each(function() {
 if (cookieCurrency == null) {
   if (shopCurrency !== defaultCurrency) {
     Currency.convertAll(shopCurrency, defaultCurrency);
-    afterPriceCurrencyUpdated(defaultCurrency);
+    Currency.afterPriceCurrencyUpdated(defaultCurrency);
   }
   else {
     Currency.currentCurrency = defaultCurrency;
@@ -51,24 +74,24 @@ else if (cookieCurrency === shopCurrency) {
 }
 else {
   Currency.convertAll(shopCurrency, cookieCurrency);
-  afterPriceCurrencyUpdated(cookieCurrency);
+  Currency.afterPriceCurrencyUpdated(cookieCurrency);
 }
 jQuery('[name=currencies]').val(Currency.currentCurrency).change(function() {
   var newCurrency = jQuery(this).val();
   Currency.convertAll(Currency.currentCurrency, newCurrency);
-  afterPriceCurrencyUpdated(newCurrency);
+  Currency.afterPriceCurrencyUpdated(newCurrency);
   jQuery('.selected-currency').text(Currency.currentCurrency);
 });
 var original_selectCallback = window.selectCallback;
 var selectCallback = function(variant, selector) {
   original_selectCallback(variant, selector);
   Currency.convertAll(shopCurrency, jQuery('[name=currencies]').val());
-  afterPriceCurrencyUpdated(jQuery('[name=currencies]').val());
+  Currency.afterPriceCurrencyUpdated(jQuery('[name=currencies]').val());
   jQuery('.selected-currency').text(Currency.currentCurrency);
 };
 $('body').on('afterCartLoad.ajaxCart', function(cart) {
   Currency.convertAll(shopCurrency, jQuery('[name=currencies]').val());
-  afterPriceCurrencyUpdated(jQuery('[name=currencies]').val());
+  Currency.afterPriceCurrencyUpdated(jQuery('[name=currencies]').val());
   jQuery('.selected-currency').text(Currency.currentCurrency);  
 });
 jQuery('.selected-currency').text(Currency.currentCurrency);

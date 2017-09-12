@@ -5,7 +5,26 @@
 {%- assign product = all_products[section.settings.product] -%}
 {%- assign current_variant = product.selected_or_first_available_variant -%}
 {%- assign featured_product_section = true -%}
+{% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+  {%- assign has_variants = true -%}
+{% else %}
+  {%- assign has_variants = false -%}
+{% endunless %}
 <div id="product_{{ product.id }}" data-section-id="product_{{ product.id }}" data-section-type="featured-product-section">
+
+  {% if settings.show_multiple_currencies and has_variants %}
+    {% comment %}
+      Used to replace currency when changing variants and it has a different price
+    {% endcomment %}
+    <ul class="product-variant-prices-ref">
+      {% for _prod_var in product.variants %}
+        {% if _prod_var.available %}
+          <li data-variant-id="{{ _prod_var.id }}">{{ _prod_var.price | money }}|{{ _prod_var.compare_at_price | money }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+
   <div class="product-list large--hide">
     <div class="product-list__item">
       {%- assign btn_action = section.settings.btn_action -%}

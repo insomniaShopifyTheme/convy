@@ -10,6 +10,11 @@
 </style>
 
 {%- assign current_variant = product.selected_or_first_available_variant -%}
+{% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
+  {%- assign has_variants = true -%}
+{% else %}
+  {%- assign has_variants = false -%}
+{% endunless %}
 
 <header class="page-header">
   {% if section.settings.breadcrumbs %}
@@ -24,6 +29,20 @@
 %}
 
 <div class="product-template page-width--large" id="product_{{ product.id }}" data-lock-atc-btn="{{ section.settings.lock_add_to_cart_btn }}" data-section-id="product_{{ product.id }}" data-section-type="product-template" itemscope itemtype="http://schema.org/Product">
+
+  {% if settings.show_multiple_currencies and has_variants %}
+    {% comment %}
+      Used to replace currency when changing variants and it has a different price
+    {% endcomment %}
+    <ul class="product-variant-prices-ref hide">
+      {% for _prod_var in product.variants %}
+        {% if _prod_var.available %}
+          <li data-variant-id="{{ _prod_var.id }}">{{ _prod_var.price | money }}|{{ _prod_var.compare_at_price | money }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+
   <meta itemprop="name" content="{{ product.title }}">
   <meta itemprop="url" content="{{ shop.url }}{{ product.url }}">
   <meta itemprop="image" content="https:{{ product.featured_image.src | img_url: '800x' }}">
