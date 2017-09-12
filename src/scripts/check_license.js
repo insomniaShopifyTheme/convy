@@ -4,6 +4,14 @@
 */
 
 theme.check_interval = false;
+theme.success_license = function() {
+  swal({
+    title: "License activated",
+    html: "Your license key has been successfully activated",
+    type: "success"
+  });
+}
+
 theme.wrn = function() {
   swal({
     title: "License not activated",
@@ -38,7 +46,7 @@ theme.wrn = function() {
         }, 1000);
       })
     }
-  }).then(null, function (dismiss) {
+  }).then(null, function(dismiss) {
     if (dismiss === 'cancel') {
       window.open('https://desk.zoho.com/portal/tabarnapp/kb/articles/how-to-activate-your-license', '_blank');
       theme.wrn();
@@ -46,8 +54,17 @@ theme.wrn = function() {
   });
 }
 theme.check_license = function() {
-  if (parseInt(localStorage.getItem("{{ settings.license_key | remove: ' ' | strip_newlines | sha1 }}") || -1) <= 0) {
+  var new_license = "{{ settings.license_key | remove: ' ' | strip_newlines | sha1 }}";
+  var last_license = localStorage.getItem('tabarnapp_last_license');
+
+  if (parseInt(localStorage.getItem(new_license) || -1) <= 0) {
+    localStorage.setItem('tabarnapp_last_license', new_license);
     theme.wrn();
+  } else {
+    if (new_license !== last_license) {
+      localStorage.setItem('tabarnapp_last_license', new_license);
+      theme.success_license();
+    }
   }
 }
 

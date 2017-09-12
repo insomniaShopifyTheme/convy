@@ -65,8 +65,8 @@ gulp.task('scripts', function() {
   return gulp.src(JS_FILES)
     .pipe(concat('theme.js'))
     .pipe(minify({
-      ext:{
-        min:'.js.liquid'
+      ext: {
+        min: '.js.liquid'
       },
       noSource: true
     }))
@@ -98,11 +98,11 @@ gulp.task('clean_for_build', function() {
 gulp.task('copy_default_settings', function() {
   return gulp.src(
     "./src/config/settings_data.default.json"
-    ).pipe(
-      ext_replace('.json', '.default.json')
-    ).pipe(
-      gulp.dest('./dist/config')
-    );
+  ).pipe(
+    ext_replace('.json', '.default.json')
+  ).pipe(
+    gulp.dest('./dist/config')
+  );
 });
 
 //gulp prepare test file

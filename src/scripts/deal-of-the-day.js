@@ -3,16 +3,14 @@
   *****************************************************************************/
 theme.dealOfTheDay = function() {
 
-  //
-
   var enabled_deal = "{{ settings.deal_of_the_day_enabled }}";
   if (enabled_deal == false) return false;
 
   if (typeof backend == 'undefined') {
-      var backend = {
-          shopUrl: '',
-          currencyName: 'USD'
-      }
+    var backend = {
+      shopUrl: '',
+      currencyName: 'USD'
+    }
   }
   var $dealOfTheDay = $('.content-deal-of-the-day');
   var $dealOfTheDayProduct = $('.deal-of-the-day-product');
@@ -295,10 +293,10 @@ theme.dealOfTheDay = function() {
     var compare_at = localstorage_dotd.product.variants[0].compare_at_price;
     var price = localstorage_dotd.product.variants[0].price;
 
-    if(compare_at == null){
+    if (compare_at == null) {
       $dealOfTheDay.find('.discount-percentage').css("display", "none");
       $dealOfTheDay.find('.compared_at').css("display", "none");
-    }else{
+    } else {
       var discount_percentage = (price - compare_at) * 100 / compare_at;
       discount_percentage = Math.round(discount_percentage * 10) / 10;
       $dealOfTheDay.find('.discount-percentage').html(discount_percentage + '%');
