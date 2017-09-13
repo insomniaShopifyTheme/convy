@@ -28,6 +28,22 @@ $cart-secondary-color: $color-pale;
       }
     }
   {% endif %}
+
+  .additional-checkout-buttons{
+    text-align: center;
+    padding: 0px;
+    p{
+      font-size:12px;
+      margin: 0px 0px;
+    }
+    button{
+      display: inline-block;
+      width: 100%;
+      border-radius: 0px !important;
+      padding: 7px 0px !important;
+      margin: 0;
+    }
+  }
 }
 .overflow-wrapper{
   overflow-y: auto;
@@ -252,6 +268,9 @@ $cart-secondary-color: $color-pale;
   }
   .overflow-wrapper.more::after{
     display: block;
+  }
+  .overflow-wrapper.w-additional-checkout-buttons::after{
+    bottom: 231px !important;
   }
 
 
