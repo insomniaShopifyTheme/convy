@@ -36,9 +36,11 @@ $drawer-footer-height: 40px;
   .currency-picker__wrapper {
     float: right;
     .currency-picker {
-      background-image: url('{{ "ico-select-alt.svg" | asset_url }}');
+      background-image: none;
       border: none;
       color: $color-text-alt;
+      padding-left: 10px;
+      padding-right: 10px;
     }
   }
 }
