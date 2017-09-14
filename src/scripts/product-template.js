@@ -90,6 +90,7 @@ theme.ProductPageSection = (function() {
   function ProductPageSection(container) {
     var $container = this.$container = $(container);
     var sectionId = $container.attr('data-section-id');
+    var _self = this;
 
     this.theProduct = JSON.parse(document.getElementById('ProductJson-' + sectionId).innerHTML);
 
@@ -156,6 +157,12 @@ theme.ProductPageSection = (function() {
     if (theme.sliders[this.slider].$sliderImage) {
       var $imgSlider = theme.sliders[this.slider].$sliderImage;
       $imgSlider.on('beforeChange', this._matchVariantForCurrentSlide.bind(this));
+
+      // Sometimes the first slide/image does not correspond to selected variant
+      // if images was re-ordered. So make sure to adjust variant selectors to 0-position slide
+      setTimeout(function(){
+        _self._matchVariantForCurrentSlide(null, null, 1, 0);
+      }, 500);
     }
 
     this._stickyCartBtn();
@@ -291,17 +298,17 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
   _switchImage: function(evt) {
     var variant = evt.variant;
     var $productImagesSlider = theme.sliders[this.slider];
-    $productImagesSlider.$sliderImage.slick('slickGoTo', variant.featured_image.position - 1);
+    var slideIdx;
+    if (variant.featured_image) {
+      slideIdx = this._getSlideIndexForVariant($productImagesSlider, variant);
+      if (slideIdx || slideIdx == 0) {
+        $productImagesSlider.$sliderImage.slick('slickGoTo', slideIdx);
+      }
+    }
   },
 
   _matchVariantForCurrentSlide: function(event, slick, currentSlide, nextSlide) {
-    var imageIdx = nextSlide + 1;
-    var variant = _.find(this.theProduct.variants, function(v) {
-      if (v.featured_image) {
-        return v.featured_image.position == imageIdx;
-      }
-      return false;
-    });
+    var variant = this._getVariantBySlideIndex(nextSlide);
 
     if (!variant) { return false; }
 
@@ -330,6 +337,32 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 
   },
 
+  _getSlideIndexForVariant: function($slider, variant) {
+      var index;
+      var $slides = $slider.$sliderThumbs.find('.slick-slide:not(.slick-cloned)');
+      $slides.each(function(idx, slide){
+        // find image position in slider
+        if (!index && $(slide).find('img[data-id=' + variant.featured_image.id + ']').length > 0) {
+          index = idx;
+          return false;
+        }
+      });
+      return index;
+  },
+
+  _getVariantBySlideIndex: function(index) {
+    var $slider = theme.sliders[this.slider].$sliderThumbs;
+    var slide = $slider.find('.slick-slide:not(.slick-cloned)')[index];
+    var imageId, variant;
+    if (slide) {
+      imageId = $(slide).find('img:first').data('id');
+      variant = _.find(this.theProduct.variants, function(variant){
+        return variant.featured_image && variant.featured_image.id == imageId
+      });
+    }
+    return variant;
+  },
+
   _updatePrice: function(evt) {
     var variant = evt.variant;
     var variantPrice = theme.Currency.formatMoney(variant.price, backend.moneyFormat),
@@ -342,10 +375,12 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     if (isCurrencyEnabled) {
       $pricesRef = this.$container.find(".product-variant-prices-ref");
       inCurrency = $pricesRef.find("[data-variant-id=" + variant.id + "]").html();
-      // price|compare_at_price
-      inCurrencyParts = inCurrency.split("|");
-      variantPrice = inCurrencyParts[0];
-      compareAtPriceInCurrency = inCurrencyParts[1];
+      if (inCurrency) {
+        // price|compare_at_price
+        inCurrencyParts = inCurrency.split("|");
+        variantPrice = inCurrencyParts[0];
+        compareAtPriceInCurrency = inCurrencyParts[1];
+      }
     }
 
     // Update the product price
