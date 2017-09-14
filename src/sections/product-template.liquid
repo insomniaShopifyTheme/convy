@@ -4,9 +4,7 @@
 {% endif %}
 
 <style>
-  .product-info__description {
-    height: {{ section.settings.limit_description }};
-  }
+.product-info__description{height:{{ section.settings.limit_description }}}
 </style>
 
 {%- assign current_variant = product.selected_or_first_available_variant -%}
@@ -175,9 +173,7 @@
 </div>
 
 {% unless product.empty? %}
-  <script type="application/json" id="ProductJson-product_{{ product.id }}">
-    {{ product | json }}
-  </script>
+<script type="application/json" id="ProductJson-product_{{ product.id }}">{{ product | json }}</script>
 {% endunless %}
 
 {% schema %}
@@ -319,7 +315,7 @@
         "type": "checkbox",
         "id": "display_share_icons",
         "label": "Display share icons",
-        "default": true,
+        "default": false,
         "info": "Configure your social accounts at General Settings > Social media"
       },
       {
@@ -365,7 +361,7 @@
         "type": "checkbox",
         "id": "related_products",
         "label": "Display related products",
-        "default": true
+        "default": false
       },
       {
         "type": "text",
@@ -522,7 +518,7 @@
         "type": "checkbox",
         "id": "product_reviews",
         "label": "Display product reviews",
-        "default": true,
+        "default": false,
         "info": "If content tabs are disabled, product reviews will be displayed under the product description section. If tabs are enabled, product reviews will be inside the tab called Reviews."
       }
     ],

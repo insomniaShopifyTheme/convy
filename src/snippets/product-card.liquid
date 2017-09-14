@@ -104,17 +104,11 @@
     </form>
   {% endif %}
   {% unless product.empty? %}
-    <script type="application/json" id="ProductJson-product_{{ product.id }}">
-      {{ product | json }}
-    </script>
+    <script type="application/json" id="ProductJson-product_{{ product.id }}">{{ product | json }}</script>
     {% if has_variants %}
-      <script type="application/json" id="ProductImages-{{ product.id }}">
-        { "thumbs": [
-          {% for image in product.images %}
-            "{{ image.src | img_url: '400x400', crop: 'center' }}"{% if forloop.index < product.images.size %},{% endif %}
-          {% endfor %}
-        ]}
-      </script>
+      {% capture prod_thumbs %}{% for image in product.images -%}"{{ image.src | img_url: '400x400', crop: 'center' }}"{% if forloop.index < product.images.size %},{% endif %}{% endfor -%}
+      {% endcapture %}
+<script type="application/json" id="ProductImages-{{ product.id }}">{"thumbs":[{{prod_thumbs}}]}</script>
     {% endif %}
   {% endunless %}
 </div>

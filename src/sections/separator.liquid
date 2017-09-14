@@ -1,14 +1,5 @@
 <style>
-
-  #separator_{{ section.id }} {
-    background-color: {{ section.settings.color }};
-    height: {{ section.settings.height }};
-    {% if section.settings.no_margin %}
-      margin-bottom: 0;
-    {% endif %}
-  }
-
-
+#separator_{{ section.id }}{background-color:{{ section.settings.color }};height:{{ section.settings.height }};{% if section.settings.no_margin %}margin-bottom: 0;{% endif %}}
 </style>
 {% case section.settings.display %}
   {% when "mobile" %}

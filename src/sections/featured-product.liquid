@@ -16,7 +16,7 @@
     {% comment %}
       Used to replace currency when changing variants and it has a different price
     {% endcomment %}
-    <ul class="product-variant-prices-ref">
+    <ul class="product-variant-prices-ref hide">
       {% for _prod_var in product.variants %}
         {% if _prod_var.available %}
           <li data-variant-id="{{ _prod_var.id }}">{{ _prod_var.price | money }}|{{ _prod_var.compare_at_price | money }}</li>
