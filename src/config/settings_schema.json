@@ -157,6 +157,31 @@
         "info": "This animation appears when you add a product to the cart."
       },
       {
+        "type": "select",
+        "id": "cart_display_continue_shopping_btn",
+        "label": "Display Continue Shopping link",
+        "options": [
+          {
+            "value": "hidden",
+            "label": "Hidden"
+          },
+          {
+            "value": "drawer_popup",
+            "label": "On Drawer and Popup"
+          },
+          {
+            "value": "all",
+            "label": "On Drawer, Popup and page"
+          },
+          {
+            "value": "page",
+            "label": "Only on page"
+          }
+        ],
+        "default": "hidden"
+      },
+
+      {
         "type": "header",
         "content": "'Add to cart' sticky bar (Desktop version)"
       },

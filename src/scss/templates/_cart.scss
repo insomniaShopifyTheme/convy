@@ -111,7 +111,7 @@ $cart-secondary-color: $color-pale;
   }
 }
 .cart-summary {
-  margin: $gutter;
+  margin: $gutter $gutter 15px $gutter;
   .grid--full {
     border-bottom: 1px solid $color-border;
     padding: 0 10px;
@@ -135,6 +135,19 @@ $cart-secondary-color: $color-pale;
     font-size: 14px;
   }
 }
+
+.cart-continue-shopping{
+  padding: 0;
+  text-align: center;
+  font-size: 17px;
+  a{
+    padding: 0;
+    color: $success-green;
+    padding: 10px 0px;
+    text-decoration: underline;
+  }
+}
+
 .cart__update {
   text-align: center;
   button {
@@ -158,7 +171,7 @@ $cart-secondary-color: $color-pale;
   padding: 20px;
 }
 .cart-shipping-notice {
-  margin: 0 0 $gutter;
+  margin: 0 0 5px;
   label {
     color: $cart-secondary-color;
   }
@@ -260,8 +273,8 @@ $cart-secondary-color: $color-pale;
     box-shadow: -28px -10px 20px -8px rgba(0, 0, 0, 0.38);
     position: fixed;
     content: '';
-    height: 34px;
-    bottom: 156px;
+    height: 35px;
+    top: 439px;
     width: 135%;
     background: #fff;
     display: none;
@@ -325,6 +338,9 @@ $cart-secondary-color: $color-pale;
     .overflow-wrapper{
       height: 200px;
       overflow-y: auto;
+    }
+    .overflow-wrapper.more::after, .overflow-wrapper::after {
+      top: 269px;
     }
     .overflow-wrapper::after{
       display: block;
