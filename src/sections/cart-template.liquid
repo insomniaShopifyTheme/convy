@@ -104,9 +104,9 @@
                 <span class="icon icon-refresh" aria-hidden="true"></span> {{ 'cart.general.update' | t }}
               </button>
             </div>
-            {% endraw %}{% if settings.cart_display_continue_shopping_btn == "page" or settings.cart_display_continue_shopping_btn == "all" %}{% raw %}
-            <p class="cart-continue-shopping"><a href="javascript: window.history.back();"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Continue Shopping</a></p>
-            {% endraw %}{% endif %}{% raw %}
+            {% if settings.cart_display_continue_shopping_btn == "page" or settings.cart_display_continue_shopping_btn == "all" %}
+              <p class="cart-continue-shopping"><a href="javascript: window.history.back();"><i class="fa fa-long-arrow-left" aria-hidden="true"></i> Continue Shopping</a></p>
+            {% endif %}
 
             <button type="submit" name="checkout" class="btn btn--special btn--full cart__checkout-btn">{{ 'cart.general.checkout' | t }}</button>
             <p class="cart-shipping-notice medium-down--hide"><em>{{ 'cart.general.shipping_at_checkout' | t }}</em></p>

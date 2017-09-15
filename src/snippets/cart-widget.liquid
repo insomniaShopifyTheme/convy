@@ -86,26 +86,25 @@
           {{{totalPrice}}}
         </div>
       </div>
-      <p class="cart-shipping-notice"><em>{% endraw %}{{ 'cart.general.shipping_at_checkout' | t }}{% raw %}</em></p>
-      {% endraw %}{% if settings.cart_display_continue_shopping_btn == "drawer_popup" or settings.cart_display_continue_shopping_btn == "all" %}{% raw %}
-      <p class="cart-continue-shopping"><a href="javascript: window.history.back(); ">Continue Shopping</a></p>
-      {% endraw %}{% endif %}{% raw %}
+      <p class="cart-shipping-notice"><em>{% endraw %}{{ 'cart.general.shipping_at_checkout' | t }}</em></p>
+      {% if settings.cart_display_continue_shopping_btn == "drawer_popup" or settings.cart_display_continue_shopping_btn == "all" %}
+        <p class="cart-continue-shopping">
+          <a class="js-modal-close" href="javascript: theme.closeCartDrawer(); ">Continue Shopping</a>
+        </p>
+      {% endif %}
     </div>
     <button type="submit" class="btn btn--special btn--full cart__checkout-btn" name="checkout">
-      {% endraw %}{{ 'cart.general.checkout' | t }}{% raw %}
+      {{ 'cart.general.checkout' | t }}
     </button>
 
-    {% endraw %}
       {% if additional_checkout_buttons %}
       <div class="additional-checkout-buttons">
         <p>OR</p>
         {{ content_for_additional_checkout_buttons }}
       </div>
       {% endif %}
-    {% raw %}
 
   </form>
-  {% endraw %}
 </script>
 <script id="AjaxQty" type="text/template">
   {% raw %}
