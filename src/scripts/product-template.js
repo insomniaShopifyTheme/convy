@@ -200,10 +200,10 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
         $stickyBtn.addClass('stuck');
       }else{
         this._trackScrolling();
+        $(document).on('scroll.track-add-to-cart-btn', this._trackScrolling.bind(this));
+        $(document).on('touchmove.track-add-to-cart-btn', this._trackScrolling.bind(this));
       }
       $(this.selectors.stickyCartButton).on('click', this._submitCartForm.bind(this));
-      $(document).on('touchmove.track-add-to-cart-btn', this._trackScrolling.bind(this));
-      $(document).on('scroll.track-add-to-cart-btn', this._trackScrolling.bind(this));
     }
   },
 
@@ -700,6 +700,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 
         if($countDownOffer.parents('.product-form__cart--sticky').length == 1){
           $countDownOffer.parents('.product-form__cart--sticky')
+              .addClass('w-countdown')
               .find(this.selectors.countDownOffer)
               .css('margin-top', '-20px');
         }
@@ -710,7 +711,8 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
         countDownOfferTimer(toDateSplittedStr, productId, $('.countdown-offer-clock .countdown-clock'))
 
       }else{
-        _cookie.remove('endDate'+ productId);
+        $countDownOffer.parents('.product-form__cart--sticky').removeClass('w-countdown');
+        _cookie.remove("konversion-countdown-"+ productId);
       }
     }
   },
