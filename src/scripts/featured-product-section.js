@@ -104,15 +104,32 @@ theme.FeaturedProductSection.prototype = _.extend({}, theme.FeaturedProductSecti
 
   _updatePrice: function(evt) {
     var variant = evt.variant;
+    var variantPrice = theme.Currency.formatMoney(variant.price, backend.moneyFormat),
+        $pricesRef,
+        $inCurrency,
+        compareAtPriceInCurrency;
+
+    // Convert currency when price is changed after changing variant
+    var isCurrencyEnabled = (new String("{{settings.show_multiple_currencies}}")) == "true";
+    if (isCurrencyEnabled) {
+      $pricesRef = this.$container.find(".product-variant-prices-ref");
+      inCurrency = $pricesRef.find("[data-variant-id=" + variant.id + "]").html();
+      // price|compare_at_price
+      inCurrencyParts = inCurrency.split("|");
+      variantPrice = inCurrencyParts[0];
+      compareAtPriceInCurrency = inCurrencyParts[1];
+    }
 
     // Update the product price
-    this.$container.find(this.selectors.originalPrice).html(theme.Currency.formatMoney(variant.price, backend.moneyFormat));
+    this.$container.find(this.selectors.originalPrice).html(variantPrice);
 
     // Update and show the product's compare price if necessary
     if (variant.compare_at_price > variant.price) {
       var discountPercent = Math.round((variant.compare_at_price - variant.price) * 100 / variant.compare_at_price);
-      this.$container.find(this.selectors.comparePrice)
-        .html(theme.Currency.formatMoney(variant.compare_at_price, backend.moneyFormat));
+      if (!compareAtPriceInCurrency) {
+        compareAtPriceInCurrency = theme.Currency.formatMoney(variant.compare_at_price, backend.moneyFormat);
+      }
+      this.$container.find(this.selectors.comparePrice).html(compareAtPriceInCurrency);
       this.$container.find(this.selectors.discountPercent).html('-' + discountPercent + '%');
       this.$container.find(this.selectors.salePriceWrapper).removeClass('hide');
     } else {

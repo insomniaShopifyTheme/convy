@@ -7,43 +7,18 @@
       {% for block in section.blocks %}
         <div class="slideshow__slide slideshow__slide--{{ block.id }}" {{ block.shopify_attributes }}>
           {% if block.settings.image != blank %}
-            <style>
-              .slideshow__image--{{ block.id }} {
-                background-position: center {{ block.settings.alignment }};
-              }
-
-              @media screen and (max-width: 400px) {
-                .slideshow__image--{{ block.id }} {
-                  background-image: url('{{ block.settings.image | img_url: '800x' }}');
-                }
-              }
-
-              @media screen and (min-width: 401px) and (max-width: 800px) {
-                .slideshow__image--{{ block.id }} {
-                  background-image: url('{{ block.settings.image | img_url: '1000x' }}');
-                }
-              }
-
-              @media screen and (min-width: 801px) and (max-width: 1000px) {
-                .slideshow__image--{{ block.id }} {
-                  background-image: url('{{ block.settings.image | img_url: '1200x' }}');
-                }
-              }
-
-              @media screen and (min-width: 1001px) {
-                .slideshow__image--{{ block.id }} {
-                  background-image: url('{{ block.settings.image | img_url: '2000x' }}');
-                }
-              }
-            </style>
+<style>
+.slideshow__image--{{ block.id }}{background-position: center {{ block.settings.alignment }}}
+@media screen and (max-width: 400px){.slideshow__image--{{ block.id }}{background-image:url('{{ block.settings.image | img_url: '800x' }}')}}
+@media screen and (min-width: 401px) and (max-width: 800px){.slideshow__image--{{ block.id }}{background-image:url('{{ block.settings.image | img_url: '1000x' }}')}}
+@media screen and (min-width: 801px) and (max-width: 1000px){.slideshow__image--{{ block.id }}{background-image:url('{{ block.settings.image | img_url: '1200x' }}')}}
+@media screen and (min-width: 1001px){.slideshow__image--{{ block.id }}{background-image:url('{{ block.settings.image | img_url: '2000x' }}')}}
+</style>
           {% else %}
             {% capture demo_slide_image %}{% cycle 'demo-slide-1.svg', 'demo-slide-2.svg' %}{% endcapture %}
-            <style>
-              .slideshow__image--{{ block.id }} {
-                background-image: url('{{ demo_slide_image | asset_url }}');
-                background-position: center {{ block.settings.alignment }};
-              }
-            </style>
+<style>
+.slideshow__image--{{ block.id }}{background-image: url('{{ demo_slide_image | asset_url }}');background-position: center {{ block.settings.alignment }}}
+</style>
           {% endif %}
 
           <div class="slideshow__image slideshow__image--{{ block.id }}">
@@ -52,43 +27,15 @@
           </div>
 
           {% if block.settings.title != blank or block.settings.text != blank %}
-            <style>
-              .slideshow__slide--{{ block.id }} .slideshow__title {
-                color: {{ block.settings.color_title }};
-                text-align: {{ block.settings.text_alignment }}!important;
-              }
-              .slideshow__slide--{{ block.id }} .slideshow__subtitle {
-                color: {{ block.settings.color_subtitle }};
-                text-align: {{ block.settings.text_alignment }}!important;
-              }
-              .slideshow__slide--{{ block.id }} .slideshow__content {
-                color: {{ block.settings.color_text }};
-                text-align: {{ block.settings.text_alignment }}!important;
-              }
-              .slideshow__slide--{{ block.id }} .slideshow__buttons {
-                text-align: {{ block.settings.text_alignment }}!important;
-              }
-              .slideshow__slide--{{ block.id }} .slideshow__button:hover,
-              .slideshow__slide--{{ block.id }} .slideshow__button:active,
-              .slideshow__slide--{{ block.id }} .slideshow__button:focus,
-              .slideshow__slide--{{ block.id }} .slideshow__button {
-                color: {{ block.settings.primary_button_text_color }};
-                border-color: {{ block.settings.primary_button_border_color }};
-                background-color: {{ block.settings.primary_button_bg_color }};
-              }
-              .slideshow__slide--{{ block.id }} .slideshow__button--secondary:hover,
-              .slideshow__slide--{{ block.id }} .slideshow__button--secondary:active,
-              .slideshow__slide--{{ block.id }} .slideshow__button--secondary:focus,
-              .slideshow__slide--{{ block.id }} .slideshow__button--secondary {
-                color: {{ block.settings.secondary_button_text_color }};
-                border-color: {{ block.settings.secondary_button_border_color }};
-                background-color: {{ block.settings.secondary_button_bg_color }};
-              }
-              .slideshow__slide--{{ block.id }} .slideshow__overlay::before {
-                background-color: {{ block.settings.color_image_overlay }};
-                opacity: {{ block.settings.image_overlay_opacity }};
-              }
-            </style>
+<style>
+.slideshow__slide--{{ block.id }} .slideshow__title{color:{{ block.settings.color_title }};text-align:{{ block.settings.text_alignment }} !important}
+.slideshow__slide--{{ block.id }} .slideshow__subtitle{color:{{ block.settings.color_subtitle }};text-align:{{ block.settings.text_alignment }} !important}
+.slideshow__slide--{{ block.id }} .slideshow__content{color:{{ block.settings.color_text }};text-align:{{ block.settings.text_alignment }} !important}
+.slideshow__slide--{{ block.id }} .slideshow__buttons{text-align:{{ block.settings.text_alignment }} !important}
+.slideshow__slide--{{ block.id }} .slideshow__button:hover,.slideshow__slide--{{ block.id }} .slideshow__button:active,.slideshow__slide--{{ block.id }} .slideshow__button:focus,.slideshow__slide--{{ block.id }} .slideshow__button {color:{{ block.settings.primary_button_text_color }};border-color:{{ block.settings.primary_button_border_color }};background-color:{{ block.settings.primary_button_bg_color }}}
+.slideshow__slide--{{ block.id }} .slideshow__button--secondary:hover,.slideshow__slide--{{ block.id }} .slideshow__button--secondary:active,.slideshow__slide--{{ block.id }} .slideshow__button--secondary:focus,.slideshow__slide--{{ block.id }} .slideshow__button--secondary {color:{{ block.settings.secondary_button_text_color }};border-color:{{ block.settings.secondary_button_border_color }};background-color:{{ block.settings.secondary_button_bg_color }}}
+.slideshow__slide--{{ block.id }} .slideshow__overlay::before{background-color:{{ block.settings.color_image_overlay }};opacity:{{ block.settings.image_overlay_opacity }}}
+</style>
           {% endif %}
 
           {% case block.settings.text_location %}
@@ -323,7 +270,7 @@
             "type": "text",
             "id": "title",
             "label": "Heading",
-            "default": "<p>Slide Heading</p>"
+            "default": "Slide Heading"
           },
           {
             "type": "richtext",

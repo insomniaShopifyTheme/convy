@@ -1,9 +1,5 @@
 <style>
-  .section-footer {
-    background-color: {{ section.settings.color_bg }};
-  }
-
-
+.section-footer {background-color:{{ section.settings.color_bg }}}
   {% if section.settings.footer_width_size == 'normal' %}
     {% assign footer_container_size = '1024px' %}
   {% elsif section.settings.footer_width_size == 'large' %}
@@ -13,35 +9,14 @@
   {% elsif section.settings.footer_width_size == 'full' %}
     {% assign footer_container_size = '100%' %}
   {% endif %}
-
-  .section-footer .section-footer__container{
-    max-width: {{ footer_container_size }};
-  }
-
-  .section-footer .footer-col__title {
-    color: {{ section.settings.color_headings }};
-  }
-  .section-footer .footer-col__content,
-  .section-footer .newsletter-form {
-    color: {{ section.settings.color_text }};
-  }
-  .section-footer .footer-col__content a:not(.btn) {
-    color: {{ section.settings.color_links }};
-  }
-  .section-footer .footer-col__linklist-item a {
-    color: {{ section.settings.color_menu_items }};
-  }
-  .section-footer .btn {
-    background-color: {{ section.settings.color_button_bg }};
-    border-color: {{ section.settings.color_button_border }};
-    color: {{ section.settings.color_button_text }};
-  }
-  .section-footer .sub-footer {
-    background-color: {{ section.settings.color_social_bg }};
-  }
-  .section-footer .social-icons li a {
-    color: {{ section.settings.color_social_icons }};
-  }
+.section-footer .section-footer__container{max-width:{{ footer_container_size }}}
+.section-footer .footer-col__title{color:{{ section.settings.color_headings }}}
+.section-footer .footer-col__content, .section-footer .newsletter-form{color:{{ section.settings.color_text }}}
+.section-footer .footer-col__content a:not(.btn){color:{{ section.settings.color_links }}}
+.section-footer .footer-col__linklist-item a{color:{{ section.settings.color_menu_items }}}
+.section-footer .btn{background-color:{{ section.settings.color_button_bg }};border-color:{{ section.settings.color_button_border }};color:{{ section.settings.color_button_text }}}
+.section-footer .sub-footer{background-color:{{ section.settings.color_social_bg }}}
+.section-footer .social-icons li a{color:{{ section.settings.color_social_icons }}}
 </style>
 
 {%- assign desktop_cols = 0 -%}

@@ -1,28 +1,19 @@
 <style>
-  {% if section.settings.switch_account_search_position %}
-  .section-header .header-search__wrapper{
-    float: right!important;
-  }
-  .section-header .user-account{
-    float: left!important;
-  }
-  {% endif %}
-
-  .section-header .with-menu-word::before{
-    content: '{{ section.settings.menu_word_mobile }}' !important;
-  }
-
-  @media screen and (min-width: 1024px) {
-    .section-header__logo-link img {
-      margin-top: {{ section.settings.logo_margin }}rem;
-    }
-  }
-
-  .section-header__logo-link.mobile-logo img {
-    margin-top: {{ section.settings.logo_margin_mobile }}rem;
-  }
-
+{% if section.settings.switch_account_search_position %}
+.section-header .header-search__wrapper{float: right!important}
+.section-header .user-account{float: left!important}
+{% endif %}
+.section-header .with-menu-word::before{content: '{{ section.settings.menu_word_mobile }}' !important}
+@media screen and (min-width: 1024px){.section-header__logo-link img {margin-top:{{ section.settings.logo_margin }}rem}}
+.section-header__logo-link.mobile-logo img{margin-top:{{ section.settings.logo_margin_mobile }}rem}
 </style>
+
+{% if section.settings.logo_image != blank %}
+  {%- assign custom_logo = true -%}
+{% endif %}
+{% if section.settings.logo_image_mobile != blank %}
+  {%- assign custom_mobile_logo = true -%}
+{% endif %}
 
 {% assign menu_type = section.settings.menu_type %}
 <div class="grid--full section-header__wrapper" data-section-id="{{ section.id }}" data-section-type="header-section" data-menu-type="{{ menu_type }}" {% if menu_type == "product-menu"%}id="cbp-hsmenu-wrapper"{% endif %}>
@@ -39,28 +30,26 @@
   </div>
   <div class="grid__item medium-down--eight-twelfths logo-cell">
     {% if template == 'index' %}
-      <h1 class="section-header__logo{% if section.settings.logo_use_image %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
+      <h1 class="section-header__logo{% if custom_logo %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
     {% else %}
-      <div class="h1 section-header__logo{% if section.settings.logo_use_image %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
+      <div class="h1 section-header__logo{% if custom_logo %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
     {% endif %}
-      {% if section.settings.logo_use_image %}
-        <a href="/" class="section-header__logo-link {% if section.settings.logo_use_mobile_image %}medium-down--hide{% endif %} ">
-          {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
-          <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+    {% if custom_logo %}
+      <a href="/" class="section-header__logo-link {% if custom_mobile_logo %}medium-down--hide{% endif %} ">
+        {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
+        <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+      </a>
+      {% if custom_mobile_logo %}
+        <a href="/" class="section-header__logo-link mobile-logo large--hide">
+          {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
+          <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
         </a>
-        {% if section.settings.logo_use_mobile_image %}
-          <a href="/" class="section-header__logo-link mobile-logo large--hide">
-            {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
-            <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-          </a>
-        {% endif %}
-
-
-      {% elsif section.settings.logo_text != blank %}
-        <a href="/" itemprop="name">{{ section.settings.logo_text | truncate: 18, "" }}</a>
-      {% else %}
-        <a href="/" itemprop="name">{{ shop.name | truncate: 18, "" }}</a>
       {% endif %}
+    {% elsif section.settings.logo_text != blank %}
+      <a href="/" itemprop="name">{{ section.settings.logo_text | truncate: 18, "" }}</a>
+    {% else %}
+      <a href="/" itemprop="name">{{ shop.name | truncate: 18, "" }}</a>
+    {% endif %}
     {% unless template == 'index' %}
       </div>
     {% else %}
@@ -160,14 +149,9 @@
         "info": "Shop name by default. Limited to 18 characters"
       },
       {
-        "type": "checkbox",
-        "id": "logo_use_image",
-        "label": "Use custom logo"
-      },
-      {
         "type": "image_picker",
         "id": "logo_image",
-        "label": "Image file",
+        "label": "Use custom logo",
         "info": "If your logo is more vertical than horizontal, you might want to change the header height from standard to tall in General Settings > Layout > Header"
       },
       {
@@ -195,14 +179,9 @@
         "content": "Logo (Mobile)"
       },
       {
-        "type": "checkbox",
-        "id": "logo_use_mobile_image",
-        "label": "Use custom logo on mobile"
-      },
-      {
         "type": "image_picker",
         "id": "logo_image_mobile",
-        "label": "Image file"
+        "label": "Use custom logo on mobile"
       },
       {
         "type":      "range",

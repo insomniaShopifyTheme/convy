@@ -10,28 +10,18 @@
 {%- assign body_padding_mobile = topbar_height | plus: header_height_mobile -%}
 {%- assign body_padding = topbar_height | plus: header_height -%}
 <style>
-  {% if section.settings.display == "mobile" or section.settings.display == "all"  %}
-    @media screen and (max-width: 1023px) {
-      body.fixed-header--all .main-content,
-      body.fixed-header--mobile .main-content {
-        padding-top: {{ body_padding_mobile }}px;
-      }
-      .product-add-to-cart-bar {
-        top: {{ body_padding_mobile }}px;
-      }
-    }
-  {% endif %}
-  {% if section.settings.display == "desktop" or section.settings.display == "all"  %}
-    @media screen and (min-width: 1024px) {
-      body.fixed-header--all .main-content,
-      body.fixed-header--desktop .main-content {
-        padding-top: {{ body_padding }}px;
-      }
-      .product-add-to-cart-bar {
-        top: {{ body_padding }}px;
-      }
-    }
-  {% endif %}
+{% if section.settings.display == "mobile" or section.settings.display == "all"  %}
+@media screen and (max-width: 1023px) {
+body.fixed-header--all .main-content,body.fixed-header--mobile .main-content{padding-top:{{ body_padding_mobile }}px}
+.product-add-to-cart-bar{top:{{ body_padding_mobile }}px}
+}
+{% endif %}
+{% if section.settings.display == "desktop" or section.settings.display == "all"  %}
+@media screen and (min-width: 1024px) {
+body.fixed-header--all .main-content,body.fixed-header--desktop .main-content{padding-top:{{ body_padding }}px}
+.product-add-to-cart-bar{top:{{ body_padding }}px}
+}
+{% endif %}
 </style>
 
 {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button  %}
@@ -47,21 +37,10 @@
 {% endif %}
 
 <style>
-  .section-topbar {
-    background-color: {{ section.settings.color_bg }};
-  }
-  .section-topbar .section-topbar__message {
-    color: {{ section.settings.color_text }};
-  }
-  .section-topbar .section-topbar__message .section-topbar__message-link,
-  .section-topbar .section-topbar__message .section-topbar__message--phone {
-    color: {{ section.settings.color_text }};
-  }
-  .section-topbar .btn.section-topbar__button {
-    color: {{ section.settings.color_button_text }};
-    background-color: {{ section.settings.color_button_bg }};
-    border-color: {{ section.settings.color_button_border }};
-  }
+.section-topbar{background-color:{{ section.settings.color_bg }}}
+.section-topbar .section-topbar__message{color:{{ section.settings.color_text }}}
+.section-topbar .section-topbar__message .section-topbar__message-link,.section-topbar .section-topbar__message .section-topbar__message--phone{color:{{ section.settings.color_text }}}
+.section-topbar .btn.section-topbar__button{color:{{ section.settings.color_button_text }};background-color:{{ section.settings.color_button_bg }};border-color:{{ section.settings.color_button_border }}}
 </style>
 {% if section.settings.message_text != blank or section.settings.message_link_text != blank %}
   {%- assign has_announcement = true -%}

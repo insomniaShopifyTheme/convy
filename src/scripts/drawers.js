@@ -35,6 +35,11 @@ theme.Drawers = (function () {
   Drawer.prototype.init = function () {
     $(this.config.open).on('click', $.proxy(this.open, this));
     this.$drawer.find(this.config.close).on('click', $.proxy(this.close, this));
+    // public API for closing the drawer
+    var _self = this;
+    theme.closeCartDrawer = function() {
+      _self.close();
+    };
   };
 
   Drawer.prototype.open = function (evt) {

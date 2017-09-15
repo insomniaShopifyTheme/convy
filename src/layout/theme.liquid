@@ -39,20 +39,11 @@
 
   <meta name="theme-color" content="{{ settings.color_primary }}">
 
-  {% include 'google-fonts' %}
+<script>
+var backend={strings:{addToCart:{{ 'products.product.add_to_cart' | t | json }},soldOut:{{ 'products.product.sold_out' | t | json }},unavailable:{{ 'products.product.unavailable' | t | json }}},moneyFormat:{{ shop.money_format | json }},currencyName:'{{ shop.currency}}',shopUrl: '{{ shop.url }}'}
+</script>
 
-  <script>
-    var backend = {
-      strings: {
-        addToCart: {{ 'products.product.add_to_cart' | t | json }},
-        soldOut: {{ 'products.product.sold_out' | t | json }},
-        unavailable: {{ 'products.product.unavailable' | t | json }},
-      },
-      moneyFormat: {{ shop.money_format | json }},
-      currencyName: '{{ shop.currency}}',
-      shopUrl: '{{ shop.url }}'
-    }
-  </script>
+  {% include 'google-fonts' %}
 
   <!-- CSS ================================================== -->
   {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
@@ -113,13 +104,7 @@
   {% comment %}
     Template-specific js
   {% endcomment %}
-  <script>
-    {% if resetPassword %}
-      $(function() {
-        theme.resetPasswordSuccess();
-      });
-    {% endif %}
-  </script>
+<script>{% if resetPassword %}$(function(){theme.resetPasswordSuccess();});{% endif %}</script>
 
   {% comment %}
     Ajaxify your cart with this plugin.
@@ -129,23 +114,10 @@
   {{ 'handlebars.min.js' | asset_url | script_tag }}
   {% include 'cart-widget' %}
   {{ 'ajax-cart.js' | asset_url | script_tag }}
-  <script>
-    jQuery(function($) {
-      ajaxCart.init({
-        formSelector: '.product-form',
-        cartContainer: '#CartContainer',
-        addToCartSelector: '.product-form__cart-submit',
-        cartCountSelector: '#CartIcon .js-cart-count',
-        cartCostSelector: '#CartCost',
-        moneyFormat: {{ shop.money_format | json }}
-      });
-    });
-
-    jQuery(document.body).on('afterCartLoad.ajaxCart', function(evt, cart) {
-      // Bind to 'afterCartLoad.ajaxCart' to run any javascript after the cart has loaded in the DOM
-      theme.RightDrawer.open();
-    });
-  </script>
+<script>
+jQuery(function($){ajaxCart.init({formSelector:'.product-form',cartContainer:'#CartContainer',addToCartSelector:'.product-form__cart-submit',cartCountSelector:'#CartIcon .js-cart-count',cartCostSelector:'#CartCost',moneyFormat:{{ shop.money_format | json }}});});
+jQuery(document.body).on('afterCartLoad.ajaxCart',function(evt,cart){theme.RightDrawer.open();});
+</script>
 
   {% include 'currencies' %}
 

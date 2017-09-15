@@ -8,8 +8,13 @@
   {% if block_collection.handle == collection.handle or block.settings.collection == blank and collection.handle == 'all' %}
     <style>
       .collection-banner--{{ block.id }} {
-        background-image: url('{{ block.settings.image | img_url: '2000x' }}');
+        background-image: url('{{ block.settings.image | img_url: '1024x' }}');
         background-position: center {{ block.settings.alignment }};
+      }
+      @media screen and (min-width: 1024px) {
+        .collection-banner--{{ block.id }} {
+          background-image: url('{{ block.settings.image | img_url: '2000x' }}');
+        }
       }
       .collection-banner--{{ block.id }}:after {
         {% case block.settings.gradient_color %}
@@ -42,7 +47,13 @@
         color: {{ block.settings.color_text }};
       }
     </style>
-    <div class="collection-banner collection-banner--{{ block.settings.image_height }} collection-banner--{{ block.id }} medium-down--hide">
+    {% case block.settings.display %}
+      {% when "mobile" %}
+        {%- assign visibility_classes = "large--hide" -%}
+      {% when "desktop" %}
+        {%- assign visibility_classes = "medium-down--hide" -%}
+    {% endcase %}
+    <div class="collection-banner collection-banner--{{ block.settings.image_height }} collection-banner--{{ block.id }} {{ visibility_classes }}">
       {% if block.settings.title != blank or block.settings.text != blank %}
         <div class="collection-banner__content">
           <div class="page-width--large">
@@ -593,8 +604,18 @@
           {
             "type": "image_picker",
             "id": "image",
-            "label": "Image",
-            "info": "Recommended size 2000x1200 px"
+            "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "display",
+            "label": "Display",
+            "default": "desktop",
+            "options": [
+              {"value": "desktop", "label": "Desktop only"},
+              {"value": "all", "label": "Desktop & Mobile"},
+              {"value": "mobile", "label": "Mobile only"}
+            ]
           },
           {
             "type": "text",

@@ -4,12 +4,9 @@
   {%- assign share_url = shop.secure_url -%}
 {% endif %}
 {% if section.settings.show_facebook_share_button or section.settings.show_facebook_like_button %}
-  <style>
-    .facebook-buttons__wrapper{
-      text-align: {{ section.settings.facebook_buttons_position }} !important;
-      float: {{ section.settings.facebook_buttons_position }} !important;
-    }
-  </style>
+<style>
+.facebook-buttons__wrapper{text-align:{{ section.settings.facebook_buttons_position }} !important;float:{{ section.settings.facebook_buttons_position }} !important}
+</style>
   <div class="facebook-buttons__wrapper">
     {% if section.settings.show_facebook_share_button %}
       <div class="fb-share-button"

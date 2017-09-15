@@ -44,7 +44,7 @@
     "header_height": "standard",
     "product_card_title_style": "1_row",
     "margin_on_mobile": false,
-    "product_card_height": "360px",
+    "product_card_height": "255px",
     "password_page_title": "",
     "custom_scripts": "",
     "modal_type": "disable",
@@ -123,8 +123,8 @@
           "social_icons": true,
           "facebook_buttons_position": "left",
           "facebook_page_link": "",
-          "show_facebook_like_button": true,
-          "show_facebook_share_button": true,
+          "show_facebook_like_button": false,
+          "show_facebook_share_button": false,
           "message_text": "SITEWIDE ANNOUNCEMENT",
           "is_phone_number": false,
           "message_link_text": "SHOP NOW",
@@ -140,11 +140,9 @@
         "type": "header",
         "settings": {
           "logo_text": "",
-          "logo_use_image": false,
           "logo_image": "",
           "logo_max_width_desktop": 200,
           "logo_margin": 0,
-          "logo_use_mobile_image": false,
           "logo_image_mobile": "",
           "logo_max_width_mobile": 200,
           "logo_margin_mobile": 0,
@@ -205,33 +203,6 @@
               "color_image_overlay": "#000000",
               "primary_button_border_color": "rgba(0,0,0,0)",
               "primary_button_bg_color": "#0ecd69",
-              "primary_button_text_color": "#fff",
-              "secondary_button_border_color": "#fff",
-              "secondary_button_bg_color": "transparent",
-              "secondary_button_text_color": "#fff"
-            }
-          },
-          "1496645688611-1": {
-            "type": "image",
-            "settings": {
-              "image": "",
-              "title": "Slide Heading",
-              "subtitle": "<p>Tell your brand's story through video and images<\/p>",
-              "text": "<p><\/p>",
-              "primary_button_label": "",
-              "primary_button_link": "",
-              "secondary_button_label": "",
-              "secondary_button_link": "",
-              "alignment": "center",
-              "text_location": "center",
-              "text_alignment": "center",
-              "color_title": "#fff",
-              "color_subtitle": "#fff",
-              "color_text": "#fff",
-              "image_overlay_opacity": "0.25",
-              "color_image_overlay": "#000000",
-              "primary_button_border_color": "#fff",
-              "primary_button_bg_color": "transparent",
               "primary_button_text_color": "#fff",
               "secondary_button_border_color": "#fff",
               "secondary_button_bg_color": "transparent",
@@ -331,45 +302,6 @@
           "color": "#41cd62",
           "height": "15px",
           "no_margin": false
-        }
-      },
-      "1497966686972": {
-        "type": "logos",
-        "blocks": {
-          "1497966686972-0": {
-            "type": "logo_image",
-            "settings": {
-              "image": ""
-            }
-          },
-          "1497966686972-1": {
-            "type": "logo_image",
-            "settings": {
-              "image": ""
-            }
-          },
-          "1497966686972-2": {
-            "type": "logo_image",
-            "settings": {
-              "image": ""
-            }
-          },
-          "1497966686972-3": {
-            "type": "logo_image",
-            "settings": {
-              "image": ""
-            }
-          }
-        },
-        "block_order": [
-          "1497966686972-0",
-          "1497966686972-1",
-          "1497966686972-2",
-          "1497966686972-3"
-        ],
-        "settings": {
-          "title": "",
-          "invert_logo_color": false
         }
       },
       "1497967594955": {
