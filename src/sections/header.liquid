@@ -28,33 +28,93 @@
     </div>
 
   </div>
+
   <div class="grid__item medium-down--eight-twelfths logo-cell">
     {% if template == 'index' %}
-      <h1 class="section-header__logo{% if custom_logo %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
-    {% else %}
-      <div class="h1 section-header__logo{% if custom_logo %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
-    {% endif %}
-    {% if custom_logo %}
-      <a href="/" class="section-header__logo-link {% if custom_mobile_logo %}medium-down--hide{% endif %} ">
-        {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
-        <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-      </a>
-      {% if custom_mobile_logo %}
-        <a href="/" class="section-header__logo-link mobile-logo large--hide">
-          {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
-          <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-        </a>
+      {% if custom_logo and custom_mobile_logo == blank %}
+        <h1 class="section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          <a href="/" class="section-header__logo-link" >
+            {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
+            <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+          </a>
+        </h1>
+      {% elsif custom_mobile_logo and custom_logo == blank %}
+        <h1 class="section-header__logo medium-down--hide" itemscope itemtype="http://schema.org/Organization">
+          {% if section.settings.logo_text != blank %}
+            <a href="/" itemprop="name" >{{ section.settings.logo_text | truncate: 18, "" }}</a>
+          {% else %}
+            <a href="/" itemprop="name" >{{ shop.name | truncate: 18, "" }}</a>
+          {% endif %}
+        </h1>
+        <h1 class="section-header__logo large--hide section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          <a href="/" class="section-header__logo-link mobile-logo large--hide">
+            {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
+            <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+          </a>
+        </h1>
+      {% elsif custom_mobile_logo == blank and custom_logo == blank %}
+        <h1 class="section-header__logo" itemscope itemtype="http://schema.org/Organization">
+          {% if section.settings.logo_text != blank %}
+            <a href="/" itemprop="name" >{{ section.settings.logo_text | truncate: 18, "" }}</a>
+          {% else %}
+            <a href="/" itemprop="name" >{{ shop.name | truncate: 18, "" }}</a>
+          {% endif %}
+        </h1>
+      {% elsif custom_mobile_logo and custom_logo %}
+        <h1 class="section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          <a href="/" class="section-header__logo-link {% if custom_mobile_logo %}medium-down--hide{% endif %} ">
+            {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
+            <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+          </a>
+          <a href="/" class="section-header__logo-link mobile-logo large--hide">
+            {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
+            <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+          </a>
+        </h1>
       {% endif %}
-    {% elsif section.settings.logo_text != blank %}
-      <a href="/" itemprop="name">{{ section.settings.logo_text | truncate: 18, "" }}</a>
     {% else %}
-      <a href="/" itemprop="name">{{ shop.name | truncate: 18, "" }}</a>
+      {% if custom_logo and custom_mobile_logo == blank %}
+        <div class="h1 section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          <a href="/" class="section-header__logo-link" >
+            {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
+            <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+          </a>
+        </div>
+      {% elsif custom_mobile_logo and custom_logo == blank %}
+        <div class="h1 section-header__logo medium-down--hide" itemscope itemtype="http://schema.org/Organization">
+          {% if section.settings.logo_text != blank %}
+            <a href="/" itemprop="name" >{{ section.settings.logo_text | truncate: 18, "" }}</a>
+          {% else %}
+            <a href="/" itemprop="name" >{{ shop.name | truncate: 18, "" }}</a>
+          {% endif %}
+        </div>
+        <div class="h1 section-header__logo large--hide section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          <a href="/" class="section-header__logo-link mobile-logo large--hide">
+            {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
+            <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+          </a>
+        </div>
+      {% elsif custom_mobile_logo == blank and custom_logo == blank %}
+        <div class="h1 section-header__logo" itemscope itemtype="http://schema.org/Organization">
+          {% if section.settings.logo_text != blank %}
+            <a href="/" itemprop="name" >{{ section.settings.logo_text | truncate: 18, "" }}</a>
+          {% else %}
+            <a href="/" itemprop="name" >{{ shop.name | truncate: 18, "" }}</a>
+          {% endif %}
+        </div>
+      {% elsif custom_mobile_logo and custom_logo %}
+        <div class="h1 section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          <a href="/" class="section-header__logo-link {% if custom_mobile_logo %}medium-down--hide{% endif %} ">
+            {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
+            <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+          </a>
+          <a href="/" class="section-header__logo-link mobile-logo large--hide">
+            {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
+            <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+          </a>
+        </div>
+      {% endif %}
     {% endif %}
-    {% unless template == 'index' %}
-      </div>
-    {% else %}
-      </h1>
-    {% endunless %}
 
   </div>
   <div class="grid__item medium-down--hide menu-cell">
