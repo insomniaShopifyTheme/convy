@@ -2,6 +2,18 @@
 
 <div data-section-id="{{ section.id }}" data-section-type="collection-template">
 
+  <style>
+    .page-header{
+      text-align: {{ section.settings.collection_title_description_alignment }};
+    }
+    .page-header .page-header__title{
+      text-align: {{ section.settings.collection_title_description_alignment }};
+    }
+    .page-header .page-header__description{
+      text-align: {{ section.settings.collection_title_description_alignment }};
+    }
+  </style>
+
 {% for block in section.blocks %}
   {% if block.type == "banner" and block.settings.image != blank %}
   {%- assign block_collection = collections[block.settings.collection] -%}
@@ -46,6 +58,7 @@
       .collection-banner--{{ block.id }} .collection-banner__subtitle p {
         color: {{ block.settings.color_text }};
       }
+
     </style>
     {% case block.settings.display %}
       {% when "mobile" %}
@@ -80,8 +93,18 @@
     {% if section.settings.breadcrumbs %}
       {% include 'breadcrumb' %}
     {% endif %}
-    {% if section.settings.dispaly_title %}
-      <h2 class="page-header__title">{{ collection.title }}</h2>
+    {% if section.settings.display_title or section.settings.display_description %}
+        <div class="page-width--large">
+      {% if section.settings.display_title %}
+          <h2 class="page-header__title">{{ collection.title }}</h2>
+      {% endif %}
+      {% if section.settings.display_description %}
+          <p class="page-header__description">{{ collection.description }}</p>
+      {% endif %}
+      {% if section.settings.display_separator %}
+          <hr>
+      {% endif %}
+      </div>
     {% endif %}
   </header>
 
@@ -281,12 +304,6 @@
       },
       {
         "type": "checkbox",
-        "id": "dispaly_title",
-        "label": "Display page title",
-        "default": false
-      },
-      {
-        "type": "checkbox",
         "id": "dispaly_filters",
         "label": "Display tag filters",
         "default": true
@@ -323,6 +340,48 @@
           {"value": "top", "label": "Top Right"},
           {"value": "left", "label": "Left side"}
         ]
+      },
+      {
+        "type": "header",
+        "content": "Title & Description"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_title",
+        "label": "Display title",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "display_description",
+        "label": "Display description",
+        "default": false
+      },
+      {
+        "type": "select",
+        "id": "collection_title_description_alignment",
+        "label": "Title and description alignment",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "center",
+            "label": "Center"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "checkbox",
+        "id": "display_separator",
+        "label": "Display separator",
+        "default": false
       },
       {
         "type": "header",
