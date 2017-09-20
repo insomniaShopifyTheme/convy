@@ -113,8 +113,8 @@ theme.ProductPageSection = (function() {
       qty: '.variant-qty',
       inPageCartButton: '#' + sectionId + ' .product-form__cart',
       stickyBtnStart: '#' + sectionId + ' .js-sticky-btn-start',
-      stickyCartButton: 'body > .product-form__cart',
-      stickyCartButtonText: 'body > .product-form__cart button > span',
+      stickyCartButton: '#' + sectionId + ' .product-form__cart--sticky',
+      stickyCartButtonText: '#' + sectionId + ' .product-form__cart--sticky button > span',
       cartFormMobile: '#' + sectionId + ' .product-form--mobile',
       readMoreBtn: '.product-template .product-info__more',
       productDescription: '.product-template .product-info__description',
@@ -195,11 +195,11 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 
   _stickyCartBtn: function() {
     if ($(this.selectors.stickyCartButton).length > 0) {
-      if($('.product-template').data('lock-atc-btn') == true){
+      if($('.product-template').data('lock-atc-btn') === true){
         var $stickyBtn = $(this.selectors.stickyCartButton);
         $stickyBtn.addClass('stuck');
       }else{
-        this._trackScrolling();
+        //this._trackScrolling();
         $(document).on('scroll.track-add-to-cart-btn', this._trackScrolling.bind(this));
         $(document).on('touchmove.track-add-to-cart-btn', this._trackScrolling.bind(this));
       }
@@ -217,7 +217,8 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       var $stickyBtn = $(this.selectors.stickyCartButton);
       var startPosition = $(this.selectors.stickyBtnStart).position();
       var distanceYBottom = window.pageYOffset + theme.cache.$window.height();
-      var stickAt = distanceYBottom + 450;
+      var stickAt = distanceYBottom;
+
       if (startPosition.top <= stickAt) {
         $stickyBtn.addClass('stuck');
       } else {

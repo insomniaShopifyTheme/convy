@@ -145,12 +145,6 @@
       },
       {
         "type": "checkbox",
-        "id": "sticky_add_to_cart",
-        "label": "Enable a sticky Add to cart button (on mobile only)",
-        "default": false
-      },
-      {
-        "type": "checkbox",
         "id": "add_to_cart_float_animation",
         "label": "Enable floating image animation",
         "default": true,
@@ -179,36 +173,6 @@
           }
         ],
         "default": "hidden"
-      },
-
-      {
-        "type": "header",
-        "content": "'Add to cart' sticky bar (Desktop version)"
-      },
-      {
-        "type": "checkbox",
-        "id": "add_to_cart_bar_enabled",
-        "label": "Add to cart bar (on desktop only)",
-        "info": "Display the Add to cart bar on the product pages. This bar appears after customers scroll below the default Add to cart button on the product pages.",
-        "default": true
-      },
-      {
-        "type": "color",
-        "id": "add_to_cart_bar_background_color",
-        "label": "Background color",
-        "default": "#fff"
-      },
-      {
-        "type": "color",
-        "id": "add_to_cart_bar_text_color",
-        "label": "Product title color",
-        "default": "#000"
-      },
-      {
-        "type": "color",
-        "id": "add_to_cart_bar_price_color",
-        "label": "Price color",
-        "default": "#000"
       }
     ]
   },

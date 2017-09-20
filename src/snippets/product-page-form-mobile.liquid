@@ -1,3 +1,4 @@
+<div class="js-sticky-btn-start"></div>
 
 <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
   <meta itemprop="priceCurrency" content="{{ shop.currency }}">
@@ -95,12 +96,11 @@
       </div>
     {% endif %}
 
-    {% if settings.sticky_add_to_cart %}
+    {% if section.settings.sticky_add_to_cart %}
       {% comment %}
         Cart button is hidden in mobile version and sticky version used
         see snippets/cart-sticky-button.liquid
       {% endcomment %}
-      <div class="js-sticky-btn-start"></div>
     {% else %}
       <div class="product-form__cart">
         <button type="submit" name="add" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit" >

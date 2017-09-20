@@ -1,10 +1,10 @@
 <!-- Add to cart bar background and text color -->
 <style media="screen">
-.product-add-to-cart-bar,.product-add-to-cart-bar select,.product-add-to-cart-bar option{background:{{ settings.add_to_cart_bar_background_color }}}
-.product-add-to-cart-bar .product-title{color:{{ settings.add_to_cart_bar_text_color }}}
-.product-add-to-cart-bar .product-price{color:{{ settings.add_to_cart_bar_price_color }}}
-.product-add-to-cart-bar span.icon.icon-plus,.product-add-to-cart-bar span.icon.icon-minus{color:{{ settings.add_to_cart_bar_text_color }}}
-.product-add-to-cart-bar select,.product-add-to-cart-bar option{color:{{ settings.add_to_cart_bar_text_color }}}
+.product-add-to-cart-bar,.product-add-to-cart-bar select,.product-add-to-cart-bar option{background:{{ section.section.settings.add_to_cart_bar_background_color }}}
+.product-add-to-cart-bar .product-title{color:{{ section.settings.add_to_cart_bar_text_color }}}
+.product-add-to-cart-bar .product-price{color:{{ section.settings.add_to_cart_bar_price_color }}}
+.product-add-to-cart-bar span.icon.icon-plus,.product-add-to-cart-bar span.icon.icon-minus{color:{{ section.settings.add_to_cart_bar_text_color }}}
+.product-add-to-cart-bar select,.product-add-to-cart-bar option{color:{{ section.settings.add_to_cart_bar_text_color }}}
 </style>
 <!-- End of Add to cart bar background and text color -->
 <div class="product-add-to-cart-bar small--hide">
@@ -17,7 +17,7 @@
 
           <button  class="btn btn--special btn--add-to-cart">
             <span class="product-form__cart-submit-text" data-original-text="{{ "products.product.add_to_cart" | t }}">{{ "products.product.add_to_cart" | t }}</span>
-            {% if settings.countdown_offer_enabled %}
+            {% if section.settings.countdown_offer_enabled %}
               <span class="countdown-offer-clock hide"  >
               <i class="fa fa-clock-o" aria-hidden="true"></i> <span class="countdown-clock" >0d 0h 0m 0s</span>
             </span>
@@ -26,13 +26,13 @@
           <span class="product-price">{{ product.price | money }}</span>
 
           <div class="content-inputs">
-          {% assign display_quantity_selector = display_quantity_selector | default: section.settings.display_quantity_selector  %}
+          {% assign display_quantity_selector = display_quantity_selector | default: section.section.settings.display_quantity_selector  %}
           {% if display_quantity_selector %}
             <div class="product-quantity">
               <input type="number" value="1" min="1" class="product-quantity__input" pattern="[0-9]*" {% if current_variant != blank and current_variant.available == false %}disabled="disabled"{% endif %}>
             </div>
           {% endif %}
- 
+
           <div class="product-variants">
             {% unless product.options.size == 1 and product.variants[0].title == 'Default Title' %}
               {%- assign show_label = true -%}
@@ -41,10 +41,12 @@
                 <div class="variant">
 
                   <select class="product-options__selector product-options__selector-product_{{ product.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
-                    <optgroup label="{{ option.name }}">
-                      {% for value in option.values %}
-                        <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
-                      {% endfor %}
+                    <option selected="selected" value="non">{{ option.name }}</option>
+                    <optgroup label="sans-serif">
+
+                    {% for value in option.values %}
+                      <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
+                    {% endfor %}
                     </optgroup>
                   </select>
                 </div>

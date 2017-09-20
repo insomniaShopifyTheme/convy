@@ -167,6 +167,9 @@
     </div>
 
   </div> <!-- end grid -->
+  {% if section.settings.sticky_add_to_cart %}
+    {% include 'cart-sticky-button' %}
+  {% endif %}
 
   {% capture jsonld_brand_url %}https://{{ shop.domain }}{{ product.vendor | url_for_vendor }}{% endcapture %}
   <script type="application/ld+json"> { "@context": "https://schema.org", "@type": "Product", "@id": {{ canonical_url | json }}, "brand": { "@type": "Brand", "name": {{ product.vendor | json }}, "url": {{ jsonld_brand_url | json }} }, "sku": {{ product.selected_or_first_available_variant.sku | json }}, "description": {{ product_description | strip_html | json }}, "url": {{ canonical_url | json }}, "name": {{ product.title | json }}, {% if product.featured_image %} "image": "https:{{ product.featured_image | product_img_url: 'grande' }}", {% endif %} "offers": [{% for variant in product.variants %}{ "@type": "Offer", "price": "{{ variant.price | divided_by: 100.0 }}", "priceCurrency": "{{ shop.currency }}",{% unless shop.metafields.jsonld.itemCondition == blank %} "itemCondition": "http://schema.org/{{ shop.metafields.jsonld.itemCondition }}",{% endunless %} "availability": "{% if variant.available %}InStock{% else %}OutOfStock{% endif %}" }{% unless forloop.last %},{% endunless %}{% endfor %}] } </script>
@@ -469,6 +472,13 @@
       },
       {
         "type": "checkbox",
+        "id": "sticky_add_to_cart",
+        "label": "Enable a sticky Add to cart button",
+        "info": "(on mobile only)",
+        "default": false
+      },
+      {
+        "type": "checkbox",
         "id": "lock_add_to_cart_btn",
         "label": "Lock sticky 'Add to cart' button",
         "default": false,
@@ -479,6 +489,35 @@
         "id": "price_location",
         "label": "Display price below the title",
         "default": false
+      },
+      {
+        "type": "header",
+        "content": "'Add to cart' sticky bar (Desktop version)"
+      },
+      {
+        "type": "checkbox",
+        "id": "add_to_cart_bar_enabled",
+        "label": "Add to cart bar (on desktop only)",
+        "info": "Display the Add to cart bar on the product pages. This bar appears after customers scroll below the default Add to cart button on the product pages.",
+        "default": true
+      },
+      {
+        "type": "color",
+        "id": "add_to_cart_bar_background_color",
+        "label": "Background color",
+        "default": "#fff"
+      },
+      {
+        "type": "color",
+        "id": "add_to_cart_bar_text_color",
+        "label": "Product title color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "add_to_cart_bar_price_color",
+        "label": "Price color",
+        "default": "#000"
       },
       {
         "type": "header",

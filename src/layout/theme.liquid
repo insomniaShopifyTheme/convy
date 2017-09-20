@@ -94,9 +94,6 @@ var backend={strings:{addToCart:{{ 'products.product.add_to_cart' | t | json }},
 
   {% section 'footer' %}
 
-  {% if template contains 'product' and settings.sticky_add_to_cart %}
-    {% include 'cart-sticky-button' %}
-  {% endif %}
 
   {{ 'vendor.js' | asset_url | script_tag }}
   {{ 'theme.js' | asset_url | script_tag }}

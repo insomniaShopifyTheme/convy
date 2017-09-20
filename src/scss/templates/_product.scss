@@ -485,6 +485,7 @@
   transition: all 0.5s;
   height: 70px;
   z-index: 5;
+  margin: 0!important;
 
   &.stuck {
     bottom: 0;
