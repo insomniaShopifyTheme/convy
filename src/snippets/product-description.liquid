@@ -58,8 +58,8 @@
   {% endcapture %}
 
   {% capture description_tab %}
-    <dt class="accordion__tab-title">Description</dt>
-    <dd class="accordion__tab-content">
+    <dt class="accordion__tab-title">{{ "products.product.tabs.description" | t }}</dt>
+    <dd class="accordion__tab-content" data-closed="{{ section.settings.description_tab_closed }}">
       {{ product_description_html }}
     </dd>
   {% endcapture %}

@@ -5,6 +5,12 @@
 
 <style>
 .product-info__description{height:{{ section.settings.limit_description }}}
+{% comment %}
+  *** Don't shorten mobile description if the tab is closed by default ***
+{% endcomment %}
+{% if section.settings.use_tabs and section.settings.description_tab_closed %}
+@media screen and (max-width: 1023px){.product-info__description{height:auto}}
+{% endif %}
 </style>
 
 {%- assign current_variant = product.selected_or_first_available_variant -%}
@@ -528,6 +534,12 @@
         "id": "use_tabs",
         "label": "Use tabs",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "description_tab_closed",
+        "label": "Description tab closed on mobile",
+        "default": false
       },
       {
         "type": "paragraph",

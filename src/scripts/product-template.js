@@ -479,7 +479,10 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
   _initAccordion: function() {
     var $accordion = $(this.selectors.accordion);
     var $allPanels = $accordion.find('dd').hide();
-    $(this.selectors.accordion + ' > dt:first-child').next().addClass('active').slideDown();
+    var $firstTab = $(this.selectors.accordion + ' > dt:first-child').next();
+    if ($firstTab.data("closed") != true) {
+      $firstTab.addClass('active').slideDown();
+    }
     $(this.selectors.accordion + ' > .accordion__tab-title').click(function() {
       $this = $(this);
       $target =  $this.next();
