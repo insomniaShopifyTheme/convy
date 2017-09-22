@@ -208,18 +208,18 @@ $product-card-ribbon-z-index: 4;
   }
 
   &.second-img--hover{
-    .product-card__image > .reveal > img:last-child{
+    .product-card__image > .reveal > .img-container > img:last-child{
       display: none;
     }
     &:hover{
-      .product-card__image > .reveal > img:last-child{
+      .product-card__image > .reveal > .img-container > img:last-child{
         display: block;
         vertical-align: middle;
         display: inline-block;
         width: auto;
         max-height: 100%;
       }
-      .product-card__image > .reveal > img:first-child{
+      .product-card__image > .reveal > .img-container > img:first-child{
         display: none;
       }
     }
