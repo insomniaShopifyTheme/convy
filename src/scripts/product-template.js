@@ -166,12 +166,16 @@ theme.ProductPageSection = (function() {
     }
 
     this._stickyCartBtn();
-    this._readMore();
     this._removeReviewsDuplicate();
     theme.initSwatches();
     this._initAccordion();
     this._initCountDownOffer();
     this._productReviews();
+    // The following function requires page to be loaded,
+    // because it calculates its height. So deleay it for 3 seconds
+    setTimeout(function(){
+      _self._readMore();
+    }, 3000);
   }
 
   return ProductPageSection;
