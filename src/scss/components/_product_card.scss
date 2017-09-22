@@ -84,17 +84,11 @@ $product-card-ribbon-z-index: 4;
     line-height: $product-card-height;
     text-align: center;
 
-    .img-container{
+    img{
       vertical-align: middle;
       display: inline-block;
       width: auto;
       max-height: 276px;
-      position: relative;
-
-      img{
-        float: left;
-        max-height: $product-card-height;
-      }
     }
 
   }
@@ -165,6 +159,11 @@ $product-card-ribbon-z-index: 4;
   /*================ Desktop Version ================*/
   @include at-query($min, $large) {
 
+    .product-card__image {
+      img{
+        max-height: 100%;
+      }
+    }
 
     .product-form {
       height: 52px;
@@ -250,6 +249,7 @@ $ribbon-red-to: darken($ribbon-red, 20%);
   height: 88px;
   overflow: hidden;
   position: absolute;
+  top: -3px;
   right: -3px;
   z-index: $product-card-ribbon-z-index;
   > div {

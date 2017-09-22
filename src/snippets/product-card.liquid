@@ -9,23 +9,20 @@
   {%- assign product_url = product.url | within: collection -%}
 {% endif %}
 <div class="product-card{% if card_hoverable == 'hoverable' %} product-card--hoverable{% else %} product-card--no-hover{% endif %}   {% if section.settings.second_image_on_hover and product.images[1] != blank %} second-img--hover{% endif %}" data-product-id="{{ product.id }}">
-
+  {% if product.compare_at_price > product.price %}
+    {%- assign discount_percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
+    <div class="ribbon">
+      <div class="ribbon--red product-discount">
+        – {{ discount_percent }}%
+      </div>
+    </div>
+  {% endif %}
   <a href="{{ product_url }}" class="product-card__image">
     <div class="reveal">
-      <div class="img-container">
-        {% if product.compare_at_price > product.price %}
-          {%- assign discount_percent = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
-          <div class="ribbon">
-            <div class="ribbon--red product-discount">
-              – {{ discount_percent }}%
-            </div>
-          </div>
-        {% endif %}
-        <img src="{{ product.images.first | img_url: '400x400', crop: 'center'}}" alt="{{ product.images.first.alt | escape }}">
-        {% if section.settings.second_image_on_hover and product.images[1] != blank %}
-          <img src="{{ product.images[1] | img_url: '400x400', crop: 'center' }}" alt="{{ product.images.last.alt | escape }}" />
-        {% endif %}
-      </div>
+      <img src="{{ product.images.first | img_url: '400x400', crop: 'center'}}" alt="{{ product.images.first.alt | escape }}">
+      {% if section.settings.second_image_on_hover and product.images[1] != blank %}
+        <img src="{{ product.images[1] | img_url: '400x400', crop: 'center' }}" alt="{{ product.images.last.alt | escape }}" />
+      {% endif %}
     </div>
   </a>
   <div class="product-card__info">
