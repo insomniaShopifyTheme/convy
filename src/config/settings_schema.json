@@ -501,6 +501,7 @@
         ],
         "default": "standard"
       },
+
       {
         "type": "header",
         "content": "Product card"
@@ -568,6 +569,66 @@
           }
         ],
         "default": "255px"
+      },
+      {
+        "type": "header",
+        "content": "Background"
+      },
+      {
+        "type": "radio",
+        "id": "layout_background_type",
+        "label": "Type",
+        "options": [
+          {
+            "value": "disable",
+            "label": "Disabled"
+          },
+          {
+            "value": "image_pattern",
+            "label": "Image Pattern"
+          },
+          {
+            "value": "full_image",
+            "label": "Full size image"
+          },
+          {
+            "value": "gradient",
+            "label": "Gradient"
+          }
+        ],
+        "default": "disable"
+      },
+      {
+        "type": "image_picker",
+        "id": "layout_background_pattern_image_picker",
+        "label": "Repeat pattern"
+      },
+      {
+        "type": "image_picker",
+        "id": "layout_background_image_picker",
+        "label": "Full size image"
+      },
+
+      {
+        "type":      "range",
+        "id":        "background_gradient_rotation",
+        "min":       0,
+        "max":        360,
+        "step":       10,
+        "label":     "Gradient rotation",
+        "default":   0
+      },
+      {
+        "type": "color",
+        "id": "layout_gradient_first_color",
+        "label": "Gradient - From",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "layout_gradient_second_color",
+        "label": "Gradient - To",
+        "default": "#fff"
       }
     ]
   },

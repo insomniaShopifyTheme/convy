@@ -7,8 +7,23 @@ html {
   height: 100%;
 }
 
+
 body {
   background-color: $color-bg;
+
+  {% if settings.layout_background_type == "image_pattern" %}
+  background-image: url('{{ settings.layout_background_pattern_image_picker | img_url: 'original' }}');
+  background-repeat: repeat;
+  {% elsif settings.layout_background_type == "full_image" %}
+  background-image: url('{{ settings.layout_background_image_picker | img_url: 'master' }}');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  {% elsif settings.layout_background_type == "gradient" %}
+  $color1: {{ settings.layout_gradient_first_color }};
+  $color2: {{ settings.layout_gradient_second_color }};
+  background: linear-gradient({{ settings.background_gradient_rotation }}deg, $color1, $color2);
+  {% endif %}
   min-height: 100%;
   display: flex;
   flex-direction: column;
