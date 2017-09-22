@@ -33,85 +33,45 @@
     {% if template == 'index' %}
       {% if custom_logo and custom_mobile_logo == blank %}
         <h1 class="section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
-          <a href="/" class="section-header__logo-link" >
-            {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
-            <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-          </a>
+          {% include 'logo-desktop' %}
         </h1>
       {% elsif custom_mobile_logo and custom_logo == blank %}
         <h1 class="section-header__logo medium-down--hide" itemscope itemtype="http://schema.org/Organization">
-          {% if section.settings.logo_text != blank %}
-            <a href="/" itemprop="name" >{{ section.settings.logo_text | truncate: 18, "" }}</a>
-          {% else %}
-            <a href="/" itemprop="name" >{{ shop.name | truncate: 18, "" }}</a>
-          {% endif %}
+          {% include 'logo-text' %}
         </h1>
         <h1 class="section-header__logo large--hide section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
-          <a href="/" class="section-header__logo-link mobile-logo large--hide">
-            {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
-            <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-          </a>
+          {% include 'logo-mobile' %}
         </h1>
       {% elsif custom_mobile_logo == blank and custom_logo == blank %}
         <h1 class="section-header__logo" itemscope itemtype="http://schema.org/Organization">
-          {% if section.settings.logo_text != blank %}
-            <a href="/" itemprop="name" >{{ section.settings.logo_text | truncate: 18, "" }}</a>
-          {% else %}
-            <a href="/" itemprop="name" >{{ shop.name | truncate: 18, "" }}</a>
-          {% endif %}
+          {% include 'logo-text' %}
         </h1>
       {% elsif custom_mobile_logo and custom_logo %}
         <h1 class="section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
-          <a href="/" class="section-header__logo-link {% if custom_mobile_logo %}medium-down--hide{% endif %} ">
-            {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
-            <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-          </a>
-          <a href="/" class="section-header__logo-link mobile-logo large--hide">
-            {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
-            <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-          </a>
+          {% include 'logo-desktop' %}
+          {% include 'logo-mobile' %}
         </h1>
       {% endif %}
     {% else %}
       {% if custom_logo and custom_mobile_logo == blank %}
         <div class="h1 section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
-          <a href="/" class="section-header__logo-link" >
-            {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
-            <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-          </a>
+          {% include 'logo-desktop' %}
         </div>
       {% elsif custom_mobile_logo and custom_logo == blank %}
         <div class="h1 section-header__logo medium-down--hide" itemscope itemtype="http://schema.org/Organization">
-          {% if section.settings.logo_text != blank %}
-            <a href="/" itemprop="name" >{{ section.settings.logo_text | truncate: 18, "" }}</a>
-          {% else %}
-            <a href="/" itemprop="name" >{{ shop.name | truncate: 18, "" }}</a>
-          {% endif %}
+          {% include 'logo-text' %}
         </div>
         <div class="h1 section-header__logo large--hide section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
-          <a href="/" class="section-header__logo-link mobile-logo large--hide">
-            {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
-            <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-          </a>
+          {% include 'logo-mobile' %}
         </div>
       {% elsif custom_mobile_logo == blank and custom_logo == blank %}
         <div class="h1 section-header__logo" itemscope itemtype="http://schema.org/Organization">
-          {% if section.settings.logo_text != blank %}
-            <a href="/" itemprop="name" >{{ section.settings.logo_text | truncate: 18, "" }}</a>
-          {% else %}
-            <a href="/" itemprop="name" >{{ shop.name | truncate: 18, "" }}</a>
-          {% endif %}
+          {% include 'logo-text' %}
         </div>
       {% elsif custom_mobile_logo and custom_logo %}
         <div class="h1 section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
-          <a href="/" class="section-header__logo-link {% if custom_mobile_logo %}medium-down--hide{% endif %} ">
-            {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
-            <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-          </a>
-          <a href="/" class="section-header__logo-link mobile-logo large--hide">
-            {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
-            <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-          </a>
+          {% include 'logo-desktop' %}
+          {% include 'logo-mobile' %}
         </div>
       {% endif %}
     {% endif %}
