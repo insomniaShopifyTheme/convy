@@ -111,15 +111,17 @@
 
   <div class="right-side__wrapper">
 
-    <div class="grid__item two-twelfths cart-cell " >
+    <div class="grid__item two-twelfths cart-cell cart-{{ section.settings.cart_button_type }} ">
       <a href="/cart" id="CartIcon" class="h1 section-header__cart-link {% if settings.ajax_cart_method == 'drawer' %}js-drawer-open-right{% elsif settings.ajax_cart_method == 'popup' %}js-modal-open-CartModal {% endif %}" aria-controls="CartDrawer" aria-expanded="false">
         <span class="section-header__cart-count js-cart-count">
-          <span>{{ cart.item_count }}</span>
+          <span>{{ cart.item_count }} </span>
         </span>
         <span class="section-header__cart-text ">
           {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+          <span class="icon icon-cart"></span>
+
         </span>
-        <span class="icon icon-cart" aria-hidden="true">
+        <span class="icon icon-cart " aria-hidden="true">
           <span class="icon-cart__badge js-cart-count">
             <span>{{ cart.item_count }}</span>
           </span>
@@ -316,8 +318,22 @@
       "id": "switch_account_search_position",
       "label": "Switch 'Search' field position with 'Account' ",
       "default": false
+      },
+      {
+        "type": "header",
+        "content": "Cart button"
+      },
+      {
+        "type": "radio",
+        "id": "cart_button_type",
+        "label": "Button type",
+        "default": "text-icon",
+        "options": [
+          {"value": "icon", "label": "Icon"},
+          {"value": "text", "label": "Text"},
+          {"value": "text-icon", "label": "Text & Icon"}
+        ]
       }
-
     ]
   }
 {% endschema %}
