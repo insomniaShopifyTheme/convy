@@ -145,12 +145,6 @@
       },
       {
         "type": "checkbox",
-        "id": "sticky_add_to_cart",
-        "label": "Enable a sticky Add to cart button (on mobile only)",
-        "default": false
-      },
-      {
-        "type": "checkbox",
         "id": "add_to_cart_float_animation",
         "label": "Enable floating image animation",
         "default": true,
@@ -179,36 +173,6 @@
           }
         ],
         "default": "hidden"
-      },
-
-      {
-        "type": "header",
-        "content": "'Add to cart' sticky bar (Desktop version)"
-      },
-      {
-        "type": "checkbox",
-        "id": "add_to_cart_bar_enabled",
-        "label": "Add to cart bar (on desktop only)",
-        "info": "Display the Add to cart bar on the product pages. This bar appears after customers scroll below the default Add to cart button on the product pages.",
-        "default": true
-      },
-      {
-        "type": "color",
-        "id": "add_to_cart_bar_background_color",
-        "label": "Background color",
-        "default": "#fff"
-      },
-      {
-        "type": "color",
-        "id": "add_to_cart_bar_text_color",
-        "label": "Product title color",
-        "default": "#000"
-      },
-      {
-        "type": "color",
-        "id": "add_to_cart_bar_price_color",
-        "label": "Price color",
-        "default": "#000"
       }
     ]
   },
@@ -537,6 +501,7 @@
         ],
         "default": "standard"
       },
+
       {
         "type": "header",
         "content": "Product card"
@@ -604,6 +569,66 @@
           }
         ],
         "default": "255px"
+      },
+      {
+        "type": "header",
+        "content": "Background"
+      },
+      {
+        "type": "radio",
+        "id": "layout_background_type",
+        "label": "Type",
+        "options": [
+          {
+            "value": "disable",
+            "label": "Disabled"
+          },
+          {
+            "value": "image_pattern",
+            "label": "Image Pattern"
+          },
+          {
+            "value": "full_image",
+            "label": "Full size image"
+          },
+          {
+            "value": "gradient",
+            "label": "Gradient"
+          }
+        ],
+        "default": "disable"
+      },
+      {
+        "type": "image_picker",
+        "id": "layout_background_pattern_image_picker",
+        "label": "Repeat pattern"
+      },
+      {
+        "type": "image_picker",
+        "id": "layout_background_image_picker",
+        "label": "Full size image"
+      },
+
+      {
+        "type":      "range",
+        "id":        "background_gradient_rotation",
+        "min":       0,
+        "max":        360,
+        "step":       10,
+        "label":     "Gradient rotation",
+        "default":   0
+      },
+      {
+        "type": "color",
+        "id": "layout_gradient_first_color",
+        "label": "Gradient - From",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "layout_gradient_second_color",
+        "label": "Gradient - To",
+        "default": "#fff"
       }
     ]
   },

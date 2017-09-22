@@ -248,6 +248,17 @@ $my-account-z-index: 10;
           line-height: 15px;
         }
       }
+      &.cart-text-icon{
+        display: none;
+        .section-header__cart-text{
+          font-size: 1.4rem;
+          .icon-cart{
+            display: inline-block;
+            position: relative;
+            font-size: 1.3rem;
+          }
+        }
+      }
     }
 
     @include at-query($max, $wide+100px) {
@@ -265,6 +276,7 @@ $my-account-z-index: 10;
         padding: 1.2rem 0;
       }
     }
+
   }
 
   .section-header__cart-link {
@@ -331,12 +343,46 @@ $my-account-z-index: 10;
       float: right;
       width: 250px;
       @media (max-width: $wide+100px) {
-        width: 120px;
+        width: 100px;
       }
       .section-header__cart-link {
         font-size: 1.4rem;
         font-weight: $font-weight-heading;
       }
+      &.cart-icon{
+        width: 100px !important;
+        line-height: 1.2;
+
+        .section-header__cart-count {
+          display: none;
+        }
+        .section-header__cart-text {
+          display: none;
+        }
+        .icon-cart {
+          display: inline-block;
+        }
+        .section-header__cart-link {
+          //margin: 0;
+          padding: 1.2rem 0;
+        }
+        .icon-cart__badge {
+          line-height: 15px;
+        }
+      }
+      &.cart-text-icon{
+        display: block;
+        .section-header__cart-text{
+          font-size: 1.4rem;
+          .icon-cart{
+            top: 2px;
+            display: inline-block;
+            position: relative;
+            font-size: 1.5rem;
+          }
+        }
+      }
+
     }
 
     .menu-cell{

@@ -113,8 +113,8 @@ theme.ProductPageSection = (function() {
       qty: '.variant-qty',
       inPageCartButton: '#' + sectionId + ' .product-form__cart',
       stickyBtnStart: '#' + sectionId + ' .js-sticky-btn-start',
-      stickyCartButton: 'body > .product-form__cart',
-      stickyCartButtonText: 'body > .product-form__cart button > span',
+      stickyCartButton: '#' + sectionId + ' .product-form__cart--sticky',
+      stickyCartButtonText: '#' + sectionId + ' .product-form__cart--sticky button > span',
       cartFormMobile: '#' + sectionId + ' .product-form--mobile',
       readMoreBtn: '.product-template .product-info__more',
       productDescription: '.product-template .product-info__description',
@@ -166,12 +166,16 @@ theme.ProductPageSection = (function() {
     }
 
     this._stickyCartBtn();
-    this._readMore();
     this._removeReviewsDuplicate();
     theme.initSwatches();
     this._initAccordion();
     this._initCountDownOffer();
     this._productReviews();
+    // The following function requires page to be loaded,
+    // because it calculates its height. So deleay it for 3 seconds
+    setTimeout(function(){
+      _self._readMore();
+    }, 3000);
   }
 
   return ProductPageSection;
@@ -195,11 +199,11 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 
   _stickyCartBtn: function() {
     if ($(this.selectors.stickyCartButton).length > 0) {
-      if($('.product-template').data('lock-atc-btn') == true){
+      if($('.product-template').data('lock-atc-btn') === true){
         var $stickyBtn = $(this.selectors.stickyCartButton);
         $stickyBtn.addClass('stuck');
       }else{
-        this._trackScrolling();
+        //this._trackScrolling();
         $(document).on('scroll.track-add-to-cart-btn', this._trackScrolling.bind(this));
         $(document).on('touchmove.track-add-to-cart-btn', this._trackScrolling.bind(this));
       }
@@ -217,7 +221,8 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       var $stickyBtn = $(this.selectors.stickyCartButton);
       var startPosition = $(this.selectors.stickyBtnStart).position();
       var distanceYBottom = window.pageYOffset + theme.cache.$window.height();
-      var stickAt = distanceYBottom + 450;
+      var stickAt = distanceYBottom;
+
       if (startPosition.top <= stickAt) {
         $stickyBtn.addClass('stuck');
       } else {
@@ -525,6 +530,9 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     var $productQuantityNum = $(this.selectors.productInfo).find('.js-qty__num');
     var hasSwatches = $(this.selectors.productVariants).hasClass('product-options--swatches');
 
+    var $productPrice = $(this.selectors.productInfo).find('.product-price__price');
+    var $topbarProductPrice = $bar.find('.product-price');
+
     $topbarProductQuantityMinus.click(matchQuantityInputs);
     $topbarProductQuantityPlus.click(matchQuantityInputs);
     $productQuantityMinus.click(matchQuantityInputs);
@@ -537,6 +545,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       }else{
         $topbarProductQuantityNum.val($productQuantityNum.val());
       }
+      updatePrice();
     }
 
     $bar.find('.product-options__selector').each(function(i, v){
@@ -548,11 +557,13 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       el1.change(function(){
         if(el1.val() != 'non'){
           el2.val(el1.val());
+          updatePrice();
         }
       });
       el2.change(function(){
         if(el2.val() != 'non'){
           el1.val(el2.val()).trigger('change');
+          updatePrice();
         }
       });
     }
@@ -563,8 +574,13 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
         var index = $(this).attr('data-index').replace('option', '').trim();
         topBarSelect.change(function(){
           $('.swatches__option.swatches__option-index-'+index+'.swatches__option--'+$(this).val().replace(/\s+/g, '-').toLowerCase()).click();
+          updatePrice();
         })
       });
+    }
+
+    function updatePrice() {
+      $topbarProductPrice.html($productPrice.html());
     }
   },
 

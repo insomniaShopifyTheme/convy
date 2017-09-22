@@ -6,6 +6,10 @@
 .section-header .with-menu-word::before{content: '{{ section.settings.menu_word_mobile }}' !important}
 @media screen and (min-width: 1024px){.section-header__logo-link img {margin-top:{{ section.settings.logo_margin }}rem}}
 .section-header__logo-link.mobile-logo img{margin-top:{{ section.settings.logo_margin_mobile }}rem}
+
+.section-header .logo-cell{
+  padding-left: {{ section.settings.logo_margin_left }}px;
+}
 </style>
 
 {% if section.settings.logo_image != blank %}
@@ -107,15 +111,17 @@
 
   <div class="right-side__wrapper">
 
-    <div class="grid__item two-twelfths cart-cell " >
+    <div class="grid__item two-twelfths cart-cell cart-{{ section.settings.cart_button_type }} ">
       <a href="/cart" id="CartIcon" class="h1 section-header__cart-link {% if settings.ajax_cart_method == 'drawer' %}js-drawer-open-right{% elsif settings.ajax_cart_method == 'popup' %}js-modal-open-CartModal {% endif %}" aria-controls="CartDrawer" aria-expanded="false">
         <span class="section-header__cart-count js-cart-count">
-          <span>{{ cart.item_count }}</span>
+          <span>{{ cart.item_count }} </span>
         </span>
         <span class="section-header__cart-text ">
           {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+          <span class="icon icon-cart"></span>
+
         </span>
-        <span class="icon icon-cart" aria-hidden="true">
+        <span class="icon icon-cart " aria-hidden="true">
           <span class="icon-cart__badge js-cart-count">
             <span>{{ cart.item_count }}</span>
           </span>
@@ -193,6 +199,17 @@
         "label":     "Image top margin",
         "default":   0,
         "info": "Use it to fine-tune the logo image position"
+      },
+      {
+        "type":      "range",
+        "id":        "logo_margin_left",
+        "min":        0,
+        "max":        40,
+        "step":       1,
+        "unit":       "px",
+        "label":     "Image left margin",
+        "default":   30,
+        "info": "Use it to adjust the margin on left"
       },
       {
         "type": "header",
@@ -301,8 +318,22 @@
       "id": "switch_account_search_position",
       "label": "Switch 'Search' field position with 'Account' ",
       "default": false
+      },
+      {
+        "type": "header",
+        "content": "Cart button"
+      },
+      {
+        "type": "radio",
+        "id": "cart_button_type",
+        "label": "Button type",
+        "default": "text-icon",
+        "options": [
+          {"value": "icon", "label": "Icon"},
+          {"value": "text", "label": "Text"},
+          {"value": "text-icon", "label": "Text & Icon"}
+        ]
       }
-
     ]
   }
 {% endschema %}
