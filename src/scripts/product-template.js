@@ -526,6 +526,9 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     var $productQuantityNum = $(this.selectors.productInfo).find('.js-qty__num');
     var hasSwatches = $(this.selectors.productVariants).hasClass('product-options--swatches');
 
+    var $productPrice = $(this.selectors.productInfo).find('.product-price__price');
+    var $topbarProductPrice = $bar.find('.product-price');
+
     $topbarProductQuantityMinus.click(matchQuantityInputs);
     $topbarProductQuantityPlus.click(matchQuantityInputs);
     $productQuantityMinus.click(matchQuantityInputs);
@@ -538,6 +541,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       }else{
         $topbarProductQuantityNum.val($productQuantityNum.val());
       }
+      updatePrice();
     }
 
     $bar.find('.product-options__selector').each(function(i, v){
@@ -549,11 +553,13 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       el1.change(function(){
         if(el1.val() != 'non'){
           el2.val(el1.val());
+          updatePrice();
         }
       });
       el2.change(function(){
         if(el2.val() != 'non'){
           el1.val(el2.val()).trigger('change');
+          updatePrice();
         }
       });
     }
@@ -564,8 +570,13 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
         var index = $(this).attr('data-index').replace('option', '').trim();
         topBarSelect.change(function(){
           $('.swatches__option.swatches__option-index-'+index+'.swatches__option--'+$(this).val().replace(/\s+/g, '-').toLowerCase()).click();
+          updatePrice();
         })
       });
+    }
+
+    function updatePrice() {
+      $topbarProductPrice.html($productPrice.html());
     }
   },
 
