@@ -21,9 +21,9 @@
             </div>
           </div>
         {% endif %}
-        <img src="{{ product.images.first | img_url: '400x400', crop: 'center'}}" alt="{{ product.images.first.alt | escape }}">
+        <img class="first-product-image" src="{{ product.images.first | img_url: '400x400', crop: 'center'}}" alt="{{ product.images.first.alt | escape }}">
         {% if section.settings.second_image_on_hover and product.images[1] != blank %}
-          <img src="{{ product.images[1] | img_url: '400x400', crop: 'center' }}" alt="{{ product.images.last.alt | escape }}" />
+          <img class="second-product-image" src="{{ product.images[1] | img_url: '400x400', crop: 'center' }}" alt="{{ product.images.last.alt | escape }}" />
         {% endif %}
       </div>
     </div>
