@@ -38,6 +38,11 @@ Currency.afterPriceCurrencyUpdated = function(newCurrency) {
       });
     }
   });
+  // Use <span data-current-currency>USD<\/span>
+  // and it will be replaced with appropriate currency
+  $('span[data-current-currency]').each(function(idx, el){
+    $(el).text(newCurrency);
+  });
 }
 
 
