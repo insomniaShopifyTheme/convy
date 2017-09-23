@@ -133,11 +133,14 @@
             {% endif %}
           {% endif %}
         </div>
-        {% if section.settings.description_location == 'top' %}
-          {% include 'product-description' %}
+        {% if section.settings.product_form_location == "top" %}
+          {% include 'product-page-form-mobile' %}
+        {% endif %}
+        {% include 'product-description' %}
+        {% if section.settings.product_form_location == "bottom" %}
+          {% include 'product-page-form-mobile' %}
         {% endif %}
       </div>
-      {% include 'product-page-form-mobile' %}
 
     </div> <!-- end mobile -->
 
@@ -437,11 +440,11 @@
       },
       {
          "type": "select",
-         "id": "description_location",
-         "label": "Product description location",
+         "id": "product_form_location",
+         "label": "Product form location",
          "options": [
-            {"value": "top", "label": "Before options"},
-            {"value": "bottom", "label": "After options"}
+            {"value": "top", "label": "Before tabs/description"},
+            {"value": "bottom", "label": "After tabs/description"}
           ],
          "default": "top"
       },
