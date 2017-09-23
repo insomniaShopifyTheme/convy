@@ -6,10 +6,7 @@
 .section-header .with-menu-word::before{content: '{{ section.settings.menu_word_mobile }}' !important}
 @media screen and (min-width: 1024px){.section-header__logo-link img {margin-top:{{ section.settings.logo_margin }}rem}}
 .section-header__logo-link.mobile-logo img{margin-top:{{ section.settings.logo_margin_mobile }}rem}
-
-.section-header .logo-cell{
-  padding-left: {{ section.settings.logo_margin_left }}px;
-}
+.section-header .logo-cell{padding-left:{{ section.settings.logo_margin_left }}px}
 </style>
 
 {% if section.settings.logo_image != blank %}
@@ -165,14 +162,19 @@
     "class": "section-header",
     "settings": [
       {
-        "type": "header",
-        "content": "Logo (Desktop)"
-      },
-      {
         "type": "text",
         "id": "logo_text",
         "label": "Custom Text",
         "info": "Shop name by default. Limited to 18 characters"
+      },
+      {
+        "type": "url",
+        "id": "logo_link",
+        "label": "Custom Logo Link"
+      },
+      {
+        "type": "header",
+        "content": "Logo (Desktop)"
       },
       {
         "type": "image_picker",
@@ -208,7 +210,7 @@
         "step":       1,
         "unit":       "px",
         "label":     "Image left margin",
-        "default":   30,
+        "default":   0,
         "info": "Use it to adjust the margin on left"
       },
       {
