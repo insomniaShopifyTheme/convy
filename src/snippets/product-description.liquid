@@ -1,3 +1,15 @@
+{% capture product_description_html %}
+  <div class="product-info__description{% unless section.settings.limit_description == 'none' %} product-info__description--shrunk{% endunless %}" data-original-height="{{ section.settings.limit_description }}">
+    <div class="product-info__full_description rte" itemprop="description">
+      {{ product_description }}
+    </div>
+  </div>
+  <button type="button" class="icon-fallback-text product-info__more">
+    <span class="icon icon-chevron-thin-down" aria-hidden="true"></span>
+    <span class="fallback-text">{{ "products.product.read_more" | t }}</span>
+  </button>
+{% endcapture %}
+
 {% if section.settings.use_tabs %}
 
   {% assign product_match = product.handle | prepend: "product/" %}
@@ -45,23 +57,10 @@
 
   {% endcapture %}
 
-
-  {% capture product_description %}
-    <div class="product-info__description{% unless section.settings.limit_description == 'none' %} product-info__description--shrunk{% endunless %}" data-original-height="{{ section.settings.limit_description }}">
-      <div class="product-info__full_description rte" itemprop="description">
-        {{ product_description }}
-      </div>
-    </div>
-    <button type="button" class="icon-fallback-text product-info__more">
-      <span class="icon icon-chevron-thin-down" aria-hidden="true"></span>
-      <span class="fallback-text">{{ "products.product.read_more" | t }}</span>
-    </button>
-  {% endcapture %}
-
   {% capture description_tab %}
-    <dt class="accordion__tab-title">Description</dt>
-    <dd class="accordion__tab-content">
-      {{ product_description }}
+    <dt class="accordion__tab-title">{{ "products.product.tabs.description" | t }}</dt>
+    <dd class="accordion__tab-content" data-closed="{{ section.settings.description_tab_closed }}">
+      {{ product_description_html }}
     </dd>
   {% endcapture %}
 
@@ -72,7 +71,7 @@
   {% endif %}
 
 {% else %}
-  {{ product_description }}
+  {{ product_description_html }}
 {% endif %}
 
 {% if section.settings.use_tabs  %}

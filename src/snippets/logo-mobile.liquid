@@ -1,0 +1,4 @@
+<a href="{{ section.settings.logo_link | default: "/" }}" class="section-header__logo-link mobile-logo large--hide">
+  {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
+  <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
+</a>

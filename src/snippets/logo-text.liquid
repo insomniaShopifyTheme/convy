@@ -1,0 +1,5 @@
+{% if section.settings.logo_text != blank %}
+  <a href="{{ section.settings.logo_link | default: "/" }}" itemprop="name" >{{ section.settings.logo_text | truncate: 18, "" }}</a>
+{% else %}
+  <a href="{{ section.settings.logo_link | default: "/" }}" itemprop="name" >{{ shop.name | truncate: 18, "" }}</a>
+{% endif %}

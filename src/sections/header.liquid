@@ -6,6 +6,7 @@
 .section-header .with-menu-word::before{content: '{{ section.settings.menu_word_mobile }}' !important}
 @media screen and (min-width: 1024px){.section-header__logo-link img {margin-top:{{ section.settings.logo_margin }}rem}}
 .section-header__logo-link.mobile-logo img{margin-top:{{ section.settings.logo_margin_mobile }}rem}
+.section-header .logo-cell{padding-left:{{ section.settings.logo_margin_left }}px}
 </style>
 
 {% if section.settings.logo_image != blank %}
@@ -28,33 +29,53 @@
     </div>
 
   </div>
+
   <div class="grid__item medium-down--eight-twelfths logo-cell">
     {% if template == 'index' %}
-      <h1 class="section-header__logo{% if custom_logo %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
-    {% else %}
-      <div class="h1 section-header__logo{% if custom_logo %} section-header__logo--image{% endif %}" itemscope itemtype="http://schema.org/Organization">
-    {% endif %}
-    {% if custom_logo %}
-      <a href="/" class="section-header__logo-link {% if custom_mobile_logo %}medium-down--hide{% endif %} ">
-        {% assign logo_max_width = section.settings.logo_max_width_desktop | append: 'x' %}
-        <img src="{{ section.settings.logo_image | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-      </a>
-      {% if custom_mobile_logo %}
-        <a href="/" class="section-header__logo-link mobile-logo large--hide">
-          {% assign logo_max_width = section.settings.logo_max_width_mobile | append: 'x' %}
-          <img src="{{ section.settings.logo_image_mobile | img_url: logo_max_width }}" alt="{{ shop.name }}" itemprop="logo">
-        </a>
+      {% if custom_logo and custom_mobile_logo == blank %}
+        <h1 class="section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          {% include 'logo-desktop' %}
+        </h1>
+      {% elsif custom_mobile_logo and custom_logo == blank %}
+        <h1 class="section-header__logo medium-down--hide" itemscope itemtype="http://schema.org/Organization">
+          {% include 'logo-text' %}
+        </h1>
+        <h1 class="section-header__logo large--hide section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          {% include 'logo-mobile' %}
+        </h1>
+      {% elsif custom_mobile_logo == blank and custom_logo == blank %}
+        <h1 class="section-header__logo" itemscope itemtype="http://schema.org/Organization">
+          {% include 'logo-text' %}
+        </h1>
+      {% elsif custom_mobile_logo and custom_logo %}
+        <h1 class="section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          {% include 'logo-desktop' %}
+          {% include 'logo-mobile' %}
+        </h1>
       {% endif %}
-    {% elsif section.settings.logo_text != blank %}
-      <a href="/" itemprop="name">{{ section.settings.logo_text | truncate: 18, "" }}</a>
     {% else %}
-      <a href="/" itemprop="name">{{ shop.name | truncate: 18, "" }}</a>
+      {% if custom_logo and custom_mobile_logo == blank %}
+        <div class="h1 section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          {% include 'logo-desktop' %}
+        </div>
+      {% elsif custom_mobile_logo and custom_logo == blank %}
+        <div class="h1 section-header__logo medium-down--hide" itemscope itemtype="http://schema.org/Organization">
+          {% include 'logo-text' %}
+        </div>
+        <div class="h1 section-header__logo large--hide section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          {% include 'logo-mobile' %}
+        </div>
+      {% elsif custom_mobile_logo == blank and custom_logo == blank %}
+        <div class="h1 section-header__logo" itemscope itemtype="http://schema.org/Organization">
+          {% include 'logo-text' %}
+        </div>
+      {% elsif custom_mobile_logo and custom_logo %}
+        <div class="h1 section-header__logo section-header__logo--image" itemscope itemtype="http://schema.org/Organization">
+          {% include 'logo-desktop' %}
+          {% include 'logo-mobile' %}
+        </div>
+      {% endif %}
     {% endif %}
-    {% unless template == 'index' %}
-      </div>
-    {% else %}
-      </h1>
-    {% endunless %}
 
   </div>
   <div class="grid__item medium-down--hide menu-cell">
@@ -87,15 +108,17 @@
 
   <div class="right-side__wrapper">
 
-    <div class="grid__item two-twelfths cart-cell " >
+    <div class="grid__item two-twelfths cart-cell cart-{{ section.settings.cart_button_type }} ">
       <a href="/cart" id="CartIcon" class="h1 section-header__cart-link {% if settings.ajax_cart_method == 'drawer' %}js-drawer-open-right{% elsif settings.ajax_cart_method == 'popup' %}js-modal-open-CartModal {% endif %}" aria-controls="CartDrawer" aria-expanded="false">
         <span class="section-header__cart-count js-cart-count">
-          <span>{{ cart.item_count }}</span>
+          <span>{{ cart.item_count }} </span>
         </span>
         <span class="section-header__cart-text ">
           {{ 'layout.cart.items_count' | t: count: cart.item_count }}
+          <span class="icon icon-cart"></span>
+
         </span>
-        <span class="icon icon-cart" aria-hidden="true">
+        <span class="icon icon-cart " aria-hidden="true">
           <span class="icon-cart__badge js-cart-count">
             <span>{{ cart.item_count }}</span>
           </span>
@@ -139,14 +162,19 @@
     "class": "section-header",
     "settings": [
       {
-        "type": "header",
-        "content": "Logo (Desktop)"
-      },
-      {
         "type": "text",
         "id": "logo_text",
         "label": "Custom Text",
         "info": "Shop name by default. Limited to 18 characters"
+      },
+      {
+        "type": "url",
+        "id": "logo_link",
+        "label": "Custom Logo Link"
+      },
+      {
+        "type": "header",
+        "content": "Logo (Desktop)"
       },
       {
         "type": "image_picker",
@@ -173,6 +201,17 @@
         "label":     "Image top margin",
         "default":   0,
         "info": "Use it to fine-tune the logo image position"
+      },
+      {
+        "type":      "range",
+        "id":        "logo_margin_left",
+        "min":        0,
+        "max":        40,
+        "step":       1,
+        "unit":       "px",
+        "label":     "Image left margin",
+        "default":   0,
+        "info": "Use it to adjust the margin on left"
       },
       {
         "type": "header",
@@ -281,8 +320,22 @@
       "id": "switch_account_search_position",
       "label": "Switch 'Search' field position with 'Account' ",
       "default": false
+      },
+      {
+        "type": "header",
+        "content": "Cart button"
+      },
+      {
+        "type": "radio",
+        "id": "cart_button_type",
+        "label": "Button type",
+        "default": "text-icon",
+        "options": [
+          {"value": "icon", "label": "Icon"},
+          {"value": "text", "label": "Text"},
+          {"value": "text-icon", "label": "Text & Icon"}
+        ]
       }
-
     ]
   }
 {% endschema %}

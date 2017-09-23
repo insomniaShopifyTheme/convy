@@ -1,11 +1,12 @@
-<div data-section-id="{{ section.id }}" data-section-type="slideshow-section">
-
 {% if section.blocks.size > 0 %}
 
+<!--Desktop-->
+<div data-section-id="{{ section.id }}" data-section-type="slideshow-section" class="medium-down--hide">
   <div class="slideshow-wrapper">
     <div class="slideshow slideshow--{{ section.settings.slideshow_height }}" id="slideshow_{{ section.id }}" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed }}">
       {% for block in section.blocks %}
-        <div class="slideshow__slide slideshow__slide--{{ block.id }}" {{ block.shopify_attributes }}>
+        {% if block.settings.display_on == "desktop_mobile" or block.settings.display_on == "desktop" %}
+          <div class="slideshow__slide slideshow__slide--{{ block.id }} " {{ block.shopify_attributes }}>
           {% if block.settings.image != blank %}
 <style>
 .slideshow__image--{{ block.id }}{background-position: center {{ block.settings.alignment }}}
@@ -82,17 +83,109 @@
           </div>
 
         </div>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
+</div>
+
+<!--Mobile-->
+<div data-section-id="{{ section.id }}_mobile" data-section-type="slideshow-section" class="medium-down--show large--hide">
+  <div class="slideshow-wrapper">
+    <div class="slideshow slideshow--{{ section.settings.slideshow_height }}" id="slideshow_{{ section.id }}_mobile" data-autoplay="{{ section.settings.autoplay }}" data-speed="{{ section.settings.autoplay_speed }}">
+      {% for block in section.blocks %}
+        {% if block.settings.display_on == "desktop_mobile" or block.settings.display_on == "mobile" %}
+          <div class="slideshow__slide slideshow__slide--{{ block.id }} " {{ block.shopify_attributes }}>
+          {% if block.settings.image != blank %}
+            <style>
+              .slideshow__image--{{ block.id }}{background-position: center {{ block.settings.alignment }}}
+              @media screen and (max-width: 400px){.slideshow__image--{{ block.id }}{background-image:url('{{ block.settings.image | img_url: '800x' }}')}}
+              @media screen and (min-width: 401px) and (max-width: 800px){.slideshow__image--{{ block.id }}{background-image:url('{{ block.settings.image | img_url: '1000x' }}')}}
+              @media screen and (min-width: 801px) and (max-width: 1000px){.slideshow__image--{{ block.id }}{background-image:url('{{ block.settings.image | img_url: '1200x' }}')}}
+              @media screen and (min-width: 1001px){.slideshow__image--{{ block.id }}{background-image:url('{{ block.settings.image | img_url: '2000x' }}')}}
+            </style>
+          {% else %}
+            {% capture demo_slide_image %}{% cycle 'demo-slide-1.svg', 'demo-slide-2.svg' %}{% endcapture %}
+            <style>
+              .slideshow__image--{{ block.id }}{background-image: url('{{ demo_slide_image | asset_url }}');background-position: center {{ block.settings.alignment }}}
+            </style>
+          {% endif %}
+
+          <div class="slideshow__image slideshow__image--{{ block.id }}">
+            {% if block.settings.image == blank %}
+            {% endif %}
+          </div>
+
+          {% if block.settings.title != blank or block.settings.text != blank %}
+            <style>
+              .slideshow__slide--{{ block.id }} .slideshow__title{color:{{ block.settings.color_title }};text-align:{{ block.settings.text_alignment }} !important}
+              .slideshow__slide--{{ block.id }} .slideshow__subtitle{color:{{ block.settings.color_subtitle }};text-align:{{ block.settings.text_alignment }} !important}
+              .slideshow__slide--{{ block.id }} .slideshow__content{color:{{ block.settings.color_text }};text-align:{{ block.settings.text_alignment }} !important}
+              .slideshow__slide--{{ block.id }} .slideshow__buttons{text-align:{{ block.settings.text_alignment }} !important}
+              .slideshow__slide--{{ block.id }} .slideshow__button:hover,.slideshow__slide--{{ block.id }} .slideshow__button:active,.slideshow__slide--{{ block.id }} .slideshow__button:focus,.slideshow__slide--{{ block.id }} .slideshow__button {color:{{ block.settings.primary_button_text_color }};border-color:{{ block.settings.primary_button_border_color }};background-color:{{ block.settings.primary_button_bg_color }}}
+              .slideshow__slide--{{ block.id }} .slideshow__button--secondary:hover,.slideshow__slide--{{ block.id }} .slideshow__button--secondary:active,.slideshow__slide--{{ block.id }} .slideshow__button--secondary:focus,.slideshow__slide--{{ block.id }} .slideshow__button--secondary {color:{{ block.settings.secondary_button_text_color }};border-color:{{ block.settings.secondary_button_border_color }};background-color:{{ block.settings.secondary_button_bg_color }}}
+              .slideshow__slide--{{ block.id }} .slideshow__overlay::before{background-color:{{ block.settings.color_image_overlay }};opacity:{{ block.settings.image_overlay_opacity }}}
+            </style>
+          {% endif %}
+
+          {% case block.settings.text_location %}
+          {% when 'left' %}
+          {%- assign grid_cell_classes = 'four-sixths' -%}
+          {% when 'right' %}
+          {%- assign grid_cell_classes = 'four-sixths push--two-sixths' -%}
+          {% when 'center' %}
+          {%- assign grid_cell_classes = 'one-whole' -%}
+          {% endcase %}
+
+          <div class="slideshow__text{% if block.settings.title != blank or block.settings.text != blank %} slideshow__overlay{% endif %}">
+            <div class="slideshow__text-content">
+              <div class="grid">
+                <div class="grid__item {{ grid_cell_classes }}">
+                  {% unless block.settings.title == blank %}
+                  <div class="slideshow__title slideshow__title--{{ section.settings.title_text_size }}">
+                    {{ block.settings.title }}
+                  </div>
+                  {% endunless %}
+                  {% unless block.settings.subtitle == blank %}
+                  <div class="slideshow__subtitle slideshow__subtitle--{{ section.settings.subtitle_text_size }}">
+                    {{ block.settings.subtitle }}
+                  </div>
+                  {% endunless %}
+                  {% unless block.settings.text == blank %}
+                  <div class="slideshow__content slideshow__content--{{ section.settings.content_text_size }}">{{ block.settings.text }}</div>
+                  {% endunless %}
+                  <div class="slideshow__buttons">
+                    {% if block.settings.primary_button_label != blank and block.settings.primary_button_link != blank %}
+                      <a href="{{ block.settings.primary_button_link }}" class="btn slideshow__button {% if section.settings.text_size contains 'large' %} btn--large{% endif %}">
+                        {{ block.settings.primary_button_label }}
+                      </a>
+                    {% endif %}
+                    {% if block.settings.secondary_button_label != blank and block.settings.secondary_button_link != blank %}
+                      <a href="{{ block.settings.secondary_button_link }}" class="btn slideshow__button slideshow__button--secondary {% if section.settings.text_size contains 'large' %} btn--large{% endif %}">
+                        {{ block.settings.secondary_button_label }}
+                      </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
 {% else %}
+<div data-section-id="{{ section.id }}" data-section-type="slideshow-section" class="medium-down--hide">
   <div class="empty-section">
     {{ 'homepage.onboarding.no_slides' | t }}
   </div>
+</div>
 {% endif %}
 
-</div>
 
 {% schema %}
   {
@@ -265,6 +358,26 @@
             "type": "image_picker",
             "id": "image",
             "label": "Image"
+          },
+          {
+            "type": "select",
+            "id": "display_on",
+            "label": "Display on",
+            "default": "desktop_mobile",
+            "options": [
+              {
+                "value": "desktop_mobile",
+                "label": "Desktop & Mobile"
+              },
+              {
+                "value": "desktop",
+                "label": "Desktop only"
+              },
+              {
+                "value": "mobile",
+                "label": "Mobile only"
+              }
+            ]
           },
           {
             "type": "text",
