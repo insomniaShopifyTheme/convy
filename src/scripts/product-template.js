@@ -720,8 +720,8 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
         if($countDownOffer.parents('.product-form__cart--sticky').length == 1){
           $countDownOffer.parents('.product-form__cart--sticky')
               .addClass('w-countdown')
-              .find(this.selectors.countDownOffer)
-              .css('margin-top', '-20px');
+              .find(this.selectors.countDownOffer);
+
         }
         var toDateSplittedStr = toDate.split('-'); // days-hours-minutes
         toDateSplittedStr.shift();//remove first elem from array
