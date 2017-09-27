@@ -1,12 +1,18 @@
 <div class="product-card{% if card_hoverable %} product-card--hoverable{% else %} product-card--no-hover{% endif %}" data-product-id="999999">
-  <div class="ribbon">
-    <div class="ribbon--red product-discount">
-      – 25%
+  <a href="{{ product_url }}" class="product-card__image">
+    <div class="reveal">
+      <div class="img-container">
+          <div class="ribbon">
+            <div class="ribbon--red product-discount">
+              – 25%
+            </div>
+          </div>
+        <img class="first-product-image" src="{{ 'blank-product.png' | asset_img_url: '400x400', crop: 'center'}}" alt="">
+      </div>
     </div>
-  </div>
-  <a href="{{ shop.secure_url }}" class="product-card__image">
-    {{ 'blank-product.png' | asset_img_url: '400x400' | img_tag: "Product Image" }}
   </a>
+
+
   <div class="product-card__info">
     <div class="product-card__title product-card__title--{{ settings.product_card_title_style }}">
       <a href="{{ shop.secure_url }}">Black T-Shirt</a>
