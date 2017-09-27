@@ -114,7 +114,7 @@ theme.ProductPageSection = (function() {
       inPageCartButton: '#' + sectionId + ' .product-form__cart',
       stickyBtnStart: '#' + sectionId + ' .js-sticky-btn-start',
       stickyCartButton: '#' + sectionId + ' .product-form__cart--sticky',
-      stickyCartButtonText: '#' + sectionId + ' .product-form__cart--sticky button > span',
+      stickyCartButtonText: '#' + sectionId + ' .product-form__cart--sticky button > span.btn-text',
       cartFormMobile: '#' + sectionId + ' .product-form--mobile',
       readMoreBtn: '.product-template .product-info__more',
       productDescription: '.product-template .product-info__description',
