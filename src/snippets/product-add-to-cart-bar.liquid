@@ -7,7 +7,7 @@
 .product-add-to-cart-bar select,.product-add-to-cart-bar option{color:{{ section.settings.add_to_cart_bar_text_color }}}
 </style>
 <!-- End of Add to cart bar background and text color -->
-<div class="product-add-to-cart-bar small--hide">
+<div id="product-add-to-cart-bar" class="product-add-to-cart-bar small--hide">
   <div class="grid__item">
     <div class="grid">
 
@@ -26,8 +26,7 @@
           <span class="product-price">{{ product.price | money }}</span>
 
           <div class="content-inputs">
-          {% assign display_quantity_selector = display_quantity_selector | default: section.section.settings.display_quantity_selector  %}
-          {% if display_quantity_selector %}
+          {% if section.settings.display_quantity_selector  %}
             <div class="product-quantity">
               <input type="number" value="1" min="1" class="product-quantity__input" pattern="[0-9]*" {% if current_variant != blank and current_variant.available == false %}disabled="disabled"{% endif %}>
             </div>
@@ -41,9 +40,7 @@
                 <div class="variant">
 
                   <select class="product-options__selector product-options__selector-product_{{ product.id }} product-form__input" id="SingleOptionSelector-{{ forloop.index0 }}" data-index="option{{ forloop.index }}">
-                    <option selected="selected" value="non">{{ option.name }}</option>
-                    <optgroup label="sans-serif">
-
+                    <optgroup label="{{ option.name }}">
                     {% for value in option.values %}
                       <option value="{{ value | escape }}"{% if option.selected_value == value %} selected="selected"{% endif %}>{{ value }}</option>
                     {% endfor %}
