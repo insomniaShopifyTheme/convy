@@ -510,7 +510,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 
   _initAddToCartStickyBar: function() {
     if($('#product-add-to-cart-bar').length != 0){
-      
+
       var $window = $(window),
           $addToCartBarBtn = $(this.selectors.productInfoDesktop).find('.product-form__cart-submit'),
           addToCartBtnOffsetFromTop = $(this.selectors.addToCart).offset().top,

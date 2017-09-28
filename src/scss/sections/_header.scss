@@ -133,34 +133,45 @@ $my-account-z-index: 10;
     font-size: 1.6rem;
     height: 100%;
     line-height: 2.2rem;
+    button{
+      float: left;
+    }
     form {
-      float: right;
+      float: left;
       height: 100%;
       width: 0;
       // overflow: hidden;
       // display: none;
       transition: all 0.5s;
       input {
+        float: left;
+        width: 100%;
+        position: relative;
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        border-bottom: 1px #000 solid !important;
+        border-radius: 0 !important;
+        height: 35px !important;
+        top: 8px;
+
         display: none;
       }
+
       .input-group-btn {
         display: none;
       }
     }
     &.header-search--active {
-      border: 1px solid $color-border;
-      border-bottom: none;
-      width: 255px;
+      width: 235px;
       form {
-        border-right: 1px solid $color-border;
         display: inline-block;
-        width: 200px;
+        width: 180px;
         z-index: $my-account-z-index + 1;
         input {
-          border: none;
-          height: 100%;
           display: block;
           width: 100%;
+
           &:focus {
             outline: none;
           }
@@ -170,6 +181,9 @@ $my-account-z-index: 10;
 
     &.header-search__position-right{
       float: inherit;
+      button{
+        float: right;
+      }
       form {
         float: right;
         input {
