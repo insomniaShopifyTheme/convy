@@ -1,0 +1,68 @@
+
+{% assign images_n = product.images | size %}
+{% assign last_image = product.images | last %}
+
+{% if section.settings.display_banner and images_n > 1 %}
+
+<style>
+    .product-banner {
+        background-image: url('{{ last_image.src | img_url: '1024x' }}');
+        background-position: center {{ section.settings.banner_image_alignment }};
+    }
+    @media screen and (min-width: 1024px) {
+        .product-banner {
+            background-image: url('{{ last_image.src | img_url: '2000x' }}');
+        }
+    }
+    .product-banner:after {
+    {% case section.settings.banner_gradient_color %}
+    {% when 'white' %}
+        background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        background-image: -moz-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        background-image: -ms-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        background-image: -o-linear-gradient(right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    {% when 'white_bottom' %}
+        width: 100%;
+        height: 35%;
+        background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        background-image: -ms-linear-gradient(top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        background-image: -o-linear-gradient(top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+        background-image: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+    {% when 'black' %}
+        background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+        background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+        background-image: -ms-linear-gradient(right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+        background-image: -o-linear-gradient(right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    {% endcase %}
+    }
+    .product-banner .collection-banner__title {
+        color: {{ section.settings.banner_color_title }};
+    }
+    .product-banner .collection-banner__subtitle p {
+        color: {{ section.settings.banner_color_text }};
+    }
+</style>
+
+
+    {% case section.settings.display_banner_on %}
+    {% when "mobile" %}
+    {%- assign visibility_classes = "large--hide" -%}
+    {% when "desktop" %}
+    {%- assign visibility_classes = "medium-down--hide" -%}
+    {% endcase %}
+    <div class="product-banner {{ visibility_classes }} product-banner--{{ section.settings.banner_image_height }}">
+        {% if section.settings.display_banner_product_title %}
+            <div class="product-banner__content">
+                <div class="page-width--large">
+                    <h1 class="collection-banner__title">
+                        {{ product.title | escape }}
+                    </h1>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+{% endif %}
