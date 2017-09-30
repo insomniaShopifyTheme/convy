@@ -1,11 +1,12 @@
 {% unless section.settings.display == "disable"  %}
 
 {%- assign topbar_height = 40 -%}
-{%- assign header_height_mobile = 55 -%}
+{%- assign header_height_mobile = 60 -%}
+{%- assign header_height_desktop = 55 -%}
 {% if settings.header_height == 'tall' %}
   {%- assign header_height = 120 -%}
 {% else %}
-  {%- assign header_height = header_height_mobile -%}
+  {%- assign header_height = header_height_desktop  -%}
 {% endif %}
 {%- assign body_padding_mobile = topbar_height | plus: header_height_mobile -%}
 {%- assign body_padding = topbar_height | plus: header_height -%}

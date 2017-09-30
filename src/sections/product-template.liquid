@@ -1,7 +1,18 @@
+{% if section.settings.gallery_zoom_type == 'none' %}
+  <script>
+    var turnOnZoom = false;
+  </script>
+{% else %}
+  <script>
+    var turnOnZoom = true;
+  </script>
+{% endif %}
 
-{% if settings.add_to_cart_bar_enabled %}
+{% if section.settings.add_to_cart_bar_enabled %}
   {% include 'product-add-to-cart-bar' %}
 {% endif %}
+
+{% include 'product-banner' %}
 
 <style>
 .product-info__description{height:{{ section.settings.limit_description }}}
@@ -202,6 +213,114 @@
         "label": "Display breadcrumbs",
         "default": true
       },
+
+      {
+        "type": "header",
+        "content": "Banner"
+      },
+      {
+        "type": "paragraph",
+        "content": "The last product image will be used as a banner. You need to have at least 2 images in your product, the last image will be hidden from the product gallery."
+      },
+      {
+        "type": "checkbox",
+        "id": "display_banner",
+        "label": "Display banner",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "display_banner_product_title",
+        "label": "Display product title on banner",
+        "default": true,
+        "info": "This will also hide the normal product title"
+      },
+      {
+        "type": "select",
+        "id": "display_banner_on",
+        "label": "Display",
+        "default": "all",
+        "options": [
+          {"value": "desktop", "label": "Desktop only"},
+          {"value": "all", "label": "Desktop & Mobile"},
+          {"value": "mobile", "label": "Mobile only"}
+        ]
+      },
+      {
+        "type": "select",
+        "id": "banner_image_height",
+        "label": "Image height",
+        "default": "xsmall",
+        "options": [
+          {
+            "label": "Extra small",
+            "value": "xsmall"
+          },
+          {
+            "label": "Small",
+            "value": "small"
+          },
+          {
+            "label": "Medium",
+            "value": "medium"
+          },
+          {
+            "label": "Large",
+            "value": "large"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "banner_image_alignment",
+        "label": "Image alignment",
+        "default": "center",
+        "options": [
+          {
+            "value": "top",
+            "label": "Top"
+          },
+          {
+            "value": "center",
+            "label": "Middle"
+          },
+          {
+            "value": "bottom",
+            "label": "Bottom"
+          }
+        ]
+      },
+      {
+        "type": "color",
+        "id": "banner_color_title",
+        "label": "Title color",
+        "default": "#fff"
+      },
+      {
+        "type": "select",
+        "id": "banner_gradient_color",
+        "label": "Gradient color",
+        "options": [
+          {
+            "value": "none",
+            "label": "None (disable gradient)"
+          },
+          {
+            "value": "white",
+            "label": "White (left)"
+          },
+          {
+            "value": "black",
+            "label": "Black (left)"
+          },
+          {
+            "value": "white_bottom",
+            "label": "White (bottom)"
+          }
+        ],
+        "default": "black"
+      },
+
       {
         "type": "header",
         "content": "Product Gallery"
@@ -211,6 +330,10 @@
         "id": "gallery_zoom_type",
         "label": "Zoom type",
         "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
           {
             "value": "mouseover",
             "label": "On mouse over"

@@ -499,5 +499,67 @@
   button.w-countdown{
     padding: 10px 0px 3px 0px !important;
   }
+  .countdown-offer-clock{
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    margin-left: -52px;
+  }
+
 }
 
+.product-banner {
+  height: $image-xsmall * 0.8;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  &.product-banner--small {
+    height: floor($image-small * 0.8);
+  }
+
+  &.product-banner--medium {
+    height: floor($image-medium * 0.75);
+  }
+
+  &.product-banner--large {
+    height: floor($image-large * 0.75);
+  }
+
+  @include at-query($min, $medium) {
+    height: $image-xsmall;
+
+    &.product-banner--small {
+      height: $image-small;
+    }
+
+    &.product-banner--medium {
+      height: $image-medium;
+    }
+
+    &.product-banner--large {
+      height: $image-large;
+    }
+  }
+  &:after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    bottom: 0; left: 0;
+    z-index: 5;
+  }
+  .product-banner__content {
+    position: absolute;
+    top: 15%;
+    left: $gutter;
+    right: $gutter;
+    z-index: 6;
+  }
+  .product-banner__subtitle {
+    p {
+      @extend .h4;
+      font-weight: normal;
+    }
+  }
+}
