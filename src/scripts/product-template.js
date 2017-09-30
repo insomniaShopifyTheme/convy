@@ -139,14 +139,16 @@ theme.ProductPageSection = (function() {
     theme.productCardsInit($container);
 
     // Zoom image
-    $('.product-images--single .product-images__image, .product-images__image li').each(function(idx, el) {
-      var $img = $(el).find('img');
-      if(theme.isMobile()){
-        new PinchZoom($img[0], {});
-      }else{
-        $(el).zoom({ on: $img.data('zoom-type'), url: $img.data('original') });
-      }
-    });
+    if (turnOnZoom == true) {
+      $('.product-images--single .product-images__image, .product-images__image li').each(function(idx, el) {
+        var $img = $(el).find('img');
+        if(theme.isMobile()) {
+          new PinchZoom($img[0], {});
+        } else {
+          $(el).zoom({ on: $img.data('zoom-type'), url: $img.data('original') });
+        }
+      });
+    }
 
     $('#tab-container').easytabs();
 
@@ -615,7 +617,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       }
     };
 
-    // Cookie 
+    // Cookie
     var _cookie = new theme.CookieManager();
 
     // If the array contain str string return first val found
@@ -765,5 +767,5 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       $('.reviews-tab').click();
     });
   }
-  
+
 });

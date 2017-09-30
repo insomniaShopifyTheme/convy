@@ -4,9 +4,8 @@
 .section-header .user-account{float: left!important}
 {% endif %}
 .section-header .with-menu-word::before{content: '{{ section.settings.menu_word_mobile }}' !important}
-@media screen and (min-width: 1024px){.section-header__logo-link img {margin-top:{{ section.settings.logo_margin }}rem}}
+@media screen and (min-width: 1024px){.section-header__logo-link img {margin-top:{{ section.settings.logo_margin }}rem}.section-header .logo-cell{padding-left:{{ section.settings.logo_margin_left }}px}}
 .section-header__logo-link.mobile-logo img{margin-top:{{ section.settings.logo_margin_mobile }}rem}
-.section-header .logo-cell{padding-left:{{ section.settings.logo_margin_left }}px}
 </style>
 
 {% if section.settings.logo_image != blank %}
@@ -210,8 +209,7 @@
         "step":       1,
         "unit":       "px",
         "label":     "Image left margin",
-        "default":   30,
-        "info": "Use it to adjust the margin on left"
+        "default":   30
       },
       {
         "type": "header",

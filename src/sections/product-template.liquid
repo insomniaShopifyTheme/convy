@@ -1,3 +1,12 @@
+{% if section.settings.gallery_zoom_type == 'none' %}
+  <script>
+    var turnOnZoom = false;
+  </script>
+{% else %}
+  <script>
+    var turnOnZoom = true;
+  </script>
+{% endif %}
 
 {% if section.settings.add_to_cart_bar_enabled %}
   {% include 'product-add-to-cart-bar' %}
@@ -321,6 +330,10 @@
         "id": "gallery_zoom_type",
         "label": "Zoom type",
         "options": [
+          {
+            "value": "none",
+            "label": "None"
+          },
           {
             "value": "mouseover",
             "label": "On mouse over"
