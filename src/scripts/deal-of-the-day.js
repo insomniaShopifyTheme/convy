@@ -3,8 +3,8 @@
   *****************************************************************************/
 theme.dealOfTheDay = function() {
 
-  var deal_enabled = $.parseJSON("{{ settings.deal_of_the_day_enabled | json}}");
-  
+  var deal_enabled = (new String("{{settings.deal_of_the_day_enabled}}")) == "true";
+
   if (!deal_enabled) {
     return false;
   }

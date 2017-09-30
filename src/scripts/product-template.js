@@ -704,7 +704,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       interval();
     }
 
-    var countdown_offer_enabled = $.parseJSON("{{ settings.countdown_offer_enabled | json}}");
+    var countdown_offer_enabled = (new String("{{settings.countdown_offer_enabled}}")) == "true";
     var api_endpoint = window.location.href +'.json';
 
     //Get product data from product json
