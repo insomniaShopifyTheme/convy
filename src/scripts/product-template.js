@@ -702,49 +702,56 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       interval();
     }
 
-    var countdown_offer_enabled = "{{ settings.countdown_offer_enabled }}";
-    
-    //if setting is enabled
-    if(countdown_offer_enabled){
+    var countdown_offer_enabled = $.parseJSON("{{ settings.countdown_offer_enabled | json}}");
+    var api_endpoint = window.location.href +'.json';
 
-      var $countDownOffer = $(this.selectors.countDownOffer);
-      var api_endpoint = window.location.href +'.json';
+    //Get product data from product json
+    $.ajax({
+      url:  api_endpoint,
+      dataType: "JSON",
+      async: true,
+      success: getProductSuccess,
+      error: function () {
+        console.error('Countdown offer: Oops, something went wrong Unable to load product data');
+      }
+    });
 
-      //Get product data from product json
-      var data = $.parseJSON($.ajax({
-        url:  api_endpoint,
-        dataType: "json",
-        async: false
-      }).responseText);
+    var self = this;
+    function getProductSuccess(data) {
+      //if setting is enabled
+      if(countdown_offer_enabled){
 
-      var productId = data.product.id;
-      var tags = data.product.tags.split(', ');
-      var toDate = arrayContain(tags, 'countdown-');//return first tag with 'countdown-' str
+        var $countDownOffer = $(self.selectors.countDownOffer);
+
+        var productId = data.product.id;
+        var tags = data.product.tags.split(', ');
+        var toDate = arrayContain(tags, 'countdown-');//return first tag with 'countdown-' str
 
 
-      //if tag 'countdown-' exists show timer else remove cookie
-      if(toDate){
+        //if tag 'countdown-' exists show timer else remove cookie
+        if(toDate){
 
-        //style it (not sure about this)
-        $countDownOffer.css('display', 'block')
-            .css('text-transform','lowercase')
-            .css('font-size', '13px');
+          //style it (not sure about this)
+          $countDownOffer.css('display', 'block')
+              .css('text-transform','lowercase')
+              .css('font-size', '13px');
 
-        if($countDownOffer.parents('.product-form__cart--sticky').length == 1){
-          $countDownOffer.parents('.product-form__cart--sticky')
-              .addClass('w-countdown')
-              .find(this.selectors.countDownOffer);
+          if($countDownOffer.parents('.product-form__cart--sticky').length == 1){
+            $countDownOffer.parents('.product-form__cart--sticky')
+                .addClass('w-countdown')
+                .find(self.selectors.countDownOffer);
 
+          }
+          var toDateSplittedStr = toDate.split('-'); // days-hours-minutes
+          toDateSplittedStr.shift();//remove first elem from array
+
+          //Initialize countdown
+          countDownOfferTimer(toDateSplittedStr, productId, $('.countdown-offer-clock .countdown-clock'))
+
+        }else{
+          $countDownOffer.parents('.product-form__cart--sticky').removeClass('w-countdown');
+          _cookie.remove("konversion-countdown-"+ productId);
         }
-        var toDateSplittedStr = toDate.split('-'); // days-hours-minutes
-        toDateSplittedStr.shift();//remove first elem from array
-
-        //Initialize countdown
-        countDownOfferTimer(toDateSplittedStr, productId, $('.countdown-offer-clock .countdown-clock'))
-
-      }else{
-        $countDownOffer.parents('.product-form__cart--sticky').removeClass('w-countdown');
-        _cookie.remove("konversion-countdown-"+ productId);
       }
     }
   },
