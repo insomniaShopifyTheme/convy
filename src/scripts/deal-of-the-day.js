@@ -3,8 +3,11 @@
   *****************************************************************************/
 theme.dealOfTheDay = function() {
 
-  var enabled_deal = "{{ settings.deal_of_the_day_enabled }}";
-  if (enabled_deal == false) return false;
+  var deal_enabled = (new String("{{settings.deal_of_the_day_enabled}}")) == "true";
+
+  if (!deal_enabled) {
+    return false;
+  }
 
   if (typeof backend == 'undefined') {
     var backend = {
