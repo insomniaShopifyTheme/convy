@@ -126,8 +126,8 @@ $color-btn-special-active: darken($color-btn-special-hover, 10%);
 $color-btn-special-text: $color-special-text;
 
 // Text link colors
-$color-link: $color-primary;
-$color-link-hover: lighten($color-primary, 15%);
+$color-link: {{ settings.color_links }};
+$color-link-hover: lighten({{ settings.color_links }}, 15%);
 
 // Helper colors
 $color-border: {{ settings.color_borders }};

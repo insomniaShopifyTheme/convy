@@ -216,6 +216,12 @@
         "default": "#e0e0e0"
       },
       {
+        "type": "color",
+        "id": "color_links",
+        "label": "Links",
+        "default": "#393939"
+      },
+      {
         "type": "header",
         "content": "Main Menu colors"
       },
