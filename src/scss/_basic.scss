@@ -27,7 +27,9 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+
 }
+
 
 select, input{
   outline: none;
@@ -35,6 +37,10 @@ select, input{
 
 .main-content {
   flex: 1;
+}
+
+.main-content.not-found-template {
+  padding-top: 0 !important;
 }
 
 [tabindex='-1']:focus {
