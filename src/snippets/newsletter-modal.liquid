@@ -36,6 +36,9 @@
                     {% else %}
                         <input type="hidden" name="contact[tags]" value="newsletter">
                         <div class="newsletter-form__group">
+                            {% if settings.newsletter_modal_popup_name_field %}
+                            <input type="text" value="{% if customer %}{{ customer.first_name }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_first_name' | t }}" name="contact[email]" id="Mail" class="newsletter-form__input" aria-label="{{ 'general.newsletter_form.newsletter_first_name' | t }}" autocorrect="off" autocapitalize="off">
+                            {% endif %}
                             <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Mail" class="newsletter-form__input" aria-label="{{ 'general.newsletter_form.newsletter_email' | t }}" autocorrect="off" autocapitalize="off">
                             <input type="submit" class="btn btn--secondary newsletter-form__btn" name="subscribe" id="subscribe" value="{% if settings.newsletter_modal_btn_text != blank %}{{ settings.newsletter_modal_btn_text }}{% else %}{{ 'general.newsletter_form.submit' | t }}{% endif %}">
                         </div>

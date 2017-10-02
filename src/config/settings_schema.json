@@ -875,6 +875,14 @@
         "label": "Show signup form",
         "default": true
       },
+
+      {
+        "type": "checkbox",
+        "id": "newsletter_modal_popup_name_field",
+        "label": "Add first name field in the form",
+        "default": false
+      },
+
       {
         "type": "image_picker",
         "id": "newsletter_modal_image_picker",

@@ -14,6 +14,7 @@
       "home_link_title": "Back to the home page"
     },
     "newsletter_form": {
+      "newsletter_first_name": "First name",
       "newsletter_email": "email@example.com",
       "submit": "Subscribe",
       "confirmation": "Thanks for subscribing"
