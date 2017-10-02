@@ -104,6 +104,26 @@
         "type": "text",
         "id": "yotpo_app_key",
         "label": "Learn how to get your app key [here](https:\/\/desk.zoho.com\/portal\/tabarnapp\/kb\/articles\/konversion-integrates-with-yotpo)."
+      },
+      {
+        "type": "header",
+        "content": "Infinite Options"
+      },
+      {
+        "type": "radio",
+        "id": "app_infinite_options_enabled",
+        "label": "Infinite Options app",
+        "options": [
+          {
+            "value": "",
+            "label": "Disable"
+          },
+          {
+            "value": "true",
+            "label": "Enable"
+          }
+        ],
+        "default": ""
       }
     ]
   },

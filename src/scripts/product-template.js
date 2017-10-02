@@ -776,28 +776,37 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
   _productInfiniteOptions: function () {
     var $window = $(window);
     var _this = this,
+        appEnabled ='{{settings.app_infinite_options_enabled}}',
         $infiniteOptionsContainerWrapper = '<div id="infiniteoptions-container"></div>';
 
-    $window.on('resize', function(){
-      $('div[id^="infiniteoptions-container"]').each(function() {
+    $('div[id^="infiniteoptions-container"]').each(function() {
+      if (appEnabled.trim() != '') {
         if (!$(this).prev().hasClass('infiniteoptions-unload')) {
           $(this).before('<div class="infiniteoptions-unload"></div>');
         }
-      });
-      if ($window.width() > _this.settings.mobileSize) {
-        if ( !$(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').length ) {
-          $(_this.selectors.productInfoDesktop).find('.infiniteoptions-unload').after($infiniteOptionsContainerWrapper);
-        }
-        $(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').html($(_this.selectors.productInfoMobile).find('#infiniteoptions-container').html());
-        $(_this.selectors.productInfoMobile).find('#infiniteoptions-container').remove();
       } else {
-        if ( !$(_this.selectors.productInfoMobile).find('#infiniteoptions-container').length ) {
-          $(_this.selectors.productInfoMobile).find('.infiniteoptions-unload').after($infiniteOptionsContainerWrapper);
+        $(this).remove();
+      }
+    });
+
+    $window.on('resize', function(){
+      if (appEnabled.trim() != '') {
+        if ($window.width() > _this.settings.mobileSize) {
+          if ( !$(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').length ) {
+            $(_this.selectors.productInfoDesktop).find('.infiniteoptions-unload').after($infiniteOptionsContainerWrapper);
+          }
+          $(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').html($(_this.selectors.productInfoMobile).find('#infiniteoptions-container').html());
+          $(_this.selectors.productInfoMobile).find('#infiniteoptions-container').remove();
+        } else {
+          if ( !$(_this.selectors.productInfoMobile).find('#infiniteoptions-container').length ) {
+            $(_this.selectors.productInfoMobile).find('.infiniteoptions-unload').after($infiniteOptionsContainerWrapper);
+          }
+          $(_this.selectors.productInfoMobile).find('#infiniteoptions-container').html($(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').html());
+          $(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').remove();
         }
-        $(_this.selectors.productInfoMobile).find('#infiniteoptions-container').html($(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').html());
-        $(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').remove();
       }
     }).resize();
+
   }
 
 });
