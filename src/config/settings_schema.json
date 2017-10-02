@@ -88,6 +88,10 @@
           {
             "value": "yotpo_reviews",
             "label": "Yotpo Reviews, Photos, and Q&A. Enable the app. You still need to [install the app](https:\/\/apps.shopify.com\/yotpo-social-reviews)."
+          },
+          {
+            "value": "ryviu_reviews",
+            "label": "Ryviu. You still need to [install the app](https:\/\/www.ryviu.com\/)."
           }
         ],
         "default": ""
