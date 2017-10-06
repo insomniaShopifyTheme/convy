@@ -89,7 +89,7 @@
       {% endfor %}
     </select>
 
-    {% if section.settings.sticky_add_to_cart %}
+    {% if section.settings.hide_normal_add_to_cart and section.settings.sticky_add_to_cart %}
       {% comment %}
         Cart button is hidden in mobile version and sticky version used
         see snippets/cart-sticky-button.liquid

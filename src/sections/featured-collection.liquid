@@ -40,7 +40,7 @@
             {%- assign mobile_col_sizes = "medium-down--one-half" -%}
         {% endcase %}
 
-        <div class="grid--uniform product-list product-list--col-{{ display_number_of_products_mobile }}">
+        <div class=" product-list product-list--col-{{ display_number_of_products_mobile }}">
             {% for product in collection.products limit: products_limit %}
               {% if forloop.index > products_limit_desktop %}
                 {% assign desktop_hide = "large--hide" %}

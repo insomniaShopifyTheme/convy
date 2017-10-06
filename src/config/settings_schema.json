@@ -216,6 +216,12 @@
         "default": "#e0e0e0"
       },
       {
+        "type": "color",
+        "id": "color_links",
+        "label": "Links",
+        "default": "#393939"
+      },
+      {
         "type": "header",
         "content": "Main Menu colors"
       },
@@ -266,6 +272,75 @@
         "id": "color_discount",
         "label": "Discount indicators color",
         "default": "#f53333"
+      }
+    ]
+  },
+  {
+    "name": "404 Page not found",
+    "settings": [
+      {
+        "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "paragraph",
+        "content": "To edit the text in the '404 Not Found' page go to Admin Panel > Online Store > Themes > Theme-Konversion > Actions > Edit Languages"
+      },
+      {
+        "type": "select",
+        "id": "404_title_size",
+        "label": "Font size",
+        "options": [
+          {"value": "small", "label": "Small"},
+          {"value": "normal", "label": "Normal"},
+          {"value": "big", "label": "Big"}
+        ],
+        "default": "big"
+      },
+      {
+        "type": "color",
+        "id": "404_title_color",
+        "label": "Title color",
+        "default": "#000"
+      },
+      {
+        "type": "color",
+        "id": "404_description_color",
+        "label": "Description color",
+        "default": "#000"
+      },
+      {
+        "type": "select",
+        "id": "404_horizontal_align",
+        "label": "Horizontal position",
+        "options": [
+          { "value": "align-h-left", "label": "Align left" },
+          { "value": "align-h-center", "label": "Align center" },
+          { "value": "align-h-right", "label": "Align right" }
+        ],
+        "default": "align-h-center"
+      },
+      {
+        "type": "select",
+        "id": "404_vertical_align",
+        "label": "Vertical position",
+        "options": [
+          { "value": "align-v-top", "label": "Align top" },
+          { "value": "align-v-center", "label": "Align center" },
+          { "value": "align-v-bottom", "label": "Align bottom" }
+        ],
+        "default": "align-v-center"
+      },
+      {
+        "type": "image_picker",
+        "id": "not_found_page_background_image",
+        "label": "Background Image"
+      },
+      {
+        "type": "color",
+        "id": "404_background_color",
+        "label": "Background color",
+        "default": "#fff"
       }
     ]
   },
@@ -800,6 +875,14 @@
         "label": "Show signup form",
         "default": true
       },
+
+      {
+        "type": "checkbox",
+        "id": "newsletter_modal_popup_name_field",
+        "label": "Add first name field in the form",
+        "default": false
+      },
+
       {
         "type": "image_picker",
         "id": "newsletter_modal_image_picker",

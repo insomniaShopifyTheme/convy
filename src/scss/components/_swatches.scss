@@ -10,10 +10,10 @@ $swatch-size: 40px;
     @include clearfix;
   }
   .swatches__option {
+    display: inline-block;
     border: 1px solid $color-border;
     cursor: pointer;
-    float: left;
-    height: $swatch-size;
+    min-height: $swatch-size;
     margin: 5px 10px 10px 0;
     padding: 5px;
     text-align: center;
@@ -38,5 +38,12 @@ $swatch-size: 40px;
       border-top: solid 1px $color-border;
       border-left: solid 1px $color-border;
     }
+  }
+
+  @include at-query($min, $large) {
+    .swatches__option {
+      float: left;
+    }
+
   }
 }

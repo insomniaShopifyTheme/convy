@@ -348,6 +348,7 @@ var ajaxCart = (function(module, $) {
   };
 
   buildCart = function (cart) {
+
     // Start with a fresh cart div
     $cartContainer.empty();
 
@@ -358,6 +359,8 @@ var ajaxCart = (function(module, $) {
       cartCallback(cart);
       return;
     }
+
+
 
     // Handlebars.js cart layout
     var items = [],
@@ -420,6 +423,22 @@ var ajaxCart = (function(module, $) {
     }
 
     $cartContainer.append(template(data));
+
+    //Hide "OR" word if the additional checkout button is hidden
+    var additional_buttons = $cartContainer.find('button.additional-checkout-button');
+
+    var arr_btns = [];
+    additional_buttons.each(function (i) {
+      arr_btns[i] = $(this).css('display') == 'none';
+    });
+
+    function btn(hidden) {
+      return hidden == true;
+    }
+
+    if(arr_btns.every(btn) == true){
+      $cartContainer.find('.additional-checkout-buttons').css('display', 'none');
+    }
 
     cartCallback(cart);
   };
