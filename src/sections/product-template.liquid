@@ -82,7 +82,12 @@
       		  <div class="medium-down--hide">
               <div id="looxReviews" class="js-delete--mobile" data-product-id="{{product.id}}">{{ product.metafields.loox.reviews }}</div>
             </div>
-      		{% elsif settings.app_product_reviews_enabled == "yotpo_reviews" %}
+          {% elsif settings.app_product_reviews_enabled == "ryviu_reviews" %}
+            <div class="medium-down--hide">
+              <script src="https://ryviu-app.firebaseapp.com/client/reviews.js?shop={{ permanent_domain }}"></script>
+              <div class="ryviu-show-reviews medium-down--hide" product-handle="{{product.handle}}">{{product.metafields.ryviu.reviews}}</div>
+            </div>
+          {% elsif settings.app_product_reviews_enabled == "yotpo_reviews" %}
       		  <div class="medium-down--hide">
               <div class="yotpo yotpo-main-widget js-delete--mobile"
                   data-product-id="{{ product.id }}"
@@ -148,6 +153,11 @@
           {% include 'product-page-form-mobile' %}
         {% endif %}
         {% include 'product-description' %}
+        {% if settings.app_product_reviews_enabled == "ryviu_reviews" %}
+          <div class="large--hide">
+            <div class="ryviu-show-reviews medium-down--hide" product-handle="{{product.handle}}">{{product.metafields.ryviu.reviews}}</div>
+          </div>
+        {% endif %}
         {% if section.settings.product_form_location == "bottom" %}
           {% include 'product-page-form-mobile' %}
         {% endif %}
@@ -168,7 +178,6 @@
         {% endif %}
       </div>
     </div> <!-- end desktop -->
-
 
     <div class="grid__item one-whole large--two-thirds">
 
@@ -356,6 +365,20 @@
         "id": "thumbs_arrows",
         "label": "Display Thumbs arrows",
         "default": true
+      },
+      {
+        "type": "radio",
+        "id": "gallery_direction",
+        "label": "Gallery type",
+        "default": "vertical",
+        "options": [
+          {"value": "vertical", "label": "Vertical gallery"},
+          {"value": "horizontal", "label": "Horizontal gallery"}
+        ]
+      },
+      {
+        "type": "paragraph",
+        "content": "NOTE: To apply changes, please click Save"
       },
       {
         "type": "header",
