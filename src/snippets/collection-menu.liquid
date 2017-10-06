@@ -7,13 +7,13 @@
         {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
           <li>
             <a href="{{ link.url }}">{{ link.title }}</a>
-            <ul>
+            <ul class="no-bullets">
               {% for child_link in linklists[child_list_handle].links %}
                 {% assign grand_child_list_handle = child_link.title | handle %}
                 {% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
                   <li>
                     <a href="{{ child_link.url }}">{{ child_link.title }}</a>
-                    <ul>
+                    <ul class="no-bullets">
                       {% for grand_child_link in linklists[grand_child_list_handle].links %}
                         <li>
                           {{ grand_child_link.title | link_to: grand_child_link.url }}
