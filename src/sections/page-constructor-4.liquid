@@ -2,7 +2,7 @@
   {% include 'breadcrumb' %}
 </header>
 
-<div class="page-size--{{ section.settings.page_width }}">
+<div class="page-size--{{ section.settings.page_width }}" data-section-type="page-template">
   <div class="grid--full">
     {% if section.settings.content_location == "left" %}
       {% include 'page-constructor-content' %}
