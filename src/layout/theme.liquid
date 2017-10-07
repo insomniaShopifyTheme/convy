@@ -69,9 +69,7 @@ var backend={strings:{addToCart:{{ 'products.product.add_to_cart' | t | json }},
   {% endif %}
 </head>
 
-<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}{% if settings.fixed_header != "disable" %}fixed-header fixed-header--{{ settings.fixed_header }} {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }}" >
-
-
+<body id="{{ page_title | handle }}" class="{% if customer %}customer-logged-in {% endif %}{% if settings.fixed_header != "disable" %}fixed-header fixed-header--{{ settings.fixed_header }} {% endif %}template-{{ template | replace: '.', ' ' | truncatewords: 1, '' | handle }} " >
 
   <header>
     {% section 'topbar' %}
@@ -88,7 +86,7 @@ var backend={strings:{addToCart:{{ 'products.product.add_to_cart' | t | json }},
 
   {% include 'deal-of-the-day-navbar-mobile' %}
 
-  <main class="main-content" role="main" id="page_container">
+  <main class="main-content {% if template == '404' %}not-found-template{% endif %}" role="main" id="page_container">
     {{ content_for_layout }}
   </main>
 

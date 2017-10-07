@@ -51,7 +51,7 @@ $image-large: 728px;
         {% if settings.margin_on_mobile %}
           padding-right: 5px;
         {% endif %}
-        margin-bottom: ($gutter / 4); 
+        margin-bottom: ($gutter / 4);
       }
       &.product-list--1-col {
         &.grid--uniform {
@@ -240,5 +240,8 @@ $image-large: 728px;
   margin-bottom: $gutter;
   .collection-menu__title {
     @include collection-sidebar-title();
+  }
+  ul,li {
+    margin-left: 4px;
   }
 }

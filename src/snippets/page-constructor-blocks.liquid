@@ -69,6 +69,15 @@
             {% include 'contact-form' %}
           </div>
         </div>
+      {% when 'product' %}
+        {% if block.settings.product != blank %}
+          {%- assign product = all_products[block.settings.product] -%}
+          {%- assign btn_action = block.settings.btn_action -%}
+          {%- assign btn_text = block.settings.btn_text -%}
+          {% include 'product-card' %}
+        {% else %}
+          {% include 'blank-product-card' %}
+        {% endif %}
     {% endcase %}
   </div>
 </div>

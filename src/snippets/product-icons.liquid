@@ -1,7 +1,30 @@
+{% assign n_icons = 0 %}
+{% if section.settings.icon_1_text == blank %}
+  {% assign n_icons = n_icons | plus: 1 %}
+{% endif %}
+{% if section.settings.icon_2_text == blank %}
+  {% assign n_icons = n_icons | plus: 1 %}
+{% endif %}
+{% if section.settings.icon_3_text == blank %}
+  {% assign n_icons = n_icons | plus: 1 %}
+{% endif %}
+{% if section.settings.icon_4_text == blank %}
+  {% assign n_icons = n_icons | plus: 1 %}
+{% endif %}
+
+{% if n_icons == 1 %}
+  {% assign column = 'one-third' %}
+{% elsif n_icons == 2 %}
+  {% assign column = 'one-half' %}
+{% elsif n_icons == 3 %}
+  {% assign column = '' %}
+{% else %}
+  {% assign column = 'one-quarter' %}
+{% endif %}
 <div class="product-icons grid--full">
-  <div class="product-icons__col grid__item one-quarter">
-    <div class="product-icons__icon product-icons__icon--house"></div>
-    {% if section.settings.icon_1_text != blank %}
+  {% if section.settings.icon_1_text != blank %}
+  <div class="product-icons__col grid__item {{ column }}">
+      <div class="product-icons__icon product-icons__icon--house"></div>
       {% if section.settings.icon_1_text contains "[STOCK_QTY]" %}
         {% capture qty %}
           {% if current_variant.inventory_quantity > 0 %}
@@ -13,24 +36,24 @@
         {% capture stock_span_html %}<span class="variant-qty">{{ qty }}</span>{% endcapture %}
       {% endif %}
       <p>{{ section.settings.icon_1_text | replace: '[STOCK_QTY]', stock_span_html }}</p>
-    {% endif %}
   </div>
-  <div class="product-icons__col grid__item one-quarter">
+  {% endif %}
+  {% if section.settings.icon_2_text != blank %}
+  <div class="product-icons__col grid__item {{ column }}">
     <div class="product-icons__icon product-icons__icon--plane"></div>
-    {% if section.settings.icon_2_text != blank %}
       <p>{{ section.settings.icon_2_text }}</p>
-    {% endif %}
   </div>
-  <div class="product-icons__col grid__item one-quarter">
+  {% endif %}
+  {% if section.settings.icon_3_text != blank %}
+  <div class="product-icons__col grid__item {{ column }}">
     <div class="product-icons__icon product-icons__icon--badge"></div>
-    {% if section.settings.icon_3_text != blank %}
       <p>{{ section.settings.icon_3_text }}</p>
-    {% endif %}
   </div>
-  <div class="product-icons__col grid__item one-quarter">
+  {% endif %}
+  {% if section.settings.icon_4_text != blank %}
+  <div class="product-icons__col grid__item {{ column }}">
     <div class="product-icons__icon product-icons__icon--shield"></div>
-    {% if section.settings.icon_4_text != blank %}
       <p>{{ section.settings.icon_4_text }}</p>
-    {% endif %}
   </div>
+  {% endif %}
 </div>

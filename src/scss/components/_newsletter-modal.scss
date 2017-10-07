@@ -41,6 +41,7 @@
     &.text-align-center{
       text-align: center;
     }
+
   }
 
   .newsletter-form__input{
@@ -57,8 +58,9 @@
   }
 
   .newsletter-form__text{
-    margin-bottom: 40px;
+    margin-bottom: 15px;
   }
+
 
 }
 
@@ -85,6 +87,21 @@
       margin: auto;
       max-width: 600px;
     }
+
+    .newsletter-form__group{
+      &.full-width-fields{
+        .newsletter-form__input{
+          width: 100%;
+          padding: 10px 10px;
+          float: left;
+        }
+        .newsletter-form__btn{
+          width: 100%;
+          float: left;
+        }
+      }
+    }
+
     
     .newsletter-form__input{
       width: 60%;
