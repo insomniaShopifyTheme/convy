@@ -336,6 +336,70 @@
         ]
       },
       {
+        "type": "product",
+        "name": "Featured Product",
+        "settings": [
+          {
+            "type": "product",
+            "id": "product",
+            "label": "Product"
+          },
+          {
+            "type": "select",
+            "id": "width",
+            "label": "Column width",
+            "options": [
+              {"value": "one-whole", "label": "100%", "group": "Full-width"},
+              {"value": "one-half", "label": "50%", "group": "Halves"},
+              {"value": "one-third", "label": "33.3%", "group": "Thirds"},
+              {"value": "two-thirds", "label": "66.6%", "group": "Thirds"},
+              {"value": "one-quarter", "label": "25%", "group": "Quarters"},
+              {"value": "two-quarters", "label": "50%", "group": "Quarters"},
+              {"value": "three-quarters", "label": "75%", "group": "Quarters"},
+              {"value": "one-fifth", "label": "20%", "group": "Fifths"},
+              {"value": "two-fifths", "label": "40%", "group": "Fifths"},
+              {"value": "three-fifths", "label": "60%", "group": "Fifths"},
+              {"value": "four-fifths", "label": "80%", "group": "Fifths"}
+            ],
+            "default": "one-whole"
+          },
+          {
+            "type": "select",
+            "id": "btn_action",
+            "label": "Button action",
+            "options": [
+              {
+                "value": "none",
+                "label": "None (hide button)"
+              },
+              {
+                "value": "add_to_cart",
+                "label": "Add to cart and stay on page"
+              },
+              {
+                "value": "add_to_cart_redirect",
+                "label": "Add to cart and go to cart page"
+              },
+              {
+                "value": "add_to_cart_checkout",
+                "label": "Add to cart and go to checkout"
+              },
+              {
+                "value": "product_page",
+                "label": "Product page"
+              }
+            ],
+            "default": "add_to_cart"
+          },
+          {
+            "type": "text",
+            "id": "btn_text",
+            "label": "Button text",
+            "default": "Add to Cart"
+          }
+        ]
+      },
+      {
         "type": "clearfix",
         "name": "Page Break (clear fix)",
         "settings": [

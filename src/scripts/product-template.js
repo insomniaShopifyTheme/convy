@@ -99,6 +99,7 @@ theme.ProductPageSection = (function() {
     this.settings = {
       sectionId: sectionId,
       enableHistoryState: $container.data('enable-history-state') || false,
+      mobileSize: 1024
     };
 
     this.selectors = {
@@ -125,6 +126,7 @@ theme.ProductPageSection = (function() {
       productInfo: '.product-info',
       productVariants: '.content-product-variants',
       productInfoDesktop: '.product-info-desktop',
+      productInfoMobile: '.product-info-mobile',
       addToCartBar: '.product-add-to-cart-bar ',
       addToCartBarBtn: '.product-add-to-cart-bar .btn--add-to-cart',
       addToCartBarBtnText: '.product-add-to-cart-bar .btn--add-to-cart .product-form__cart-submit-text',
@@ -174,6 +176,7 @@ theme.ProductPageSection = (function() {
     this._initAccordion();
     this._initCountDownOffer();
     this._productReviews();
+    this._productInfiniteOptions();
     // The following function requires page to be loaded,
     // because it calculates its height. So deleay it for 3 seconds
     setTimeout(function(){
@@ -768,6 +771,42 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       }, 700);
       $('.reviews-tab').click();
     });
+  },
+
+  _productInfiniteOptions: function () {
+    var $window = $(window);
+    var _this = this,
+        appEnabled ='{{settings.app_infinite_options_enabled}}',
+        $infiniteOptionsContainerWrapper = '<div id="infiniteoptions-container"></div>';
+
+    $('div[id^="infiniteoptions-container"]').each(function() {
+      if (appEnabled.trim() != '') {
+        if (!$(this).prev().hasClass('infiniteoptions-unload')) {
+          $(this).before('<div class="infiniteoptions-unload"></div>');
+        }
+      } else {
+        $(this).remove();
+      }
+    });
+
+    $window.on('resize', function(){
+      if (appEnabled.trim() != '') {
+        if ($window.width() > _this.settings.mobileSize) {
+          if ( !$(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').length ) {
+            $(_this.selectors.productInfoDesktop).find('.infiniteoptions-unload').after($infiniteOptionsContainerWrapper);
+          }
+          $(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').html($(_this.selectors.productInfoMobile).find('#infiniteoptions-container').html());
+          $(_this.selectors.productInfoMobile).find('#infiniteoptions-container').remove();
+        } else {
+          if ( !$(_this.selectors.productInfoMobile).find('#infiniteoptions-container').length ) {
+            $(_this.selectors.productInfoMobile).find('.infiniteoptions-unload').after($infiniteOptionsContainerWrapper);
+          }
+          $(_this.selectors.productInfoMobile).find('#infiniteoptions-container').html($(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').html());
+          $(_this.selectors.productInfoDesktop).find('#infiniteoptions-container').remove();
+        }
+      }
+    }).resize();
+
   }
 
 });
