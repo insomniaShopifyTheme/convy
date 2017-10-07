@@ -78,14 +78,31 @@
         }
         .slick-prev {
           top: 5px;
-    	  left: 50%;
+    	    left: 50%;
           transform: translateX(-50%) rotate(90deg);
         }
         .slick-next {
-    	  top: inherit;
-    	  bottom: 10px;
-		  right: 50%;
-    	  transform: translateX(50%) rotate(90deg);
+      	  top: inherit;
+      	  bottom: 10px;
+  		    right: 50%;
+      	  transform: translateX(50%) rotate(90deg);
+        }
+        &.product-thumbs--horizontal {
+          .slick-prev {
+            top:40%;
+            left:0;
+            transform:rotate(0)
+          }
+          .slick-next {
+            top:40%;
+            right:0;
+            transform:rotate(0)
+          }
+          .thumb-overlay {
+            &::before {
+              opacity: 0;
+            }
+          }
         }
       }
     }

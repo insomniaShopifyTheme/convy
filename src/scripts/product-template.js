@@ -28,7 +28,7 @@ theme.ProductImagesSlider = (function() {
       arrows: this.$sliderThumbs.data('arrows'),
       centerMode: false,
       focusOnSelect: true,
-      vertical: verticalDirection,
+      vertical: this.$sliderThumbs.data('vertical'),
       verticalSwiping: true
     };
     this.imageSettings = {

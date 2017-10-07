@@ -1,8 +1,5 @@
-<script type="text/javascript">
-  var verticalDirection = true;
-</script>
 <div class="product-images__thumbs grid__item one-fifth">
-  <ul class="no-bullets js-product-thumbs" data-arrows="{{ section.settings.thumbs_arrows }}">
+  <ul class="no-bullets js-product-thumbs" data-arrows="{{ section.settings.thumbs_arrows }}" data-vertical="true">
     {% for image in product.images %}
       {% if section.settings.display_banner   %}
         {% unless forloop.index == product.images.size %}

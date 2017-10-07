@@ -1,10 +1,10 @@
 {% if product.images.size > 1 %}
   {% unless product.images.size == 2 and section.settings.display_banner %}
   <div class="product-images page-width grid grid--full" id="product_{{ product.id }}_images">
-    {% if section.settings.gallery_direction == 'vertical' %}
-      {% include 'vertical-gallery' %}
-    {% else %}
+    {% if section.settings.gallery_direction == 'horizontal' %}
       {% include 'horizontal-gallery' %}
+    {% else %}
+      {% include 'vertical-gallery' %}
     {% endif %}
   </div>
 {% else %}
