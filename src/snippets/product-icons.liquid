@@ -24,52 +24,64 @@
 <div class="product-icons grid--full">
   {% if section.settings.icon_1_text != blank %}
   <div class="product-icons__col grid__item {{ column }}">
-      {% if section.settings.icon_1_symbol == blank %}
-      <div class="product-icons__icon product-icons__icon--house"></div>
-      {% else %}
-      <i class="{{section.settings.icon_1_symbol}}"></i>
-      {% endif %}
-      {% if section.settings.icon_1_text contains "[STOCK_QTY]" %}
-        {% capture qty %}
-          {% if current_variant.inventory_quantity > 0 %}
-            {{ current_variant.inventory_quantity }}
-          {% else %}
-            {% if current_variant.available %}1{% else %}0{% endif %}
-          {% endif %}
-        {% endcapture %}
-        {% capture stock_span_html %}<span class="variant-qty">{{ qty }}</span>{% endcapture %}
-      {% endif %}
-      <p>{{ section.settings.icon_1_text | replace: '[STOCK_QTY]', stock_span_html }}</p>
+    {% case section.settings.options_icons %}
+      {% when 'default' %}
+        <div class="product-icons__icon product-icons__icon--house"></div>
+      {% when 'icon' %}
+        <i class="{{ section.settings.icon_1_symbol }}"></i>
+      {% when 'image' %}
+        <img src="{{ section.settings.icon_1_image | img_url: '40x40' }}">
+    {% endcase %}
+    {% if section.settings.icon_1_text contains "[STOCK_QTY]" %}
+      {% capture qty %}
+        {% if current_variant.inventory_quantity > 0 %}
+          {{ current_variant.inventory_quantity }}
+        {% else %}
+          {% if current_variant.available %}1{% else %}0{% endif %}
+        {% endif %}
+      {% endcapture %}
+      {% capture stock_span_html %}<span class="variant-qty">{{ qty }}</span>{% endcapture %}
+    {% endif %}
+    <p>{{ section.settings.icon_1_text | replace: '[STOCK_QTY]', stock_span_html }}</p>
   </div>
   {% endif %}
   {% if section.settings.icon_2_text != blank %}
   <div class="product-icons__col grid__item {{ column }}">
-    {% if section.settings.icon_2_symbol == blank %}
-    <div class="product-icons__icon product-icons__icon--plane"></div>
-    {% else %}
-    <i class="{{section.settings.icon_2_symbol}}"></i>
-    {% endif %}
-      <p>{{ section.settings.icon_2_text }}</p>
+    {% case section.settings.options_icons %}
+      {% when 'default' %}
+        <div class="product-icons__icon product-icons__icon--plane"></div>
+      {% when 'icon' %}
+        <i class="{{ section.settings.icon_2_symbol }}"></i>
+      {% when 'image' %}
+        <img src="{{ section.settings.icon_2_image | img_url: '40x40' }}">
+    {% endcase %}
+    <p>{{ section.settings.icon_2_text }}</p>
   </div>
   {% endif %}
   {% if section.settings.icon_3_text != blank %}
   <div class="product-icons__col grid__item {{ column }}">
-    {% if section.settings.icon_3_symbol == blank %}
-    <div class="product-icons__icon product-icons__icon--badge"></div>
-    {% else %}
-    <i class="{{section.settings.icon_3_symbol}}"></i>
-    {% endif %}
-      <p>{{ section.settings.icon_3_text }}</p>
+    {% case section.settings.options_icons %}
+      {% when 'default' %}
+        <div class="product-icons__icon product-icons__icon--badge"></div>
+      {% when 'icon' %}
+        <i class="{{ section.settings.icon_3_symbol }}"></i>
+      {% when 'image' %}
+        <img src="{{ section.settings.icon_3_image | img_url: '40x40' }}">
+    {% endcase %}
+    <p>{{ section.settings.icon_3_text }}</p>
   </div>
   {% endif %}
   {% if section.settings.icon_4_text != blank %}
   <div class="product-icons__col grid__item {{ column }}">
-    {% if section.settings.icon_4_symbol == blank %}
-    <div class="product-icons__icon product-icons__icon--shield"></div>
-    {% else %}
-    <i class="{{section.settings.icon_4_symbol}}"></i>
-    {% endif %}
-      <p>{{ section.settings.icon_4_text }}</p>
+    {% case section.settings.options_icons %}
+      {% when 'default' %}
+        <div class="product-icons__icon product-icons__icon--shield"></div>
+      {% when 'icon' %}
+        <i class="{{ section.settings.icon_4_symbol }}"></i>
+      {% when 'image' %}
+        <img src="{{ section.settings.icon_4_image | img_url: '40x40' }}">
+    {% endcase %}
+    <p>{{ section.settings.icon_4_text }}</p>
   </div>
   {% endif %}
 </div>
