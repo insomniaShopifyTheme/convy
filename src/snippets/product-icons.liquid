@@ -24,7 +24,11 @@
 <div class="product-icons grid--full">
   {% if section.settings.icon_1_text != blank %}
   <div class="product-icons__col grid__item {{ column }}">
+      {% if section.settings.icon_1_symbol == blank %}
       <div class="product-icons__icon product-icons__icon--house"></div>
+      {% else %}
+      <i class="{{section.settings.icon_1_symbol}}"></i>
+      {% endif %}
       {% if section.settings.icon_1_text contains "[STOCK_QTY]" %}
         {% capture qty %}
           {% if current_variant.inventory_quantity > 0 %}
@@ -40,19 +44,31 @@
   {% endif %}
   {% if section.settings.icon_2_text != blank %}
   <div class="product-icons__col grid__item {{ column }}">
+    {% if section.settings.icon_2_symbol == blank %}
     <div class="product-icons__icon product-icons__icon--plane"></div>
+    {% else %}
+    <i class="{{section.settings.icon_2_symbol}}"></i>
+    {% endif %}
       <p>{{ section.settings.icon_2_text }}</p>
   </div>
   {% endif %}
   {% if section.settings.icon_3_text != blank %}
   <div class="product-icons__col grid__item {{ column }}">
+    {% if section.settings.icon_3_symbol == blank %}
     <div class="product-icons__icon product-icons__icon--badge"></div>
+    {% else %}
+    <i class="{{section.settings.icon_3_symbol}}"></i>
+    {% endif %}
       <p>{{ section.settings.icon_3_text }}</p>
   </div>
   {% endif %}
   {% if section.settings.icon_4_text != blank %}
   <div class="product-icons__col grid__item {{ column }}">
+    {% if section.settings.icon_4_symbol == blank %}
     <div class="product-icons__icon product-icons__icon--shield"></div>
+    {% else %}
+    <i class="{{section.settings.icon_4_symbol}}"></i>
+    {% endif %}
       <p>{{ section.settings.icon_4_text }}</p>
   </div>
   {% endif %}
