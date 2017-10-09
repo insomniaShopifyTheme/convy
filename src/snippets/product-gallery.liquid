@@ -7,7 +7,7 @@
       {% include 'vertical-gallery' %}
     {% endif %}
   </div>
-{% else %}
+  {% else %}
   <div class="product-images product-images--single grid grid--full" id="product_{{ product.id }}_images">
     <div class="product-images__image grid__item one-whole">
       {% assign featured_image = current_variant.featured_image | default: product.featured_image %}

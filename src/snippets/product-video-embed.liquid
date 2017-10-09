@@ -1,0 +1,15 @@
+{% assign src = image.alt | split: 'src="' %}
+{% assign src = src[1] | split: '"' | first %}
+{% if src contains '?' %}
+  {% assign src = src | append: '&amp;autoplay=1' %}
+{% else %}
+  {% assign src = src | append: '?autoplay=1' %}
+{% endif %}
+
+<div class="video-container youtube">
+  <div>
+    <a href="{{ src }}" class="fancybox fancybox.iframe" data-fancybox-group="{{ product.id }}" title="{{ product.title | escape }}">
+      {{ image.alt }}
+    </a>
+  </div>
+</div>
