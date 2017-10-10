@@ -120,10 +120,10 @@ $color-btn-secondary-active: darken($color-btn-secondary-hover, 10%);
 $color-btn-secondary-text: $color-btn-secondary;
 
 // Call to action buttons and highlighted elements
-$color-btn-special: $color-special;
-$color-btn-special-hover: darken($color-btn-special, 10%);
-$color-btn-special-active: darken($color-btn-special-hover, 10%);
-$color-btn-special-text: $color-special-text;
+$color-btn-special: {% if settings.custom_product_colors %}{{ settings.color_add_to_cart_btn_bg }}{% else %}$color-special{% endif %};
+$color-btn-special-hover: darken({% if settings.custom_product_colors %}{{ settings.color_add_to_cart_btn_bg }}{% else %}$color-special{% endif %}, 10%);
+$color-btn-special-active: darken({% if settings.custom_product_colors %}{{ settings.color_add_to_cart_btn_bg }}{% else %}$color-special{% endif %}, 10%);
+$color-btn-special-text: {% if settings.custom_product_colors %}{{ settings.color_add_to_cart_btn_text }}{% else %}$color-special-text{% endif %} ;
 
 // Text link colors
 $color-link: {{ settings.color_links }};
@@ -144,6 +144,8 @@ $success-green-bg: #4CAF50;
 // Reviews
 $color-review-stars: #868686;
 $color-review-count: #868686;
+
+//product page
 
 // Sizing variables
 $site-width: $wide;
