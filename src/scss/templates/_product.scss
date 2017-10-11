@@ -30,7 +30,16 @@
   }
 }
 
-
+.product-atc-btn{
+  background-color: $add-to-cart-btn;
+  color: $add-to-cart-btn-text;
+  &:hover{
+    background: $add-to-cart-btn-hover;
+  }
+  &:active{
+    background: $add-to-cart-btn-active;
+  }
+}
 
 .product-template, .section-featured-product {
   .product-images {
@@ -479,6 +488,7 @@
     font-size: 20px;
     padding: 16px 30px;
   }
+
 }
 
 @include at-query ($max, $large) {

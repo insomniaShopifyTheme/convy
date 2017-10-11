@@ -77,7 +77,6 @@
                   <div class="grid__item one-quarter"></div>
                 {% endif %}
               </div>
-
             {% endif %}
           {% endif %}
         </div>
@@ -118,7 +117,7 @@
         <div id="uploadery-container"></div>
         {% endif %}
         <div class="product-form__cart normal">
-          <button type="submit" name="add" id="AddToCart-product_{{ product.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit product-form__cart--trigger" >
+          <button type="submit" name="add" id="AddToCart-product_{{ product.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit product-form__cart--trigger product-atc-btn" >
             <span class="product-form__cart-submit-text" data-original-text="{{ 'products.product.add_to_cart' | t }}">
               {% if current_variant.available %}
                 {{ 'products.product.add_to_cart' | t }}
@@ -140,7 +139,7 @@
           {% endcomment %}
         {% else %}
           <div class="product-form__cart large--hide">
-            <button type="submit" name="add" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit" >
+            <button type="submit" name="add" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit product-atc-btn" >
               <span class="product-form__cart-submit-text">
                 {% if current_variant.available %}
                   {{ 'products.product.add_to_cart' | t }}
