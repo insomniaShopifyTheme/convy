@@ -177,6 +177,7 @@ theme.ProductPageSection = (function() {
     this._initCountDownOffer();
     this._productReviews();
     this._productInfiniteOptions();
+    this._responsiveElements();
     // The following function requires page to be loaded,
     // because it calculates its height. So deleay it for 3 seconds
     setTimeout(function(){
@@ -807,6 +808,46 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
       }
     }).resize();
 
+  },
+
+  _responsiveElements: function() {
+    var $window = $(window);
+    var $productPositionNormal = $('.product-form-position-normal');
+    var $productPositionBottom = $('.product-form-position-bottom');
+
+    $window.on('resize', function(){
+      if ($window.width() > 1024) {
+        //desktop
+        $('.product-template .product-info').removeClass('page-width product-info-mobile').addClass('product-info-desktop');
+        $('.product-form').removeClass('product-form--mobile').addClass('product-form--desktop');
+        if ($productPositionBottom.html() != '') {
+          $productPositionNormal.get(0).innerHTML = $productPositionBottom.html();
+          $productPositionBottom.html('');
+        }
+        $('.product-form__cart.normal').removeClass('hide');
+      } else {
+        //mobile
+        $('.product-template .product-info').removeClass('product-info-desktop').addClass('page-width product-info-mobile');
+        $('.product-form').removeClass('product-form--desktop').addClass('product-form--mobile');
+        if ($('#visibile-mobile-cart')) {
+          $('.product-form__cart.normal').addClass('hide');
+        } else {
+          $('.product-form__cart.normal').removeClass('hide');
+        }
+
+        if ($('#product-form-mobile-position').val() == 'bottom') {
+          if ($productPositionNormal.html() != '') {
+            $productPositionBottom.get(0).innerHTML = $productPositionNormal.html();
+            $productPositionNormal.html('');
+          }
+        } else {
+          if ($('.product-form-position-bottom').html() != '') {
+            $productPositionNormal.get(0).innerHTML = $productPositionBottom.html();
+            $productPositionBottom.html('');
+          }
+        }
+      }
+    }).resize();
   }
 
 });
