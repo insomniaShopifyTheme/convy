@@ -321,6 +321,9 @@
                   {% endfor %}
                 </select>
 
+                {% if settings.app_uploadery_enabled != blank %}
+                <div id="uploadery-container"></div>
+                {% endif %}
                 <div class="product-form__cart normal">
                   <button type="submit" name="add" id="AddToCart-product_{{ product.id }}" {% unless current_variant.available %}disabled="disabled"{% endunless %} class="btn btn--special btn--full product-form__cart-submit product-form__cart--trigger" >
                     <span class="product-form__cart-submit-text" data-original-text="{{ 'products.product.add_to_cart' | t }}">
