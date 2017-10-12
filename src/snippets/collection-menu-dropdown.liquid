@@ -1,0 +1,38 @@
+
+  <select name="DropdownCollectionMenu" id="DropdownCollectionMenu">
+    <option value="" selected>Menu</option>
+  {% if section.settings.menu.size > 0 %}
+
+      {% for link in linklists[section.settings.menu].links %}
+        {% assign child_list_handle = link.title | handle %}
+        {% if linklists[child_list_handle] and linklists[child_list_handle].links.size > 0 %}
+          <li>
+            <option value="{{ link.url }}" >{{ link.title }}</option>
+              {% for child_link in linklists[child_list_handle].links %}
+                {% assign grand_child_list_handle = child_link.title | handle %}
+                {% if linklists[grand_child_list_handle] and linklists[grand_child_list_handle].links.size > 0 %}
+                    <option value="{{ child_link.url }}" >{{ child_link.title }}</option>
+                      {% for grand_child_link in linklists[grand_child_list_handle].links %}
+                          <option value="{{ grand_child_link.url }}" >{{ grand_child_link.title }}</option>
+                      {% endfor %}
+                {% else %}
+                    <option value="{{ child_link.url }}" >{{ child_link.title }}</option>
+                {% endif %}
+              {% endfor %}
+        {% else %}
+          <option value="{{ link.url }}" >{{ link.title }}</option>
+        {% endif %}
+      {% endfor %}
+
+  {% endif %}
+  </select>
+
+  <script>
+    /* Product Tag Filters - Good for any number of filters on any type of collection pages */
+    var collFilters = jQuery('#DropdownCollectionMenu');
+    collFilters.change(function() {
+      if (jQuery(this).val()) {
+        window.location.href = jQuery(this).val();
+      }
+    });
+  </script>
