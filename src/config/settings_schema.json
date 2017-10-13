@@ -191,7 +191,7 @@
         "type": "checkbox",
         "id": "add_to_cart_float_animation",
         "label": "Enable floating image animation",
-        "default": true,
+        "default": false,
         "info": "This animation appears when you add a product to the cart."
       },
       {
