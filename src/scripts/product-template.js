@@ -821,7 +821,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
         currentVersion = "desktop";
         //desktop
         $('.product-template .product-info').removeClass('page-width product-info-mobile').addClass('product-info-desktop');
-        $('.product-form').removeClass('product-form--mobile').addClass('product-form--desktop');
+        $('.product-form-wrapper .product-form').removeClass('product-form--mobile').addClass('product-form--desktop');
         if ($productPositionBottom.html() != '') {
           $productPositionNormal.get(0).innerHTML = $productPositionBottom.html();
           $productPositionBottom.html('');
@@ -831,7 +831,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
         currentVersion = "mobile";
         //mobile
         $('.product-template .product-info').removeClass('product-info-desktop').addClass('page-width product-info-mobile');
-        $('.product-form').removeClass('product-form--desktop').addClass('product-form--mobile');
+        $('.product-form-wrapper .product-form').removeClass('product-form--desktop').addClass('product-form--mobile');
         if ($('#visibile-mobile-cart')) {
           $('.product-form__cart.normal').addClass('hide');
         } else {

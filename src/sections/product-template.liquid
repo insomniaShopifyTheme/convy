@@ -214,7 +214,7 @@
                 <meta itemprop="priceCurrency" content="{{ shop.currency }}">
                 <link itemprop="availability" href="http://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}">
               </div>
-               <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form--mobile product-form-product_{{ product.id }}" data-section="product_{{ product.id }}" data-action-type="{{ btn_action }}">
+              <form action="/cart/add" method="post" enctype="multipart/form-data" class="product-form product-form--mobile product-form-product_{{ product.id }}" data-section="product_{{ product.id }}" data-action-type="{{ btn_action }}">
                 <!-- mobile product options wrapper -->
                 <div class="product-form-options-wrapper large--hide">
                   {% capture qty_selector_html %}
