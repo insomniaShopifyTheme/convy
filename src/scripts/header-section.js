@@ -145,21 +145,21 @@ theme.HeaderSection = (function() {
 
   HeaderSection.prototype = _.extend({}, HeaderSection.prototype, {
 
-    _toggleSearchField: function() {
-      $search = this.$container.find(".header-search");
-      if ($search.hasClass('header-search--active')) {
-        $search.removeClass('header-search--active');
-      } else {
-        $search.addClass('header-search--active');
-        $search.find('input').focus();
-      }
-    },
+	_toggleSearchField: function() {
+		$search = this.$container.find(".header-search");
+		if ($search.hasClass('header-search--active')) {
+			$search.removeClass('header-search--active');
+		} else {
+			$search.addClass('header-search--active');
+			$search.find('input').focus();
+		}
+	},
 
-    onUnload: function() {
-      this.cleanUp();
-    },
+	onUnload: function() {
+		this.cleanUp();
+	},
 
-    cleanUp: function() {}
+	cleanUp: function() {}
 
   });
 

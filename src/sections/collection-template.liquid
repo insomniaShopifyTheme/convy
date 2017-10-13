@@ -128,6 +128,11 @@
                 {% include 'collection-sorting-dropdown' %}
               </div>
             {% endif %}
+            {% if section.settings.dispaly_sorting %}
+              <div class="grid__item {% if section.settings.dispaly_filters %}one-whole{% endif %}">
+                {% include 'collection-menu-dropdown' %}
+              </div>
+            {% endif %}
           </div>
         </div>
       </div>

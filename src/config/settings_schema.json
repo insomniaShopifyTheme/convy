@@ -295,6 +295,28 @@
       },
       {
         "type": "header",
+        "content": "Product pages"
+      },
+      {
+        "type": "checkbox",
+        "id": "custom_product_colors",
+        "label": "Use custom colors",
+        "default": false
+      },
+      {
+        "type": "color",
+        "id": "color_add_to_cart_btn_bg",
+        "label": "Add to cart button background color",
+        "default": "#41cd62"
+      },
+      {
+        "type": "color",
+        "id": "color_add_to_cart_btn_text",
+        "label": "Add to cart button text color",
+        "default": "#fff"
+      },
+      {
+        "type": "header",
         "content": "Alternative colors"
       },
       {
