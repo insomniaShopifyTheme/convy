@@ -230,9 +230,6 @@
         </div>
         <div class="product-form-position-bottom"></div>
         <input type="hidden" name="product-form-mobile-position" id="product-form-mobile-position" value="{{ section.settings.product_form_location }}">
-        {% if section.settings.hide_normal_add_to_cart and section.settings.sticky_add_to_cart %}
-        <input type="hidden" name="visibile-mobile-cart" id="visibile-mobile-cart" value="1" />
-        {% endif %}
       </div>
     </div>
 
@@ -753,10 +750,10 @@
         "default": false
       },
       {
-        "type": "checkbox", 
-        "id": "hide_normal_add_to_cart",
-        "label": "Display both ‘Add to cart’ buttons",
-        "info": "Under the variants and sticky button",
+        "type": "checkbox",
+        "id": "display_normal_add_to_cart",
+        "label": "Display normal ‘Add to cart’ button",
+        "info": "When sticky ‘Add to cart’ button is enabled",
         "default": false
       },
       {
