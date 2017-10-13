@@ -322,6 +322,9 @@
     .product-icons__col {
       text-align: center;
       font-size: 0.9rem;
+      .fa {
+        font-size: 2.85rem;
+      }
     }
     .variant-qty {
       color: $error-red;

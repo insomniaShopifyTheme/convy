@@ -107,14 +107,22 @@
       {% endif %}
 
     </div>
-    {% comment %}
-      ================= MOBILE VERSION =================
-    {% endcomment %}
-    <div class="grid__item one-whole large--hide">
 
-      <div class="product-info page-width product-info-mobile">
-        <div class="product-info__title clearfix">
-
+    <div class="grid__item one-whole large--one-third">
+      <div class="product-info">
+        <div class="deal-of-day-product-wrapper medium-down--hide">
+          {% include 'deal-of-the-day-product' %}
+        </div>
+        <!-- desktop title wrapper -->
+        <div class="product-info__title medium-down--hide">
+          {% if featured_product_section %}
+            <h3><a href="{{ product_url }}">{{ product.title }}</a></h3>
+          {% else %}
+            <h3 itemprop="name">{{ product.title }}</h3>
+          {% endif %}
+        </div>
+        <!-- mobile title & review wrapper -->
+        <div class="product-info__title clearfix large--hide">
           {% if section.settings.price_location %}
             <h3>{{ product.title }}</h3>
             <div class="product-price clearfix">
@@ -149,35 +157,84 @@
             {% endif %}
           {% endif %}
         </div>
-        {% if section.settings.product_form_location == "top" %}
-          {% include 'product-page-form-mobile' %}
-        {% endif %}
-        {% include 'product-description' %}
-        {% if settings.app_product_reviews_enabled == "ryviu_reviews" %}
-          <div class="large--hide">
-            <div class="ryviu-show-reviews medium-down--hide" product-handle="{{product.handle}}">{{product.metafields.ryviu.reviews}}</div>
-          </div>
-        {% endif %}
-        {% if section.settings.product_form_location == "bottom" %}
-          {% include 'product-page-form-mobile' %}
-        {% endif %}
-      </div>
-
-    </div> <!-- end mobile -->
-
-    {% comment %}
-      ================= DESKTOP VERSION =================
-    {% endcomment %}
-    <div class="grid__item one-whole medium-down--hide large--one-third">
-      <div class="product-info product-info-desktop">
-        {% include 'deal-of-the-day-product' %}
-        {% include 'product-page-info' %}
-        {% include 'product-meta' %}
+        <!-- desktop review wrapper -->
+        <div class="product-review-wrapper medium-down--hide">
+          {% if settings.app_product_reviews_enabled != blank %}
+            {% if settings.app_product_reviews_enabled == "product_reviews" %}
+              <a href="#" class="open-reviews-tab">
+                <div class="product-rating">
+                  <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+                </div>
+              </a>
+            {% elsif settings.app_product_reviews_enabled == "loox_reviews" %}
+                <div class="product-rating">
+                  <a href="#" class="open-reviews-tab">
+                    <div class="loox-rating" data-id="{{ product.id }}" data-rating="{{ product.metafields.loox.avg_rating }}" data-raters="{{ product.metafields.loox.num_reviews }}"></div>
+                  </a>
+                </div>
+            {% elsif settings.app_product_reviews_enabled == "yotpo_reviews" %}
+              <a href="#" class="open-reviews-tab">
+                <div class="product-rating">
+                  <div class="yotpo bottomLine"
+                       data-appkey="{{ settings.yotpo_app_key }}"
+                       data-domain="{{shop.permanent_domain | escape }}"
+                       data-product-id="{{ product.id }}"
+                       data-product-models="{{ product.id }}"
+                       data-name="{{ product.title | escape }}"
+                       data-url="{{ shop.url }}{{ product.url }}"
+                       data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                       data-description="{{ product_description | escape }}"
+                       data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                  </div>
+                </div>
+              </a>
+            {% endif %}
+          {% endif %}
+        </div>
+        <!-- desktop price wrapper -->
+        <div class="product-price medium-down--hide">
+          {% include 'product-page-price' %}
+        </div>
+        <!-- desktop short description wrapper -->
+        <div class="product-short-description-wrapper medium-down--hide">
+          {% if product_short_desc != blank %}
+            <div class="product-short-description">
+              {{ product_short_desc }}
+            </div>
+          {% else %}
+            <br>
+          {% endif %}
+        </div>
+        {% include 'product-page-form' %}
+        <!-- desktop product icons -->
+        <div class="product-icons medium-down--hide">
+          {% include 'product-icons' %}
+        </div>
+        <div class="product-meta-wrapper medium-down--hide">
+          {% include 'product-meta' %}
+        </div>
         {% if section.settings.display_share_icons %}
+        <div class="product-social-wrapper medium-down--hide">
           {% include 'product-page-social' %}
+        </div>
+        {% endif %}
+
+        <!-- mobile product description and review -->
+        <div class="product-info-bottom large--hide">
+          {% include 'product-description' %}
+          {% if settings.app_product_reviews_enabled == "ryviu_reviews" %}
+            <div class="large--hide">
+              <div class="ryviu-show-reviews medium-down--hide" product-handle="{{product.handle}}">{{product.metafields.ryviu.reviews}}</div>
+            </div>
+          {% endif %}
+        </div>
+        <div class="product-form-position-bottom"></div>
+        <input type="hidden" name="product-form-mobile-position" id="product-form-mobile-position" value="{{ section.settings.product_form_location }}">
+        {% if section.settings.hide_normal_add_to_cart and section.settings.sticky_add_to_cart %}
+        <input type="hidden" name="visibile-mobile-cart" id="visibile-mobile-cart" value="1" />
         {% endif %}
       </div>
-    </div> <!-- end desktop -->
+    </div>
 
     <div class="grid__item one-whole large--two-thirds">
 
@@ -487,11 +544,35 @@
         "default": true
       },
       {
+        "type": "radio",
+        "id": "options_icons",
+        "label": "Use icons from:",
+        "default": "default",
+        "options": [
+          {"value": "default", "label": "default"},
+          {"value": "icon", "label": "Font Awesome Icons"},
+          {"value": "image", "label": "Image"}
+        ]
+      },
+      {
         "type": "text",
         "id": "icon_1_text",
         "label": "Icon 1 text",
         "default": "[STOCK_QTY] left in stock",
         "info": "Variable [STOCK_QTY] replaced with actual number"
+      },
+      {
+        "type": "text",
+        "id": "icon_1_symbol",
+        "label": "Icon 1 [Font Awesome Symbol](http://fontawesome.io/icons/)",
+        "default": "fa fa-home",
+        "info": "Font Awesome Icon like: fa fa-home"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_1_image",
+        "label": "Upload image",
+        "info": "Upload 40x40 image"
       },
       {
         "type": "text",
@@ -501,15 +582,54 @@
       },
       {
         "type": "text",
+        "id": "icon_2_symbol",
+        "label": "Icon 2 [Font Awesome Symbol](http://fontawesome.io/icons/)",
+        "default": "fa fa-plane",
+        "info": "Font Awesome Icon like: fa fa-plane"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_2_image",
+        "label": "Upload image",
+        "info": "Upload 40x40 image"
+      },
+      {
+        "type": "text",
         "id": "icon_3_text",
         "label": "Icon 3 text",
         "default": "Best quality"
       },
       {
         "type": "text",
+        "id": "icon_3_symbol",
+        "label": "Icon 3 [Font Awesome Symbol](http://fontawesome.io/icons/)",
+        "default": "fa fa-certificate",
+        "info": "Font Awesome Icon like: fa fa-certificate"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_3_image",
+        "label": "Upload image",
+        "info": "Upload 40x40 image"
+      },
+      {
+        "type": "text",
         "id": "icon_4_text",
         "label": "Icon 4 text",
         "default": "Safe checkout"
+      },
+      {
+        "type": "text",
+        "id": "icon_4_symbol",
+        "label": "Icon 4 [Font Awesome Symbol](http://fontawesome.io/icons/)",
+        "default": "fa fa-lock",
+        "info": "Font Awesome Icon like: fa fa-lock"
+      },
+      {
+        "type": "image_picker",
+        "id": "icon_4_image",
+        "label": "Upload image",
+        "info": "Upload 40x40 image"
       },
       {
         "type": "header",

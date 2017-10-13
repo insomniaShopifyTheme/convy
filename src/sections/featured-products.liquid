@@ -50,7 +50,7 @@
       {% endfor %}
     </div>
     <div class="slider-wrapper medium--hide large--hide">
-      <div class="product-list slider" id="slider_{{ section.id }}">
+      <div class="product-list slider" {% if section.blocks.size > 1 %}id="slider_{{ section.id }}"{% endif %}>
         {% for block in section.blocks limit: section.blocks.size %}
           <div class="product-list__item slider__slide--{{ block.id }}" {{ block.shopify_attributes }}>
             {% if block.settings.product != blank %}

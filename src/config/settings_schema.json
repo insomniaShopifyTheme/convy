@@ -124,6 +124,26 @@
           }
         ],
         "default": ""
+      },
+      {
+        "type": "header",
+        "content": "Uploadery by ShopPad"
+      },
+      {
+        "type": "radio",
+        "id": "app_uploadery_enabled",
+        "label": "Uploadery app",
+        "options": [
+          {
+            "value": "",
+            "label": "Disable"
+          },
+          {
+            "value": "true",
+            "label": "Enable"
+          }
+        ],
+        "default": ""
       }
     ]
   },
@@ -171,7 +191,7 @@
         "type": "checkbox",
         "id": "add_to_cart_float_animation",
         "label": "Enable floating image animation",
-        "default": true,
+        "default": false,
         "info": "This animation appears when you add a product to the cart."
       },
       {
