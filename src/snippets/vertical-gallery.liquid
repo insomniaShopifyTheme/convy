@@ -25,12 +25,20 @@
       {% if section.settings.display_banner  %}
         {% unless forloop.index == product.images.size %}
         <li>
+          {% if image.alt contains 'youtube' %}
+            {% include 'product-video-embed' %}
+          {% else %}
           <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}" data-original="{{ image.src | img_url: 'original' }}" data-zoom-type="{{ section.settings.gallery_zoom_type }}">
+          {% endif %}
         </li>
         {% endunless %}
       {% else %}
         <li>
+          {% if image.alt contains 'youtube' %}
+            {% include 'product-video-embed' %}
+          {% else %}
           <img src="{{ image.src | img_url: 'large' }}" alt="{{ image.alt | escape }}" data-original="{{ image.src | img_url: 'original' }}" data-zoom-type="{{ section.settings.gallery_zoom_type }}">
+          {% endif %}
         </li>
       {% endif %}
     {% endfor %}

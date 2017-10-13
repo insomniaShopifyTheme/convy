@@ -93,13 +93,21 @@ $image-large: 728px;
       margin-bottom: $gutter;
       visibility: hidden;
 
-      .collection-filter__items--tags{
-        padding-left: 15px;
+      ul{
+        margin-bottom: 0;
+        margin-left: 0;
       }
+
+
 
       .collection-filter__title {
         @include collection-sidebar-title();
       }
+      .collection-filter-tags__title {
+        @include collection-sidebar-title();
+        margin-bottom: 30px;
+      }
+
       .collection-filter__subtitle {
         font-size: 1rem;
         font-weight: bold;
@@ -110,21 +118,23 @@ $image-large: 728px;
           margin-right: $gutter;
         }
 
-        &.other-tags{
-          margin-left: 15px;
-        }
       }
       .collapsible-title{
         display: block;
         position: relative;
         cursor: pointer;
-        margin: 10px 15px 0px 0px;
+        margin: 10px 15px 6px 0px;;
 
         &::after{
-          content: "\25c2";
-          font-size: 1.3em;
-          display: table;
-          left: -16px;
+          display: inline-block;
+          font: normal normal normal 14px/1 FontAwesome;
+          font-size: inherit;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          content: "\f106";
+          font-size: 1.0em;
+          right: 0;
           top: -17px;
           line-height: 50px;
           position: absolute;
@@ -151,16 +161,17 @@ $image-large: 728px;
       .collapsible-content{
         overflow: hidden;
         height: inherit;
-
-        @include transition(.7s);
+        margin-top: 10px;
+        margin-bottom: 20px;
 
         &.closed{
           height: 0px;
-
+          margin: 0;
         }
       }
       .collection-filter__reset {
-        padding-left: 1.5rem;
+        padding-top: 1rem;
+        padding-left: 5.5rem;
         a {
           color: $color-special;
           border-bottom: 1px dashed $color-special;
@@ -240,8 +251,5 @@ $image-large: 728px;
   margin-bottom: $gutter;
   .collection-menu__title {
     @include collection-sidebar-title();
-  }
-  ul,li {
-    margin-left: 4px;
   }
 }
