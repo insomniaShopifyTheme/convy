@@ -1,3 +1,5 @@
+
+{% unless section.settings.display_banner_product_title %}
 <div class="product-info__title">
   {% if featured_product_section %}
     <h3><a href="{{ product_url }}">{{ product.title }}</a></h3>
@@ -5,6 +7,8 @@
     <h3 itemprop="name">{{ product.title }}</h3>
   {% endif %}
 </div>
+{% endunless %}
+
 {% if settings.app_product_reviews_enabled != blank %}
   {% if settings.app_product_reviews_enabled == "product_reviews" %}
     <a href="#" class="open-reviews-tab">
