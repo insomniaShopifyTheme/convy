@@ -105,8 +105,8 @@ theme.ProductPageSection = (function() {
     this.selectors = {
       originalSelectorId: '#ProductSelect-' + sectionId,
       singleOptionSelector: '.product-options__selector-' + sectionId,
-      addToCart: '#' + sectionId + ' .product-info .product-form__cart-submit',
-      addToCartText: '#' + sectionId + ' .product-info .product-form__cart-submit-text',
+      addToCart: '#' + sectionId + ' .product-info .product-form-wrapper .product-form__cart-submit',
+      addToCartText: '#' + sectionId + ' .product-info .product-form-wrapper .product-form__cart-submit-text',
       productPrices: '.product-info .product-price',
       originalPrice: '.product-info .product-price__price',
       comparePrice: '.product-info .product-price__old',
