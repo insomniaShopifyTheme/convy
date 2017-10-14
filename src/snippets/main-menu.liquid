@@ -10,7 +10,7 @@
       {% if forloop.index <= 5 %}
         {% if linklists[child_list_handle].links != blank %}
           <li{% if link.active %} class="current"{% endif %}>
-            <a href="{{ link.url }}" class="sf-with-ul">{{ link.title }} {{ link.title.size }}</a>
+            <a href="{{ link.url }}" class="sf-with-ul">{{ link.title }}</a>
 
             <ul style="display: none;  width: {% if  linklists[child_list_handle].links.size > 6 %} {{ li_width | times: section.settings.submenu_columns }}px; {% else %} {{ li_width }}px; {% endif %}">
               {% for childlink in linklists[child_list_handle].links %}
