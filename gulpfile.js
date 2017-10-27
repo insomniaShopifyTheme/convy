@@ -35,7 +35,6 @@ JS_FILES = [
   globalConfig.scripts_src + '/top-bar.js',
   globalConfig.scripts_src + '/footer.js',
   globalConfig.scripts_src + '/admin.dev.js',
-  globalConfig.scripts_src + '/check_license.js',
   globalConfig.scripts_src + '/init.js',
   globalConfig.scripts_src + '/password-page.js',
 ];
