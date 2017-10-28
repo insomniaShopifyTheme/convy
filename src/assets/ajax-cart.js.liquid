@@ -668,13 +668,13 @@ var ajaxCart = (function(module, $) {
         // Update the input's number
         $qtySelector.val(qty);
 
-        // Vlad: Added to update quantity automatically on cart page
+        // Added to update quantity automatically on cart page
         if (line) {
           ShopifyAPI.changeItem(line, qty, adjustCartCallback);
         }
       });
 
-      // Vlad: Added to update quantity automatically on cart page
+      // Added to update quantity automatically on cart page
       $('.cart-template .js-qty__num').on('focus', function() {
         currentQty = $(this).val();
       });

@@ -19,7 +19,7 @@
 
 
 
-// Modified for Konversion Theme
+// Modified for Convy Theme
 // added option `direction: top / bottom` for options to only drop to the up or down
 
 

@@ -3,7 +3,7 @@
 .section-topbar {
   background-color: #191919;
   height: $topbar-height;
-  
+
   @include at-query($max, $small) {
     height: auto;
 
@@ -44,7 +44,7 @@
     @include at-query($max, $xlarge) {
       margin: 0 ($gutter - 20px) 0 0;
     }
-    // Vlad: Removed that because it's too confusing when icons disappear at non-standard breakpoint
+    // Removed that because it's too confusing when icons disappear at non-standard breakpoint
     // @include at-query($max, $wide) {
     //   display: none;
     // }

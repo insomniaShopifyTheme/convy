@@ -5,7 +5,7 @@ var globalConfig = {
 
 // Add files to merge to dist/assets/theme.js.liquid
 // *** NOTE ***
-// dist/assets/theme.js.liquid is used for the code that konversion team writes
+// dist/assets/theme.js.liquid is used for the code that Convy team writes
 // append any external libraries to the src/assets/vendor.js in their minified version
 JS_FILES = [
   globalConfig.scripts_src + '/lib/jquery.selectric.js',
@@ -172,7 +172,7 @@ gulp.task('default', gulpSequence('build', 'watch'));
 
 gulp.task("zip_build", function() {
   return gulp.src('./dist/**/*')
-    .pipe(zip('konversion-theme.zip'))
+    .pipe(zip('Convy-theme.zip'))
     .pipe(gulp.dest('./dist'))
 });
 

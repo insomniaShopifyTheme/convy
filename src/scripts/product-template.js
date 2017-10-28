@@ -644,7 +644,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
     // Countdown timer
     function countDownOfferTimer(toDateSplittedStr, productId, $element) {
       var timer;
-      var cookieName = "konversion-countdown-" + productId;
+      var cookieName = "convy-countdown-" + productId;
       var endDate = null;
 
 
@@ -758,7 +758,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
 
         }else{
           $countDownOffer.parents('.product-form__cart--sticky').removeClass('w-countdown');
-          _cookie.remove("konversion-countdown-"+ productId);
+          _cookie.remove("convy-countdown-"+ productId);
         }
       }
     }
@@ -863,7 +863,7 @@ theme.ProductPageSection.prototype = _.extend({}, theme.ProductPageSection.proto
           }
           $(this).empty();
         });
-        
+
 
       }
     }).resize();

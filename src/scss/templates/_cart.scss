@@ -93,7 +93,7 @@ $cart-secondary-color: $color-pale;
     }
     .js-qty, .ajaxcart__qty {
       float: left;
-      @include konversion-cart-qty-input();
+      @include convy-cart-qty-input();
       width: 140px !important;
       .js-qty__num, .ajaxcart__qty-num {
         color: $cart-secondary-color;

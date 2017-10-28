@@ -12,10 +12,10 @@ theme.splashModals = function() {
         explosiveOffer = modalContent.data('explosive-offer'),
         explosionGif = modalContent.data('explosion-gif');
 
-    var cookieName = 'konversion-modals';
+    var cookieName = 'convy-modals';
     var cookie = new theme.CookieManager();
 
-    if(cookie.check(cookieName)){ 
+    if(cookie.check(cookieName)){
         if(cookie.get(cookieName) == 'open'){
             cookie.set(cookieName, 'closed', daysHidden);
             showModal();

@@ -62,13 +62,13 @@
           {% if filterNameList contains compareFilterName %}{% else %}
                   <li>
                     {% if current_tags contains tag %}
-                        <input type="checkbox" class="konversion-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}">{{ filterName | link_to_remove_tag: tag }}</label>
+                        <input type="checkbox" class="convy-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}">{{ filterName | link_to_remove_tag: tag }}</label>
                     {% elsif current_tags contains tag_safe %}
-                        <input type="checkbox" class="konversion-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}">{{ filterName | link_to_remove_tag: tag_safe }}</label>
+                        <input type="checkbox" class="convy-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}">{{ filterName | link_to_remove_tag: tag_safe }}</label>
                     {% elsif current_tags contains tag_safe_amp %}
-                      <input type="checkbox" class="konversion-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}">{{ filterName | link_to_remove_tag: tag_safe_amp }}</label>
+                      <input type="checkbox" class="convy-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}">{{ filterName | link_to_remove_tag: tag_safe_amp }}</label>
                     {% else %}
-                        <input type="checkbox" class="konversion-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}"><label for="checkbox-{{ tag }}">{{ filterName | link_to_add_tag: tag }}</label>
+                        <input type="checkbox" class="convy-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}"><label for="checkbox-{{ tag }}">{{ filterName | link_to_add_tag: tag }}</label>
                     {% endif %}
                   </li>
 
@@ -98,13 +98,13 @@
         {% else %} 
         <li>
           {% if current_tags contains tag %}
-              <input type="checkbox" class="konversion-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}">{{ tag | link_to_remove_tag: tag }}</label>
+              <input type="checkbox" class="convy-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}">{{ tag | link_to_remove_tag: tag }}</label>
           {% elsif current_tags contains tag_safe %}
-              <input type="checkbox" class="konversion-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}">{{ tag | link_to_remove_tag: tag_safe }}</label>
+              <input type="checkbox" class="convy-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}">{{ tag | link_to_remove_tag: tag_safe }}</label>
           {% elsif current_tags contains tag_safe_amp %}
-              <input type="checkbox" class="konversion-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}"> {{ tag | link_to_remove_tag: tag_safe_amp }}</label>
+              <input type="checkbox" class="convy-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}" checked="true"><label for="checkbox-{{ tag }}"> {{ tag | link_to_remove_tag: tag_safe_amp }}</label>
           {% else %}
-              <input type="checkbox" class="konversion-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}"><label for="checkbox-{{ tag }}"> {{ tag | link_to_add_tag: tag }}</label>
+              <input type="checkbox" class="convy-checkbox checkbox-{{ tag }}" id="checkbox-{{ tag }}" value="{{ tag }}"><label for="checkbox-{{ tag }}"> {{ tag | link_to_add_tag: tag }}</label>
           {% endif %}
         </li>
         {% endif %}

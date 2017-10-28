@@ -2,7 +2,7 @@
   .blog-filter {
     width: 100%;
     select {
-      @include konversion-input();
+      @include convy-input();
     }
   }
   .blog-list {

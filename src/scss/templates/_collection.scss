@@ -29,7 +29,7 @@ $image-large: 728px;
 .collection-template {
   .collection-controls {
     select {
-      @include konversion-input();
+      @include convy-input();
       &:not(#SortBy) {
         border-left: none;
         border-right: none;

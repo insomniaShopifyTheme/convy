@@ -1,6 +1,5 @@
 {
   "current": {
-    "license_key": "",
     "app_product_reviews_enabled": "",
     "yotpo_app_key": "",
     "ajax_cart_method": "drawer",
@@ -76,12 +75,12 @@
     "shipping_calculator_default_country": "United States",
     "shipping_calculator_submit_button_label": "Calculate shipping",
     "shipping_calculator_submit_button_label_disabled": "Calculating...",
-    "social_facebook_link": "https:\/\/www.facebook.com\/pages\/Tabarnapp\/292814031076984",
+    "social_facebook_link": "#",
     "social_twitter_link": "https:\/\/twitter.com\/demoweb_co",
     "social_instagram_link": "",
     "social_tumblr_link": "",
     "social_pinterest_link": "",
-    "social_youtube_link": "https:\/\/www.youtube.com\/user\/derekmorinjob",
+    "social_youtube_link": "#",
     "social_snapchat_link": "",
     "social_icons_menu_drawer": true,
     "share_facebook": true,

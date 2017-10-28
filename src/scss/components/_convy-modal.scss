@@ -2,7 +2,7 @@
 $cart-modal-width: 540px;
 
 /* The Modal (background) */
-.konversion-modal {
+.convy-modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: $z-index-modal; /* Sit on top */
@@ -47,7 +47,7 @@ $cart-modal-width: 540px;
     }
   }
 
-  &.konversion-modal--splash {
+  &.convy-modal--splash {
     .modal-header {
       padding: 0;
       border-bottom: none;
@@ -85,7 +85,7 @@ $cart-modal-width: 540px;
   }
 }
 
-.konversion-modal:before {
+.convy-modal:before {
   content: '';
   display: inline-block;
   height: 100%;

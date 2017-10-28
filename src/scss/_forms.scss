@@ -265,14 +265,14 @@ label.error {
   padding: 0;
 }
 
-@mixin konversion-input() {
+@mixin convy-input() {
   border-radius: 0;
   color: $color-text-body;
   margin-bottom: ($gutter / 2);
   padding: 1rem;
   width: 100%;
 }
-@mixin konversion-cart-qty-input() {
+@mixin convy-cart-qty-input() {
   border: 1px solid #efefef;
   text-align: center;
   width: 130px;

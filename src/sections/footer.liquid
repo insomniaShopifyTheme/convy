@@ -165,11 +165,11 @@
           {% if section.settings.powered_by or section.settings.theme_copyright %}
             <div class="copyright-text{% unless section.settings.payment_icons %}{% if section.settings.display_social %} copyright-text--with-margin{% else %} copyright-text--with-small-margin{% endif %}{% endunless %}">
               {% if section.settings.powered_by %}
-                <span class="powered-by">{{ "layout.footer.powered_by" | t }} <a href="http://getshopify.tabarnapp.com" target="_blank">Shopify</a></span>
+                <span class="powered-by">{{ "layout.footer.powered_by" | t }} <a href="http://getshopify.com" target="_blank">Shopify</a></span>
               {% endif %}
               {% if section.settings.theme_copyright %}
-                {% capture theme_url %}{% if section.settings.affiliate_link != blank %}{{ section.settings.affiliate_link }}{% else %}http://offers.konversiontheme.com/{% endif %}{% endcapture %}
-                <span class="theme-by">{{ "layout.footer.theme_by" | t }} <a href="{{ theme_url | trim }}" target="_blank">Konversion</a></span>
+                {% capture theme_url %}{% if section.settings.affiliate_link != blank %}{{ section.settings.affiliate_link }}{% else %}insomniashopifytheme@gmail.com{% endif %}{% endcapture %}
+                <span class="theme-by">{{ "layout.footer.theme_by" | t }} <a href="{{ theme_url | trim }}" target="_blank">convy</a></span>
               {% endif %}
             </div>
           {% endif %}
@@ -306,19 +306,13 @@
       },
       {
         "type": "paragraph",
-        "content": "Let the theme copyright link in the footer of your store and earn up to 40% commission in sales. [Learn more](http://jv.konversiontheme.com/)"
+        "content": "Let the theme copyright link in the footer of your store and earn up to 40% commission in sales."
       },
       {
         "type": "checkbox",
         "id": "theme_copyright",
         "label": "Enable theme copyright link",
         "default": true
-      },
-      {
-        "type": "text",
-        "id": "affiliate_link",
-        "label": "Konversion affiliate link",
-        "info": "[Apply to our affiliate program](http://jv.konversiontheme.com/)"
       }
     ],
     "blocks": [

@@ -265,7 +265,7 @@
       }
       .product-form__input {
 
-        @include konversion-input();
+        @include convy-input();
 
       }
     }
@@ -297,7 +297,7 @@
       display: none;
     }
     .js-qty__num {
-      @include konversion-input();
+      @include convy-input();
     }
   }
 
@@ -441,7 +441,7 @@
     }
     .product-form {
       .js-qty {
-        @include konversion-cart-qty-input();
+        @include convy-cart-qty-input();
         width: 140px;
         button {
           display: inline-block;
